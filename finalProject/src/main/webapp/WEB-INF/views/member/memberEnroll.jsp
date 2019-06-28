@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%--  Header --%>
+<jsp:include page="/WEB-INF/common/header.jsp"/>
+<%--  Header --%>
+<jsp:include page="/WEB-INF/common/sub.jsp"/>
+
 <section id="wrap">
 	<div class="area">
 		<fieldset>
@@ -29,5 +27,6 @@
 		</fieldset>
 	</div>
 </section>
-</body>
-</html>
+
+<%--  footer --%>
+<jsp:include page="/WEB-INF/common/footer.jsp"/>
