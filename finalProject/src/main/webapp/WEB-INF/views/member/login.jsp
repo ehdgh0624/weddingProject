@@ -7,11 +7,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/login.do" form="post">
-		아이디 : <input type="text" name="memberName">
-		비밀번호 : <input type="password" name="memberPw">
-		<button type="submit" value="로그인"></button>
-		<button type="button" onclick="location.href='/memberEnroll.do'" value="회원가입"></button>
-	</form>
+<section id="wrap">
+	<div class="area">
+		<form action="/login.do" form="post">
+				아이디 : <input type="text" name="memberName">
+				비밀번호 : <input type="password" name="memberPw">
+				<button type="submit" value="로그인"></button>
+				<button type="button" onclick="location.href='/memberEnroll.do'" value="회원가입"></button>
+		</form>
+	</div>
+</section>
 </body>
 </html>
