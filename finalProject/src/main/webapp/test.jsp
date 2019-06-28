@@ -1,15 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-
 <%--  Header --%>
 <jsp:include page="/WEB-INF/common/header.jsp"/>
-
-<script type="text/javascript" scr="/resources/js/main.js"></script><!-- main.js -->
+<%--  Header --%>
+<jsp:include page="/WEB-INF/common/sub.jsp"/>
 
 <%-- wrap --%>
 <section id="wrap">
-	
+	<div class="area">
+		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
+	</div>
 </section>
 
 <%--  footer --%>
