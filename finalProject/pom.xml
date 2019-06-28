@@ -14,6 +14,14 @@
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
 	<dependencies>
+		<!-- SpringJDBC -->
+	      <dependency>
+	         <groupId>org.springframework</groupId>
+	         <artifactId>spring-jdbc</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
+	
+	
 			<!-- Mybatis -->
 		<dependency>
 			<groupId>org.mybatis</groupId>
@@ -51,6 +59,12 @@
 			<artifactId>gson</artifactId>
 			<version>2.8.0</version>
 		</dependency>
+		<!-- SpringJDBC -->
+	      <dependency>
+	         <groupId>org.springframework</groupId>
+	         <artifactId>spring-jdbc</artifactId>
+	         <version>5.0.6.RELEASE</version>
+	      </dependency>
 		<!-- DBCP(Data Base Connection Pool) -->
 		<dependency>
 			<groupId>commons-dbcp</groupId>
