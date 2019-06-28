@@ -3,7 +3,7 @@
 <footer id="footer">
 	<div class="footer-inner area">
 		<img src="/img/footer_logo.png">
-		<p>COPYRIGHT &copy; 결혼해쥬오. ALL RIGHT RESERVED. </p>
+		<p>COPYRIGHT &copy; 결혼해JUO. ALL RIGHT RESERVED. </p>
 	</div>
 </footer>
 

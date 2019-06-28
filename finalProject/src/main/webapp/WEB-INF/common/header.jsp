@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>결혼해쥬오</title>
+<title>JUO</title>
 <link rel="Shortcut Icon" href="/img/favicon.ico">
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css"> <!-- 태그 초기화 css(민주) -->
@@ -29,7 +29,61 @@
 </head>
 <body>
 	<header id="header">
-		여기는 헤더자리
+		<div id="headerInnerWrap">
+			<!-- 헤더 상단 -->
+			<div id="headerInner" class="clearfix">
+			   	<!-- 부가메뉴 -->
+				<div class="header-util">
+					<!-- 로그인 전 -->
+			  		<ul class="header-util-box area clearfix">
+						<li><a href="">로그인</a></li>
+			       		<li><a href="">회원가입</a></li>
+			       		<li><a href="">업체등록</a></li>
+			    	</ul>
+			    	<!-- 로그인 후 -->
+			  		<!-- <ul class="header-util-box area clearfix">
+						<li><a href="">로그아웃</a></li>
+			       		<li><a href="">마이페이지</a></li>
+			    	</ul> -->
+			 	</div>
+			   	<!-- 로고 -->
+				<h1 class="header-logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:80px"></a></h1>
+				<!-- 주메뉴 -->
+				<nav id="gnb" class="total-menu">
+					<div id="gnbBg"></div>
+					<ul class="clearfix">
+						<li class="gnb01">
+							<a href="">웨딩홀</a>
+						</li>
+						<li class="gnb02">
+							<a href="">웨딩 컬렉션</a>
+							<div class="gnb-2dep">
+								<ul>
+									<li><a href="">드레스</a></li>
+								   	<li><a href="">스튜디오</a></li>
+								   	<li><a href="">메이크업&헤어</a></li>
+								   	<li><a href="">부케</a></li>
+								   	<li><a href="">청첩장</a></li>
+								</ul>
+							</div>
+						</li>
+						<li class="gnb03">
+							<a href="">웨딩 계산기</a>
+						</li>
+						<li class="gnb04">
+							<a href="">커뮤니티</a>
+							<div class="gnb-2dep">
+								<ul>
+									<li><a href="">공지사항</a></li>
+								   	<li><a href="">Q&A</a></li>
+								   	<li><a href="">경험담</a></li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
 	</header>
 
 	
