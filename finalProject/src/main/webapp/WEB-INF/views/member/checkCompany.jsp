@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form>
+	<form action="/CompanyEnroll.do" method="post">
 		<div><!-- 기본정보 -->
 			<span>파트너 기본정보 등록</span><br><br>
 			<span>업체의 이름을 알려주세요</span><br>
@@ -21,7 +21,7 @@
 			<span>인사말</span>
 			<textarea rows="15" cols="30"></textarea>
 			
-			<button value="다음"></button>
+			<button value="">다음</button>
 		</div>
 		
 		<div><!-- 분류선택 -->
@@ -32,7 +32,7 @@
 				<option value="2">드레스</option>
 				<option value="3">메이크업</option>
 			</select>	
-			<button value="다음"></button>
+			<button value="">다음</button>
 		</div>
 		
 		<div><!--스튜디오인경우  -->
@@ -59,6 +59,7 @@
 			C:<input type="text" name="CTypeExplainF"><input type="text" placeholder="금액" name="CTypePriceF">
 			코멘트:<input type="text" name="CommentO">
 		
+			<button value="">다음</button>
 		</div>
 		
 		<div><!--드레스인경우  -->
@@ -78,7 +79,7 @@
 			설명<input type="text" name="ATypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
 			코멘트:<input type="text" name="CommentO">
 			
-		
+			<button value="">다음</button>
 		
 		</div>
 		
@@ -98,7 +99,20 @@
 			A<input type="text" name="ATypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
 			B<input type="text" name="BTypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
 			코멘트:<input type="text" name="CommentW">
+			<button value="">다음</button>
+		</div>
 		
+		<div>
+			대충 이미지 업로드하는공간...
+			대표사진
+			사진
+			사진
+			사진
+			
+			해쉬태그입력<input type="text" name="hashtag">
+			<span>여긴 해쉬태그가 들어갈공간-</span>
+			
+			<button type="submit">제출</button>
 		</div>
 	
 	</form>
