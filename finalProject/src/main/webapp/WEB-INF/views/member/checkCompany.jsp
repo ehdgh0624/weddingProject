@@ -31,8 +31,7 @@
 				<option value="1">스튜디오</option>
 				<option value="2">드레스</option>
 				<option value="3">메이크업</option>
-			</select>
-			
+			</select>	
 			<button value="다음"></button>
 		</div>
 		
@@ -40,15 +39,65 @@
 			<span>동시에 진행가능한 건수</span>
 			<input type="text" name="companySize">
 			<span>평균스냅촬영</span>
+			<input type="text" name="time">
 			
+			<span>본식TYPE</span>  수정: <input type="checkbox" name="fixedTitleW">
+			A:<input type="text" name="ATypeExplainW"><input type="text" placeholder="금액" name="ATypePriceW">
+			B:<input type="text" name="BTypeExplainW"><input type="text" placeholder="금액" name="BTypePriceW">
+			C:<input type="text" name="CTypeExplainW"><input type="text" placeholder="금액" name="CTypePriceW">
+			코멘트:<input type="text" name="CommentW">
+			
+			<span>야외스냅</span> 수정: <input type="checkbox" name="fixedTitleO">
+			A:<input type="text" name="ATypeExplainO"><input type="text" placeholder="금액" name="ATypePriceO">
+			B:<input type="text" name="BTypeExplainO"><input type="text" placeholder="금액" name="BTypePriceO">
+			C:<input type="text" name="CTypeExplainO"><input type="text" placeholder="금액" name="CTypePriceO">
+			코멘트:<input type="text" name="CommentO">
+			
+			<span>프리웨딩</span> 수정: <input type="checkbox" name="fixedTitleF">
+			A:<input type="text" name="ATypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
+			B:<input type="text" name="BTypeExplainF"><input type="text" placeholder="금액" name="BTypePriceF">
+			C:<input type="text" name="CTypeExplainF"><input type="text" placeholder="금액" name="CTypePriceF">
+			코멘트:<input type="text" name="CommentO">
 		
 		</div>
 		
 		<div><!--드레스인경우  -->
+			<span>동시에 진행가능한 건수</span>
+			<input type="text" name="companySize">
+
+			
+			<span>피팅비</span>  수정: <input type="checkbox" name="fixedTitleW">
+			설명<input type="text" name="ATypeExplainW"><input type="text" placeholder="금액" name="ATypePriceW">
+			코멘트:<input type="text" name="CommentW">
+			
+			<span>대여비</span> 수정: <input type="checkbox" name="fixedTitleO">
+			설명<input type="text" name="ATypeExplainO"><input type="text" placeholder="금액" name="ATypePriceO">
+			코멘트:<input type="text" name="CommentO">
+			
+			<span>프리웨딩</span> 수정: <input type="checkbox" name="fixedTitleF">
+			설명<input type="text" name="ATypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
+			코멘트:<input type="text" name="CommentO">
+			
+		
 		
 		</div>
 		
 		<div><!--메이크업  -->
+		
+			<span>본식메이크업</span>  수정: <input type="checkbox" name="fixedTitleW">
+			A<input type="text" name="ATypeExplainW"><input type="text" placeholder="금액" name="ATypePriceW">
+			B<input type="text" name="BTypeExplainW"><input type="text" placeholder="금액" name="ATypePriceW">
+			코멘트:<input type="text" name="CommentW">
+			
+			<span>혼주메이크업</span>  수정: <input type="checkbox" name="fixedTitleO">
+			A<input type="text" name="ATypeExplainO"><input type="text" placeholder="금액" name="ATypePriceO">
+			B<input type="text" name="BTypeExplainO"><input type="text" placeholder="금액" name="ATypePriceO">
+			코멘트:<input type="text" name="CommentW">
+			
+			<span>리허설/스튜디오 메이크업</span>  수정: <input type="checkbox" name="fixedTitleF">
+			A<input type="text" name="ATypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
+			B<input type="text" name="BTypeExplainF"><input type="text" placeholder="금액" name="ATypePriceF">
+			코멘트:<input type="text" name="CommentW">
 		
 		</div>
 	
