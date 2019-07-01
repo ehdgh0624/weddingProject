@@ -19,4 +19,11 @@ public class MemberService {
 		return memberDao.selectOneMember(memberSet);
 	}
 
+	public int insertMember(Member vo) {
+		// TODO Auto-generated method stub
+		
+		
+		return memberDao.insertMember(vo);
+	}
+
 }
