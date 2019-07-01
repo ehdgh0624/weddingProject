@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/login">로그인</a><br>
+	<a href="/loginPage.do">로그인</a><br>
 	<a href="/mypage.do">마이페이지</a>
 	
 </body>

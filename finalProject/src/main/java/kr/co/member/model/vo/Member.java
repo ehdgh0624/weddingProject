@@ -6,6 +6,14 @@ public class Member {
 	private String memberId;
 	private String memberPw;
 	private String birthDay;
+	private String phone;
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
 	private String email;
 	private String addr;
 	private int addrCode;
@@ -16,7 +24,7 @@ public class Member {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Member(String memberId, String memberPw, String birthDay, String email, String addr, int addrCode,
+	public Member(String memberId, String memberPw, String birthDay,String phone, String email, String addr, int addrCode,
 			Date marryDay, int visitNum, int budget) {
 		super();
 		this.memberId = memberId;

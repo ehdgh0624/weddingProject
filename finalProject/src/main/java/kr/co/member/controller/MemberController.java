@@ -19,7 +19,7 @@ public class MemberController {
 	@Qualifier(value="memberService")
 	private MemberService memberService;
 	
-	@RequestMapping
+	@RequestMapping(value = "/login.do")
 	public String memberLogin(HttpServletRequest request, @RequestParam String memberId, @RequestParam String memberPw) {
 		System.out.println("로그인 호출");
 		Member memberSet = new Member();
@@ -28,6 +28,7 @@ public class MemberController {
 		Member member = memberService.selectOneMember(memberSet);
 		HttpSession session = request.getSession(); 		
 		String view = "";
+		
 		if(member!=null) {
 			session.setAttribute("member", member);
 			view = "member/loginSuccess";
@@ -37,5 +38,11 @@ public class MemberController {
 		return view;
 	}
 	
+	@RequestMapping(value = "/loginPage.do")
+	public String memberLogin() {
+		System.out.println("로그인 호출");
 	
+		return "member/loginPage";
+	}
+
 }
