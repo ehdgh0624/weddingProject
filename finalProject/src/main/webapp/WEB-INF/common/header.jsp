@@ -35,16 +35,25 @@
 			   	<!-- 부가메뉴 -->
 				<div class="header-util">
 					<!-- 로그인 전 -->
-			  		<ul class="header-util-box area clearfix">
-						<li><a href="">로그인</a></li>
-			       		<li><a href="">회원가입</a></li>
-			       		<li><a href="">업체등록</a></li>
-			    	</ul>
-			    	<!-- 로그인 후 -->
-			  		<!-- <ul class="header-util-box area clearfix">
-						<li><a href="">로그아웃</a></li>
-			       		<li><a href="">마이페이지</a></li>
-			    	</ul> -->
+					<c:choose>
+						<c:when test="${empty sessionScope.member }">
+					  		<ul class="header-util-box area clearfix">
+								<li><a href="">로그인</a></li>
+					       		<li><a href="">회원가입</a></li>
+					       		<li><a href="">업체등록</a></li>
+					    	</ul>
+				    	</c:when>
+				    	<c:when test="${not empty sessionScope.member }">
+				    	<!--  로그인 후-->
+				  			<ul class="header-util-box area clearfix">
+							<li><a href="">로그아웃</a></li>
+				       		<li><a href="">마이페이지</a></li>
+				       		<c:if test="${sessionScope.member.memberId eq 'admin' }">
+				       			<li><a href="/adminPage.do">관리자페이지</a></li>
+				       		</c:if>
+				    		</ul>
+				       	</c:when>
+			    	</c:choose>
 			 	</div>
 			   	<!-- 로고 -->
 				<h1 class="header-logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:80px"></a></h1>
