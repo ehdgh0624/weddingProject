@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberDress;
 import kr.co.member.model.vo.MemberHall;
-import kr.co.member.model.vo.MemberMakup;
+import kr.co.member.model.vo.MemberMakeup;
 import kr.co.member.model.vo.MemberStudio;
 @Repository("memberDao")
 public class MemberDao {
@@ -42,7 +42,7 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectOnehallMember",vo);
 	}
 
-	public MemberMakup selectOneMakeupMember(Member vo) {
+	public MemberMakeup selectOneMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne("member.selectOneMakeupMember",vo);
 	}

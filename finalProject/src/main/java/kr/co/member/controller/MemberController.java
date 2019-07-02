@@ -16,7 +16,7 @@ import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberDress;
 import kr.co.member.model.vo.MemberHall;
-import kr.co.member.model.vo.MemberMakup;
+import kr.co.member.model.vo.MemberMakeup;
 import kr.co.member.model.vo.MemberStudio;
 
 @Controller
@@ -76,7 +76,7 @@ public class MemberController {
 		MemberStudio ms = memberService.selectOneStudioMember(vo);
 		MemberDress md = memberService.selectOneDressMember(vo);
 		MemberHall mh = memberService.selectOneHallMember(vo);
-		MemberMakup mm = memberService.selctOneMakeupMember(vo);
+		MemberMakeup mm = memberService.selctOneMakeupMember(vo);
 		
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
 		Model model = new ExtendedModelMap();
