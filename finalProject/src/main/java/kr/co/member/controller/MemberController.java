@@ -70,23 +70,39 @@ public class MemberController {
 		}
 	}
 	
-	@RequestMapping(value = "/mypage.do")
-	public String myPageView(HttpSession session) {
+	@RequestMapping(value = "/myComapnyPage.do")
+	public String myCompanyView(HttpSession session) {
 		Member vo =(Member)session.getAttribute("member");	
 		MemberStudio ms = memberService.selectOneStudioMember(vo);
 		MemberDress md = memberService.selectOneDressMember(vo);
 		MemberHall mh = memberService.selectOneHallMember(vo);
 		MemberMakup mm = memberService.selctOneMakeupMember(vo);
 		
-
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
 		Model model = new ExtendedModelMap();
 		
 		
 		model.addAttribute("memberstudio",ma);
 		
-		return "member/mypage";
-		
+		return "member/myCompanyPage";
 	}
+	
+	@RequestMapping(value = "/mypage.do")
+	public String myPageView(HttpSession session) {
+		Member vo =(Member)session.getAttribute("member");	
+		Model model = new ExtendedModelMap();
+		model.addAttribute("memberstudio",vo);
+		return "member/mypage";
+	}
+	
+	@RequestMapping(value = "/addCompany.do")
+	public String addCompany(HttpSession session) {
+		Member vo =(Member)session.getAttribute("member");	
+		Model model = new ExtendedModelMap();
+		model.addAttribute("memberstudio",vo);
+
+		return "member/addCompany";
+	}
+	
 
 }

@@ -9,6 +9,8 @@
 <body>
 
 여기는 마이페이지입니다.
+<a href="/myCompanyPage.do">마이컴페니 페이지</a>
+
 
 </body>
 </html>
