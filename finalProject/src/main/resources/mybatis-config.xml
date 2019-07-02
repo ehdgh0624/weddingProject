@@ -7,6 +7,8 @@
     	<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
     	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
     	<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
-    	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>    	
+    	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>
+    	<typeAlias type="kr.co.simulator.model.vo.Simulator" alias="simulator"/>
+    	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  	
     </typeAliases>
 </configuration>
