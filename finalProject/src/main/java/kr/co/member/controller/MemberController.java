@@ -6,11 +6,18 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ExtendedModelMap;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.Member;
+import kr.co.member.model.vo.MemberAll;
+import kr.co.member.model.vo.MemberDress;
+import kr.co.member.model.vo.MemberHall;
+import kr.co.member.model.vo.MemberMakeup;
+import kr.co.member.model.vo.MemberStudio;
 
 @Controller
 public class MemberController {
@@ -33,7 +40,7 @@ public class MemberController {
 		if(member!=null) {
 			session.setAttribute("member", member);
 			System.out.println("로그인성공");
-			view = "member/loginSuccess";
+			return "redirect:/TestDj.jsp";
 		}else {
 			view = "member/loginFailed";
 			System.out.println("로그인실패");
@@ -53,23 +60,54 @@ public class MemberController {
 		return "member/enrollPage";
 	}
 	
-	
-	
 	@RequestMapping(value = "/memberEnroll.do")
 	public String memberEnroll(Member vo) {
 		int result = memberService.insertMember(vo);
-		
-		
-		
-		
 		if(result>0) {
 			return "redirect:/index.jsp";
 		}else {
 			return "redirect:/index.jsp";
 		}
-		
+	}
 	
+	@RequestMapping(value = "/myComapnyPage.do")
+	public String myCompanyView(HttpSession session) {
+		Member vo =(Member)session.getAttribute("member");	
+		MemberStudio ms = memberService.selectOneStudioMember(vo);
+		MemberDress md = memberService.selectOneDressMember(vo);
+		MemberHall mh = memberService.selectOneHallMember(vo);
+		MemberMakeup mm = memberService.selctOneMakeupMember(vo);
 		
+		MemberAll ma = new MemberAll(md,ms,mm,mh);
+		Model model = new ExtendedModelMap();
+		
+		
+		model.addAttribute("memberstudio",ma);
+		
+		return "member/myCompanyPage";
+	}
+	
+	@RequestMapping(value = "/mypage.do")
+	public String myPageView(HttpSession session) {
+		Member vo =(Member)session.getAttribute("member");	
+		Model model = new ExtendedModelMap();
+		model.addAttribute("memberstudio",vo);
+		return "member/mypage";
+	}
+	
+	@RequestMapping(value = "/addCompany.do")
+	public String addCompany() {
+		System.out.println("업체등록페이지 호출");
+		
+		return "member/addCompany";
+	}
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+		}
+		return "redirect:/";
 	}
 
 }

@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <footer id="footer">
 	<div class="footer-inner area">
-		<img src="/img/footer_logo.png">
+		<img src="/resources/img/footer_logo.png">
 		<p>COPYRIGHT &copy; 결혼해JUO. ALL RIGHT RESERVED. </p>
 	</div>
 </footer>

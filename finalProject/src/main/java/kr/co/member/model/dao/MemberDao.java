@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.member.model.vo.Member;
+import kr.co.member.model.vo.MemberDress;
+import kr.co.member.model.vo.MemberHall;
+import kr.co.member.model.vo.MemberMakeup;
+import kr.co.member.model.vo.MemberStudio;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -21,6 +25,26 @@ public class MemberDao {
 	public int insertMember(Member vo) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("member.insertMember",vo);
+	}
+
+	public MemberStudio selectOneStudioMember(Member vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOneStudioMember",vo);
+	}
+
+	public MemberDress selectOneDressMember(Member vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOneDressMember",vo);
+	}
+
+	public MemberHall selectOneHallMember(Member vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOnehallMember",vo);
+	}
+
+	public MemberMakeup selectOneMakeupMember(Member vo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectOneMakeupMember",vo);
 	}
 
 }

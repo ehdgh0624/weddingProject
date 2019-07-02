@@ -1,11 +1,9 @@
-package kr.co.member.model.vo;
+package kr.co.collection.model.vo;
 
-import java.sql.Date;
-
-public class MemberMakup  extends Member{
-	private int makeupNo;//메이크업 번호
-	private String code; //메이크업 코드
-	private String makeupName;//메이크업 이름
+public class Makeup {
+	private int makeupNo;
+	private String code;
+	private String makeupName;
 	private String makeupTel;
 	private String makeupLoc;
 	private String makeupAddr;
@@ -17,12 +15,33 @@ public class MemberMakup  extends Member{
 	private int status;
 	private int viewstatus;
 	private String makeupTag;
-	
-	public MemberMakup(int memberSeq, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, String marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
-				enrollDate);
+	private String makeupLatitude;
+	private String makeupLongitud;
+	public Makeup() {
+		super();
 		// TODO Auto-generated constructor stub
+	}
+	public Makeup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc, String makeupAddr,
+			int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice, String makeupFilename,
+			String makeupFilepath, int status, int viewstatus, String makeupTag, String makeupLatitude,
+			String makeupLongitud) {
+		super();
+		this.makeupNo = makeupNo;
+		this.code = code;
+		this.makeupName = makeupName;
+		this.makeupTel = makeupTel;
+		this.makeupLoc = makeupLoc;
+		this.makeupAddr = makeupAddr;
+		this.makeupBasicPrice = makeupBasicPrice;
+		this.makeupParentPrice = makeupParentPrice;
+		this.makeupVisitorPrice = makeupVisitorPrice;
+		this.makeupFilename = makeupFilename;
+		this.makeupFilepath = makeupFilepath;
+		this.status = status;
+		this.viewstatus = viewstatus;
+		this.makeupTag = makeupTag;
+		this.makeupLatitude = makeupLatitude;
+		this.makeupLongitud = makeupLongitud;
 	}
 	public int getMakeupNo() {
 		return makeupNo;
@@ -108,22 +127,17 @@ public class MemberMakup  extends Member{
 	public void setMakeupTag(String makeupTag) {
 		this.makeupTag = makeupTag;
 	}
-	@Override
-	public String toString() {
-		return "MemberMakup [makeupNo=" + makeupNo + ", code=" + code + ", makeupName=" + makeupName + ", makeupTel="
-				+ makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr + ", makeupBasicPrice="
-				+ makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice + ", makeupVisitorPrice="
-				+ makeupVisitorPrice + ", makeupFilename=" + makeupFilename + ", makeupFilepath=" + makeupFilepath
-				+ ", status=" + status + ", viewstatus=" + viewstatus + ", makeupTag=" + makeupTag + "]";
+	public String getMakeupLatitude() {
+		return makeupLatitude;
 	}
-	public MemberMakup() {
-		super();
-		// TODO Auto-generated constructor stub
+	public void setMakeupLatitude(String makeupLatitude) {
+		this.makeupLatitude = makeupLatitude;
 	}
-
+	public String getMakeupLongitud() {
+		return makeupLongitud;
+	}
+	public void setMakeupLongitud(String makeupLongitud) {
+		this.makeupLongitud = makeupLongitud;
+	}
 	
-	
-	
-	
-
 }

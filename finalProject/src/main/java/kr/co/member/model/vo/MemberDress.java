@@ -23,23 +23,18 @@ public class MemberDress extends Member{
 	private int status;
 	private int viewStatus;
 	private String dressTag;
+	private String dressLatitude;
+	private String dressLongtitude;
 	
-	public MemberDress() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
 	
-	public MemberDress(int memberSeq, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, String marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
-				enrollDate);
-		// TODO Auto-generated constructor stub
-	}
-
+	
+	
+	
 	public MemberDress(int dressNo, String code, String dressName, String dressTel, String dressLoc, String dressAddr,
 			int dressFittingPrice, Date dressFittingDate, int dressRentNum, int dressRentPrice, int jewelryPrice,
 			String dressContent, String dressFittingTime, String dressMending, String dressParking,
-			String dressFileName, String dressFilePath, int status, int viewStatus, String dressTag) {
+			String dressFileName, String dressFilePath, int status, int viewStatus, String dressTag,
+			String hall_latitude, String hall_longtitude) {
 		super();
 		this.dressNo = dressNo;
 		this.code = code;
@@ -61,6 +56,35 @@ public class MemberDress extends Member{
 		this.status = status;
 		this.viewStatus = viewStatus;
 		this.dressTag = dressTag;
+		this.dressLatitude = hall_latitude;
+		this.dressLongtitude = hall_longtitude;
+	}
+	
+	
+
+	public MemberDress(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
+			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate);
+		// TODO Auto-generated constructor stub
+	}
+
+
+
+	public String getHall_latitude() {
+		return dressLatitude;
+	}
+	public void setHall_latitude(String hall_latitude) {
+		this.dressLongtitude = hall_latitude;
+	}
+	public String getHall_longtitude() {
+		return dressLongtitude;
+	}
+	public void setHall_longtitude(String hall_longtitude) {
+		this.dressLongtitude = hall_longtitude;
+	}
+	public MemberDress() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 	public int getDressNo() {
 		return dressNo;

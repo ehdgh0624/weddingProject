@@ -5,6 +5,7 @@ import java.sql.Date;
 public class MemberStudio extends Member{
 	
 	private int studioNo;
+	private String studioId;
 	private String code;
 	private String studioName;
 	private String studioTel;
@@ -16,15 +17,55 @@ public class MemberStudio extends Member{
 	private int status;
 	private int viewStatus;
 	private String studioTag;
-	
-	
-	
-	public MemberStudio(int memberSeq, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, String marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
-				enrollDate);
+	private String studioLatitude;
+	private String studioLongtitude;
+	public MemberStudio(int memberNo, String memberId, String memberPw, String memberName, String phone,
+			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate
+			) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate
+				);
 		// TODO Auto-generated constructor stub
 	}
+	public MemberStudio(int studioNo, String studioId, String code, String studioName, String studioTel,
+			String studioLoc, String studioAddr, int studioPrice, String fileName, String filePath, int status,
+			int viewStatus, String studioTag, String hall_latitude, String hall_longtitude) {
+		super();
+		this.studioNo = studioNo;
+		this.studioId = studioId;
+		this.code = code;
+		this.studioName = studioName;
+		this.studioTel = studioTel;
+		this.studioLoc = studioLoc;
+		this.studioAddr = studioAddr;
+		this.studioPrice = studioPrice;
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.status = status;
+		this.viewStatus = viewStatus;
+		this.studioTag = studioTag;
+		this.studioLatitude = hall_latitude;
+		this.studioLongtitude = hall_longtitude;
+	}
+	
+	public String getStudioId() {
+		return studioId;
+	}
+	public void setStudioId(String studioId) {
+		this.studioId = studioId;
+	}
+	public String getHall_latitude() {
+		return studioLatitude;
+	}
+	public void setHall_latitude(String hall_latitude) {
+		this.studioLatitude = hall_latitude;
+	}
+	public String getHall_longtitude() {
+		return studioLongtitude;
+	}
+	public void setHall_longtitude(String hall_longtitude) {
+		this.studioLongtitude = hall_longtitude;
+	}
+
 	public int getStudioNo() {
 		return studioNo;
 	}
@@ -102,13 +143,7 @@ public class MemberStudio extends Member{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "MemberStudio [studioNo=" + studioNo + ", code=" + code + ", studioName=" + studioName + ", studioTel="
-				+ studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr + ", studioPrice=" + studioPrice
-				+ ", fileName=" + fileName + ", filePath=" + filePath + ", status=" + status + ", viewStatus="
-				+ viewStatus + ", studioTag=" + studioTag + "]";
-	}
+
 	
 	
 	
