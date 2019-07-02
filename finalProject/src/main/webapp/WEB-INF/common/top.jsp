@@ -29,7 +29,7 @@
 				<dt><img src="/resources/img/icon_bride.png" width="50"></dt>
 				<dd>
 					<p>Hi!</p>
-					<strong>관리자</strong>
+					<strong>${sessionScope.member.memberName }</strong>
 				</dd>
 			</dl>
 			<div class="common-tbl-btn-group right" style="padding-top:0;">
@@ -47,6 +47,7 @@
 					<p>기본</p>
 					<span><a href="">회원관리</a></span>
 				</li>
+				
 				<!-- 일반 회원일때 -->
 				<li>
 					<p>예약관리</p>

@@ -8,7 +8,7 @@
     </insert>
       <select id="selectOneMember" parameterType="member" resultType="member">
     	select 
-    	memberseq as memberNo,
+    	member_no as memberNo,
     	member_id as memberId,
     	member_pw as memberPw,
     	member_name as memberName,

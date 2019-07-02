@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="studio">
+	<select id="selectAllList" parameterType="studio" resultType="studio">
+		select studio_no as studioNo, code, studio_name as studioName, studio_tel as studioTel, studio_loc as studioLoc, studio_addr as studioAddr, studio_price as studioPrice, studio_filename as studioFilename, studio_filepath as studioFilepath, status, viewstatus, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where status=1 and viewstatus=0
+	</select>
+	<select id="pageSelectAllList" parameterType="map" resultType="studio">
+		select studio_no as studioNo, code, studio_name as studioName, studio_tel as studioTel, studio_loc as studioLoc, studio_addr as studioAddr, studio_price as studioPrice, studio_filename as studioFilename, studio_filepath as studioFilepath, status, viewstatus, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from (select rownum as rnum, s.* from (select * from studio where status=1 and viewstatus=0 order by studio_no) s) where (rnum between #{start} and #{end}) order by rnum desc
+	</select>
+</mapper>

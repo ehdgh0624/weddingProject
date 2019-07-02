@@ -10,7 +10,6 @@ public class Dress {
 	private String dressLoc;
 	private String dressAddr;
 	private int dressFittingPrice;
-	private Date dressFittingDate;
 	private int dressRentNum;
 	private int dressRentPrice;
 	private int jewelryPrice;
@@ -30,10 +29,10 @@ public class Dress {
 		// TODO Auto-generated constructor stub
 	}
 	public Dress(int dressNo, String code, String dressName, String dressTel, String dressLoc, String dressAddr,
-			int dressFittingPrice, Date dressFittingDate, int dressRentNum, int dressRentPrice, int jewelryPrice,
-			String dressContent, String dressFittingTime, String dressMending, String dressParking,
-			String dressFilename, String dressFilepath, int status, int viewstatus, String dressTag,
-			String dressLatitude, String dressLongitud) {
+			int dressFittingPrice, int dressRentNum, int dressRentPrice, int jewelryPrice, String dressContent,
+			String dressFittingTime, String dressMending, String dressParking, String dressFilename,
+			String dressFilepath, int status, int viewstatus, String dressTag, String dressLatitude,
+			String dressLongitud) {
 		super();
 		this.dressNo = dressNo;
 		this.code = code;
@@ -42,7 +41,6 @@ public class Dress {
 		this.dressLoc = dressLoc;
 		this.dressAddr = dressAddr;
 		this.dressFittingPrice = dressFittingPrice;
-		this.dressFittingDate = dressFittingDate;
 		this.dressRentNum = dressRentNum;
 		this.dressRentPrice = dressRentPrice;
 		this.jewelryPrice = jewelryPrice;
@@ -99,12 +97,6 @@ public class Dress {
 	}
 	public void setDressFittingPrice(int dressFittingPrice) {
 		this.dressFittingPrice = dressFittingPrice;
-	}
-	public Date getDressFittingDate() {
-		return dressFittingDate;
-	}
-	public void setDressFittingDate(Date dressFittingDate) {
-		this.dressFittingDate = dressFittingDate;
 	}
 	public int getDressRentNum() {
 		return dressRentNum;
