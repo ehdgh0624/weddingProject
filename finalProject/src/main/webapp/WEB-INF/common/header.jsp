@@ -53,7 +53,7 @@
 					<div id="gnbBg"></div>
 					<ul class="clearfix">
 						<li class="gnb01">
-							<a href="/hall">웨딩홀</a>
+							<a href="/hall.do">웨딩홀</a>
 						</li>
 						<li class="gnb02">
 							<a href="">웨딩 컬렉션</a>
