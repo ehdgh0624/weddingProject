@@ -3,13 +3,13 @@ package kr.co.member.model.vo;
 public class MemberAll {
 	private MemberDress md;
 	private MemberStudio ms;
-	private MemberMakup mm;
+	private MemberMakeup mm;
 	private MemberHall mh;
 	public MemberAll() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberAll(MemberDress md, MemberStudio ms, MemberMakup mm, MemberHall mh) {
+	public MemberAll(MemberDress md, MemberStudio ms, MemberMakeup mm, MemberHall mh) {
 		super();
 		this.md = md;
 		this.ms = ms;
@@ -28,10 +28,10 @@ public class MemberAll {
 	public void setMs(MemberStudio ms) {
 		this.ms = ms;
 	}
-	public MemberMakup getMm() {
+	public MemberMakeup getMm() {
 		return mm;
 	}
-	public void setMm(MemberMakup mm) {
+	public void setMm(MemberMakeup mm) {
 		this.mm = mm;
 	}
 	public MemberHall getMh() {

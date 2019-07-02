@@ -19,6 +19,8 @@ public class MemberMakeup  extends Member{
 	private String makeupTag;
 	private String hall_latitude;
 	private String hall_longtitude;
+	private String hallLatitude;
+	private String hallLongtitude;
 	
 	
 	
@@ -39,6 +41,13 @@ public class MemberMakeup  extends Member{
 			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
 				enrollDate);
+		return hallLatitude;
+	}
+	
+	public MemberMakeup(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
+			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate
+			);
 		// TODO Auto-generated constructor stub
 	}
 	public MemberMakeup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc,
@@ -62,6 +71,8 @@ public class MemberMakeup  extends Member{
 		this.makeupTag = makeupTag;
 		this.hall_latitude = hall_latitude;
 		this.hall_longtitude = hall_longtitude;
+		this.hallLatitude = hall_latitude;
+		this.hallLongtitude = hall_longtitude;
 	}
 	public int getMakeupNo() {
 		return makeupNo;
