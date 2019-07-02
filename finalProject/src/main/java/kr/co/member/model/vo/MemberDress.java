@@ -30,7 +30,7 @@ public class MemberDress extends Member{
 	}
 	
 	public MemberDress(int memberSeq, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, String marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
 				enrollDate);
 		// TODO Auto-generated constructor stub

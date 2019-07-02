@@ -3,14 +3,14 @@ package kr.co.member.model.vo;
 import java.sql.Date;
 
 public class Member {
-	private int memberSeq;
+	private int memberNo;
 	private String memberId;
 	private String memberPw;
 	private String memberName;
 	private String phone;
 	private String birthDay;
 	private String addr;
-	private String marrySchedule;
+	private Date marrySchedule;
 	private int expectVisitor;
 	private int budget;
 	private Date enrollDate;
@@ -19,15 +19,15 @@ public class Member {
 		// TODO Auto-generated constructor stub
 	}
 	public int getMemberSeq() {
-		return memberSeq;
+		return memberNo;
 	}
 	public void setMemberSeq(int memberSeq) {
-		this.memberSeq = memberSeq;
+		this.memberNo = memberSeq;
 	}
 	public Member(int memberSeq ,String memberId, String memberPw, String memberName, String phone, String birthDay, String addr,
-			String marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+			Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super();
-		this.memberSeq =memberSeq;
+		this.memberNo =memberSeq;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
@@ -75,10 +75,10 @@ public class Member {
 	public void setAddr(String addr) {
 		this.addr = addr;
 	}
-	public String getMarrySchedule() {
+	public Date getMarrySchedule() {
 		return marrySchedule;
 	}
-	public void setMarrySchedule(String marrySchedule) {
+	public void setMarrySchedule(Date marrySchedule) {
 		this.marrySchedule = marrySchedule;
 	}
 	public int getExpectVisitor() {
