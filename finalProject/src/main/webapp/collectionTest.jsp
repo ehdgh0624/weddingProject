@@ -9,10 +9,18 @@
 <section id="wrap">
 	<div class="area">
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
-		<a href="/collectionList.do?code=all">전체</a>
-		<a href="/collectionList.do?code=D">드레스</a>
-	   	<a href="/collectionList.do?code=S">스튜디오</a>
-	   	<a href="/collectionList.do?code=M">메이크업&헤어</a>
+		<div>
+			<a href="/collectionList.do?code=all">전체</a>
+		</div>
+		<div>
+			<a href="/collectionList.do?code=D">드레스</a>
+		</div>
+		<div>
+		   	<a href="/collectionList.do?code=S">스튜디오</a>
+		</div>
+		<div>
+		   	<a href="/collectionList.do?code=M">메이크업&헤어</a>
+		</div>
 	</div>
 </section>
 

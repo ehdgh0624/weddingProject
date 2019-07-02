@@ -74,7 +74,6 @@ public class CollectionController {
 	
 	@RequestMapping("/collectionView.do")
 	public String collectionView() {
-		System.out.println("뷰");
 		return "redirect:/collectionTest.jsp";
 	}
 
