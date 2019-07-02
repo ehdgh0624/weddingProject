@@ -18,16 +18,12 @@ public class Member {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public int getMemberSeq() {
-		return memberNo;
-	}
-	public void setMemberSeq(int memberSeq) {
-		this.memberNo = memberSeq;
-	}
-	public Member(int memberSeq ,String memberId, String memberPw, String memberName, String phone, String birthDay, String addr,
-			Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+	
+	
+	public Member(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
+			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super();
-		this.memberNo =memberSeq;
+		this.memberNo = memberNo;
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
@@ -38,6 +34,18 @@ public class Member {
 		this.expectVisitor = expectVisitor;
 		this.budget = budget;
 		this.enrollDate = enrollDate;
+	}
+	public int getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
+	}	
+	public int getMemberSeq() {
+		return memberNo;
+	}
+	public void setMemberSeq(int memberSeq) {
+		this.memberNo = memberSeq;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -99,12 +107,7 @@ public class Member {
 	public void setEnrollDate(Date enrollDate) {
 		this.enrollDate = enrollDate;
 	}
-	@Override
-	public String toString() {
-		return "Member [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName + ", phone="
-				+ phone + ", birthDay=" + birthDay + ", addr=" + addr + ", marrySchedule=" + marrySchedule
-				+ ", expectVisitor=" + expectVisitor + ", budget=" + budget + ", enrollDate=" + enrollDate + "]";
-	}
+
 	
 	
 	
