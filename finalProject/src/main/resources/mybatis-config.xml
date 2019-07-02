@@ -3,5 +3,10 @@
 <configuration>
 	<typeAliases>
     	<typeAlias type="kr.co.member.model.vo.Member" alias="member"/>
+    	<typeAlias type="kr.co.collection.model.vo.Studio" alias="studio"/>
+    	<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
+    	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
+    	<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
+    	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>    	
     </typeAliases>
 </configuration>
