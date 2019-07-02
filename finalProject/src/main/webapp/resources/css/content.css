@@ -34,7 +34,7 @@
 .comm-tbl input[type='text'], .comm-tbl input[type='password'], .comm-tbl input[type='file'],
 .comm-tbl select, .comm-tbl textarea{padding:7px; border:1px solid #ddd; border-radius:4px; width:90%;}
 .comm-tbl input[type='text'].short, .comm-tbl input[type='password'].short, .comm-tbl input[type='file'].short{width:30%;}
-.comm-tbl select.middle{width:40%;}
+.comm-tbl input[type='text'].middle, .comm-tbl input[type='password'].middle, .comm-tbl select.middle{width:40%;}
 .comm-tbl .comment{padding-top:5px; font-size:12px; color:#888;}
 .comm-tbl .none{padding:40px 0; font-size:16px;}
 .comm-tbl.type2{width:100%; max-width:none;}
@@ -60,6 +60,8 @@
 .simulator-tit{font-size:30px; margin-bottom:15px;}
 .simulator-sub-tit{font-size:20px; line-height:30px; color:#bbb; margin-bottom:20px;}
 .simulator-con{border:1px solid #ddd; border-radius:10px; padding:25px 15px; max-width:450px; margin:0 auto;}
-.simulator-tbl{width:100%;}
-.simulator-tbl th, .simulator-tbl td{padding:10px;}
+.simulator-tbl{width:100%; }
+.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:0;}
+.simulator-tbl th, .simulator-tbl td{padding:10px; border:0;}
 .simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}
+.simulator-tbl input[type='text'].wedding-date{width:80%;}
