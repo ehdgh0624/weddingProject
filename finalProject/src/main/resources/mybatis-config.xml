@@ -3,5 +3,9 @@
 <configuration>
 	<typeAliases>
     	<typeAlias type="kr.co.member.model.vo.Member" alias="member"/>
+    	<typeAlias type="kr.co.member.model.vo.MemberStudio" alias="memberstudio"/>
+    	<typeAlias type="kr.co.member.model.vo.MemberDress" alias="memberdress"/>
+    	<typeAlias type="kr.co.member.model.vo.MemberMakeup" alias="membermakeup"/>
+    	<typeAlias type="kr.co.member.model.vo.MemberHall" alias="memberhall"/>
     </typeAliases>
 </configuration>
