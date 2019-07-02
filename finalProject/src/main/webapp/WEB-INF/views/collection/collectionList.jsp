@@ -12,17 +12,17 @@
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
 		<c:if test="${not empty pd.mList}">
 			<c:forEach items="${pd.mList}" var="m">
-				<div>${m.makeupName}</div>			
+				<a href="/collectionView.do?code=${m.code}&makeupNo=${m.makeupNo}">${m.makeupName}</a>			
 			</c:forEach>
 		</c:if>
 		<c:if test="${not empty pd.dList}">
 			<c:forEach items="${pd.dList}" var="d">
-				<div>${d.dressName}</div>			
+				<a href="/collectionView.do?code=${d.code}&dressNo=${d.dressNo}">${d.dressName}</a>			
 			</c:forEach>
 		</c:if>
 		<c:if test="${not empty pd.sList}">
 			<c:forEach items="${pd.sList}" var="s">
-				<div>${s.studioName}</div>			
+				<a href="/collectionView.do?code=${s.code}&studioNo=${s.studioNo}">${s.studioName}</a>			
 			</c:forEach>
 		</c:if>
 		<div id="pageNavi">

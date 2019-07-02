@@ -43,7 +43,7 @@ public class CollectionController {
 		AllPageData pd = collectionService.pageAllList(reqPage);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
-		mav.setViewName("collection/collectionList");
+		mav.setViewName("collection/collectionAllList");
 		return mav;
 	}
 	
@@ -70,6 +70,12 @@ public class CollectionController {
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
 		return mav;
+	}
+	
+	@RequestMapping("/collectionView.do")
+	public String collectionView() {
+		System.out.println("뷰");
+		return "redirect:/collectionTest.jsp";
 	}
 
 /*	@RequestMapping("/collectionListAll.do")
