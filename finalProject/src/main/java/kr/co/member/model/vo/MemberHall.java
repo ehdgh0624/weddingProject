@@ -24,24 +24,24 @@ public class MemberHall  extends Member{
 	private int status;//상태(0==대기 1==허가 2==거절)
 	private int viewStatus;//뷰상태(0==노출상태 1==노출거부)
 	private String hallTag;//태그명
-	private String hall_latitude;
-	private String hall_longtitude;
+	private String hallLatitude;
+	private String hallLongtitude;
 	
 	
 	
 	
 
 	public String getHall_latitude() {
-		return hall_latitude;
+		return hallLatitude;
 	}
 	public void setHall_latitude(String hall_latitude) {
-		this.hall_latitude = hall_latitude;
+		this.hallLatitude = hall_latitude;
 	}
 	public String getHall_longtitude() {
-		return hall_longtitude;
+		return hallLongtitude;
 	}
 	public void setHall_longtitude(String hall_longtitude) {
-		this.hall_longtitude = hall_longtitude;
+		this.hallLongtitude = hall_longtitude;
 	}
 	public MemberHall(int hallNo, String code, String hallName, String hallLoc, String hallAddr, String hallContent,
 			String hallImg, String hallPath, int hallPrice, int hallPerson, int hallScope, String hallFoodtype,
@@ -71,13 +71,13 @@ public class MemberHall  extends Member{
 		this.status = status;
 		this.viewStatus = viewStatus;
 		this.hallTag = hallTag;
-		this.hall_latitude = hall_latitude;
-		this.hall_longtitude = hall_longtitude;
+		this.hallLatitude = hall_latitude;
+		this.hallLongtitude = hall_longtitude;
 	}
-	public MemberHall(int memberSeq, String memberId, String memberPw, String memberName, String phone, String birthDay,
+
+	public MemberHall(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
 			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
-				enrollDate);
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate);
 		// TODO Auto-generated constructor stub
 	}
 	public int getHallNo() {
