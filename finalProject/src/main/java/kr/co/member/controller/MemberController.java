@@ -96,11 +96,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/addCompany.do")
-	public String addCompany(HttpSession session) {
-		Member vo =(Member)session.getAttribute("member");	
-		Model model = new ExtendedModelMap();
-		model.addAttribute("memberstudio",vo);
-
+	public String addCompany() {
+		System.out.println("업체등록페이지 호출");
+		
 		return "member/addCompany";
 	}
 	
