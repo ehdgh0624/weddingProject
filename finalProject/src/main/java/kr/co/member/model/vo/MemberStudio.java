@@ -16,7 +16,8 @@ public class MemberStudio extends Member{
 	private int status;
 	private int viewStatus;
 	private String studioTag;
-	
+	private String hall_latitude;
+	private String hall_longtitude;
 	
 	
 	public MemberStudio(int memberSeq, String memberId, String memberPw, String memberName, String phone,
@@ -25,6 +26,43 @@ public class MemberStudio extends Member{
 				enrollDate);
 		// TODO Auto-generated constructor stub
 	}
+	public MemberStudio(int studioNo, String code, String studioName, String studioTel, String studioLoc,
+			String studioAddr, int studioPrice, String fileName, String filePath, int status, int viewStatus,
+			String studioTag, String hall_latitude, String hall_longtitude) {
+		super();
+		this.studioNo = studioNo;
+		this.code = code;
+		this.studioName = studioName;
+		this.studioTel = studioTel;
+		this.studioLoc = studioLoc;
+		this.studioAddr = studioAddr;
+		this.studioPrice = studioPrice;
+		this.fileName = fileName;
+		this.filePath = filePath;
+		this.status = status;
+		this.viewStatus = viewStatus;
+		this.studioTag = studioTag;
+		this.hall_latitude = hall_latitude;
+		this.hall_longtitude = hall_longtitude;
+	}
+	public String getHall_latitude() {
+		return hall_latitude;
+	}
+	public void setHall_latitude(String hall_latitude) {
+		this.hall_latitude = hall_latitude;
+	}
+	public String getHall_longtitude() {
+		return hall_longtitude;
+	}
+	public void setHall_longtitude(String hall_longtitude) {
+		this.hall_longtitude = hall_longtitude;
+	}
+
+	
+	
+	
+	
+
 	public int getStudioNo() {
 		return studioNo;
 	}
@@ -102,13 +140,7 @@ public class MemberStudio extends Member{
 		// TODO Auto-generated constructor stub
 	}
 
-	@Override
-	public String toString() {
-		return "MemberStudio [studioNo=" + studioNo + ", code=" + code + ", studioName=" + studioName + ", studioTel="
-				+ studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr + ", studioPrice=" + studioPrice
-				+ ", fileName=" + fileName + ", filePath=" + filePath + ", status=" + status + ", viewStatus="
-				+ viewStatus + ", studioTag=" + studioTag + "]";
-	}
+
 	
 	
 	

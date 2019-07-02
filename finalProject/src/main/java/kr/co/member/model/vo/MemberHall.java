@@ -24,7 +24,56 @@ public class MemberHall  extends Member{
 	private int status;//상태(0==대기 1==허가 2==거절)
 	private int viewStatus;//뷰상태(0==노출상태 1==노출거부)
 	private String hallTag;//태그명
+	private String hall_latitude;
+	private String hall_longtitude;
 	
+	
+	
+	
+
+	public String getHall_latitude() {
+		return hall_latitude;
+	}
+	public void setHall_latitude(String hall_latitude) {
+		this.hall_latitude = hall_latitude;
+	}
+	public String getHall_longtitude() {
+		return hall_longtitude;
+	}
+	public void setHall_longtitude(String hall_longtitude) {
+		this.hall_longtitude = hall_longtitude;
+	}
+	public MemberHall(int hallNo, String code, String hallName, String hallLoc, String hallAddr, String hallContent,
+			String hallImg, String hallPath, int hallPrice, int hallPerson, int hallScope, String hallFoodtype,
+			String hallFoodemenu, String hallFoodprice, String hallTel, String hallTime, String hallServiceFood,
+			String hallServiceDrink, String hallServicePark, int status, int viewStatus, String hallTag,
+			String hall_latitude, String hall_longtitude) {
+		super();
+		this.hallNo = hallNo;
+		this.code = code;
+		this.hallName = hallName;
+		this.hallLoc = hallLoc;
+		this.hallAddr = hallAddr;
+		this.hallContent = hallContent;
+		this.hallImg = hallImg;
+		this.hallPath = hallPath;
+		this.hallPrice = hallPrice;
+		this.hallPerson = hallPerson;
+		this.hallScope = hallScope;
+		this.hallFoodtype = hallFoodtype;
+		this.hallFoodemenu = hallFoodemenu;
+		this.hallFoodprice = hallFoodprice;
+		this.hallTel = hallTel;
+		this.hallTime = hallTime;
+		this.hallServiceFood = hallServiceFood;
+		this.hallServiceDrink = hallServiceDrink;
+		this.hallServicePark = hallServicePark;
+		this.status = status;
+		this.viewStatus = viewStatus;
+		this.hallTag = hallTag;
+		this.hall_latitude = hall_latitude;
+		this.hall_longtitude = hall_longtitude;
+	}
 	public MemberHall(int memberSeq, String memberId, String memberPw, String memberName, String phone, String birthDay,
 			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
@@ -169,44 +218,7 @@ public class MemberHall  extends Member{
 	}
 	
 
-	public MemberHall(int hallNo, String code, String hallName, String hallLoc, String hallAddr, String hallContent,
-			String hallImg, String hallPath, int hallPrice, int hallPerson, int hallScope, String hallFoodtype,
-			String hallFoodemenu, String hallFoodprice, String hallTel, String hallTime, String hallServiceFood,
-			String hallServiceDrink, String hallServicePark, int status, int viewStatus, String hallTag) {
-		super();
-		this.hallNo = hallNo;
-		this.code = code;
-		this.hallName = hallName;
-		this.hallLoc = hallLoc;
-		this.hallAddr = hallAddr;
-		this.hallContent = hallContent;
-		this.hallImg = hallImg;
-		this.hallPath = hallPath;
-		this.hallPrice = hallPrice;
-		this.hallPerson = hallPerson;
-		this.hallScope = hallScope;
-		this.hallFoodtype = hallFoodtype;
-		this.hallFoodemenu = hallFoodemenu;
-		this.hallFoodprice = hallFoodprice;
-		this.hallTel = hallTel;
-		this.hallTime = hallTime;
-		this.hallServiceFood = hallServiceFood;
-		this.hallServiceDrink = hallServiceDrink;
-		this.hallServicePark = hallServicePark;
-		this.status = status;
-		this.viewStatus = viewStatus;
-		this.hallTag = hallTag;
-	}
-	@Override
-	public String toString() {
-		return "MemberHall [hallNo=" + hallNo + ", code=" + code + ", hallName=" + hallName + ", hallLoc=" + hallLoc
-				+ ", hallAddr=" + hallAddr + ", hallContent=" + hallContent + ", hallImg=" + hallImg + ", hallPath="
-				+ hallPath + ", hallPrice=" + hallPrice + ", hallPerson=" + hallPerson + ", hallScope=" + hallScope
-				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodemenu=" + hallFoodemenu + ", hallFoodprice="
-				+ hallFoodprice + ", hallTel=" + hallTel + ", hallTime=" + hallTime + ", hallServiceFood="
-				+ hallServiceFood + ", hallServiceDrink=" + hallServiceDrink + ", hallServicePark=" + hallServicePark
-				+ ", status=" + status + ", viewStatus=" + viewStatus + ", hallTag=" + hallTag + "]";
-	}
+
 	
 	
 	

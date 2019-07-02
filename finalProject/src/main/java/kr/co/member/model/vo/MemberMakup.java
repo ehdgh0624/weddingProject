@@ -17,12 +17,51 @@ public class MemberMakup  extends Member{
 	private int status;
 	private int viewstatus;
 	private String makeupTag;
+	private String hall_latitude;
+	private String hall_longtitude;
 	
+	
+	
+
+	public String getHall_latitude() {
+		return hall_latitude;
+	}
+	public void setHall_latitude(String hall_latitude) {
+		this.hall_latitude = hall_latitude;
+	}
+	public String getHall_longtitude() {
+		return hall_longtitude;
+	}
+	public void setHall_longtitude(String hall_longtitude) {
+		this.hall_longtitude = hall_longtitude;
+	}
 	public MemberMakup(int memberSeq, String memberId, String memberPw, String memberName, String phone,
 			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super(memberSeq, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
 				enrollDate);
 		// TODO Auto-generated constructor stub
+	}
+	public MemberMakup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc,
+			String makeupAddr, int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice,
+			String makeupFilename, String makeupFilepath, int status, int viewstatus, String makeupTag,
+			String hall_latitude, String hall_longtitude) {
+		super();
+		this.makeupNo = makeupNo;
+		this.code = code;
+		this.makeupName = makeupName;
+		this.makeupTel = makeupTel;
+		this.makeupLoc = makeupLoc;
+		this.makeupAddr = makeupAddr;
+		this.makeupBasicPrice = makeupBasicPrice;
+		this.makeupParentPrice = makeupParentPrice;
+		this.makeupVisitorPrice = makeupVisitorPrice;
+		this.makeupFilename = makeupFilename;
+		this.makeupFilepath = makeupFilepath;
+		this.status = status;
+		this.viewstatus = viewstatus;
+		this.makeupTag = makeupTag;
+		this.hall_latitude = hall_latitude;
+		this.hall_longtitude = hall_longtitude;
 	}
 	public int getMakeupNo() {
 		return makeupNo;
@@ -108,14 +147,7 @@ public class MemberMakup  extends Member{
 	public void setMakeupTag(String makeupTag) {
 		this.makeupTag = makeupTag;
 	}
-	@Override
-	public String toString() {
-		return "MemberMakup [makeupNo=" + makeupNo + ", code=" + code + ", makeupName=" + makeupName + ", makeupTel="
-				+ makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr + ", makeupBasicPrice="
-				+ makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice + ", makeupVisitorPrice="
-				+ makeupVisitorPrice + ", makeupFilename=" + makeupFilename + ", makeupFilepath=" + makeupFilepath
-				+ ", status=" + status + ", viewstatus=" + viewstatus + ", makeupTag=" + makeupTag + "]";
-	}
+	
 	public MemberMakup() {
 		super();
 		// TODO Auto-generated constructor stub
