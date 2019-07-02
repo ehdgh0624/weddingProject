@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="member">
+	 <insert id="insertMember" parameterType="member">
+     insert into member values(member_seq.nextval,#{memberId},#{memberPw},
+     #{memberName},#{phone},#{birthDay},#{addr},#{marrySchedule},#{expectVisitor},
+     #{budget},#{enrollDate},sysdate)
+    </insert>
+        <select id="selectOneMember" parameterType="member" resultType="member">
+    	select 
+    	memberseq as memberSeq,
+    	member_id as memberId,
+    	member_pw as memberPw,
+    	member_name as memberName,
+    	phone as phone,
+    	birthday as birthday,
+    	addr as addr,
+    	marry_schedule as marrySchedule,
+    	expect_visitor as expectVisitor,
+    	budget as budget,
+    	enrollDate as enrollDate
+  	    from member where member_id=#{memberId} and member_pw=#{memberPw}
+    </select>
+</mapper>
