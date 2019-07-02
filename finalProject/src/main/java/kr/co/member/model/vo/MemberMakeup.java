@@ -2,7 +2,7 @@ package kr.co.member.model.vo;
 
 import java.sql.Date;
 
-public class MemberMakup  extends Member{
+public class MemberMakeup  extends Member{
 	private int makeupNo;//메이크업 번호
 	private String code; //메이크업 코드
 	private String makeupName;//메이크업 이름
@@ -36,13 +36,13 @@ public class MemberMakup  extends Member{
 		this.hallLongtitude = hall_longtitude;
 	}
 	
-	public MemberMakup(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
+	public MemberMakeup(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
 			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
 		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate
 			);
 		// TODO Auto-generated constructor stub
 	}
-	public MemberMakup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc,
+	public MemberMakeup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc,
 			String makeupAddr, int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice,
 			String makeupFilename, String makeupFilepath, int status, int viewstatus, String makeupTag,
 			String hall_latitude, String hall_longtitude) {
@@ -149,7 +149,7 @@ public class MemberMakup  extends Member{
 		this.makeupTag = makeupTag;
 	}
 	
-	public MemberMakup() {
+	public MemberMakeup() {
 		super();
 		// TODO Auto-generated constructor stub
 	}

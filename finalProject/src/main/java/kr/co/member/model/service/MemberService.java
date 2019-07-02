@@ -8,7 +8,7 @@ import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberDress;
 import kr.co.member.model.vo.MemberHall;
-import kr.co.member.model.vo.MemberMakup;
+import kr.co.member.model.vo.MemberMakeup;
 import kr.co.member.model.vo.MemberStudio;
 @Service("memberService")
 public class MemberService {
@@ -47,7 +47,7 @@ public class MemberService {
 		return memberDao.selectOneHallMember(vo);
 	}
 
-	public MemberMakup selctOneMakeupMember(Member vo) {
+	public MemberMakeup selctOneMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
 		return memberDao.selectOneMakeupMember(vo);
 	}
