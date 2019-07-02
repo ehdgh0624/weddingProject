@@ -7,8 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="/loginPage.do">로그인</a><br>
-	<a href="/mypage.do">마이페이지</a>
-	<a href="/addCompany.do">업체등록 페이지</a>
+
+여기는 마이페이지입니다.
+<a href="/myCompanyPage.do">마이컴페니 페이지</a>
+
+
 </body>
 </html>
