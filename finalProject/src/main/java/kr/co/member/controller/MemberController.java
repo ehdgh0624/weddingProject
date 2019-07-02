@@ -101,6 +101,13 @@ public class MemberController {
 		
 		return "member/addCompany";
 	}
-	
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+		}
+		return "redirect:/";
+	}
 
 }
