@@ -1,3 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
-<configuration></configuration>
+<configuration>
+	<typeAliases>
+		<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
+		<typeAlias type="kr.co.collection.model.vo.Studio" alias="studio"/>
+		<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
+		<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
+		<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>
+	</typeAliases>
+</configuration>

@@ -59,11 +59,11 @@
 							<a href="">웨딩 컬렉션</a>
 							<div class="gnb-2dep">
 								<ul>
-									<li><a href="">드레스</a></li>
-								   	<li><a href="">스튜디오</a></li>
-								   	<li><a href="">메이크업&헤어</a></li>
-								   	<li><a href="">부케</a></li>
-								   	<li><a href="">청첩장</a></li>
+									<li><a href="/collectionList.do?status='D'">드레스</a></li>
+								   	<li><a href="/collectionList.do?status='S'">스튜디오</a></li>
+								   	<li><a href="/collectionList.do?status='M'">메이크업&헤어</a></li>
+								   	<li><a href="/collectionShopping.do=">부케</a></li>
+								   	<li><a href="/collectionShopping.do">청첩장</a></li>
 								</ul>
 							</div>
 						</li>
