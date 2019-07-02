@@ -4,3 +4,12 @@
  * description : 전체 컨텐츠 CSS
  * date : 2019-05-22
 ******************************************************** */
+
+/* 웨딩 계산기 */
+.simulator-box{padding:100px 0; text-align:center;}
+.simulator-tit{font-size:30px; margin-bottom:15px;}
+.simulator-sub-tit{font-size:20px; line-height:30px; color:#bbb; margin-bottom:20px;}
+.simulator-con{border:1px solid #ddd; border-radius:10px; padding:25px 15px; max-width:450px; margin:0 auto;}
+.simulator-tbl{width:100%;}
+.simulator-tbl th, .simulator-tbl td{padding:10px;}
+.simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}

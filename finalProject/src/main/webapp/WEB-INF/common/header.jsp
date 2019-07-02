@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>JUO</title>
-<link rel="Shortcut Icon" href="/img/favicon.ico">
+<link rel="Shortcut Icon" href="/resources/img/favicon.ico">
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css"> <!-- 태그 초기화 css(민주) -->
 <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"> <!-- 레이아웃 css(민주) -->
