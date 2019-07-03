@@ -77,7 +77,9 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionView.do")
-	public String collectionView() {
+	public ModelAndView collectionView() {
+		Studio s = 
+		StudioSelect ss = 
 		
 		return "redirect:/index.jsp";
 	}
