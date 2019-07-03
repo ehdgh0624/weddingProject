@@ -38,39 +38,55 @@
 		</div>
 		<div class="bottom-side-box">
 			<ul class="side-bar-list">
-				<li>
-					<p>기본</p>
-					<span><a href="">계정관리</a></span>
-				</li>
-				<!-- 관리자 일때 -->
-				<c:if test="${sessionScope.member.id eq 'admin' }">
+				<c:if test="${sessionScope.member.memberId ne 'admin' }">
+					<li>
+						<p>기본</p>
+						<span><a href="">계정관리</a></span>
+					</li>
+				<!-- 일반 회원일때 -->
+					<li>
+						<p>예약관리</p>
+						<span><a href="">나의 예약현황</a></span>
+					</li>
+					<!-- 업체 회원일때 -->
+					<li>
+						<p>업체관리</p>
+						<span><a href="">나의 업체 관리</a></span>
+						<span><a href="">업체 예약관리</a></span>
+					</li>
+					<!-- 일반 회원일때 -->
+					<li>
+						<p>리스트</p>
+						<span><a href="">웨딩비용계산결과</a></span>
+					</li>
+					<!-- 일반&업체 회원일때 -->
+					<li>
+						<p>스크랩북</p>
+						<span><a href="">웨딩홀</a></span>
+						<span><a href="">웨딩컬렉션</a></span>
+					</li>
+				</c:if>
+				<!-- 관리자 일떄 -->
+				<c:if test="${sessionScope.member.memberId eq 'admin' }">
 					<li>
 						<p>기본</p>
 						<span><a href="">회원관리</a></span>
 					</li>
+					<li>
+						<p>업체관리</p>
+						<span><a href="">신청관리</a></span>
+						<span><a href="">공개여부관리</a></span>
+					</li>
+					<li>
+						<p>상품관리</p>
+						<span><a href="">상품등록</a></span>
+						<span><a href="">재고관리</a></span>
+					</li>
+					<li>
+						<p>주문관리</p>
+						<span><a href="">주문신청관리</a></span>
+					</li>
 				</c:if>
-				<!-- 일반 회원일때 -->
-				<li>
-					<p>예약관리</p>
-					<span><a href="">나의 예약현황</a></span>
-				</li>
-				<!-- 업체 회원일때 -->
-				<li>
-					<p>업체관리</p>
-					<span><a href="">나의 업체 관리</a></span>
-					<span><a href="">업체 예약관리</a></span>
-				</li>
-				<!-- 일반 회원일때 -->
-				<li>
-					<p>리스트</p>
-					<span><a href="">웨딩비용계산결과</a></span>
-				</li>
-				<!-- 일반&업체 회원일때 -->
-				<li>
-					<p>스크랩북</p>
-					<span><a href="">웨딩홀</a></span>
-					<span><a href="">웨딩컬렉션</a></span>
-				</li>
 			</ul>
 		</div>
 	</aside>
