@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.member.model.service.MemberService;
+import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberDress;
@@ -98,7 +99,7 @@ public class MemberController {
 	@RequestMapping(value = "/addCompany.do")
 	public String addCompany() {
 		System.out.println("업체등록페이지 호출");
-		
+
 		return "member/addCompany";
 	}
 	@RequestMapping(value = "/logout.do")

@@ -2,9 +2,36 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 	 <insert id="insertMember" parameterType="member">
-     insert into member values(member_seq.nextval,#{memberId},#{memberPw},
+     insert into member values(seq_member_no.nextval,#{memberId},#{memberPw},
      #{memberName},#{phone},#{birthDay},#{addr},#{marrySchedule},#{expectVisitor},
      #{budget},#{enrollDate},sysdate)
+    </insert>
+    <insert id="insertStudio" parameterType="memberstudio">
+   	 insert into memberstudio values(seq_memberstudio_no.nextval,#{studioId},
+   	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
+   	 #{studioPrice},#{fileName},#{filePath},#{status},#{viewStatus},
+   	 #{studioTag},#{studioLatitude},#{studioLongtitude})
+    </insert>
+    <insert id="insertDress" parameterType="memberdress">
+     insert into memberdress values(seq_memberdress_no.nextval,#{dressId},
+     #{code},#{dressName},#{dressTel},#{dressLoc},#{dressAddr},
+     #{dressFittingPrice},#{dressRentNum},#{dressRentPrice},
+     #{jewelryPrice},#{dressContent},#{dressFittingTime},
+     #{dressMending},#{dressParking},#{dressFileName},
+     #{dressFilePath},#{status},#{viewStatus},#{dressTag},
+     #{dressLatitude},#{dressLongtitude})
+    </insert>
+    <insert id="insertMakeup" parameterType="membermakeup">
+     insert into membermakeup values(seq_membermakeup_no.nextval,#{makeupId},
+   	#{code},#{makeupName},#{makeupTel},#{makeupLoc},#{makeupAddr}
+   	,#{makeupBasicPrice},#{makeupParent},#{makeupVisitor},#{makeupParentPrice},#{makeupVisitorPrice}
+   	,#{makeupFilename},#{makeupFilepath},#{status},#{viewstatus}
+   	,#{makeupTag},#{makeupLatitude},#{makeupLongtitude})
+    </insert>
+    <insert id="insertHall" parameterType="memberhall">
+    insert into memberhall values(seq_memberhall_no.nextval,#{hallId},#{code},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
+    ,#{hallFoodtype},#{hallFoodmenu},#{hallFoodprice},#{hallTel},#{hallTime},#{hallServiceFood},#{hallServiceDrink}
+    ,#{hallServicePark},#{status},#{viewStatus},#{hallTag},#{hallLatitude},#{hallLongtitude})
     </insert>
       <select id="selectOneMember" parameterType="member" resultType="member">
     	select 
@@ -18,7 +45,8 @@
     	marry_schedule as marrySchedule,
     	expect_visitor as expectVisitor,
     	budget as budget,
-    	enrollDate as enrollDate
+    	enrollDate as enrollDate,
+    	member_no as memberCode
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
     </select>
     <select id ="selectOneStudioMember" parameterType="member" resultType="memberstudio">

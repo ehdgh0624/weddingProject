@@ -3,6 +3,7 @@ import java.sql.Date;
 
 public class MemberHall  extends Member{
 	private int hallNo;
+	private String hallId;
 	private String code;//홀코드
 	private String hallName;//홀이름
 	private String hallLoc;//홀지역
@@ -11,45 +12,44 @@ public class MemberHall  extends Member{
 	private String hallImg;//이미지
 	private String hallPath;//이미지경로
 	private int hallPrice;//홀 가격
-	private int hallPerson; //홀인원
-	private int hallScope; //웨딩홀병점
-	private String hallFoodtype;//웨딩홀 음식타입
-	private String hallFoodemenu; //웨딩홀 음식메뉴
-	private String hallFoodprice;//음식가격
+	private int hallMinPerson; //최소홀인원
+	private int hallMaxPerson; //최대인원
+	private int hallFoodtype;//웨딩홀 음식타입
+	private String hallFoodmenu; //웨딩홀 음식메뉴
+	private int hallFoodprice;//음식가격
 	private String hallTel;//웨딩홀 전화번호
 	private String hallTime;//웨딩홀 운영시간
 	private String hallServiceFood;//웨딩홀 식사제공
 	private String hallServiceDrink;//웨딩홀 주류제공
 	private String hallServicePark; //웨딩홀 주차
-	private int status;//상태(0==대기 1==허가 2==거절)
+	private int status;//상태(0==대0 1==허가 2==거절)
 	private int viewStatus;//뷰상태(0==노출상태 1==노출거부)
-	private String hallTag;//태그명
+	private String hallTag;
 	private String hallLatitude;
 	private String hallLongtitude;
 	
-	
-	
-	
 
-	public String getHall_latitude() {
-		return hallLatitude;
+	@Override
+	public String toString() {
+		return "MemberHall [hallNo=" + hallNo + ", hallId=" + hallId + ", code=" + code + ", hallName=" + hallName
+				+ ", hallLoc=" + hallLoc + ", hallAddr=" + hallAddr + ", hallContent=" + hallContent + ", hallImg="
+				+ hallImg + ", hallPath=" + hallPath + ", hallPrice=" + hallPrice + ", hallMinPerson=" + hallMinPerson
+				+ ", hallMaxPerson=" + hallMaxPerson + ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu="
+				+ hallFoodmenu + ", hallFoodprice=" + hallFoodprice + ", hallTel=" + hallTel + ", hallTime=" + hallTime
+				+ ", hallServiceFood=" + hallServiceFood + ", hallServiceDrink=" + hallServiceDrink
+				+ ", hallServicePark=" + hallServicePark + ", status=" + status + ", viewStatus=" + viewStatus
+				+ ", hallTag=" + hallTag + ", hallLatitude=" + hallLatitude + ", hallLongtitude=" + hallLongtitude
+				+ "]";
 	}
-	public void setHall_latitude(String hall_latitude) {
-		this.hallLatitude = hall_latitude;
-	}
-	public String getHall_longtitude() {
-		return hallLongtitude;
-	}
-	public void setHall_longtitude(String hall_longtitude) {
-		this.hallLongtitude = hall_longtitude;
-	}
-	public MemberHall(int hallNo, String code, String hallName, String hallLoc, String hallAddr, String hallContent,
-			String hallImg, String hallPath, int hallPrice, int hallPerson, int hallScope, String hallFoodtype,
-			String hallFoodemenu, String hallFoodprice, String hallTel, String hallTime, String hallServiceFood,
-			String hallServiceDrink, String hallServicePark, int status, int viewStatus, String hallTag,
-			String hall_latitude, String hall_longtitude) {
+
+	public MemberHall(int hallNo, String hallId, String code, String hallName, String hallLoc, String hallAddr,
+			String hallContent, String hallImg, String hallPath, int hallPrice, int hallMinPerson, int hallMaxPerson,
+			int hallFoodtype, String hallFoodmenu, int hallFoodprice, String hallTel, String hallTime,
+			String hallServiceFood, String hallServiceDrink, String hallServicePark, int status, int viewStatus,
+			String hallTag, String hallLatitude, String hallLongtitude) {
 		super();
 		this.hallNo = hallNo;
+		this.hallId = hallId;
 		this.code = code;
 		this.hallName = hallName;
 		this.hallLoc = hallLoc;
@@ -58,10 +58,10 @@ public class MemberHall  extends Member{
 		this.hallImg = hallImg;
 		this.hallPath = hallPath;
 		this.hallPrice = hallPrice;
-		this.hallPerson = hallPerson;
-		this.hallScope = hallScope;
+		this.hallMinPerson = hallMinPerson;
+		this.hallMaxPerson = hallMaxPerson;
 		this.hallFoodtype = hallFoodtype;
-		this.hallFoodemenu = hallFoodemenu;
+		this.hallFoodmenu = hallFoodmenu;
 		this.hallFoodprice = hallFoodprice;
 		this.hallTel = hallTel;
 		this.hallTime = hallTime;
@@ -71,15 +71,54 @@ public class MemberHall  extends Member{
 		this.status = status;
 		this.viewStatus = viewStatus;
 		this.hallTag = hallTag;
-		this.hallLatitude = hall_latitude;
-		this.hallLongtitude = hall_longtitude;
+		this.hallLatitude = hallLatitude;
+		this.hallLongtitude = hallLongtitude;
+	}
+
+	public String getHallId() {
+		return hallId;
+	}
+
+	public void setHallId(String hallId) {
+		this.hallId = hallId;
+	}
+
+	public String getHallTag() {
+		return hallTag;
+	}
+
+	public void setHallTag(String hallTag) {
+		this.hallTag = hallTag;
+	}
+
+	public String getHallLatitude() {
+		return hallLatitude;
+	}
+
+	public void setHallLatitude(String hallLatitude) {
+		this.hallLatitude = hallLatitude;
+	}
+
+	public String getHallLongtitude() {
+		return hallLongtitude;
+	}
+
+	public void setHallLongtitude(String hallLongtitude) {
+		this.hallLongtitude = hallLongtitude;
+	}
+
+	public MemberHall() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public MemberHall(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
-			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate);
+			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate, int memberCode) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate,
+				memberCode);
 		// TODO Auto-generated constructor stub
 	}
+
 	public int getHallNo() {
 		return hallNo;
 	}
@@ -134,34 +173,35 @@ public class MemberHall  extends Member{
 	public void setHallPrice(int hallPrice) {
 		this.hallPrice = hallPrice;
 	}
-	public int getHallPerson() {
-		return hallPerson;
+	public int getHallMinPerson() {
+		return hallMinPerson;
 	}
-	public void setHallPerson(int hallPerson) {
-		this.hallPerson = hallPerson;
+	public void setHallMinPerson(int hallMinPerson) {
+		this.hallMinPerson = hallMinPerson;
 	}
-	public int getHallScope() {
-		return hallScope;
+	public int getHallMaxPerson() {
+		return hallMaxPerson;
 	}
-	public void setHallScope(int hallScope) {
-		this.hallScope = hallScope;
+	public void setHallMaxPerson(int hallMaxPerson) {
+		this.hallMaxPerson = hallMaxPerson;
 	}
-	public String getHallFoodtype() {
+
+	public int getHallFoodtype() {
 		return hallFoodtype;
 	}
-	public void setHallFoodtype(String hallFoodtype) {
+	public void setHallFoodtype(int hallFoodtype) {
 		this.hallFoodtype = hallFoodtype;
 	}
-	public String getHallFoodemenu() {
-		return hallFoodemenu;
+	public String getHallFoodmenu() {
+		return hallFoodmenu;
 	}
-	public void setHallFoodemenu(String hallFoodemenu) {
-		this.hallFoodemenu = hallFoodemenu;
+	public void setHallFoodmenu(String hallFoodmenu) {
+		this.hallFoodmenu = hallFoodmenu;
 	}
-	public String getHallFoodprice() {
+	public int getHallFoodprice() {
 		return hallFoodprice;
 	}
-	public void setHallFoodprice(String hallFoodprice) {
+	public void setHallFoodprice(int hallFoodprice) {
 		this.hallFoodprice = hallFoodprice;
 	}
 	public String getHallTel() {
@@ -206,21 +246,4 @@ public class MemberHall  extends Member{
 	public void setViewStatus(int viewStatus) {
 		this.viewStatus = viewStatus;
 	}
-	public String getHallTag() {
-		return hallTag;
-	}
-	public void setHallTag(String hallTag) {
-		this.hallTag = hallTag;
-	}
-	public MemberHall() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-	
-
-
-	
-	
-	
-	
 }

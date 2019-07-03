@@ -21,8 +21,18 @@ public class Member {
 	}
 	
 	
+	public int getMemberCode() {
+		return memberCode;
+	}
+
+
+	public void setMemberCode(int memberCode) {
+		this.memberCode = memberCode;
+	}
+
+
 	public Member(int memberNo, String memberId, String memberPw, String memberName, String phone, String birthDay,
-			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
+			String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate, int memberCode) {
 		super();
 		this.memberNo = memberNo;
 		this.memberId = memberId;
@@ -35,7 +45,16 @@ public class Member {
 		this.expectVisitor = expectVisitor;
 		this.budget = budget;
 		this.enrollDate = enrollDate;
+		this.memberCode = memberCode;
 	}
+
+
+	public Member() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+
 	public int getMemberNo() {
 		return memberNo;
 	}
