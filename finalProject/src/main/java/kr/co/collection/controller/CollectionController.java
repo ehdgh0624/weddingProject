@@ -78,6 +78,7 @@ public class CollectionController {
 	
 	@RequestMapping("/collectionView.do")
 	public String collectionView() {
-		return "redirect:/collectionTest.jsp";
+		
+		return "redirect:/index.jsp";
 	}
 }
