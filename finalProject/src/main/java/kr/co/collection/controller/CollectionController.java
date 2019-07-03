@@ -30,7 +30,6 @@ public class CollectionController {
 		} catch(NumberFormatException e) {
 			reqPage = 1;
 		}		
-		System.out.println("선택된 Collection 카테고리 : "+code);
 		if(code != null) {
 			if(code.equals("all")) {
 				return "redirect:/collectionListAll.do?reqPage="+reqPage;
@@ -103,9 +102,10 @@ public class CollectionController {
 		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
 		ArrayList<Gallery> gList = collectionService.selectListStudioGallery(studioNo, "S");
 		ModelAndView mav = new ModelAndView();
-		System.out.println(s.getCode());
-		System.out.println(ssList.get(0).getStudioOptionType());
-		System.out.println(gList.get(0).getGalleryCode());
+		mav.addObject("studio", s);
+		mav.addObject("studioSelectList", ssList);
+		mav.addObject("galleryList", gList);
+		mav.setViewName("collection/collectionViewStudio");
 		return mav;
 	}
 	
