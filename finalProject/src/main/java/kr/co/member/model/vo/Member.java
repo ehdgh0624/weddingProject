@@ -15,10 +15,7 @@ public class Member {
 	private int budget;
 	private Date enrollDate;
 	private int memberCode;
-	public Member() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+	
 	
 	
 	public int getMemberCode() {
