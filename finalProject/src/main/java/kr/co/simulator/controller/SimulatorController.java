@@ -30,7 +30,6 @@ public class SimulatorController {
 		int person = Integer.parseInt(weddingPerson);
 		MemberHall mh = new MemberHall();
 		mh.setHallLoc(weddingLoc);
-		//mh.setHallPerson(person);
 		ArrayList<MemberHall> mhList = simulatorService.mhSearchList(mh);
 		
 		if(!mhList.isEmpty()) {
