@@ -9,6 +9,7 @@
 	<div class="area">
 		<fieldset>
 		<table>
+		<th><th>
 			<legend>회원가입</legend>
 			<form action="/memberEnroll.do" method="post"><br>
 				아이디 : <input type="text" name="memberId"><br>
