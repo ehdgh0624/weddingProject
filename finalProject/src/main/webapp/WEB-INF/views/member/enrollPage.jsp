@@ -8,6 +8,7 @@
 <section id="wrap">
 	<div class="area">
 		<fieldset>
+		<table>
 			<legend>회원가입</legend>
 			<form action="/memberEnroll.do" method="post"><br>
 				아이디 : <input type="text" name="memberId"><br>
@@ -25,6 +26,7 @@
 				<button type="reset" value="취소">초기화</button><br>
 				<button type="button" onclick="location.href='/index'">메인페이지로</button><br>
 			</form>
+		</table>
 		</fieldset>
 	</div>
 </section>
