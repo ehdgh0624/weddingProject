@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%--  Header --%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/common/header.jsp" />
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/hall.css"> 
@@ -86,28 +87,32 @@
 					</form>
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
+					<c:forEach items="${list }" var="h">
 					<div class="card">
 						<div class="thumbnail">
 							<div class="centered">
 								<img src="https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png"
 									alt="" />
+			
 							</div>
 						</div>
 						<div class="text">
-							<h5>서울 마리나 <a href="#"><img alt="" src="/resources/img/star_m1.png"></a></h5>
-							<p>서울 영등포구 복합문화공간</p>
+							<h5>${h.hallName } <a href="#"><img alt="" src="/resources/img/star_m1.png"></a></h5>
+							<p>${h.hallAddr }</p>
 							<div class="bottom">
 								<p>
-									인원 <span>80~400</span>
+									인원 <span>${h.hallPerson }</span>
 								</p>
-								<p>평점 아이콘  후기 2개</p>
+								<p>평점 아이콘  후기</p>
 							</div>
 						</div>
 					</div>
-
+					</c:forEach>
 				</div>
 				<div class="pageing area">	<!-- 페이지 처리하는 곳 ! -->
-				
+					<div id="pageNavi">
+						${pd.pageNavi}
+					</div>
 				</div>
 			</div>
 		</section>
