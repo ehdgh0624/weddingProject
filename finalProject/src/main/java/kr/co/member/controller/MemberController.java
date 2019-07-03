@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.member.model.service.MemberService;
+import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberDress;
@@ -54,6 +55,16 @@ public class MemberController {
 	
 		return "member/loginPage";
 	}
+	@RequestMapping(value = "/logout.do")
+	public String logout(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session != null) {
+			session.invalidate();
+		}
+		return "redirect:/";
+	}
+	
+
 	@RequestMapping(value = "/enrollPage.do")
 	public String enrollPage() {
 		System.out.println("회원가입페이지 호출");
@@ -69,19 +80,15 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
-	
 	@RequestMapping(value = "/myComapnyPage.do")
 	public String myCompanyView(HttpSession session) {
 		Member vo =(Member)session.getAttribute("member");	
 		MemberStudio ms = memberService.selectOneStudioMember(vo);
 		MemberDress md = memberService.selectOneDressMember(vo);
 		MemberHall mh = memberService.selectOneHallMember(vo);
-		MemberMakeup mm = memberService.selctOneMakeupMember(vo);
-		
+		MemberMakeup mm = memberService.selctOneMakeupMember(vo);	
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
-		Model model = new ExtendedModelMap();
-		
-		
+		Model model = new ExtendedModelMap();	
 		model.addAttribute("memberstudio",ma);
 		
 		return "member/myCompanyPage";
@@ -98,16 +105,35 @@ public class MemberController {
 	@RequestMapping(value = "/addCompany.do")
 	public String addCompany() {
 		System.out.println("업체등록페이지 호출");
-		
+
 		return "member/addCompany";
 	}
-	@RequestMapping(value = "/logout.do")
-	public String logout(HttpServletRequest request) {
-		HttpSession session = request.getSession(false);
-		if(session != null) {
-			session.invalidate();
+	
+	@RequestMapping(value = "/companyEnroll.do")
+	public String companyEnroll(CompanyInfo ci,HttpSession session) {
+		System.out.println("업체등록 로직 시작");
+		Member vo =(Member)session.getAttribute("member");	
+		System.out.println(ci);
+		int result=0;
+		
+		//파트너 분류에따른 디비 서비스 구분시작
+		if(ci.getCode()==0) {
+			result = memberService.insertStudio(ci,vo);
+		}else if(ci.getCode()==1) {
+			result = memberService.insertDress(ci,vo);
+		}else if(ci.getCode()==2) {
+			result = memberService.insertMakeup(ci,vo);
+		}else if(ci.getCode()==3) {
+			result = memberService.insertHall(ci,vo);
 		}
-		return "redirect:/";
+		
+		if(result>0) {
+			System.out.println("등록성공");
+			return "redirect:/index.jsp";
+		}else {
+			System.out.println("등록실패");
+			return "redirect:/index.jsp";
+		}
 	}
 
 }

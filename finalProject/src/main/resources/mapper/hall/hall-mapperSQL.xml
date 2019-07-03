@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hall">
+  	<select id="selectAllHall" resultType="memberHall">
+  		select hall_img as hallImg,
+  			   hall_path as hallPath,
+  			   hall_name as hallName,
+  			   hall_addr as hallAddr,
+  			   hall_person as hallPerson
+  			   from hall
+  	</select>
+  	<select id="pageSelectAllList" parameterType="map" resultType="memberHall">
+		select hall_no as hallNo,
+			   member_id as memberId,
+			   code as code,
+			   hall_type as hallType,
+			   hall_name as hallName,
+			   hall_loc as hallLoc,
+			   hall_addr as hallAddr,
+			   hall_content as hallContent,
+			   hall_img as hallImg,
+			   hall_path as hallPath,
+			   hall_price as hallPrice,
+			   hall_person as hallPerson,
+			   hall_scope as hallScope,
+			   hall_foodtype as hallFoodetype,
+			   hall_foodMenu as hallFoodmenu,
+			   hall_foddprice as hallFoodprice,
+			   hall_tel as hallTel,
+			   hall_time as hallTime,
+			   hall_service_food as hallServiceFood,
+			   hall_service_drink as hallServiceDrink,
+			   hall_service_parking as hallServiceParking,
+			   status as status,
+			   viewstatus as viewStatus,
+			   hall_tag as hallTag,
+			   hall_latitude as hallLatitude,
+			   hall_longitude as hallLongitude
+			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d) where (rnum between #{start} and #{end}) order by rnum desc
+	</select>
+	<select id="selectAllList" parameterType="memberHall" resultType="memberHall">
+	select hall_no as hallNo,
+			   member_id as memberId,
+			   code as code,
+			   hall_type as hallType,
+			   hall_name as hallName,
+			   hall_loc as hallLoc,
+			   hall_addr as hallAddr,
+			   hall_content as hallContent,
+			   hall_img as hallImg,
+			   hall_path as hallPath,
+			   hall_price as hallPrice,
+			   hall_person as hallPerson,
+			   hall_scope as hallScope,
+			   hall_foodtype as hallFoodetype,
+			   hall_foodMenu as hallFoodmenu,
+			   hall_foddprice as hallFoodprice,
+			   hall_tel as hallTel,
+			   hall_time as hallTime,
+			   hall_service_food as hallServiceFood,
+			   hall_service_drink as hallServiceDrink,
+			   hall_service_parking as hallServiceParking,
+			   status as status,
+			   viewstatus as viewStatus,
+			   hall_tag as hallTag,
+			   hall_latitude as hallLatitude,
+			   hall_longitude as hallLongitude 
+			   from hall where status=1 and viewstatus=0
+	</select>
+</mapper>

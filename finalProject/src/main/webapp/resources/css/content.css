@@ -27,8 +27,10 @@
 
 /* 공통 :: Table */
 .common-tbl-box{padding:70px 50px; background-color:#f8f8f8;}
+.comm-tbl{width:100%; max-width:800px; margin:0 auto; background-color:#fff;}
 .comm-tbl{width:100%; margin:0 auto; background-color:#fff;}
 .comm-tbl th, .comm-tbl td{border:1px solid #ddd; padding:15px; text-align:left; font-weight:normal; line-height:20px;}
+.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid rgba(254,67,30);}
 .comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid rgb(254,67,30);}
 .comm-tbl th{font-size:17px; line-height:20px; font-weight:500;}
 .comm-tbl input[type='text'], .comm-tbl input[type='password'], .comm-tbl input[type='file'],
@@ -62,6 +64,16 @@
 .simulator-sub-tit{font-size:20px; line-height:30px; color:#bbb; margin-bottom:20px;}
 .simulator-con{border:1px solid #ddd; border-radius:10px; padding:25px 15px; max-width:450px; margin:0 auto;}
 .simulator-tbl{width:100%; }
+.simulator-tbl tr:first-child th, .simulator-tbl tr:first-child td{border-top:0;}
 .simulator-tbl th, .simulator-tbl td{padding:10px; border:0;}
 .simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}
 .simulator-tbl input[type='text'].wedding-date{width:80%;}
+
+.simulator-select-tit{font-size:20px; line-height:30px; color:#2d2d2d; font-weight:500; margin-bottom:10px;}
+.simulator-select-comment{padding:20px; background:#f5f5f5;}
+.simulator-select-txt{padding-left:10px; position:relative; font-size:13px; line-height:20px; }
+.simulator-select-txt:before{position:absolute; content:""; width:3px; height:3px; background:#333; border-radius:6px; top:9px; left:0;}
+
+
+
+

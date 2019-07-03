@@ -21,7 +21,7 @@
 						<tr>
 							<th>지역</th>
 							<td>
-								<select name="weddingLoc">
+								<select name="weddingLoc" required>
 									<option value="전국">전국</option>
 									<option value="서울">서울</option>
 									<option value="광주">광주</option>
@@ -45,15 +45,15 @@
 						</tr>
 						<tr>
 							<th>예식일</th>
-							<td><input type="text" name="weddingDate" class="datepicker wedding-date" placeholder="예식일을 선택해주세요"></td>
+							<td><input type="text" name="weddingDate" class="datepicker wedding-date" placeholder="예식일을 선택해주세요" required></td>
 						</tr>
 						<tr>
 							<th>하객수</th>
-							<td><input type="text" name="weddingPerson" class="num" placeholder="하객 수를 입력해주세요"></td>
+							<td><input type="text" name="weddingPerson" class="num" placeholder="하객 수를 입력해주세요" required ></td>
 						</tr>
 					</table>
 					<div class="common-tbl-btn-group">
-						<button type="submit" class="btn-style1">계산 시작!</button>
+						<button type="submit" class="btn-style1">계산 시작!!</button>
 					</div>
 				</form>
 			</div>

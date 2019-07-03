@@ -4,12 +4,15 @@ import java.sql.Date;
 
 public class MemberMakeup  extends Member{
 	private int makeupNo;//메이크업 번호
+	private String makeupId;
 	private String code; //메이크업 코드
 	private String makeupName;//메이크업 이름
 	private String makeupTel;
 	private String makeupLoc;
 	private String makeupAddr;
 	private int makeupBasicPrice;
+	private String makeupParent;
+	private String makeupVisitor;
 	private int makeupParentPrice;
 	private int makeupVisitorPrice;
 	private String makeupFilename;
@@ -17,21 +20,28 @@ public class MemberMakeup  extends Member{
 	private int status;
 	private int viewstatus;
 	private String makeupTag;
-	private String hallLatitude;
-	private String hallLongtitude;
+	private String makeupLatitude;
+	private String makeupLongtitude;
 
-	public MemberMakeup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc,
-			String makeupAddr, int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice,
-			String makeupFilename, String makeupFilepath, int status, int viewstatus, String makeupTag,
-			String hallLatitude, String hallLongtitude) {
+	
+	
+	
+
+	public MemberMakeup(int makeupNo, String makeupId, String code, String makeupName, String makeupTel,
+			String makeupLoc, String makeupAddr, int makeupBasicPrice, String makeupParent, String makeupVisitor,
+			int makeupParentPrice, int makeupVisitorPrice, String makeupFilename, String makeupFilepath, int status,
+			int viewstatus, String makeupTag, String makeupLatitude, String makeupLongtitude) {
 		super();
 		this.makeupNo = makeupNo;
+		this.makeupId = makeupId;
 		this.code = code;
 		this.makeupName = makeupName;
 		this.makeupTel = makeupTel;
 		this.makeupLoc = makeupLoc;
 		this.makeupAddr = makeupAddr;
 		this.makeupBasicPrice = makeupBasicPrice;
+		this.makeupParent = makeupParent;
+		this.makeupVisitor = makeupVisitor;
 		this.makeupParentPrice = makeupParentPrice;
 		this.makeupVisitorPrice = makeupVisitorPrice;
 		this.makeupFilename = makeupFilename;
@@ -39,14 +49,58 @@ public class MemberMakeup  extends Member{
 		this.status = status;
 		this.viewstatus = viewstatus;
 		this.makeupTag = makeupTag;
-		this.hallLatitude = hallLatitude;
-		this.hallLongtitude = hallLongtitude;
+		this.makeupLatitude = makeupLatitude;
+		this.makeupLongtitude = makeupLongtitude;
 	}
+
+	public String getMakeupParent() {
+		return makeupParent;
+	}
+
+	public void setMakeupParent(String makeupParent) {
+		this.makeupParent = makeupParent;
+	}
+
+	public String getMakeupVisitor() {
+		return makeupVisitor;
+	}
+
+	public void setMakeupVisitor(String makeupVisitor) {
+		this.makeupVisitor = makeupVisitor;
+	}
+
+	public String getMakeupLatitude() {
+		return makeupLatitude;
+	}
+
+	public void setMakeupLatitude(String makeupLatitude) {
+		this.makeupLatitude = makeupLatitude;
+	}
+
+	@Override
+	public String toString() {
+		return "MemberMakeup [makeupNo=" + makeupNo + ", makeupId=" + makeupId + ", code=" + code + ", makeupName="
+				+ makeupName + ", makeupTel=" + makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr
+				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
+				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", makeupFilename=" + makeupFilename
+				+ ", makeupFilepath=" + makeupFilepath + ", status=" + status + ", viewstatus=" + viewstatus
+				+ ", makeupTag=" + makeupTag + ", makeupLatitude=" + makeupLatitude + ", makeupLongtitude="
+				+ makeupLongtitude + "]";
+	}
+	
+
 	public MemberMakeup(int memberNo, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate) {
-		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget,
-				enrollDate);
+			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate,
+			int memberCode) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate,
+				memberCode);
 		// TODO Auto-generated constructor stub
+	}
+	public String getMakeupId() {
+		return makeupId;
+	}
+	public void setMakeupId(String makeupId) {
+		this.makeupId = makeupId;
 	}
 	public MemberMakeup() {
 		super();
@@ -137,16 +191,16 @@ public class MemberMakeup  extends Member{
 		this.makeupTag = makeupTag;
 	}
 	public String getHallLatitude() {
-		return hallLatitude;
+		return makeupLatitude;
 	}
 	public void setHallLatitude(String hallLatitude) {
-		this.hallLatitude = hallLatitude;
+		this.makeupLatitude = hallLatitude;
 	}
-	public String getHallLongtitude() {
-		return hallLongtitude;
+	public String getMakeupLongtitude() {
+		return makeupLongtitude;
 	}
-	public void setHallLongtitude(String hallLongtitude) {
-		this.hallLongtitude = hallLongtitude;
+	public void setMakeupLongtitude(String makeupLongtitude) {
+		this.makeupLongtitude = makeupLongtitude;
 	}
 	
 }

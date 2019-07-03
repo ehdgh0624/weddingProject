@@ -11,7 +11,8 @@ import kr.co.collection.model.vo.AllPageData;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
-import kr.co.collection.model.vo.StudioPageData;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.gallery.model.vo.Gallery;
 
 @Service("collectionService")
 public class CollectionService {
@@ -36,6 +37,23 @@ public class CollectionService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=all&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/collectionList.do?code=all&reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=all&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+/*		if(pageNo != 1) {
 			pageNavi += "<a class='pageBtn' href='collectionList.do?code=all&reqPage="+(pageNo-1)+"'>이전</a>";
 		}
 		int i = 1;
@@ -49,7 +67,7 @@ public class CollectionService {
 		}
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='pageBtn' href='/collectionList.do?code=all&reqPage="+pageNo+"'>다음</a>";
-		}
+		}*/
 		AllPageData pd = new AllPageData(sList, dList, mList, pageNavi, reqPage);
 		return pd;
 	}	
@@ -69,19 +87,20 @@ public class CollectionService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo != 1) {
-			pageNavi += "<a class='pageBtn' href='collectionList.do?code=S&reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=S&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
 		}
+		
 		int i = 1;
-		while(!(i++ > pageNaviSize || pageNo > totalPage)) {
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='pageBtn' href='/collectionList.do?code=S&reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='' href='/collectionList.do?code=S&reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='pageBtn' href='/collectionList.do?code=S&reqPage="+pageNo+"'>다음</a>";
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=S&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
 		AllPageData pd = new AllPageData(sList, null, null, pageNavi, reqPage);
 		return pd;
@@ -102,19 +121,20 @@ public class CollectionService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo != 1) {
-			pageNavi += "<a class='pageBtn' href='collectionList.do?code=D&reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=D&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
 		}
+		
 		int i = 1;
-		while(!(i++ > pageNaviSize || pageNo > totalPage)) {
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='pageBtn' href='/collectionList.do?code=D&reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='' href='/collectionList.do?code=D&reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='pageBtn' href='/collectionList.do?code=D&reqPage="+pageNo+"'>다음</a>";
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=D&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
 		AllPageData pd = new AllPageData(null, dList, null, pageNavi, reqPage);
 		return pd;
@@ -135,34 +155,35 @@ public class CollectionService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo != 1) {
-			pageNavi += "<a class='pageBtn' href='collectionList.do?code=M&reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=M&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
 		}
+		
 		int i = 1;
-		while(!(i++ > pageNaviSize || pageNo > totalPage)) {
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
-				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='pageBtn' href='/collectionList.do?code=M&reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='' href='/collectionList.do?code=M&reqPage="+pageNo+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='pageBtn' href='/collectionList.do?code=M&reqPage="+pageNo+"'>다음</a>";
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=M&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
 		AllPageData pd = new AllPageData(null, null, mList, pageNavi, reqPage);
 		return pd;
-	}	
-	
-	
-	public ArrayList<Studio> allListStudio(){
-		return collectionDao.allListStudio();
 	}
 	
-	public ArrayList<Dress> allListDress(){
-		return collectionDao.allListDress();
+	public Studio selectOneStudio(int studioNo) {
+		return collectionDao.selectOneStudio(studioNo);
 	}
 	
-	public ArrayList<Makeup> allListMakeup(){
-		return collectionDao.allListMakeup();
+	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
+		return collectionDao.selectListStudioOption(studioNo);
 	}
+	
+	public ArrayList<Gallery> selectListStudioGallery(int studioNo, String galleryCode){
+		return collectionDao.selectListStudioGallery(studioNo, galleryCode);
+	}
+
 }

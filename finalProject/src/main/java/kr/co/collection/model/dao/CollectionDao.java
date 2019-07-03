@@ -12,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.gallery.model.vo.Gallery;
 
 @Repository("collectionDao")
 public class CollectionDao {
@@ -52,20 +54,21 @@ public class CollectionDao {
 		return sqlSession.selectList("makeup.pageSelectAllList",map);
 	}
 
-	
-	public ArrayList<Studio> allListStudio(){
-		List<Studio> list = sqlSession.selectList("studio.selectAllList");
-		return (ArrayList<Studio>) list;
+	public Studio selectOneStudio(int studioNo) {
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
 	
-	public ArrayList<Dress> allListDress(){
-		List<Dress> list = sqlSession.selectList("dress.selectAllList");
-		return (ArrayList<Dress>) list;
+	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
+		List list = sqlSession.selectList("studioSelect.selectListOption",studioNo);
+		return (ArrayList<StudioSelect>) list;
 	}
 	
-	public ArrayList<Makeup> allListMakeup(){
-		List<Makeup> list = sqlSession.selectList("makeup.selectAllList");
-		return (ArrayList<Makeup>) list;
+	public ArrayList<Gallery> selectListStudioGallery(int objectNo, String galleryCode){
+		Map<String, String> map = new HashMap<String,String>();
+		String parseNo = Integer.toString(objectNo);
+		map.put("objectNo", parseNo);
+		map.put("galleryCode", galleryCode);
+		List list = sqlSession.selectList("gallery.selectListGallery",map);
+		return (ArrayList<Gallery>) list;
 	}
-
 }

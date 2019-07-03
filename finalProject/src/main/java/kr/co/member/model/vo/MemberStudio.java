@@ -19,13 +19,24 @@ public class MemberStudio extends Member{
 	private String studioTag;
 	private String studioLatitude;
 	private String studioLongtitude;
+
+	@Override
+	public String toString() {
+		return "MemberStudio [studioNo=" + studioNo + ", studioId=" + studioId + ", code=" + code + ", studioName="
+				+ studioName + ", studioTel=" + studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr
+				+ ", studioPrice=" + studioPrice + ", fileName=" + fileName + ", filePath=" + filePath + ", status="
+				+ status + ", viewStatus=" + viewStatus + ", studioTag=" + studioTag + ", studioLatitude="
+				+ studioLatitude + ", studioLongtitude=" + studioLongtitude + "]";
+	}
+
 	public MemberStudio(int memberNo, String memberId, String memberPw, String memberName, String phone,
-			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate
-			) {
-		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate
-				);
+			String birthDay, String addr, Date marrySchedule, int expectVisitor, int budget, Date enrollDate,
+			int memberCode) {
+		super(memberNo, memberId, memberPw, memberName, phone, birthDay, addr, marrySchedule, expectVisitor, budget, enrollDate,
+				memberCode);
 		// TODO Auto-generated constructor stub
 	}
+
 	public MemberStudio(int studioNo, String studioId, String code, String studioName, String studioTel,
 			String studioLoc, String studioAddr, int studioPrice, String fileName, String filePath, int status,
 			int viewStatus, String studioTag, String hall_latitude, String hall_longtitude) {

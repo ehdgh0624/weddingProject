@@ -77,7 +77,7 @@
 							</div>
 						</li>
 						<li class="gnb03">
-							<a href="">웨딩 계산기</a>
+							<a href="/simulator/simulator.jsp">웨딩 계산기</a>
 						</li>
 						<li class="gnb04">
 							<a href="">커뮤니티</a>
