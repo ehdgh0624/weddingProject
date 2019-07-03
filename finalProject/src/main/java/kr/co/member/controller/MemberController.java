@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kr.co.member.model.service.MemberService;
+import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberDress;
@@ -98,9 +99,36 @@ public class MemberController {
 	@RequestMapping(value = "/addCompany.do")
 	public String addCompany() {
 		System.out.println("업체등록페이지 호출");
-		
+
 		return "member/addCompany";
 	}
 	
-
+	@RequestMapping(value = "/companyEnroll.do")
+	public String companyEnroll(CompanyInfo ci,HttpSession session) {
+		System.out.println("업체등록 로직 시작");
+		Member vo =(Member)session.getAttribute("member");	
+		System.out.println(ci);
+		int result=0;
+		
+		//파트너 분류에따른 디비 서비스 구분시작
+		if(ci.getCode()==0) {
+			result = memberService.insertStudio(ci,vo);
+		}else if(ci.getCode()==1) {
+			result = memberService.insertDress(ci,vo);
+		}else if(ci.getCode()==2) {
+			result = memberService.insertMakeup(ci,vo);
+		}else if(ci.getCode()==3) {
+			result = memberService.insertHall(ci,vo);
+		}
+		
+		
+		
+		if(result>0) {
+			System.out.println("등록성공");
+			return "redirect:/index.jsp";
+		}else {
+			System.out.println("등록실패");
+			return "redirect:/index.jsp";
+		}
+	}
 }
