@@ -10,7 +10,7 @@ public class SimulatorSelect {
 	private String prdTel;		//업체 연락처
 	private String prdLoc;		//업체 주소
 	private String prdTag;		//업체(상품) 검색 태그
-	private String prdFilepath;	//업체 대표사진경로
+	private String prdFilepath;	//업체 대표사진경로dd
 	
 	public SimulatorSelect() {
 		super();

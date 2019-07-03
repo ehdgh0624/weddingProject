@@ -13,7 +13,9 @@
 			hall_path as hallPath
 		from
 			hall
-		where
-			hall_loc like #{hallLoc}
+		<if test="!hallLoc.equals('전국')">
+			where
+				hall_loc like '%'||#{hallLoc}||'%'
+		</if>
 	</select>
 </mapper>

@@ -26,14 +26,21 @@ public class SimulatorController {
 	@RequestMapping(value = "/simulatorStandard.do")
 	public String simulatorSearch(HttpServletRequest request, @RequestParam String weddingLoc, @RequestParam String weddingDate, @RequestParam String weddingPerson, Model model) {
 		System.out.println(weddingLoc+" , "+weddingDate+" , "+weddingPerson);
+		
 		int person = Integer.parseInt(weddingPerson);
 		MemberHall mh = new MemberHall();
 		mh.setHallLoc(weddingLoc);
 		mh.setHallPerson(person);
 		ArrayList<MemberHall> mhList = simulatorService.mhSearchList(mh);
 		
-		model.addAttribute("mhList", mhList);
+		if(!mhList.isEmpty()) {
+			System.out.println(mhList.get(0)+"\n"+mhList.get(0).getHallName());
+			model.addAttribute("mhList", mhList);
+		}
+		
+		
 		return "simulator/simulatorSelect";
+		
 	}
 	
 }

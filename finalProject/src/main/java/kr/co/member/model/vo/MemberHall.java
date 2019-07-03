@@ -1,7 +1,7 @@
 package kr.co.member.model.vo;
 import java.sql.Date;
 
-public class MemberHall  extends Member{
+public class MemberHall extends Member{
 	private int hallNo;
 	private String code;//홀코드
 	private String hallName;//홀이름
