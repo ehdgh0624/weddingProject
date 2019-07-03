@@ -55,53 +55,6 @@ public class MemberController {
 	
 		return "member/loginPage";
 	}
-	@RequestMapping(value = "/enrollPage.do")
-	public String enrollPage() {
-		System.out.println("회원가입페이지 호출");
-		return "member/enrollPage";
-	}
-	
-	@RequestMapping(value = "/memberEnroll.do")
-	public String memberEnroll(Member vo) {
-		int result = memberService.insertMember(vo);
-		if(result>0) {
-			return "redirect:/index.jsp";
-		}else {
-			return "redirect:/index.jsp";
-		}
-	}
-	
-	@RequestMapping(value = "/myComapnyPage.do")
-	public String myCompanyView(HttpSession session) {
-		Member vo =(Member)session.getAttribute("member");	
-		MemberStudio ms = memberService.selectOneStudioMember(vo);
-		MemberDress md = memberService.selectOneDressMember(vo);
-		MemberHall mh = memberService.selectOneHallMember(vo);
-		MemberMakeup mm = memberService.selctOneMakeupMember(vo);
-		
-		MemberAll ma = new MemberAll(md,ms,mm,mh);
-		Model model = new ExtendedModelMap();
-		
-		
-		model.addAttribute("memberstudio",ma);
-		
-		return "member/myCompanyPage";
-	}
-	
-	@RequestMapping(value = "/mypage.do")
-	public String myPageView(HttpSession session) {
-		Member vo =(Member)session.getAttribute("member");	
-		Model model = new ExtendedModelMap();
-		model.addAttribute("memberstudio",vo);
-		return "member/mypage";
-	}
-	
-	@RequestMapping(value = "/addCompany.do")
-	public String addCompany() {
-		System.out.println("업체등록페이지 호출");
-
-		return "member/addCompany";
-	}
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
@@ -127,19 +80,15 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
-	
 	@RequestMapping(value = "/myComapnyPage.do")
 	public String myCompanyView(HttpSession session) {
 		Member vo =(Member)session.getAttribute("member");	
 		MemberStudio ms = memberService.selectOneStudioMember(vo);
 		MemberDress md = memberService.selectOneDressMember(vo);
 		MemberHall mh = memberService.selectOneHallMember(vo);
-		MemberMakeup mm = memberService.selctOneMakeupMember(vo);
-		
+		MemberMakeup mm = memberService.selctOneMakeupMember(vo);	
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
-		Model model = new ExtendedModelMap();
-		
-		
+		Model model = new ExtendedModelMap();	
 		model.addAttribute("memberstudio",ma);
 		
 		return "member/myCompanyPage";
@@ -177,8 +126,6 @@ public class MemberController {
 		}else if(ci.getCode()==3) {
 			result = memberService.insertHall(ci,vo);
 		}
-		
-		
 		
 		if(result>0) {
 			System.out.println("등록성공");
