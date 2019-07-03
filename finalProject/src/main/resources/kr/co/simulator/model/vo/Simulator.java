@@ -5,9 +5,9 @@ import java.sql.Date;
 public class Simulator {
 	private int simulatorNo;		//웨딩계산기 고유번호
 	private String memberId;		//회원 아이디
-	private Date weddingDate;		//예식일
+	private String weddingDate;		//예식일
 	private String weddingLoc;		//지역
-	private int weddingPerson;		//하객수
+	private int weddingPerson;	//하객수
 	private int simulatorTotalPrice;//웨딩계산기 총 금액
 	private Date simulatorDate;		//웨딩계산기 견적 작성일
 	
@@ -15,7 +15,7 @@ public class Simulator {
 		super();
 	}
 
-	public Simulator(int simulatorNo, String memberId, Date weddingDate, String weddingLoc, int weddingPerson,
+	public Simulator(int simulatorNo, String memberId, String weddingDate, String weddingLoc, int weddingPerson,
 			int simulatorTotalPrice, Date simulatorDate) {
 		super();
 		this.simulatorNo = simulatorNo;
@@ -43,11 +43,11 @@ public class Simulator {
 		this.memberId = memberId;
 	}
 
-	public Date getWeddingDate() {
+	public String getWeddingDate() {
 		return weddingDate;
 	}
 
-	public void setWeddingDate(Date weddingDate) {
+	public void setWeddingDate(String weddingDate) {
 		this.weddingDate = weddingDate;
 	}
 

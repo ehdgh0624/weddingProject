@@ -6,4 +6,19 @@
 		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},null,null
 		)
 	</insert>
+	<select id="selectAll" parameterType="map" resultType="member">
+		select 
+			   member_no as memberNo
+			  ,member_id as memberId
+			  ,member_name as memberName
+			  ,phone as phone
+			  ,birthday as birthDay
+			  ,addr as addr
+			  ,enrolldate as enrollDate
+			   from (select rownum as rnum ,m.* from (select * from member order by enrolldate desc)m)
+			   where rnum between #{start} and #{end}
+	</select>
+	<select id="totalMember" resultType="_int">
+		select count(*) from member
+	</select>
 </mapper>

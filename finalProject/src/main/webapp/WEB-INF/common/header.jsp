@@ -65,12 +65,12 @@
 							<a href="/hall.do">웨딩홀</a>
 						</li>
 						<li class="gnb02">
-							<a href="">웨딩 컬렉션</a>
+							<a href="/collectionList.do?code=none">웨딩 컬렉션</a>
 							<div class="gnb-2dep">
 								<ul>
-									<li><a href="">드레스</a></li>
-								   	<li><a href="">스튜디오</a></li>
-								   	<li><a href="">메이크업&헤어</a></li>
+									<li><a href="/collectionList.do?code=D">드레스</a></li>
+								   	<li><a href="/collectionList.do?code=S">스튜디오</a></li>
+								   	<li><a href="/collectionList.do?code=M">메이크업&헤어</a></li>
 								   	<li><a href="">부케</a></li>
 								   	<li><a href="">청첩장</a></li>
 								</ul>
