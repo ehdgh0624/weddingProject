@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<body>
-
-</body>
+	<body>
+		마이컴퍼니 페이즈 
+	</body>
 </html>

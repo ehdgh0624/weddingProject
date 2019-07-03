@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
@@ -10,9 +11,47 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix">
-		<!-- 여기에 내용 작서어어어어어엉!!! -->
+		<table class=comm-tbl>
+			<tr>
+				<th>아이디</th>
+				<th>이름</th>
+				<th>핸드폰번호</th>
+				<th>생년월일</th>
+				<th>주소</th>
+				<th>가입일</th>
+				<th>탈퇴</th>
+			</tr>
+			<c:forEach items="${list.list }" var="m" >
+				<tr>
+					<td>${m.memberId }</td>
+					<td>${m.memberName }</td>
+					<td>${m.phone }</td>
+					<td>${m.birthDay }</td>
+					<td>${m.addr }</td>
+					<td>${m.enrollDate }</td>
+					<td><button type="button" onclick="del(${m.memberNo})" >탈퇴</button></td>
+				</tr>
+			</c:forEach>
+		</table>
+		<div class="paging">${list.pageNavi}</div>
+		  <!-- 검색박스 -->
+          <div class="board-search-box">
+             <form action="" method="get">
+               <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
+                  <option value="title">제목</option>
+                  <option value="name">보호소명</option>
+               </select>
+               <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
+               <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
+            </form>
+         </div>
 	</div>
+	<script>
+		function del(no){
+			alert("벌써 탈퇴 시기지 마");
+		}
 	
+	</script>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>

@@ -88,8 +88,9 @@ section.hall .photoZone{
 }
 section.hall .card {
   float:left;
-  width: 20%;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4)
+  width: 30%;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+  margin: 0 35px 35px 0;
 }
 section.hall .card .thumbnail {
   position: relative;
