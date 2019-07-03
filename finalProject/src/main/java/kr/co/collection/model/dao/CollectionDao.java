@@ -1,6 +1,5 @@
 package kr.co.collection.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,20 +51,8 @@ public class CollectionDao {
 		return sqlSession.selectList("makeup.pageSelectAllList",map);
 	}
 
-	
-	public ArrayList<Studio> allListStudio(){
-		List<Studio> list = sqlSession.selectList("studio.selectAllList");
-		return (ArrayList<Studio>) list;
-	}
-	
-	public ArrayList<Dress> allListDress(){
-		List<Dress> list = sqlSession.selectList("dress.selectAllList");
-		return (ArrayList<Dress>) list;
-	}
-	
-	public ArrayList<Makeup> allListMakeup(){
-		List<Makeup> list = sqlSession.selectList("makeup.selectAllList");
-		return (ArrayList<Makeup>) list;
+	public Studio selectOneStudio(int studioNo) {
+		return sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
 
 }

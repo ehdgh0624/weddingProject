@@ -30,7 +30,7 @@
 		<div style="text-align: center;">
 			<c:if test="${not empty pd.sList}">
 				<c:forEach items="${pd.sList}" var="s" varStatus="i">
-					<a href="/collectionView.do?code=${s.code}&studioNo=${s.studioNo}">
+					<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}">
 						<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
 							<img src="/resources/img/test_img.jpg" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 							<div style="padding:20px;">
@@ -46,7 +46,7 @@
 			</c:if>
 			<c:if test="${not empty pd.dList}">
 				<c:forEach items="${pd.dList}" var="d" varStatus="i">
-					<a href="/collectionView.do?code=${d.code}&dressNo=${d.dressNo}">
+					<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}">
 						<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
 							<img src="/resources/img/test_img2.jpg" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 							<div style="padding:20px;">
@@ -62,7 +62,7 @@
 			</c:if>
 			<c:if test="${not empty pd.mList}">
 				<c:forEach items="${pd.mList}" var="m" varStatus="i">
-					<a href="/collectionView.do?code=${m.code}&makeupNo=${m.makeupNo}">
+					<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}">
 						<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
 							<img src="/resources/img/test_img3.jpg" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 							<div style="padding:20px;">

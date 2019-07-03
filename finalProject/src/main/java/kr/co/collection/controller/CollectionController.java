@@ -1,5 +1,7 @@
 package kr.co.collection.controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
+import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.gallery.model.vo.Gallery;
 
 @Controller
 public class CollectionController {
@@ -29,10 +34,10 @@ public class CollectionController {
 		if(code != null) {
 			if(code.equals("all")) {
 				return "redirect:/collectionListAll.do?reqPage="+reqPage;
-			}else if(code.equals("D")) {
-				return "redirect:/collectionListDress.do?reqPage="+reqPage;
 			}else if(code.equals("S")) {
 				return "redirect:/collectionListStudio.do?reqPage="+reqPage;
+			}else if(code.equals("D")) {
+				return "redirect:/collectionListDress.do?reqPage="+reqPage;
 			}else if(code.equals("M")) {
 				return "redirect:/collectionListMakeup.do?reqPage="+reqPage;
 			}		
@@ -77,10 +82,36 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionView.do")
-	public ModelAndView collectionView() {
-		Studio s = 
-		StudioSelect ss = 
-		
-		return "redirect:/index.jsp";
+	public String collectionView(String code, int objectNo) {
+		if(code != null) {
+			if(code.equals("S")) {
+				return "redirect:/collectionViewStudio.do?studioNo="+objectNo;
+			}else if(code.equals("D")) {
+				return "redirect:/collectionViewDress.do?dressNo="+objectNo;
+			}else if(code.equals("M")) {
+				return "redirect:/collectionViewMakeup.do?makeupNo="+objectNo;
+			}		
+			return "redirect:/collectionListAll.do?reqPage=1";
+		}else {
+			return "redirect:/collectionListAll.do?reqPage=1";
+		}
 	}
+	
+	@RequestMapping("/collectionViewStudio.do")
+	public ModelAndView collectionViewStudio(int studioNo) {
+		Studio s = collectionService.selectOneStudio(studioNo);
+		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
+		ArrayList<Gallery> gList = collectionService.selectListStudioGallery(studioNo);
+	}
+	
+	@RequestMapping("/collectionViewDress.do")
+	public ModelAndView collectionViewDress(int dressNo) {
+		
+	}
+	
+	@RequestMapping("/collectionViewMakeup.do")
+	public ModelAndView collectionViewMakeup(int makeupNo) {
+		
+	}
+	
 }
