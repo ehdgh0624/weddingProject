@@ -26,16 +26,20 @@ public class CollectionController {
 			reqPage = 1;
 		}		
 		System.out.println("선택된 Collection 카테고리 : "+code);
-		if(code.equals("all")) {
+		if(code != null) {
+			if(code.equals("all")) {
+				return "redirect:/collectionListAll.do?reqPage="+reqPage;
+			}else if(code.equals("D")) {
+				return "redirect:/collectionListDress.do?reqPage="+reqPage;
+			}else if(code.equals("S")) {
+				return "redirect:/collectionListStudio.do?reqPage="+reqPage;
+			}else if(code.equals("M")) {
+				return "redirect:/collectionListMakeup.do?reqPage="+reqPage;
+			}		
 			return "redirect:/collectionListAll.do?reqPage="+reqPage;
-		}else if(code.equals("D")) {
-			return "redirect:/collectionListDress.do?reqPage="+reqPage;
-		}else if(code.equals("S")) {
-			return "redirect:/collectionListStudio.do?reqPage="+reqPage;
-		}else if(code.equals("M")) {
-			return "redirect:/collectionListMakeup.do?reqPage="+reqPage;
-		}		
-		return "redirect:/collectionListAll.do?reqPage="+reqPage;
+		}else {
+			return "redirect:/collectionListAll.do?reqPage="+reqPage;			
+		}
 	}
 	
 	@RequestMapping("/collectionListAll.do")
@@ -74,37 +78,7 @@ public class CollectionController {
 	
 	@RequestMapping("/collectionView.do")
 	public String collectionView() {
-		return "redirect:/collectionTest.jsp";
+		
+		return "redirect:/index.jsp";
 	}
-
-/*	@RequestMapping("/collectionListAll.do")
-	public ModelAndView collectionListAll() {
-		ModelAndView mav =  new ModelAndView();
-		mav.addObject("dList", collectionService.allListDress());
-		mav.addObject("sList", collectionService.allListStudio());
-		mav.addObject("mList", collectionService.allListMakeup());
-		mav.setViewName("collection/collectionList");
-		return mav;
-	}*/	
-/*	@RequestMapping("/collectionListStudio.do")
-	public ModelAndView collectionListStudio() {
-		ModelAndView mav =  new ModelAndView();
-		mav.addObject("sList", collectionService.allListStudio());
-		mav.setViewName("collection/collectionList");
-		return mav;
-	}*/
-/*	@RequestMapping("/collectionListDress.do")
-	public ModelAndView collectionListDress() {
-		ModelAndView mav =  new ModelAndView();
-		mav.addObject("sList", collectionService.allListDress());
-		mav.setViewName("collection/collectionList");
-		return mav;
-	}*/
-/*	@RequestMapping("/collectionListMakeup.do")
-	public ModelAndView collectionListMakeup() {
-		ModelAndView mav =  new ModelAndView();
-		mav.addObject("mList", collectionService.allListMakeup());
-		mav.setViewName("collection/collectionList");
-		return mav;
-	}*/
 }
