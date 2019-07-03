@@ -70,7 +70,7 @@
 				<c:if test="${sessionScope.member.memberId eq 'admin' }">
 					<li>
 						<p>기본</p>
-						<span><a href="">회원관리</a></span>
+						<span><a href="/adminPage.do">회원관리</a></span>
 					</li>
 					<li>
 						<p>업체관리</p>
@@ -79,7 +79,7 @@
 					</li>
 					<li>
 						<p>상품관리</p>
-						<span><a href="">상품등록</a></span>
+						<span><a href="/admin/addGoodsPage.jsp">상품등록</a></span>
 						<span><a href="">재고관리</a></span>
 					</li>
 					<li>

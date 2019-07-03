@@ -29,7 +29,7 @@
 					<td>${m.birthDay }</td>
 					<td>${m.addr }</td>
 					<td>${m.enrollDate }</td>
-					<td><button type="button" onclick="del(${m.memberNo})" >탈퇴</button></td>
+					<td><button type="button" onclick="del(${m.memberNo})" class="delete-btn">탈퇴</button></td>
 				</tr>
 			</c:forEach>
 		</table>
