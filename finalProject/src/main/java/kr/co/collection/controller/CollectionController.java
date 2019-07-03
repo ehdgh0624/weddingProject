@@ -101,16 +101,25 @@ public class CollectionController {
 	public ModelAndView collectionViewStudio(int studioNo) {
 		Studio s = collectionService.selectOneStudio(studioNo);
 		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
-		ArrayList<Gallery> gList = collectionService.selectListStudioGallery(studioNo);
+		ArrayList<Gallery> gList = collectionService.selectListStudioGallery(studioNo, "S");
+		ModelAndView mav = new ModelAndView();
+		System.out.println(s.getCode());
+		System.out.println(ssList.get(0).getStudioOptionType());
+		System.out.println(gList.get(0).getGalleryCode());
+		return mav;
 	}
 	
 	@RequestMapping("/collectionViewDress.do")
 	public ModelAndView collectionViewDress(int dressNo) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
 		
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
 	public ModelAndView collectionViewMakeup(int makeupNo) {
+		ModelAndView mav = new ModelAndView();
+		return mav;
 		
 	}
 	

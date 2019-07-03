@@ -1,5 +1,6 @@
 package kr.co.collection.model.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Repository;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.gallery.model.vo.Gallery;
 
 @Repository("collectionDao")
 public class CollectionDao {
@@ -52,7 +55,20 @@ public class CollectionDao {
 	}
 
 	public Studio selectOneStudio(int studioNo) {
-		return sqlSession.selectOne("studio.viewSelectOne",studioNo);
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
-
+	
+	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
+		List list = sqlSession.selectList("studioSelect.selectListOption",studioNo);
+		return (ArrayList<StudioSelect>) list;
+	}
+	
+	public ArrayList<Gallery> selectListStudioGallery(int objectNo, String galleryCode){
+		Map<String, String> map = new HashMap<String,String>();
+		String parseNo = Integer.toString(objectNo);
+		map.put("objectNo", parseNo);
+		map.put("galleryCode", galleryCode);
+		List list = sqlSession.selectList("gallery.selectListGallery",map);
+		return (ArrayList<Gallery>) list;
+	}
 }

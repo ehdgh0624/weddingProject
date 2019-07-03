@@ -178,14 +178,12 @@ public class CollectionService {
 		return collectionDao.selectOneStudio(studioNo);
 	}
 	
-	public ArrayList<StudioSelect> selectListStudioOption(){
-		
-		return new ArrayList<StudioSelect>();
+	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
+		return collectionDao.selectListStudioOption(studioNo);
 	}
 	
-	public ArrayList<Gallery> selectListStudioGallery(){
-		
-		return new ArrayList<Gallery>();
+	public ArrayList<Gallery> selectListStudioGallery(int studioNo, String galleryCode){
+		return collectionDao.selectListStudioGallery(studioNo, galleryCode);
 	}
 
 }
