@@ -40,7 +40,7 @@ public class MemberController {
 		if(member!=null) {
 			session.setAttribute("member", member);
 			System.out.println("로그인성공");
-			return "redirect:/TestDj.jsp";
+			return "redirect:/";
 		}else {
 			view = "member/loginFailed";
 			System.out.println("로그인실패");

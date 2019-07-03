@@ -38,7 +38,7 @@
 					<c:choose>
 						<c:when test="${empty sessionScope.member }">
 					  		<ul class="header-util-box area clearfix">
-								<li><a href="">로그인</a></li>
+								<li><a href="/loginPage.do">로그인</a></li>
 					       		<li><a href="">회원가입</a></li>
 					       		<li><a href="">업체등록</a></li>
 					    	</ul>
@@ -46,8 +46,8 @@
 				    	<c:when test="${not empty sessionScope.member }">
 				    	<!--  로그인 후-->
 				  			<ul class="header-util-box area clearfix">
-							<li><a href="">로그아웃</a></li>
-				       		<li><a href="">마이페이지</a></li>
+							<li><a href="/logout.do">로그아웃</a></li>
+				       		<li><a href="/mypage.do">마이페이지</a></li>
 				       		<c:if test="${sessionScope.member.memberId eq 'admin' }">
 				       			<li><a href="/adminPage.do">관리자페이지</a></li>
 				       		</c:if>

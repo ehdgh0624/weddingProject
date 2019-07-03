@@ -33,7 +33,7 @@
 				</dd>
 			</dl>
 			<div class="common-tbl-btn-group right" style="padding-top:0;">
-				<button class="btn-style3 small" style="margin:0;">로그아웃</button>
+				<button class="btn-style3 small" style="margin:0;" onclick="location.href='/logout.do'">로그아웃</button>
 			</div>
 		</div>
 		<div class="bottom-side-box">
@@ -43,11 +43,12 @@
 					<span><a href="">계정관리</a></span>
 				</li>
 				<!-- 관리자 일때 -->
-				<li>
-					<p>기본</p>
-					<span><a href="">회원관리</a></span>
-				</li>
-				
+				<c:if test="${sessionScope.member.id eq 'admin' }">
+					<li>
+						<p>기본</p>
+						<span><a href="">회원관리</a></span>
+					</li>
+				</c:if>
 				<!-- 일반 회원일때 -->
 				<li>
 					<p>예약관리</p>
