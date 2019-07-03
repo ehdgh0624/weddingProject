@@ -22,24 +22,24 @@
 							<th>지역</th>
 							<td>
 								<select name="weddingLoc">
-									<option value="0">전국</option>
-									<option value="1">서울</option>
-									<option value="2">광주</option>
-									<option value="3">대구</option>
-									<option value="4">대전</option>
-									<option value="5">부산</option>
-									<option value="6">울산</option>
-									<option value="7">인천</option>
-									<option value="8">세종특별자치시</option>
-									<option value="9">경기</option>
-									<option value="10">강원</option>
-									<option value="11">경남</option>
-									<option value="12">경북</option>
-									<option value="13">전남</option>
-									<option value="14">전북</option>
-									<option value="15">충북</option>
-									<option value="16">충남</option>
-									<option value="17">제주</option>
+									<option value="전국">전국</option>
+									<option value="서울">서울</option>
+									<option value="광주">광주</option>
+									<option value="대구">대구</option>
+									<option value="대전">대전</option>
+									<option value="부산">부산</option>
+									<option value="울산">울산</option>
+									<option value="인천">인천</option>
+									<option value="세종">세종특별자치시</option>
+									<option value="경기">경기</option>
+									<option value="강원">강원</option>
+									<option value="경남">경남</option>
+									<option value="경북">경북</option>
+									<option value="전남">전남</option>
+									<option value="전북">전북</option>
+									<option value="충북">충북</option>
+									<option value="충남">충남</option>
+									<option value="제주">제주</option>
 								</select>
 							</td>
 						</tr>
