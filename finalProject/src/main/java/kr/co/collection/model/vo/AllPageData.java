@@ -2,22 +2,25 @@ package kr.co.collection.model.vo;
 
 import java.util.ArrayList;
 
+import kr.co.scrapbook.model.vo.Scrapbook;
+
 public class AllPageData {
 	private ArrayList<Studio> sList;
 	private ArrayList<Dress> dList;
 	private ArrayList<Makeup> mList;
+	private ArrayList<Scrapbook> scrapList;
 	private String pageNavi;
 	private int reqPage;
 	public AllPageData() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
-	public AllPageData(ArrayList<Studio> sList, ArrayList<Dress> dList, ArrayList<Makeup> mList, String pageNavi,
-			int reqPage) {
+	public AllPageData(ArrayList<Studio> sList, ArrayList<Dress> dList, ArrayList<Makeup> mList,
+			ArrayList<Scrapbook> scrapList, String pageNavi, int reqPage) {
 		super();
 		this.sList = sList;
 		this.dList = dList;
 		this.mList = mList;
+		this.scrapList = scrapList;
 		this.pageNavi = pageNavi;
 		this.reqPage = reqPage;
 	}
@@ -38,6 +41,12 @@ public class AllPageData {
 	}
 	public void setmList(ArrayList<Makeup> mList) {
 		this.mList = mList;
+	}
+	public ArrayList<Scrapbook> getScrapList() {
+		return scrapList;
+	}
+	public void setScrapList(ArrayList<Scrapbook> scrapList) {
+		this.scrapList = scrapList;
 	}
 	public String getPageNavi() {
 		return pageNavi;

@@ -62,11 +62,38 @@
 							<img src="/resources/img/test_img.jpg" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div style="padding:20px;">
-							<span style="float:left;">${s.studioName}</span>
-							<span style="float:right;">☆스크랩</span>
-						</div>
-						<div>
-							${s.studioAddr}
+							<span style="float:left;font-size: 20px;vertical-align: middle;">${s.studioName}</span>
+							<span style="float:right;">
+								<c:choose>
+									<c:when test="${not empty pd.scrapList}">
+										<c:set var="doneLoop" value="false"/> 							<!-- doneLoop : forEach문을 돌릴 조건 -->
+										<c:forEach items="${pd.scrapList}" var="scrap" varStatus="j">	<!-- 로그인한 id를 조건으로 현재 페이지에서 스크랩한 정보 배열을 불러옴 -->
+											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
+												<c:choose>
+													<c:when test="${s.studioNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
+														<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">			<!-- 노란 별 이미지를 띄우고 -->
+															<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
+													</c:when>
+													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
+														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
+															<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->									
+														</c:if>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+										</c:forEach>									
+									</c:when>
+									<c:otherwise>
+										<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->									
+									</c:otherwise>
+								</c:choose>
+							</span>
+							<br>
+							<br>
+							<br>
+							<div style="float: left;">
+								${s.studioAddr}
+							</div>
 						</div>
 					</div>
 					<c:if test="i%3==0">

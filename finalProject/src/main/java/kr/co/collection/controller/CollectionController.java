@@ -3,18 +3,23 @@ package kr.co.collection.controller;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
+import kr.co.member.model.vo.Member;
 
 @Controller
 public class CollectionController {
@@ -56,8 +61,13 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionListStudio.do")
-	public ModelAndView collectionListStudio(int reqPage) {
-		AllPageData pd = collectionService.pageStudioList(reqPage);
+	public ModelAndView collectionListStudio(HttpSession session, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		AllPageData pd = collectionService.pageStudioList(reqPage, memberId);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
@@ -65,7 +75,8 @@ public class CollectionController {
 	}
 	@RequestMapping("/collectionListDress.do")
 	public ModelAndView collectionListDress(int reqPage) {
-		AllPageData pd = collectionService.pageDressList(reqPage);
+		String memberId = "admin";
+		AllPageData pd = collectionService.pageDressList(reqPage, memberId);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
@@ -73,7 +84,8 @@ public class CollectionController {
 	}
 	@RequestMapping("/collectionListMakeup.do")
 	public ModelAndView collectionListMakeup(int reqPage) {
-		AllPageData pd = collectionService.pageMakeupList(reqPage);
+		String memberId = "admin";
+		AllPageData pd = collectionService.pageMakeupList(reqPage, memberId);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
@@ -100,7 +112,7 @@ public class CollectionController {
 	public ModelAndView collectionViewStudio(int studioNo) {
 		Studio s = collectionService.selectOneStudio(studioNo);
 		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
-		ArrayList<Gallery> gList = collectionService.selectListStudioGallery(studioNo, "S");
+		ArrayList<Gallery> gList = collectionService.selectListGallery(studioNo, "S");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("studio", s);
 		mav.addObject("studioSelectList", ssList);
@@ -111,14 +123,24 @@ public class CollectionController {
 	
 	@RequestMapping("/collectionViewDress.do")
 	public ModelAndView collectionViewDress(int dressNo) {
+		Dress d = collectionService.selectOneDress(dressNo);
+		ArrayList<Gallery> gList = collectionService.selectListGallery(dressNo, "D");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("dress", d);
+		mav.addObject("galleryList", gList);
+		mav.setViewName("collection/collectionViewDress");
 		return mav;
 		
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
 	public ModelAndView collectionViewMakeup(int makeupNo) {
+		Makeup m = collectionService.selectOneMakeup(makeupNo);
+		ArrayList<Gallery> gList = collectionService.selectListGallery(makeupNo, "M");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("makeup", m);
+		mav.addObject("galleryList", gList);
+		mav.setViewName("collection/collectionViewDress");
 		return mav;
 		
 	}
