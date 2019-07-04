@@ -6,10 +6,10 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.hall.vo.MemberHall;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberDress;
-import kr.co.member.model.vo.MemberHall;
 import kr.co.member.model.vo.MemberMakeup;
 import kr.co.member.model.vo.MemberStudio;
 @Repository("memberDao")

@@ -11,12 +11,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.hall.vo.MemberHall;
 import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberDress;
-import kr.co.member.model.vo.MemberHall;
 import kr.co.member.model.vo.MemberMakeup;
 import kr.co.member.model.vo.MemberStudio;
 

@@ -1,5 +1,7 @@
 package kr.co.member.model.vo;
 
+import kr.co.hall.vo.MemberHall;
+
 public class MemberAll {
 	private MemberDress md;
 	private MemberStudio ms;
