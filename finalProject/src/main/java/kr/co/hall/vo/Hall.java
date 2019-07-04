@@ -1,4 +1,7 @@
 package kr.co.hall.vo;
+
+import java.sql.Date;
+
 public class Hall {
 	private int hallNo;
 	private String memberId;// 등록회원아이디
@@ -28,21 +31,19 @@ public class Hall {
 	private String hallTag;// 웨딩홀 태그
 	private String hallLatitude;// 웨딩홀 위도
 	private String hallLongtitude;// 웨딩홀 경도
-
-	
+	private Date hallDate;
 
 	public Hall() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Hall(int hallNo, String memberId, String code, String hallType, String hallName, String hallLoc,
 			String hallAddr, String hallContent, String hallImg, String hallPath, int hallPrice, int hallMinPerson,
 			int hallMaxPerson, int scope, int hallFoodtype, String hallFoodmenu, int hallFoodprice, String hallTel,
 			String hallTime, String hallServiceFood, String hallServiceAudio, String hallServiceDrink,
 			String hallServicePark, int status, int viewStatus, String hallTag, String hallLatitude,
-			String hallLongtitude) {
+			String hallLongtitude, Date hallDate) {
 		super();
 		this.hallNo = hallNo;
 		this.memberId = memberId;
@@ -72,8 +73,8 @@ public class Hall {
 		this.hallTag = hallTag;
 		this.hallLatitude = hallLatitude;
 		this.hallLongtitude = hallLongtitude;
+		this.hallDate = hallDate;
 	}
-
 
 	public int getHallNo() {
 		return hallNo;
@@ -299,6 +300,14 @@ public class Hall {
 		this.hallLongtitude = hallLongtitude;
 	}
 
+	public Date getHallDate() {
+		return hallDate;
+	}
+
+	public void setHallDate(Date hallDate) {
+		this.hallDate = hallDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Hall [hallNo=" + hallNo + ", memberId=" + memberId + ", code=" + code + ", hallType=" + hallType
@@ -310,7 +319,7 @@ public class Hall {
 				+ hallServiceFood + ", hallServiceAudio=" + hallServiceAudio + ", hallServiceDrink=" + hallServiceDrink
 				+ ", hallServicePark=" + hallServicePark + ", status=" + status + ", viewStatus=" + viewStatus
 				+ ", hallTag=" + hallTag + ", hallLatitude=" + hallLatitude + ", hallLongtitude=" + hallLongtitude
-				+ "]";
+				+ ", hallDate=" + hallDate + "]";
 	}
 
 }
