@@ -51,13 +51,13 @@ public class SimulatorController {
 			Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,weddingPerson,0,null);
 			
 			//웨딩홀
-			ArrayList<MemberHall> mhList = simulatorService.mhSearchList(simulator);
+			/*ArrayList<MemberHall> mhList = simulatorService.mhSearchList(simulator);
 			if(!mhList.isEmpty()) {
 				model.addAttribute("mhList", mhList);
-			}
+			}*/
 			
 			//웨딩드레스
-			ArrayList<Dress> dList = simulatorService.dList(simulator);
+			ArrayList<Dress> dList = simulatorService.dSearchList(simulator);
 			if(!dList.isEmpty()) {
 				model.addAttribute("dList", dList);
 			}
