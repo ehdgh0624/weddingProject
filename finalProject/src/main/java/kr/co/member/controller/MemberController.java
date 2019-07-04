@@ -69,7 +69,7 @@ public class MemberController {
 	@RequestMapping(value = "/logout.do")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession(false);
-		if(session != null) {
+		if(session != null&&(Member)session.getAttribute("member")!=null) {
 			session.invalidate();
 		}
 		return "redirect:/";

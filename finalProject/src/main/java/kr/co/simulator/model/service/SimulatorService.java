@@ -19,18 +19,14 @@ public class SimulatorService {
 	private SimulatorDao simulatorDao;
 
 	//웨딩홀 검색
-	public ArrayList<Hall> mhSearchList(Simulator simulator) {
-		return (ArrayList<Hall>)simulatorDao.mhSearchList(simulator);
+	public ArrayList<Hall> hSearchList(Simulator simulator) {
+		return (ArrayList<Hall>)simulatorDao.hSearchList(simulator);
 	}
 
 	//웨딩드레스 검색
 	public ArrayList<Dress> dSearchList(Simulator simulator) {
 		return (ArrayList<Dress>)simulatorDao.dSearchList(simulator);
 	}
-
-	/*public ArrayList<MemberHall> mhSearchList(MemberHall mh) {
-		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(mh);
-	}*/
 
 	
 	

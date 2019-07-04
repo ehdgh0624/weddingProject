@@ -2,9 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="admin">
 	<insert id="addGoods" parameterType="goods">
+		<if test="goodsFileName != null">
+		insert into goods values(
+		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},#{goodsFileName},#{goodsFilePath}
+		)
+		</if>
+		<if test="goodsFileName == null">
 		insert into goods values(
 		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},null,null
-		)
+		)		
+		</if>
 	</insert>
 	<select id="selectAll" parameterType="map" resultType="member">
 		select 
