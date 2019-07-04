@@ -13,7 +13,7 @@ public class Hall {
 	private int hallPrice;// 홀 가격
 	private int hallMinPerson; // 최소홀인원
 	private int hallMaxPerson; // 최대인원
-	private int scope;// 웨딩홀 별점
+	private int hallScope;// 웨딩홀 별점
 	private int hallFoodtype;// 웨딩홀 음식타입
 	private String hallFoodmenu; // 웨딩홀 음식메뉴
 	private int hallFoodprice;// 음식가격
@@ -57,7 +57,7 @@ public class Hall {
 		this.hallPrice = hallPrice;
 		this.hallMinPerson = hallMinPerson;
 		this.hallMaxPerson = hallMaxPerson;
-		this.scope = scope;
+		this.hallScope = scope;
 		this.hallFoodtype = hallFoodtype;
 		this.hallFoodmenu = hallFoodmenu;
 		this.hallFoodprice = hallFoodprice;
@@ -180,11 +180,11 @@ public class Hall {
 	}
 
 	public int getScope() {
-		return scope;
+		return hallScope;
 	}
 
 	public void setScope(int scope) {
-		this.scope = scope;
+		this.hallScope = scope;
 	}
 
 	public int getHallFoodtype() {
@@ -304,7 +304,7 @@ public class Hall {
 		return "Hall [hallNo=" + hallNo + ", memberId=" + memberId + ", code=" + code + ", hallType=" + hallType
 				+ ", hallName=" + hallName + ", hallLoc=" + hallLoc + ", hallAddr=" + hallAddr + ", hallContent="
 				+ hallContent + ", hallImg=" + hallImg + ", hallPath=" + hallPath + ", hallPrice=" + hallPrice
-				+ ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson + ", scope=" + scope
+				+ ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson + ", scope=" + hallScope
 				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu=" + hallFoodmenu + ", hallFoodprice="
 				+ hallFoodprice + ", hallTel=" + hallTel + ", hallTime=" + hallTime + ", hallServiceFood="
 				+ hallServiceFood + ", hallServiceAudio=" + hallServiceAudio + ", hallServiceDrink=" + hallServiceDrink

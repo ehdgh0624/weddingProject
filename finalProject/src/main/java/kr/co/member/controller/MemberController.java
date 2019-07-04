@@ -84,8 +84,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberEnroll.do")
 	public String memberEnroll(Member vo) {
-		System.out.println("회원가이로직시작");
-		vo.setBirthDay(vo.getBirthDayF(),vo.getBirthDayS());
+		System.out.println("회원가입로직시작");
+		
 		System.out.println(vo);
 		int result = memberService.insertMember(vo);
 		if(result>0) {
@@ -94,8 +94,9 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
-	@RequestMapping(value = "/myComapnyPage.do")
+	@RequestMapping(value = "/myCompanyPage.do")
 	public String myCompanyView(HttpSession session) {
+		System.out.println("나의업체 관리페이지");
 		Member vo =(Member)session.getAttribute("member");	
 		Studio ms = memberService.selectOneStudioMember(vo);
 		Dress md = memberService.selectOneDressMember(vo);

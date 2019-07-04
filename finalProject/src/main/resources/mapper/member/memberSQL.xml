@@ -3,34 +3,34 @@
 <mapper namespace="member">
 	 <insert id="insertMember" parameterType="member">
      insert into member values(seq_member_no.nextval,#{memberId},#{memberPw},
-     #{memberName},#{phone},#{birthDay},#{addr},null,null,
-     null,sysdate,0,#{email})
+     #{memberName},#{phone},#{email},#{birthDay},#{addr},null,null,
+     null,sysdate,0)
     </insert>
     <insert id="insertStudio" parameterType="studio">
-   	 insert into studio values(seq_memberstudio_no.nextval,#{studioId},
+   	 insert into studio values(seq_studio_no.nextval,#{memberId},
    	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
-   	 #{studioPrice},#{fileName},#{filePath},#{status},#{viewStatus},
+   	 #{studioPrice},#{studioFilename},#{studioFilepath},#{status},#{viewstatus},#{studioScope},
    	 #{studioTag},#{studioLatitude},#{studioLongtitude})
     </insert>
     <insert id="insertDress" parameterType="dress">
-     insert into dress values(seq_memberdress_no.nextval,#{dressId},
+     insert into dress values(seq_dress_no.nextval,#{memberId},
      #{code},#{dressName},#{dressTel},#{dressLoc},#{dressAddr},
      #{dressFittingPrice},#{dressRentNum},#{dressRentPrice},
      #{jewelryPrice},#{dressContent},#{dressFittingTime},
      #{dressMending},#{dressParking},#{dressFileName},
-     #{dressFilePath},#{status},#{viewStatus},#{dressTag},
+     #{dressFilePath},#{status},#{viewStatus},#{dressScope},#{dressTag},
      #{dressLatitude},#{dressLongtitude})
     </insert>
     <insert id="insertMakeup" parameterType="makeup">
-     insert into makeup values(seq_membermakeup_no.nextval,#{makeupId},
+     insert into makeup values(seq_makeup_no.nextval,#{memberId},
    	#{code},#{makeupName},#{makeupTel},#{makeupLoc},#{makeupAddr}
-   	,#{makeupBasicPrice},#{makeupParent},#{makeupVisitor},#{makeupParentPrice},#{makeupVisitorPrice}
+   	,#{makeupBasicPrice},#{makeupParentPrice},#{makeupVisitorPrice}
    	,#{makeupFilename},#{makeupFilepath},#{status},#{viewstatus}
-   	,#{makeupTag},#{makeupLatitude},#{makeupLongtitude})
+   	,#{makeupScope},#{makeupTag},#{makeupLatitude},#{makeupLongtitude})
     </insert>
     <insert id="insertHall" parameterType="hall">
-    insert into hall values(seq_memberhall_no.nextval,#{hallId},#{code},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
-    ,#{hallFoodtype},#{hallFoodmenu},#{hallFoodprice},#{hallTel},#{hallTime},#{hallServiceFood},#{hallServiceDrink}
+    insert into hall values(hall_seq.nextval,#{memberId},#{code},#{hallType},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
+    ,#{hallScope},#{hallFoodtype},#{hallFoodmenu},#{hallFoodprice},#{hallTel},#{hallTime},#{hallServiceFood},#{hallServiceAudio},#{hallServiceDrink}
     ,#{hallServicePark},#{status},#{viewStatus},#{hallTag},#{hallLatitude},#{hallLongtitude})
     </insert>
       <select id="selectOneMember" parameterType="member" resultType="member">
@@ -40,40 +40,117 @@
     	member_pw as memberPw,
     	member_name as memberName,
     	phone as phone,
-    	birthday as birthday,
+    	email as email,
+    	birthday as birthDay,
     	addr as addr,
     	marry_schedule as marrySchedule,
     	expect_visitor as expectVisitor,
     	budget as budget,
     	enrollDate as enrollDate,
-    	member_code as memberCode,
-    	email as email
+    	member_code as memberCode
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
     </select>
     <select id ="selectOneStudioMember" parameterType="member" resultType="studio">
     	select
     	studio_no as studioNo,
-    	studio_id as studioId,
-    	studio_code as studiocode,
+    	member_id as memberId,
+    	code as code,
     	studio_name as studioName,
     	studio_tel as studioTel,
     	studio_loc as studioLoc,
     	studio_addr as studioAddr,
     	studio_price as studioPrice,
-    	filename as filename,
-    	filepath as filepath,
+    	studio_filename as studioFilename,
+    	studio_filepath as studioFilepath,
     	status as status,
-    	view_status as viewStatus,
+    	viewstatus as viewStatus,
+    	studio_scope as studioScope,
     	studio_tag as studioTag,
-    	hall_latitude as hallLatitude,
-    	hall_longtitude as hallLongtitude
-    	from studiomember where_id=#{memberId}
+    	studio_latitude as studioLatitude,
+    	studio_longitud as studioLongtitude
+    	from studio where member_id=#{memberId}
     </select>
      <select id ="selectOneDressMember" parameterType="member" resultType="dress">
+     	select
+    	dress_no as dressNo,
+    	member_id as memberId,
+    	code as code,
+    	dress_name as dressName,
+    	dress_tel as dressTel,
+    	dress_loc as dressLoc,
+    	dress_addr as dressAddr,
+    	dress_fitting_price as dressFittingPrice,
+    	dress_rent_num as dressRentNum,
+    	dress_rent_price as dressRentPrice,
+    	jewelry_price as jewelryPrice,
+    	dress_content as dressContent,
+    	dress_fitting_time as dressFittingTime,
+    	dress_mending as dressMending,
+    	dress_parking as dressParking,
+    	dress_filename as dressFilename,
+    	dress_filepath as dressFilepath,
+    	status as status,
+    	viewstatus as viewstatus,
+    	dress_scope as dressScope,
+    	dress_tag as dressTag,
+    	dress_latitude as dressLatitude,
+    	dress_longitud as dressLongitud
+    	from dress where member_id=#{memberId}
      </select>
      <select id ="selectOneMakeupMember" parameterType="member" resultType="makeup">
+     select
+    	makeup_no as makeupNo,
+    	member_id as memberId,
+    	code as code,
+    	makeup_name as makeupName,
+    	makeup_tel as makeupTel,
+    	makeup_loc as makeupLoc,
+    	makeup_addr as makeupAddr,
+    	makeup_basic_price as makeupBasicPrice,
+    	makeup_parent_price as makeupParentPrice,
+    	makeup_visitor_price as makeupVisitorPrice,
+    	makeup_content as makeupContent,
+    	makeup_filename as makeupFilename,
+    	makeup_filepath as makeupFilepath,
+    	status as status,
+    	viewstatus as viewstatus,
+    	makeup_scope as makeupScope,
+    	makeup_tag as makeupTag,
+    	makeup_latitude as makeupLatitude,
+    	makeup_longitud as makeupLongitud
+    	from makeup where member_id=#{memberId}
      </select>
       <select id ="selectOneHallMember" parameterType="member" resultType="hall">
+          select
+    	hall_no as hallNo,
+    	member_id as memberId,
+    	code as code,
+    	hall_type as hallType,
+    	hall_name as hallName,
+    	hall_loc as hallLoc,
+    	hall_addr as hallAddr,
+    	hall_content as hallContent,
+    	hall_img as hallImg,
+    	hall_path as hallPath,
+    	hall_price as hallPrice,
+    	hall_Min_Person as hallMinPerson,
+    	hall_Max_Person as hallMaxPerson,
+    	hall_scope as hallScope,
+    	hall_foodtype as hallFoodtype,
+    	hall_foodmenu as hallFoodMenu,
+    	hall_foodprice as hallFoodprice,
+    	hall_tel as hallTel,
+    	hall_time as hallTime,
+    	hall_service_food as hallServiceFood,
+    	HALL_SEVICE_AUDIO as hallServiceAudio,
+    	hall_Service_Drink as hallServiceDrink,
+    	hall_Service_Parking as hallServicePark,
+    	status as status,
+    	viewstatus as viewStatus,
+    	hall_tag as hallTag,
+    	hall_latitude as hallLatitude,
+    	hall_longitude as hallLongtitude
+    	from hall where member_id=#{memberId}
       </select>
       
     
