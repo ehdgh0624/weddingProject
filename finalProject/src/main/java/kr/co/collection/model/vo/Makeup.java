@@ -1,32 +1,35 @@
 package kr.co.collection.model.vo;
 
 public class Makeup {
-	private int makeupNo;
-	private String code;
-	private String makeupName;
-	private String makeupTel;
-	private String makeupLoc;
-	private String makeupAddr;
-	private int makeupBasicPrice;
-	private int makeupParentPrice;
-	private int makeupVisitorPrice;
-	private String makeupFilename;
-	private String makeupFilepath;
-	private int status;
-	private int viewstatus;
-	private String makeupTag;
-	private String makeupLatitude;
-	private String makeupLongitud;
+	private int makeupNo;					//메이크업 업체번호
+	private String memberId;				//메이크업 업체아이디
+	private String code;					//타입분휴(M)
+	private String makeupName;				//메이크업 업체명
+	private String makeupTel;				//메이크업 연락
+	private String makeupLoc;				//메이크업 지역
+	private String makeupAddr;				//메이크업 상세주소
+	private int makeupBasicPrice;			//메이크업 신랑신부 메이크업 가격
+	private int makeupParentPrice;			//메이크업 혼주 메이크업 가격
+	private int makeupVisitorPrice;			//메이크업 하객 메이크업 가격
+	private String makeupFilename;			//메이크업 대표사진 이름
+	private String makeupFilepath;			//메이크업 대표사진 경로
+	private int status;						//업체신청(대기=0/허가=1/거절=2)
+	private int viewstatus;					//업체노출상태(보임=0/숨김=1/보임신청=2/숨김신청=3)
+	private int makeupScope;				//메이크업 별점
+	private String makeupTag;				//메이크업 태그(샾(#)으로 시작해서 콤마(,)로 구분)
+	private String makeupLatitude;			//위도
+	private String makeupLongitud;			//경도
 	public Makeup() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Makeup(int makeupNo, String code, String makeupName, String makeupTel, String makeupLoc, String makeupAddr,
-			int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice, String makeupFilename,
-			String makeupFilepath, int status, int viewstatus, String makeupTag, String makeupLatitude,
-			String makeupLongitud) {
+	public Makeup(int makeupNo, String memberId, String code, String makeupName, String makeupTel, String makeupLoc,
+			String makeupAddr, int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice,
+			String makeupFilename, String makeupFilepath, int status, int viewstatus, int makeupScope, String makeupTag,
+			String makeupLatitude, String makeupLongitud) {
 		super();
 		this.makeupNo = makeupNo;
+		this.memberId = memberId;
 		this.code = code;
 		this.makeupName = makeupName;
 		this.makeupTel = makeupTel;
@@ -39,6 +42,7 @@ public class Makeup {
 		this.makeupFilepath = makeupFilepath;
 		this.status = status;
 		this.viewstatus = viewstatus;
+		this.makeupScope = makeupScope;
 		this.makeupTag = makeupTag;
 		this.makeupLatitude = makeupLatitude;
 		this.makeupLongitud = makeupLongitud;
@@ -48,6 +52,12 @@ public class Makeup {
 	}
 	public void setMakeupNo(int makeupNo) {
 		this.makeupNo = makeupNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getCode() {
 		return code;
@@ -121,6 +131,12 @@ public class Makeup {
 	public void setViewstatus(int viewstatus) {
 		this.viewstatus = viewstatus;
 	}
+	public int getMakeupScope() {
+		return makeupScope;
+	}
+	public void setMakeupScope(int makeupScope) {
+		this.makeupScope = makeupScope;
+	}
 	public String getMakeupTag() {
 		return makeupTag;
 	}
@@ -139,5 +155,4 @@ public class Makeup {
 	public void setMakeupLongitud(String makeupLongitud) {
 		this.makeupLongitud = makeupLongitud;
 	}
-	
 }
