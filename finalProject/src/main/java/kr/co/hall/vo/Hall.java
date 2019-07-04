@@ -3,7 +3,7 @@ public class Hall {
 	private int hallNo;
 	private String memberId;// 등록회원아이디
 	private String code;// 홀코드
-	private int hallType;// 웨딩홀 타입
+	private String hallType;// 웨딩홀 타입
 	private String hallName;// 홀이름
 	private String hallLoc;// 홀지역
 	private String hallAddr;// 상세주소
@@ -37,7 +37,7 @@ public class Hall {
 	}
 
 
-	public Hall(int hallNo, String memberId, String code, int hallType, String hallName, String hallLoc,
+	public Hall(int hallNo, String memberId, String code, String hallType, String hallName, String hallLoc,
 			String hallAddr, String hallContent, String hallImg, String hallPath, int hallPrice, int hallMinPerson,
 			int hallMaxPerson, int scope, int hallFoodtype, String hallFoodmenu, int hallFoodprice, String hallTel,
 			String hallTime, String hallServiceFood, String hallServiceAudio, String hallServiceDrink,
@@ -99,11 +99,11 @@ public class Hall {
 		this.code = code;
 	}
 
-	public int getHallType() {
+	public String getHallType() {
 		return hallType;
 	}
 
-	public void setHallType(int hallType) {
+	public void setHallType(String hallType) {
 		this.hallType = hallType;
 	}
 
