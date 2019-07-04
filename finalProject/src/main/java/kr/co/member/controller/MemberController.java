@@ -10,9 +10,15 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
+import kr.co.collection.model.vo.Studio;
+import kr.co.hall.vo.Hall;
 import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
+import kr.co.member.model.vo.MemberAll;
 
 
 
@@ -91,13 +97,13 @@ public class MemberController {
 	@RequestMapping(value = "/myComapnyPage.do")
 	public String myCompanyView(HttpSession session) {
 		Member vo =(Member)session.getAttribute("member");	
-//		MemberStudio ms = memberService.selectOneStudioMember(vo);
-//		MemberDress md = memberService.selectOneDressMember(vo);
-//		MemberHall mh = memberService.selectOneHallMember(vo);
-//		MemberMakeup mm = memberService.selctOneMakeupMember(vo);	
-//		MemberAll ma = new MemberAll(md,ms,mm,mh);
+		Studio ms = memberService.selectOneStudioMember(vo);
+		Dress md = memberService.selectOneDressMember(vo);
+		Hall mh = memberService.selectOneHallMember(vo);
+		Makeup mm = memberService.selctOneMakeupMember(vo);	
+		MemberAll ma = new MemberAll(md,ms,mm,mh);
 		Model model = new ExtendedModelMap();	
-//		model.addAttribute("memberstudio",ma);
+		model.addAttribute("memberstudio",ma);
 		
 		return "member/myCompanyPage";
 	}
@@ -124,16 +130,16 @@ public class MemberController {
 		System.out.println(ci);
 		int result=0;
 		
-		//파트너 분류에따른 디비 서비스 구분시작
-//		if(ci.getCode()==0) {
-//			result = memberService.insertStudio(ci,vo);
-//		}else if(ci.getCode()==1) {
-//			result = memberService.insertDress(ci,vo);
-//		}else if(ci.getCode()==2) {
-//			result = memberService.insertMakeup(ci,vo);
-//		}else if(ci.getCode()==3) {
-//			result = memberService.insertHall(ci,vo);
-//		}
+		
+		if(ci.getCode()==0) {
+			result = memberService.insertStudio(ci,vo);
+		}else if(ci.getCode()==1) {
+			result = memberService.insertDress(ci,vo);
+		}else if(ci.getCode()==2) {
+			result = memberService.insertMakeup(ci,vo);
+		}else if(ci.getCode()==3) {
+			result = memberService.insertHall(ci,vo);
+		}
 		
 		if(result>0) {
 			System.out.println("등록성공");
