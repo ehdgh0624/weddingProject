@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Repository("collectionDao")
 public class CollectionDao {
@@ -54,6 +55,14 @@ public class CollectionDao {
 		return sqlSession.selectList("makeup.pageSelectAllList",map);
 	}
 
+	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("code", code);
+		map.put("objectNo", objectNo);
+		return (Scrapbook)sqlSession.selectOne("scrapbook.selectOneScrapbook",map);
+	}
+	
 	public Studio selectOneStudio(int studioNo) {
 		return (Studio)sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
@@ -63,7 +72,15 @@ public class CollectionDao {
 		return (ArrayList<StudioSelect>) list;
 	}
 	
-	public ArrayList<Gallery> selectListStudioGallery(int objectNo, String galleryCode){
+	public Dress selectOneDress(int dressNo) {
+		return (Dress)sqlSession.selectOne("dress.viewSelectOne",dressNo);
+	}
+	
+	public Makeup selectOneMakeup(int makeupNo) {
+		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",makeupNo);
+	}
+	
+	public ArrayList<Gallery> selectListGallery(int objectNo, String galleryCode){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("objectNo", objectNo);
 		map.put("galleryCode", galleryCode);

@@ -1,11 +1,11 @@
 package kr.co.scrapbook.model.vo;
 
 public class Scrapbook {
-	private String memberId;
-	private String code;
-	private int prdNo;
-	private String prdName;
-	private String prdFilepath;
+	private String memberId;				//회원 아이디
+	private String code;					//타입분류
+	private int prdNo;						//업체번호, 상품번호
+	private String prdName;					//업체명, 상품명
+	private String prdFilepath;				//업체 대표사진 경로
 	public Scrapbook() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -67,14 +67,10 @@
 					<option value="양식">양식</option>
 					<option value="뷔페">뷔페</option>
 				</select>
-				<select class="people">	<!-- 인원수 -->
-					<option value="인원 선택">인원 선택</option>
-					<option value="100명이하">100명이하</option>
-					<option value="100~200">100~200</option>
-					<option value="200~300">200~300</option>
-					<option value="300~400">300~400</option>
-				</select>
-				<input type="text" id="searchHall" name="searckHall"> <!-- 결혼식장 이름 입력 -->
+				<div class="hallPerson">
+				<input type="text" id="hallPerson" name="hallPerson" placeholder="인원을 입력해주세요.">
+				</div>
+				<input type="text" id="searchHall" name="searckHall" placeholder="검색할 매장명을 입력해주세요."> <!-- 결혼식장 이름 입력 -->
 				<button type="button" id="btnHall">검색하기</button>	  <!-- 결혼식장 이름 검색 -->	
 				</form>
 				</div>
@@ -109,8 +105,8 @@
 					</div>
 					</c:forEach>
 				</div>
-				<div class="paging area">	<!-- 페이지 처리하는 곳 ! -->
-					<div id="pageNavi">
+				<div class="paging">	<!-- 페이지 처리하는 곳 ! -->
+					<div id="pageNavi area">
 						${pd.pageNavi}
 					</div>
 				</div>

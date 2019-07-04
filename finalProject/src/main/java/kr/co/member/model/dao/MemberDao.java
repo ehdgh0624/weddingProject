@@ -36,7 +36,7 @@ public class MemberDao {
 
 	public Hall selectOneHallMember(Member vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOnehallMember",vo);
+		return sqlSession.selectOne("member.selectOneHallMember",vo);
 	}
 
 	public Makeup selectOneMakeupMember(Member vo) {

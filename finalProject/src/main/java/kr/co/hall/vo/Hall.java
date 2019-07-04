@@ -1,9 +1,12 @@
 package kr.co.hall.vo;
+
+import java.sql.Date;
+
 public class Hall {
 	private int hallNo;
 	private String memberId;// 등록회원아이디
 	private String code;// 홀코드
-	private int hallType;// 웨딩홀 타입
+	private String hallType;// 웨딩홀 타입
 	private String hallName;// 홀이름
 	private String hallLoc;// 홀지역
 	private String hallAddr;// 상세주소
@@ -13,7 +16,7 @@ public class Hall {
 	private int hallPrice;// 홀 가격
 	private int hallMinPerson; // 최소홀인원
 	private int hallMaxPerson; // 최대인원
-	private int scope;// 웨딩홀 별점
+	private int hallScope;// 웨딩홀 별점
 	private int hallFoodtype;// 웨딩홀 음식타입
 	private String hallFoodmenu; // 웨딩홀 음식메뉴
 	private int hallFoodprice;// 음식가격
@@ -28,21 +31,19 @@ public class Hall {
 	private String hallTag;// 웨딩홀 태그
 	private String hallLatitude;// 웨딩홀 위도
 	private String hallLongtitude;// 웨딩홀 경도
-
-	
+	private Date hallDate;
 
 	public Hall() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-
-	public Hall(int hallNo, String memberId, String code, int hallType, String hallName, String hallLoc,
+	public Hall(int hallNo, String memberId, String code, String hallType, String hallName, String hallLoc,
 			String hallAddr, String hallContent, String hallImg, String hallPath, int hallPrice, int hallMinPerson,
 			int hallMaxPerson, int scope, int hallFoodtype, String hallFoodmenu, int hallFoodprice, String hallTel,
 			String hallTime, String hallServiceFood, String hallServiceAudio, String hallServiceDrink,
 			String hallServicePark, int status, int viewStatus, String hallTag, String hallLatitude,
-			String hallLongtitude) {
+			String hallLongtitude, Date hallDate) {
 		super();
 		this.hallNo = hallNo;
 		this.memberId = memberId;
@@ -57,7 +58,7 @@ public class Hall {
 		this.hallPrice = hallPrice;
 		this.hallMinPerson = hallMinPerson;
 		this.hallMaxPerson = hallMaxPerson;
-		this.scope = scope;
+		this.hallScope = scope;
 		this.hallFoodtype = hallFoodtype;
 		this.hallFoodmenu = hallFoodmenu;
 		this.hallFoodprice = hallFoodprice;
@@ -72,8 +73,8 @@ public class Hall {
 		this.hallTag = hallTag;
 		this.hallLatitude = hallLatitude;
 		this.hallLongtitude = hallLongtitude;
+		this.hallDate = hallDate;
 	}
-
 
 	public int getHallNo() {
 		return hallNo;
@@ -99,11 +100,11 @@ public class Hall {
 		this.code = code;
 	}
 
-	public int getHallType() {
+	public String getHallType() {
 		return hallType;
 	}
 
-	public void setHallType(int hallType) {
+	public void setHallType(String hallType) {
 		this.hallType = hallType;
 	}
 
@@ -180,11 +181,11 @@ public class Hall {
 	}
 
 	public int getScope() {
-		return scope;
+		return hallScope;
 	}
 
 	public void setScope(int scope) {
-		this.scope = scope;
+		this.hallScope = scope;
 	}
 
 	public int getHallFoodtype() {
@@ -299,18 +300,26 @@ public class Hall {
 		this.hallLongtitude = hallLongtitude;
 	}
 
+	public Date getHallDate() {
+		return hallDate;
+	}
+
+	public void setHallDate(Date hallDate) {
+		this.hallDate = hallDate;
+	}
+
 	@Override
 	public String toString() {
 		return "Hall [hallNo=" + hallNo + ", memberId=" + memberId + ", code=" + code + ", hallType=" + hallType
 				+ ", hallName=" + hallName + ", hallLoc=" + hallLoc + ", hallAddr=" + hallAddr + ", hallContent="
 				+ hallContent + ", hallImg=" + hallImg + ", hallPath=" + hallPath + ", hallPrice=" + hallPrice
-				+ ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson + ", scope=" + scope
+				+ ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson + ", scope=" + hallScope
 				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu=" + hallFoodmenu + ", hallFoodprice="
 				+ hallFoodprice + ", hallTel=" + hallTel + ", hallTime=" + hallTime + ", hallServiceFood="
 				+ hallServiceFood + ", hallServiceAudio=" + hallServiceAudio + ", hallServiceDrink=" + hallServiceDrink
 				+ ", hallServicePark=" + hallServicePark + ", status=" + status + ", viewStatus=" + viewStatus
 				+ ", hallTag=" + hallTag + ", hallLatitude=" + hallLatitude + ", hallLongtitude=" + hallLongtitude
-				+ "]";
+				+ ", hallDate=" + hallDate + "]";
 	}
 
 }

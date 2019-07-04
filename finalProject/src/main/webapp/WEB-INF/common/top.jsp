@@ -79,7 +79,7 @@
 					</li>
 					<li>
 						<p>상품관리</p>
-						<span><a href="/admin/addGoodsPage.jsp">상품등록</a></span>
+						<span><a href="/addGoodsPage.do">상품등록</a></span>
 						<span><a href="">재고관리</a></span>
 					</li>
 					<li>
