@@ -58,15 +58,20 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		String hashTag = ci.getHashTag();
 		
-		Studio ms = new Studio();
+		Studio ms = new Studio(0,vo.getMemberId(),"S",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr()
+				,ci.getStudioPrice(),""/*확인필요스튜디오 컨텐츠*/,ci.getFileName(),ci.getFilePath()
+				,0,0,0,hashTag,"","");
 		
 		return memberDao.insertStudio(ms);
 	}
 
 	public int insertDress(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
-		
-		Dress md = new Dress();
+		String hashTag = ci.getHashTag();
+		Dress md = new Dress(0,vo.getMemberId(),"D",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr()
+				,ci.getDressFittingPrice(),ci.getDressRentNum(),ci.getDressRentPrice(),ci.getJewelryPrice(),ci.getDressContent()
+				,""/*ci.getDressFiitngTime()*/,ci.getDressMending(),ci.getDressParking(),ci.getFileName(),ci.getFilePath()
+				,0,0,0,hashTag,"","");
 	
 		
 		return memberDao.insertDress(md);
@@ -75,7 +80,8 @@ public class MemberService {
 	public int insertMakeup(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		System.out.println("메이크업등록시작");
-		Makeup mm = new Makeup();
+		String hashTag = ci.getHashTag();
+		Makeup mm = new Makeup(0,vo.getMemberId(),"M",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr(),ci.getMakeupBasicPrice(),ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,"","");
 		
 		return memberDao.insertMakeup(mm);
 	}
@@ -83,8 +89,8 @@ public class MemberService {
 	public int insertHall(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		
-		
-		Hall mh = new Hall();
+		String hashTag = ci.getHashTag();
+		Hall mh = new Hall(0, vo.getMemberId(), "H", ci.getHallType(), ci.getCompanyName(), "", ci.getCompanyAddr(), ci.getHallContent(), ci.getFileName(), ci.getFilePath(), ci.getHallPrice(), ci.getHallMinPerson(), ci.getHallMaxPerson(), 0, ci.getHallFoodtype(), ci.getHallFoodmenu(), ci.getHallFoodprice(), ci.getCompanyPhone(), ci.getHallStartTime()+"/"+ci.getHallEndTime(), ci.getHallServiceFood(), ci.getHallServiceFood(), ci.getHallServiceDrink(), ci.getHallServiceParking(), 0, 0, hashTag, "", "");
 		
 		return memberDao.insertHall(mh);
 	}
