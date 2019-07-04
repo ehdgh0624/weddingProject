@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.member.model.vo.MemberHall;
 import kr.co.simulator.model.dao.SimulatorDao;
+import kr.co.simulator.model.vo.Simulator;
 
 @Service("simulatorService")
 public class SimulatorService {
@@ -17,9 +18,14 @@ public class SimulatorService {
 	@Qualifier(value="simulatorDao")
 	private SimulatorDao simulatorDao;
 
-	public ArrayList<MemberHall> mhSearchList(MemberHall mh) {
-		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(mh);
+	//웨딩홀 검색
+	public ArrayList<MemberHall> mhSearchList(Simulator simulator) {
+		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(simulator);
 	}
+
+	/*public ArrayList<MemberHall> mhSearchList(MemberHall mh) {
+		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(mh);
+	}*/
 
 	
 	
