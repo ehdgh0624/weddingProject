@@ -1,39 +1,46 @@
 package kr.co.collection.model.vo;
 
 public class Studio {
-	private int studioNo;
-	private String code;
-	private String studioName;
-	private String studioTel;
-	private String studioLoc;
-	private String studioAddr;
-	private int studioPrice;
-	private String studioFilename;
-	private String studioFilepath;
-	private int status;
-	private int viewstatus;
-	private String studioTag;
-	private String studioLatitude;
-	private String studioLongitud;
+	private int studioNo;					//스튜디오 업체번호
+	private String memberId;				//스튜디오 업체아이디
+	private String code;					//타입분류(S)
+	private String studioName;				//스튜디오 업체명
+	private String studioTel;				//스튜디오 연락처
+	private String studioLoc;				//스튜디오 지역
+	private String studioAddr;				//스튜디오 상세주소
+	private int studioPrice;				//스튜디오 평균가
+	private String studioContent;			//스튜디오 상세설명
+	private String studioFilename;			//스튜디오 대표사진 이름
+	private String studioFilepath;			//스튜디오 대표사진 경로
+	private int status;						//업체신청(대기=0/허가=1/거절=2)
+	private int viewstatus;					//업체노출상태(보임=0/숨김=1/보임신청=2/숨김신청=3)
+	private int studioScope;				//스튜디오 별점
+	private String studioTag;				//스튜디오 태그(샾(#)으로 시작해서 콤마(,)로 구분)
+	private String studioLatitude;			//위도
+	private String studioLongitud;			//경도
 	public Studio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Studio(int studioNo, String code, String studioName, String studioTel, String studioLoc, String studioAddr,
-			int studioPrice, String studioFilename, String studioFilepath, int status, int viewstatus, String studioTag,
-			String studioLatitude, String studioLongitud) {
+	public Studio(int studioNo, String memberId, String code, String studioName, String studioTel, String studioLoc,
+			String studioAddr, int studioPrice, String studioContent, String studioFilename, String studioFilepath,
+			int status, int viewstatus, int studioScope, String studioTag, String studioLatitude,
+			String studioLongitud) {
 		super();
 		this.studioNo = studioNo;
+		this.memberId = memberId;
 		this.code = code;
 		this.studioName = studioName;
 		this.studioTel = studioTel;
 		this.studioLoc = studioLoc;
 		this.studioAddr = studioAddr;
 		this.studioPrice = studioPrice;
+		this.studioContent = studioContent;
 		this.studioFilename = studioFilename;
 		this.studioFilepath = studioFilepath;
 		this.status = status;
 		this.viewstatus = viewstatus;
+		this.studioScope = studioScope;
 		this.studioTag = studioTag;
 		this.studioLatitude = studioLatitude;
 		this.studioLongitud = studioLongitud;
@@ -43,6 +50,12 @@ public class Studio {
 	}
 	public void setStudioNo(int studioNo) {
 		this.studioNo = studioNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getCode() {
 		return code;
@@ -80,6 +93,12 @@ public class Studio {
 	public void setStudioPrice(int studioPrice) {
 		this.studioPrice = studioPrice;
 	}
+	public String getStudioContent() {
+		return studioContent;
+	}
+	public void setStudioContent(String studioContent) {
+		this.studioContent = studioContent;
+	}
 	public String getStudioFilename() {
 		return studioFilename;
 	}
@@ -104,6 +123,12 @@ public class Studio {
 	public void setViewstatus(int viewstatus) {
 		this.viewstatus = viewstatus;
 	}
+	public int getStudioScope() {
+		return studioScope;
+	}
+	public void setStudioScope(int studioScope) {
+		this.studioScope = studioScope;
+	}
 	public String getStudioTag() {
 		return studioTag;
 	}
@@ -122,4 +147,5 @@ public class Studio {
 	public void setStudioLongitud(String studioLongitud) {
 		this.studioLongitud = studioLongitud;
 	}
+	
 }

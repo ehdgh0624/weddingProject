@@ -1,15 +1,14 @@
 package kr.co.simulator.model.dao;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import kr.co.member.model.vo.MemberHall;
+import kr.co.collection.model.vo.Dress;
+import kr.co.hall.vo.Hall;
+import kr.co.simulator.model.vo.Simulator;
 
 @Repository("simulatorDao")
 public class SimulatorDao {
@@ -17,9 +16,16 @@ public class SimulatorDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	public List mhSearchList(MemberHall mh) {
-		return sqlSession.selectList("simulator.mhSearchList", mh);
+	//웨딩홀 검색
+	public List<Hall> hSearchList(Simulator simulator) {
+		return sqlSession.selectList("simulator.hSearchList", simulator);
 	}
+
+	//웨딩드레스 검색
+	public List<Dress> dSearchList(Simulator simulator) {
+		return sqlSession.selectList("simulator.dSearchList", simulator);
+	}
+
 
 	
 	

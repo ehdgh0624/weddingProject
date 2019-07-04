@@ -7,14 +7,12 @@
     	<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
     	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
     	<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
+    	<typeAlias type="kr.co.scrapbook.model.vo.Scrapbook" alias="scrapbook"/>
     	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>
     	<typeAlias type="kr.co.gallery.model.vo.Gallery" alias="gallery"/>
     	<typeAlias type="kr.co.simulator.model.vo.Simulator" alias="simulator"/>
     	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  
-    	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>    	
-    	<typeAlias type="kr.co.member.model.vo.MemberStudio" alias="memberstudio"/>
-    	<typeAlias type="kr.co.member.model.vo.MemberDress" alias="memberdress"/>
-    	<typeAlias type="kr.co.member.model.vo.MemberMakeup" alias="membermakeup"/>
-    	<typeAlias type="kr.co.member.model.vo.MemberHall" alias="memberhall"/>
+    	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>    
+    	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
     </typeAliases>
 </configuration>

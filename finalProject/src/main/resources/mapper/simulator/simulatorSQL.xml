@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="simulator">
-	<select id="mhSearchList" parameterType="memberhall" resultType="memberhall">
+	<!-- 업체번호, 코드, 업체명, 기본 가격, 전화번호, 주소, 태그, 이미지경로 -->
+	<!-- 검색조건 -> 홀:지역,인원수/드레스:지역/스튜디오:지역/메이크업:지역 -->
+	<select id="hSearchList" parameterType="simulator" resultType="hall">
 		select 
 			hall_no as hallNo,
 			code as code,
@@ -13,9 +15,26 @@
 			hall_path as hallPath
 		from
 			hall
-		<if test="!hallLoc.equals('전국')">
+		<if test="!weddingLoc.equals('전국')">
 			where
-				hall_loc like '%'||#{hallLoc}||'%'
+				hall_loc like '%'||#{weddingLoc}||'%'
+		</if>
+	</select>
+	<select id="dSearchList" parameterType="simulator" resultType="dress">
+		select
+			dress_no as dressNo,
+			code as code,
+			dress_name as dressName,
+			dress_rent_price as dressRentPrice,
+			dress_tel as dressTel,
+			dress_addr as dressAddr,
+			dress_tag as dressTag,
+			dress_filepath as dressFilepath
+		from
+			dress
+		<if test="!weddingLoc.equals('전국')">
+		where
+			dress_addr like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
 </mapper>

@@ -59,16 +59,15 @@ public class CollectionDao {
 	}
 	
 	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
-		List list = sqlSession.selectList("studioSelect.selectListOption",studioNo);
+		List<StudioSelect> list = sqlSession.selectList("studioSelect.selectListOption",studioNo);
 		return (ArrayList<StudioSelect>) list;
 	}
 	
 	public ArrayList<Gallery> selectListStudioGallery(int objectNo, String galleryCode){
-		Map<String, String> map = new HashMap<String,String>();
-		String parseNo = Integer.toString(objectNo);
-		map.put("objectNo", parseNo);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
 		map.put("galleryCode", galleryCode);
-		List list = sqlSession.selectList("gallery.selectListGallery",map);
+		List<Gallery> list = sqlSession.selectList("gallery.selectListGallery",map);
 		return (ArrayList<Gallery>) list;
 	}
 }

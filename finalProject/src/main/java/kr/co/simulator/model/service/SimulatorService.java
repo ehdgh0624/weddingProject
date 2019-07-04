@@ -1,14 +1,15 @@
 package kr.co.simulator.model.service;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import kr.co.member.model.vo.MemberHall;
+import kr.co.collection.model.vo.Dress;
+import kr.co.hall.vo.Hall;
 import kr.co.simulator.model.dao.SimulatorDao;
+import kr.co.simulator.model.vo.Simulator;
 
 @Service("simulatorService")
 public class SimulatorService {
@@ -17,8 +18,14 @@ public class SimulatorService {
 	@Qualifier(value="simulatorDao")
 	private SimulatorDao simulatorDao;
 
-	public ArrayList<MemberHall> mhSearchList(MemberHall mh) {
-		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(mh);
+	//웨딩홀 검색
+	public ArrayList<Hall> hSearchList(Simulator simulator) {
+		return (ArrayList<Hall>)simulatorDao.hSearchList(simulator);
+	}
+
+	//웨딩드레스 검색
+	public ArrayList<Dress> dSearchList(Simulator simulator) {
+		return (ArrayList<Dress>)simulatorDao.dSearchList(simulator);
 	}
 
 	

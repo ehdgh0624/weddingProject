@@ -13,7 +13,7 @@
 				아이디 : <input type="text" name="memberId"><br>
 				비밀번호 : <input type="password" name="memberPw"><br>
 				<button type="submit" >로그인</button><br>
-				<button type="button" onclick="location.href='/memberEnroll.do'">회원가입</button><br>
+				<button type="button" onclick="location.href='/enrollPage.do'">회원가입</button><br>
 		</form>
 	</div>
 	<hr>

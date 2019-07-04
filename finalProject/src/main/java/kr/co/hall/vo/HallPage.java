@@ -2,10 +2,8 @@ package kr.co.hall.vo;
 
 import java.util.ArrayList;
 
-import kr.co.member.model.vo.MemberHall;
-
 public class HallPage {
-	private ArrayList<MemberHall> mList;
+	private ArrayList<Hall> hList;
 	private String pageNavi;
 	private int reqPage;
 
@@ -14,19 +12,19 @@ public class HallPage {
 		// TODO Auto-generated constructor stub
 	}
 
-	public HallPage(ArrayList<MemberHall> mList, String pageNavi, int reqPage) {
+	public HallPage(ArrayList<Hall> hList, String pageNavi, int reqPage) {
 		super();
-		this.mList = mList;
+		this.hList = hList;
 		this.pageNavi = pageNavi;
 		this.reqPage = reqPage;
 	}
 
-	public ArrayList<MemberHall> getmList() {
-		return mList;
+	public ArrayList<Hall> gethList() {
+		return hList;
 	}
 
-	public void setmList(ArrayList<MemberHall> mList) {
-		this.mList = mList;
+	public void sethList(ArrayList<Hall> hList) {
+		this.hList = hList;
 	}
 
 	public String getPageNavi() {
@@ -45,9 +43,6 @@ public class HallPage {
 		this.reqPage = reqPage;
 	}
 
-	@Override
-	public String toString() {
-		return "HallPage [mList=" + mList + ", pageNavi=" + pageNavi + ", reqPage=" + reqPage + "]";
-	}
+	
 
 }

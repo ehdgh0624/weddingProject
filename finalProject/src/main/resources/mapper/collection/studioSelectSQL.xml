@@ -2,6 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="studioSelect">
 	<select id="selectListOption" parameterType="_int" resultType="studioSelect">
-		select studio_option as studioOption, studio_option_price as studioOptionPrice, studio_option_type as studioOptionType from studio_select where studio_no=${studioNo}
+		select studio_option as studioOption, studio_option_price as studioOptionPrice, studio_option_type as studioOptionType from studio_select where studio_no=#{studioNo}
 	</select>
 </mapper>
