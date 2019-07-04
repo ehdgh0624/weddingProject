@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.collection.model.vo.Dress;
-import kr.co.member.model.vo.MemberHall;
+import kr.co.hall.vo.MemberHall;
 import kr.co.simulator.model.vo.Simulator;
 
 @Repository("simulatorDao")

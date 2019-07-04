@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.co.collection.model.vo.Dress;
-import kr.co.member.model.vo.MemberHall;
+import kr.co.hall.vo.MemberHall;
 import kr.co.simulator.model.dao.SimulatorDao;
 import kr.co.simulator.model.vo.Simulator;
 
