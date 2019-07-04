@@ -1,17 +1,20 @@
 package kr.co.collection.model.vo;
 
 public class Studio {
-	private int studioNo;
-	private String code;
-	private String studioName;
-	private String studioTel;
-	private String studioLoc;
+	private int studioNo;					//스튜디오 업체번호
+	private String memberId;				//스튜디오 업체아이디
+	private String code;					//타입분류(S)
+	private String studioName;				//스튜디오 업체명
+	private String studioTel;				//스튜디오 연락처
+	private String studioLoc;				//
 	private String studioAddr;
 	private int studioPrice;
+	private String studioContent;
 	private String studioFilename;
 	private String studioFilepath;
 	private int status;
 	private int viewstatus;
+	private int studioScope;
 	private String studioTag;
 	private String studioLatitude;
 	private String studioLongitud;
@@ -19,21 +22,25 @@ public class Studio {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Studio(int studioNo, String code, String studioName, String studioTel, String studioLoc, String studioAddr,
-			int studioPrice, String studioFilename, String studioFilepath, int status, int viewstatus, String studioTag,
-			String studioLatitude, String studioLongitud) {
+	public Studio(int studioNo, String memberId, String code, String studioName, String studioTel, String studioLoc,
+			String studioAddr, int studioPrice, String studioContent, String studioFilename, String studioFilepath,
+			int status, int viewstatus, int studioScope, String studioTag, String studioLatitude,
+			String studioLongitud) {
 		super();
 		this.studioNo = studioNo;
+		this.memberId = memberId;
 		this.code = code;
 		this.studioName = studioName;
 		this.studioTel = studioTel;
 		this.studioLoc = studioLoc;
 		this.studioAddr = studioAddr;
 		this.studioPrice = studioPrice;
+		this.studioContent = studioContent;
 		this.studioFilename = studioFilename;
 		this.studioFilepath = studioFilepath;
 		this.status = status;
 		this.viewstatus = viewstatus;
+		this.studioScope = studioScope;
 		this.studioTag = studioTag;
 		this.studioLatitude = studioLatitude;
 		this.studioLongitud = studioLongitud;
@@ -43,6 +50,12 @@ public class Studio {
 	}
 	public void setStudioNo(int studioNo) {
 		this.studioNo = studioNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getCode() {
 		return code;
@@ -80,6 +93,12 @@ public class Studio {
 	public void setStudioPrice(int studioPrice) {
 		this.studioPrice = studioPrice;
 	}
+	public String getStudioContent() {
+		return studioContent;
+	}
+	public void setStudioContent(String studioContent) {
+		this.studioContent = studioContent;
+	}
 	public String getStudioFilename() {
 		return studioFilename;
 	}
@@ -104,6 +123,12 @@ public class Studio {
 	public void setViewstatus(int viewstatus) {
 		this.viewstatus = viewstatus;
 	}
+	public int getStudioScope() {
+		return studioScope;
+	}
+	public void setStudioScope(int studioScope) {
+		this.studioScope = studioScope;
+	}
 	public String getStudioTag() {
 		return studioTag;
 	}
@@ -122,4 +147,5 @@ public class Studio {
 	public void setStudioLongitud(String studioLongitud) {
 		this.studioLongitud = studioLongitud;
 	}
+	
 }

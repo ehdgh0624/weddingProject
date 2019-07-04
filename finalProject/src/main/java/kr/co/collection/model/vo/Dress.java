@@ -4,6 +4,7 @@ import java.sql.Date;
 
 public class Dress {
 	private int dressNo;
+	private String memberId;
 	private String code;
 	private String dressName;
 	private String dressTel;
@@ -21,6 +22,7 @@ public class Dress {
 	private String dressFilepath;
 	private int status;
 	private int viewstatus;
+	private int dressScope;
 	private String dressTag;
 	private String dressLatitude;
 	private String dressLongitud;
@@ -28,13 +30,14 @@ public class Dress {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Dress(int dressNo, String code, String dressName, String dressTel, String dressLoc, String dressAddr,
-			int dressFittingPrice, int dressRentNum, int dressRentPrice, int jewelryPrice, String dressContent,
-			String dressFittingTime, String dressMending, String dressParking, String dressFilename,
-			String dressFilepath, int status, int viewstatus, String dressTag, String dressLatitude,
-			String dressLongitud) {
+	public Dress(int dressNo, String memberId, String code, String dressName, String dressTel, String dressLoc,
+			String dressAddr, int dressFittingPrice, int dressRentNum, int dressRentPrice, int jewelryPrice,
+			String dressContent, String dressFittingTime, String dressMending, String dressParking,
+			String dressFilename, String dressFilepath, int status, int viewstatus, int dressScope, String dressTag,
+			String dressLatitude, String dressLongitud) {
 		super();
 		this.dressNo = dressNo;
+		this.memberId = memberId;
 		this.code = code;
 		this.dressName = dressName;
 		this.dressTel = dressTel;
@@ -52,6 +55,7 @@ public class Dress {
 		this.dressFilepath = dressFilepath;
 		this.status = status;
 		this.viewstatus = viewstatus;
+		this.dressScope = dressScope;
 		this.dressTag = dressTag;
 		this.dressLatitude = dressLatitude;
 		this.dressLongitud = dressLongitud;
@@ -61,6 +65,12 @@ public class Dress {
 	}
 	public void setDressNo(int dressNo) {
 		this.dressNo = dressNo;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getCode() {
 		return code;
@@ -164,6 +174,12 @@ public class Dress {
 	public void setViewstatus(int viewstatus) {
 		this.viewstatus = viewstatus;
 	}
+	public int getDressScope() {
+		return dressScope;
+	}
+	public void setDressScope(int dressScope) {
+		this.dressScope = dressScope;
+	}
 	public String getDressTag() {
 		return dressTag;
 	}
@@ -182,5 +198,4 @@ public class Dress {
 	public void setDressLongitud(String dressLongitud) {
 		this.dressLongitud = dressLongitud;
 	}
-	
 }
