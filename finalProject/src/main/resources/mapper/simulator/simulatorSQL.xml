@@ -3,7 +3,7 @@
 <mapper namespace="simulator">
 	<!-- 업체번호, 코드, 업체명, 기본 가격, 전화번호, 주소, 태그, 이미지경로 -->
 	<!-- 검색조건 -> 홀:지역,인원수/드레스:지역/스튜디오:지역/메이크업:지역 -->
-	<select id="mhSearchList" parameterType="memberhall" resultType="memberhall">
+	<select id="hSearchList" parameterType="simulator" resultType="hall">
 		select 
 			hall_no as hallNo,
 			code as code,
@@ -15,9 +15,9 @@
 			hall_path as hallPath
 		from
 			hall
-		<if test="!hallLoc.equals('전국')">
+		<if test="!weddingLoc.equals('전국')">
 			where
-				hall_loc like '%'||#{hallLoc}||'%'
+				hall_loc like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
 	<select id="dSearchList" parameterType="simulator" resultType="dress">

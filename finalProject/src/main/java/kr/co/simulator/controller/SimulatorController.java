@@ -1,8 +1,6 @@
 package kr.co.simulator.controller;
 
-import java.sql.Date;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,10 +11,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.vo.Dress;
-
+import kr.co.hall.vo.Hall;
 import kr.co.member.model.vo.Member;
 import kr.co.simulator.model.service.SimulatorService;
 import kr.co.simulator.model.vo.Simulator;
@@ -51,10 +48,11 @@ public class SimulatorController {
 			Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,weddingPerson,0,null);
 			
 			//웨딩홀
-			/*ArrayList<MemberHall> mhList = simulatorService.mhSearchList(simulator);
-			if(!mhList.isEmpty()) {
-				model.addAttribute("mhList", mhList);
-			}*/
+			ArrayList<Hall> hList = simulatorService.hSearchList(simulator);
+			if(!hList.isEmpty()) {
+				System.out.println(hList.get(0).getHallName());
+				model.addAttribute("hList", hList);
+			}
 			
 			//웨딩드레스
 			ArrayList<Dress> dList = simulatorService.dSearchList(simulator);

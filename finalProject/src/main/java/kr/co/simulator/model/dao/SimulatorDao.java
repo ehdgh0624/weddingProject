@@ -1,6 +1,5 @@
 package kr.co.simulator.model.dao;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -18,8 +17,8 @@ public class SimulatorDao {
 	SqlSessionTemplate sqlSession;
 
 	//웨딩홀 검색
-	public List<Hall> mhSearchList(Simulator simulator) {
-		return sqlSession.selectList("simulator.mhSearchList", simulator);
+	public List<Hall> hSearchList(Simulator simulator) {
+		return sqlSession.selectList("simulator.hSearchList", simulator);
 	}
 
 	//웨딩드레스 검색
@@ -27,9 +26,6 @@ public class SimulatorDao {
 		return sqlSession.selectList("simulator.dSearchList", simulator);
 	}
 
-	/*public List mhSearchList(MemberHall mh) {
-		return sqlSession.selectList("simulator.mhSearchList", mh);
-	}*/
 
 	
 	
