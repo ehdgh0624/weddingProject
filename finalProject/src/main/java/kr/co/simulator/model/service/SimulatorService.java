@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.co.collection.model.vo.Dress;
-import kr.co.member.model.vo.MemberHall;
+import kr.co.hall.vo.Hall;
 import kr.co.simulator.model.dao.SimulatorDao;
 import kr.co.simulator.model.vo.Simulator;
 
@@ -19,8 +19,8 @@ public class SimulatorService {
 	private SimulatorDao simulatorDao;
 
 	//웨딩홀 검색
-	public ArrayList<MemberHall> mhSearchList(Simulator simulator) {
-		return (ArrayList<MemberHall>)simulatorDao.mhSearchList(simulator);
+	public ArrayList<Hall> mhSearchList(Simulator simulator) {
+		return (ArrayList<Hall>)simulatorDao.mhSearchList(simulator);
 	}
 
 	//웨딩드레스 검색

@@ -5,9 +5,10 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+
 import kr.co.hall.dao.HallDao;
+import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
-import kr.co.member.model.vo.MemberHall;
 
 @Service("hallService")
 public class HallService {
@@ -26,7 +27,7 @@ public class HallService {
 				//게시물 번호 범위
 				int start = totalCount - (reqPage * numPerPage - 1);
 				int end = totalCount - (reqPage-1) * numPerPage;
-				ArrayList<MemberHall> hList = (ArrayList<MemberHall>) hallDao.pageHallList(start,end);
+				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.pageHallList(start,end);
 				String pageNavi = "";
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;

@@ -1,9 +1,5 @@
 package kr.co.hall.controller;
 
-
-
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.hall.service.HallService;
 import kr.co.hall.vo.HallPage;
-import kr.co.member.model.vo.MemberHall;
 
 @Controller
 public class HallController {

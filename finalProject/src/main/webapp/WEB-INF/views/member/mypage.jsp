@@ -1,16 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
 
-여기는 마이페이지입니다.
-<a href="/myCompanyPage.do">마이컴페니 페이지</a>
+<%-- wrap --%>
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+	<a href="/myCompanyPage.do">마이컴페니 페이지</a>
 
+	<div id="myPageContainer" class="clearfix">
+		<!-- 여기에 내용 작서어어어어어엉!!! -->
+	</div>
+	
+	<%--  footer --%>
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
+</section>
 
-</body>
-</html>

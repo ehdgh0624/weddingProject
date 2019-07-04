@@ -14,7 +14,7 @@ public class Studio {
 	private String studioFilepath;			//스튜디오 대표사진 경로
 	private int status;						//업체신청(대기=0/허가=1/거절=2)
 	private int viewstatus;					//업체노출상태(보임=0/숨김=1/보임신청=2/숨김신청=3)
-	private int studioScope;				//스튜디오 별점 평균
+	private int studioScope;				//스튜디오 별점
 	private String studioTag;				//스튜디오 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String studioLatitude;			//위도
 	private String studioLongitud;			//경도

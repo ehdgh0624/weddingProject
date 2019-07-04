@@ -3,8 +3,8 @@
 <mapper namespace="member">
 	 <insert id="insertMember" parameterType="member">
      insert into member values(seq_member_no.nextval,#{memberId},#{memberPw},
-     #{memberName},#{phone},#{birthDay},#{addr},#{marrySchedule},#{expectVisitor},
-     #{budget},#{enrollDate},sysdate)
+     #{memberName},#{phone},#{birthDay},#{addr},null,null,
+     null,sysdate,0,#{email})
     </insert>
     <insert id="insertStudio" parameterType="memberstudio">
    	 insert into memberstudio values(seq_memberstudio_no.nextval,#{studioId},
@@ -46,7 +46,8 @@
     	expect_visitor as expectVisitor,
     	budget as budget,
     	enrollDate as enrollDate,
-    	member_no as memberCode
+    	member_code as memberCode,
+    	email as email
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
     </select>
     <select id ="selectOneStudioMember" parameterType="member" resultType="memberstudio">

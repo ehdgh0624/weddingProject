@@ -1,43 +1,56 @@
+
 package kr.co.member.model.vo;
 
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
+import kr.co.collection.model.vo.Studio;
+import kr.co.hall.vo.Hall;
+
 public class MemberAll {
-	private MemberDress md;
-	private MemberStudio ms;
-	private MemberMakeup mm;
-	private MemberHall mh;
+	private Dress dress;
+	private Studio studio;
+	private Makeup makeup;
+	private Hall hall;
+	public MemberAll(Dress dress, Studio studio, Makeup makeup, Hall hall) {
+		super();
+		this.dress = dress;
+		this.studio = studio;
+		this.makeup = makeup;
+		this.hall = hall;
+	}
 	public MemberAll() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberAll(MemberDress md, MemberStudio ms, MemberMakeup mm, MemberHall mh) {
-		super();
-		this.md = md;
-		this.ms = ms;
-		this.mm = mm;
-		this.mh = mh;
+	public Dress getDress() {
+		return dress;
 	}
-	public MemberDress getMd() {
-		return md;
+	public void setDress(Dress dress) {
+		this.dress = dress;
 	}
-	public void setMd(MemberDress md) {
-		this.md = md;
+	public Studio getStudio() {
+		return studio;
 	}
-	public MemberStudio getMs() {
-		return ms;
+	public void setStudio(Studio studio) {
+		this.studio = studio;
 	}
-	public void setMs(MemberStudio ms) {
-		this.ms = ms;
+	public Makeup getMakeup() {
+		return makeup;
 	}
-	public MemberMakeup getMm() {
-		return mm;
+	public void setMakeup(Makeup makeup) {
+		this.makeup = makeup;
 	}
-	public void setMm(MemberMakeup mm) {
-		this.mm = mm;
+	public Hall getHall() {
+		return hall;
 	}
-	public MemberHall getMh() {
-		return mh;
+	public void setHall(Hall hall) {
+		this.hall = hall;
 	}
-	public void setMh(MemberHall mh) {
-		this.mh = mh;
-	}
+	
+	
+
 }
+
+
+
+

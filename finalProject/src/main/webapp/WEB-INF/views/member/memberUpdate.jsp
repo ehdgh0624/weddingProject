@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
-<section id="wrap">
-	<div class="area">
-		<h2 class="comm-content-tit">회원가입</h2>
-		<div class="common-tbl-box">
-			<form action="/memberEnroll.do" method="post">
-				<br>
-				<table class="comm-tbl">
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
+
+<%-- wrap --%>
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+
+	<div id="myPageContainer" class="clearfix">
+		<!-- 여기에 내용 작서어어어어어엉!!! -->
+		<form action="/memberUpdate.do" method="post">
+			<table class="comm-tbl">		
 					<colgroup>
 						<col width="20%">
 						<col width="/">
@@ -52,19 +54,32 @@
 								결혼예정일 : <input type="date" name="marrySchedule"><br>
 								예상하객수 : <input type="text" name="expectVisitor"><br>
 								예산 : <input type="text" name="budget"><br>
-							-->
+					-->
 				</table>
-				<div class="login-btn-box">
-					<button type="submit">회원가입</button>
-					<button type="reset">초기화</button>
-					<button type="button" onclick="location.href='/index.jsp'">메인페이지로</button>
-					<br>
-				
-				</div>
-			</form>
-		</div>
+				<hr>
+				<table class="comm-tbl">
+					<colgroup>
+						<col width="20%">
+						<col width="/">
+					</colgroup>
+					<tr>
+						<th>결혼예정일</th>
+						<th><input type="date" name="marrySchedule"></th>
+					</tr>
+					<tr>
+						<th>예상하객수</th>
+						<th><input type="number" name="expectVisitor"></th>
+					</tr>
+					<tr>
+						<th>예산</th>
+						<th><input type="number" name="budget"></th>
+					</tr>
+				</table>	
+			<button type="submit">수정</button>
+		</form>
 	</div>
+	
+	<%--  footer --%>
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
 
-<%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>

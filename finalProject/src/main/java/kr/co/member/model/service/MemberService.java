@@ -4,13 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
+import kr.co.collection.model.vo.Studio;
+import kr.co.hall.vo.Hall;
 import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
-import kr.co.member.model.vo.MemberDress;
-import kr.co.member.model.vo.MemberHall;
-import kr.co.member.model.vo.MemberMakeup;
-import kr.co.member.model.vo.MemberStudio;
+
 @Service("memberService")
 public class MemberService {
 	
@@ -31,24 +32,24 @@ public class MemberService {
 		return memberDao.insertMember(vo);
 	}
 
-	public MemberStudio selectOneStudioMember(Member vo) {
+	public Studio selectOneStudioMember(Member vo) {
 		// TODO Auto-generated method stub
 		
 		
 		return memberDao.selectOneStudioMember(vo);
 	}
 
-	public MemberDress selectOneDressMember(Member vo) {
+	public Dress selectOneDressMember(Member vo) {
 		// TODO Auto-generated method stub
 		return memberDao.selectOneDressMember(vo);
 	}
 
-	public MemberHall selectOneHallMember(Member vo) {
+	public Hall selectOneHallMember(Member vo) {
 		// TODO Auto-generated method stub
 		return memberDao.selectOneHallMember(vo);
 	}
 
-	public MemberMakeup selctOneMakeupMember(Member vo) {
+	public Makeup selctOneMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
 		return memberDao.selectOneMakeupMember(vo);
 	}
@@ -57,10 +58,7 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		String hashTag = ci.getHashTag();
 		
-		MemberStudio ms = new MemberStudio(0, vo.getMemberId(), "S", 
-				ci.getCompanyName(), ci.getCompanyPhone(), "", 
-				ci.getCompanyAddr(), ci.getStudioPrice(), ci.getFileName(),
-				ci.getFilePath(), 0, 0, hashTag, "", "");
+		Studio ms = new Studio();
 		
 		return memberDao.insertStudio(ms);
 	}
@@ -68,14 +66,7 @@ public class MemberService {
 	public int insertDress(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		
-		MemberDress md = new MemberDress(0, vo.getMemberId(), "D", 
-				ci.getCompanyName(), ci.getCompanyPhone(), "", 
-				ci.getCompanyAddr(), ci.getDressFittingPrice(), 
-				ci.getDressRentNum(), ci.getDressRentPrice(), 
-				ci.getJewelryPrice(), ci.getDressContent(), 
-				ci.getDressFiitngTime(), ci.getDressMending(), 
-				ci.getDressParking(), ci.getFileName(), ci.getFilePath(), 
-				0, 0,ci.getHashTag(), "", "");
+		Dress md = new Dress();
 	
 		
 		return memberDao.insertDress(md);
@@ -84,12 +75,7 @@ public class MemberService {
 	public int insertMakeup(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		System.out.println("메이크업등록시작");
-		MemberMakeup mm = new MemberMakeup(0, vo.getMemberId(), "M", 
-				ci.getCompanyName(), ci.getCompanyPhone(), "", 
-				ci.getCompanyAddr(), ci.getMakeupBasicPrice(),ci.getMakeupParent(),ci.getMakeupVisitor(),
-				ci.getMakeupParentPrice(), ci.getMakeupVisitorPrice(),
-				ci.getFileName(), ci.getFilePath(), 0, 0, 
-				ci.getHashTag(), "", "");
+		Makeup mm = new Makeup();
 		
 		return memberDao.insertMakeup(mm);
 	}
@@ -98,16 +84,7 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		
 		
-		MemberHall mh = new MemberHall(0,vo.getMemberId(), "H", 
-				ci.getCompanyName(), "", ci.getCompanyAddr(), 
-				ci.getHallContent(), ci.getFileName(), ci.getFilePath(), 
-				ci.getHallPrice(), ci.getHallMinPerson(), 
-				ci.getHallMaxPerson(), ci.getHallFoodtype(), 
-				ci.getHallFoodmenu(), ci.getHallFoodprice(),
-				ci.getCompanyPhone(), ci.getHallStartTime()+"/"+ci.getHallEndTime(), 
-				ci.getHallServiceFood(), ci.getHallServiceDrink(),
-				ci.getHallServiceParking(), 0, 0,
-				ci.getHashTag(),"","");
+		Hall mh = new Hall();
 		
 		return memberDao.insertHall(mh);
 	}
