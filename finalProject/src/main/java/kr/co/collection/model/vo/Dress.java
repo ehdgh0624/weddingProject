@@ -1,31 +1,29 @@
 package kr.co.collection.model.vo;
 
-import java.sql.Date;
-
 public class Dress {
-	private int dressNo;
-	private String memberId;
-	private String code;
-	private String dressName;
-	private String dressTel;
-	private String dressLoc;
-	private String dressAddr;
-	private int dressFittingPrice;
-	private int dressRentNum;
-	private int dressRentPrice;
-	private int jewelryPrice;
-	private String dressContent;
-	private String dressFittingTime;
-	private String dressMending;
-	private String dressParking;
-	private String dressFilename;
-	private String dressFilepath;
-	private int status;
-	private int viewstatus;
-	private int dressScope;
-	private String dressTag;
-	private String dressLatitude;
-	private String dressLongitud;
+	private int dressNo;					//드레스 업체번호
+	private String memberId;				//드레스 업체아이디
+	private String code;					//타입분류(D)
+	private String dressName;				//드레스 업체명
+	private String dressTel;				//드레스 연락처
+	private String dressLoc;				//드레스 지역
+	private String dressAddr;				//드레스 상세주소
+	private int dressFittingPrice;			//드레스 피팅가격
+	private int dressRentNum;				//드레스 대여가능 개수
+	private int dressRentPrice;				//드레스 대여가격
+	private int jewelryPrice;				//쥬얼리 대여가격
+	private String dressContent;			//드레스 상세설명
+	private String dressFittingTime;		//드레스 피팅 소요 시간
+	private String dressMending;			//드레스 가봉 가능 여부
+	private String dressParking;			//드레스 주차 가능 여부
+	private String dressFilename;			//드레스 대표사진 이름
+	private String dressFilepath;			//드레스 대표사진 경로
+	private int status;						//업체신청(대기=0/허가=1/거절=2)
+	private int viewstatus;					//업체노출상태(보임=0/숨김=1/보임신청=2/숨김신청=3)
+	private int dressScope;					//드레스 별점
+	private String dressTag;				//드레스 태그(샾(#)으로 시작해서 콤마(,)로 구분)
+	private String dressLatitude;			//위도
+	private String dressLongitud;			//경도
 	public Dress() {
 		super();
 		// TODO Auto-generated constructor stub
