@@ -39,7 +39,7 @@
 						<c:when test="${empty sessionScope.member }">
 					  		<ul class="header-util-box area clearfix">
 								<li><a href="/loginPage.do">로그인</a></li>
-					       		<li><a href="">회원가입</a></li>
+					       		<li><a href="/enrollPage.do">회원가입</a></li>
 					       		<li><a href="">업체등록</a></li>
 					    	</ul>
 				    	</c:when>

@@ -41,7 +41,7 @@
 				<c:if test="${sessionScope.member.memberId ne 'admin' }">
 					<li>
 						<p>기본</p>
-						<span><a href="">계정관리</a></span>
+						<span><a href="/memberUpdate.do">계정관리</a></span>
 					</li>
 				<!-- 일반 회원일때 -->
 					<li>
@@ -51,7 +51,7 @@
 					<!-- 업체 회원일때 -->
 					<li>
 						<p>업체관리</p>
-						<span><a href="">나의 업체 관리</a></span>
+						<span><a href="/myCompanyPage.do">나의 업체 관리</a></span>
 						<span><a href="">업체 예약관리</a></span>
 					</li>
 					<!-- 일반 회원일때 -->
