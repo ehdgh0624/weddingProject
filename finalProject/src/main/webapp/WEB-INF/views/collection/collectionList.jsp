@@ -12,8 +12,8 @@
 	<div class="area">
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
 		<!-- 상위 검색창 -->
-		<h1>★나에게 맞는 #Shop 찾기</h1>
 		<div style="margin:0 auto;">
+			<h1>★나에게 맞는 #Shop 찾기</h1>
 			<div style="display:inline-block;">
 				<h3>지역</h3>
 				<select style="width:150px;" id="locationSelect" name="locationSelect">
