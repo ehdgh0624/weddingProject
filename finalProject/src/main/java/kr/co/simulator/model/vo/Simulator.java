@@ -79,7 +79,4 @@ public class Simulator {
 		return simulatorDate;
 	}
 
-	public void setSimulatorDate(Date simulatorDate) {
-		this.simulatorDate = simulatorDate;
-	}
 }

@@ -20,10 +20,11 @@
 				hall_loc like '%'||#{hallLoc}||'%'
 		</if>
 	</select>
-	<select id="dSearchList" parameterType="dress" resultType="dress">
+	<select id="dSearchList" parameterType="simulator" resultType="dress">
 		select
 			dress_no as dressNo,
 			code as code,
+			dress_name as dressName,
 			dress_rent_price as dressRentPrice,
 			dress_tel as dressTel,
 			dress_addr as dressAddr,
@@ -32,8 +33,8 @@
 		from
 			dress
 		<if test="!weddingLoc.equals('전국')">
-			where
-				dress_loc like '%'||#{weddingLoc}||'%'
+		where
+			dress_addr like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
 </mapper>

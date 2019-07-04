@@ -59,6 +59,7 @@ public class SimulatorController {
 			//웨딩드레스
 			ArrayList<Dress> dList = simulatorService.dSearchList(simulator);
 			if(!dList.isEmpty()) {
+				System.out.println(dList.get(0).getDressName());
 				model.addAttribute("dList", dList);
 			}
 			
