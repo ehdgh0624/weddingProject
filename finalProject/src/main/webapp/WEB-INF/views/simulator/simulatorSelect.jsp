@@ -28,12 +28,12 @@
 		</div>
 	
 		<c:choose>
-			<c:when test="${empty mhList }">
+			<c:when test="${empty dList }">
 				<p>글 없음</p>
 			</c:when>
-			<c:when test="${not empty mhList }">
-				<c:forEach items="${mhList }" var="mh">
-					<p>${mh.hallName }</p>
+			<c:when test="${not empty dList }">
+				<c:forEach items="${dList }" var="d">
+					<p>${d.dressName }</p>
 				</c:forEach>
 			</c:when>
 		</c:choose>		
