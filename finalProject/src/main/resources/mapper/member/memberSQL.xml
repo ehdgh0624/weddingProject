@@ -6,14 +6,14 @@
      #{memberName},#{phone},#{birthDay},#{addr},null,null,
      null,sysdate,0,#{email})
     </insert>
-    <insert id="insertStudio" parameterType="memberstudio">
-   	 insert into memberstudio values(seq_memberstudio_no.nextval,#{studioId},
+    <insert id="insertStudio" parameterType="studio">
+   	 insert into studio values(seq_memberstudio_no.nextval,#{studioId},
    	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
    	 #{studioPrice},#{fileName},#{filePath},#{status},#{viewStatus},
    	 #{studioTag},#{studioLatitude},#{studioLongtitude})
     </insert>
-    <insert id="insertDress" parameterType="memberdress">
-     insert into memberdress values(seq_memberdress_no.nextval,#{dressId},
+    <insert id="insertDress" parameterType="dress">
+     insert into dress values(seq_memberdress_no.nextval,#{dressId},
      #{code},#{dressName},#{dressTel},#{dressLoc},#{dressAddr},
      #{dressFittingPrice},#{dressRentNum},#{dressRentPrice},
      #{jewelryPrice},#{dressContent},#{dressFittingTime},
@@ -21,15 +21,15 @@
      #{dressFilePath},#{status},#{viewStatus},#{dressTag},
      #{dressLatitude},#{dressLongtitude})
     </insert>
-    <insert id="insertMakeup" parameterType="membermakeup">
-     insert into membermakeup values(seq_membermakeup_no.nextval,#{makeupId},
+    <insert id="insertMakeup" parameterType="makeup">
+     insert into makeup values(seq_membermakeup_no.nextval,#{makeupId},
    	#{code},#{makeupName},#{makeupTel},#{makeupLoc},#{makeupAddr}
    	,#{makeupBasicPrice},#{makeupParent},#{makeupVisitor},#{makeupParentPrice},#{makeupVisitorPrice}
    	,#{makeupFilename},#{makeupFilepath},#{status},#{viewstatus}
    	,#{makeupTag},#{makeupLatitude},#{makeupLongtitude})
     </insert>
-    <insert id="insertHall" parameterType="memberhall">
-    insert into memberhall values(seq_memberhall_no.nextval,#{hallId},#{code},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
+    <insert id="insertHall" parameterType="hall">
+    insert into hall values(seq_memberhall_no.nextval,#{hallId},#{code},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
     ,#{hallFoodtype},#{hallFoodmenu},#{hallFoodprice},#{hallTel},#{hallTime},#{hallServiceFood},#{hallServiceDrink}
     ,#{hallServicePark},#{status},#{viewStatus},#{hallTag},#{hallLatitude},#{hallLongtitude})
     </insert>
@@ -50,7 +50,7 @@
     	email as email
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
     </select>
-    <select id ="selectOneStudioMember" parameterType="member" resultType="memberstudio">
+    <select id ="selectOneStudioMember" parameterType="member" resultType="studio">
     	select
     	studio_no as studioNo,
     	studio_id as studioId,
@@ -69,11 +69,11 @@
     	hall_longtitude as hallLongtitude
     	from studiomember where_id=#{memberId}
     </select>
-     <select id ="selectOneDressMember" parameterType="member" resultType="memberdress">
+     <select id ="selectOneDressMember" parameterType="member" resultType="dress">
      </select>
-     <select id ="selectOneMakeupMember" parameterType="member" resultType="membermakeup">
+     <select id ="selectOneMakeupMember" parameterType="member" resultType="makeup">
      </select>
-      <select id ="selectOneHallMember" parameterType="member" resultType="memberhall">
+      <select id ="selectOneHallMember" parameterType="member" resultType="hall">
       </select>
       
     

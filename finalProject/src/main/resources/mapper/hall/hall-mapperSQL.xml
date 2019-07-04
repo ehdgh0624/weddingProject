@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="hall">
-  	<select id="pageSelectAllList" parameterType="map" resultType="memberHall">
+  	<select id="pageSelectAllList" parameterType="map" resultType="hall">
 		select hall_no as hallNo,
 			   member_id as memberId,
 			   code as code,
@@ -31,7 +31,7 @@
 			   hall_longitude as hallLongitude
 			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d) where (rnum between #{start} and #{end}) order by rnum desc
 	</select>
-	<select id="selectAllList" parameterType="memberHall" resultType="memberHall">
+	<select id="selectAllList" parameterType="hall" resultType="hall">
 	select hall_no as hallNo,
 			   member_id as memberId,
 			   code as code,
