@@ -1,88 +1,124 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
 
-<section id="wrap">
-	<form action="/companyEnroll.do" method="post">
+<%-- wrap --%>
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+	
 		<div class="area">
-			<div><!-- 기본정보 -->
-				<span>파트너 기본정보 등록</span><br><br>
-				<span>업체의 이름을 알려주세요</span><br>
-				<input type="text" name="companyName" value=" ">
-				<span>업체주소</span><br>
-				<input type="text" name="companyAddr" value=" ">
-				<span>업체전화번호</span><br>
-				<input type="text" name="companyPhone" value=" ">
-				<button value="">다음</button>
-			</div>
-			<hr>
-			<div><!-- 분류선택 -->
-				<span>파트너 분류선택</span><br><br>
-				<span>어떤일을 하시나요?</span><br>
-				<select name="code">
-					<option value="0">스튜디오</option>
-					<option value="1">드레스</option>
-					<option value="2">메이크업</option>
-					<option value="3">홀</option>
-				</select>	
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--스튜디오인경우  -->
-				<span>스튜디오 평균가격</span><br>
-				<input type="number" name="studioPrice" value="0"><br>
-				<span>스튜디오 옵션명</span><br>
-				<input type="text" name="studioOption" value=" "><br>
-				<span>스튜디오 옵션가격</span><br>
-				<input type="number" name="studioOptionPrice" value="0"><br>
-				<select name="studioOptionType"><br>
-					<option value="0">본식</option>
-					<option value="1">스튜디오</option>
-					<option value="2">영상</option>
-				</select><br>
-				<button>옵션추가</button><br>
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--드레스인경우  -->
-				<span>드레스피팅가격</span><br>
-				<input type="number" name="dressFittingPrice" value="0"><br>
-				<span>드레스피팅시간</span><br>
-				<input type="number" name="dressFittingTime" value="0"><br>
+			<form action="/companyEnroll.do" method="post">
+				<div class="comm-tbl-box"><!-- 기본정보 -->
+					<div>
+					<h1>파트너 기본정보 등록</h1>
+					<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th>업체이름</th>	
+							<th><input type="text" name="companyName" value=" "></th>
+						</tr>
+						<tr>
+							<th>업체주소</th>
+							<th><input type="text" name="companyAddr" value=" "></th>
+						</tr>
+						<tr>
+							<th>업체전화번호</th>
+							<th><input type="text" name="companyPhone" value=" "></th>
+						</tr>				
+					</table>
+					<span id="firstStep">다음</span>
+					</div>
+				</div>
+				<div><!-- 분류선택 -->
+					<h1>파트너 분류선택 </h1>			
+					<select name="code" id="choice">
+						<option value="0">스튜디오</option>
+						<option value="1">드레스</option>
+						<option value="2">메이크업</option>
+						<option value="3">홀</option>
+					</select>	
+					<span id="secondStep">다음</span>
+				</div>
+				<div><!--드레스인경우  -->
+				<h1>드레스</h1>
+				<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th>드레스피팅가격</th>	
+							<th><input type="number" name="dressFittingPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>드레스피팅시간</th>
+							<th><input type="number" name="dressFittingTime" value="0"><br></th>
+						</tr>
+						<tr>
+							<th>드레스대여가능갯수</th>
+							<th><input type="number" name="dressRentNum" value="0"></th>
+						</tr>
+						<tr>
+							<th>드레스렌트가격</th>
+							<th><input type="number" name="dressRentPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>보석렌트가격</th>
+							<th><input type="number" name="jewelryPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>체크옵션</th>
+							<th>가봉여부 <input type="checkbox" name="dressMending"><br>
+								주차여부 <input type="checkbox" name="dressParking">
+							</th>
+						</tr>
+						<tr>
+							<th>추가상세설명</th>
+							<th><input type="text" name="dressContent" value=" "></th>
+						</tr>
+					</table>
+					<span id="dressStep">다음</span>
+				</div>		
+				<div><!--메이크업  -->
+					<h1>메이크업</h1>
+					<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th>메이크업기본가격</th>
+							<th><input type="text" name="makeupBasicPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>혼주메이크업 가격</th>
+							<th><input type="number" name="makeupParentPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>하객메이크업 가격</th>
+							<th><input type="number" name="makeupVisitorPrice" value="0"></th>
+						</tr>
+					</table>
+					<span id="makeupStep">다음</span>
+				</div>
 				
-				<span>드레스대여가능갯수</span><br>
-				<input type="number" name="dressRentNum" value="0"><br>
-				<span>드레스렌트가격</span><br>
-				<input type="number" name="dressRentPrice" value="0"><br>
-				<span>보석렌트가격</span><br>
-				<input type="number" name="jewelryPrice" value="0"><br>
-				
-				
-				가봉여부 <input type="checkbox" name="dressMending"><br>
-				주차여부 <input type="checkbox" name="dressParking"><br>
-				
-				<span>추가설명</span><br>
-				<input type="text" name="dressContent" value=" "><br>
-				
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--메이크업  -->
-				<span>메이크업가격</span>  <br>
-				<input type="text" name="makeupBasicPrice" value="0"><br>
-				
-				혼주메이크업 체크<input type="checkbox" name="makeupParent" value=" "><br>
-				혼주메이크업 가격 <input type="number" name="makeupParentPrice" value="0"><br>
-				하객메이크업 체크<input type="checkbox" name="makeupVisitor" value=" "><br>
-				하객메이크업 <input type="number" name="makeupVisitorPrice" value="0"><br>
-			
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!-- 홀 -->
+				<div><!-- 홀 -->
+				<h1>예식장</h1>
+					<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th></th>
+						</tr>
 				<span>홀수용가능인원</span><br>
 				최초<input type="number" name="hallMinPerson" value=0>~최대<input type="number" name="hallMaxPerson" value=0>
 				
@@ -128,8 +164,9 @@
 				
 				<span>웨딩홀상세설명</span><br>
 				<input type="text" name="hallContent" value=" ">
-			</div>
-				<hr>
+				</table>
+				</div>
+			
 			<div><!-- 최종등록-->
 				<h1>사진등록</h1><br>
 				<input type="file" name="fileName" value=" "><br>
@@ -137,9 +174,44 @@
 				<input type="text" name="hashTag" value=" ">
 			</div>
 			<button type="submit">제출</button>
+			</form>
+			
+			<div><!--스튜디오인경우 옵션  -->
+					<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th>스튜디오 평균가격</th>	
+							<th><input type="number" name="studioPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>스튜디오 옵션명</th>
+							<th><input type="text" name="studioOption" value=" "></th>
+						</tr>
+						<tr>
+							<th>스튜디오 옵션가격</th>
+							<th><input type="number" name="studioOptionPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>스튜디오 옵션분류</th>
+							<th>
+								<select name="studioOptionType"><br>
+									<option value="0">본식</option>
+									<option value="1">스튜디오</option>
+									<option value="2">영상</option>
+								</select>
+							
+							</th>
+						</tr>					
+					</table>
+					<span id="studioOptionAdd">옵션추가</span><br>
+					<span id="studioOption">다음</span><br>
+				</div>
 		</div>
-	</form>
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
 
 <%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
+

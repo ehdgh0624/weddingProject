@@ -19,6 +19,18 @@ public class Makeup {
 	private String makeupTag;				//메이크업 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String makeupLatitude;			//위도
 	private String makeupLongitud;			//경도
+	
+	
+	@Override
+	public String toString() {
+		return "Makeup [makeupNo=" + makeupNo + ", memberId=" + memberId + ", code=" + code + ", makeupName="
+				+ makeupName + ", makeupTel=" + makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr
+				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
+				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", makeupFilename=" + makeupFilename
+				+ ", makeupFilepath=" + makeupFilepath + ", status=" + status + ", viewstatus=" + viewstatus
+				+ ", makeupScope=" + makeupScope + ", makeupTag=" + makeupTag + ", makeupLatitude=" + makeupLatitude
+				+ ", makeupLongitud=" + makeupLongitud + "]";
+	}
 	public Makeup() {
 		super();
 		// TODO Auto-generated constructor stub

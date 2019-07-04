@@ -95,7 +95,7 @@ public class MemberController {
 		}
 	}
 	@RequestMapping(value = "/myCompanyPage.do")
-	public String myCompanyView(HttpSession session) {
+	public String myCompanyView(HttpSession session,Model model) {
 		System.out.println("나의업체 관리페이지");
 		Member vo =(Member)session.getAttribute("member");	
 		Studio ms = memberService.selectOneStudioMember(vo);
@@ -103,17 +103,22 @@ public class MemberController {
 		Hall mh = memberService.selectOneHallMember(vo);
 		Makeup mm = memberService.selctOneMakeupMember(vo);	
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
-		Model model = new ExtendedModelMap();	
-		model.addAttribute("memberstudio",ma);
+		
+		System.out.println(ms);
+		System.out.println(md);
+		System.out.println(mh);
+		System.out.println(mm);
+		
+			
+		model.addAttribute("memberAll",ma);
 		
 		return "member/myCompanyPage";
 	}
 	
 	@RequestMapping(value = "/mypage.do")
-	public String myPageView(HttpSession session) {
+	public String myPageView(HttpSession session,Model model) {
 		Member vo =(Member)session.getAttribute("member");	
-		Model model = new ExtendedModelMap();
-		model.addAttribute("memberstudio",vo);
+		model.addAttribute("member",vo);
 		return "member/mypage";
 	}
 	//아직 적용안함
