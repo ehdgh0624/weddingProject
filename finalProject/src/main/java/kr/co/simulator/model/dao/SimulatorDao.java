@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kr.co.collection.model.vo.Dress;
-import kr.co.hall.vo.MemberHall;
+import kr.co.hall.vo.Hall;
 import kr.co.simulator.model.vo.Simulator;
 
 @Repository("simulatorDao")
@@ -18,7 +18,7 @@ public class SimulatorDao {
 	SqlSessionTemplate sqlSession;
 
 	//웨딩홀 검색
-	public List<MemberHall> mhSearchList(Simulator simulator) {
+	public List<Hall> mhSearchList(Simulator simulator) {
 		return sqlSession.selectList("simulator.mhSearchList", simulator);
 	}
 

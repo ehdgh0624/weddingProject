@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.vo.Dress;
-import kr.co.hall.vo.MemberHall;
+
 import kr.co.member.model.vo.Member;
 import kr.co.simulator.model.service.SimulatorService;
 import kr.co.simulator.model.vo.Simulator;

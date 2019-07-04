@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import kr.co.hall.vo.MemberHall;
+
 import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
