@@ -36,6 +36,7 @@
 	<context:component-scan base-package="kr.co.marryme" />
 	<context:component-scan base-package="kr.co.member" />
 	<context:component-scan base-package="kr.co.collection" />
+	<context:component-scan base-package="kr.co.scrapbook" />
 	<context:component-scan base-package="kr.co.goods" />
 	<context:component-scan base-package="kr.co.gallery" />
 	<context:component-scan base-package="kr.co.collection" />
