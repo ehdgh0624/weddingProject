@@ -14,7 +14,7 @@
 	<div id="myPageContainer" class="clearfix">
 		<h1>상품등록</h1>
 		<br>
-			<form action="/addGoods.do" method="get">
+			<form action="/addGoods.do" method="post" enctype="multipart/form-data">
 				<table class=comm-tbl>
 					<colgroup>
 						<col width="20%">
@@ -39,12 +39,12 @@
 						<td><input type="text" name="goodsPrice" class="num short"> 원</td>
 					</tr>
 					<tr>
-						<th>상품수량</th>
-						<td><input type="text" name="goodsStock" class="num short" > 개</td>
+						<th>태그</th>
+						<td><input type="text" name="goodsTag" class="middle" placeholder="#태그를 입력해 주세요"></td>
 					</tr>
 					<tr>
 						<th>상품내용</th>
-						<td><textarea rows="5" cols="50" name="goodsContent" style="resize: none;"></textarea></td>
+						<td><textarea rows="5" cols="10" name="goodsContent" style="resize: none;"></textarea></td>
 					</tr>
 					<tr>
 						<th>상품사진</th>

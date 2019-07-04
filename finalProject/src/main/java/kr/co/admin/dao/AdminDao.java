@@ -9,6 +9,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
 @Repository("adminDao")
@@ -28,5 +29,12 @@ public class AdminDao {
 		int result = sqlSession.selectOne("admin.totalMember");
 		return result;
 	}
+
+	public int addGoods(Goods g) {
+		int result = sqlSession.insert("admin.addGoods",g);
+		return result;
+	}
+
+	
 	
 }

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.admin.dao.AdminDao;
 import kr.co.admin.vo.AdminMember;
+import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
 @Service("adminService")
@@ -48,6 +49,10 @@ public class AdminService {
 			    
 		
 		return am;
+	}
+
+	public int addGoods(Goods g) {
+		return adminDao.addGoods(g);
 	}
 
 }
