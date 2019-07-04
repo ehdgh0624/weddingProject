@@ -87,7 +87,7 @@
 					</form>
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
-					<c:forEach items="${list }" var="h">
+					<c:forEach items="${pd.hList }" var="h">
 					<div class="card">
 						<div class="thumbnail">
 							<div class="centered">
@@ -101,7 +101,7 @@
 							<p>${h.hallAddr }</p>
 							<div class="bottom">
 								<p>
-									인원 <span>${h.hallPerson }</span>
+									인원 <span>${h.hallMinPerson } ~ ${h.hallMaxPerson } </span>
 								</p>
 								<p>평점 아이콘  후기</p>
 							</div>
@@ -109,7 +109,7 @@
 					</div>
 					</c:forEach>
 				</div>
-				<div class="pageing area">	<!-- 페이지 처리하는 곳 ! -->
+				<div class="paging area">	<!-- 페이지 처리하는 곳 ! -->
 					<div id="pageNavi">
 						${pd.pageNavi}
 					</div>
