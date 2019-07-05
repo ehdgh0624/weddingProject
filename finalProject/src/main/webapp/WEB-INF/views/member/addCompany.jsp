@@ -14,7 +14,7 @@
 		<div class="area">
 			
 			<form action="/companyEnroll.do">
-				<div class="comm-tbl-box" >	
+				<div class="comm-tbl-box" >		
 					
 					<div id="first" class="divbox" style="display:none;"><!-- 기본정보 -->
 						<h1>파트너 기본정보 등록</h1>
@@ -100,7 +100,7 @@
 									
 								</tr>
 							</table>
-						<span id="dressStep" class="nxtBtn">다음</span>
+						<span id="dressStep" class="lastBtn">다음</span>
 					</div>		
 					
 					<div id="fourth"  class="divbox" style="display:none;"><!--메이크업  -->
@@ -123,7 +123,7 @@
 								<th><input type="number" name="makeupVisitorPrice" value="0"></th>
 							</tr>
 						</table>
-						<span id="makeupStep" class="nxtBtn">다음</span>
+						<span id="makeupStep" class="lastBtn">다음</span>
 					</div>
 
 					<div id="fiveth" class="divbox" style="display:none;"><!-- 홀 -->
@@ -175,12 +175,13 @@
 									<th>웨딩홀운영시간</th>
 									<th><input type="number" name="hallStartTime" value="0">-<input type="number" name="hallEndTime" value="0"></th>
 								</tr>
+								
 								<tr>
 									<th>웨딩홀 주차제공</th>
 									<th><input type="checkbox" name="hallServiceParking"></th>
 								</tr>
 						</table>
-						<span id="hallStep" >다음</span>
+						<span id="hallStep" class="lastBtn">다음</span>
 						
 					</div>
 				
@@ -199,7 +200,7 @@
 								<th><input type="text" name="hashTag" value=" "></th>
 							</tr>
 							</table>		
-
+							<button type="submit">제출</button>
 					</div>
 				
 				</div>
@@ -238,7 +239,7 @@
 							</tr>					
 						</table>
 						<span id="studioOptionAdd">옵션추가</span><br>
-						<span id="studioOption" class="nxtOpt">다음</span>
+						<span id="studioOption" class="lastBtn">다음</span>
 				</div>
 					
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
@@ -277,9 +278,10 @@
 							<th>웨딩홀비고</th>
 							<th><input type="text" name="hallSelectEtc" value=0></th>
 						</tr>
+						
 					</table>
 						<span id="hallOptionAdd">옵션추가</span><br>
-						<span id="hallOption" class="nxtOpt">다음</span>
+						<span id="hallOption" class="hallOpt">다음</span>
 				</div>
 		</div>
 		
@@ -287,8 +289,6 @@
 		
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
-
-	
 
 <script>
 	$(document).ready(function(){
@@ -315,7 +315,13 @@
 			$('#hallOption').css("display","block");
 		}
 	});
-	$('.nxtBtn').click(function(){
+	
+	$('.hallOpt').click(function(){
+		$('.divbox').css("display","none");
+		$('#fiveth').css("display","block");
+	});
+	
+	$('.lastBtn').click(function(){
 		$('.divbox').css("display","none");
 		$('#sixth').css("display","block");
 	});
