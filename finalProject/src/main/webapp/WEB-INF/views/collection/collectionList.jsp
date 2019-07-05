@@ -71,14 +71,14 @@
 											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
 												<c:choose>
 													<c:when test="${s.studioNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
-														<button>
+														<button class="scrapStar" id="${s.studioNo}" name="${s.code}">
 															<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">			<!-- 노란 별 이미지를 띄우고 -->
 														</button>
 														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
 													</c:when>
 													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
 														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
-															<button>
+															<button class="defaultStar" id="${s.studioNo}" name="${s.code}">
 																<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->
 															</button>
 														</c:if>
@@ -88,7 +88,7 @@
 										</c:forEach>									
 									</c:when>
 									<c:otherwise>														<!-- scrapList 조회 결과가 없을 때 -->
-										<button>
+										<button class="defaultStar" id="${s.studioNo}" name="${s.code}">
 											<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지만 띄움 -->										
 										</button>
 									</c:otherwise>
@@ -124,14 +124,14 @@
 											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
 												<c:choose>
 													<c:when test="${d.dressNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
-														<button>
+														<button class="scrapStar" id="${d.dressNo}" name="${d.code}">
 															<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">			<!-- 노란 별 이미지를 띄우고 -->
 														</button>
 														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
 													</c:when>
 													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
 														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
-															<button>
+															<button class="defaultStar" id="${d.dressNo}" name="${d.code}">
 																<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->
 															</button>
 														</c:if>
@@ -141,7 +141,7 @@
 										</c:forEach>									
 									</c:when>
 									<c:otherwise>														<!-- scrapList 조회 결과가 없을 때 -->
-										<button>
+										<button class="defaultStar" id="${d.dressNo}" name="${d.code}">
 											<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지만 띄움 -->										
 										</button>
 									</c:otherwise>
@@ -177,14 +177,14 @@
 											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
 												<c:choose>
 													<c:when test="${m.makeupNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
-														<button>
+														<button class="scrapStar" id="${m.makeupNo}" name="${m.code}">
 															<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">			<!-- 노란 별 이미지를 띄우고 -->
 														</button>
 														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
 													</c:when>
 													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
 														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
-															<button>
+															<button class="defaultStar" id="${m.makeupNo}" name="${m.code}">
 																<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->
 															</button>
 														</c:if>
@@ -194,7 +194,7 @@
 										</c:forEach>									
 									</c:when>
 									<c:otherwise>														<!-- scrapList 조회 결과가 없을 때 -->
-										<button>
+										<button class="defaultStar" id="${m.makeupNo}" name="${m.code}">
 											<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지만 띄움 -->										
 										</button>
 									</c:otherwise>
@@ -217,7 +217,7 @@
 			<c:if test="${not empty pd.gList}">				<!-- 상품 리스트가 있을 때 -->
 				<c:forEach items="${pd.gList}" var="g" varStatus="i">
 					<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
-						<a href="/collectionView.do?code=${g.code}&objectNo=${g.goodsNo}">
+						<a href="/collectionView.do?code=${g.goodsType}&objectNo=${g.goodsNo}">
 							<img src="/resources/img/test_img4.jpg" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div style="padding:20px;">
@@ -230,14 +230,14 @@
 											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
 												<c:choose>
 													<c:when test="${g.goodsNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
-														<button>
+														<button class="scrapStar" id="${g.goodsNo}" name="${g.code}">
 															<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">			<!-- 노란 별 이미지를 띄우고 -->
 														</button>
 														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
 													</c:when>
 													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
 														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
-															<button>
+															<button class="defaultStar" id="${g.goodsNo}" name="${g.code}">
 																<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지를 띄움 -->
 															</button>
 														</c:if>
@@ -247,8 +247,8 @@
 										</c:forEach>									
 									</c:when>
 									<c:otherwise>														<!-- scrapList 조회 결과가 없을 때 -->
-										<button>
-											<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지만 띄움 -->										
+										<button class="defaultStar" id="${g.goodsNo}" name="${g.code}">
+											<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">		<!-- 빈 별 이미지만 띄움 -->
 										</button>
 									</c:otherwise>
 								</c:choose>
@@ -287,11 +287,58 @@
                <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
             </form>
          </div>
-         
-
-
 	</div>
 </section>
+<script>
+	$(document).on("click",".defaultStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/scrapOn.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){					
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
+					select.addClass('scrapStar');
+					select.removeClass('defaultStar');
+					alert("스크랩북에 추가되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+	$(document).on("click",".scrapStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/scrapOff.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
+					select.removeClass('scrapStar');
+					select.addClass('defaultStar');
+					alert("스크랩북에서 삭제되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");					
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+</script>
 
 <%--  footer --%>
 <jsp:include page="/WEB-INF/common/footer.jsp"/>

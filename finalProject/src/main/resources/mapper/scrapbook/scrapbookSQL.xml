@@ -4,4 +4,10 @@
 	<select id="selectOneScrapbook" parameterType="map" resultType="scrapbook">
 		select member_id as memberId, code, prd_no as prdNo, prd_name as prdName, prd_filepath as prdFilepath from scrapbook where member_id=#{memberId} and code=#{code} and prd_no=#{objectNo}
 	</select>
+	<insert id="insertOneScrap" parameterType="map">
+		insert into scrapbook values(#{memberId},#{code},#{objectNo},#{prdName},#{prdFilepath})
+	</insert>
+	<delete id="deleteOneScrap" parameterType="map">
+		delete from scrapbook where prd_no=#{objectNo} and code=#{code} and member_id=#{memberId}
+	</delete>
 </mapper>

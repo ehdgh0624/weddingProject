@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.collection.model.dao.CollectionDao;
 import kr.co.collection.model.vo.AllPageData;
@@ -284,8 +285,22 @@ public class CollectionService {
 		return collectionDao.selectOneMakeup(makeupNo);
 	}
 	
+	public Goods selectOneGoods(int goodsNo) {
+		return collectionDao.selectOneGoods(goodsNo);
+	}
+	
 	public ArrayList<Gallery> selectListGallery(int studioNo, String galleryCode){
 		return (ArrayList<Gallery>)collectionDao.selectListGallery(studioNo, galleryCode);
+	}
+	
+	@Transactional
+	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
+		return collectionDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
+	}
+	
+	@Transactional
+	public int deleteOneScrap(int objectNo, String code, String memberId) {
+		return collectionDao.deleteOneScrap(objectNo, code, memberId);
 	}
 	
 }

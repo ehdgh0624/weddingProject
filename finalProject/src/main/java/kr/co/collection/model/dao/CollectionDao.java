@@ -1,6 +1,5 @@
 package kr.co.collection.model.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -93,10 +92,32 @@ public class CollectionDao {
 		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",makeupNo);
 	}
 	
+	public Goods selectOneGoods(int goodsNo) {
+		return (Goods)sqlSession.selectOne("goods.viewSelectOne",goodsNo);
+	}
+	
 	public List<Gallery> selectListGallery(int objectNo, String galleryCode){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("objectNo", objectNo);
 		map.put("galleryCode", galleryCode);
 		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+	
+	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		map.put("memberId", memberId);
+		map.put("prdName", prdName);
+		map.put("prdFilepath", prdFilepath);
+		return sqlSession.insert("scrapbook.insertOneScrap",map);
+	}
+	
+	public int deleteOneScrap(int objectNo, String code, String memberId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		map.put("memberId", memberId);
+		return sqlSession.delete("scrapbook.deleteOneScrap",map);
 	}
 }
