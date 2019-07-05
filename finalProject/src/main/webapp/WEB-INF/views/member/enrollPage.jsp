@@ -37,7 +37,7 @@
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<th><input type="text" name="birthDayF">-<input type="text" name="birthDayS"></th>
+						<th><input type="text" name="birthDay"></th>
 					</tr>
 					<tr>
 						<th>주소</th>

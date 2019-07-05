@@ -20,21 +20,49 @@
 				hall_loc like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
-	<select id="dSearchList" parameterType="simulator" resultType="dress">
-		select
+	<select id="dSearchList" parameterType="map" resultType="dress">
+		select 
 			dress_no as dressNo,
-			code as code,
+			code,
 			dress_name as dressName,
 			dress_rent_price as dressRentPrice,
 			dress_tel as dressTel,
-			dress_addr as dressAddr,
+			dress_addr ad dressAddr,
 			dress_tag as dressTag,
-			dress_filepath as dressFilepath
-		from
+			dress_filepath as dressFilepath 
+		from (select rownum as rnum, d.* from (select * from dress<if test="!simulator.equals('전국')"> where dress_addr like '%'||#{simulator}||'%'</if>) d) where rnum between ${start} and ${end}
+	</select>
+	<select id="dTotalCount" parameterType="simulator" resultType="_int">
+		select 
+			count(*)
+		from 
 			dress
 		<if test="!weddingLoc.equals('전국')">
 		where
 			dress_addr like '%'||#{weddingLoc}||'%'
 		</if>
+	</select>
+	<select id="ajaxDressList" parameterType="map" resultType="dress">
+		select 
+			dressNo,
+			code,
+			dressName,
+			dressRentPrice,
+			dressTel,
+			dressAddr,
+			dressTag,
+			dressFilepath
+		from
+			(select 
+				rownum as rnum,
+				d.*
+			from
+				(select * from dress) d
+			<if test="!weddingLoc.equals('전국')">
+			where
+				dress_addr like '%'||#{weddingLoc}||'%'
+			</if>
+			)
+		where rnum between #{start} and #{end}
 	</select>
 </mapper>

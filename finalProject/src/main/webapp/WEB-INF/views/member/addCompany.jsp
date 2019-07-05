@@ -1,145 +1,335 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
 
-<section id="wrap">
-	<form action="/companyEnroll.do" method="post">
+<%-- wrap --%>
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+
 		<div class="area">
-			<div><!-- 기본정보 -->
-				<span>파트너 기본정보 등록</span><br><br>
-				<span>업체의 이름을 알려주세요</span><br>
-				<input type="text" name="companyName" value=" ">
-				<span>업체주소</span><br>
-				<input type="text" name="companyAddr" value=" ">
-				<span>업체전화번호</span><br>
-				<input type="text" name="companyPhone" value=" ">
-				<button value="">다음</button>
-			</div>
-			<hr>
-			<div><!-- 분류선택 -->
-				<span>파트너 분류선택</span><br><br>
-				<span>어떤일을 하시나요?</span><br>
-				<select name="code">
-					<option value="0">스튜디오</option>
-					<option value="1">드레스</option>
-					<option value="2">메이크업</option>
-					<option value="3">홀</option>
-				</select>	
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--스튜디오인경우  -->
-				<span>스튜디오 평균가격</span><br>
-				<input type="number" name="studioPrice" value="0"><br>
-				<span>스튜디오 옵션명</span><br>
-				<input type="text" name="studioOption" value=" "><br>
-				<span>스튜디오 옵션가격</span><br>
-				<input type="number" name="studioOptionPrice" value="0"><br>
-				<select name="studioOptionType"><br>
-					<option value="0">본식</option>
-					<option value="1">스튜디오</option>
-					<option value="2">영상</option>
-				</select><br>
-				<button>옵션추가</button><br>
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--드레스인경우  -->
-				<span>드레스피팅가격</span><br>
-				<input type="number" name="dressFittingPrice" value="0"><br>
-				<span>드레스피팅시간</span><br>
-				<input type="number" name="dressFittingTime" value="0"><br>
-				
-				<span>드레스대여가능갯수</span><br>
-				<input type="number" name="dressRentNum" value="0"><br>
-				<span>드레스렌트가격</span><br>
-				<input type="number" name="dressRentPrice" value="0"><br>
-				<span>보석렌트가격</span><br>
-				<input type="number" name="jewelryPrice" value="0"><br>
-				
-				
-				가봉여부 <input type="checkbox" name="dressMending"><br>
-				주차여부 <input type="checkbox" name="dressParking"><br>
-				
-				<span>추가설명</span><br>
-				<input type="text" name="dressContent" value=" "><br>
-				
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!--메이크업  -->
-				<span>메이크업가격</span>  <br>
-				<input type="text" name="makeupBasicPrice" value="0"><br>
-				
-				혼주메이크업 체크<input type="checkbox" name="makeupParent" value=" "><br>
-				혼주메이크업 가격 <input type="number" name="makeupParentPrice" value="0"><br>
-				하객메이크업 체크<input type="checkbox" name="makeupVisitor" value=" "><br>
-				하객메이크업 <input type="number" name="makeupVisitorPrice" value="0"><br>
 			
-				<button value=" ">다음</button>
-			</div>
-				<hr>
-			<div><!-- 홀 -->
-				<span>홀수용가능인원</span><br>
-				최초<input type="number" name="hallMinPerson" value=0>~최대<input type="number" name="hallMaxPerson" value=0>
-				
-				<span>홀타입</span>  <br>
-				<select name="hallType">
-					<option value="0">갤러리</option>
-					<option value="1">골프장</option>
-					<option value="2">공공장소</option>
-					<option value="3">레스토랑</option>
-					<option value="4">문화공간</option>
-					<option value="5">선박</option>
-					<option value="6">스튜디오</option>
-					<option value="7">웨딩홀</option>
-					<option value="8">펜션</option>
-					<option value="9">하우스웨딩홀</option>			
-				</select>
-				
-				<span>웨딩홀대여가격</span><br>
-				<input type="number" name="hallPrice" value=0>
-				
-				<!-- 체크시 아래 음식관련 도출 -->
-				웨딩홀 식사제공 <input type="checkbox" name="hallServiceFood" value=" "><br>
-				<span>웨딩홀음식타입</span><br>
-				<select name="hallFoodtype"><br>
-					<option value="0">한식</option>
-					<option value="1">중식</option>
-					<option value="2">일식</option>
-					<option value="3">양식</option>
-					<option value="4">뷔폐</option>
-				</select>
-				<span>웨딩홀음식메뉴</span><br>
-				<input type="text" name="hallFoodmenu" value=" ">
-				<span>웨딩홀음식가격</span><br>
-				<input type="number" name="hallFoodprice" value="0">
-				웨딩홀 주류제공 <input type="checkbox" name="hallServiceDrink"><br>
+			<form action="/companyEnroll.do">
+				<div class="comm-tbl-box" >	
+					
+					<div id="first" class="divbox" style="display:none;"><!-- 기본정보 -->
+						<h1>파트너 기본정보 등록</h1>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>업체이름</th>	
+								<th><input type="text" name="companyName" value=" "></th>
+							</tr>
+							<tr>
+								<th>업체주소</th>
+								<th><input type="text" name="companyAddr" value=" "></th>
+							</tr>
+							<tr>
+								<th>업체전화번호</th>
+								<th><input type="text" name="companyPhone" value=" "></th>
+							</tr>				
+						</table>
+						<span id="firstStep">다음</span>
+					</div>
+					
+					<div id="second" class="divbox" style="display:none;"><!-- 분류선택 -->
+						<h1>분류선택</h1>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>선택</th>
+								<th>
+									<select name="code" id="choice">
+										<option value="0">스튜디오</option>
+										<option value="1">드레스</option>
+										<option value="2">메이크업</option>
+										<option value="3">홀</option>
+									</select>	
+								</th>
+							</tr>
+						</table>
+						<span id="secondStep">다음</span>
+					</div>
+					
+					<div id="third" class="divbox" style="display:none;"><!--드레스인경우  -->
+						<h1>드레스</h1>
+						<table class="comm-tbl">
+								<colgroup>
+									<col width="18%">
+									<col width="/">
+								</colgroup>
+								<tr>
+									<th>드레스피팅가격</th>	
+									<th><input type="number" name="dressFittingPrice" value="0"></th>
+								</tr>
+								<tr>
+									<th>드레스피팅시간</th>
+									<th><input type="number" name="dressFittingTime" value="0"><br></th>
+								</tr>
+								<tr>
+									<th>드레스대여가능갯수</th>
+									<th><input type="number" name="dressRentNum" value="0"></th>
+								</tr>
+								<tr>
+									<th>드레스렌트가격</th>
+									<th><input type="number" name="dressRentPrice" value="0"></th>
+								</tr>
+								<tr>
+									<th>보석렌트가격</th>
+									<th><input type="number" name="jewelryPrice" value="0"></th>
+								</tr>
+								<tr>
+									<th>체크옵션</th>
+									<th>가봉여부 <input type="checkbox" name="dressMending"><br>
+										주차여부 <input type="checkbox" name="dressParking">
+									</th>
+								</tr>
+								<tr>
+									<th>추가상세설명</th>
+									<th><input type="text" name="dressContent" value=" "></th>
+									
+								</tr>
+							</table>
+						<span id="dressStep" class="nxtBtn">다음</span>
+					</div>		
+					
+					<div id="fourth"  class="divbox" style="display:none;"><!--메이크업  -->
+						<h1>메이크업</h1>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>메이크업기본가격</th>
+								<th><input type="text" name="makeupBasicPrice" value="0"></th>
+							</tr>
+							<tr>
+								<th>혼주메이크업 가격</th>
+								<th><input type="number" name="makeupParentPrice" value="0"></th>
+							</tr>
+							<tr>
+								<th>하객메이크업 가격</th>
+								<th><input type="number" name="makeupVisitorPrice" value="0"></th>
+							</tr>
+						</table>
+						<span id="makeupStep" class="nxtBtn">다음</span>
+					</div>
 
-				<span>웨딩홀운영시간</span><br>
-				<input type="text" name="hallStartTime" value=" ">
-				-<input type="text" name="hallEndTime" value=" "><br>
-				<span>웨딩홀옵션</span><br>
-				웨딩홀 음향제공 <input type="checkbox" name="hallServiceAudio"><br>
-				웨딩홀 주차제공 <input type="checkbox" name="hallServiceParking"><br>
+					<div id="fiveth" class="divbox" style="display:none;"><!-- 홀 -->
+						<!-- 체크시 아래 음식관련 도출 -->
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>웨딩홀 식사제공</th>
+								<th><input type="checkbox" name="hallServiceFood" value=" "></th>
+							</tr>
+							<!-- 상단체크시 노출부분 -->
+								<tr>
+									<th>웨딩홀음식타입</th>
+									<th>
+									<select name="hallFoodtype">
+										<option value="0">한식</option>
+										<option value="1">중식</option>
+										<option value="2">일식</option>
+										<option value="3">양식</option>
+										<option value="4">뷔폐</option>
+									</select>
+									</th>
+								</tr>
+								<tr>
+									<th>웨딩홀 음식메뉴</th>
+									<th><input type="text" name="hallFoodmenu" value=" "></th>
+								</tr>
+								<tr>
+									<th>웨딩홀음식가격</th>
+									<th><input type="text" name="hallFoodmenu" value=" "></th>
+								</tr>
+							<!--  -->
+								<tr>
+									<th>웨딩홀 주류제공</th>
+									<th><input type="checkbox" name="hallServiceDrink"></th>
+								</tr>
+								<tr>
+									<th>웨딩홀 음향제공</th>
+									<th><input type="checkbox" name="hallServiceAudio"></th>
+								</tr>
+								<tr>
+									<th>웨딩홀 음향제공</th>
+									<th><input type="checkbox" name="hallServiceAudio"></th>
+								</tr>
+								<tr>
+									<th>웨딩홀운영시간</th>
+									<th><input type="number" name="hallStartTime" value="0">-<input type="number" name="hallEndTime" value="0"></th>
+								</tr>
+								<tr>
+									<th>웨딩홀 주차제공</th>
+									<th><input type="checkbox" name="hallServiceParking"></th>
+								</tr>
+						</table>
+						<span id="hallStep" >다음</span>
+						
+					</div>
 				
-				<span>웨딩홀상세설명</span><br>
-				<input type="text" name="hallContent" value=" ">
-			</div>
-				<hr>
-			<div><!-- 최종등록-->
-				<h1>사진등록</h1><br>
-				<input type="file" name="fileName" value=" "><br>
-				<h1>해쉬태그</h1><br>
-				<input type="text" name="hashTag" value=" ">
-			</div>
-			<button type="submit">제출</button>
+					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
+							<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>사진등록</th>
+								<th><input type="file" name="fileName" value=" "></th>
+							</tr>
+							<tr>
+								<th>해쉬태그</th>
+								<th><input type="text" name="hashTag" value=" "></th>
+							</tr>
+							</table>		
+
+					</div>
+				
+				</div>
+			</form>	
+	
+				<div id="studioOption" class="divbox" style="display:none;"><!--스튜디오 옵션  -->
+					<h1>스튜디오 옵션</h1>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>스튜디오 평균가격</th>	
+								<th><input type="number" name="studioPrice" value="0"></th>
+							</tr>
+							<tr>
+								<th>스튜디오 옵션명</th>
+								<th><input type="text" name="studioOption" value=" "></th>
+							</tr>
+							<tr>
+								<th>스튜디오 옵션가격</th>
+								<th><input type="number" name="studioOptionPrice" value="0"></th>
+							</tr>
+							<tr>
+								<th>스튜디오 옵션분류</th>
+								<th>
+									<select name="studioOptionType">
+										<option value="0">본식</option>
+										<option value="1">스튜디오</option>
+										
+										<option value="2">영상</option>
+									</select>
+								
+								</th>
+							</tr>					
+						</table>
+						<span id="studioOptionAdd">옵션추가</span><br>
+						<span id="studioOption" class="nxtOpt">다음</span>
+				</div>
+					
+				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
+					<h1>예식장등록</h1>
+					<table class="comm-tbl">
+						<colgroup>
+							<col width="18%">
+							<col width="/">
+						</colgroup>
+						<tr>
+							<th>홀타입</th>
+							<th>
+								<select name="hallSelectType">
+									<option value="0">갤러리</option>
+									<option value="1">골프장</option>
+									<option value="2">공공장소</option>
+									<option value="3">레스토랑</option>
+									<option value="4">문화공간</option>
+									<option value="5">선박</option>
+									<option value="6">스튜디오</option>
+									<option value="7">웨딩홀</option>
+									<option value="8">펜션</option>
+									<option value="9">하우스웨딩홀</option>			
+								</select>
+							</th>
+						</tr>
+						<tr>
+							<th>예식장이름(홀이름)</th>
+							<th><input type="text" name="hallSelectName"></th>
+						</tr>
+						<tr>
+							<th>홀대여가격</th>
+							<th><input type="number" name="hallSelectPrice" value=0></th>
+						</tr>
+						<tr>
+							<th>웨딩홀비고</th>
+							<th><input type="text" name="hallSelectEtc" value=0></th>
+						</tr>
+					</table>
+						<span id="hallOptionAdd">옵션추가</span><br>
+						<span id="hallOption" class="nxtOpt">다음</span>
+				</div>
 		</div>
-	</form>
+		
+		<script type="text/javascript"></script>
+		
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
 
+	
+
+<script>
+	$(document).ready(function(){
+		$('#first').css("display","block");	
+	});
+	
+	$('#firstStep').click(function(){
+		$('.divbox').css("display","none");
+		$('#second').css("display","block");
+	});
+	
+	$('#secondStep').click(function(){
+		$('.divbox').css("display","none");
+		if($('#choice').val()==0){
+			$('#studioOption').css("display","block");
+		}
+		if($('#choice').val()==1){
+			$('#third').css("display","block");
+		}
+		if($('#choice').val()==2){
+			$('#fourth').css("display","block");
+		}
+		if($('#choice').val()==3){
+			$('#hallOption').css("display","block");
+		}
+	});
+	$('.nxtBtn').click(function(){
+		$('.divbox').css("display","none");
+		$('#sixth').css("display","block");
+	});
+	
+	$(document).on("click","#test1",function(){
+		
+	});
+	
+
+
+	
+	
+
+</script>
+
 <%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
+

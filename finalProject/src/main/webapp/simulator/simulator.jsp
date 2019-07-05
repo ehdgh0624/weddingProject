@@ -12,7 +12,7 @@
 			<h2 class="simulator-tit">똑똑한 웨딩계산기</h2>
 			<p class="simulator-sub-tit">내 웨딩의 총 비용은 얼마일지를 <br>쉽고 빠르게 골라보고 가격을 확인해보세요</p>
 			<div class="simulator-con">
-				<form action="/simulatorStandard.do" method="post">
+				<form action="/simulatorStandard.do?start=1" method="post">
 					<table class="simulator-tbl comm-tbl">
 						<colgroup>
 							<col width="30%">

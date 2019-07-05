@@ -24,9 +24,23 @@ public class SimulatorService {
 	}
 
 	//웨딩드레스 검색
-	public ArrayList<Dress> dSearchList(Simulator simulator) {
-		return (ArrayList<Dress>)simulatorDao.dSearchList(simulator);
+	public ArrayList<Dress> dSearchList(Simulator simulator, int start) {
+		int length = 3;
+		return (ArrayList<Dress>)simulatorDao.dSearchList(simulator, start, start+length-1);
 	}
+
+	//웨딩드레스 총 갯수
+	public int dTotalCount(Simulator simulator) {
+		return simulatorDao.dTotalCount(simulator);
+	}
+
+	//웨딩드레스 더보기
+	/*public ArrayList<Dress> dSearchList(String weddingLoc) {
+		
+		return (ArrayList<Dress>)simulatorDao.dSearchList(weddingLoc);
+	}*/
+
+	
 
 	
 	

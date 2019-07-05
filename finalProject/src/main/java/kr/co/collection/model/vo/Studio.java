@@ -18,6 +18,17 @@ public class Studio {
 	private String studioTag;				//스튜디오 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String studioLatitude;			//위도
 	private String studioLongitud;			//경도
+	
+	
+	@Override
+	public String toString() {
+		return "Studio [studioNo=" + studioNo + ", memberId=" + memberId + ", code=" + code + ", studioName="
+				+ studioName + ", studioTel=" + studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr
+				+ ", studioPrice=" + studioPrice + ", studioContent=" + studioContent + ", studioFilename="
+				+ studioFilename + ", studioFilepath=" + studioFilepath + ", status=" + status + ", viewstatus="
+				+ viewstatus + ", studioScope=" + studioScope + ", studioTag=" + studioTag + ", studioLatitude="
+				+ studioLatitude + ", studioLongitud=" + studioLongitud + "]";
+	}
 	public Studio() {
 		super();
 		// TODO Auto-generated constructor stub
