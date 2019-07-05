@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
@@ -19,6 +20,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
+import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
 @Controller
@@ -143,7 +145,9 @@ public class CollectionController {
 				return "redirect:/collectionViewDress.do?dressNo="+objectNo;
 			}else if(code.equals("M")) {
 				return "redirect:/collectionViewMakeup.do?makeupNo="+objectNo;
-			}		
+			}else if(code.equals("B") || code.equals("I")) {
+				return "redirect:/collectionViewGoods.do?goodsType="+code+"&goodsNo="+objectNo;
+			}
 			return "redirect:/collectionListAll.do?reqPage=1";
 		}else {
 			return "redirect:/collectionListAll.do?reqPage=1";
@@ -172,7 +176,6 @@ public class CollectionController {
 		mav.addObject("galleryList", gList);
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
-		
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
@@ -183,8 +186,63 @@ public class CollectionController {
 		mav.addObject("makeup", m);
 		mav.addObject("galleryList", gList);
 		mav.setViewName("collection/collectionViewDress");
-		return mav;
-		
+		return mav;		
 	}
 	
+	@RequestMapping("/collectionViewGoods.do")
+	public ModelAndView collectionViewGoods(String goodsType, int goodsNo) {
+		Goods g = collectionService.selectOneGoods(goodsNo);
+		ArrayList<Gallery> gList = collectionService.selectListGallery(goodsNo, "G");
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("goods", g);
+		mav.addObject("galleryList", gList);
+		if(goodsType.equals("B")) {
+			mav.setViewName("collection/collectionViewBouquet");
+		}else {
+			mav.setViewName("collection/collectionViewInvitation");
+		}
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/scrapOn.do")
+	public int insertOneScrap(HttpSession session, @RequestParam int objectNo, @RequestParam String code) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+			String prdName = null;
+			String prdFilepath = null;
+			if(code.equals("S")) {
+				prdName = collectionService.selectOneStudio(objectNo).getStudioName();
+				prdFilepath = collectionService.selectOneStudio(objectNo).getStudioFilepath();
+			}else if(code.equals("D")) {
+				prdName = collectionService.selectOneDress(objectNo).getDressName();
+				prdFilepath = collectionService.selectOneDress(objectNo).getDressFilepath();
+			}else if(code.equals("M")) {
+				prdName = collectionService.selectOneMakeup(objectNo).getMakeupName();
+				prdFilepath = collectionService.selectOneMakeup(objectNo).getMakeupFilepath();
+			}else if(code.equals("G")) {
+				prdName = collectionService.selectOneGoods(objectNo).getGoodsName();
+				prdFilepath = collectionService.selectOneGoods(objectNo).getGoodsFilePath();
+			}
+			return collectionService.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
+		}else {
+			return 0;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/scrapOff.do")
+	public int deleteOneScrap(HttpSession session, @RequestParam int objectNo, @RequestParam String code) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+			return collectionService.deleteOneScrap(objectNo, code, memberId);
+		}else {
+			return 0;
+		}
+	}
+
 }
