@@ -13,6 +13,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
+import kr.co.goods.model.vo.Goods;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Service("collectionService")
@@ -53,7 +54,7 @@ public class CollectionService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=all&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		AllPageData pd = new AllPageData(sList, dList, mList, null, pageNavi, reqPage);
+		AllPageData pd = new AllPageData(sList, dList, mList, null, null, pageNavi, reqPage);
 		return pd;
 	}	
 	
@@ -99,7 +100,7 @@ public class CollectionService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=S&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		AllPageData pd = new AllPageData(sList, null, null, scrapList, pageNavi, reqPage);
+		AllPageData pd = new AllPageData(sList, null, null, null, scrapList, pageNavi, reqPage);
 		return pd;
 	}
 
@@ -140,7 +141,7 @@ public class CollectionService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=D&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		AllPageData pd = new AllPageData(null, dList, null, scrapList, pageNavi, reqPage);
+		AllPageData pd = new AllPageData(null, dList, null, null, scrapList, pageNavi, reqPage);
 		return pd;
 	}
 	
@@ -181,16 +182,98 @@ public class CollectionService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=M&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		AllPageData pd = new AllPageData(null, null, mList, scrapList, pageNavi, reqPage);
+		AllPageData pd = new AllPageData(null, null, mList, null, scrapList, pageNavi, reqPage);
 		return pd;
 	}
+	
+	public AllPageData pageBouquetList(int reqPage, String memberId) {
+		//페이지 당 게시물 수
+		int numPerPage = 9;
+		//현재 등록되어있는 총 게시물 수
+		int totalCount = collectionDao.totalCount("B");
+		//페이지 수
+		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		//게시물 번호 범위
+		int start = totalCount - (reqPage * numPerPage - 1);
+		int end = totalCount - (reqPage-1) * numPerPage;
+		ArrayList<Goods> gList = (ArrayList<Goods>) collectionDao.pageGoodsList(start,end,"B");
+		ArrayList<Scrapbook> scrapList = new ArrayList<Scrapbook>();
+		for(int i=0;i<gList.size();i++) {
+			Scrapbook sb = collectionDao.selectOneScrapbook(memberId, gList.get(i).getCode(), gList.get(i).getGoodsNo());
+			if(sb != null) {
+				scrapList.add(sb);
+			}
+		}
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=B&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/collectionList.do?code=B&reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=B&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		AllPageData pd = new AllPageData(null, null, null, gList, scrapList, pageNavi, reqPage);
+		return pd;
+	}
+	
+	public AllPageData pageInvitationList(int reqPage, String memberId) {
+		//페이지 당 게시물 수
+		int numPerPage = 9;
+		//현재 등록되어있는 총 게시물 수
+		int totalCount = collectionDao.totalCount("I");
+		//페이지 수
+		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		//게시물 번호 범위
+		int start = totalCount - (reqPage * numPerPage - 1);
+		int end = totalCount - (reqPage-1) * numPerPage;
+		ArrayList<Goods> gList = (ArrayList<Goods>) collectionDao.pageGoodsList(start,end,"I");
+		ArrayList<Scrapbook> scrapList = new ArrayList<Scrapbook>();
+		for(int i=0;i<gList.size();i++) {
+			Scrapbook sb = collectionDao.selectOneScrapbook(memberId, gList.get(i).getCode(), gList.get(i).getGoodsNo());
+			if(sb != null) {
+				scrapList.add(sb);
+			}
+		}
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionList.do?code=I&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/collectionList.do?code=I&reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionList.do?code=I&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		AllPageData pd = new AllPageData(null, null, null, gList, scrapList, pageNavi, reqPage);
+		return pd;
+	}	
 	
 	public Studio selectOneStudio(int studioNo) {
 		return collectionDao.selectOneStudio(studioNo);
 	}
 	
 	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
-		return collectionDao.selectListStudioOption(studioNo);
+		return (ArrayList<StudioSelect>)collectionDao.selectListStudioOption(studioNo);
 	}
 
 	public Dress selectOneDress(int dressNo){
@@ -202,7 +285,7 @@ public class CollectionService {
 	}
 	
 	public ArrayList<Gallery> selectListGallery(int studioNo, String galleryCode){
-		return collectionDao.selectListGallery(studioNo, galleryCode);
+		return (ArrayList<Gallery>)collectionDao.selectListGallery(studioNo, galleryCode);
 	}
 	
 }

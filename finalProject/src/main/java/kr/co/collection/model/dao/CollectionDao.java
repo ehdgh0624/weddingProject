@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
+import kr.co.goods.model.vo.Goods;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Repository("collectionDao")
@@ -21,14 +22,16 @@ public class CollectionDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
-	public int totalCount(String str) {
+	public int totalCount(String type) {
 		List list = null;
-		if(str.equals("S")) {
+		if(type.equals("S")) {
 			list = sqlSession.selectList("studio.selectAllList");
-		}else if(str.equals("D")) {
+		}else if(type.equals("D")) {
 			list = sqlSession.selectList("dress.selectAllList");			
-		}else if(str.equals("M")) {
+		}else if(type.equals("M")) {
 			list = sqlSession.selectList("makeup.selectAllList");
+		}else if(type.equals("B") || type.equals("I")) {
+			list = sqlSession.selectList("goods.selectAllList", type);
 		}
 		int count = list.size();
 		return count;
@@ -54,9 +57,20 @@ public class CollectionDao {
 		map.put("end", end);
 		return sqlSession.selectList("makeup.pageSelectAllList",map);
 	}
-
+	
+	public List<Goods> pageGoodsList(int start, int end, String type){
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("goodsType", type);
+		return sqlSession.selectList("goods.pageSelectAllList",map);
+	}
+	
 	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
 		Map<String, Object> map = new HashMap<String, Object>();
+		if(memberId == null) {
+			memberId = "null";
+		}
 		map.put("memberId", memberId);
 		map.put("code", code);
 		map.put("objectNo", objectNo);
@@ -67,9 +81,8 @@ public class CollectionDao {
 		return (Studio)sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
 	
-	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
-		List<StudioSelect> list = sqlSession.selectList("studioSelect.selectListOption",studioNo);
-		return (ArrayList<StudioSelect>) list;
+	public List<StudioSelect> selectListStudioOption(int studioNo){
+		return sqlSession.selectList("studioSelect.selectListOption",studioNo);
 	}
 	
 	public Dress selectOneDress(int dressNo) {
@@ -80,11 +93,10 @@ public class CollectionDao {
 		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",makeupNo);
 	}
 	
-	public ArrayList<Gallery> selectListGallery(int objectNo, String galleryCode){
+	public List<Gallery> selectListGallery(int objectNo, String galleryCode){
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("objectNo", objectNo);
 		map.put("galleryCode", galleryCode);
-		List<Gallery> list = sqlSession.selectList("gallery.selectListGallery",map);
-		return (ArrayList<Gallery>) list;
+		return sqlSession.selectList("gallery.selectListGallery",map);
 	}
 }

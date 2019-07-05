@@ -44,7 +44,11 @@ public class CollectionController {
 				return "redirect:/collectionListDress.do?reqPage="+reqPage;
 			}else if(code.equals("M")) {
 				return "redirect:/collectionListMakeup.do?reqPage="+reqPage;
-			}		
+			}else if(code.equals("B")) {
+				return "redirect:/collectionListBouquet.do?reqPage="+reqPage;
+			}else if(code.equals("I")) {
+				return "redirect:/collectionListInvitation.do?reqPage="+reqPage;
+			}
 			return "redirect:/collectionListAll.do?reqPage="+reqPage;
 		}else {
 			return "redirect:/collectionListAll.do?reqPage="+reqPage;			
@@ -73,19 +77,57 @@ public class CollectionController {
 		mav.setViewName("collection/collectionList");
 		return mav;
 	}
+	
 	@RequestMapping("/collectionListDress.do")
-	public ModelAndView collectionListDress(int reqPage) {
-		String memberId = "admin";
+	public ModelAndView collectionListDress(HttpSession session, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
 		AllPageData pd = collectionService.pageDressList(reqPage, memberId);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
 		return mav;
 	}
+	
 	@RequestMapping("/collectionListMakeup.do")
-	public ModelAndView collectionListMakeup(int reqPage) {
-		String memberId = "admin";
+	public ModelAndView collectionListMakeup(HttpSession session, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
 		AllPageData pd = collectionService.pageMakeupList(reqPage, memberId);
+		ModelAndView mav =  new ModelAndView();
+		mav.addObject("pd", pd);
+		mav.setViewName("collection/collectionList");
+		return mav;
+	}
+	
+	@RequestMapping("/collectionListBouquet.do")
+	public ModelAndView collectionListBouquet(HttpSession session, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		AllPageData pd = collectionService.pageBouquetList(reqPage, memberId);
+		ModelAndView mav =  new ModelAndView();
+		mav.addObject("pd", pd);
+		mav.setViewName("collection/collectionList");
+		return mav;
+	}
+
+	@RequestMapping("/collectionListInvitation.do")
+	public ModelAndView collectionListInvitation(HttpSession session, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		AllPageData pd = collectionService.pageInvitationList(reqPage, memberId);
 		ModelAndView mav =  new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
