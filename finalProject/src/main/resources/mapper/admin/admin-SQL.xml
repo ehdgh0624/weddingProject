@@ -4,12 +4,12 @@
 	<insert id="addGoods" parameterType="goods">
 		<if test="goodsFileName != null">
 		insert into goods values(
-		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},#{goodsFileName},#{goodsFilePath}
+		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},0,#{goodsContent},0,#{goodsFileName},#{goodsFilePath},#{goodsTag}
 		)
 		</if>
 		<if test="goodsFileName == null">
 		insert into goods values(
-		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},null,null
+		seq_goods_no.nextval,'G',#{goodsType},#{goodsName},#{goodsPrice},#{goodsStock},#{goodsContent},null,null,#{goodsTag}
 		)		
 		</if>
 	</insert>
@@ -22,10 +22,53 @@
 			  ,birthday as birthDay
 			  ,addr as addr
 			  ,enrolldate as enrollDate
-			   from (select rownum as rnum ,m.* from (select * from member order by enrolldate desc)m)
+			   from (select rownum as rnum ,m.* from 
+			   (select * from member 
+			   <if test="ssCode == 1">where member_code = 0</if> <if test="ssCode == 2">where member_code = 1</if>
+			     order by enrolldate desc)m)
 			   where rnum between #{start} and #{end}
+			   
 	</select>
-	<select id="totalMember" resultType="_int">
-		select count(*) from member
+	<select id="totalMember" parameterType="map" resultType="_int">
+		select count(*) from member <if test="ssCode == 1">where member_code=0</if><if test="ssCode ==2">where member_code=1</if>
+	</select>
+	<select id="totalGoods" resultType="_int">
+		select count(*) from Goods
+	</select>
+	<select id="goodsAll"  resultType="goods">
+		select 
+				goods_no as goodsNo,
+				code as code,
+				goods_type as goodsType,
+				goods_name as goodsName,
+				goods_price as goodsPrice,
+				goods_scope as goodsScope,
+				goods_content as goodsContent,
+				viewstatus as viewstatus,
+				goods_filepath as goodsFilePath,
+				goods_tag as goodsTag
+			from goods			
+	</select>
+	<select id="searchMember" parameterType="map" resultType="_int">
+		select count(*) from member 
+		 <if test="type == 'memberId'">where member_id like '%'||#{keyword}||'%'</if>
+		 <if test="type == 'memberName'">where member_name like '%'||#{keyword}||'%'</if>
+	</select>
+	<select id="searchMsemberList" parameterType="map" resultType="member">
+		select 
+			   member_no as memberNo
+			  ,member_id as memberId
+			  ,member_name as memberName
+			  ,phone as phone
+			  ,birthday as birthDay
+			  ,addr as addr
+			  ,enrolldate as enrollDate
+			   from (select rownum as rnum ,m.* from 
+			   (select * from member 
+			   <if test="type == 'memberId'">where member_id like '%'||#{keyword}||'%'</if>
+		       <if test="type == 'memberName'">where member_name like '%'||#{keyword}||'%'</if>
+			     order by enrolldate desc)m)
+			   where rnum between ${start} and ${end}
 	</select>
 </mapper>
+

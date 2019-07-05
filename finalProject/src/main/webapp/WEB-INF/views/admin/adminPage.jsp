@@ -9,7 +9,11 @@
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
-
+	<div id="myPageContainer">
+	<button onclick="location.href='/adminPage.do'">모든회원</button> 
+	<button onclick="location.href='/adminPage.do?sCode=1'">일반회원</button> 
+	<button onclick="location.href='/adminPage.do?sCode=2'">업체회원</button> 
+	</div>
 	<div id="myPageContainer" class="clearfix">
 		<table class=comm-tbl>
 			<tr>
@@ -36,10 +40,10 @@
 		<div class="paging">${list.pageNavi}</div>
 		  <!-- 검색박스 -->
           <div class="board-search-box">
-             <form action="" method="get">
+             <form action="/searchMember.do" method="get">
                <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
-                  <option value="title">제목</option>
-                  <option value="name">보호소명</option>
+                  <option value="memberId">아이디</option>
+                  <option value="memberName">이름</option>
                </select>
                <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
                <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>

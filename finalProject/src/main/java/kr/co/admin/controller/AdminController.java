@@ -5,8 +5,10 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
+import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.admin.service.AdminService;
+import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
@@ -29,25 +32,56 @@ public class AdminController {
 	@Qualifier(value="adminService")
 	AdminService adminService;
 	
-	@RequestMapping(value="addGoodsPage")
-	public String addGoodsPage() {
-		return "/admin/addGoodsPage";
+	@RequestMapping(value="/addGoodsPage.do")
+	public String addGoodsPage(HttpServletRequest request) {
+		HttpSession session = request.getSession(false);
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				
+				return "/admin/addGoodsPage";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}
 	}
 	
-	
-	@RequestMapping(value="/adminPage.do")
-	public String adminPage(HttpServletRequest request,HttpSession session,Model model) {
-		session = request.getSession(false);
+	@RequestMapping(value="/goodsCare.do")
+	public String goodsCarePage(HttpServletRequest request,Model model) {
 		int reqPage;
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch(NumberFormatException e) {
 			reqPage = 1;
 		}
+		AdminGoods gList = adminService.getGList(reqPage);
+		model.addAttribute("gList", gList);
+		return "/admin/goodsCarePage";
+	}
+	
+	@RequestMapping(value="/adminPage.do")
+	public String adminPage(HttpServletRequest request,HttpSession session,Model model) {
+		session = request.getSession(false);
+		int reqPage;
+		int ssCode;
+		try {
+			ssCode = Integer.parseInt(request.getParameter("sCode"));
+		}catch(NumberFormatException e) {
+			ssCode = 0;
+		}
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+			}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
 		if(session !=null&&(Member)session.getAttribute("member")!=null) {
 			Member m = (Member)session.getAttribute("member");
 			if(m.getMemberId().equals("admin")) {
-				AdminMember list = adminService.memberAll(reqPage);
+				AdminMember list = adminService.memberAll(reqPage,ssCode);
 				model.addAttribute("list", list);
 				
 				return "admin/adminPage";
@@ -100,6 +134,32 @@ public class AdminController {
 		}else {
 			return "/admin/addGoodsPage";
 		}
+	}
+	@RequestMapping("/searchMember.do")
+	public String searchMember(HttpServletRequest request,String type , String keyword ,Model model) {
+		int reqPage;
+		HttpSession session = request.getSession(false);
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				AdminMember list = adminService.memberSearch(reqPage,type,keyword);
+				model.addAttribute("list", list);
+				
+				return "admin/adminPage";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}
+		
 	}
 	
 }

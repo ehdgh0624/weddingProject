@@ -3,29 +3,33 @@ package kr.co.goods.model.vo;
 public class Goods {
 	private int goodsNo;
 	private String code;
-	private int goodsType;
+	private String goodsType;
 	private String goodsName;
 	private int goodsPrice;
-	private int goodsStock;
+	private int goodsScope;
 	private String goodsContent;
+	private int viewstatus;
 	private String goodsFileName;
 	private String goodsFilePath;
+	private String goodsTag;
 	public Goods() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Goods(int goodsNo, String code, int goodsType, String goodsName, int goodsPrice, int goodsStock,
-			String goodsContent, String goodsFileName, String goodsFilePath) {
+	public Goods(int goodsNo, String code, String goodsType, String goodsName, int goodsPrice, int goodsScope,
+			String goodsContent, int viewstatus, String goodsFileName, String goodsFilePath, String goodsTag) {
 		super();
 		this.goodsNo = goodsNo;
 		this.code = code;
 		this.goodsType = goodsType;
 		this.goodsName = goodsName;
 		this.goodsPrice = goodsPrice;
-		this.goodsStock = goodsStock;
+		this.goodsScope = goodsScope;
 		this.goodsContent = goodsContent;
+		this.viewstatus = viewstatus;
 		this.goodsFileName = goodsFileName;
 		this.goodsFilePath = goodsFilePath;
+		this.goodsTag = goodsTag;
 	}
 	public int getGoodsNo() {
 		return goodsNo;
@@ -39,10 +43,10 @@ public class Goods {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public int getGoodsType() {
+	public String getGoodsType() {
 		return goodsType;
 	}
-	public void setGoodsType(int goodsType) {
+	public void setGoodsType(String goodsType) {
 		this.goodsType = goodsType;
 	}
 	public String getGoodsName() {
@@ -57,17 +61,23 @@ public class Goods {
 	public void setGoodsPrice(int goodsPrice) {
 		this.goodsPrice = goodsPrice;
 	}
-	public int getGoodsStock() {
-		return goodsStock;
+	public int getGoodsScope() {
+		return goodsScope;
 	}
-	public void setGoodsStock(int goodsStock) {
-		this.goodsStock = goodsStock;
+	public void setGoodsScope(int goodsScope) {
+		this.goodsScope = goodsScope;
 	}
 	public String getGoodsContent() {
 		return goodsContent;
 	}
 	public void setGoodsContent(String goodsContent) {
 		this.goodsContent = goodsContent;
+	}
+	public int getViewstatus() {
+		return viewstatus;
+	}
+	public void setViewstatus(int viewstatus) {
+		this.viewstatus = viewstatus;
 	}
 	public String getGoodsFileName() {
 		return goodsFileName;
@@ -81,5 +91,11 @@ public class Goods {
 	public void setGoodsFilePath(String goodsFilePath) {
 		this.goodsFilePath = goodsFilePath;
 	}
-	
+	public String getGoodsTag() {
+		return goodsTag;
+	}
+	public void setGoodsTag(String goodsTag) {
+		this.goodsTag = goodsTag;
+	}
+		
 }
