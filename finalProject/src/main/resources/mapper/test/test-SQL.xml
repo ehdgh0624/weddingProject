@@ -4,5 +4,8 @@
   <insert id="test" parameterType="string" >
 	insert into test values(#{String})  
   </insert>
+  <select id="testAll" parameterType="test" resultType="test">
+  	select test_contents as testContents from test 
   
+  </select>
 </mapper>
