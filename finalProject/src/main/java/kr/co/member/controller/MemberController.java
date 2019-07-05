@@ -117,6 +117,8 @@ public class MemberController {
 	
 	@RequestMapping(value = "/mypage.do")
 	public String myPageView(HttpSession session,Model model) {
+		System.out.println("마이페이지 호출");
+		
 		Member vo =(Member)session.getAttribute("member");	
 		model.addAttribute("member",vo);
 		return "member/mypage";
@@ -135,7 +137,6 @@ public class MemberController {
 		Member vo =(Member)session.getAttribute("member");	
 		System.out.println(ci);
 		int result=0;
-		
 		
 		if(ci.getCode()==0) {
 			result = memberService.insertStudio(ci,vo);
