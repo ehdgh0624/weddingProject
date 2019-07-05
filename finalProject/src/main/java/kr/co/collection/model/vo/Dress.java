@@ -1,6 +1,7 @@
 package kr.co.collection.model.vo;
 
 public class Dress {
+
 	private int dressNo;					//드레스 업체번호
 	private String memberId;				//드레스 업체아이디
 	private String code;					//타입분류(D)
@@ -24,6 +25,19 @@ public class Dress {
 	private String dressTag;				//드레스 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String dressLatitude;			//위도
 	private String dressLongitud;			//경도
+	
+	
+	@Override
+	public String toString() {
+		return "Dress [dressNo=" + dressNo + ", memberId=" + memberId + ", code=" + code + ", dressName=" + dressName
+				+ ", dressTel=" + dressTel + ", dressLoc=" + dressLoc + ", dressAddr=" + dressAddr
+				+ ", dressFittingPrice=" + dressFittingPrice + ", dressRentNum=" + dressRentNum + ", dressRentPrice="
+				+ dressRentPrice + ", jewelryPrice=" + jewelryPrice + ", dressContent=" + dressContent
+				+ ", dressFittingTime=" + dressFittingTime + ", dressMending=" + dressMending + ", dressParking="
+				+ dressParking + ", dressFilename=" + dressFilename + ", dressFilepath=" + dressFilepath + ", status="
+				+ status + ", viewstatus=" + viewstatus + ", dressScope=" + dressScope + ", dressTag=" + dressTag
+				+ ", dressLatitude=" + dressLatitude + ", dressLongitud=" + dressLongitud + "]";
+	}
 	public Dress() {
 		super();
 		// TODO Auto-generated constructor stub

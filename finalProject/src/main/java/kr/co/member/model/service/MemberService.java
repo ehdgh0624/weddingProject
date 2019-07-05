@@ -1,5 +1,7 @@
 package kr.co.member.model.service;
 
+import java.sql.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -90,7 +92,17 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		
 		String hashTag = ci.getHashTag();
-		Hall mh = new Hall(0, vo.getMemberId(), "H", ci.getHallType(), ci.getCompanyName(), "", ci.getCompanyAddr(), ci.getHallContent(), ci.getFileName(), ci.getFilePath(), ci.getHallPrice(), ci.getHallMinPerson(), ci.getHallMaxPerson(), 0, ci.getHallFoodtype(), ci.getHallFoodmenu(), ci.getHallFoodprice(), ci.getCompanyPhone(), ci.getHallStartTime()+"/"+ci.getHallEndTime(), ci.getHallServiceFood(), ci.getHallServiceFood(), ci.getHallServiceDrink(), ci.getHallServiceParking(), 0, 0, hashTag, "", "");
+		Hall mh = new Hall(0, vo.getMemberId(), "H", "", 
+				ci.getCompanyName(), "", ci.getCompanyAddr(), 
+				ci.getHallContent(), ci.getFileName(),
+				ci.getFilePath(), ci.getHallPrice(), 
+				ci.getHallMinPerson(), ci.getHallMaxPerson(), 
+				0, ci.getHallFoodtype(), ci.getHallFoodmenu(), 
+				ci.getHallFoodprice(), ci.getCompanyPhone(), 
+				ci.getHallStartTime()+"/"+ci.getHallEndTime(), 
+				ci.getHallServiceFood(), ci.getHallServiceFood(),
+				ci.getHallServiceDrink(), ci.getHallServiceParking()
+				, 0, 0, hashTag, "", "",null);
 		
 		return memberDao.insertHall(mh);
 	}
