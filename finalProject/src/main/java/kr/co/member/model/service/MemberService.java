@@ -1,6 +1,7 @@
 package kr.co.member.model.service;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -9,7 +10,11 @@ import org.springframework.stereotype.Service;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelect;
+import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
@@ -105,6 +110,30 @@ public class MemberService {
 				, 0, 0, hashTag, "", "",null);
 		
 		return memberDao.insertHall(mh);
+	}
+
+	public int insertStudioOption(StudioSelectList ssl) {
+		// TODO Auto-generated method stub
+		int result= memberDao.insertStudioOption(ssl);
+		
+		return 0;
+	}
+
+	public int insertHallOption(HallSelectList hsl) {
+		// TODO Auto-generated method stub
+		int result = memberDao.insertHallOption(hsl);
+		
+		return result;
+	}
+
+	public int getStudioNo(String companyName, String memberId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public int getHallNo(String companyName, String memberId) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

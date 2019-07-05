@@ -5,7 +5,9 @@ import org.springframework.stereotype.Repository;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 @Repository("memberDao")
 public class MemberDao {
@@ -91,6 +93,24 @@ public class MemberDao {
 			mh.setHallPath("");		
 		}
 		return sqlSession.insert("member.insertHall",mh);
+	}
+
+	public int insertHallOption(HallSelectList hsl) {
+		// TODO Auto-generated method stub
+		int result=0;
+		for(int i=0;i<hsl.getList().size();i++) {
+			result=sqlSession.insert("member.insertHallOption",hsl.getList().get(i));
+		}
+		return result;
+	}
+
+	public int insertStudioOption(StudioSelectList ssl) {
+		// TODO Auto-generated method stub
+		int result=0;
+		for(int i=0; i<ssl.getList().size();i++) {
+			result=sqlSession.insert("member.insertStudioOption", ssl.getList().get(i));
+		}
+		return result;
 	}
 
 }
