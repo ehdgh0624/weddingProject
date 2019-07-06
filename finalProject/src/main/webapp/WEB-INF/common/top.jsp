@@ -46,7 +46,7 @@
 				<!-- 일반 회원일때 -->
 					<li>
 						<p>예약관리</p>
-						<span><a href="">나의 예약현황</a></span>
+						<span><a href="/myReservList.do">나의 예약현황</a></span>
 					</li>
 					<!-- 업체 회원일때 -->
 					<li>

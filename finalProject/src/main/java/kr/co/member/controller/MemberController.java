@@ -187,25 +187,13 @@ public class MemberController {
 				}
 				result2=memberService.insertHallOption(hsl);
 			}
-		}
-		
-	
-		
-	
-		
-		
-			
-		
-			
-			
-
-		if(result>0&&code==0){
+		}	
+		if(result>0 && code==0 && result2>0){
 			return "redirect:/index.jsp";
-		}else if(result>0&&code==3) {
+		}else if(result>0 && code==3 && result2>0) {
 			return "redirect:/index.jsp";
 		}else if(result>0){
 			return "redirect:/index.jsp";
-			
 		}else {
 			return "redirect:/index.jsp";
 		}
