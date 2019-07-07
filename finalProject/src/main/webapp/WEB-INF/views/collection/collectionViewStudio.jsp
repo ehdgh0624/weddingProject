@@ -46,7 +46,7 @@
 		window.onload = function(){
 //			var map = new naver.maps.Map('map');		//시청 기준 map
 			var map = new naver.maps.Map('map',{		//위도,경도 기준 map
-				center : new naver.maps.LatLng(37.533807,126.896772),
+				center : new naver.maps.LatLng(${studio.studioLatitude},${studio.studioLongitud}),
 				zoom:10,
 				zoomControl : true,						//zoom 콘트롤러
 				zoomControlOptions : {					//zoom 콘트롤러 설정
@@ -55,7 +55,7 @@
 				}
 			});
 			var marker = new naver.maps.Marker({		//조건에 맞는 위치를 지도에 찍어주는 핀(마커)
-				position : new naver.maps.LatLng(37.533807,126.896772),
+				position : new naver.maps.LatLng(${studio.studioLatitude},${studio.studioLongitud}),
 				map : map
 			});
 			naver.maps.Event.addListener(map, 'click', function(e){

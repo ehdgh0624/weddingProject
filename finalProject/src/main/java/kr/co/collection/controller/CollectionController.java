@@ -245,4 +245,20 @@ public class CollectionController {
 		}
 	}
 
+	@RequestMapping("/editor.do")
+	public String editorOpen(HttpSession session, @RequestParam String code) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+			if(memberId.equals("admin")) {
+				return "editor/editor";				
+			}else {
+				return "editor/editorFailed";
+			}
+		}else {
+			return "editor/editorFailed";
+		}
+	}
+	
 }

@@ -51,6 +51,22 @@
 			<div>
 				<input type="text" placeholder="업체명이나 키워드, #태그를 검색해보세요" style="width:250px;">
 				<input type="submit" value="검색">
+				<c:if test="${not empty sessionScope.member}">
+					<c:if test="${sessionScope.member.memberId == 'admin'}">
+						<c:if test="${not empty pd.sList}">
+							<input type="button" value="글쓰기" onclick="location.href='/editor.do?code=S'">
+						</c:if>
+						<c:if test="${not empty pd.dList}">
+							<input type="button" value="글쓰기" onclick="location.href='/editor.do?code=D'">
+						</c:if>
+						<c:if test="${not empty pd.mList}">
+							<input type="button" value="글쓰기" onclick="location.href='/editor.do?code=M'">
+						</c:if>
+						<c:if test="${not empty pd.gList}">
+							<input type="button" value="글쓰기" onclick="location.href='/editor.do?code=G'">
+						</c:if>
+					</c:if>
+				</c:if>
 			</div>
 		</div>
 		<!-- collection 리스트 -->
