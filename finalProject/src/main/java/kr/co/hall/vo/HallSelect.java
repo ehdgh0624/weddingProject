@@ -5,19 +5,25 @@ public class HallSelect {
 	private String hallSelectType;
 	private int hallSelectPrice;
 	private String hallSelectEtc;
+	private String hallSelectName;
 
 	public HallSelect() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public HallSelect(int hallSelectRef, String hallSelectType, int hallSelectPrice, String hallSelectEtc) {
+
+	public HallSelect(int hallSelectRef, String hallSelectType, int hallSelectPrice, String hallSelectEtc,
+			String hallSelectName) {
 		super();
 		this.hallSelectRef = hallSelectRef;
 		this.hallSelectType = hallSelectType;
 		this.hallSelectPrice = hallSelectPrice;
 		this.hallSelectEtc = hallSelectEtc;
+		this.hallSelectName = hallSelectName;
 	}
+
+
 
 	public int getHallSelectRef() {
 		return hallSelectRef;
@@ -49,6 +55,14 @@ public class HallSelect {
 
 	public void setHallSelectEtc(String hallSelectEtc) {
 		this.hallSelectEtc = hallSelectEtc;
+	}
+	
+	public String getHallSelectName() {
+		return hallSelectName;
+	}
+
+	public void setHallSelectName(String hallSelectName) {
+		this.hallSelectName = hallSelectName;
 	}
 
 	@Override

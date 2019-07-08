@@ -1,5 +1,7 @@
 package kr.co.member.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -10,11 +12,16 @@ import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
+import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelect;
+import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
@@ -130,31 +137,69 @@ public class MemberController {
 
 		return "member/addCompany";
 	}
-	
+
 	@RequestMapping(value = "/companyEnroll.do")
-	public String companyEnroll(CompanyInfo ci,HttpSession session) {
+	public String companyEnroll(
+			CompanyInfo ci,
+			HttpSession session,
+			@RequestParam(value="studioOption",required = true) List<String> studioOption,
+			@RequestParam(value="studioOptionPrice",required = true) List<Integer> studioOptionPrice,
+			@RequestParam(value="studioOptionType",required = true) List<Integer> studioOptionType,
+			@RequestParam(value="hallSelectType",required = true) List<String> hallSelectType,
+			@RequestParam(value="hallSelectPrice",required = true) List<Integer> hallSelectPrice,
+			@RequestParam(value="hallSelectName",required = true) List<String> hallSelectName,
+			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc){
 		System.out.println("업체등록 로직 시작");
+		int seqNo=0;
 		Member vo =(Member)session.getAttribute("member");	
-		System.out.println(ci);
+		HallSelectList hsl=new HallSelectList();
+		StudioSelectList ssl = new StudioSelectList();
+
+		
 		int result=0;
+		int result2=0;
+
 		
-		if(ci.getCode()==0) {
-			result = memberService.insertStudio(ci,vo);
-		}else if(ci.getCode()==1) {
-			result = memberService.insertDress(ci,vo);
-		}else if(ci.getCode()==2) {
-			result = memberService.insertMakeup(ci,vo);
-		}else if(ci.getCode()==3) {
-			result = memberService.insertHall(ci,vo);
-		}
 		
-		if(result>0) {
-			System.out.println("등록성공");
+		int code=ci.getCode();
+		
+		if(code==0) {
+			result=memberService.insertStudio(ci, vo);
+			if(result>0) {
+				seqNo=memberService.getStudioNo(ci.getCompanyName(),vo.getMemberId());
+				for(int i=0; i<studioOption.size(); i++) {
+					StudioSelect ss = new StudioSelect(seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
+					ssl.getList().add(ss);
+				}
+				result2=memberService.insertStudioOption(ssl);
+			}
+		}else if(code==1) {
+			result= memberService.insertDress(ci, vo);
+		}else if(code==2) {
+			result= memberService.insertMakeup(ci, vo);
+		}else if(code==3) {
+			result=memberService.insertHall(ci, vo);
+			if(result>0) {
+				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
+				for(int i=0; i<hallSelectType.size(); i++) {
+					HallSelect  hs = new HallSelect(seqNo,hallSelectType.get(i),hallSelectPrice.get(i),hallSelectEtc.get(i),hallSelectName.get(i));
+					hsl.getList().add(hs);
+				}
+				result2=memberService.insertHallOption(hsl);
+			}
+		}	
+		if(result>0 && code==0 && result2>0){
+			return "redirect:/index.jsp";
+		}else if(result>0 && code==3 && result2>0) {
+			return "redirect:/index.jsp";
+		}else if(result>0){
 			return "redirect:/index.jsp";
 		}else {
-			System.out.println("등록실패");
 			return "redirect:/index.jsp";
 		}
 	}
+	
+	
+
 
 }

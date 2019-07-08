@@ -7,6 +7,7 @@
     	<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
     	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
     	<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
+    	<typeAlias type="kr.co.review.model.vo.Review" alias="review"/>
     	<typeAlias type="kr.co.scrapbook.model.vo.Scrapbook" alias="scrapbook"/>
     	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>
     	<typeAlias type="kr.co.gallery.model.vo.Gallery" alias="gallery"/>

@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="goods">
+	<select id="selectAllList" parameterType="String" resultType="goods">
+		select goods_no as goodsNo, code, goods_type as goodsType, goods_name as goodsName, goods_scope as goodsScope, goods_filename as goodsFilename, goods_filepath as goodsFilepath, goods_tag as goodsTag from goods where goods_type=#{type} and viewstatus=0
+	</select>
+	<select id="pageSelectAllList" parameterType="map" resultType="goods">
+		select goods_no as goodsNo, code, goods_type as goodsType, goods_name as goodsName, goods_scope as goodsScope, goods_filename as goodsFilename, goods_filepath as goodsFilepath, goods_tag as goodsTag from (select rownum as rnum, g.* from (select * from goods where goods_type=#{goodsType} and viewstatus=0 order by goods_no) g) where (rnum between #{start} and #{end}) order by rnum desc
+	</select>
+	<select id="viewSelectOne" parameterType="_int" resultType="goods">
+		select goods_no as goodsNo, code, goods_type as goodsType, goods_name as goodsName, goods_price as goodsPrice, goods_scope as goodsScope, goods_content as goodsContent, goods_filepath as goodsFilepath, goods_tag as goodsTag from goods where goods_no=#{goodsNo}
+	</select>
 </mapper>

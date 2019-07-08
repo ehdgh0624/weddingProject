@@ -71,8 +71,8 @@
 									<li><a href="/collectionList.do?code=D">드레스</a></li>
 								   	<li><a href="/collectionList.do?code=S">스튜디오</a></li>
 								   	<li><a href="/collectionList.do?code=M">메이크업&헤어</a></li>
-								   	<li><a href="">부케</a></li>
-								   	<li><a href="">청첩장</a></li>
+								   	<li><a href="/collectionList.do?code=B">부케</a></li>
+								   	<li><a href="/collectionList.do?code=I">청첩장</a></li>
 								</ul>
 							</div>
 						</li>
