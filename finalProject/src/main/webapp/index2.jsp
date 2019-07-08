@@ -122,7 +122,7 @@
 				});
 				
 			});
-			window.onbeforeunload = function() {				
+		/* 	window.onbeforeunload = function() {				
 				$.ajax({
 					url:"/delete.do",
 					type:"post",
@@ -135,7 +135,7 @@
 				return 
 			}
 		
-			
+			 */
 			
 			
 		</script>

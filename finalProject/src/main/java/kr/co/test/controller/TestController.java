@@ -1,5 +1,7 @@
 package kr.co.test.controller;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
@@ -8,12 +10,9 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,9 +29,15 @@ import kr.co.test.vo.Test;
 public class TestController {
 	@Autowired
 	private TestService testService;
+
+
+		
+	
 	
 	@RequestMapping("/test.do")
-	public String test(String editor) {
+	public void test(String editor) {
+		
+		 
 		System.out.println(editor);
 		
 		System.out.println("콘트롤러");
@@ -42,13 +47,10 @@ public class TestController {
 		
 		ArrayList<Integer> start = new ArrayList<Integer>();
 		ArrayList<Integer> end = new ArrayList<Integer>();
-		ArrayList<String> filename = new ArrayList<String>();
-		
-		
+		ArrayList<String> filename = new ArrayList<String>();		
 		if(editor.length()>0) {
 			int l=0;
 			int i=0;
-			
 			do {
 				l=editor.indexOf("/image2/", l+1);
 				i++;
@@ -56,9 +58,7 @@ public class TestController {
 				start.add(l+8);
 			}while(l+1<editor.length()&&l!=-1);
 		
-		}
-		
-		
+		}				
 		if(editor.length()>0) {
 			int l=0;
 			int i=0;
@@ -69,25 +69,36 @@ public class TestController {
 				System.out.println(i + "번 째 위치end : " + l);
 				end.add(l);
 			}while(l+1<editor.length()&&l!=-1);
+		}				
+		for(int i=0; i<start.size()-1;i++) {
+			filename.add(editor.substring(start.get(i),end.get(i)));
+			System.out.println("형이한거 나오나?"+filename.get(i));
+			System.out.println("복사됫니 ?");
+			String file1 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"+filename.get(i)+".jpg";
+			String file2 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+filename.get(i)+".jpg";
+			try {
+				FileInputStream fis = new FileInputStream(file1);
+				FileOutputStream fos = new FileOutputStream(file2);
+				int tmp = 0;
+				while ((tmp = fis.read()) != -1) {
+					fos.write(tmp);                
+				}
+				fis.close();
+				fos.close();
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
 		}
-		
-		
-		for(int i=0; i<start.size();i++) {
-			filename.add(i+1+"번째"+editor.substring(start.get(i),end.get(i)));
-			System.out.println(filename.get(i));
-		}
-		
-	
-		
-		
-		
-		
 		int test = testService.test(editor);
 		
+		  
 		
-		//이미지태그 저장형태 <p><img alt="" src="http://localhost/resources/editor/image/캡처.PNG" /></p>
-
-		return null;
+		  
 	}
 
 	@RequestMapping(value = "/upload.do", method = RequestMethod.POST)
@@ -107,20 +118,22 @@ public class TestController {
 			String root = request.getSession().getServletContext().getRealPath("/ID"); // 절대경로 
 			
 			String uploadPath =root+fileName;//저장경로	
+			System.out.println("upload: :" + upload);
 			System.out.println("저장경로"+uploadPath);
+			System.out.println("bytes : :"+bytes);
+			System.out.println("fileName : :"+fileName);
 			
 			
-			String filelo = "E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName;
-		
 
 			
-			out = new FileOutputStream(new File("E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName));
+			out = new FileOutputStream(new File("C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName));
+			
 			
             
 			out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl =  "http://localhost/resources/editor/image2/ID"+fileName;//url경로
+            String fileUrl =  "http://localhost/resources/editor/image/ID"+fileName;//url경로
             System.out.println("callback : " + callback +"fileUrl : " + fileUrl);  
            
             System.out.println(fileUrl);
@@ -175,7 +188,7 @@ public class TestController {
 //		String root = request.getSession().getServletContext().getRealPath("/"); // 절대경로 
 //		System.out.println("경로가 어디로가되는거야 ? "+root);
 		for(int i = 0 ; i<arr.length ; i++) {
-		String realFile ="E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2"+arr[i].substring(arr[i].indexOf("ge/")+2);
+		String realFile ="C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"+arr[i].substring(arr[i].indexOf("ge/")+2);
 		System.out.println("머야머야머야"+realFile);
 	
 		
