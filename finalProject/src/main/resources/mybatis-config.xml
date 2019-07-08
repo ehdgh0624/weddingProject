@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
 <configuration>
-<<<<<<< HEAD
+
 	<typeAliases>
     	<typeAlias type="kr.co.member.model.vo.Member" alias="member"/>
     	<typeAlias type="kr.co.collection.model.vo.Studio" alias="studio"/>
@@ -15,14 +15,9 @@
     	<typeAlias type="kr.co.simulator.model.vo.Simulator" alias="simulator"/>
     	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
-    </typeAliases>
-</configuration>
-=======
-
-	<typeAliases>
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
-	</typeAliases>
+    </typeAliases>
 
 </configuration>
 
->>>>>>> dj
+
