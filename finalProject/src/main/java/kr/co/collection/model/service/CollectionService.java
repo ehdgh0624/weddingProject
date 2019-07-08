@@ -15,6 +15,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
+import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Service("collectionService")
@@ -289,8 +290,12 @@ public class CollectionService {
 		return collectionDao.selectOneGoods(goodsNo);
 	}
 	
-	public ArrayList<Gallery> selectListGallery(int studioNo, String galleryCode){
-		return (ArrayList<Gallery>)collectionDao.selectListGallery(studioNo, galleryCode);
+	public ArrayList<Gallery> selectListGallery(int galleryNo, String galleryCode){
+		return (ArrayList<Gallery>)collectionDao.selectListGallery(galleryNo, galleryCode);
+	}
+	
+	public ArrayList<Review> selectListReview(int objectNo, String code){
+		return (ArrayList<Review>)collectionDao.selectListReview(objectNo, code);
 	}
 	
 	@Transactional

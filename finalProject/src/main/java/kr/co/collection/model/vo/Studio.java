@@ -10,6 +10,8 @@ public class Studio {
 	private String studioAddr;				//스튜디오 상세주소
 	private int studioPrice;				//스튜디오 평균가
 	private String studioContent;			//스튜디오 상세설명
+	private String studioTime;				//촬영 소요 시간
+	private String studioCamera;			//촬영 장비 기종
 	private String studioFilename;			//스튜디오 대표사진 이름
 	private String studioFilepath;			//스튜디오 대표사진 경로
 	private int status;						//업체신청(대기=0/허가=1/거절=2)
@@ -18,25 +20,14 @@ public class Studio {
 	private String studioTag;				//스튜디오 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String studioLatitude;			//위도
 	private String studioLongitud;			//경도
-	
-	
-	@Override
-	public String toString() {
-		return "Studio [studioNo=" + studioNo + ", memberId=" + memberId + ", code=" + code + ", studioName="
-				+ studioName + ", studioTel=" + studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr
-				+ ", studioPrice=" + studioPrice + ", studioContent=" + studioContent + ", studioFilename="
-				+ studioFilename + ", studioFilepath=" + studioFilepath + ", status=" + status + ", viewstatus="
-				+ viewstatus + ", studioScope=" + studioScope + ", studioTag=" + studioTag + ", studioLatitude="
-				+ studioLatitude + ", studioLongitud=" + studioLongitud + "]";
-	}
 	public Studio() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Studio(int studioNo, String memberId, String code, String studioName, String studioTel, String studioLoc,
-			String studioAddr, int studioPrice, String studioContent, String studioFilename, String studioFilepath,
-			int status, int viewstatus, int studioScope, String studioTag, String studioLatitude,
-			String studioLongitud) {
+			String studioAddr, int studioPrice, String studioContent, String studioTime, String studioCamera,
+			String studioFilename, String studioFilepath, int status, int viewstatus, int studioScope, String studioTag,
+			String studioLatitude, String studioLongitud) {
 		super();
 		this.studioNo = studioNo;
 		this.memberId = memberId;
@@ -47,6 +38,8 @@ public class Studio {
 		this.studioAddr = studioAddr;
 		this.studioPrice = studioPrice;
 		this.studioContent = studioContent;
+		this.studioTime = studioTime;
+		this.studioCamera = studioCamera;
 		this.studioFilename = studioFilename;
 		this.studioFilepath = studioFilepath;
 		this.status = status;
@@ -110,6 +103,18 @@ public class Studio {
 	public void setStudioContent(String studioContent) {
 		this.studioContent = studioContent;
 	}
+	public String getStudioTime() {
+		return studioTime;
+	}
+	public void setStudioTime(String studioTime) {
+		this.studioTime = studioTime;
+	}
+	public String getStudioCamera() {
+		return studioCamera;
+	}
+	public void setStudioCamera(String studioCamera) {
+		this.studioCamera = studioCamera;
+	}
 	public String getStudioFilename() {
 		return studioFilename;
 	}
@@ -159,4 +164,16 @@ public class Studio {
 		this.studioLongitud = studioLongitud;
 	}
 	
+	@Override
+	public String toString() {
+		return "Studio [studioNo=" + studioNo + ", memberId=" + memberId + ", code=" + code + ", studioName="
+				+ studioName + ", studioTel=" + studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr
+				+ ", studioPrice=" + studioPrice + ", studioContent=" + studioContent + ", studioTime=" + studioTime
+				+ ", studioCamera=" + studioCamera + ", studioFilename=" + studioFilename + ", studioFilepath="
+				+ studioFilepath + ", status=" + status + ", viewstatus=" + viewstatus + ", studioScope=" + studioScope
+				+ ", studioTag=" + studioTag + ", studioLatitude=" + studioLatitude + ", studioLongitud="
+				+ studioLongitud + "]";
+	}
+	
+
 }

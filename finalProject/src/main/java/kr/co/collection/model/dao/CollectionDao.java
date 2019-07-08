@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
+import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Repository("collectionDao")
@@ -96,11 +97,18 @@ public class CollectionDao {
 		return (Goods)sqlSession.selectOne("goods.viewSelectOne",goodsNo);
 	}
 	
-	public List<Gallery> selectListGallery(int objectNo, String galleryCode){
+	public List<Gallery> selectListGallery(int galleryNo, String galleryCode){
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("objectNo", objectNo);
+		map.put("galleryNo", galleryNo);
 		map.put("galleryCode", galleryCode);
 		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+	
+	public List<Review> selectListReview(int objectNo, String code){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("reviewRef", objectNo);
+		map.put("code", code);
+		return sqlSession.selectList("review.selectListReview",map);
 	}
 	
 	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
