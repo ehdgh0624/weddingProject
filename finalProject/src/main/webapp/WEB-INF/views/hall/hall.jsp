@@ -127,6 +127,20 @@
 		$("#choesinsun").css("color","#f46629");
 		$("#choesinsun").css("border","1px solid #f46629");
 	});
+	
+	$("#bthHall").click(function(){
+		$.ajax({
+			url:"hallSc.do",
+			type:"GET",
+			dataType:"json",
+			success:function(data){
+				
+			},
+			error:function(){
+				alert("에러발생!");
+			}
+		});
+	});
 </script>
 
 <%--  footer --%>
