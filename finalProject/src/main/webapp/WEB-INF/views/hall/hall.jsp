@@ -16,7 +16,7 @@
 				<div class="headersub area"><!-- 가운데 정렬 div -->
 				<h3>장소 검색하기</h3>
 				<form action="/hallSc.do" method="get">
-            <select class="addr" name="addr">   <!-- 지역 select -->
+            <select class="addr" name="hallLoc">   <!-- 지역 select -->
                <option value="전국">모든 지역</option>
                <option value="서울">서울</option>
                <option value="부산">부산</option>

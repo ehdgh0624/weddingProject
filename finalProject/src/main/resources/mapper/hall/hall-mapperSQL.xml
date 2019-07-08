@@ -88,13 +88,16 @@
 			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d)
 			   <trim prefix="where" prefixOverrides="AND | OR">
 			   		<if test="h.hallLoc != null">
-			   			hall_Loc like '%'||#{h.halLoc}||'%'
+			   			hall_Loc like '%'||#{h.hallLoc}||'%'
 			   		</if>
 			   		<if test="h.hallType != null">
 			   			AND hall_Type like '%'||#{h.hallType}||'%'
 			   		</if>
-			   		<if test="h.hallFoodtype != null">
-			   			AND hall_Foodtype like '%'||#{h.hallFoodtype}||'%'
+			   		<if test="person > 0 ">
+			   			AND (hall_min_person <![CDATA[<=]]>  #{person}) AND (#{person} <![CDATA[<=]]> hall_max_person)
+			   		</if>
+			   		<if test="h.hallFoodtype > 0">
+			   			AND hall_Foodtype = ${h.hallFoodtype}
 			   		</if>
 		
 			   		<if test="h.hallName != null">

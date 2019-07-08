@@ -36,7 +36,6 @@ public class HallDao {
 		map.put("end", end);
 		map.put("h", h);
 		map.put("person", person);
-		System.out.println(h.getHallType());
 		return sqlSession.selectList("hall.hallSearch",map);
 	}
 	public int totalCountSearch() {

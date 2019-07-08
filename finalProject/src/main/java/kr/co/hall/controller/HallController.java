@@ -34,9 +34,9 @@ public class HallController {
 	}
 	
 	@RequestMapping(value="/hallSc.do")
-	   public ModelAndView hallsc(HttpServletRequest request,String addr,String hallType,String menuType,String hallPerson,String searckHall) {
+	   public ModelAndView hallsc(HttpServletRequest request,String hallLoc,String hallType,String menuType,String hallPerson,String searckHall) {
 		Hall h = new Hall();
-		h.setHallAddr(addr);
+		h.setHallLoc(hallLoc);
 		h.setHallType(hallType);
 		h.setHallFoodtype(Integer.parseInt( menuType));
 		int person ;
