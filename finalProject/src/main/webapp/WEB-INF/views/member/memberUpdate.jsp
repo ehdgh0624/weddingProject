@@ -11,7 +11,10 @@
 
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
+	
+		<div class="common-tbl-box">
 		<form action="/memberUpdate.do" method="post">
+			<h2 class="comm-content-tit">계정관리</h2>
 			<table class="comm-tbl">		
 					<colgroup>
 						<col width="20%">
@@ -75,9 +78,12 @@
 						<th><input type="number" name="budget"></th>
 					</tr>
 				</table>	
-			<button type="submit">수정</button>
+			<button type="submit" class="btn-style1">수정</button>
 		</form>
+		<button type="button" onclick="location.href='/memberDelete.do'">회원탈퇴</button>
 	</div>
+	
+</div>
 	
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>

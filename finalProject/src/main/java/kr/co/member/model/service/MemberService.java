@@ -66,7 +66,7 @@ public class MemberService {
 		String hashTag = ci.getHashTag();
 		
 		Studio ms = new Studio(0,vo.getMemberId(),"S",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr()
-				,ci.getStudioPrice(),""/*확인필요스튜디오 컨텐츠*/,ci.getFileName(),ci.getFilePath()
+				,ci.getStudioPrice(),""/*확인필요스튜디오 컨텐츠*/,"","",ci.getFileName(),ci.getFilePath()
 				,0,0,0,hashTag,"","");
 		
 		return memberDao.insertStudio(ms);

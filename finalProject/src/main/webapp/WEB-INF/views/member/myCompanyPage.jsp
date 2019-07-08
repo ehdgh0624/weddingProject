@@ -52,7 +52,7 @@
 					<c:if test="${empty memberAll.makeup }">
 						<c:if test="${empty memberAll.hall }">
 							<h1>등록된 업체가없습니다.</h1>
-							<a href="/addCompany.do">업체등록 하러가기</a>
+							<a href="/goCompanyTerms.do">업체등록 하러가기</a>
 						</c:if>	
 					</c:if>
 				</c:if>

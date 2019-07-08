@@ -26,6 +26,7 @@ import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
+import kr.co.member.model.vo.MemberEnroll;
 
 
 
@@ -90,10 +91,25 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberEnroll.do")
-	public String memberEnroll(Member vo) {
+	public String memberEnroll(MemberEnroll vos) {
 		System.out.println("회원가입로직시작");
+		System.out.println(vos);
+
+		String addr= vos.getJibunAddr()+"//"+
+					vos.getExtraAddr()+"//"+
+					vos.getDetailAddr()+"//"+
+					vos.getPostNum();
 		
-		System.out.println(vo);
+		Member vo = new Member();
+		vo.setAddr(addr);
+		vo.setBirthDay(vos.getBirthDay());
+		vo.setEmail(vos.getEmail());
+		vo.setMemberId(vos.getMemberId());
+		vo.setMemberName(vos.getMemberName());
+		vo.setMemberPw(vos.getMemberPw());
+		vo.setPhone(vos.getPhone());
+		
+		
 		int result = memberService.insertMember(vo);
 		if(result>0) {
 			return "redirect:/index.jsp";
@@ -131,9 +147,23 @@ public class MemberController {
 		return "member/mypage";
 	}
 	//아직 적용안함
-	@RequestMapping(value = "/addCompany.do")
-	public String addCompany() {
-		System.out.println("업체등록페이지 호출");
+	@RequestMapping(value = "/goAddTerms.do")
+	public String goMemberTerms() {
+		System.out.println("회원등록 약관 호출");
+
+		return "member/addMemberTerms";
+	}
+	
+	@RequestMapping(value = "/goCompanyTerms.do")
+	public String goCompanyTerms() {
+		System.out.println("회원등록 약관 호출");
+
+		return "member/addCompanyTerms";
+	}
+	
+	@RequestMapping(value = "/enrollCompanyPage.do")
+	public String goCompanyEnrollPage() {
+		System.out.println("업체등록페이지");
 
 		return "member/addCompany";
 	}
@@ -198,8 +228,4 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
-	
-	
-
-
 }

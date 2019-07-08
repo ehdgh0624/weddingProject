@@ -22,6 +22,7 @@ import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
+import kr.co.review.model.vo.Review;
 
 @Controller
 public class CollectionController {
@@ -159,10 +160,12 @@ public class CollectionController {
 		Studio s = collectionService.selectOneStudio(studioNo);
 		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
 		ArrayList<Gallery> gList = collectionService.selectListGallery(studioNo, "S");
+		ArrayList<Review> rList = collectionService.selectListReview(studioNo, "S");
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("studio", s);
 		mav.addObject("studioSelectList", ssList);
 		mav.addObject("galleryList", gList);
+		mav.addObject("reviewList", rList);
 		mav.setViewName("collection/collectionViewStudio");
 		return mav;
 	}
