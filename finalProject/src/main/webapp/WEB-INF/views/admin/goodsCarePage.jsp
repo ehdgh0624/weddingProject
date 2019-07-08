@@ -12,10 +12,10 @@
 
 	<div id="myPageContainer" class="clearfix">
 		<!--상품 리스트 -->
-		<div style="text-align: center;">
+		<div style="text-align: center; width: 80%; margin: 0 auto;">
 			<c:if test="${not empty gList.list}">
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
-					<div style="width:200px;height:200px;display:inline-block;margin:30px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
+					<div style="width:300px;height:300px;display:inline-block;margin:30px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
 						<a href="/goodsView.do?goodsNo=${g.goodsNo}">
 							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>

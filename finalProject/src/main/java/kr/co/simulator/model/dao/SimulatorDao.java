@@ -27,6 +27,7 @@ public class SimulatorDao {
 	//웨딩드레스 검색
 	public List<Dress> dSearchList(Simulator simulator, int start, int end) {
 		Map<String, String> map = new HashMap<String, String>();
+		System.out.println(simulator.getWeddingLoc());
 		map.put("simulator", simulator.getWeddingLoc());
 		map.put("start",String.valueOf(start));
 		map.put("end", String.valueOf(end));

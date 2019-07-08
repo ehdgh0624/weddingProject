@@ -27,10 +27,12 @@
 			dress_name as dressName,
 			dress_rent_price as dressRentPrice,
 			dress_tel as dressTel,
-			dress_addr ad dressAddr,
+			dress_addr as dressAddr,
 			dress_tag as dressTag,
 			dress_filepath as dressFilepath 
-		from (select rownum as rnum, d.* from (select * from dress<if test="!simulator.equals('전국')"> where dress_addr like '%'||#{simulator}||'%'</if>) d) where rnum between ${start} and ${end}
+		from (select rownum as rnum, d.* from (select * from dress<if test="!simulator.equals('전국')"> where dress_addr like '%'||#{simulator}||'%'</if>) 
+		d)
+		 where rnum between ${start} and ${end}
 	</select>
 	<select id="dTotalCount" parameterType="simulator" resultType="_int">
 		select 

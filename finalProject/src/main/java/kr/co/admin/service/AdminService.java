@@ -99,19 +99,19 @@ public class AdminService {
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
 		if(pageNo != 1) {
-			pageNavi += "<a class='paging-arrow prev-arrow' href='/searchMember.do?reqPage="+(pageNo-1)+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+			pageNavi += "<a class='paging-arrow prev-arrow' href='/searchMember.do?reqPage="+(pageNo-1)+"&type="+type+"&keyword="+keyword+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
 		}
 		int i = 1;
 		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
 			if(reqPage == pageNo) {
 				pageNavi += "<span class='cur'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='' href='/searchMember.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+				pageNavi += "<a class='' href='/searchMember.do?reqPage="+pageNo+"&type="+type+"&keyword="+keyword+"'>"+pageNo+"</a>";
 			}
 			pageNo++;
 		}
 		if(pageNo <= totalPage) {
-			pageNavi += "<a class='paging-arrow next-arrrow' href='/searchMember.do?reqPage="+(pageNo)+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/searchMember.do?reqPage="+(pageNo)+"&type="+type+"&keyword="+keyword+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
 		
 		AdminMember am = new AdminMember(ma,pageNavi);
