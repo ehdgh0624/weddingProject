@@ -36,8 +36,57 @@ public class TestController {
 		System.out.println(editor);
 		
 		System.out.println("콘트롤러");
+		
+		System.out.println("에디터가뭐죠"+editor);
+		
+		
+		ArrayList<Integer> start = new ArrayList<Integer>();
+		ArrayList<Integer> end = new ArrayList<Integer>();
+		ArrayList<String> filename = new ArrayList<String>();
+		
+		
+		if(editor.length()>0) {
+			int l=0;
+			int i=0;
+			
+			do {
+				l=editor.indexOf("/image2/", l+1);
+				i++;
+				System.out.println(i + "번 째 위치start : " + l);
+				start.add(l+8);
+			}while(l+1<editor.length()&&l!=-1);
+		
+		}
+		
+		
+		if(editor.length()>0) {
+			int l=0;
+			int i=0;
+			
+			do {
+				l=editor.indexOf(".jpg", l+1);
+				i++;
+				System.out.println(i + "번 째 위치end : " + l);
+				end.add(l);
+			}while(l+1<editor.length()&&l!=-1);
+		}
+		
+		
+		for(int i=0; i<start.size();i++) {
+			filename.add(i+1+"번째"+editor.substring(start.get(i),end.get(i)));
+			System.out.println(filename.get(i));
+		}
+		
+	
+		
+		
+		
+		
 		int test = testService.test(editor);
 		
+		
+		//이미지태그 저장형태 <p><img alt="" src="http://localhost/resources/editor/image/캡처.PNG" /></p>
+
 		return null;
 	}
 
@@ -55,20 +104,23 @@ public class TestController {
         	String fileName = upload.getOriginalFilename();
         	System.out.println("fileName = "+fileName);
 			byte[] bytes = upload.getBytes();
-			String root = request.getSession().getServletContext().getRealPath("/"); // 절대경로 
+			String root = request.getSession().getServletContext().getRealPath("/ID"); // 절대경로 
+			
 			String uploadPath =root+fileName;//저장경로	
 			System.out.println("저장경로"+uploadPath);
 			
 			
-			String filelo = "C:\\Users\\user1\\weddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+fileName;
+			String filelo = "E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName;
 		
 
 			
-			out = new FileOutputStream(new File("C:\\Users\\user1\\weddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+fileName));
-            out.write(bytes);
+			out = new FileOutputStream(new File("E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName));
+			
+            
+			out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl =  "http://localhost/resources/editor/image/"+fileName;//url경로
+            String fileUrl =  "http://localhost/resources/editor/image2/ID"+fileName;//url경로
             System.out.println("callback : " + callback +"fileUrl : " + fileUrl);  
            
             System.out.println(fileUrl);
@@ -123,7 +175,7 @@ public class TestController {
 //		String root = request.getSession().getServletContext().getRealPath("/"); // 절대경로 
 //		System.out.println("경로가 어디로가되는거야 ? "+root);
 		for(int i = 0 ; i<arr.length ; i++) {
-		String realFile ="C:\\Users\\user1\\weddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image"+arr[i].substring(arr[i].indexOf("ge/")+2);
+		String realFile ="E:\\final\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2"+arr[i].substring(arr[i].indexOf("ge/")+2);
 		System.out.println("머야머야머야"+realFile);
 	
 		
