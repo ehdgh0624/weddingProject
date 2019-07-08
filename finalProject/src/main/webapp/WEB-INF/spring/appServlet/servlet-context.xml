@@ -36,8 +36,8 @@
 	<context:component-scan base-package="kr.co.test"/>
 	 <context:component-scan base-package="kr.co.marryme" />
 	
-	
 
+	<task:annotation-driven/>
 
 	
 </beans:beans>

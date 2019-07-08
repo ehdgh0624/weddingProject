@@ -6,7 +6,9 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -35,29 +37,20 @@ public class TestController {
 	
 	
 	@RequestMapping("/test.do")
-	public void test(String editor) {
-		
-		 
-		System.out.println(editor);
-		
-		System.out.println("콘트롤러");
-		
-		System.out.println("에디터가뭐죠"+editor);
-		
-		
+	public void test(String editor) {		
+		// 시작과 끝 그의 중간 이름값 가져오는 코드
 		ArrayList<Integer> start = new ArrayList<Integer>();
 		ArrayList<Integer> end = new ArrayList<Integer>();
-		ArrayList<String> filename = new ArrayList<String>();		
+		ArrayList<String> filename = new ArrayList<String>();	
 		if(editor.length()>0) {
 			int l=0;
 			int i=0;
 			do {
 				l=editor.indexOf("/image2/", l+1);
 				i++;
-				System.out.println(i + "번 째 위치start : " + l);
+			
 				start.add(l+8);
-			}while(l+1<editor.length()&&l!=-1);
-		
+			}while(l+1<editor.length()&&l!=-1);		
 		}				
 		if(editor.length()>0) {
 			int l=0;
@@ -66,14 +59,13 @@ public class TestController {
 			do {
 				l=editor.indexOf(".jpg", l+1);
 				i++;
-				System.out.println(i + "번 째 위치end : " + l);
+				
 				end.add(l);
 			}while(l+1<editor.length()&&l!=-1);
 		}				
 		for(int i=0; i<start.size()-1;i++) {
 			filename.add(editor.substring(start.get(i),end.get(i)));
-			System.out.println("형이한거 나오나?"+filename.get(i));
-			System.out.println("복사됫니 ?");
+			// 파일 복사 코드
 			String file1 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"+filename.get(i)+".jpg";
 			String file2 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+filename.get(i)+".jpg";
 			try {
@@ -92,8 +84,13 @@ public class TestController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			//여기까지 파일복사 코드
 		
 		}
+		
+	
+		editor = editor.replaceAll("image2", "image");  // 마지막 디비 들어갈때 개행처리 
+		
 		int test = testService.test(editor);
 		
 		  
@@ -104,59 +101,56 @@ public class TestController {
 	@RequestMapping(value = "/upload.do", method = RequestMethod.POST)
     public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload,MultipartHttpServletRequest multiFile) {
 		
+		//에디터 upload
 		
 		PrintWriter printWriter = null;
         OutputStream out = null;
         response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
+        response.setContentType("text/html;charset=utf-8"); //인코딩
        
         try {
         	request.setCharacterEncoding("utf-8");
         	String fileName = upload.getOriginalFilename();
         	System.out.println("fileName = "+fileName);
 			byte[] bytes = upload.getBytes();
-			String root = request.getSession().getServletContext().getRealPath("/ID"); // 절대경로 
+			/*
+			String root = request.getSession().getServletContext().getRealPath("/"); // 절대경로 
+			String uploadPath =root+fileName;//저장경로	*/			
+		
 			
-			String uploadPath =root+fileName;//저장경로	
-			System.out.println("upload: :" + upload);
-			System.out.println("저장경로"+uploadPath);
-			System.out.println("bytes : :"+bytes);
-			System.out.println("fileName : :"+fileName);
+			///// 글자 개행 및 날짜 맞춰서 초단위까지 해서 고유 파일처럼 보이게 하는 것
+			
+			int pos = fileName.indexOf("."); 
+			String filename = fileName.substring(0, pos);
+			String filelast = fileName.substring(pos,fileName.length());
+			SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date date = new Date();
+			String date1 = sd.format(date);
+			System.out.println(filename+date1);
 			
 			
-
 			
-			out = new FileOutputStream(new File("C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+fileName));
-			
+			// 파일 아웃 스트림 
+			out = new FileOutputStream(new File("C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"+filename+date1+filelast));           
+			out.write(bytes);
 			
             
-			out.write(bytes);
-            String callback = request.getParameter("CKEditorFuncNum");
+			
+			
+			//ck 에디터 이미지 업로드시 발생하는 코드 
+			String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl =  "http://192.168.10.5/resources/editor/image2/ID"+fileName;//url경로
-            System.out.println("callback : " + callback +"fileUrl : " + fileUrl);  
-           
-            System.out.println(fileUrl);
+            String fileUrl =  "http://192.168.10.5/resources/editor/image2/ID"+filename+date1+filelast;//url경로           
             printWriter.println("<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
             		+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
                     + callback
                     + ",'"
                     + fileUrl
                     + "','이미지를 업로드 .'"
-                    + ");"
-                    + "alert($('#ttest').val());"                                                                   
-                    + "</script>");            
-//       System.out.println("<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction("
-//                    + callback
-//                    + ",'"
-//                    + fileUrl
-//                    + "','이미지를 업로드 .'"
-//                    + ");"                                                                          
-//                    + "</script>");
-            printWriter.flush();
-            
-        
-            
+                    + ");"                                                                               
+                    + "</script>");
+            //  printWriter.println (callback = 0,1 1이면 된다 , fileUrl =url 경로 쓰는것, alart 창과같다 ) 형식에 맞춰써야됨.
+            printWriter.flush();                              
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,12 +167,12 @@ public class TestController {
                  e.printStackTrace();
              }
         	
-        }
-        
-        
-        
+        }                       
       return;
 	}
+	
+	
+	/*  delete.do 는 임시 파일 만들고 하루마다 갱신하니까 의미가 사라졌다. 
 	@ResponseBody
 	@RequestMapping(value="/delete.do")
 	public void delete(String[] arr,HttpServletRequest request) {
@@ -206,7 +200,7 @@ public class TestController {
 	        }
 	             
 			}
-	    }
+	    }*/
 	
 	@RequestMapping(value="/testView.do")
 	public ModelAndView testAll() {
