@@ -9,7 +9,7 @@
     <insert id="insertStudio" parameterType="studio">
    	 insert into studio values(seq_studio_no.nextval,#{memberId},
    	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
-   	 #{studioPrice},#{studioFilename},#{studioFilepath},#{status},#{viewstatus},#{studioScope},
+   	 #{studioPrice},#{studioContent},#{studioTime},#{studioCamera},#{studioFilename},#{studioFilepath},#{status},#{viewstatus},#{studioScope},
    	 #{studioTag},#{studioLatitude},#{studioLongtitude})
     </insert>
     <insert id="insertDress" parameterType="dress">
@@ -60,6 +60,9 @@
     	studio_loc as studioLoc,
     	studio_addr as studioAddr,
     	studio_price as studioPrice,
+    	studio_content as studioContent,
+    	studio_time as studioTime,
+    	studio_camera as studioCamera,
     	studio_filename as studioFilename,
     	studio_filepath as studioFilepath,
     	status as status,
