@@ -133,7 +133,7 @@ public class TestController {
 			out.write(bytes);
             String callback = request.getParameter("CKEditorFuncNum");
             printWriter = response.getWriter();
-            String fileUrl =  "http://localhost/resources/editor/image/ID"+fileName;//url경로
+            String fileUrl =  "http://192.168.10.5/resources/editor/image2/ID"+fileName;//url경로
             System.out.println("callback : " + callback +"fileUrl : " + fileUrl);  
            
             System.out.println(fileUrl);
