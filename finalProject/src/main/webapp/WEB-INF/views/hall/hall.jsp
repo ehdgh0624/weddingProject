@@ -15,64 +15,64 @@
 			
 				<div class="headersub area"><!-- 가운데 정렬 div -->
 				<h3>장소 검색하기</h3>
-				<form action="" method="post">
-				<select class="addr">	<!-- 지역 select -->
-					<option value="모든 지역">모든 지역</option>
-					<option value="서울">서울</option>
-					<option value="부산">부산</option>
-					<option value="인천">인천</option>
-					<option value="대구">대구</option>
-					<option value="광주">광주</option>
-					<option value="대전">대전</option>
-					<option value="울산">울산</option>
-					<option value="세종특별자치시">세종특별자치시</option>
-					<option value="경기">경기</option>
-					<option value="강원">강원</option>
-					<option value="충북">충북</option>
-					<option value="충남">충남</option>
-					<option value="전북">전북</option>
-					<option value="전남">전남</option>
-					<option value="경북">경북</option>
-					<option value="경남">경남</option>
-					<option value="제주">제주</option>
-				</select>
-				<select class="halltype">	<!-- 결혼식장 타입 -->
-					<option value="모든 타입">모든 타입</option>
-					<option value="갤러리">갤러리</option>
-					<option value="경기장">경기장</option>
-					<option value="골프장">골프장</option>
-					<option value="공공장소">공공장소</option>
-					<option value="공연장">공연장</option>
-					<option value="공원">공원</option>
-					<option value="극장">극장</option>
-					<option value="농장">농장</option>
-					<option value="레스토랑">레스토랑</option>
-					<option value="문화재">문화재</option>
-					<option value="복합문화공간">복합문화공간</option>
-					<option value="선박">선박</option>
-					<option value="식물원">식물원</option>
-					<option value="스튜디오">스튜디오</option>
-					<option value="연습공간">연습공간</option>
-					<option value="웨딩홀">웨딩홀</option>
-					<option value="카페">카페</option>
-					<option value="펜션">펜션</option>
-					<option value="하우스웨딩홀">하우스웨딩홀</option>
-					<option value="호텔">호텔</option>
-				</select>
-				<select class="menu">	<!-- 식사 메뉴 -->
-					<option value="메뉴 선택">메뉴 선택</option>
-					<option value="한식">한식</option>
-					<option value="일식">일식</option>
-					<option value="중식">중식</option>
-					<option value="양식">양식</option>
-					<option value="뷔페">뷔페</option>
-				</select>
-				<div class="hallPerson">
-				<input type="text" id="hallPerson" name="hallPerson" placeholder="인원을 입력해주세요.">
-				</div>
-				<input type="text" id="searchHall" name="searckHall" placeholder="검색할 매장명을 입력해주세요."> <!-- 결혼식장 이름 입력 -->
-				<button type="button" id="btnHall">검색하기</button>	  <!-- 결혼식장 이름 검색 -->	
-				</form>
+				<form action="/hallSc.do" method="get">
+            <select class="addr" name="addr">   <!-- 지역 select -->
+               <option value="전국">모든 지역</option>
+               <option value="서울">서울</option>
+               <option value="부산">부산</option>
+               <option value="인천">인천</option>
+               <option value="대구">대구</option>
+               <option value="광주">광주</option>
+               <option value="대전">대전</option>
+               <option value="울산">울산</option>
+               <option value="세종특별자치시">세종특별자치시</option>
+               <option value="경기">경기</option>
+               <option value="강원">강원</option>
+               <option value="충북">충북</option>
+               <option value="충남">충남</option>
+               <option value="전북">전북</option>
+               <option value="전남">전남</option>
+               <option value="경북">경북</option>
+               <option value="경남">경남</option>
+               <option value="제주">제주</option>
+            </select>
+            <select class="halltype" name="hallType">   <!-- 결혼식장 타입 -->
+               <option value="전체">모든 타입</option>
+               <option value="갤러리">갤러리</option>
+               <option value="경기장">경기장</option>
+               <option value="골프장">골프장</option>
+               <option value="공공장소">공공장소</option>
+               <option value="공연장">공연장</option>
+               <option value="공원">공원</option>
+               <option value="극장">극장</option>
+               <option value="농장">농장</option>
+               <option value="레스토랑">레스토랑</option>
+               <option value="문화재">문화재</option>
+               <option value="복합문화공간">복합문화공간</option>
+               <option value="선박">선박</option>
+               <option value="식물원">식물원</option>
+               <option value="스튜디오">스튜디오</option>
+               <option value="연습공간">연습공간</option>
+               <option value="웨딩홀">웨딩홀</option>
+               <option value="카페">카페</option>
+               <option value="펜션">펜션</option>
+               <option value="하우스웨딩홀">하우스웨딩홀</option>
+               <option value="호텔">호텔</option>
+            </select>
+            <select class="menu" name="menuType">   <!-- 식사 메뉴 -->
+               <option value="0">메뉴 선택</option>
+               <option value="1">한식</option>
+               <option value="2">일식</option>
+               <option value="3">중식</option>
+               <option value="4">양식</option>
+               <option value="5">뷔페</option>
+            </select>
+            <div class="hallPerson">
+            <input type="text" id="hallPerson" name="hallPerson" placeholder="인원을 입력해주세요.">
+            </div>
+            <input type="text" id="searchHall" name="searckHall" placeholder="검색할 매장명을 입력해주세요."> <!-- 결혼식장 이름 입력 -->
+            <button type="submit" id="btnHall">검색하기</button>     <!-- 결혼식장 이름 검색 -->   
+            </form>
 				</div>
 			</div>
 			<div class="contents">	<!-- 결혼식장 리스트 출력 div -->
@@ -128,19 +128,6 @@
 		$("#choesinsun").css("border","1px solid #f46629");
 	});
 	
-	$("#bthHall").click(function(){
-		$.ajax({
-			url:"hallSc.do",
-			type:"GET",
-			dataType:"json",
-			success:function(data){
-				
-			},
-			error:function(){
-				alert("에러발생!");
-			}
-		});
-	});
 </script>
 
 <%--  footer --%>

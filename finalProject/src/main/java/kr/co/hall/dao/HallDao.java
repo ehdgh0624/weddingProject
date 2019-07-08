@@ -2,6 +2,7 @@ package kr.co.hall.dao;
 
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,12 @@ public class HallDao {
 		list = sqlSession.selectList("hall.selectAllList");
 		int count = list.size();
 		return count;
+	}
+	public List<Hall> searchHall(int start, int end) {
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		return sqlSession.selectList("hall.hallSearch",map);
 	}
 	
 }

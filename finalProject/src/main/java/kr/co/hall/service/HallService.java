@@ -49,6 +49,74 @@ public class HallService {
 				HallPage pd = new HallPage(hList, pageNavi, reqPage);
 				return pd;
 	}
+
+
+	public HallPage searchHall(int reqPage) {
+		//페이지 당 게시물 수
+		int numPerPage = 9;
+		//현재 등록되어있는 총 게시물 수
+		int totalCount = hallDao.totalCount();
+		//페이지 수
+		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		//게시물 번호 범위
+		int start = totalCount - (reqPage * numPerPage - 1);
+		int end = totalCount - (reqPage-1) * numPerPage;
+		ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end);
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='pageBtn' href='hall.do?reqPage="+(pageNo-1)+"'>이전</a>";
+		}
+		int i = 1;
+		while(!(i++ > pageNaviSize || pageNo > totalPage)) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"'>다음</a>";
+		}
+		HallPage pd = new HallPage(hList, pageNavi, reqPage);
+		return pd;
+	}
+
+
+	public HallPage HallSearch(int reqPage, Hall h, int person) {
+		//페이지 당 게시물 수
+				int numPerPage = 9;
+				//현재 등록되어있는 총 게시물 수
+				int totalCount = hallDao.totalCount();
+				//페이지 수
+				int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+				//게시물 번호 범위
+				int start = totalCount - (reqPage * numPerPage - 1);
+				int end = totalCount - (reqPage-1) * numPerPage;
+				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end);
+				String pageNavi = "";
+				int pageNaviSize = 5;
+				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+				if(pageNo != 1) {
+					pageNavi += "<a class='pageBtn' href='hall.do?reqPage="+(pageNo-1)+"'>이전</a>";
+				}
+				int i = 1;
+				while(!(i++ > pageNaviSize || pageNo > totalPage)) {
+					if(reqPage == pageNo) {
+						pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+					}else {
+						pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+					}
+					pageNo++;
+				}
+				if(pageNo <= totalPage) {
+					pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"'>다음</a>";
+				}
+				HallPage pd = new HallPage(hList, pageNavi, reqPage);
+				return pd;
+	}
 	
 
 }

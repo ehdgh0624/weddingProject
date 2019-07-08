@@ -63,4 +63,55 @@
 			   hall_date as hallDate 
 			   from hall where status=1 and viewstatus=0
 	</select>
+	<select id="hallSearch" parameterType="hall" resultType="hall">
+		select hall_no as hallNo,
+			   member_id as memberId,
+			   code as code,
+			   hall_type as hallType,
+			   hall_name as hallName,
+			   hall_loc as hallLoc,
+			   hall_addr as hallAddr,
+			   hall_content as hallContent,
+			   hall_img as hallImg,
+			   hall_path as hallPath,
+			   hall_price as hallPrice,
+			   hall_min_person as hallMinPerson,
+			   hall_max_person as hallMaxPerson,
+			   hall_scope as hallScope,
+			   hall_foodtype as hallFoodetype,
+			   hall_foodMenu as hallFoodmenu,
+			   hall_foodprice as hallFoodprice,
+			   hall_tel as hallTel,
+			   hall_time as hallTime,
+			   hall_service_food as hallServiceFood,
+			   hall_service_drink as hallServiceDrink,
+			   hall_service_parking as hallServiceParking,
+			   status as status,
+			   viewstatus as viewStatus,
+			   hall_tag as hallTag,
+			   hall_latitude as hallLatitude,
+			   hall_longitude as hallLongitude,
+			   hall_date as hallDate 
+			   from hall 
+			   <trim prefix="where" prefixOverrides="AND | OR">
+			   		<if test="hallLoc != null">
+			   			hall_Loc like #{halLoc}
+			   		</if>
+			   		<if test="hallType != null">
+			   			AND hall_Type like #{hallType}
+			   		</if>
+			   		<if test="hallFoodType != null">
+			   			AND hall_Foodtype like #{hallFoodType}
+			   		</if>
+			   		<if test="hallMinPerson != null">
+			   			AND hall_Min_Person like #{hallMinPerson}
+			   		</if>
+			   		<if test="hallMaxPerson != null">
+			   			AND hall_Max_Person like #{hallMaxPerson}
+			   		</if>			   
+			   		<if test="hallName != null">
+			   			AND hall_Name like #{hallName}
+			   		</if>
+			   	</trim>
+	</select>
 </mapper>
