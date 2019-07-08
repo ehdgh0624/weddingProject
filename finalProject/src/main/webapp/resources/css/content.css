@@ -69,7 +69,7 @@
 .simulator-tbl input[type='text'].wedding-date{width:80%;}
 
 .simulator-select-tit{font-size:20px; line-height:30px; color:#2d2d2d; font-weight:500; padding:20px 0;}
-.simulator-select-comment{padding:20px; background:#f5f5f5;}
+.simulator-select-comment{padding:20px; background:#f5f5f5; margin-bottom:50px;}
 .simulator-select-txt{padding-left:10px; position:relative; font-size:13px; line-height:20px; }
 .simulator-select-txt:before{position:absolute; content:""; width:3px; height:3px; background:#333; border-radius:6px; top:9px; left:0;}
 .simulator-select-con{position:relative; margin-bottom:30px;}
@@ -77,8 +77,9 @@
 .simulator-select-group .more-btn{width:40px; height:40px; text-align:center; border:1px solid #ddd; position:absolute; top:-55px; right:0; border-radius:3px; 
 background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; background-size:30px;  transition:all 0.5s;}
 .simulator-select-group .more-btn:hover{border:1px solid #666; transform:rotate(90deg); transition:all 0.5s; }
-.simulator-select-group-list{}
-.simulator-select-list-con{float:left; width:360px; margin:0 20px; }
+/*.simulator-select-group{position:relative; min-height:423px;}
+.simulator-select-group-list{position:absolute; height:423px; left:50%;}*/
+.simulator-select-list-con{float:left; width:360px; margin:10px 20px; }
 .simulator-select-list{box-shadow:3px 3px 5px #ddd; border-radius:3px;}
 .simulator-select-img-thum{position:relative; padding-top:61.2%; overflow:hidden;}
 .simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0;}
@@ -93,3 +94,6 @@ background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; backgro
 .simulator-select-btn-group > button{width:150px; height:35px; border-radius:3px; border:1px solid #ddd; margin:0 7px; font-size:14px; color:#666; font-weight:500; 
 background-color:#fff; transition:all 0.3s;}
 .simulator-select-btn-group > button:hover{background-color:#666; color:#fff; transition:all 0.3s;}
+.slick-prev.slick-arrow, .slick-next.slick-arrow{position:absolute; top:50%; margin-top:-13px; z-index:9;}
+.slick-prev.slick-arrow{left:-30px;}
+.slick-next.slick-arrow{right:-30px;}

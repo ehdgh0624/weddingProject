@@ -3,21 +3,27 @@
 <mapper namespace="simulator">
 	<!-- 업체번호, 코드, 업체명, 기본 가격, 전화번호, 주소, 태그, 이미지경로 -->
 	<!-- 검색조건 -> 홀:지역,인원수/드레스:지역/스튜디오:지역/메이크업:지역 -->
-	<select id="hSearchList" parameterType="simulator" resultType="hall">
+	<select id="hSearchList" parameterType="map" resultType="hall">
 		select 
 			hall_no as hallNo,
-			code as code,
+			code,
 			hall_name as hallName,
 			hall_price as hallPrice,
 			hall_tel as hallTel,
 			hall_addr as hallAddr,
 			hall_tag as hallTag,
 			hall_path as hallPath
-		from
+		from (select rownum as rnum, h.* from (select * from hall<if test="!simulator.equals('전국')"> where hall_addr like '%'||#{simulator}||'%'</if>) h)
+		where rnum between ${start} and ${end}
+	</select>
+	<select id="hTotalCount" parameterType="simulator" resultType="_int">
+		select 
+			count(*)
+		from 
 			hall
 		<if test="!weddingLoc.equals('전국')">
-			where
-				hall_loc like '%'||#{weddingLoc}||'%'
+		where
+			hall_addr like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
 	<select id="dSearchList" parameterType="map" resultType="dress">
@@ -30,9 +36,8 @@
 			dress_addr as dressAddr,
 			dress_tag as dressTag,
 			dress_filepath as dressFilepath 
-		from (select rownum as rnum, d.* from (select * from dress<if test="!simulator.equals('전국')"> where dress_addr like '%'||#{simulator}||'%'</if>) 
-		d)
-		 where rnum between ${start} and ${end}
+		from (select rownum as rnum, d.* from (select * from dress<if test="!simulator.equals('전국')"> where dress_addr like '%'||#{simulator}||'%'</if>) d)
+		where rnum between ${start} and ${end}
 	</select>
 	<select id="dTotalCount" parameterType="simulator" resultType="_int">
 		select 
@@ -44,7 +49,53 @@
 			dress_addr like '%'||#{weddingLoc}||'%'
 		</if>
 	</select>
-	<select id="ajaxDressList" parameterType="map" resultType="dress">
+	<select id="mSearchList" parameterType="map" resultType="makeup">
+		select 
+			makeup_no as makeupNo,
+			code,
+			makeup_name as makeupName,
+			makeup_basic_price as makeupBasicPrice,
+			makeup_tel as makeupTel,
+			makeup_addr as makeupAddr,
+			makeup_tag as makeupTag,
+			makeup_filepath as makeupFilepath 
+		from (select rownum as rnum, make.* from (select * from makeup<if test="!simulator.equals('전국')"> where makeup_addr like '%'||#{simulator}||'%'</if>) make)
+		where rnum between ${start} and ${end}
+	</select>
+	<select id="mTotalCount" parameterType="simulator" resultType="_int">
+		select 
+			count(*)
+		from 
+			makeup
+		<if test="!weddingLoc.equals('전국')">
+		where
+			makeup_addr like '%'||#{weddingLoc}||'%'
+		</if>
+	</select>
+	<select id="stTotalCount" parameterType="simulator" resultType="_int">
+		select 
+			count(*)
+		from 
+			studio
+		<if test="!weddingLoc.equals('전국')">
+		where
+			studio_addr like '%'||#{weddingLoc}||'%'
+		</if>
+	</select>
+	<select id="stSearchList" parameterType="map" resultType="studio">
+		select 
+			studio_no as studioNo,
+			code,
+			studio_name as studioName,
+			studio_price as studioPrice,
+			studio_tel as studioTel,
+			studio_addr as studioAddr,
+			studio_tag as studioTag,
+			studio_filepath as studioFilepath 
+		from (select rownum as rnum, st.* from (select * from studio<if test="!simulator.equals('전국')"> where studio_addr like '%'||#{simulator}||'%'</if>) st)
+		where rnum between ${start} and ${end}
+	</select>
+	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">
 		select 
 			dressNo,
 			code,
@@ -66,5 +117,5 @@
 			</if>
 			)
 		where rnum between #{start} and #{end}
-	</select>
+	</select> -->
 </mapper>
