@@ -131,11 +131,11 @@ public class MemberController {
 		return "member/mypage";
 	}
 	//아직 적용안함
-	@RequestMapping(value = "/addCompany.do")
+	@RequestMapping(value = "/goAddTerms.do")
 	public String addCompany() {
-		System.out.println("업체등록페이지 호출");
+		System.out.println("업체등록 약관 호출");
 
-		return "member/addCompany";
+		return "member/addMemberTerms";
 	}
 
 	@RequestMapping(value = "/companyEnroll.do")

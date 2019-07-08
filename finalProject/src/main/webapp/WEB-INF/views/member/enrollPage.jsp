@@ -59,7 +59,7 @@
 					<button type="reset">초기화</button>
 					<button type="button" onclick="location.href='/index.jsp'">메인페이지로</button>
 					<br>
-				
+
 				</div>
 			</form>
 		</div>
