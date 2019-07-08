@@ -27,16 +27,21 @@ public class HallDao {
 		return sqlSession.selectList("hall.pageSelectAllList",map);
 	}
 	public int totalCount() {
-		List list = null;
-		list = sqlSession.selectList("hall.selectAllList");
-		int count = list.size();
+		int count = sqlSession.selectOne("hall.selectAllList");
 		return count;
 	}
-	public List<Hall> searchHall(int start, int end) {
-		Map<String, Integer> map = new HashMap<String,Integer>();
+	public List<Hall> searchHall(int start, int end, Hall h, int person) {
+		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
+		map.put("h", h);
+		map.put("person", person);
+		System.out.println(h.getHallType());
 		return sqlSession.selectList("hall.hallSearch",map);
+	}
+	public int totalCountSearch() {
+		int count = sqlSession.selectOne("hall.searchList");
+		return count;
 	}
 	
 }

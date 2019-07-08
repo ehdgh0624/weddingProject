@@ -55,13 +55,13 @@ public class HallService {
 		//페이지 당 게시물 수
 		int numPerPage = 9;
 		//현재 등록되어있는 총 게시물 수
-		int totalCount = hallDao.totalCount();
+		int totalCount = hallDao.totalCountSearch();
 		//페이지 수
 		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
 		//게시물 번호 범위
 		int start = totalCount - (reqPage * numPerPage - 1);
 		int end = totalCount - (reqPage-1) * numPerPage;
-		ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end);
+		ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.pageHallList(start,end);
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
@@ -95,7 +95,7 @@ public class HallService {
 				//게시물 번호 범위
 				int start = totalCount - (reqPage * numPerPage - 1);
 				int end = totalCount - (reqPage-1) * numPerPage;
-				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end);
+				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end,h,person);
 				String pageNavi = "";
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
