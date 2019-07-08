@@ -43,6 +43,8 @@
 	<context:component-scan base-package="kr.co.simulator" />
 	<context:component-scan base-package="kr.co.hall" />
 	<context:component-scan base-package="kr.co.review" />
+	<context:component-scan base-package="kr.co.test"/>
 	
+	<task:annotation-driven/>
 	
 </beans:beans>
