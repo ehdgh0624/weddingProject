@@ -16,7 +16,7 @@ public class Reservation {
 	private int amount;						//구매 수량
 	private int orderStatus;				//주문 상태(결제대기=0/결제완료=1/결제취소대기=2/결제취소완료=3)
 	private String deliveryNum;				//배송번호(택배)
-	private Date orderDate;					//주문날짜
+	private Date orderDate;					//주문날짜 or 예약날짜
 	private String orderMemo;				//주문메모
 	private String orderAddr;				//배송예정주소
 	private String memberEmail;				//예약자 이메일

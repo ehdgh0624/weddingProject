@@ -5,10 +5,15 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import kr.co.reservation.model.dao.ReservationDao;
+import kr.co.reservation.model.vo.Reservation;
 
 @Service("reservationService")
 public class ReservationService {
 	@Autowired
 	@Qualifier("reservationDao")
 	private ReservationDao reservationDao;
+	
+	public Reservation selectOneReservation(int reservationNo) {
+		return reservationDao.selectOneReservation(reservationNo);
+	}
 }
