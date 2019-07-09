@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
+import kr.co.reservation.model.vo.Reservation;
 import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -81,8 +82,11 @@ public class CollectionDao {
 		return (Studio)sqlSession.selectOne("studio.viewSelectOne",studioNo);
 	}
 	
-	public List<StudioSelect> selectListStudioOption(int studioNo){
-		return sqlSession.selectList("studioSelect.selectListOption",studioNo);
+	public List<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType){
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("studioNo", studioNo);
+		map.put("studioOptionType", studioOptionType);
+		return sqlSession.selectList("studioSelect.selectListOption",map);
 	}
 	
 	public Dress selectOneDress(int dressNo) {
@@ -127,5 +131,39 @@ public class CollectionDao {
 		map.put("code", code);
 		map.put("memberId", memberId);
 		return sqlSession.delete("scrapbook.deleteOneScrap",map);
+	}
+	
+	public int insertReservationStudio(Reservation vo, String weddingDate, String option2Date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", vo.getCode());
+		map.put("prdNo", vo.getPrdNo());
+		map.put("weddingDate", weddingDate);
+		map.put("weddingTime", vo.getWeddingTime());
+		map.put("totalPrice", vo.getTotalPrice());
+		map.put("memberId", vo.getMemberId());
+		map.put("memberName", vo.getMemberName());
+		map.put("memberPhone", vo.getMemberPhone());
+		map.put("memberEmail", vo.getMemberEmail());
+/*		if(vo.getOption1() == null) {
+			map.put("option1", "null");			
+		}else {
+			map.put("option1", vo.getOption1());			
+		}
+		if(vo.getOption2() == null) {
+			map.put("option2", "null");			
+		}else {
+			map.put("option2", vo.getOption2());
+		}
+		if(vo.getOption3() == null) {
+			map.put("option3", "null");			
+		}else {
+			map.put("option3", vo.getOption3());
+		}*/
+		map.put("option1", vo.getOption1());			
+		map.put("option2", vo.getOption2());
+		map.put("option2Date", option2Date);
+		map.put("option2Time", vo.getOption2Time());
+		map.put("option3", vo.getOption3());
+		return sqlSession.insert("reservation.insertReservationStudio", map);
 	}
 }
