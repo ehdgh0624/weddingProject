@@ -48,7 +48,7 @@ public class HallDao {
 		map.put("hallFoodtype", String.valueOf(h.getHallFoodtype()));
 		map.put("hallName", h.getHallName());
 		map.put("person", String.valueOf(person));
-		int count = sqlSession.selectOne("hall.searchList");
+		int count = sqlSession.selectOne("hall.searchList",map);
 		return count;
 	}
 	

@@ -93,15 +93,15 @@ public class HallService {
 				//페이지 수
 				int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
 				//게시물 번호 범위
-				int start = totalCount - (reqPage * numPerPage - 1);
-				int end = totalCount - (reqPage-1) * numPerPage;
+				int start = (reqPage*numPerPage-numPerPage)+1;
+				int end = reqPage*numPerPage;
 				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end,h,person);
 				String pageNavi = "";
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 				if(pageNo != 1) {
-					pageNavi += "<a class='pageBtn' href='hallSc.do?reqPage="+(pageNo-1)+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
-					+"&menuType="+h.getHallFoodtype()+"&=hallPerson"+person+"&searckHall"+h.getHallName()+"'>이전</a>";
+					pageNavi += "<a class='pageBtn' href='/hallSc.do?reqPage="+(pageNo-1)+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
+					+"&menuType="+h.getHallFoodtype()+"&hallPerson="+person+"&searckHall="+h.getHallName()+"'>이전</a>";
 				}
 				int i = 1;
 				while(!(i++ > pageNaviSize || pageNo > totalPage)) {
@@ -109,13 +109,13 @@ public class HallService {
 						pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
 					}else {
 						pageNavi += "<a class='pageBtn' href='/hallSc.do?reqPage="+pageNo+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
-						+"&menuType="+h.getHallFoodtype()+"&=hallPerson"+person+"&searckHall"+h.getHallName()+"'>"+pageNo+"</a>";
+						+"&menuType="+h.getHallFoodtype()+"&hallPerson="+person+"&searckHall="+h.getHallName()+"'>"+pageNo+"</a>";
 					}
 					pageNo++;
 				}
 				if(pageNo <= totalPage) {
 					pageNavi += "<a class='pageBtn' href='/hallSc.do?reqPage="+pageNo+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
-					+"&menuType="+h.getHallFoodtype()+"&=hallPerson"+person+"&searckHall"+h.getHallName()+"'>다음</a>";
+					+"&menuType="+h.getHallFoodtype()+"&hallPerson="+person+"&searckHall="+h.getHallName()+"'>다음</a>";
 				}
 				HallPage pd = new HallPage(hList, pageNavi, reqPage);
 				return pd;

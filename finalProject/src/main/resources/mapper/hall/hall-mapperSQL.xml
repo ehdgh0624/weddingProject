@@ -38,7 +38,7 @@
 	</select>
 	
 	<select id="searchList" parameterType="map"  resultType="_int">
-	select count(*) from hall
+	select count(*) from (select * from hall 
 		<trim prefix="where" prefixOverrides="AND | OR">
 			   		<if test="hallLoc != '전국'">
 			   			hall_Loc like '%'||#{hallLoc, jdbcType=VARCHAR}||'%'
@@ -52,10 +52,11 @@
 			   		<if test="hallFoodtype > 0">
 			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
 			   		</if>
-			   		<if test="hallName != null ">
+			   		<if test="hallName != '' ">
 			   			AND (hall_Name like '%'||#{hallName, jdbcType=VARCHAR}||'%' OR hall_tag like '%'||#{hallName, jdbcType=VARCHAR}||'%')
 			   		</if>
 		 </trim>
+		 )
 	 </select>
 	
 	<select id="hallSearch" parameterType="map" resultType="hall">
