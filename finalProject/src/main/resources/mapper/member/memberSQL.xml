@@ -159,6 +159,7 @@
 		select 
 			reservation_no as reservationNo,
 			code as code,
+			prd_name as prdName,
 			wedding_date as weddingDate,
 			wedding_time as weddingTime,
 			totalprice as totalPrice,

@@ -34,16 +34,16 @@
 							<th>예약날짜</th>
 						</tr>
 						<c:forEach var="list" items="${entry.value }">
-						<tr>
+						<tr onclick="location.href='/reservationView.do?reservationNo=${list.reservationNo }'">
 							<td>${list.reservationNo }</td>
 							<td>${list.code }</td>
 							<td>${list.prdName }</td>
-							<td></td>
-							<td></td>
+							<td>${list.totalPrice }</td>
+							<td>${list.orderDate }</td>
 						</tr>
-						
+						</c:forEach>
 					</table>	
-					</c:forEach>
+					
 			</c:forEach>	
 				
 		</div>
