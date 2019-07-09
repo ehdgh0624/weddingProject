@@ -17,7 +17,7 @@
 				<h3>장소 검색하기</h3>
 				<form action="/hallSc.do" method="get">
             <select class="addr" name="hallLoc">   <!-- 지역 select -->
-               <option value="전국">모든 지역</option>
+               <option value="전국">모든지역</option>
                <option value="서울">서울</option>
                <option value="부산">부산</option>
                <option value="인천">인천</option>
@@ -37,7 +37,7 @@
                <option value="제주">제주</option>
             </select>
             <select class="halltype" name="hallType">   <!-- 결혼식장 타입 -->
-               <option value="전체">모든 타입</option>
+               <option value="전체">모든타입</option>
                <option value="갤러리">갤러리</option>
                <option value="경기장">경기장</option>
                <option value="골프장">골프장</option>

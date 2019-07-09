@@ -31,14 +31,23 @@ public class HallDao {
 		return count;
 	}
 	public List<Hall> searchHall(int start, int end, Hall h, int person) {
-		Map<String, Object> map = new HashMap<String,Object>();
-		map.put("start", start);
-		map.put("end", end);
-		map.put("h", h);
-		map.put("person", person);
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("start",String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("hallLoc", h.getHallLoc());
+		map.put("hallType", h.getHallType());
+		map.put("hallFoodtype", String.valueOf(h.getHallFoodtype()));
+		map.put("hallName", h.getHallName());
+		map.put("person", String.valueOf(person));
 		return sqlSession.selectList("hall.hallSearch",map);
 	}
-	public int totalCountSearch() {
+	public int totalCountSearch(Hall h, int person) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("hallLoc", h.getHallLoc());
+		map.put("hallType", h.getHallType());
+		map.put("hallFoodtype", String.valueOf(h.getHallFoodtype()));
+		map.put("hallName", h.getHallName());
+		map.put("person", String.valueOf(person));
 		int count = sqlSession.selectOne("hall.searchList");
 		return count;
 	}
