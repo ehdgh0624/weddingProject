@@ -2,14 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
+<script
+   src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
+
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
 <%-- wrap --%>
 <section id="adminWrap">
+
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
+	
 		<div class="area">
 			<form action="/companyEnroll.do">
 				<div class="comm-tbl-box" >
@@ -33,6 +38,8 @@
 								<button type="button" onclick="sample4_execDaumPostcode()"
 								value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div>
+							<input type="text" name="#shopLatitude">
+							<input type="text" name="#shopLongtitude">
 						</td>
 						</tr>
 						<tr>
@@ -315,6 +322,7 @@
 		</div>	
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 	<%--  footer --%>
+
 </section>
 
 <script><!--페이지 처리 스크립트-->
@@ -477,10 +485,31 @@
 	        var result = response.result, // 검색 결과의 컨테이너
 	            items = result.items; // 검색 결과의 배열
 
-	            item = 
-	        // do Something
+	        
+	         $('#shopLatitude').val(items[0].point.y);
+	         $('#shopLongitude').val(items[0].point.x);
 	    });	
 	});
+	
+	   function getXY(address) {
+
+		      naver.maps.Service.geocode({
+		         address: address
+		      }, function (status, response) {
+
+		         if (status !== naver.maps.Service.Status.OK) {
+		            return alert("someThing wrong");
+		         }
+
+		         var result = response.result, // 검색 결과의 컨테이너
+		            items = result.items; // 검색 결과의 배열
+
+		         $('#shopLatitude').val(items[0].point.y);
+		         $('#shopLongitude').val(items[0].point.x);
+		         console.log(items[0].point.y);
+		      });
+
+		   }
 </script>
 
 
