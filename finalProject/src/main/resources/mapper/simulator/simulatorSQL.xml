@@ -95,6 +95,9 @@
 		from (select rownum as rnum, st.* from (select * from studio<if test="!simulator.equals('전국')"> where studio_addr like '%'||#{simulator}||'%'</if>) st)
 		where rnum between ${start} and ${end}
 	</select>
+	<insert id="newSimulator" parameterType="simulator">
+		insert into simulator values(simulator_seq.nextval,#{memberId},#{weddingDate},#{weddingLoc},#{weddingPerson},0,sysdate)
+	</insert>
 	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">
 		select 
 			dressNo,

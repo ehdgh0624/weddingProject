@@ -80,6 +80,17 @@ public class SimulatorDao {
 		map.put("end", String.valueOf(end));
 		return sqlSession.selectList("simulator.stSearchList", map);
 	}
+
+	//Simulator 생성
+	public int newSimulator(Simulator simulator) {
+		return sqlSession.insert("simulator.newSimulator", simulator);
+	}
+
+	
+	
+	/*public Simulator newSimulator(Simulator simulator) {
+		return sqlSession.selectOne("simulator.newSimulator", simulator);
+	}*/
 	
 	
 
