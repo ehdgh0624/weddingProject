@@ -13,7 +13,7 @@ public class ReservationService {
 	@Qualifier("reservationDao")
 	private ReservationDao reservationDao;
 	
-	public Reservation selectOneReservation(int reservationNo) {
-		return reservationDao.selectOneReservation(reservationNo);
+	public Reservation selectOneReservation(int reservationNo, String memberId) {
+		return reservationDao.selectOneReservation(reservationNo, memberId);
 	}
 }

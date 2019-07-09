@@ -137,6 +137,7 @@ public class CollectionDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", vo.getCode());
 		map.put("prdNo", vo.getPrdNo());
+		map.put("prdName",vo.getPrdName());
 		map.put("weddingDate", weddingDate);
 		map.put("weddingTime", vo.getWeddingTime());
 		map.put("totalPrice", vo.getTotalPrice());
@@ -166,6 +167,8 @@ public class CollectionDao {
 		map.put("option3", vo.getOption3());
 		return sqlSession.insert("reservation.insertReservationStudio", map);
 	}
+	
+	
 	
 	public int selectReservationNo(String memberId) {
 		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
