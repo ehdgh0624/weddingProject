@@ -173,24 +173,32 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionViewDress.do")
-	public ModelAndView collectionViewDress(int dressNo) {
-		Dress d = collectionService.selectOneDress(dressNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(dressNo, "D");
+	public ModelAndView collectionViewDress(HttpSession session, @RequestParam int dressNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dress", d);
-		mav.addObject("galleryList", gList);
+		mav.addObject("dress", collectionService.selectOneDress(dressNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(dressNo, "D"));
+		mav.addObject("reviewList", collectionService.selectListReview(dressNo, "D"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), dressNo, "D");
+			mav.addObject("scrapbook", scrap);			
+		}
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
-	public ModelAndView collectionViewMakeup(int makeupNo) {
-		Makeup m = collectionService.selectOneMakeup(makeupNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(makeupNo, "M");
+	public ModelAndView collectionViewMakeup(HttpSession session, @RequestParam int makeupNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("makeup", m);
-		mav.addObject("galleryList", gList);
-		mav.setViewName("collection/collectionViewDress");
+		mav.addObject("makeup", collectionService.selectOneMakeup(makeupNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(makeupNo, "M"));
+		mav.addObject("reviewList", collectionService.selectListReview(makeupNo, "M"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), makeupNo, "M");
+			mav.addObject("scrapbook", scrap);
+		}
+		mav.setViewName("collection/collectionViewMakeup");
 		return mav;		
 	}
 	
@@ -268,13 +276,14 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationStudio.do")
-	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
+	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
 			vo = new Reservation();
 			vo.setCode(code);
 			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
 			vo.setWeddingTime(weddingTime);
 			vo.setTotalPrice(totalPrice);
 			vo.setMemberId(m.getMemberId());

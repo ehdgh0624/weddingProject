@@ -24,10 +24,16 @@ public class ReservationController {
 		Member m = (Member) session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
 		if(m != null) {
-			Reservation res = reservationService.selectOneReservation(reservationNo);
-			mav.addObject("reservation", res);
-			mav.setViewName("reservation/reservationView");
+			Reservation res = reservationService.selectOneReservation(reservationNo, m.getMemberId());
+			if(res != null) {
+				mav.addObject("reservation", res);
+				mav.setViewName("reservation/reservationView");				
+			}else {
+				mav.addObject("cause", 2);
+				mav.setViewName("reservation/reservationViewFailed");
+			}
 		}else {
+			mav.addObject("cause", 1);
 			mav.setViewName("reservation/reservationViewFailed");
 		}
 		return mav;
