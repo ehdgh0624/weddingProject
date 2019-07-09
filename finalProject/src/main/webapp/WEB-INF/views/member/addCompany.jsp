@@ -29,10 +29,10 @@
 							<th>우편번호</th>
 							<td><input type="text" id="sample4_postcode"
 								placeholder="우편번호" name="postNum">
-								<div class="common-tbl-btn-group join-btn-group">
-									<button type="button" onclick="sample4_execDaumPostcode()"
-										value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-								</div>
+							<div class="common-tbl-btn-group join-btn-group">
+								<button type="button" onclick="sample4_execDaumPostcode()"
+								value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+							</div>
 						</td>
 						</tr>
 						<tr>
@@ -365,6 +365,7 @@
 		
 	});
 </script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
@@ -389,6 +390,8 @@
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
 	});
+	
+	<!--주소-->
 	
 	function sample4_execDaumPostcode() {
 	    new daum.Postcode({
@@ -444,6 +447,40 @@
 	        }
 	    }).open();
 	}
+	
+	
+	
+	
+	var infoWindow = new naver.maps.InfoWindow({
+	    anchorSkew: true
+	});
+
+
+	
+
+
+
+	$('#firstStep').click(function() {
+		var roadAddr = $('#sample4_roadAddress').val();
+		var detailAddr = $('#sample4_detailAddress').val();
+		var fullAddr = roadAddr + "" + detailAddr;
+		console.log(fullAddr);
+	
+		
+		naver.maps.Service.geocode({
+	        address: fullAddr
+	    }, function(status, response) {
+	        if (status !== naver.maps.Service.Status.OK) {
+	            return alert('Something wrong!');
+	        }
+
+	        var result = response.result, // 검색 결과의 컨테이너
+	            items = result.items; // 검색 결과의 배열
+
+	            item = 
+	        // do Something
+	    });	
+	});
 </script>
 
 
