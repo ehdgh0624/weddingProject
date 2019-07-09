@@ -286,7 +286,12 @@ public class CollectionController {
 			vo.setOption2Time(option2Time);
 			vo.setOption3(option3);
 			int result = collectionService.insertReservationStudio(vo,weddingDate,option2Date);
-			return result;
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;				
+			}
 		}else {
 			return -1;
 		}

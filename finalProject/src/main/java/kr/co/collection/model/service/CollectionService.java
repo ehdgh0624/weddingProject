@@ -318,4 +318,8 @@ public class CollectionService {
 		return collectionDao.insertReservationStudio(vo, weddingDate, option2Date);
 	}
 	
+	public int selectReservationNo(String memberId) {
+		return collectionDao.selectReservationNo(memberId);
+	}
+	
 }

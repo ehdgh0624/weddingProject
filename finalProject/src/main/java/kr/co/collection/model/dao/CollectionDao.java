@@ -166,4 +166,9 @@ public class CollectionDao {
 		map.put("option3", vo.getOption3());
 		return sqlSession.insert("reservation.insertReservationStudio", map);
 	}
+	
+	public int selectReservationNo(String memberId) {
+		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
+		return result;
+	}
 }

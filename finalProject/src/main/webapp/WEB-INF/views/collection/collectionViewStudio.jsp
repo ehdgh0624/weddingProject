@@ -303,9 +303,9 @@
 			data : {code:code,prdNo:prdNo,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
-				if(data == 1){
+				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/reservationView.do";
+					location.href="/reservationView.do?reservationNo="+data;
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
