@@ -87,8 +87,9 @@
 			   hall_latitude as hallLatitude,
 			   hall_longitude as hallLongitude,
 			   hall_date as hallDate 
-			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d)
-			   <trim prefix="where" prefixOverrides="AND | OR">
+			   from (select rownum as rnum, d.* from (select * from hall 
+				    where status=1 and viewstatus=0  order by hall_no) d) 		   		
+			    <trim prefix="where" prefixOverrides="AND | OR">
 			   		<if test="hallLoc != '전국'">
 			   			hall_Loc like '%'||#{hallLoc, jdbcType=VARCHAR}||'%'
 			   		</if>
@@ -102,9 +103,9 @@
 			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
 			   		</if>
 			   		<if test="hallName != null ">
-			   			AND (hall_Name like '%'||#{hallName, jdbcType=VARCHAR}||'%') OR (hall_tag like '%'||#{hallName, jdbcType=VARCHAR}||'%')
+			   		AND (hall_Name like '%'||#{hallName, jdbcType=VARCHAR}||'%') OR (hall_tag like '%'||#{hallName, jdbcType=VARCHAR}||'%')
 			   		</if>
-		 </trim>
-			   	AND (rnum between #{start} and #{end}) order by rnum desc
+		 		</trim>
+			   order by rnum desc
 	</select>
 </mapper>

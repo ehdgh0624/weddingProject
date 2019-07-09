@@ -38,7 +38,6 @@ public class HallController {
 		Hall h = new Hall();
 		h.setHallLoc(hallLoc);
 		h.setHallType(hallType);
-		System.out.println(h.getHallType()+"    "+hallType);
 		h.setHallFoodtype(Integer.parseInt( menuType));
 		int person ;
 		h.setHallName(searckHall);
