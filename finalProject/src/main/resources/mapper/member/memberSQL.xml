@@ -155,6 +155,18 @@
     	hall_longitude as hallLongtitude
     	from hall where member_id=#{memberId}
       </select>
-      
+      <select id="selectAllreserv"  resultType="reservation" parameterType="member">
+		select 
+			reservation_no as reservationNo,
+			code as code,
+			prd_name as prdName,
+			wedding_date as weddingDate,
+			wedding_time as weddingTime,
+			totalprice as totalPrice,
+			member_id as memberId,
+			member_name as memberName,
+			order_date as orderDate
+		from reservation where member_id=#{memberId}
+	</select>
     
 </mapper>

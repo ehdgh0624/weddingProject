@@ -3,10 +3,11 @@ package kr.co.reservation.model.vo;
 import java.sql.Date;
 
 public class Reservation {
-	private int reservationNo;				//예약번호
-	private String code;					//타입분류
-	private int prdNo;						//업체번호, 상품번호
-	private Date weddingDate;				//결혼 예정일
+	private int reservationNo;				//예약번호 --
+	private String code;					//타입분류--
+	private int prdNo;						//업체번호, 상품번호--
+	private String prdName;					//업체이름
+	private Date weddingDate;				//결혼 예정일--
 	private String weddingTime;				//결혼 예정시각
 	private int totalPrice;					//총 가격
 	private String memberId;				//예약자 아이디
@@ -16,7 +17,7 @@ public class Reservation {
 	private int amount;						//구매 수량
 	private int orderStatus;				//주문 상태(결제대기=0/결제완료=1/결제취소대기=2/결제취소완료=3)
 	private String deliveryNum;				//배송번호(택배)
-	private Date orderDate;					//주문날짜
+	private Date orderDate;					//주문날짜 or 예약날짜
 	private String orderMemo;				//주문메모
 	private String orderAddr;				//배송예정주소
 	private String memberEmail;				//예약자 이메일
@@ -27,21 +28,29 @@ public class Reservation {
 	private String bankHolder;				//예금주
 	private String bankDate;				//입금기한
 	private String option1;					//옵션1
+	private Date option1Date;
+	private String option1Time;
 	private String option2;					//옵션2
+	private Date option2Date;
+	private String option2Time;
 	private String option3;					//옵션3
+	private Date option3Date;
+	private String option3Time;
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reservation(int reservationNo, String code, int prdNo, Date weddingDate, String weddingTime, int totalPrice,
-			String memberId, String memberName, String memberPhone, String payMethod, int amount, int orderStatus,
-			String deliveryNum, Date orderDate, String orderMemo, String orderAddr, String memberEmail,
+	public Reservation(int reservationNo, String code, int prdNo, String prdName, Date weddingDate, String weddingTime,
+			int totalPrice, String memberId, String memberName, String memberPhone, String payMethod, int amount,
+			int orderStatus, String deliveryNum, Date orderDate, String orderMemo, String orderAddr, String memberEmail,
 			String receiveName, String receivePhone, String bankName, String bankNum, String bankHolder,
-			String bankDate, String option1, String option2, String option3) {
+			String bankDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
+			String option2Time, String option3, Date option3Date, String option3Time) {
 		super();
 		this.reservationNo = reservationNo;
 		this.code = code;
 		this.prdNo = prdNo;
+		this.prdName = prdName;
 		this.weddingDate = weddingDate;
 		this.weddingTime = weddingTime;
 		this.totalPrice = totalPrice;
@@ -63,8 +72,14 @@ public class Reservation {
 		this.bankHolder = bankHolder;
 		this.bankDate = bankDate;
 		this.option1 = option1;
+		this.option1Date = option1Date;
+		this.option1Time = option1Time;
 		this.option2 = option2;
+		this.option2Date = option2Date;
+		this.option2Time = option2Time;
 		this.option3 = option3;
+		this.option3Date = option3Date;
+		this.option3Time = option3Time;
 	}
 	public int getReservationNo() {
 		return reservationNo;
@@ -83,6 +98,12 @@ public class Reservation {
 	}
 	public void setPrdNo(int prdNo) {
 		this.prdNo = prdNo;
+	}
+	public String getPrdName() {
+		return prdName;
+	}
+	public void setPrdName(String prdName) {
+		this.prdName = prdName;
 	}
 	public Date getWeddingDate() {
 		return weddingDate;
@@ -210,17 +231,66 @@ public class Reservation {
 	public void setOption1(String option1) {
 		this.option1 = option1;
 	}
+	public Date getOption1Date() {
+		return option1Date;
+	}
+	public void setOption1Date(Date option1Date) {
+		this.option1Date = option1Date;
+	}
+	public String getOption1Time() {
+		return option1Time;
+	}
+	public void setOption1Time(String option1Time) {
+		this.option1Time = option1Time;
+	}
 	public String getOption2() {
 		return option2;
 	}
 	public void setOption2(String option2) {
 		this.option2 = option2;
 	}
+	public Date getOption2Date() {
+		return option2Date;
+	}
+	public void setOption2Date(Date option2Date) {
+		this.option2Date = option2Date;
+	}
+	public String getOption2Time() {
+		return option2Time;
+	}
+	public void setOption2Time(String option2Time) {
+		this.option2Time = option2Time;
+	}
 	public String getOption3() {
 		return option3;
 	}
 	public void setOption3(String option3) {
 		this.option3 = option3;
+	}
+	public Date getOption3Date() {
+		return option3Date;
+	}
+	public void setOption3Date(Date option3Date) {
+		this.option3Date = option3Date;
+	}
+	public String getOption3Time() {
+		return option3Time;
+	}
+	public void setOption3Time(String option3Time) {
+		this.option3Time = option3Time;
+	}
+	@Override
+	public String toString() {
+		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdName="
+				+ prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime + ", totalPrice="
+				+ totalPrice + ", memberId=" + memberId + ", memberName=" + memberName + ", memberPhone=" + memberPhone
+				+ ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus=" + orderStatus + ", deliveryNum="
+				+ deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo + ", orderAddr=" + orderAddr
+				+ ", memberEmail=" + memberEmail + ", receiveName=" + receiveName + ", receivePhone=" + receivePhone
+				+ ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder=" + bankHolder + ", bankDate="
+				+ bankDate + ", option1=" + option1 + ", option1Date=" + option1Date + ", option1Time=" + option1Time
+				+ ", option2=" + option2 + ", option2Date=" + option2Date + ", option2Time=" + option2Time
+				+ ", option3=" + option3 + ", option3Date=" + option3Date + ", option3Time=" + option3Time + "]";
 	}
 	
 }

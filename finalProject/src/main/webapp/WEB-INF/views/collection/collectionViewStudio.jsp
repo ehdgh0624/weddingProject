@@ -1,12 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
+<jsp:include page="/WEB-INF/common/header.jsp" />
 <%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<jsp:include page="/WEB-INF/common/sub.jsp" />
 <%-- 네이버 지도 API --%>
-<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
 
 <%-- wrap --%>
 <section id="wrap">
@@ -14,36 +15,37 @@
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
 		<div>
 			<!-- 상호명 table -->
-			<table style="width:100%;">
+			<table style="width: 100%;">
 				<tr>
 					<!-- 이전페이지 -->
-					<td rowspan="2" style="width:80px;height:80px;">
-						<button style="width:60px; height:60px; background-color: lightgray;border-radius: 2px;">이전</button>
+					<td rowspan="2" style="width: 80px; height: 80px;">
+						<button
+							style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
 					</td>
 					<!-- 상호명 -->
-					<td>
-						<span style="font-size:28px;">${studio.studioName}</span>
+					<td><span style="font-size: 28px;">${studio.studioName}</span>
 					</td>
 					<!-- 스크랩북 -->
-					<td style="float: right;">
-						<c:choose>
+					<td style="float: right;"><c:choose>
 							<c:when test="${not empty scrapbook}">
-								<button class="scrapStar" id="${studio.studioNo}" name="${studio.code}">
-									<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">
+								<button class="scrapStar" id="${studio.studioNo}"
+									name="${studio.code}">
+									<img src="/resources/img/star_b2.png"
+										style="width: 30px; height: 30px;">
 								</button>
 							</c:when>
 							<c:otherwise>
-								<button class="defaultStar" id="${studio.studioNo}" name="${studio.code}">
-									<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">			
+								<button class="defaultStar" id="${studio.studioNo}"
+									name="${studio.code}">
+									<img src="/resources/img/star_b1.png"
+										style="width: 30px; height: 30px;">
 								</button>
 							</c:otherwise>
-						</c:choose>
-					</td>
+						</c:choose></td>
 				</tr>
 				<tr>
 					<!-- 상세주소 -->
-					<td>
-						<a style="font-size:15px;" href="#map">${studio.studioAddr}</a>						
+					<td><a style="font-size: 15px;" href="#map">${studio.studioAddr}</a>
 					</td>
 				</tr>
 			</table>
@@ -51,43 +53,53 @@
 			<br>
 			<!-- 사진 carousel -->
 			<div>
-				<div style="max-width:1200px; height:600px; background-color: pink;border-radius: 3px;overflow: hidden;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="max-width: 1200px; height: 600px; background-color: pink; border-radius: 3px; overflow: hidden;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 4px 8px 0;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 0; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 4px 8px 4px;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 4px 8px 4px;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 4px 8px 4px;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 4px 8px 4px;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
-				<div style="width:190px;height:120px;background-color: pink;margin: 8px 0 8px 4px;display: inline-block;overflow: hidden;border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">			<!-- 이미지 경로로 대체할 예정 -->
+				<div
+					style="width: 190px; height: 120px; background-color: pink; margin: 8px 0 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
+					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
 			</div>
 			<!-- 사진 carousel 끝 -->
-			<br>
-			<br>
-			<br>
+			<br> <br> <br>
 			<!-- 상세설명, 리뷰, 지도가 포함된 content 시작 -->
 			<div style="position: relative;">
 				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
-				<div style="width:70%;display: inline-block;">
+				<div style="width: 70%; display: inline-block;">
 					<h2>상세설명</h2>
 					<hr>
-					${studio.studioContent}
-					<br>
-					<br>
-					<br>
-					<c:if test="${not empty studio.studioTime || not empty studio.studioCamera}">
+					${studio.studioContent} <br> <br> <br>
+					<c:if
+						test="${not empty studio.studioTime || not empty studio.studioCamera}">
 						<h2>운영정책</h2>
 						<hr>
 						<table>
@@ -96,43 +108,47 @@
 									<th>평균촬영시간</th>
 									<td>${studio.studioTime}</td>
 								</tr>
-							</c:if>	
+							</c:if>
 							<c:if test="${not empty studio.studioCamera}">
 								<tr>
 									<th>평균촬영시간</th>
 									<td>${studio.studioCamera}</td>
 								</tr>
-							</c:if>	
-						</table>						
+							</c:if>
+						</table>
 					</c:if>
-					<br>
-					<br>
-					<br>
+					<br> <br> <br>
 					<h2>가격확인 및 예약문의</h2>
 					<hr>
-					
+
 					<form>
 						<table>
 							<tr>
-								<td rowspan="2">달력</td>
-								<c:choose>
-									<c:when test="${not empty sessionScope.member.marrySchedule}">
-										<td>
-											<input type="text" name="weddingDate" id="weddingDate" value="${sessionScope.member.marrySchedule}" readonly>
-										</td>
-									</c:when>
-									<c:otherwise>
-										<td>
-											<input type="text" name="weddingDate" id="weddingDate">
-										</td>
-									</c:otherwise>
-								</c:choose>
+								<td>예식일</td>
+								<td>예식시간</td>
 							</tr>
 							<tr>
-								<td>
-									<input type="text" name="weddingTime" id="weddingTime">
-									<input type="button" id="clock" value="시계">
-								</td>
+								<td><input type="text" name="weddingDate" id="weddingDate"
+									class="datepicker wedding-date" placeholder="예식일을 선택해주세요"
+									required></td>
+								<td><select name="weddingTime" id="weddingTime">
+										<option value="default">::: 예식 시작 시간 선택 :::</option>
+										<option>AM 11:00</option>
+										<option>AM 11:30</option>
+										<option>PM 12:00</option>
+										<option>PM 12:30</option>
+										<option>PM 1:00</option>
+										<option>PM 1:30</option>
+										<option>PM 2:00</option>
+										<option>PM 2:30</option>
+										<option>PM 3:00</option>
+										<option>PM 3:30</option>
+										<option>PM 4:00</option>
+										<option>PM 4:30</option>
+										<option>PM 5:00</option>
+										<option>PM 5:30</option>
+										<option>PM 6:00</option>
+								</select></td>
 							</tr>
 							<tr>
 								<th colspan="2" style="background-color: pink;">예약 옵션</th>
@@ -148,15 +164,15 @@
 									<td>[본식 스냅]</td>
 								</tr>
 								<tr>
-									<td>
-										<select name="option1" id="option1" class="studioSelectOption">
+									<td><select name="option1" id="option1"
+										class="studioSelectOption">
 											<option value="default">::: 본식 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList0}" var="ss0">
-												<option value="${ss0.studioOptionPrice}"><span style="margin-right:20px;">${ss0.studioOption}</span>(<span class="studioOptionPrice">${ss0.studioOptionPrice}</span>원)</option>
+												<option value="${ss0.studioOptionPrice}"><span style="margin-right: 20px;">${ss0.studioOption}</span>(<span class="studioOptionPrice">${ss0.studioOptionPrice}</span>원)
+												</option>
 											</c:forEach>
-										</select>
-									</td>
-								</tr>							
+									</select></td>
+								</tr>
 								<tr>
 									<td colspan="2"><hr></td>
 								</tr>
@@ -166,15 +182,40 @@
 									<td>[스튜디오 스냅]</td>
 								</tr>
 								<tr>
-									<td>
-										<select name="option2" id="option2" class="studioSelectOption">
+									<td><select name="option2" id="option2"
+										class="studioSelectOption">
 											<option value="default">::: 스튜디오 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList1}" var="ss1">
-												<option value="${ss1.studioOptionPrice}"><span style="margin-right:20px;">${ss1.studioOption}</span>(<span class="studioOptionPrice">${ss1.studioOptionPrice}</span>원)</option>
+												<option value="${ss1.studioOptionPrice}"><span style="margin-right: 20px;">${ss1.studioOption}</span>(<span class="studioOptionPrice">${ss1.studioOptionPrice}</span>원)
+												</option>
 											</c:forEach>
-										</select>
-									</td>
-								</tr>							
+									</select></td>
+								</tr>
+								<tr>
+									<td id="option2DateTd" style="display: none;"><input
+										type="text" name="option2Date" id="option2Date"
+										class="datepicker wedding-date" placeholder="예약 날짜를 선택해주세요"
+										required></td>
+									<td><select name="option2Time" id="option2Time"
+										style="display: none;">
+											<option value="default">::: 예약 시간 선택 :::</option>
+											<option>AM 11:00</option>
+											<option>AM 11:30</option>
+											<option>PM 12:00</option>
+											<option>PM 12:30</option>
+											<option>PM 1:00</option>
+											<option>PM 1:30</option>
+											<option>PM 2:00</option>
+											<option>PM 2:30</option>
+											<option>PM 3:00</option>
+											<option>PM 3:30</option>
+											<option>PM 4:00</option>
+											<option>PM 4:30</option>
+											<option>PM 5:00</option>
+											<option>PM 5:30</option>
+											<option>PM 6:00</option>
+									</select></td>
+								</tr>
 								<tr>
 									<td colspan="2"><hr></td>
 								</tr>
@@ -184,14 +225,14 @@
 									<td>[본식 영상 촬영]</td>
 								</tr>
 								<tr>
-									<td>
-										<select name="option3" id="option3" class="studioSelectOption">
+									<td><select name="option3" id="option3"
+										class="studioSelectOption">
 											<option value="default">::: 영상 촬영 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList2}" var="ss2">
-												<option value="${ss2.studioOptionPrice}"><span style="margin-right:20px;">${ss2.studioOption}</span>(<span class="studioOptionPrice">${ss2.studioOptionPrice}</span>원)</option>
+												<option value="${ss2.studioOptionPrice}"><span style="margin-right: 20px;">${ss2.studioOption}</span>(<span class="studioOptionPrice">${ss2.studioOptionPrice}</span>원)
+												</option>
 											</c:forEach>
-										</select>
-									</td>
+									</select></td>
 								</tr>
 								<tr>
 									<td colspan="2"><hr></td>
@@ -202,51 +243,77 @@
 								<td><span style="float: right;"><span id="allPrice"></span>원</span></td>
 							</tr>
 							<tr>
-								<td>
-									<input type="button" value="예약하기" onclick="reservation();">
-								</td>
+								<td><input type="button" value="예약하기"
+									onclick="reservation();"></td>
 							</tr>
 						</table>
 					</form>
-					
-					<br>
-					<br>
-					<br>
+
+					<br> <br> <br>
 					<h2>후기 및 Q&A</h2>
 					<hr>
 				</div>
 				<!-- 상세설명, 리뷰, 지도 끝 -->
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div style="position: static;background-color: pink;width:28%;height:500px;float: right;"></div>
+				<div
+					style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
 				<!-- static 끝 -->
 			</div>
 		</div>
 
-		
+
 		<!-- 지도 위치 -->
-		<div id="map" style="float:left;margin-left:20px;width:800px;height:300px;margin-bottom:50px;"></div>
+		<div id="map"
+			style="float: left; margin-left: 20px; width: 800px; height: 300px; margin-bottom: 50px;"></div>
 	</div>
 </section>
-	<script>
+<script>
 	
 	/* 버튼 클릭 시 예약 */
 	function reservation(){
+		if($('#weddingTime option:selected').val() == 'default'){
+			alert("예식 시작 시간을 선택해주세요.");
+		}else{
+			if($('#option1 option:selected').val() == 'default' && $('#option2 option:selected').val() == 'default' && $('#option3 option:selected').val() == 'default'){
+				alert("옵션을 한 가지 이상 선택해주세요.");
+			}else{
+				if($('#option2 option:selected').val() == 'default'){
+					submitReservation();
+				}else{
+					if($('#option2Time option:selected').val() == 'default'){
+						alert("예약 시간을 선택해주세요.");
+					}else{
+						submitReservation();
+					}
+				}
+			}
+		}
+	}
+	
+	function submitReservation(){
 		var code = "S";
 		var prdNo = ${studio.studioNo};
+		var prdName = ${studio.studioName};
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
-		var weddingTime = $('#weddingTime').val();
+		var weddingTime = $('#weddingTime option:selected').val();
 		var totalPrice = $('#allPrice').text();
 		var option1 = $('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("("));
 		var option2 = $('#option2 option:selected').text().substring(0,$('#option2 option:selected').text().indexOf("("));
+		var option2Date = null;
+		var option2Time = null;
+		if($('#option2Time option:selected').val() != 'default'){
+			option2Date = $('#option2Date').val();
+			option2Time = $('#option2Time option:selected').text();			
+		}
 		var option3 = $('#option3 option:selected').text().substring(0,$('#option3 option:selected').text().indexOf("("));
 		$.ajax({
 			url : "/reservationStudio.do",
-			data : {code:code,prdNo:prdNo,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
+			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
-				if(data == 1){
+				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/index.jsp";
+					location.href="/reservationView.do?reservationNo="+data;
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
@@ -257,8 +324,22 @@
 			error : function(){
 				alert("잠시 후 다시 시도해주세요.");
 			}
-		});
+		});	
 	}
+	/* 버튼 클릭 시 예약 끝 */
+	
+	/* 스튜디오 스냅 select change 시 날짜,시간 드러남 */
+	$('#option2').on("change",function(){
+		if($('#option2 option:selected').val() == 'default'){
+			$('#option2Time option:eq(0)').prop('selected',true);
+			$('#option2DateTd').css('display','none');			
+			$('#option2Time').css('display','none');
+		}else{
+			$('#option2DateTd').css('display','inline');
+			$('#option2Time').css('display','inline');
+		}
+	});
+	/* 스튜디오 스냅 select change 시 날짜,시간 드러남 끝 */
 	
 	/* 옵션 select 박스 change 시 가격 변경 */
 	$('.studioSelectOption').on("change",function(){
@@ -275,9 +356,7 @@
 		console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
 		$('#allPrice').text(allPrice);
 	});
-	/* 옵션 select 박스 change 시 가격 변경 끝 */
-	
-	
+	/* 옵션 select 박스 change 시 가격 변경 끝 */	
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
@@ -328,9 +407,7 @@
 			}
 		});
 	});
-	/* 스크랩북 on/off 끝 */
-	
-	
+	/* 스크랩북 on/off 끝 */	
 	
 	//네이버 지도 API
 	window.onload = function(){
@@ -387,4 +464,4 @@
 	}
 	</script>
 <%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/common/footer.jsp" />

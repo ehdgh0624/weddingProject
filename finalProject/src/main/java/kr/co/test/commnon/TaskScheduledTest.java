@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class TaskScheduledTest {
-
+/*
 	@Scheduled(fixedDelay=300000)
 	public void Test() {
 
@@ -29,5 +29,5 @@ public class TaskScheduledTest {
 
 		
 		
-	}
+	}*/
 }

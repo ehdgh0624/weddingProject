@@ -9,6 +9,7 @@
     	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>
     	<typeAlias type="kr.co.collection.model.vo.Dress" alias="dress"/>
     	<typeAlias type="kr.co.review.model.vo.Review" alias="review"/>
+    	<typeAlias type="kr.co.reservation.model.vo.Reservation" alias="reservation"/>
     	<typeAlias type="kr.co.scrapbook.model.vo.Scrapbook" alias="scrapbook"/>
     	<typeAlias type="kr.co.goods.model.vo.Goods" alias="goods"/>
     	<typeAlias type="kr.co.gallery.model.vo.Gallery" alias="gallery"/>
@@ -16,6 +17,7 @@
     	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
+		<typeAlias type="kr.co.reservation.model.vo.Reservation" alias="reservation"/>
     </typeAliases>
 
 </configuration>
