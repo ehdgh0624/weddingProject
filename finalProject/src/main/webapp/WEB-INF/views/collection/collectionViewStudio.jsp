@@ -114,24 +114,32 @@
 					<form>
 						<table>
 							<tr>
-								<td rowspan="2">달력</td>
-								<c:choose>
-									<c:when test="${not empty sessionScope.member.marrySchedule}">
-										<td>
-											<input type="text" name="weddingDate" id="weddingDate" value="${sessionScope.member.marrySchedule}" readonly>
-										</td>
-									</c:when>
-									<c:otherwise>
-										<td>
-											<input type="text" name="weddingDate" id="weddingDate">
-										</td>
-									</c:otherwise>
-								</c:choose>
+								<td>예식일</td>
+								<td>예식시간</td>
 							</tr>
 							<tr>
 								<td>
-									<input type="text" name="weddingTime" id="weddingTime">
-									<input type="button" id="clock" value="시계">
+									<input type="text" name="weddingDate" id="weddingDate" class="datepicker wedding-date" placeholder="예식일을 선택해주세요" required>
+								</td>
+								<td>
+									<select name="weddingTime" id="weddingTime">
+										<option value="default">::: 예식 시작 시간 선택 :::</option>
+										<option>AM 11:00</option>
+										<option>AM 11:30</option>
+										<option>PM 12:00</option>
+										<option>PM 12:30</option>
+										<option>PM 1:00</option>
+										<option>PM 1:30</option>
+										<option>PM 2:00</option>
+										<option>PM 2:30</option>
+										<option>PM 3:00</option>
+										<option>PM 3:30</option>
+										<option>PM 4:00</option>
+										<option>PM 4:30</option>
+										<option>PM 5:00</option>
+										<option>PM 5:30</option>
+										<option>PM 6:00</option>
+									</select>
 								</td>
 							</tr>
 							<tr>
@@ -156,7 +164,7 @@
 											</c:forEach>
 										</select>
 									</td>
-								</tr>							
+								</tr>
 								<tr>
 									<td colspan="2"><hr></td>
 								</tr>
@@ -174,7 +182,32 @@
 											</c:forEach>
 										</select>
 									</td>
-								</tr>							
+								</tr>
+								<tr>
+									<td id="option2DateTd" style="display: none;">
+										<input type="text" name="option2Date" id="option2Date" class="datepicker wedding-date" placeholder="예약 날짜를 선택해주세요" required>
+									</td>
+									<td>
+										<select name="option2Time" id="option2Time" style="display: none;">
+											<option value="default">::: 예약 시간 선택 :::</option>
+											<option>AM 11:00</option>
+											<option>AM 11:30</option>
+											<option>PM 12:00</option>
+											<option>PM 12:30</option>
+											<option>PM 1:00</option>
+											<option>PM 1:30</option>
+											<option>PM 2:00</option>
+											<option>PM 2:30</option>
+											<option>PM 3:00</option>
+											<option>PM 3:30</option>
+											<option>PM 4:00</option>
+											<option>PM 4:30</option>
+											<option>PM 5:00</option>
+											<option>PM 5:30</option>
+											<option>PM 6:00</option>
+										</select>
+									</td>
+								</tr>						
 								<tr>
 									<td colspan="2"><hr></td>
 								</tr>
@@ -231,22 +264,48 @@
 	
 	/* 버튼 클릭 시 예약 */
 	function reservation(){
+		if($('#weddingTime option:selected').val() == 'default'){
+			alert("예식 시작 시간을 선택해주세요.");
+		}else{
+			if($('#option1 option:selected').val() == 'default' && $('#option2 option:selected').val() == 'default' && $('#option3 option:selected').val() == 'default'){
+				alert("옵션을 한 가지 이상 선택해주세요.");
+			}else{
+				if($('#option2 option:selected').val() == 'default'){
+					submitReservation();
+				}else{
+					if($('#option2Time option:selected').val() == 'default'){
+						alert("예약 시간을 선택해주세요.");
+					}else{
+						submitReservation();
+					}
+				}
+			}
+		}
+	}
+	
+	function submitReservation(){
 		var code = "S";
 		var prdNo = ${studio.studioNo};
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
-		var weddingTime = $('#weddingTime').val();
+		var weddingTime = $('#weddingTime option:selected').val();
 		var totalPrice = $('#allPrice').text();
 		var option1 = $('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("("));
 		var option2 = $('#option2 option:selected').text().substring(0,$('#option2 option:selected').text().indexOf("("));
+		var option2Date = null;
+		var option2Time = null;
+		if($('#option2Time option:selected').val() != 'default'){
+			option2Date = $('#option2Date').val();
+			option2Time = $('#option2Time option:selected').text();			
+		}
 		var option3 = $('#option3 option:selected').text().substring(0,$('#option3 option:selected').text().indexOf("("));
 		$.ajax({
 			url : "/reservationStudio.do",
-			data : {code:code,prdNo:prdNo,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
+			data : {code:code,prdNo:prdNo,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data == 1){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/index.jsp";
+					location.href="/reservationView.do";
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
@@ -257,8 +316,22 @@
 			error : function(){
 				alert("잠시 후 다시 시도해주세요.");
 			}
-		});
+		});		
 	}
+	/* 버튼 클릭 시 예약 끝 */
+	
+	/* 스튜디오 스냅 select change 시 날짜,시간 드러남 */
+	$('#option2').on("change",function(){
+		if($('#option2 option:selected').val() == 'default'){
+			$('#option2Time option:eq(0)').prop('selected',true);
+			$('#option2DateTd').css('display','none');			
+			$('#option2Time').css('display','none');
+		}else{
+			$('#option2DateTd').css('display','inline');
+			$('#option2Time').css('display','inline');
+		}
+	});
+	/* 스튜디오 스냅 select change 시 날짜,시간 드러남 끝 */
 	
 	/* 옵션 select 박스 change 시 가격 변경 */
 	$('.studioSelectOption').on("change",function(){
@@ -275,9 +348,7 @@
 		console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
 		$('#allPrice').text(allPrice);
 	});
-	/* 옵션 select 박스 change 시 가격 변경 끝 */
-	
-	
+	/* 옵션 select 박스 change 시 가격 변경 끝 */	
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
@@ -328,9 +399,7 @@
 			}
 		});
 	});
-	/* 스크랩북 on/off 끝 */
-	
-	
+	/* 스크랩북 on/off 끝 */	
 	
 	//네이버 지도 API
 	window.onload = function(){

@@ -268,7 +268,7 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationStudio.do")
-	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
+	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
@@ -283,8 +283,9 @@ public class CollectionController {
 			vo.setMemberEmail(m.getEmail());
 			vo.setOption1(option1);
 			vo.setOption2(option2);
+			vo.setOption2Time(option2Time);
 			vo.setOption3(option3);
-			int result = collectionService.insertReservationStudio(vo,weddingDate);
+			int result = collectionService.insertReservationStudio(vo,weddingDate,option2Date);
 			return result;
 		}else {
 			return -1;
