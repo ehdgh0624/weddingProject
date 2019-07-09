@@ -114,7 +114,7 @@ public class HallService {
 					pageNo++;
 				}
 				if(pageNo <= totalPage) {
-					pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
+					pageNavi += "<a class='pageBtn' href='/hallSc.do?reqPage="+pageNo+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
 					+"&menuType="+h.getHallFoodtype()+"&=hallPerson"+person+"&searckHall"+h.getHallName()+"'>다음</a>";
 				}
 				HallPage pd = new HallPage(hList, pageNavi, reqPage);
