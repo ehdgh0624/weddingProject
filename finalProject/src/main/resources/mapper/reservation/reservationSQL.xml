@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
 	<insert id="insertReservationStudio" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,null,null,null,#{memberEmail},null,null,null,null,null,null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,
 		<choose>
 			<when test="#{option1 != null}">
 				#{option1}
