@@ -3,10 +3,11 @@ package kr.co.reservation.model.vo;
 import java.sql.Date;
 
 public class Reservation {
-	private int reservationNo;				//예약번호
-	private String code;					//타입분류
-	private int prdNo;						//업체번호, 상품번호
-	private Date weddingDate;				//결혼 예정일
+	private int reservationNo;				//예약번호 --
+	private String code;					//타입분류--
+	private int prdNo;						//업체번호, 상품번호--
+	private String prdName;					//업체이름
+	private Date weddingDate;				//결혼 예정일--
 	private String weddingTime;				//결혼 예정시각
 	private int totalPrice;					//총 가격
 	private String memberId;				//예약자 아이디
@@ -39,9 +40,9 @@ public class Reservation {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reservation(int reservationNo, String code, int prdNo, Date weddingDate, String weddingTime, int totalPrice,
-			String memberId, String memberName, String memberPhone, String payMethod, int amount, int orderStatus,
-			String deliveryNum, Date orderDate, String orderMemo, String orderAddr, String memberEmail,
+	public Reservation(int reservationNo, String code, int prdNo, String prdName, Date weddingDate, String weddingTime,
+			int totalPrice, String memberId, String memberName, String memberPhone, String payMethod, int amount,
+			int orderStatus, String deliveryNum, Date orderDate, String orderMemo, String orderAddr, String memberEmail,
 			String receiveName, String receivePhone, String bankName, String bankNum, String bankHolder,
 			String bankDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
 			String option2Time, String option3, Date option3Date, String option3Time) {
@@ -49,6 +50,7 @@ public class Reservation {
 		this.reservationNo = reservationNo;
 		this.code = code;
 		this.prdNo = prdNo;
+		this.prdName = prdName;
 		this.weddingDate = weddingDate;
 		this.weddingTime = weddingTime;
 		this.totalPrice = totalPrice;
@@ -96,6 +98,12 @@ public class Reservation {
 	}
 	public void setPrdNo(int prdNo) {
 		this.prdNo = prdNo;
+	}
+	public String getPrdName() {
+		return prdName;
+	}
+	public void setPrdName(String prdName) {
+		this.prdName = prdName;
 	}
 	public Date getWeddingDate() {
 		return weddingDate;
@@ -271,5 +279,18 @@ public class Reservation {
 	public void setOption3Time(String option3Time) {
 		this.option3Time = option3Time;
 	}
-
+	@Override
+	public String toString() {
+		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdName="
+				+ prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime + ", totalPrice="
+				+ totalPrice + ", memberId=" + memberId + ", memberName=" + memberName + ", memberPhone=" + memberPhone
+				+ ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus=" + orderStatus + ", deliveryNum="
+				+ deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo + ", orderAddr=" + orderAddr
+				+ ", memberEmail=" + memberEmail + ", receiveName=" + receiveName + ", receivePhone=" + receivePhone
+				+ ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder=" + bankHolder + ", bankDate="
+				+ bankDate + ", option1=" + option1 + ", option1Date=" + option1Date + ", option1Time=" + option1Time
+				+ ", option2=" + option2 + ", option2Date=" + option2Date + ", option2Time=" + option2Time
+				+ ", option3=" + option3 + ", option3Date=" + option3Date + ", option3Time=" + option3Time + "]";
+	}
+	
 }
