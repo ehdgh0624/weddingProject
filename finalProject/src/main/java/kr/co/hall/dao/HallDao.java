@@ -1,6 +1,7 @@
 package kr.co.hall.dao;
 
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,8 +47,18 @@ public class HallDao {
 		map.put("hallFoodtype", String.valueOf(h.getHallFoodtype()));
 		map.put("hallName", h.getHallName());
 		map.put("person", String.valueOf(person));
-		System.out.println(person+"  인원");
 		int count = sqlSession.selectOne("hall.searchList",map);
+		return count;
+	}
+	public List<Hall> hallPc(int start, int end , int hCode) {
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("hCode", hCode);
+		return sqlSession.selectList("hall.hallPc",map);
+	}
+	public int totalCountPc() {
+		int count = sqlSession.selectOne("hall.countPc");
 		return count;
 	}
 	

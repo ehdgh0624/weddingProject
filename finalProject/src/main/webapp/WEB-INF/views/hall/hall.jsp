@@ -77,10 +77,8 @@
 			</div>
 			<div class="contents">	<!-- 결혼식장 리스트 출력 div -->
 				<div class="filteoBtn area">	<!-- 버튼 클릭시 조건에 맞게 정렬 -->
-					<form action="" method="post">
-						<button type="button" id="pyeongieom">평점순</button>
-						<button type="button" id="choesinsun">최신순</button>
-					</form>
+						<button id="pyeongieom" onclick="location.href='/hallPc.do?hCode=1'">평점순</button>
+						<button id="choesinsun" onclick="location.href='/hallPc.do?hCode=2'">최신순</button>
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
 					<c:forEach items="${pd.hList }" var="h">
