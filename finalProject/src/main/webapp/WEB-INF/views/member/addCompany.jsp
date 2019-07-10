@@ -21,6 +21,7 @@
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
 					<h1>파트너 기본정보 등록</h1>
+					내 회원정보가져오기 <input type="checkbox" id="check">
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
