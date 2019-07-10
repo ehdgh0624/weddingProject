@@ -59,8 +59,8 @@ public class HallService {
 				//페이지 수
 				int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
 				//게시물 번호 범위
-				int start = totalCount - (reqPage * numPerPage - 1);
-				int end = totalCount - (reqPage-1) * numPerPage;
+				int start = (reqPage*numPerPage-numPerPage)+1;
+			    int end  = reqPage*numPerPage;
 				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end,h,person);
 				String pageNavi = "";
 				int pageNaviSize = 5;
