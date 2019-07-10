@@ -62,6 +62,7 @@ public class HallService {
 				int start = (reqPage*numPerPage-numPerPage)+1;
 			    int end  = reqPage*numPerPage;
 				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.searchHall(start,end,h,person);
+				System.out.println(person);
 				String pageNavi = "";
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;

@@ -39,16 +39,15 @@ public class HallController {
 		h.setHallLoc(hallLoc);
 		h.setHallType(hallType);
 		h.setHallFoodtype(Integer.parseInt( menuType));
-		int person ;
+		int person =  Integer.parseInt(hallPerson);
 		h.setHallName(searckHall);
 		int reqPage;
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
-			person =  Integer.parseInt(hallPerson);
 		} catch(NumberFormatException e) {
 			reqPage = 1;
-			person = 0;
 		}	
+		System.out.println(person);
 		HallPage pd = hallService.HallSearch(reqPage,h,person);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
