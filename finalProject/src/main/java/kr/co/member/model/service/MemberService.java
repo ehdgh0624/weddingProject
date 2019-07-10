@@ -1,6 +1,7 @@
 package kr.co.member.model.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,7 @@ import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 
 @Service("memberService")
 public class MemberService {
@@ -125,7 +127,7 @@ public class MemberService {
 		
 		return result;
 	}
-
+	
 	public int getStudioNo(String companyName, String memberId) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -135,5 +137,13 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	public List<Reservation> getAllReservList(Member vo) {
+		// TODO Auto-generated method stub
+		
+		List<Reservation> list=memberDao.getAllReservList(vo);
+		return list;
+	}
+	
 
 }

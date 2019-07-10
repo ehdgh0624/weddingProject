@@ -15,6 +15,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
+import kr.co.reservation.model.vo.Reservation;
 import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -274,8 +275,8 @@ public class CollectionService {
 		return collectionDao.selectOneStudio(studioNo);
 	}
 	
-	public ArrayList<StudioSelect> selectListStudioOption(int studioNo){
-		return (ArrayList<StudioSelect>)collectionDao.selectListStudioOption(studioNo);
+	public ArrayList<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType){
+		return (ArrayList<StudioSelect>)collectionDao.selectListStudioOption(studioNo, studioOptionType);
 	}
 
 	public Dress selectOneDress(int dressNo){
@@ -298,6 +299,10 @@ public class CollectionService {
 		return (ArrayList<Review>)collectionDao.selectListReview(objectNo, code);
 	}
 	
+	public Scrapbook selectOneScrapbook(String memberId, int objectNo, String code) {
+		return collectionDao.selectOneScrapbook(memberId, code, objectNo);
+	}
+	
 	@Transactional
 	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
 		return collectionDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
@@ -306,6 +311,15 @@ public class CollectionService {
 	@Transactional
 	public int deleteOneScrap(int objectNo, String code, String memberId) {
 		return collectionDao.deleteOneScrap(objectNo, code, memberId);
+	}
+	
+	@Transactional
+	public int insertReservationStudio(Reservation vo, String weddingDate, String option2Date) {
+		return collectionDao.insertReservationStudio(vo, weddingDate, option2Date);
+	}
+	
+	public int selectReservationNo(String memberId) {
+		return collectionDao.selectReservationNo(memberId);
 	}
 	
 }

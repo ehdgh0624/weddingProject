@@ -22,5 +22,35 @@ $(document).ready(function(){
 		//nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><i class="material-icons">&#xE315;</i></button>',
 	});*/
 	
+	
+	
+	
+	/* *********************** 웨딩 계산기 :: 장바구니  ************************ */
+	var $menuOpenBtn = $(".cart-sideBar .cart-sideBar-btn");
+	var $cartSideBar = $(".cart-sideBar-container");
+	var menuState = false;
+	
+	$menuOpenBtn.click(function  () {
+		if ( menuState ) {
+			menuClose();
+			menuState = false;
+			$(this).removeClass("active");
+		}else {
+			menuOpen();
+			menuState = true;
+			$(this).addClass("active");
+		}
+		return false;
+	});
 
+	/* 메뉴열기 */ 
+	function menuOpen () {
+		$cartSideBar.addClass("open");
+	}
+	/* 메뉴닫기 */ 
+	function menuClose () {
+		$cartSideBar.removeClass("open");
+	}
+	
+	
 });

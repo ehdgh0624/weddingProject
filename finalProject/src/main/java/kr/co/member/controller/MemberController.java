@@ -1,6 +1,15 @@
 package kr.co.member.controller;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import java.util.Comparator;
 
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
@@ -27,6 +37,8 @@ import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberEnroll;
+import kr.co.reservation.model.vo.Reservation;
+import kr.co.reservation.model.vo.ReservationComparator;
 
 
 
@@ -166,6 +178,64 @@ public class MemberController {
 		System.out.println("업체등록페이지");
 
 		return "member/addCompany";
+	}
+	
+	@RequestMapping(value = "/myReservList.do")
+	public String myReservListView(HttpSession session,Model model) {
+		System.out.println("예약리스트페이지 온!");
+		Member vo =(Member)session.getAttribute("member");	
+		
+		
+		
+		List<Reservation> list=memberService.getAllReservList(vo);
+		
+		ReservationComparator comp = new ReservationComparator();
+		Collections.sort(list,comp);
+		System.out.println("정렬되었는지확인!");
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
+		
+		
+		Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
+
+		SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i=0; i<list.size(); i++) {
+			String word=format.format(list.get(i).getWeddingDate());
+			System.out.println("키값은"+word);
+			
+			Boolean b= true;
+			Iterator<Map.Entry<String, ArrayList<Reservation>>> entries = reservMap.entrySet().iterator();
+			
+			while(entries.hasNext()) {
+				Entry<String, ArrayList<Reservation>> entry =(Entry<String, ArrayList<Reservation>>)entries.next();
+				if(entry.getKey().equals(word)) {
+					reservMap.get(word).add(list.get(i));
+					 System.out.println(entry.getKey() + "=" + entry.getValue().get(0));
+					 System.out.println(i);
+					b=false;
+				}
+			}
+			if(b) {
+				ArrayList<Reservation> rese = new ArrayList<Reservation>();
+				rese.add(list.get(i));
+				reservMap.put(word, rese);
+				 System.out.println(i);
+			}
+		}
+		
+	
+	
+		model.addAttribute("resMap",reservMap);
+		
+//		Studio ms = memberService.selectOneStudioMember(vo);
+//		Dress md = memberService.selectOneDressMember(vo);
+//		Hall mh = memberService.selectOneHallMember(vo);
+//		Makeup mm = memberService.selctOneMakeupMember(vo);	
+//		MemberAll ma = new MemberAll(md,ms,mm,mh);
+
+		return "member/myReservList";
 	}
 
 	@RequestMapping(value = "/companyEnroll.do")

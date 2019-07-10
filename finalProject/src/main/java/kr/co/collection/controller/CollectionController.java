@@ -17,12 +17,11 @@ import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
-import kr.co.collection.model.vo.Studio;
-import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
-import kr.co.review.model.vo.Review;
+import kr.co.reservation.model.vo.Reservation;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Controller
 public class CollectionController {
@@ -156,39 +155,50 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionViewStudio.do")
-	public ModelAndView collectionViewStudio(int studioNo) {
-		Studio s = collectionService.selectOneStudio(studioNo);
-		ArrayList<StudioSelect> ssList = collectionService.selectListStudioOption(studioNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(studioNo, "S");
-		ArrayList<Review> rList = collectionService.selectListReview(studioNo, "S");
+	public ModelAndView collectionViewStudio(HttpSession session, @RequestParam int studioNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("studio", s);
-		mav.addObject("studioSelectList", ssList);
-		mav.addObject("galleryList", gList);
-		mav.addObject("reviewList", rList);
+		mav.addObject("studio", collectionService.selectOneStudio(studioNo));
+		mav.addObject("studioSelectList0", collectionService.selectListStudioOption(studioNo, 0));
+		mav.addObject("studioSelectList1", collectionService.selectListStudioOption(studioNo, 1));
+		mav.addObject("studioSelectList2", collectionService.selectListStudioOption(studioNo, 2));
+		mav.addObject("galleryList", collectionService.selectListGallery(studioNo, "S"));
+		mav.addObject("reviewList", collectionService.selectListReview(studioNo, "S"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), studioNo, "S");
+			mav.addObject("scrapbook", scrap);
+		}
 		mav.setViewName("collection/collectionViewStudio");
 		return mav;
 	}
 	
 	@RequestMapping("/collectionViewDress.do")
-	public ModelAndView collectionViewDress(int dressNo) {
-		Dress d = collectionService.selectOneDress(dressNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(dressNo, "D");
+	public ModelAndView collectionViewDress(HttpSession session, @RequestParam int dressNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dress", d);
-		mav.addObject("galleryList", gList);
+		mav.addObject("dress", collectionService.selectOneDress(dressNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(dressNo, "D"));
+		mav.addObject("reviewList", collectionService.selectListReview(dressNo, "D"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), dressNo, "D");
+			mav.addObject("scrapbook", scrap);			
+		}
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
-	public ModelAndView collectionViewMakeup(int makeupNo) {
-		Makeup m = collectionService.selectOneMakeup(makeupNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(makeupNo, "M");
+	public ModelAndView collectionViewMakeup(HttpSession session, @RequestParam int makeupNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("makeup", m);
-		mav.addObject("galleryList", gList);
-		mav.setViewName("collection/collectionViewDress");
+		mav.addObject("makeup", collectionService.selectOneMakeup(makeupNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(makeupNo, "M"));
+		mav.addObject("reviewList", collectionService.selectListReview(makeupNo, "M"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), makeupNo, "M");
+			mav.addObject("scrapbook", scrap);
+		}
+		mav.setViewName("collection/collectionViewMakeup");
 		return mav;		
 	}
 	
@@ -264,4 +274,35 @@ public class CollectionController {
 		}
 	}
 	
+	@ResponseBody
+	@RequestMapping("/reservationStudio.do")
+	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setOption1(option1);
+			vo.setOption2(option2);
+			vo.setOption2Time(option2Time);
+			vo.setOption3(option3);
+			int result = collectionService.insertReservationStudio(vo,weddingDate,option2Date);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;				
+			}
+		}else {
+			return -1;
+		}
+	}
 }

@@ -68,6 +68,7 @@
 .simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}
 .simulator-tbl input[type='text'].wedding-date{width:80%;}
 
+.simulator-select-list-no, .simulator-select-list-code{display:none;}
 .simulator-select-tit{font-size:20px; line-height:30px; color:#2d2d2d; font-weight:500; padding:20px 0;}
 .simulator-select-comment{padding:20px; background:#f5f5f5; margin-bottom:50px;}
 .simulator-select-txt{padding-left:10px; position:relative; font-size:13px; line-height:20px; }
@@ -75,11 +76,16 @@
 .simulator-select-con{position:relative; margin-bottom:30px;}
 .simulator-select-con .none{padding:30px 0; text-align:center; font-size:20px; coloe:#888;}
 .simulator-select-group .more-btn{width:40px; height:40px; text-align:center; border:1px solid #ddd; position:absolute; top:-55px; right:0; border-radius:3px; 
-background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; background-size:30px;  transition:all 0.5s;}
+background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; background-size:30px; transition:all 0.5s;}
 .simulator-select-group .more-btn:hover{border:1px solid #666; transform:rotate(90deg); transition:all 0.5s; }
-/*.simulator-select-group{position:relative; min-height:423px;}
-.simulator-select-group-list{position:absolute; height:423px; left:50%;}*/
+.simulator-select-group .none-btn{position:absolute; top:-55px; right:55px; height:40px; text-align:center; border:1px solid #ddd; border-radius:3px; padding:0 10px 0 35px;
+background:#f8f8f8 url(/resources/img/none_1.png) no-repeat 7px center; background-size:25px; transition:all 0.5s;}
+.simulator-select-group .none-btn:hover,
+.simulator-select-group .none-btn.selected{border:1px solid #666; background:#666 url(/resources/img/none_2.png) no-repeat 7px center; background-size:25px; color:#fff; transition:all 0.5s;}
+.simulator-select-group-list.selected .simulator-select-btn-group{display:none;}
 .simulator-select-list-con{float:left; width:360px; margin:10px 20px; }
+.simulator-select-list-con.selected{position:relative; }
+.simulator-select-list-con.selected:before{position:absolute; top:0; left:0; bottom:0; right:0; content:''; border:2px solid #888; z-index:1;}
 .simulator-select-list{box-shadow:3px 3px 5px #ddd; border-radius:3px;}
 .simulator-select-img-thum{position:relative; padding-top:61.2%; overflow:hidden;}
 .simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0;}
@@ -91,13 +97,30 @@ background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; backgro
 .simulator-select-list-price > b{font-size:18px; font-weight:500;}
 .simulator-select-list-tag{padding:10px 20px; color:#888; line-height:20px;}
 .simulator-select-btn-group{padding:15px 10px; text-align:center;}
-.simulator-select-btn-group > button{width:150px; height:35px; border-radius:3px; border:1px solid #ddd; margin:0 7px; font-size:14px; color:#666; font-weight:500; 
-background-color:#fff; transition:all 0.3s;}
-.simulator-select-btn-group > button:hover{background-color:#666; color:#fff; transition:all 0.3s;}
+.simulator-select-btn-group > a, .simulator-select-btn-group > button{display:inline-block; width:150px; height:35px; border-radius:3px; border:1px solid #ddd; margin:0 7px; font-size:14px; color:#666; font-weight:500; 
+background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:35px;}
+.simulator-select-btn-group > a:hover, .simulator-select-btn-group > button:hover{background-color:#666; color:#fff; transition:all 0.3s;}
 .slick-prev.slick-arrow, .slick-next.slick-arrow{position:absolute; top:50%; margin-top:-13px; z-index:9;}
 .slick-prev.slick-arrow{left:-30px;}
 .slick-next.slick-arrow{right:-30px;}
 
+/* ****************** 웨딩 계산기 :: 장바구니 ********************** */
+.cart-sideBar{position:relative;}
+.cart-sideBar-btn{position:fixed; bottom:150px; right:50px; width:65px; height:65px; background:#888 url(/resources/img/cart.png) no-repeat center center; border-radius:10px; z-index:9; box-shadow:3px 3px 7px #ddd;}
+.cart-sideBar-container{position:fixed; top:0; right:-310px; width:300px; height:100%; background:#fff; box-shadow:-3px 3px 10px #ddd; transition:right 0.4s;}
+.cart-sideBar-btn.active{width:40px; height:40px; background:#ddd url(/resources/img/more.png) no-repeat center center; border-radius:40px; transform:rotate(45deg); top:20px; right:20px; bottom:auto; z-index:1000;}
+.cart-sideBar-container.open{right:0; transition:right 0.4s; z-index:999;}
+.cart-sideBar-inner{padding:20px; padding-right:10px; height:calc(100% - 40px);}
+.cart-sideBar-inner > h2{padding:15px 0 20px; font-weight:500; border-bottom:1px solid #eee;}
+.selected-list{height:calc(100% - 116px); overflow-y:auto; margin-bottom:7px;}
+.selected-list > li{float:none; max-width:98%; margin:10px 0;}
+.selected-list .simulator-select-list-tit{padding:0 10px; font-size:16px; line-height:22px;}
+.selected-list .simulator-select-list-price{padding:10px; font-size:11px;}
+.selected-list .simulator-select-list-price > b{font-size:16px;}
+.selected-list .simulator-select-btn-group,
+.selected-list .simulator-select-list-addr,
+.selected-list .simulator-select-list-tag{display:none;}
+.go-simulation{width:100%; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
 
 
 /* ****************** 이용약관 ********************** */

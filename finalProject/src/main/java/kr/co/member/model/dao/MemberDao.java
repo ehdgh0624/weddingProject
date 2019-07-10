@@ -1,4 +1,7 @@
 package kr.co.member.model.dao;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -9,6 +12,7 @@ import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -111,6 +115,16 @@ public class MemberDao {
 			result=sqlSession.insert("member.insertStudioOption", ssl.getList().get(i));
 		}
 		return result;
+	}
+	
+	public List<Reservation> getAllReservList(Member vo) {
+		// TODO Auto-generated method stub
+		
+		
+		List<Reservation> list = sqlSession.selectList("member.selectAllreserv",vo);
+	
+		
+		return list;
 	}
 
 }

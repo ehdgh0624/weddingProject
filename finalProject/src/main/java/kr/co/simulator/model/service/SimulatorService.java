@@ -64,6 +64,11 @@ public class SimulatorService {
 		return (ArrayList<Studio>)simulatorDao.stSearchList(simulator, Start, Start+length-1);
 	}
 
+	//Simulator 생성
+	public int newSimulator(Simulator simulator) {
+		return simulatorDao.newSimulator(simulator);
+	}
+
 	//웨딩드레스 더보기
 	/*public ArrayList<Dress> dSearchList(String weddingLoc) {
 		
