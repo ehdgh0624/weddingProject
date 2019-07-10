@@ -85,7 +85,7 @@
 								<ul>
 									<li><a href="">공지사항</a></li>
 								   	<li><a href="">Q&A</a></li>
-								   	<li><a href="">경험담</a></li>
+								   	<li><a href="/experienceAll.do">경험담</a></li>
 								</ul>
 							</div>
 						</li>

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TaskScheduledTest {
 
-	@Scheduled(fixedDelay=300000)
+	/*@Scheduled(fixedDelay=300000)
 	public void Test() {
 
 		System.out.println("되냐?");
@@ -24,10 +24,6 @@ public class TaskScheduledTest {
 				 tempFile[i].delete(); 
 			System.out.println("삭제성공");	 
 			 }
-		 }
-
-
-		
-		
-	}
+		 }		
+	}*/
 }
