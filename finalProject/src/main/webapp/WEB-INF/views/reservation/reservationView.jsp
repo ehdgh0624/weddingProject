@@ -37,14 +37,15 @@
 				<c:if test="${not empty reservation.option1 || not empty reservation.option2 || not empty reservation.option3}">
 					<c:if test="${not empty reservation.option1}">
 						옵션1 : ${reservation.option1}
+						<br>
 						<c:if test="${not empty reservation.option1Date}">
 							옵션1 예약날짜 : ${reservation.option1Date}
 						<br>
 						</c:if>
 						<c:if test="${not empty reservation.option1Time}">
-							옵션1 에약시간 : ${reservation.option1Time}
-						</c:if>
+							옵션1 예약시간 : ${reservation.option1Time}
 						<br>
+						</c:if>
 					</c:if>
 					<c:if test="${not empty reservation.option2}">
 						옵션2 : ${reservation.option2}
@@ -54,9 +55,12 @@
 						<br>
 						</c:if>
 						<c:if test="${not empty reservation.option2Time}">
-							옵션2 에약시간 : ${reservation.option2Time}
-						</c:if>
+							옵션2 예약시간 : ${reservation.option2Time}
 						<br>
+						</c:if>
+						<c:if test="${reservation.code == 'D'}">
+							대여수량 : ${reservation.amount}
+						</c:if>
 					</c:if>
 					<c:if test="${not empty reservation.option3}">
 						옵션3 : ${reservation.option3}
@@ -65,7 +69,7 @@
 						<br>
 						</c:if>
 						<c:if test="${not empty reservation.option3Time}">
-							옵션3 에약시간 : ${reservation.option3Time}
+							옵션3 예약시간 : ${reservation.option3Time}
 						</c:if>
 					</c:if>
 				</c:if>			

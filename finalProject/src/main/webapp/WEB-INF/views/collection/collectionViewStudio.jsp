@@ -293,7 +293,7 @@
 	function submitReservation(){
 		var code = "S";
 		var prdNo = ${studio.studioNo};
-		var prdName = ${studio.studioName};
+		var prdName = '${studio.studioName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
 		var totalPrice = $('#allPrice').text();
