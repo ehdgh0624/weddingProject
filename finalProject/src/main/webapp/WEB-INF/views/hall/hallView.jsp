@@ -24,7 +24,7 @@
 			</div>
 			<div class="hallImg">
 				<div class="subImg">
-										
+				
 				</div>
 			</div>
 		</section>
