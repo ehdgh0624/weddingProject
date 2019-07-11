@@ -318,6 +318,16 @@ public class CollectionService {
 		return collectionDao.insertReservationStudio(vo, weddingDate, option2Date);
 	}
 	
+	@Transactional
+	public int insertReservationDress(Reservation vo, String weddingDate, String option1Date) {
+		return collectionDao.insertReservationDress(vo, weddingDate, option1Date);
+	}
+	
+	@Transactional
+	public int insertReservationMakeup(Reservation vo, String weddingDate) {
+		return collectionDao.insertReservationMakeup(vo, weddingDate);
+	}
+	
 	public int selectReservationNo(String memberId) {
 		return collectionDao.selectReservationNo(memberId);
 	}

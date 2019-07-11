@@ -353,7 +353,7 @@ function hall_more(start){
 				$(this).parent().parent().addClass('selected');
 				$(this).parents(".simulator-select-group-list").addClass('selected');
 				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent().clone();
+					var $cart = $(this).parent().parent(".selected").clone();
 					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
 				}
 			});
@@ -416,7 +416,7 @@ function dress_more(start){
 				$(this).parent().parent().addClass('selected');
 				$(this).parents(".simulator-select-group-list").addClass('selected');
 				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent().clone();
+					var $cart = $(this).parent().parent(".selected").clone();
 					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
 				}
 			});
@@ -478,7 +478,7 @@ function makeup_more(start){
 				$(this).parent().parent().addClass('selected');
 				$(this).parents(".simulator-select-group-list").addClass('selected');
 				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent().clone();
+					var $cart = $(this).parent().parent(".selected").clone();
 					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
 				}
 			});
@@ -540,8 +540,10 @@ function studio_more(start){
 				$(this).parent().parent().addClass('selected');
 				$(this).parents(".simulator-select-group-list").addClass('selected');
 				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent().clone();
-					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
+					var $cart = $(this).parent().parent(".selected").clone();
+					//var $list = $cart.toArray();
+					console.log($cart);
+					$(".selected-list").append($list.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
 				}
 			});
 		},

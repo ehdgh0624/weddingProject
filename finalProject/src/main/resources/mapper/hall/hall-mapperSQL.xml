@@ -32,8 +32,35 @@
 			   hall_date as hallDate
 			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d) where (rnum between #{start} and #{end}) order by rnum desc
 	</select>
-	<select id="selectAllList" parameterType="hall" resultType="hall">
-	select hall_no as hallNo,
+	
+	<select id="selectAllList"  resultType="_int">
+	select count(*) from hall
+	</select>
+	
+	<select id="searchList" parameterType="map"  resultType="_int">
+	select count(*) from (select * from hall 
+		<trim prefix="where" prefixOverrides="AND | OR">
+			   		<if test="hallLoc != '전국'">
+			   			hall_Loc like '%'||#{hallLoc, jdbcType=VARCHAR}||'%'
+			   		</if>
+			   		<if test="hallType != '전체'">
+			   			AND hall_Type like '%'||#{hallType, jdbcType=VARCHAR}||'%'
+			   		</if>
+			   		<if test="person > 0 ">
+			   			AND (hall_min_person <![CDATA[<=]]>  #{person, jdbcType=VARCHAR}) AND (#{person, jdbcType=VARCHAR} <![CDATA[<=]]> hall_max_person)
+			   		</if>
+			   		<if test="hallFoodtype > 0">
+			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
+			   		</if>
+			   		<if test="hallName != '' ">
+			   			AND (hall_Name like '%'||#{hallName, jdbcType=VARCHAR}||'%' OR hall_tag like '%'||#{hallName, jdbcType=VARCHAR}||'%')
+			   		</if>
+		 </trim>
+		 )
+	 </select>
+	
+	<select id="hallSearch" parameterType="map" resultType="hall">
+		select hall_no as hallNo,
 			   member_id as memberId,
 			   code as code,
 			   hall_type as hallType,
@@ -61,6 +88,25 @@
 			   hall_latitude as hallLatitude,
 			   hall_longitude as hallLongitude,
 			   hall_date as hallDate 
-			   from hall where status=1 and viewstatus=0
+			   from (select rownum as rnum, d.* from (select * from hall 
+			   <trim prefix="where" prefixOverrides="AND | OR">
+			   		<if test='hallLoc != "전국"'>
+			   			hall_Loc like '%'||#{hallLoc, jdbcType=VARCHAR}||'%'
+			   		</if>
+			   		<if test='hallType != "전체"'>
+			   			AND hall_Type like '%'||#{hallType, jdbcType=VARCHAR}||'%'
+			   		</if>
+			   		<if test="person > 0 ">
+			   			AND (hall_min_person <![CDATA[<=]]>  #{person, jdbcType=VARCHAR}) AND (#{person, jdbcType=VARCHAR} <![CDATA[<=]]> hall_max_person)
+			   		</if>
+			   		<if test="hallFoodtype > 0">
+			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
+			   		</if>
+			   		<if test='hallName != ""'>
+			   			AND (hall_Name like '%'||#{hallName, jdbcType=VARCHAR}||'%' OR hall_tag like '%'||#{hallName, jdbcType=VARCHAR}||'%')
+			   		</if>
+		 </trim>
+				  ) d where status=1 and viewstatus=0  order by hall_no)  		   		
+			   where (rnum between #{start} and #{end})
 	</select>
 </mapper>

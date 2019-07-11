@@ -32,12 +32,11 @@
 	<select id="totalMember" parameterType="map" resultType="_int">
 		select count(*) from member <if test="ssCode == 1">where member_code=0</if><if test="ssCode ==2">where member_code=1</if>
 	</select>
-	<select id="totalGoods" resultType="_int">
-		select count(*) from Goods
+	<select id="totalGoods" parameterType="map" resultType="_int">
+		select count(*) from Goods <if test="code == 1"> where goods_type = 'B'</if><if test="code == 2"> where goods_type = 'I'</if>
 	</select>
-	<select id="goodsAll"  resultType="goods">
-		select 
-				goods_no as goodsNo,
+	<select id="goodsAll" parameterType="map" resultType="goods">
+		select goods_no as goodsNo,
 				code as code,
 				goods_type as goodsType,
 				goods_name as goodsName,
@@ -46,8 +45,11 @@
 				goods_content as goodsContent,
 				viewstatus as viewstatus,
 				goods_filepath as goodsFilePath,
-				goods_tag as goodsTag
-			from goods			
+				goods_tag as goodsTag from
+				(select rownum as rnum , g.* from (select * from goods
+				 <if test="code == 1">where goods_type = 'B'</if>
+				 <if test="code == 2">where goods_type = 'I'</if>
+				 order by goods_no desc)g) where rnum between #{start} and #{end} 		
 	</select>
 	<select id="searchMember" parameterType="map" resultType="_int">
 		select count(*) from member 
@@ -69,6 +71,179 @@
 		       <if test="type == 'memberName'">where member_name like '%'||#{keyword}||'%'</if>
 			     order by enrolldate desc)m)
 			   where rnum between ${start} and ${end}
+	</select>
+	<select id="countDress" resultType="_int">
+		select count(*) from dress where STATUS = 0
+	</select>
+	<select id="countStudio" resultType="_int">
+		select count(*) from studio where STATUS = 0
+	</select>
+	<select id="countHall" resultType="_int">
+		select count(*) from hall where STATUS = 0
+	</select>
+	<select id="countMakeup" resultType="_int">
+		select count(*) from makeup where STATUS = 0
+	</select>
+	
+	
+	<select id="listAll" parameterType="map" resultType="company">
+		select comNo , id ,code , name , tel,addr,status from(
+			select rownum as rnum ,a.* from(
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status from dress where status = 0 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status from studio where status = 0 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status from hall where status = 0
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status from makeup where status = 0
+			)a 
+			<if test="typeCode == 1">where code='H'</if> 
+			<if test="typeCode == 2">where code='S'</if> 
+			<if test="typeCode == 3">where code='D'</if> 
+			<if test="typeCode == 4">where code='M'</if> 
+			) where rnum between ${start} and ${end} 
+	</select>
+	
+	<update id="agreeUpdate" parameterType="map">
+		update
+		
+		<if test='code == "H"'> hall set status = 1 where hall_no =#{num}</if>
+		<if test='code == "S"'> studio set status = 1 where studio_no =#{num}</if>
+		<if test='code == "D"'> dress set status = 1 where dress_no =#{num}</if>
+		<if test='code == "M"'> makeup set status = 1 where makeup_no =#{num}</if>
+		
+	</update>
+	
+	<update id="rejectUpdate">
+		update
+		
+		<if test='code == "H"'> hall set status = 2 where hall_no =#{num}</if>
+		<if test='code == "S"'> studio set status = 2 where studio_no =#{num}</if>
+		<if test='code == "D"'> dress set status = 2 where dress_no =#{num}</if>
+		<if test='code == "M"'> makeup set status = 2 where makeup_no =#{num}</if>
+	</update>
+	
+	<select id="searchCompanyTotal" parameterType="map" resultType="_int">
+		
+			select count(*) from (select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status from dress where status = 0 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status from studio where status = 0 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status from hall where status = 0
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status from makeup where status = 0)
+			<if test='type == "companyName"'>
+				 where name like '%'||#{keyword}||'%'
+			</if>
+			<if test='type == "memberId"'>
+				 where id like '%'||#{keyword}||'%'
+			</if>
+	</select>
+	
+	<select id="searchCompany" parameterType="map" resultType="company">
+		select comNo , id ,code , name , tel,addr,status from(
+			select rownum as rnum ,a.* from(
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status from dress where status = 0 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status from studio where status = 0 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status from hall where status = 0
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status from makeup where status = 0
+			)a 
+			<if test='type == "companyName"'>
+				 where name like '%'||#{keyword}||'%'
+			</if>
+			<if test='type == "memberId"'>
+				 where id like '%'||#{keyword}||'%'
+			</if>
+			) where rnum between ${start} and ${end} 
+	</select>
+	
+	<select id="countView" parameterType="map" resultType="_int">
+	select count(*) from (
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status,viewstatus from dress where viewstatus = 2 or viewstatus =3 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status,viewstatus from studio where viewstatus = 2 or viewstatus =3 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status,viewstatus from hall where viewstatus = 2 or viewstatus =3
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status,viewstatus from makeup where viewstatus = 2 or viewstatus =3
+			)
+			<if test="code == 1">where code='H'</if> 
+			<if test="code == 2">where code='S'</if> 
+			<if test="code == 3">where code='D'</if> 
+			<if test="code == 4">where code='M'</if> 
+	
+	</select>
+	<select id="viewManager" parameterType="map" resultType="company">
+		select comNo , id ,code , name , tel,addr,status,viewstatus from(
+			select rownum as rnum ,a.* from(
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status,viewstatus from dress where viewstatus = 2 or viewstatus =3 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status,viewstatus from studio where viewstatus = 2 or viewstatus =3 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status,viewstatus from hall where viewstatus = 2 or viewstatus =3
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status,viewstatus from makeup where viewstatus = 2 or viewstatus =3
+			)a 
+			<if test="code == 1">where code='H'</if> 
+			<if test="code == 2">where code='S'</if> 
+			<if test="code == 3">where code='D'</if> 
+			<if test="code == 4">where code='M'</if> 
+			) where rnum between ${start} and ${end}
+	</select>
+	
+	<update id="view" parameterType="map">
+		update
+		<if test='code == "H"'> hall set viewstatus = 0 where hall_no =#{num}</if>
+		<if test='code == "S"'> studio set viewstatus = 0 where studio_no =#{num}</if>
+		<if test='code == "D"'> dress set viewstatus = 0 where dress_no =#{num}</if>
+		<if test='code == "M"'> makeup set viewstatus = 0 where makeup_no =#{num}</if>
+	</update>
+	<update id="unview" parameterType="map">
+		update
+		<if test='code == "H"'> hall set viewstatus = 1 where hall_no =#{num}</if>
+		<if test='code == "S"'> studio set viewstatus = 1 where studio_no =#{num}</if>
+		<if test='code == "D"'> dress set viewstatus = 1 where dress_no =#{num}</if>
+		<if test='code == "M"'> makeup set viewstatus = 1 where makeup_no =#{num}</if>
+	</update>
+	
+	<select id="searchViewTotal" parameterType="map" resultType="_int">
+		select count(*) from (
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status,viewstatus from dress where viewstatus = 2 or viewstatus =3 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status,viewstatus from studio where viewstatus = 2 or viewstatus =3 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status,viewstatus from hall where viewstatus = 2 or viewstatus =3
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status,viewstatus from makeup where viewstatus = 2 or viewstatus =3
+			)
+			<if test='type == "companyName"'>
+				 where name like '%'||#{keyword}||'%'
+			</if>
+			<if test='type == "memberId"'>
+				 where id like '%'||#{keyword}||'%'
+			</if>
+	</select>
+	<select id="searchViewList" parameterType="map" resultType="company">
+		select comNo , id ,code , name , tel,addr,status,viewstatus from(
+			select rownum as rnum ,a.* from(
+			select dress_no as comNo, member_id as id, code,dress_name as name,dress_tel as tel,dress_addr as addr,status,viewstatus from dress where viewstatus = 2 or viewstatus =3 
+			union all
+			select studio_no,member_id , code,studio_name,studio_tel,studio_addr,status,viewstatus from studio where viewstatus = 2 or viewstatus =3 
+			union all
+			select hall_no,member_id , code, hall_name, hall_tel, hall_addr, status,viewstatus from hall where viewstatus = 2 or viewstatus =3
+			union all
+			select makeup_no,member_id , code,makeup_name,makeup_tel,makeup_addr,status,viewstatus from makeup where viewstatus = 2 or viewstatus =3
+			)a 
+			<if test='type == "companyName"'>
+				 where name like '%'||#{keyword}||'%'
+			</if>
+			<if test='type == "memberId"'>
+				 where id like '%'||#{keyword}||'%'
+			</if>
+			) where rnum between ${start} and ${end}
 	</select>
 </mapper>
 

@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css"> <!-- 태그 초기화 css(민주) -->
 <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"> <!-- 레이아웃 css(민주) -->
 <link rel="stylesheet" type="text/css" href="/resources/css/content.css"> <!-- 컨텐츠 css(민주) -->
+<link rel="stylesheet" type="text/css" href="/resources/css/photo.css"> <!--게시판 사진  css -->
 <!-- script -->
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
 
@@ -74,8 +75,8 @@
 					</li>
 					<li>
 						<p>업체관리</p>
-						<span><a href="">신청관리</a></span>
-						<span><a href="">공개여부관리</a></span>
+						<span><a href="/companyManager.do">신청관리</a></span>
+						<span><a href="/viewstatusManager.do">공개여부관리</a></span>
 					</li>
 					<li>
 						<p>상품관리</p>
