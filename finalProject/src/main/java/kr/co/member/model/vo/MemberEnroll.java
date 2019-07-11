@@ -1,5 +1,7 @@
 package kr.co.member.model.vo;
 
+import java.sql.Date;
+
 public class MemberEnroll {
 	private String memberId;
 	private String memberPw;
@@ -12,8 +14,16 @@ public class MemberEnroll {
 	private String extraAddr;
 	private String detailAddr;
 	private String email;
+	private Date marrySchedule;
+	private int expectVisitor;
+	private int budget;
+	public MemberEnroll() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public MemberEnroll(String memberId, String memberPw, String memberName, String phone, String birthDay,
-			String postNum, String roadAddr, String jibunAddr, String extraAddr, String detailAddr, String email) {
+			String postNum, String roadAddr, String jibunAddr, String extraAddr, String detailAddr, String email,
+			Date marrySchedule, int expectVisitor, int budget) {
 		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
@@ -26,10 +36,9 @@ public class MemberEnroll {
 		this.extraAddr = extraAddr;
 		this.detailAddr = detailAddr;
 		this.email = email;
-	}
-	public MemberEnroll() {
-		super();
-		// TODO Auto-generated constructor stub
+		this.marrySchedule = marrySchedule;
+		this.expectVisitor = expectVisitor;
+		this.budget = budget;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -97,14 +106,33 @@ public class MemberEnroll {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	public Date getMarrySchedule() {
+		return marrySchedule;
+	}
+	public void setMarrySchedule(Date marrySchedule) {
+		this.marrySchedule = marrySchedule;
+	}
+	public int getExpectVisitor() {
+		return expectVisitor;
+	}
+	public void setExpectVisitor(int expectVisitor) {
+		this.expectVisitor = expectVisitor;
+	}
+	public int getBudget() {
+		return budget;
+	}
+	public void setBudget(int budget) {
+		this.budget = budget;
+	}
 	@Override
 	public String toString() {
 		return "MemberEnroll [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
 				+ ", phone=" + phone + ", birthDay=" + birthDay + ", postNum=" + postNum + ", roadAddr=" + roadAddr
 				+ ", jibunAddr=" + jibunAddr + ", extraAddr=" + extraAddr + ", detailAddr=" + detailAddr + ", email="
-				+ email + "]";
+				+ email + ", marrySchedule=" + marrySchedule + ", expectVisitor=" + expectVisitor + ", budget=" + budget
+				+ "]";
 	}
-	
+
 	
 	
 }

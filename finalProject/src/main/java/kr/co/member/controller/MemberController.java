@@ -73,17 +73,53 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/loginPage.do")
-	public String memberLogin() {
+	public String MemberLogin() {
 		System.out.println("로그인페이지 호출");
 	
 		return "member/loginPage";
 	}
 	
 	@RequestMapping(value = "/memberUpdate.do")
-	public String memberUpdate() {
+	public String MemberUpdate() {
 		System.out.println("회원계정관리");
 	
 		return "member/memberUpdate";
+	}
+	@RequestMapping(value = "/memberUpdateEnroll.do")
+	public String MemberUpdateEnroll(MemberEnroll vos, HttpSession session) {
+		System.out.println("회원정보수정");
+		System.out.println(vos);
+		Member vosession =(Member)session.getAttribute("member");	
+		String addr= vos.getJibunAddr()+"/"+
+					vos.getExtraAddr()+"/"+
+					vos.getDetailAddr()+"/"+
+					vos.getPostNum()+"/"+
+					vos.getRoadAddr();
+		
+		System.out.println(addr);
+		Member vo = new Member();
+		vo.setAddr(addr);
+		vo.setBirthDay(vos.getBirthDay());
+		vo.setEmail(vos.getEmail());
+		vo.setMemberId(vos.getMemberId());
+		vo.setMemberName(vos.getMemberName());
+		vo.setMemberPw(vos.getMemberPw());
+		vo.setPhone(vos.getPhone());
+		vo.setMarrySchedule(vos.getMarrySchedule());
+		vo.setExpectVisitor(vos.getExpectVisitor());
+		vo.setBudget(vos.getBudget());
+		vo.setEnrollDate(vosession.getEnrollDate());
+		vo.setMemberCode(vosession.getMemberCode());
+		
+		
+		
+		int result = memberService.updateMember(vo);
+		if(result>0) {
+			session.setAttribute("member", vo);
+		}
+		
+		
+		return "redirect:/mypage.do";
 	}
 	
 	@RequestMapping(value = "/logout.do")
@@ -103,14 +139,15 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberEnroll.do")
-	public String memberEnroll(MemberEnroll vos) {
+	public String MemberEnroll(MemberEnroll vos) {
 		System.out.println("회원가입로직시작");
 		System.out.println(vos);
 
-		String addr= vos.getJibunAddr()+"//"+
-					vos.getExtraAddr()+"//"+
-					vos.getDetailAddr()+"//"+
-					vos.getPostNum();
+		String addr= vos.getJibunAddr()+"/"+
+					vos.getExtraAddr()+"/"+
+					vos.getDetailAddr()+"/"+
+					vos.getPostNum()+"/"+
+					vos.getRoadAddr();
 		
 		Member vo = new Member();
 		vo.setAddr(addr);
@@ -130,7 +167,7 @@ public class MemberController {
 		}
 	}
 	@RequestMapping(value = "/myCompanyPage.do")
-	public String myCompanyView(HttpSession session,Model model) {
+	public String MyCompanyView(HttpSession session,Model model) {
 		System.out.println("나의업체 관리페이지");
 		Member vo =(Member)session.getAttribute("member");	
 		Studio ms = memberService.selectOneStudioMember(vo);
@@ -155,26 +192,41 @@ public class MemberController {
 		System.out.println("마이페이지 호출");
 		
 		Member vo =(Member)session.getAttribute("member");	
+		
 		model.addAttribute("member",vo);
+		
+		
 		return "member/mypage";
 	}
+	
+	@RequestMapping(value = "/memberDelete.do")
+	public String MemberDelete(HttpServletRequest request) {
+		System.out.println("탈퇴 호출");
+		String id = request.getParameter("memberId");
+		
+		memberService.deleteMember(id);
+		return "member/mypage";
+	}
+	
 	//아직 적용안함
 	@RequestMapping(value = "/goAddTerms.do")
-	public String goMemberTerms() {
+	public String GoMemberTerms() {
 		System.out.println("회원등록 약관 호출");
 
 		return "member/addMemberTerms";
 	}
 	
 	@RequestMapping(value = "/goCompanyTerms.do")
-	public String goCompanyTerms() {
+	public String GoCompanyTerms() {
 		System.out.println("회원등록 약관 호출");
 
 		return "member/addCompanyTerms";
 	}
 	
+
+	
 	@RequestMapping(value = "/enrollCompanyPage.do")
-	public String goCompanyEnrollPage() {
+	public String GoCompanyEnrollPage() {
 		System.out.println("업체등록페이지");
 
 		return "member/addCompany";
@@ -229,12 +281,6 @@ public class MemberController {
 	
 		model.addAttribute("resMap",reservMap);
 		
-//		Studio ms = memberService.selectOneStudioMember(vo);
-//		Dress md = memberService.selectOneDressMember(vo);
-//		Hall mh = memberService.selectOneHallMember(vo);
-//		Makeup mm = memberService.selctOneMakeupMember(vo);	
-//		MemberAll ma = new MemberAll(md,ms,mm,mh);
-
 		return "member/myReservList";
 	}
 
@@ -245,9 +291,10 @@ public class MemberController {
 			@RequestParam(value="studioOption",required = true) List<String> studioOption,
 			@RequestParam(value="studioOptionPrice",required = true) List<Integer> studioOptionPrice,
 			@RequestParam(value="studioOptionType",required = true) List<Integer> studioOptionType,
-			@RequestParam(value="hallSelectType",required = true) List<String> hallSelectType,
 			@RequestParam(value="hallSelectPrice",required = true) List<Integer> hallSelectPrice,
 			@RequestParam(value="hallSelectName",required = true) List<String> hallSelectName,
+			@RequestParam(value="hallSelectPeople",required = true) List<String> hallSelectPeople,
+			@RequestParam(value="hallSelectTime",required = true) List<String> hallSelectTime,
 			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc){
 		System.out.println("업체등록 로직 시작");
 		int seqNo=0;
@@ -259,7 +306,13 @@ public class MemberController {
 		int result=0;
 		int result2=0;
 
+		 String fullAddr=ci.getJibunAddr()+"/"+
+			ci.getExtraAddr()+"/"+
+			ci.getDetailAddr()+"/"+
+			ci.getPostNum()+"/"+
+			ci.getRoadAddr();
 		
+		 ci.setCompanyAddr(fullAddr);
 		
 		int code=ci.getCode();
 		
@@ -281,13 +334,14 @@ public class MemberController {
 			result=memberService.insertHall(ci, vo);
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
-				for(int i=0; i<hallSelectType.size(); i++) {
-					HallSelect  hs = new HallSelect(seqNo,hallSelectType.get(i),hallSelectPrice.get(i),hallSelectEtc.get(i),hallSelectName.get(i));
+				for(int i=0; i<hallSelectPrice.size(); i++) {
+					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,hallSelectPrice.get(i),hallSelectEtc.get(i));
 					hsl.getList().add(hs);
 				}
 				result2=memberService.insertHallOption(hsl);
 			}
 		}	
+		
 		if(result>0 && code==0 && result2>0){
 			return "redirect:/index.jsp";
 		}else if(result>0 && code==3 && result2>0) {
