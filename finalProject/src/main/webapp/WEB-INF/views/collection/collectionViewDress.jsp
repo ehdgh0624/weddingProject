@@ -161,7 +161,7 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" id="option1" name="dressFittingPrice" value="드레스 피팅" checked onclick="return false;"> 드레스 피팅
+										<input type="checkbox" class="optionCheckBox" id="option1" name="dressFittingPrice" value="드레스 피팅" checked onclick="return false;"> 드레스 피팅
 									</td>
 									<td>
 										<span style="float: right;">가격 : <span id="option1Price">${dress.dressFittingPrice}</span>원</span>
@@ -205,7 +205,7 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" id="option2" name="dressRent" value="드레스 대여"> 드레스 대여
+										<input type="checkbox" class="optionCheckBox" id="option2" name="dressRent" value="드레스 대여"> 드레스 대여
 									</td>
 									<td>
 										<span style="float: right;">대여 가능한 수량 : ${dress.dressRentNum} / 개별 대여 가격 : <span id="option2Price">${dress.dressRentPrice}</span>원</span>
@@ -214,7 +214,7 @@
 								<tr>
 									<td></td>
 									<td>
-										<span style="float: right;">대여할 수량 : <input type="number" min="0" max="${dress.dressRentNum}" id="option2Amount"></span>
+										<span style="float: right;">대여할 수량 : <input type="number" min="1" max="${dress.dressRentNum}" value="1" id="option2Amount" onchange="checkAmount();"></span>
 									</td>
 								</tr>
 								<tr>
@@ -227,10 +227,10 @@
 								</tr>
 								<tr>
 									<td>
-										<input type="checkbox" id="option3" name="jewelryPrice" value="쥬얼리 대여"> 쥬얼리 대여
+										<input type="checkbox" class="optionCheckBox" id="option3" name="jewelryPrice" value="쥬얼리 대여"> 쥬얼리 대여
 									</td>
 									<td>
-										<span style="float: right;">대여 가격 : <span>${dress.jewelryPrice}</span>원</span>
+										<span style="float: right;">대여 가격 : <span id="option3Price">${dress.jewelryPrice}</span>원</span>
 									</td>
 								</tr>
 								<tr>
@@ -266,36 +266,61 @@
 </section>
 <script>
 
+	/* 페이지 로드 시 총계 변경 */
 	$(document).ready(function(){
 		var allPrice = 0;
-		if($('#option1').attr('checked') == true){
-			
+		if($('#option1').attr('checked') == 'checked'){
+			allPrice += parseInt($('#option1Price').text());
 		}
-		if($('#option2').attr('checked') == true){
-			
+		if($('#option2').attr('checked') == 'checked'){
+			allPrice += parseInt($('#option2Price').text()) * parseInt($('#option2Amount').val());
 		}
-		if($('#option3').attr('checked') == true){
-			
+		if($('#option3').attr('checked') == 'checked'){
+			allPrice += parseInt($('#option3Price').text());			
 		}
-		
-		
-		
-		$('.studioSelectOption').on("change",function(){
-			var allPrice = 0;
-			if($('#option1 option:selected').val() != 'default'){
-				allPrice += parseInt($('#option1 option:selected').val());
-			}
-			if($('#option2 option:selected').val() != 'default'){
-				allPrice += parseInt($('#option2 option:selected').val());			
-			}
-			if($('#option3 option:selected').val() != 'default'){
-				allPrice += parseInt($('#option3 option:selected').val());
-			}
-			console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
-			$('#allPrice').text(allPrice);
-		});
-
+		$('#allPrice').text(allPrice);
 	});
+	/* 페이지 로드 시 총계 변경 끝 */
+	
+	/* 체크박스 체크 시 총계 변경 */
+	$('.optionCheckBox').on("click",function(){
+		var allPrice = 0;
+		if($('#option1').attr('checked') == 'checked'){
+			allPrice += parseInt($('#option1Price').text());
+		}
+		if($('#option2').prop('checked') == true){
+			if($('#option2Amount').val() == ''){
+				allPrice += parseInt($('#option2Price').text()) * 0;
+			}else{
+				allPrice += parseInt($('#option2Price').text()) * parseInt($('#option2Amount').val());				
+			}
+		}
+		if($('#option3').prop('checked') == true){
+			allPrice += parseInt($('#option3Price').text());			
+		}
+		$('#allPrice').text(allPrice);		
+	});
+	/* 체크박스 체크 시 총계 변경 끝 */
+	
+	/* 드레스 대여 수량 변경 시 총계 변경 */
+	function checkAmount(){
+		var allPrice = 0;
+		if($('#option1').attr('checked') == 'checked'){
+			allPrice += parseInt($('#option1Price').text());
+		}
+		if($('#option2').prop('checked') == true){
+			if($('#option2Amount').val() == ''){
+				allPrice += parseInt($('#option2Price').text()) * 0;
+			}else{
+				allPrice += parseInt($('#option2Price').text()) * parseInt($('#option2Amount').val());				
+			}
+		}
+		if($('#option3').prop('checked') == true){
+			allPrice += parseInt($('#option3Price').text());			
+		}
+		$('#allPrice').text(allPrice);		
+	}
+	/* 드레스 대여 수량 변경 시 총계 변경 끝 */
 	
 	/* 버튼 클릭 시 예약 */
 	function reservation(){
@@ -308,7 +333,15 @@
 				if($('#option1Time option:selected').val() == 'default'){
 					alert("예약 시간을 선택해주세요.");
 				}else{
-					submitReservation();
+					if($('#option1').attr('checked') == 'checked'){
+						if($('#option2Amount').val() == '' || $('#option2Amount').val() == 0){
+							alert("대여할 드레스 수량을 입력해주세요.");
+						}else{
+							submitReservation();							
+						}
+					}else{
+						submitReservation();							
+					}
 				}
 			}
 		}
@@ -317,6 +350,7 @@
 	function submitReservation(){
 		var code = "D";
 		var prdNo = ${dress.dressNo};
+		var prdName = '${dress.dressName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
 		var totalPrice = $('#allPrice').text();
@@ -324,16 +358,18 @@
 		var option1Date = $('#option1Date').val();
 		var option1Time = $('#option1Time option:selected').text();
 		var option2 = null;
+		var option2Amount = 0;
 		var option3 = null;
-		if($('#option2').attr('checked') == true){
+		if($('#option2').prop('checked') == true){
 			option2 = $('#option2').val();
+			option2Amount = $('#option2Amount').val();
 		}
-		if($('#option3').attr('checked') == true){
+		if($('#option3').prop('checked') == true){
 			option3 = $('#option3').val();
 		}
 		$.ajax({
 			url : "/reservationDress.do",
-			data : {code:code,prdNo:prdNo,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option3:option3},
+			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){

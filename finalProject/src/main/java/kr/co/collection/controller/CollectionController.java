@@ -1,5 +1,8 @@
 package kr.co.collection.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
-import kr.co.collection.model.vo.Dress;
-import kr.co.collection.model.vo.Makeup;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
@@ -300,6 +301,70 @@ public class CollectionController {
 				return result;
 			}else {
 				return result;				
+			}
+		}else {
+			return -1;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reservationDress.do")
+	public int insertReservationDress(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option1Date, @RequestParam String option1Time, @RequestParam String option2, @RequestParam int option2Amount, @RequestParam String option3) throws ParseException {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setOption1(option1);
+			vo.setOption1Time(option1Time);
+			vo.setOption2(option2);
+			vo.setAmount(option2Amount);
+			vo.setOption3(option3);
+			int result = collectionService.insertReservationDress(vo,weddingDate,option1Date);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;
+			}
+		}else {
+			return -1;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reservationMakeup.do")
+	public int insertReservationMakeup(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setOption1(option1);
+			vo.setOption2(option2);
+			vo.setOption3(option3);
+			int result = collectionService.insertReservationMakeup(vo,weddingDate);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;
 			}
 		}else {
 			return -1;

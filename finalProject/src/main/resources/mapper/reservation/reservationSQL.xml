@@ -31,6 +31,65 @@
 		</choose>
 		,null,null)		
 	</insert>
+	
+	<insert id="insertReservationDress" parameterType="map">
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,
+		<choose>
+			<when test="#{option2Amount != 0}">
+				#{option2Amount}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,#{option1},#{option1Date},#{option1Time},
+		<choose>
+			<when test="#{option2 != null}">
+				#{option2}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,null,null,
+		<choose>
+			<when test="#{option3 != null}">
+				#{option3}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,null,null)
+	</insert>
+	<insert id="insertReservationMakeup" parameterType="map">
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,#{option1},null,null,
+		<choose>
+			<when test="#{option2 != null}">
+				#{option2}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,null,null,
+		<choose>
+			<when test="#{option3 != null}">
+				#{option3}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,null,null)
+	</insert>
+	
+	
+	
+	
+	
+	
+	
 	<select id="selectReservationNo" parameterType="string" resultType="_int">
 		select reservation_no from (select rownum, reservation_no from reservation where member_id=#{memberId} order by rownum desc) where rownum=1 
 	</select>
