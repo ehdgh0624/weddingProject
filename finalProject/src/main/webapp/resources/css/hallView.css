@@ -1,7 +1,6 @@
 section.hallView .hallName{
 	width: 100%;
 	height: 50px;
-	border: 1px solid red;
 }
 
 section.hallView .backBtn{
@@ -18,8 +17,19 @@ section.hallView .text h5 a {
 	float: right;
 }
 
-section.hallView .hallImg{
+section.hallView .content {
 	width: 100%;
-	height: 600px;
-	border: 1px solid blue;
+	height: 1000px;
+	border: 1px solde blue;
+}
+
+section.hallView .contentsub{
+	width: 70%;
+}
+
+section.hallView .reservation1{
+	width: 100%;
+	height: 300px;
+	border: 1px solid yellow;
+	border-radius: 5px;
 }
