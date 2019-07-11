@@ -42,18 +42,18 @@ public class ExperienceController {
 
 		int reqPage;
 		try {
-			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+			reqPage = Integer.parseInt(request.getParameter("reqPage")); 
 		}catch(NumberFormatException e) {
 			reqPage = 1;
 		}	
 			
-		return "redirect:/experienceAllList.do?reqPage="+reqPage;
+		return "redirect:/experienceAllList.do?reqPage="+reqPage; // 페이지를  1 을 보내준다 
 	}
 	@RequestMapping(value="/experienceAllList.do")
 	public ModelAndView experienceAllList(int reqPage) {
 		
 		
-	ExperienePageDate expd = experienceService.edList(reqPage);
+	ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다 
 	ModelAndView mav =  new ModelAndView();
 	mav.addObject("expd",expd);
 	mav.setViewName("experience/experienceAll");

@@ -48,11 +48,11 @@ public class ExperienceService {
 
 
 	public ExperienePageDate edList(int reqPage) {
-		int numPerPage = 9;   //게시물의 숫자
-		int totalCount = experienceDao.totalCount();  //총개시물을 나ㅏ타낸다
+		int numPerPage = 9;   //게시물의 숫자  
+		int totalCount = experienceDao.totalCount();  //총개시물을 나타낸다
 //		int totalPage =(totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;	
 		int totalpge = 0;	
-		if(totalCount%numPerPage==0){ //게시물 5개 나누고 밑에 하나씩 추가하는것들
+		if(totalCount%numPerPage==0){ //게시물 x개 나누고 밑에 하나씩 추가하는것들
 			totalpge = (totalCount)/(numPerPage);
 		}else {
 			totalpge = (totalCount)/(numPerPage)+1;
