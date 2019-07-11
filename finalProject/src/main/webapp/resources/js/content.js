@@ -5,24 +5,22 @@
 ******************************************************** */
 
 $(document).ready(function(){
-	/* *********************** 웨딩 계산기  ************************ */
-	/*$('.simulator-select-group-list').slick({
+	/* *********************** 웨딩 계산기 :: 슬라이드  ************************ */
+	$('.simulator-select-group-list').slick({
 		slidesToShow: 3,
-		slidesToScroll: 1,
+		slidesToScroll: 3,
 		arrows: true,
 		fade: false,
 		dots:false,
-		autoplay: true,
+		autoplay: false,
 		speed:800,
 		infinite:false,
 		autoplaySpeed: 3000,
 		easing: 'easeInOutQuint',
 		pauseOnHover:false,
-		//prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><i class="material-icons">&#xE314;</i></button>',
-		//nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><i class="material-icons">&#xE315;</i></button>',
-	});*/
-	
-	
+		prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
+		nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
+	});
 	
 	
 	/* *********************** 웨딩 계산기 :: 장바구니  ************************ */

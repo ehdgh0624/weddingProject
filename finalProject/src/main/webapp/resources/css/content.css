@@ -88,7 +88,7 @@ background:#f8f8f8 url(/resources/img/none_1.png) no-repeat 7px center; backgrou
 .simulator-select-list-con.selected:before{position:absolute; top:0; left:0; bottom:0; right:0; content:''; border:2px solid #888; z-index:1;}
 .simulator-select-list{box-shadow:3px 3px 5px #ddd; border-radius:3px;}
 .simulator-select-img-thum{position:relative; padding-top:61.2%; overflow:hidden;}
-.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0;}
+.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0; font-size:0; text-indext:-9999px;}
 .simulator-select-img-thum > span img{width:100%;}
 .simulator-select-list-tit, .simulator-select-list-addr, .simulator-select-list-price, .simulator-select-list-tag{padding:0 20px;}
 .simulator-select-list-tit{font-size:18px; line-height:24px; color:#666; font-weight:500; margin:5px 0;}
@@ -112,15 +112,17 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 .cart-sideBar-container.open{right:0; transition:right 0.4s; z-index:999;}
 .cart-sideBar-inner{padding:20px; padding-right:10px; height:calc(100% - 40px);}
 .cart-sideBar-inner > h2{padding:15px 0 20px; font-weight:500; border-bottom:1px solid #eee;}
-.selected-list{height:calc(100% - 116px); overflow-y:auto; margin-bottom:7px;}
-.selected-list > li{float:none; max-width:98%; margin:10px 0;}
+.cart-sideBar-inner form{}
+.selected-list{height:calc(100% - 55px);}
+.selected-list form{height:calc(100% - 61px); overflow-y:auto;}
+.selected-list li{float:none; max-width:98%; margin:10px 0;}
 .selected-list .simulator-select-list-tit{padding:0 10px; font-size:16px; line-height:22px;}
 .selected-list .simulator-select-list-price{padding:10px; font-size:11px;}
 .selected-list .simulator-select-list-price > b{font-size:16px;}
 .selected-list .simulator-select-btn-group,
 .selected-list .simulator-select-list-addr,
 .selected-list .simulator-select-list-tag{display:none;}
-.go-simulation{width:100%; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
+.go-simulation{position:absolute; bottom:20px; left:20px; width:260px; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
 
 
 /* ****************** 이용약관 ********************** */
@@ -134,3 +136,15 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 .terms-tab-list > .t_mid > h2{font-size:17px; font-weight:500;}
 .terms-tab-con{border:1px solid rgba(254,67,30); height:250px; overflow-y:scroll; background:#fff;}
 .terms-tab-con > .c_mid{ text-align:left; line-height:25px; padding:20px;}
+
+
+/* ****************** 형준 :: 갤러리 ********************** */
+.view-gallery-slide{}
+.view-big-gallery-list{background:#eee; padding:10px;}
+.view-big-gallery-list li img{max-width:100%; margin:0 auto;}
+.view-big-gallery-list .slick-prev, .view-big-gallery-list .slick-next{position:absolute; top:50%; margin-top:-25px; width:50px; height:50px; background:rgba(255,255,255,0.7); border-radius:40px;}
+.view-big-gallery-list .slick-prev{left:30px;}
+.view-big-gallery-list .slick-next{right:30px;}
+.view-small-gallery-list li{position:relative;}
+.view-small-gallery-list li img{max-width:96%; margin:0 auto; border:2px solid transparent;}
+.view-small-gallery-list li.slick-current img{border:2px solid #888;}

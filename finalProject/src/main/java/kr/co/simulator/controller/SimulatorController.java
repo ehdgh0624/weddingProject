@@ -164,4 +164,10 @@ public class SimulatorController {
 		return new Gson().toJson(obj);
 	}
 	
+	
+	//나의 웨딩 계산결과 보기
+	@RequestMapping(value="/cartSideBar.do")
+	public String cartSideBar(@RequestParam ArrayList cartArr) {
+		return null;
+	}
 }
