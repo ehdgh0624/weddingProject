@@ -11,7 +11,7 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 
-	<div id="myPageContainer" class="clearfix">
+	<div id="myPageContainer" class="clearfix area">
 		<h1>상품등록</h1>
 		<br>
 			<form action="/addGoods.do" method="post" enctype="multipart/form-data">

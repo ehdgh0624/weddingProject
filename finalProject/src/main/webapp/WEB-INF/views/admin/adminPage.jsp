@@ -9,12 +9,12 @@
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
-	<div id="myPageContainer">
+	<div id="memberTypeBtn" class="area">
 	<button onclick="location.href='/adminPage.do'">모든회원</button> 
 	<button onclick="location.href='/adminPage.do?sCode=1'">일반회원</button> 
 	<button onclick="location.href='/adminPage.do?sCode=2'">업체회원</button> 
 	</div>
-	<div id="myPageContainer" class="clearfix">
+	<div id="myPageContainer" class="clearfix area">
 		<table class=comm-tbl>
 			<tr>
 				<th>아이디</th>
@@ -41,7 +41,7 @@
 		  <!-- 검색박스 -->
           <div class="board-search-box">
              <form action="/searchMember.do" method="get">
-               <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
+               <select name="type" id="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
                   <option value="memberId">아이디</option>
                   <option value="memberName">이름</option>
                </select>
@@ -54,7 +54,15 @@
 		function del(no){
 			alert("벌써 탈퇴 시기지 마");
 		}
-	
+		$(document).ready(function(){
+			var type = '${param.type}';
+			if(type == 'memberId'){
+				$("option").eq(0).attr("selected","selected");
+			}else if(type == 'memberName'){
+				$("option").eq(1).attr("selected","selected");
+			}
+		});
+		
 	</script>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>

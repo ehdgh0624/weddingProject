@@ -45,6 +45,8 @@
 .comm-tbl.type2 td{color:#2b2b2b; font-size:14px; text-align:center;}
 .comm-tbl.type2 tr:hover td{background-color:rgba(254,67,30,0.05);}
 .comm-tbl .delete-btn{padding: 5px 10px;border-radius: 3px;color:white;background-color: #333}
+.comm-tbl .agree-btn{padding: 5px 10px;border-radius: 3px;color:white;background-color: rgba(254,67,30)}
+.comm-tbl .reject-btn{padding: 5px 10px;border-radius: 3px;color:white;background-color: #333}
 
 /* 공통 :: Table :: 버튼 */
 .common-tbl-btn-group{padding-top:30px; text-align:center;}

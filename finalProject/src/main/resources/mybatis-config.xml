@@ -16,6 +16,7 @@
     	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
+		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
     </typeAliases>
 
 </configuration>

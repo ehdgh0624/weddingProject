@@ -7,10 +7,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class TaskScheduledTest {
 
-	@Scheduled(fixedDelay=300000)
+//	@Scheduled(fixedDelay=300000)
 	public void Test() {
 
 		System.out.println("되냐?");
@@ -19,7 +19,7 @@ public class TaskScheduledTest {
 		 File file = new File(path);
 		 File[] tempFile = file.listFiles();
 
-		 for (int i = 0; i < tempFile.length; i++) { 
+		 for (int i = 0; i <5; i++) { 
 			 if(tempFile[i].isFile()){
 				 tempFile[i].delete(); 
 			System.out.println("삭제성공");	 
