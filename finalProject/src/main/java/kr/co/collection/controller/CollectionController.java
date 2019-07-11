@@ -212,8 +212,10 @@ public class CollectionController {
 		mav.addObject("galleryList", gList);
 		if(goodsType.equals("B")) {
 			mav.setViewName("collection/collectionViewBouquet");
-		}else {
+		}else if(goodsType.equals("I")) {
 			mav.setViewName("collection/collectionViewInvitation");
+		}else {
+			mav.setViewName("collection/collectionList");
 		}
 		return mav;
 	}
@@ -369,5 +371,11 @@ public class CollectionController {
 		}else {
 			return -1;
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/perInfo.do")
+	public int personallInformationPage(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam int amount) {
+		return 0;
 	}
 }

@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectAllList"  resultType="_int">
-	select count(*) from hall
+	select count(*) from hall 
 	</select>
 	
 	<select id="searchList" parameterType="map"  resultType="_int">
@@ -108,5 +108,44 @@
 		 </trim>
 				  ) d where status=1 and viewstatus=0  order by hall_no)  		   		
 			   where (rnum between #{start} and #{end})
+	</select>
+	
+	<select id="countPc"  resultType="_int">
+	select count(*) from hall <if test="hhCode==1">order by hall_scope</if>
+							  <if test="hhCode==2">order by hall_date</if>
+	</select>
+	
+	<select id="hallPc" parameterType="map" resultType="hall">
+	select hall_no as hallNo,
+	member_id as memberId,
+	code as code,
+	hall_type as hallType,
+	hall_name as hallName,
+	hall_loc as hallLoc,
+	hall_addr as hallAddr,
+	hall_content as hallContent,
+	hall_img as hallImg,
+	hall_path as hallPath,
+	hall_price as hallPrice,
+	hall_min_person as hallMinPerson,
+	hall_max_person as hallMaxPerson,
+	hall_scope as hallScope,
+	hall_foodtype as hallFoodetype,
+	hall_foodMenu as hallFoodmenu,
+	hall_foodprice as hallFoodprice,
+	hall_tel as hallTel,
+	hall_time as hallTime,
+	hall_service_food as hallServiceFood,
+	hall_service_drink as hallServiceDrink,
+	hall_service_parking as hallServiceParking,
+	status as status,
+	viewstatus as viewStatus,
+	hall_tag as hallTag,
+	hall_latitude as hallLatitude,
+	hall_longitude as hallLongitude,
+	hall_date as hallDate
+	from (select rownum as rnum, d.* from (select * from hall where status=1
+	and viewstatus=0 order by hall_no) d) where (rnum between #{start} and
+	#{end}) order by rnum desc
 	</select>
 </mapper>

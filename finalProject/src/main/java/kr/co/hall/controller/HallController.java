@@ -39,21 +39,50 @@ public class HallController {
 		h.setHallLoc(hallLoc);
 		h.setHallType(hallType);
 		h.setHallFoodtype(Integer.parseInt( menuType));
-		int person =  Integer.parseInt(hallPerson);
 		h.setHallName(searckHall);
+		int person;
 		int reqPage;
+		try {
+			 person =  Integer.parseInt(hallPerson);			
+		}catch (NumberFormatException e) {
+			 person = 0;
+		}
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		} catch(NumberFormatException e) {
 			reqPage = 1;
 		}	
-		System.out.println(person);
 		HallPage pd = hallService.HallSearch(reqPage,h,person);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
 		mav.setViewName("hall/hall");
 	      return mav;
 	   }
-	
+	@RequestMapping(value="/hallPc.do")
+	public ModelAndView hallPc(HttpServletRequest request) {
+		int reqPage;
+		int hhCode;
+		try {
+			hhCode = Integer.parseInt(request.getParameter("hCode"));
+		}catch (NumberFormatException e) {
+			hhCode = 0;
+		}
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch (NumberFormatException e) {
+			reqPage = 1;
+		}
+		HallPage pd = hallService.hallPc(reqPage,hhCode);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pd",pd);
+		mav.setViewName("hall/hall");
+		return mav;
+	}
+	@RequestMapping(value="/hallView.do")
+	public ModelAndView reservation() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("hall/hallView");
+		return mav;
+	}
 	
 }
