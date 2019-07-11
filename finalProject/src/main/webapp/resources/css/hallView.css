@@ -1,35 +1,267 @@
-section.hallView .hallName{
+/* 운영정책 */
+section.hallView .contentsub h3.desc-headline {
+	font-size: 16px;
+	margin: 50px 0 15px 0;
+	padding-bottom: 10px;
+	font-weight: 600;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.property-features.ptnr_policy {
+	-webkit-columns: 1;
+}
+
+.property-features.ptnr_policy li {
+	padding-bottom: 14px;
+	margin-bottom: 13px;
+	border-bottom: 1px solid #F1F1F1;
+}
+
+.property-features.ptnr_policy li:last-child {
+	padding-bottom: 14px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #eaeaea;
+}
+
+.property-features.ptnr_policy i {
+	display: inline-block;
+	vertical-align: top;
+	font-size: 17px;
+	margin-top: 2px;
+}
+
+.property-features.ptnr_policy span.policy_title {
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 10px;
+	width: 120px;
+}
+
+.property-features.ptnr_policy p {
+	display: inline-block;
+	vertical-align: top;
+	width: calc(100% - 184px);
+	margin: 0;
+}
+
+/* Estimate */
+.ptnr_estimate .panel {
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
+	margin-bottom: 2px;
+}
+
+.ptnr_estimate .panel-heading {
+	padding: 10px 15px;
+	border-bottom: 1px solid transparent;
+	border-top-right-radius: 3px;
+	border-top-left-radius: 3px;
+	color: #333;
+	background-color: #f5f5f5;
+	border-color: #ddd;
+}
+
+.ptnr_estimate .panel-body {
+	padding: 20px 10px;
+	text-align: left;
+}
+
+.form-control {
 	width: 100%;
-	height: 50px;
+	height: 34px;
+	padding: 6px 12px;
+	background-color: #fff;
+	border: 1px solid #c2cad8;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, box-shadow
+		ease-in-out .15s;
+	-o-transition: border-color ease-in-out .15s, box-shadow ease-in-out
+		.15s;
+	transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 
-section.hallView .backBtn{
-	width: 4%;
-    background-color: #eaeaea;
-    font-size: 50px;
-    text-align: center;
-    color: #a0a0a0;
-    float: left;
-    height: 100%;
+.ptnr_estimate .panel-body .form-group {
+	position: relative;
 }
 
-section.hallView .text h5 a {
+.ptnr_estimate .panel-body .form-group.margin-bottom-45 {
+	margin-bottom: 45px;
+}
+
+.ptnr_estimate .panel-body .form-group.margin-bottom-30 {
+	margin-bottom: 30px;
+}
+
+.ptnr_estimate .panel-body .form-group>label {
+	font-size: 16px;
+	color: #999;
+}
+
+.ptnr_estimate .panel-body .input-group-wrap {
+	margin-top: 10px;
+	overflow: hidden;
+}
+
+.ptnr_estimate .panel-body .input-group {
+	
+}
+
+.ptnr_estimate .panel-body .input-group .ui-datepicker-trigger {
+	display: none;
+}
+
+.ptnr_estimate .panel-body .input-group {
+	float: left;
+}
+
+.ptnr_estimate .panel-body .input-group.w-60 {
+	width: 59%;
+}
+
+.ptnr_estimate .panel-body .input-group.w-40 {
+	float: right;
+	width: 39%;
+}
+
+.ptnr_estimate .panel-body .input-group input {
+	position: relative;
+	z-index: 2;
+	float: left;
+	margin-bottom: 0;
+	width: calc(100% - 64px);
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	height: 22px;
+}
+
+.ptnr_estimate .panel-body .input-group .input-group-btn {
+	float: left;
+	position: relative;
+	width: 1%;
+	display: inline-block;
+	vertical-align: middle;
+	font-size: 0;
+	white-space: nowrap;
+}
+
+.ptnr_estimate .panel-body .input-group .input-group-btn>button {
+	display: inline-block;
+	margin-bottom: 0;
+	font-weight: 400;
+	text-align: center;
+	vertical-align: middle;
+	touch-action: manipulation;
+	cursor: pointer;
+	border: 1px solid transparent;
+	white-space: nowrap;
+	padding: 10px 12px;
+	font-size: 14px;
+	line-height: 1.42857;
+	border-radius: 4px;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	color: #666;
+	background-color: #e1e5ec;
+	border-color: #e1e5ec;
+	border-bottom-left-radius: 0;
+	border-top-left-radius: 0;
+}
+
+.ptnr_estimate ul.btn-group {
+	text-align: right;
+	width: 100%;
+}
+
+.ptnr_estimate ul.btn-group li {
+	display: inline-block;
+	margin-left: 5px;
+}
+
+.ptnr_estimate th, .ptnr_estimate td {
+	text-align: center;
+}
+
+.ptnr_estimate .well p {
+	margin-bottom: 10px;
+}
+
+#service_detail img {
+	width: 100%;
+}
+
+#service_detail .portlet-body p {
+	white-space: pre-wrap;
+}
+
+.ptnr_estimate .mt-checkbox, .ptnr_estimate .mt-radio {
+	line-height: 1.8;
+}
+
+.ptnr_estimate .mt-checkbox span, .ptnr_estimate .mt-radio span {
+	width: 20px;
+	height: 20px;
+	margin: 4px 10px 0 0;
+}
+
+.ptnr_estimate .mt-radio>span:after {
+	left: 6px;
+	top: 6px;
+}
+
+.ptnr_estimate .mt-checkbox a, .ptnr_estimate .mt-radio a {
+	margin-top: -6px;
+	padding: 3px 7px;
+}
+
+.ptnr_estimate div.gap {
+	display: inline-block;
+	width: 5px;
+}
+
+.ptnr_estimate .service_lst .form-group.form-md-line-input {
+	margin: 0;
+	padding-top: 9px;
+}
+
+.ptnr_estimate .service_lst .form-group.form-md-touchspin {
+	margin-top: 9px;
+}
+
+.ptnr_estimate .service_header {
+	padding-bottom: 22px;
+}
+
+.ptnr_estimate .service_header span {
+	color: #F46629;
+	font-size: 10px;
 	float: right;
 }
 
-section.hallView .content {
-	width: 100%;
-	height: 1000px;
-	border: 1px solde blue;
+.indent_g1 {
+	padding-left: 15px;
 }
 
-section.hallView .contentsub{
-	width: 70%;
+.indent_g2 {
+	padding-left: 45px;
 }
 
-section.hallView .reservation1{
-	width: 100%;
-	height: 300px;
-	border: 1px solid yellow;
-	border-radius: 5px;
+.indent_g3 {
+	padding-left: 75px;
+}
+
+.default-hide {
+	display: none;
+}
+
+.ptnr_estimate .media-object {
+	width: 64px;
+	height: 64px;
 }

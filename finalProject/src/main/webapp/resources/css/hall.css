@@ -140,9 +140,9 @@ section.hall .card .text {
   padding: 5px 10px;
   line-height: 20px;
 }
-/* section.hall .card .text:hover{ */
-/* 	background-color: #f46629; */
-/* } */
+section.hall .card .text:hover{
+	background-color: #f46629;
+}
 section.hall .card .text h5 {
   font-size: 20px;
   overflow: hidden;
