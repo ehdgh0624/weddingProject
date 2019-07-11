@@ -19,16 +19,17 @@
 			<br>
 			<br>
 		</div>	
-		<div style="text-align: center; ">		
-		 	<c:forEach items="${list}" var="list" varStatus="i">
-				<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
-					<div style="padding:20px; height: 70%;" >
+		<div style="text-align: center;">		
+		 	<c:forEach items="${expd.exList}" var="e" varStatus="i">
+		 	  
+				<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235); ">
+					<div style="padding:5px; height: 70%;">
 						<div>
 							<div>
-							<a href="/experienceDetail.do?experienceNo=${list.experienceNo}">
-							${list.experienceFilePath}
+							<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
+							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">
 							대표사진 경로
-							${list.experienceFileName} 
+							${e.experienceFileName} 
 							대표사진명
 							</a>
 							</div>
@@ -37,17 +38,22 @@
 					<div style="padding:20px;">
 						<div>
 							<div>
-							${list.experienceTitle}
+							${e.experienceTitle}
 							제목
 							</div>
 						</div>
 					</div>
 				</div>
+			
 				<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
 					<br>
 				</c:if>
 		 	</c:forEach>
 		 </div>
+		  <div class="paging">
+            ${expd.pageNavi}
+          </div>
+          
 		  <div class="board-search-box">
              <form action="" method="get">
                <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
