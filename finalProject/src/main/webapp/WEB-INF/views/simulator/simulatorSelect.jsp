@@ -205,7 +205,8 @@
 					<h2>보관함</h2>
 					<ul class="selected-list">
 						<!-- 선택된 옵션이 들어가는 자리 -->
-						<form id="cartSideBar" name="cartSideBar"><!-- action="/cartSideBar.do" method="post" -->
+						<form id="cartSideBar" action="/cartSideBar.do" method="post">
+							<input type="hidden" name="option">	
 							<button type="submit" class="go-simulation">나의 웨딩 계산결과 보기</button>
 						</form>
 					</ul>
@@ -217,42 +218,6 @@
 
 
 <script>
-$("#cartSideBar").submit(function(e){
-	e.preventDefault();
-	
-	var cartArr = [];
-	$('#cartSideBar').children('.simulator-select-list-con').each(function(){
-		var cartOneArr = {};
-		cartOneArr[0] = $(this).find('.simulator-select-img-thum').children('span').html();
-		cartOneArr[1] = $(this).find('.simulator-select-list-no').html();
-		cartOneArr[2] = $(this).find('.simulator-select-list-code').html();
-		cartOneArr[3] = $(this).find('.simulator-select-list-tit').html();
-		cartOneArr[4] = $(this).find('.simulator-select-list-addr').html();
-		cartOneArr[5] = $(this).find('.simulator-select-list-price').children('b').html();
-		cartOneArr[6] = $(this).find('.simulator-select-list-tag').html();
-		
-		console.log(cartOneArr);
-		
-		cartArr.push(cartOneArr);
-		
-		console.log(cartArr);
-	});
-	
-	$.form({
-		action: '/cartSideBar.do',
-		data: {cartArr : cartArr},
-		type : "post",
-		success : function(data){
-			console.log("나의 웨딩 계산 결과 보기 처리 성공");
-		},
-		error : function(data){
-			console.log("나의 웨딩 계산 결과 보기 처리 실패");
-		}
-	});
-});
-
-
-
 //맘에 들어 클릭 시
 function cart_click(cart){
 	$(cart).parent().parent().parent().parent().parent(".simulator-select-group-list").siblings('.none-btn').hide();
@@ -266,6 +231,42 @@ function cart_click(cart){
 }
 
 $(document).ready(function(){
+	//나의 웨딩 계산결과 보기
+	$(".go-simulation").click(function(e){
+		e.preventDefault();
+		
+		var cartArr = [];
+		$('#cartSideBar').children('.simulator-select-list-con').each(function(){
+			var cartOneArr = {};
+			cartOneArr[0] = $(this).find('.simulator-select-img-thum').children('span').html();
+			cartOneArr[1] = $(this).find('.simulator-select-list-no').html();
+			cartOneArr[2] = $(this).find('.simulator-select-list-code').html();
+			cartOneArr[3] = $(this).find('.simulator-select-list-tel').html();
+			cartOneArr[4] = $(this).find('.simulator-select-list-tit').html();
+			cartOneArr[5] = $(this).find('.simulator-select-list-addr').html();
+			cartOneArr[6] = $(this).find('.simulator-select-list-price').children('b').html();
+			cartOneArr[7] = $(this).find('.simulator-select-list-tag').html();
+			
+			cartArr.push(cartOneArr);
+			
+			console.log(cartOneArr);
+			console.log(cartArr);
+		});
+		
+		/*var option = {
+			data : {cartArr:cartArr},
+			success : function(data){
+				console.log('성공');
+			}
+		};*/
+		
+		//자바스크립트 배열을 json String 형식으로 변환
+		var option = JSON.stringify(cartArr);
+		console.log(option);
+		
+		$("input[name=option]").val(option);
+		$("#cartSideBar")[0].submit();
+	});
 	
 	//고르지 않기
 	$(".none-btn").each(function(){
@@ -319,7 +320,7 @@ function hall_more(start){
 				for(var j=0;j<h.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
 					html += "<span style='background:#f5f5f5 url('/resources/upload/hall/"+h[j].hallPath+"') no-repeat center center; background-size:cover;' value="+h[j].hallPath+"></span></div>";
-					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em>";
+					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em><em class='simulator-select-list-tel' value="+h[j].hallTel+">"+h[j].hallTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+h[j].hallName+">"+h[j].hallName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
 					html += "<p class='simulator-select-list-price' value="+h[j].hallPrice+">평균 <b>"+h[j].hallPrice+"</b> 원</p>";
@@ -369,7 +370,7 @@ function dress_more(start){
 				for(var j=0;j<d.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
 					html += "<span style='background:#f5f5f5 url('/resources/upload/dress/"+d[j].dressFilepath+"') no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+"></span></div>";
-					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em>";
+					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em><em class='simulator-select-list-tel' value="+d[j].dressTel+">"+d[j].dressTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+d[j].dressName+">"+d[j].dressName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+d[j].dressAddr+">"+d[j].dressAddr+"</p>";
 					html += "<p class='simulator-select-list-price' value="+d[j].dressRentPrice+">평균 <b>"+d[j].dressRentPrice+"</b> 원</p>";
@@ -420,7 +421,7 @@ function makeup_more(start){
 				for(var j=0;j<make.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
 					html += "<span style='background:#f5f5f5 url('/resources/upload/makeup/"+make[j].makeupFilepath+"') no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+"></span></div>";
-					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em>";
+					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em><em class='simulator-select-list-tel' value="+make[j].makeupTel+">"+make[j].makeupTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+make[j].makeupName+">"+make[j].makeupName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+make[j].makeupAddr+">"+make[j].makeupAddr+"</p>";
 					html += "<p class='simulator-select-list-price' value="+make[j].makeupBasicPrice+">평균 <b>"+make[j].makeupBasicPrice+"</b> 원</p>";
@@ -469,7 +470,7 @@ function studio_more(start){
 				for(var j=0;j<st.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
 					html += "<span style='background:#f5f5f5 url('/resources/upload/studio/"+st[j].studioFilepath+"') no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
-					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em>";
+					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em><em class='simulator-select-list-tel' value="+st[j].studioTel+">"+st[j].studioTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+st[j].studioName+">"+st[j].studioName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+st[j].studioAddr+">"+st[j].studioAddr+"</p>";
 					html += "<p class='simulator-select-list-price' value="+st[j].studioPrice+">평균 <b>"+st[j].studioPrice+"</b> 원</p>";

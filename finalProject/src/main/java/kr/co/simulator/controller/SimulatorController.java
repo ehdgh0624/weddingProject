@@ -1,6 +1,7 @@
 package kr.co.simulator.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonParser;
 
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
@@ -167,7 +169,24 @@ public class SimulatorController {
 	
 	//나의 웨딩 계산결과 보기
 	@RequestMapping(value="/cartSideBar.do")
-	public String cartSideBar(@RequestParam ArrayList cartArr) {
-		return null;
+	public String cartSideBar(HttpServletRequest request, String option) {
+		System.out.println("여7기이이이이ㅣ");
+		System.out.println(option);
+		
+		JsonParser parser = new JsonParser();
+		Object obj = parser.parse(option);
+		
+		//전체 카테고리 리스트
+		com.google.gson.JsonArray jsonArr = (com.google.gson.JsonArray)obj;
+		
+		System.out.println("배열 길이 : "+jsonArr.size());
+		
+		//선택한 카테고리 하나!
+		com.google.gson.JsonObject jsonObj = (com.google.gson.JsonObject)jsonArr.get(0);
+		String name = jsonObj.get("1").getAsString();
+		
+		System.out.println("이거 : "+name);
+		
+		return "simulator/simulatorCheck";
 	}
 }

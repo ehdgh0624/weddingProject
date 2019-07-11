@@ -99,6 +99,14 @@
 		insert into simulator values(simulator_seq.nextval,#{memberId},#{weddingDate},#{weddingLoc},#{weddingPerson},0,sysdate)
 	</insert>
 	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">
+		{call
+			declear
+			begin
+				insert nextval;
+				
+				select sdkfsldkf.currval from dual;
+			end
+		}
 		select 
 			dressNo,
 			code,

@@ -70,7 +70,7 @@
 .simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}
 .simulator-tbl input[type='text'].wedding-date{width:80%;}
 
-.simulator-select-list-no, .simulator-select-list-code{display:none;}
+.simulator-select-list-no, .simulator-select-list-code, .simulator-select-list-tel{display:none;}
 .simulator-select-tit{font-size:20px; line-height:30px; color:#2d2d2d; font-weight:500; padding:20px 0;}
 .simulator-select-comment{padding:20px; background:#f5f5f5; margin-bottom:50px;}
 .simulator-select-txt{padding-left:10px; position:relative; font-size:13px; line-height:20px; }
