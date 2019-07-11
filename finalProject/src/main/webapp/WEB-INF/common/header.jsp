@@ -12,6 +12,7 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/reset.css"> <!-- 태그 초기화 css(민주) -->
 <link rel="stylesheet" type="text/css" href="/resources/css/layout.css"> <!-- 레이아웃 css(민주) -->
 <link rel="stylesheet" type="text/css" href="/resources/css/content.css"> <!-- 컨텐츠 css(민주) -->
+<link rel="stylesheet" type="text/css" href="/resources/css/photo.css"> <!--게시판 사진  css -->
 <!-- script -->
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
 
@@ -48,8 +49,10 @@
 				    	<!--  로그인 후-->
 				  			<ul class="header-util-box area clearfix">
 							<li><a href="/logout.do">로그아웃</a></li>
+							<c:if test="${sessionScope.member.memberCode != 2 }">
 				       		<li><a href="/mypage.do">마이페이지</a></li>
-				       		<c:if test="${sessionScope.member.memberId eq 'admin' }">
+				       		</c:if>
+				       		<c:if test="${sessionScope.member.memberCode == 2 }">
 				       			<li><a href="/adminPage.do">관리자페이지</a></li>
 				       		</c:if>
 				    		</ul>
@@ -86,7 +89,7 @@
 								<ul>
 									<li><a href="">공지사항</a></li>
 								   	<li><a href="">Q&A</a></li>
-								   	<li><a href="">경험담</a></li>
+								   	<li><a href="/experienceAll.do">경험담</a></li>
 								</ul>
 							</div>
 						</li>

@@ -10,12 +10,17 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 
-	<div id="myPageContainer" class="clearfix">
+		<div id="goodsTypeBtn" class="area">
+			<button onclick="location.href='/goodsCare.do'">모든상품</button> 
+			<button onclick="location.href='/goodsCare.do?code=1'">부케</button> 
+			<button onclick="location.href='/goodsCare.do?code=2'">청첩장</button> 
+		</div>
+	<div id="goodsCareContainer" class="clearfix area">
+		<!-- 상품 선택창-->
 		<!--상품 리스트 -->
-		<div style="text-align: center; width: 80%; margin: 0 auto;">
 			<c:if test="${not empty gList.list}">
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
-					<div style="width:300px;height:300px;display:inline-block;margin:30px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
+					<div class="photolist">
 						<a href="/goodsView.do?goodsNo=${g.goodsNo}">
 							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
@@ -45,6 +50,7 @@
 						<br>
 					</c:if>
 				</c:forEach>
+			</c:if>
 				<div class="paging">${gList.pageNavi}</div>
 		  <!-- 검색박스 -->
           <div class="board-search-box">
@@ -55,11 +61,10 @@
                   <option value="I">청첩장</option>
                </select>
                <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="">
-               <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
+               <button type="submit" class="bbs-search-btn" tit le="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
             </form>
          </div>
-			</c:if>
-	</div>
+			</div>
 	
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>

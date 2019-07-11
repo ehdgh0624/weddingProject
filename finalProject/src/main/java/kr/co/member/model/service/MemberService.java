@@ -13,6 +13,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
+import kr.co.common.method.Location;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
@@ -66,10 +67,15 @@ public class MemberService {
 	public int insertStudio(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		String hashTag = ci.getHashTag();
+		System.out.println(ci);
 		
-		Studio ms = new Studio(0,vo.getMemberId(),"S",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr()
-				,ci.getStudioPrice(),""/*확인필요스튜디오 컨텐츠*/,"","",ci.getFileName(),ci.getFilePath()
-				,0,0,0,hashTag,"","");
+		String locCode=new Location().getLoccode(ci.getCompanyAddr());
+			
+		Studio ms = new Studio(0,vo.getMemberId(),"S",ci.getCompanyName(),ci.getCompanyPhone(),locCode,ci.getCompanyAddr()
+				,ci.getStudioPrice(),ci.getCompanyContent(),ci.getStudioTime(),ci.getStudioCamera(),ci.getFileName(),ci.getFilePath()
+				,0,0,0,hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude());
+		
+		System.out.println(ms);
 		
 		return memberDao.insertStudio(ms);
 	}
@@ -77,10 +83,13 @@ public class MemberService {
 	public int insertDress(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		String hashTag = ci.getHashTag();
-		Dress md = new Dress(0,vo.getMemberId(),"D",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr()
+		String locCode=new Location().getLoccode(ci.getCompanyAddr());
+		
+		
+		Dress md = new Dress(0,vo.getMemberId(),"D",ci.getCompanyName(),ci.getCompanyPhone(),locCode,ci.getCompanyAddr()
 				,ci.getDressFittingPrice(),ci.getDressRentNum(),ci.getDressRentPrice(),ci.getJewelryPrice(),ci.getDressContent()
-				,""/*ci.getDressFiitngTime()*/,ci.getDressMending(),ci.getDressParking(),ci.getFileName(),ci.getFilePath()
-				,0,0,0,hashTag,"","");
+				,ci.getDressFiitngTime(),ci.getDressMending(),ci.getDressParking(),ci.getFileName(),ci.getFilePath()
+				,0,0,0,hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude());
 	
 		
 		return memberDao.insertDress(md);
@@ -89,8 +98,9 @@ public class MemberService {
 	public int insertMakeup(CompanyInfo ci, Member vo) {
 		// TODO Auto-generated method stub
 		System.out.println("메이크업등록시작");
+		String locCode=new Location().getLoccode(ci.getCompanyAddr());
 		String hashTag = ci.getHashTag();
-		Makeup mm = new Makeup(0,vo.getMemberId(),"M",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr(),ci.getMakeupBasicPrice(),ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,"","");
+		Makeup mm = new Makeup(0,vo.getMemberId(),"M",ci.getCompanyName(),ci.getCompanyPhone(),locCode,ci.getCompanyAddr(),ci.getMakeupBasicPrice(),ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude());
 		
 		return memberDao.insertMakeup(mm);
 	}
@@ -99,17 +109,19 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		
 		String hashTag = ci.getHashTag();
-		Hall mh = new Hall(0, vo.getMemberId(), "H", "", 
-				ci.getCompanyName(), "", ci.getCompanyAddr(), 
+		String locCode=new Location().getLoccode(ci.getCompanyAddr());
+		
+		Hall mh = new Hall(0, vo.getMemberId(), "H", ci.getHallType(), 
+				ci.getCompanyName(), locCode, ci.getCompanyAddr(), 
 				ci.getHallContent(), ci.getFileName(),
 				ci.getFilePath(), ci.getHallPrice(), 
 				ci.getHallMinPerson(), ci.getHallMaxPerson(), 
-				0, ci.getHallFoodtype(), ci.getHallFoodmenu(), 
+				0/*홀별점*/, ci.getHallFoodtype(), ci.getHallFoodmenu(), 
 				ci.getHallFoodprice(), ci.getCompanyPhone(), 
 				ci.getHallStartTime()+"/"+ci.getHallEndTime(), 
 				ci.getHallServiceFood(), ci.getHallServiceFood(),
 				ci.getHallServiceDrink(), ci.getHallServiceParking()
-				, 0, 0, hashTag, "", "",null);
+				, 0, 0, hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude(),null);
 		
 		return memberDao.insertHall(mh);
 	}
@@ -143,6 +155,21 @@ public class MemberService {
 		
 		List<Reservation> list=memberDao.getAllReservList(vo);
 		return list;
+	}
+
+	public int deleteMember(String id) {
+		// TODO Auto-generated method stub
+		
+		int result = memberDao.deleteMember(id);
+		
+		return result;
+	}
+
+	public int updateMember(Member vo) {
+		// TODO Auto-generated method stub
+		int result = memberDao.updateMember(vo);
+		
+		return result;
 	}
 	
 

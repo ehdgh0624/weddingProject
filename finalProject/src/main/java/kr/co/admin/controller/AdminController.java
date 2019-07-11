@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.admin.service.AdminService;
+import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.goods.model.vo.Goods;
@@ -52,13 +53,19 @@ public class AdminController {
 	
 	@RequestMapping(value="/goodsCare.do")
 	public String goodsCarePage(HttpServletRequest request,Model model) {
+		int code;
 		int reqPage;
+		try {
+			code = Integer.parseInt(request.getParameter("code"));
+		}catch(NumberFormatException e) {
+			code = 0;
+		}
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch(NumberFormatException e) {
 			reqPage = 1;
 		}
-		AdminGoods gList = adminService.getGList(reqPage);
+		AdminGoods gList = adminService.getGList(reqPage,code);
 		model.addAttribute("gList", gList);
 		return "/admin/goodsCarePage";
 	}
@@ -161,5 +168,215 @@ public class AdminController {
 		}
 		
 	}
+	@RequestMapping(value="/companyManager.do")
+	public String companyManager(HttpServletRequest request,Model model) {
+		int reqPage;
+		int typeCode;
+		HttpSession session = request.getSession(false);
+		try {
+			typeCode = Integer.parseInt(request.getParameter("typeCode"));
+		}catch(NumberFormatException e) {
+			typeCode = 0;
+		}
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				AdminCompany ac = adminService.companySearch(reqPage, typeCode);
+				model.addAttribute("ac",ac );
+				return "admin/companyManagerPage";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}
+		
+	}
+	@RequestMapping(value="/agreeUpdate.do")
+	public String agreeUpdate(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession(false);
+		int num = Integer.parseInt(request.getParameter("num"));
+		String code = request.getParameter("code");
+			if(session !=null&&(Member)session.getAttribute("member")!=null) {
+				Member m = (Member)session.getAttribute("member");
+					if(m.getMemberId().equals("admin")) {
+						int result = adminService.agree(num,code);
+						if(result >0) {
+							String agree = "업체허가하였습니다.";
+							String loc = "companyManager.do";
+							model.addAttribute("msg", agree);
+							model.addAttribute("loc", loc);
+						}
+						return "common/msg";
+					}else {
+						System.out.println("알수없는 접근자가 접근했습니다.");
+						return "redirect:/";
+				}
+			}else {
+				System.out.println("로그인후 사용가능");
+				return "redirect:/";
+			}	
+	}
+	@RequestMapping(value="/rejectUpdate.do")
+	public String rejectUpdate(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession(false);
+		int num = Integer.parseInt(request.getParameter("num"));
+		String code = request.getParameter("code");
+			if(session !=null&&(Member)session.getAttribute("member")!=null) {
+				Member m = (Member)session.getAttribute("member");
+					if(m.getMemberId().equals("admin")) {
+						int result = adminService.reject(num,code);
+						if(result >0) {
+							String agree = "업체거절하였습니다.";
+							String loc = "companyManager.do";
+							model.addAttribute("msg", agree);
+							model.addAttribute("loc", loc);
+						}
+
+						return "common/msg";
+					}else {
+						System.out.println("알수없는 접근자가 접근했습니다.");
+						return "redirect:/";
+				}
+			}else {
+				System.out.println("로그인후 사용가능");
+				return "redirect:/";
+			}	
+	}
+	@RequestMapping(value=("/searchCompany.do"))
+	public String searchCompany(HttpServletRequest request,String type , String keyword ,Model model) {
+		int reqPage;
+		HttpSession session = request.getSession(false); 
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+				if(m.getMemberId().equals("admin")) {
+					AdminCompany ac = adminService.searchCompany(reqPage,type,keyword);
+					model.addAttribute("ac", ac);
+					return "admin/companyManagerPage";
+				}else {
+					System.out.println("알수없는 접근자가 접근했습니다.");
+					return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}	
+	}
+	@RequestMapping("/viewstatusManager.do")
+	public String viewstatusManager(HttpServletRequest request,Model model) {
+		int reqPage;
+		int typeCode;
+		HttpSession session = request.getSession(false);
+		try {
+			typeCode = Integer.parseInt(request.getParameter("typeCode"));
+		}catch(NumberFormatException e) {
+			typeCode = 0;
+		}
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				AdminCompany ac = adminService.viewManager(reqPage, typeCode);
+				model.addAttribute("ac",ac );
+				return "admin/viewstatusManagerPage";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}
+	}
 	
+	@RequestMapping(value="/viewUpdate.do")
+	public String viewUpdate(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession(false);
+		int num = Integer.parseInt(request.getParameter("num"));
+		String code = request.getParameter("code");
+			if(session !=null&&(Member)session.getAttribute("member")!=null) {
+				Member m = (Member)session.getAttribute("member");
+					if(m.getMemberId().equals("admin")) {
+						int result = adminService.view(num,code);
+						if(result >0) {
+							String agree = "공개설정 되었습니다.";
+							String loc = "viewstatusManager.do";
+							model.addAttribute("msg", agree);
+							model.addAttribute("loc", loc);
+						}
+								return "common/msg";
+					}else {
+						System.out.println("알수없는 접근자가 접근했습니다.");
+						return "redirect:/";
+				}
+			}else {
+				System.out.println("로그인후 사용가능");
+				return "redirect:/";
+			}	
+	}
+	@RequestMapping(value="/unviewUpdate.do")
+	public String unviewUpdate(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession(false);
+		int num = Integer.parseInt(request.getParameter("num"));
+		String code = request.getParameter("code");
+			if(session !=null&&(Member)session.getAttribute("member")!=null) {
+				Member m = (Member)session.getAttribute("member");
+					if(m.getMemberId().equals("admin")) {
+						int result = adminService.unview(num,code);
+						if(result >0) {
+							String agree = "비공개설정 되었습니다.";
+							String loc = "viewstatusManager.do";
+							model.addAttribute("msg", agree);
+							model.addAttribute("loc", loc);
+						}
+								return "common/msg";
+					}else {
+						System.out.println("알수없는 접근자가 접근했습니다.");
+						return "redirect:/";
+				}
+			}else {
+				System.out.println("로그인후 사용가능");
+				return "redirect:/";
+			}	
+	}
+	@RequestMapping(value="/viewManagerSearch.do")
+	public String viewManagerSearch(HttpServletRequest request,String type , String keyword ,Model model) {
+		int reqPage;
+		HttpSession session = request.getSession(false); 
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+				if(m.getMemberId().equals("admin")) {
+					AdminCompany ac = adminService.searchView(reqPage,type,keyword);
+					model.addAttribute("ac", ac);
+					return "admin/viewstatusManagerPage";
+				}else {
+					System.out.println("알수없는 접근자가 접근했습니다.");
+					return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}	
+	}
 }

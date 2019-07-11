@@ -69,8 +69,9 @@
 				</c:if>
 			</div>
 		</div>
+		
 		<!-- collection 리스트 -->
-		<div style="text-align: center;">
+		<div style="width:966px;margin:0 auto;">
 			<c:if test="${not empty pd.sList}">				<!-- 스튜디오 리스트가 있을 때 -->
 				<c:forEach items="${pd.sList}" var="s" varStatus="i">
 					<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);">
