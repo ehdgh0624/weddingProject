@@ -101,8 +101,12 @@
 					<c:if
 						test="${not empty studio.studioTime || not empty studio.studioCamera}">
 						<h2>운영정책</h2>
-						<hr>
-						<table>
+						<br>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
 							<c:if test="${not empty studio.studioTime}">
 								<tr>
 									<th>평균촬영시간</th>
@@ -119,19 +123,24 @@
 					</c:if>
 					<br> <br> <br>
 					<h2>가격확인 및 예약문의</h2>
-					<hr>
-
+					<br>
+					
 					<form>
-						<table>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
 							<tr>
-								<td>예식일</td>
-								<td>예식시간</td>
+								<th>예식일</th>
+								<td colspan="2">
+									<input type="text" name="weddingDate" id="weddingDate" class="datepicker wedding-date middle" placeholder="예식일을 선택해주세요" required>
+								</td>
 							</tr>
 							<tr>
-								<td><input type="text" name="weddingDate" id="weddingDate"
-									class="datepicker wedding-date" placeholder="예식일을 선택해주세요"
-									required></td>
-								<td><select name="weddingTime" id="weddingTime">
+								<th>예식시간</th>
+								<td colspan="2">
+									<select name="weddingTime" id="weddingTime">
 										<option value="default">::: 예식 시작 시간 선택 :::</option>
 										<option>AM 11:00</option>
 										<option>AM 11:30</option>
@@ -148,56 +157,45 @@
 										<option>PM 5:00</option>
 										<option>PM 5:30</option>
 										<option>PM 6:00</option>
-								</select></td>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<th colspan="2" style="background-color: pink;">예약 옵션</th>
-							</tr>
-							<tr>
-								<td colspan="2">제공 서비스</td>
-							</tr>
-							<tr>
-								<td colspan="2"><hr></td>
+								<th colspan="3" style="text-align: center;">예약 옵션</th>
 							</tr>
 							<c:if test="${not empty studioSelectList0}">
 								<tr>
-									<td>[본식 스냅]</td>
-								</tr>
-								<tr>
-									<td><select name="option1" id="option1"
-										class="studioSelectOption">
+									<th>본식 스냅</th>
+									<td colspan="2">
+										<select name="option1" id="option1" class="studioSelectOption">
 											<option value="default">::: 본식 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList0}" var="ss0">
 												<option value="${ss0.studioOptionPrice}"><span style="margin-right: 20px;">${ss0.studioOption}</span>(<span class="studioOptionPrice">${ss0.studioOptionPrice}</span>원)
 												</option>
 											</c:forEach>
-									</select></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
+										</select>
+									</td>
 								</tr>
 							</c:if>
 							<c:if test="${not empty studioSelectList1}">
 								<tr>
-									<td>[스튜디오 스냅]</td>
-								</tr>
-								<tr>
-									<td><select name="option2" id="option2"
-										class="studioSelectOption">
+									<th id="studioSnap-th">스튜디오 스냅</th>
+									<td colspan="2">
+										<select name="option2" id="option2" class="studioSelectOption">
 											<option value="default">::: 스튜디오 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList1}" var="ss1">
 												<option value="${ss1.studioOptionPrice}"><span style="margin-right: 20px;">${ss1.studioOption}</span>(<span class="studioOptionPrice">${ss1.studioOptionPrice}</span>원)
 												</option>
 											</c:forEach>
-									</select></td>
+										</select>
+									</td>
 								</tr>
-								<tr>
-									<td id="option2DateTd" style="display: none;"><input
-										type="text" name="option2Date" id="option2Date"
-										class="datepicker wedding-date" placeholder="예약 날짜를 선택해주세요"
-										required></td>
-									<td><select name="option2Time" id="option2Time"
-										style="display: none;">
+								<tr id="option2Tr" style="display:none;">
+									<td>방문일정</td>
+									<td>
+										<input type="text" name="option2Date" id="option2Date" class="datepicker wedding-date middle" placeholder="예약 날짜를 선택해주세요" required>
+										<br>
+										<select name="option2Time" id="option2Time">
 											<option value="default">::: 예약 시간 선택 :::</option>
 											<option>AM 11:00</option>
 											<option>AM 11:30</option>
@@ -214,39 +212,31 @@
 											<option>PM 5:00</option>
 											<option>PM 5:30</option>
 											<option>PM 6:00</option>
-									</select></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
+										</select>
+									</td>
 								</tr>
 							</c:if>
 							<c:if test="${not empty studioSelectList2}">
 								<tr>
-									<td>[본식 영상 촬영]</td>
-								</tr>
-								<tr>
-									<td><select name="option3" id="option3"
-										class="studioSelectOption">
+									<th>본식 영상 촬영</th>
+									<td colspan="2">
+										<select name="option3" id="option3" class="studioSelectOption">
 											<option value="default">::: 영상 촬영 옵션 선택 :::</option>
 											<c:forEach items="${studioSelectList2}" var="ss2">
 												<option value="${ss2.studioOptionPrice}"><span style="margin-right: 20px;">${ss2.studioOption}</span>(<span class="studioOptionPrice">${ss2.studioOptionPrice}</span>원)
 												</option>
 											</c:forEach>
-									</select></td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
+										</select>
+									</td>
 								</tr>
 							</c:if>
 							<tr>
-								<th>총계</th>
-								<td><span style="float: right;"><span id="allPrice"></span>원</span></td>
-							</tr>
-							<tr>
-								<td><input type="button" value="예약하기"
-									onclick="reservation();"></td>
+								<th colspan="3">총계<span style="float: right;"><span id="allPrice"></span>원</span></th>
 							</tr>
 						</table>
+						<div class="common-tbl-btn-group">
+							<button class="btn-style1" type="button" onclick="reservation();">예약하기</button>
+						</div>
 					</form>
 
 					<br> <br> <br>
@@ -332,11 +322,11 @@
 	$('#option2').on("change",function(){
 		if($('#option2 option:selected').val() == 'default'){
 			$('#option2Time option:eq(0)').prop('selected',true);
-			$('#option2DateTd').css('display','none');			
-			$('#option2Time').css('display','none');
+			$('#studioSnap-th').prop('rowspan',1);
+			$('#option2Tr').hide();
 		}else{
-			$('#option2DateTd').css('display','inline');
-			$('#option2Time').css('display','inline');
+			$('#studioSnap-th').prop('rowspan',2);
+			$('#option2Tr').show();
 		}
 	});
 	/* 스튜디오 스냅 select change 시 날짜,시간 드러남 끝 */
@@ -345,15 +335,20 @@
 	$('.studioSelectOption').on("change",function(){
 		var allPrice = 0;
 		if($('#option1 option:selected').val() != 'default'){
-			allPrice += parseInt($('#option1 option:selected').val());
+			if($('#option1 option:selected').val() != null){
+				allPrice += parseInt($('#option1 option:selected').val());				
+			}
 		}
 		if($('#option2 option:selected').val() != 'default'){
-			allPrice += parseInt($('#option2 option:selected').val());			
+			if($('#option2 option:selected').val() != null){
+				allPrice += parseInt($('#option2 option:selected').val());							
+			}
 		}
 		if($('#option3 option:selected').val() != 'default'){
-			allPrice += parseInt($('#option3 option:selected').val());
+			if($('#option3 option:selected').val() != null){
+				allPrice += parseInt($('#option3 option:selected').val());				
+			}
 		}
-		console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
 		$('#allPrice').text(allPrice);
 	});
 	/* 옵션 select 박스 change 시 가격 변경 끝 */	
