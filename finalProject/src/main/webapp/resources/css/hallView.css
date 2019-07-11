@@ -1,3 +1,50 @@
+.back-to-listings {
+    height: 60px;
+    width: 60px;
+    background-color: #eaeaea;
+    color: #a0a0a0;
+    border-radius: 3px;
+    display: inline-block;
+    float: left;
+    position: relative;
+    top: 6px;
+    margin: 0 25px 0 0;
+    text-align: center;
+    transition: all 0.4s;
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    margin-top: -5px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.ctnr4_like {
+    position: absolute;
+    right: 0;
+    top: 1px;
+    font-size: 35px;
+}
+
+.table-scrollable>.table {
+    width: 100%!important;
+    margin: 0!important;
+    background-color: #fff;
+    border: 1px solid #e7ecf1;
+}
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+
+thead {
+    display: table-header-group;
+    vertical-align: middle;
+    border-color: inherit;
+}
 /* 운영정책 */
 section.hallView .contentsub h3.desc-headline {
 	font-size: 16px;

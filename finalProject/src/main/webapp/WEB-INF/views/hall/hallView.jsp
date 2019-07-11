@@ -33,7 +33,7 @@
 <!-- 					</div> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
-			<div id="titlebar" class="property-titlebar margin-bottom-0">
+			<div id="titlebar" class="property-titlebar margin-bottom-0 area">
 				<div class="container">
 					<div class="row">
 						<div class="col-md-12">
@@ -45,8 +45,7 @@
 								</a>
 								</span>
 								<div class="ctnr4_like">
-									<i class="like_contents fa fa-star-o" scrap-code="556848325347"
-										scrap-type="venue"></i>
+									 <a href="#"><img alt="" src="/resources/img/star_m1.png"></a>
 								</div>
 							</div>
 						</div>
@@ -160,47 +159,13 @@
 										<select
 											class="form-control form_input input_necessary attr_select_time toggle_box"
 											id="select_venue_service">
-											<option value="F8P50WZMTJ75" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="11:00" slide-to="15:00"
-												slide-gap="" capa-min="80" capa-max="200"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 2,500,000원" desc3=""
-												desc4="메이다이닝 시크릿가든 낮웨딩">메이다이닝 시크릿가든 / 80명 ~ 200명 /
+											<option>메이다이닝 시크릿가든 / 80명 ~ 200명 /
 												11:00 ~ 15:00</option>
-											<option value="I5FE2LD0UC5W" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="17:00" slide-to="21:00"
-												slide-gap="" capa-min="80" capa-max="200"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 2,500,000원" desc3=""
-												desc4="메이다이닝 시크릿가든 저녁웨딩">메이다이닝 시크릿가든 / 80명 ~ 200명 /
-												17:00 ~ 21:00</option>
-											<option value="3M2JSQ6SXV6D" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="17:00" slide-to="21:00"
-												slide-gap="" capa-min="80" capa-max="200"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 2,500,000원" desc3=""
-												desc4="메이다이닝 비탈길 저녁웨딩">메이다이닝 비탈길 / 80명 ~ 200명 /
-												17:00 ~ 21:00</option>
-											<option value="OIT70EA1CV1R" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="11:00" slide-to="15:00"
-												slide-gap="" capa-min="80" capa-max="200"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 2,500,000원" desc3=""
-												desc4="메이다이닝 비탈길 낮웨딩">메이다이닝 비탈길 / 80명 ~ 200명 /
-												11:00 ~ 15:00</option>
-											<option value="B17U0QZ5DVC6" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="11:00" slide-to="15:00"
-												slide-gap="" capa-min="150" capa-max="300"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 3,300,000원" desc3=""
-												desc4="메이다이닝 플랫가든 낮웨딩 (200명이상 웨딩 공간)">메이다이닝 플랫가든 /
-												150명 ~ 300명 / 11:00 ~ 15:00</option>
-											<option value="TR09VV6W1F16" select-show=".toggle_policy_0"
-												time-policy="0" slide-from="17:00" slide-to="21:00"
-												slide-gap="" capa-min="150" capa-max="300"
-												desc2="장소가 정한 시간동안만 이용가능해요<br/>대관료: 3,300,000원" desc3=""
-												desc4="메이다이닝 플랫가든 저녁웨딩 (200명이상 수용가능한 공간)">메이다이닝
-												플랫가든 / 150명 ~ 300명 / 17:00 ~ 21:00</option>
 										</select>
 									</div>
 								</div>
 								<div class="table-scrollable">
-									<table class="table table-bordered table-hover">
+									<table class="table table-bordered table-hover" border="1">
 										<thead>
 											<tr>
 												<th></th>
@@ -220,8 +185,7 @@
 											</tr>
 											<tr>
 												<td>비고</td>
-												<td id="tb_desc4" style="white-space: pre-wrap;">메이다이닝
-													시크릿가든 낮웨딩</td>
+												<td id="tb_desc4" style="white-space: pre-wrap;">메이다이닝</td>
 											</tr>
 										</tbody>
 									</table>
