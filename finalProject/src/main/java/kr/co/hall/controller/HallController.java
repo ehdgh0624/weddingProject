@@ -78,6 +78,11 @@ public class HallController {
 		mav.setViewName("hall/hall");
 		return mav;
 	}
-	
+	@RequestMapping(value="/hallView.do")
+	public ModelAndView reservation() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("hall/hallView");
+		return mav;
+	}
 	
 }

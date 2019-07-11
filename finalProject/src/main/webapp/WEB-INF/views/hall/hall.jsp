@@ -14,7 +14,42 @@
 			<div class="header"><!-- 검색div -->
 			
 				<div class="headersub area"><!-- 가운데 정렬 div -->
-				<h3>장소 검색하기</h3>
+				<h3>장소 검색하기
+				<c:if test="${not empty param.hallLoc}">
+					<span>'지역 : ${param.hallLoc }'</span>
+				</c:if>
+				<c:if test="${not empty param.hallType}">
+					<span>'타입 : ${param.hallType }'</span>
+				</c:if>
+				<c:if test="${not empty param.menuType }">
+					<c:if test="${param.menuType == 0 }">
+					<span>'메뉴 : 전체'</span>
+					</c:if>
+					<c:if test="${param.menuType == 1 }">
+					<span>'메뉴 : 한식'</span>
+					</c:if>
+					<c:if test="${param.menuType == 2 }">
+					<span>'메뉴 : 일식'</span>
+					</c:if>
+					<c:if test="${param.menuType == 3 }">
+					<span>'메뉴 : 중식'</span>
+					</c:if>
+					<c:if test="${param.menuType == 4 }">
+					<span>'메뉴 : 양식'</span>
+					</c:if>
+					<c:if test="${param.menuType == 5 }">
+					<span>'메뉴 : 뷔페'</span>
+					</c:if>
+				</c:if>
+				<c:if test="${not empty param.hallPerson}">
+					<span>'인원수 : ${param.hallPerson }명'</span>
+				</c:if>
+				<c:if test="${not empty param.searckHall}">
+					<span>'검색어 : ${param.searckHall }'</span>
+				</c:if>
+				</h3>
+				
+				
 				<form action="/hallSc.do" method="get">
             <select class="addr" name="hallLoc">   <!-- 지역 select -->
                <option value="전국">모든지역</option>
@@ -82,7 +117,7 @@
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
 					<c:forEach items="${pd.hList }" var="h">
-					<div class="card">
+					<div class="card" onclick="location.href='/hallView.do'">
 						<div class="thumbnail">
 							<div class="centered">
 								<img src="https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png"
