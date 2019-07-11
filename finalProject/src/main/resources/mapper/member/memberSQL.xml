@@ -10,7 +10,7 @@
    	 insert into studio values(seq_studio_no.nextval,#{memberId},
    	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
    	 #{studioPrice},#{studioContent},#{studioTime},#{studioCamera},#{studioFilename},#{studioFilepath},#{status},#{viewstatus},#{studioScope},
-   	 #{studioTag},#{studioLatitude},#{studioLongtitude})
+   	 #{studioTag},#{studioLatitude},#{studioLongitud})
     </insert>
     <insert id="insertDress" parameterType="dress">
      insert into dress values(seq_dress_no.nextval,#{memberId},
@@ -168,5 +168,19 @@
 			order_date as orderDate
 		from reservation where member_id=#{memberId}
 	</select>
-    
+	 <select id="deleteMember"  parameterType="member">
+		delete from member where memberId=#{memberId}
+	</select>
+	 <update id="updateMember"  parameterType="member">
+		update member set
+		member_pw=#{memberPw},
+		member_name=#{memberName},
+		phone=#{phone},
+		email=#{email},
+	    addr=#{addr},
+	    marry_schedule=#{marrySchedule},
+	    expect_visitor=#{expectVisitor},
+	    budget = #{budget}
+	    where member_Id=#{memberId}
+	</update>
 </mapper>

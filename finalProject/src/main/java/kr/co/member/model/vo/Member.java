@@ -19,6 +19,13 @@ public class Member {
 	
 	
 	
+	@Override
+	public String toString() {
+		return "Member [memberNo=" + memberNo + ", memberId=" + memberId + ", memberPw=" + memberPw + ", memberName="
+				+ memberName + ", phone=" + phone + ", birthDay=" + birthDay + ", email=" + email + ", addr=" + addr
+				+ ", marrySchedule=" + marrySchedule + ", expectVisitor=" + expectVisitor + ", budget=" + budget
+				+ ", enrollDate=" + enrollDate + ", memberCode=" + memberCode + "]";
+	}
 	public Member() {
 		super();
 		// TODO Auto-generated constructor stub
