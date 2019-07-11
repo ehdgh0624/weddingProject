@@ -1,0 +1,6 @@
+@charset "UTF-8";
+.photo-padding{padding:20px;}
+.photolist-prdName{float:left;font-size:20px;vertical-align:middle;}
+.photolist-scrapStar-location{float:right;}
+.photolist-scrapStar-size{width:30px;height:30px;}
+.thumbnail-size{width:100%;height:60%;}

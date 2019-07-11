@@ -299,6 +299,9 @@
 			alert("대여할 수 있는 최대 수량 : "+dressRentMax+"벌");
 			$('#option2Amount').val(dressRentMax);
 		}
+		if($('#option2Amount').val() == '' || $('#option2Amount').val() == 0){
+			$('#option2Amount').val('1');
+		}
 		var allPrice = 0;
 		if($('#option1').attr('checked') == 'checked'){
 			allPrice += parseInt($('#option1Price').text());
