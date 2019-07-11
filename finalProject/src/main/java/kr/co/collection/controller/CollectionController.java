@@ -1,5 +1,8 @@
 package kr.co.collection.controller;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,8 +18,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
-import kr.co.collection.model.vo.Dress;
-import kr.co.collection.model.vo.Makeup;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
@@ -173,24 +174,32 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionViewDress.do")
-	public ModelAndView collectionViewDress(int dressNo) {
-		Dress d = collectionService.selectOneDress(dressNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(dressNo, "D");
+	public ModelAndView collectionViewDress(HttpSession session, @RequestParam int dressNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dress", d);
-		mav.addObject("galleryList", gList);
+		mav.addObject("dress", collectionService.selectOneDress(dressNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(dressNo, "D"));
+		mav.addObject("reviewList", collectionService.selectListReview(dressNo, "D"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), dressNo, "D");
+			mav.addObject("scrapbook", scrap);			
+		}
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
 	}
 	
 	@RequestMapping("/collectionViewMakeup.do")
-	public ModelAndView collectionViewMakeup(int makeupNo) {
-		Makeup m = collectionService.selectOneMakeup(makeupNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(makeupNo, "M");
+	public ModelAndView collectionViewMakeup(HttpSession session, @RequestParam int makeupNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("makeup", m);
-		mav.addObject("galleryList", gList);
-		mav.setViewName("collection/collectionViewDress");
+		mav.addObject("makeup", collectionService.selectOneMakeup(makeupNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(makeupNo, "M"));
+		mav.addObject("reviewList", collectionService.selectListReview(makeupNo, "M"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), makeupNo, "M");
+			mav.addObject("scrapbook", scrap);
+		}
+		mav.setViewName("collection/collectionViewMakeup");
 		return mav;		
 	}
 	
@@ -268,13 +277,79 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationStudio.do")
-	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
+	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
 			vo = new Reservation();
 			vo.setCode(code);
 			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setOption1(option1);
+			vo.setOption2(option2);
+			vo.setOption2Time(option2Time);
+			vo.setOption3(option3);
+			int result = collectionService.insertReservationStudio(vo,weddingDate,option2Date);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;				
+			}
+		}else {
+			return -1;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reservationDress.do")
+	public int insertReservationDress(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option1Date, @RequestParam String option1Time, @RequestParam String option2, @RequestParam int option2Amount, @RequestParam String option3) throws ParseException {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setOption1(option1);
+			vo.setOption1Time(option1Time);
+			vo.setOption2(option2);
+			vo.setAmount(option2Amount);
+			vo.setOption3(option3);
+			int result = collectionService.insertReservationDress(vo,weddingDate,option1Date);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;
+			}
+		}else {
+			return -1;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/reservationMakeup.do")
+	public int insertReservationMakeup(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
 			vo.setWeddingTime(weddingTime);
 			vo.setTotalPrice(totalPrice);
 			vo.setMemberId(m.getMemberId());
@@ -284,8 +359,13 @@ public class CollectionController {
 			vo.setOption1(option1);
 			vo.setOption2(option2);
 			vo.setOption3(option3);
-			int result = collectionService.insertReservationStudio(vo,weddingDate);
-			return result;
+			int result = collectionService.insertReservationMakeup(vo,weddingDate);
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;
+			}
 		}else {
 			return -1;
 		}

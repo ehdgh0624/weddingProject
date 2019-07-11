@@ -133,10 +133,11 @@ public class CollectionDao {
 		return sqlSession.delete("scrapbook.deleteOneScrap",map);
 	}
 	
-	public int insertReservationStudio(Reservation vo, String weddingDate) {
+	public int insertReservationStudio(Reservation vo, String weddingDate, String option2Date) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", vo.getCode());
 		map.put("prdNo", vo.getPrdNo());
+		map.put("prdName",vo.getPrdName());
 		map.put("weddingDate", weddingDate);
 		map.put("weddingTime", vo.getWeddingTime());
 		map.put("totalPrice", vo.getTotalPrice());
@@ -144,21 +145,55 @@ public class CollectionDao {
 		map.put("memberName", vo.getMemberName());
 		map.put("memberPhone", vo.getMemberPhone());
 		map.put("memberEmail", vo.getMemberEmail());
-		if(vo.getOption1() == null) {
-			map.put("option1", "null");			
-		}else {
-			map.put("option1", vo.getOption1());			
-		}
-		if(vo.getOption2() == null) {
-			map.put("option2", "null");			
-		}else {
-			map.put("option2", vo.getOption2());
-		}
-		if(vo.getOption3() == null) {
-			map.put("option3", "null");			
-		}else {
-			map.put("option3", vo.getOption3());
-		}
+		map.put("option1", vo.getOption1());			
+		map.put("option2", vo.getOption2());
+		map.put("option2Date", option2Date);
+		map.put("option2Time", vo.getOption2Time());
+		map.put("option3", vo.getOption3());
 		return sqlSession.insert("reservation.insertReservationStudio", map);
+	}
+	
+	public int insertReservationDress(Reservation vo, String weddingDate, String option1Date) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", vo.getCode());
+		map.put("prdNo", vo.getPrdNo());
+		map.put("prdName",vo.getPrdName());
+		map.put("weddingDate", weddingDate);
+		map.put("weddingTime", vo.getWeddingTime());
+		map.put("totalPrice", vo.getTotalPrice());
+		map.put("memberId", vo.getMemberId());
+		map.put("memberName", vo.getMemberName());
+		map.put("memberPhone", vo.getMemberPhone());
+		map.put("memberEmail", vo.getMemberEmail());
+		map.put("option1", vo.getOption1());
+		map.put("option1Date", option1Date);
+		map.put("option1Time", vo.getOption1Time());
+		map.put("option2", vo.getOption2());
+		map.put("option2Amount", vo.getAmount());
+		map.put("option3", vo.getOption3());
+		return sqlSession.insert("reservation.insertReservationDress",map);
+	}
+	
+	public int insertReservationMakeup(Reservation vo, String weddingDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", vo.getCode());
+		map.put("prdNo", vo.getPrdNo());
+		map.put("prdName", vo.getPrdName());
+		map.put("weddingDate", weddingDate);
+		map.put("weddingTime", vo.getWeddingTime());
+		map.put("totalPrice", vo.getTotalPrice());
+		map.put("memberId", vo.getMemberId());
+		map.put("memberName", vo.getMemberName());
+		map.put("memberPhone", vo.getMemberPhone());
+		map.put("memberEmail", vo.getMemberEmail());
+		map.put("option1", vo.getOption1());
+		map.put("option2", vo.getOption2());
+		map.put("option3", vo.getOption3());
+		return sqlSession.insert("reservation.insertReservationMakeup",map);
+	}
+	
+	public int selectReservationNo(String memberId) {
+		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
+		return result;
 	}
 }

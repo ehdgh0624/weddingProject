@@ -314,8 +314,22 @@ public class CollectionService {
 	}
 	
 	@Transactional
-	public int insertReservationStudio(Reservation vo, String weddingDate) {
-		return collectionDao.insertReservationStudio(vo, weddingDate);
+	public int insertReservationStudio(Reservation vo, String weddingDate, String option2Date) {
+		return collectionDao.insertReservationStudio(vo, weddingDate, option2Date);
+	}
+	
+	@Transactional
+	public int insertReservationDress(Reservation vo, String weddingDate, String option1Date) {
+		return collectionDao.insertReservationDress(vo, weddingDate, option1Date);
+	}
+	
+	@Transactional
+	public int insertReservationMakeup(Reservation vo, String weddingDate) {
+		return collectionDao.insertReservationMakeup(vo, weddingDate);
+	}
+	
+	public int selectReservationNo(String memberId) {
+		return collectionDao.selectReservationNo(memberId);
 	}
 	
 }

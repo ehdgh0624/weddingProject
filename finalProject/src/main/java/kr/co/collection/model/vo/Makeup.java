@@ -11,6 +11,7 @@ public class Makeup {
 	private int makeupBasicPrice;			//메이크업 신랑신부 메이크업 가격
 	private int makeupParentPrice;			//메이크업 혼주 메이크업 가격
 	private int makeupVisitorPrice;			//메이크업 하객 메이크업 가격
+	private String makeupContent;			//메이크업 상세설명
 	private String makeupFilename;			//메이크업 대표사진 이름
 	private String makeupFilepath;			//메이크업 대표사진 경로
 	private int status;						//업체신청(대기=0/허가=1/거절=2)
@@ -19,26 +20,14 @@ public class Makeup {
 	private String makeupTag;				//메이크업 태그(샾(#)으로 시작해서 콤마(,)로 구분)
 	private String makeupLatitude;			//위도
 	private String makeupLongitud;			//경도
-	
-	
-	@Override
-	public String toString() {
-		return "Makeup [makeupNo=" + makeupNo + ", memberId=" + memberId + ", code=" + code + ", makeupName="
-				+ makeupName + ", makeupTel=" + makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr
-				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
-				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", makeupFilename=" + makeupFilename
-				+ ", makeupFilepath=" + makeupFilepath + ", status=" + status + ", viewstatus=" + viewstatus
-				+ ", makeupScope=" + makeupScope + ", makeupTag=" + makeupTag + ", makeupLatitude=" + makeupLatitude
-				+ ", makeupLongitud=" + makeupLongitud + "]";
-	}
 	public Makeup() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Makeup(int makeupNo, String memberId, String code, String makeupName, String makeupTel, String makeupLoc,
 			String makeupAddr, int makeupBasicPrice, int makeupParentPrice, int makeupVisitorPrice,
-			String makeupFilename, String makeupFilepath, int status, int viewstatus, int makeupScope, String makeupTag,
-			String makeupLatitude, String makeupLongitud) {
+			String makeupContent, String makeupFilename, String makeupFilepath, int status, int viewstatus,
+			int makeupScope, String makeupTag, String makeupLatitude, String makeupLongitud) {
 		super();
 		this.makeupNo = makeupNo;
 		this.memberId = memberId;
@@ -50,6 +39,7 @@ public class Makeup {
 		this.makeupBasicPrice = makeupBasicPrice;
 		this.makeupParentPrice = makeupParentPrice;
 		this.makeupVisitorPrice = makeupVisitorPrice;
+		this.makeupContent = makeupContent;
 		this.makeupFilename = makeupFilename;
 		this.makeupFilepath = makeupFilepath;
 		this.status = status;
@@ -119,6 +109,12 @@ public class Makeup {
 	public void setMakeupVisitorPrice(int makeupVisitorPrice) {
 		this.makeupVisitorPrice = makeupVisitorPrice;
 	}
+	public String getMakeupContent() {
+		return makeupContent;
+	}
+	public void setMakeupContent(String makeupContent) {
+		this.makeupContent = makeupContent;
+	}
 	public String getMakeupFilename() {
 		return makeupFilename;
 	}
@@ -166,5 +162,15 @@ public class Makeup {
 	}
 	public void setMakeupLongitud(String makeupLongitud) {
 		this.makeupLongitud = makeupLongitud;
+	}
+	@Override
+	public String toString() {
+		return "Makeup [makeupNo=" + makeupNo + ", memberId=" + memberId + ", code=" + code + ", makeupName="
+				+ makeupName + ", makeupTel=" + makeupTel + ", makeupLoc=" + makeupLoc + ", makeupAddr=" + makeupAddr
+				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
+				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", makeupContent=" + makeupContent
+				+ ", makeupFilename=" + makeupFilename + ", makeupFilepath=" + makeupFilepath + ", status=" + status
+				+ ", viewstatus=" + viewstatus + ", makeupScope=" + makeupScope + ", makeupTag=" + makeupTag
+				+ ", makeupLatitude=" + makeupLatitude + ", makeupLongitud=" + makeupLongitud + "]";
 	}
 }

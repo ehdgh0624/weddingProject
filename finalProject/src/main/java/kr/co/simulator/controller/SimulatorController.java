@@ -38,54 +38,66 @@ public class SimulatorController {
 		System.out.println(weddingLoc+" , "+weddingDate+" , "+weddingPerson);
 
 		HttpSession session = request.getSession(false);
+		Simulator simulator = null;
+		
+		//로그인 했을때
 		if(session != null && (Member)session.getAttribute("member") != null) {
 			Member m = (Member)session.getAttribute("member");
-			Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
-			int Start = Integer.parseInt(start);
+			simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 			
-			//웨딩홀
-			int hTotal = simulatorService.hTotalCount(simulator);
-			ArrayList<Hall> hList = simulatorService.hSearchList(simulator, Start);
-			if(!hList.isEmpty()) {
-				System.out.println(hList.get(0).getHallName());
-				model.addAttribute("hTotal", hTotal);
-				model.addAttribute("hList", hList);
-				model.addAttribute("simulator", simulator);
-			}
-			
-			//웨딩드레스
-			int dTotal = simulatorService.dTotalCount(simulator);
-			ArrayList<Dress> dList = simulatorService.dSearchList(simulator, Start);
-			if(!dList.isEmpty()) {
-				System.out.println(dList.get(0).getDressName());
-				model.addAttribute("dTotal", dTotal);
-				model.addAttribute("dList", dList);
-				model.addAttribute("simulator", simulator);
-			}
-			
-			//메이크업
-			int mTotal = simulatorService.mTotalCount(simulator);
-			ArrayList<Makeup> mList = simulatorService.mSearchList(simulator, Start);
-			if(!mList.isEmpty()) {
-				System.out.println(mList.get(0).getMakeupName());
-				model.addAttribute("mTotal", mTotal);
-				model.addAttribute("mList", mList);
-				model.addAttribute("simulator", simulator);
-			}
-			
-			//스튜디오
-			int stTotal = simulatorService.stTotalCount(simulator);
-			ArrayList<Studio> stList = simulatorService.stSearchList(simulator, Start);
-			if(!stList.isEmpty()) {
-				System.out.println(stList.get(0).getStudioName());
-				model.addAttribute("stTotal", stTotal);
-				model.addAttribute("stList", stList);
-				model.addAttribute("simulator", simulator);
-			}
+			/*int result = simulatorService.newSimulator(simulator);
+			if(result > 0) {
+				System.out.println("성공");
+			}else {
+				System.out.println("실패");
+			}*/
 			
 			System.out.println("됫다!");
-		}else {
+		}else { //로그인 안했을때
+			simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 			System.out.println("안됫다!");
+		}
+		
+		int Start = Integer.parseInt(start);
+		
+		//웨딩홀
+		int hTotal = simulatorService.hTotalCount(simulator);
+		ArrayList<Hall> hList = simulatorService.hSearchList(simulator, Start);
+		if(!hList.isEmpty()) {
+			System.out.println(hList.get(0).getHallName());
+			model.addAttribute("hTotal", hTotal);
+			model.addAttribute("hList", hList);
+			model.addAttribute("simulator", simulator);
+		}
+		
+		//웨딩드레스
+		int dTotal = simulatorService.dTotalCount(simulator);
+		ArrayList<Dress> dList = simulatorService.dSearchList(simulator, Start);
+		if(!dList.isEmpty()) {
+			System.out.println(dList.get(0).getDressName());
+			model.addAttribute("dTotal", dTotal);
+			model.addAttribute("dList", dList);
+			model.addAttribute("simulator", simulator);
+		}
+		
+		//메이크업
+		int mTotal = simulatorService.mTotalCount(simulator);
+		ArrayList<Makeup> mList = simulatorService.mSearchList(simulator, Start);
+		if(!mList.isEmpty()) {
+			System.out.println(mList.get(0).getMakeupName());
+			model.addAttribute("mTotal", mTotal);
+			model.addAttribute("mList", mList);
+			model.addAttribute("simulator", simulator);
+		}
+		
+		//스튜디오
+		int stTotal = simulatorService.stTotalCount(simulator);
+		ArrayList<Studio> stList = simulatorService.stSearchList(simulator, Start);
+		if(!stList.isEmpty()) {
+			System.out.println(stList.get(0).getStudioName());
+			model.addAttribute("stTotal", stTotal);
+			model.addAttribute("stList", stList);
+			model.addAttribute("simulator", simulator);
 		}
 		
 		return "simulator/simulatorSelect";
@@ -102,7 +114,7 @@ public class SimulatorController {
 		
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject obj = new JSONObject();
-		obj.put("dList", hList);
+		obj.put("hList", hList);
 		
 		return new Gson().toJson(obj);
 	}

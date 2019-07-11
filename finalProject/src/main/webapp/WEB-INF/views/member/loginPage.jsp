@@ -6,12 +6,10 @@
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 
 <section id="wrap">
-	<h1>로그인</h1>
-	<hr>
 	<div class="area">
 		<h2 class="comm-content-tit">로그인</h2>
 		<div class="common-tbl-box">
-		<form action="/login.do" form="post">
+			<form action="/login.do" form="post">
 				<table class="comm-tbl">
 					<colgroup>
 						<col width="20%">
@@ -26,12 +24,13 @@
 						<th><input type="password" name="memberPw"></th>
 					</tr>
 				</table>
-				<button type="submit" >로그인</button><br>
-				<button type="button" onclick="location.href='/goAddTerms.do'">회원가입</button><br>
-		</form>
+				<div class="common-tbl-btn-group">
+					<button type="submit" class="btn-style1">로그인</button>
+					<button type="button" class="btn-style2" onclick="location.href='/goAddTerms.do'">회원가입</button>
+				</div>
+			</form>
 		</div>
 	</div>
-	<hr>
 </section>
 
 <%--  footer --%>
