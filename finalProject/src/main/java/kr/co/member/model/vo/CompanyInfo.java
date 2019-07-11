@@ -2,12 +2,85 @@ package kr.co.member.model.vo;
 
 public class CompanyInfo {
 	private String companyName;//업체이름
+	
+	private String postNum;
+	private String roadAddr;
+	private String jibunAddr;
+	private String detailAddr;
+	private String extraAddr;
+	
+	
+	
+	
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+
+
+
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}
+
+
+
+	public String getPostNum() {
+		return postNum;
+	}
+
+
+
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+
+
+
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+
+
+
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+
+
+
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+
+
+
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+
+
+
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+
+
+
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+
 	private String companyAddr;//업체주소
 	private String companyPhone;//업체전화번호
 	private int code;//업체분류
+	private String companyContent;
+	private String companyLatitude;
+	private String companyLongtitude;
 	
 	//스튜디오인경우 <주석처리된 변수는 ajax로 따로처리예정 다른디비에 들어가기때문>
 	private int studioPrice;
+	private String studioCamera;
+	private String studioTime;
 	
 	//ajax로 바로 처리할 데이터
 	private String studioOption;
@@ -16,7 +89,7 @@ public class CompanyInfo {
 	
 	//드레스인경우
 	private int dressFittingPrice;
-	private int dressFiitngTime;
+	private String dressFiitngTime;
 	private int dressRentNum;
 	private int dressRentPrice;
 	private int jewelryPrice;
@@ -36,7 +109,7 @@ public class CompanyInfo {
 	
 	
 	//홀인경우
-	private int hallType;
+	private String hallType;
 	private int hallPrice;
 	private String hallServiceFood;//식사여부 체크
 	private int hallFoodtype;
@@ -59,122 +132,37 @@ public class CompanyInfo {
 	private String filePath; //파일경로설정
 	
 	private String hashTag;//태그명
-	
-
-	public CompanyInfo(String companyName, String companyAddr, String companyPhone, int code, int studioPric,
-			String studiOption, String studioOptionPrice, int studioOptionType, int dressFittingPrice, int dressRentNum,
-			int dressRentPrice, int jewelryPrice, String dressContent, int dressFiitngTime, String dressMending,
-			String dressParking, int makeupBasicPrice, String makeupParent, String makeupVisitor, int makeupParentPrice,
-			int makeupVisitorPrice, int hallType, int hallPrice, String hallServiceFood, int hallFoodtype,
-			String hallFoodmenu, int hallFoodprice, int hallMinPerson, int hallMaxPerson, String hallStartTime,
-			String hallEndTime, String hallServiceAudio, String hallServiceDrink, String hallServiceParking,
-			String hallContent, String fileName, String filePath, String hashTag) {
-		super();
-		this.companyName = companyName;
-		this.companyAddr = companyAddr;
-		this.companyPhone = companyPhone;
-		this.code = code;
-		this.studioPrice = studioPric;
-		this.studioOption = studiOption;
-		this.studioOptionPrice = studioOptionPrice;
-		this.studioOptionType = studioOptionType;
-		this.dressFittingPrice = dressFittingPrice;
-		this.dressRentNum = dressRentNum;
-		this.dressRentPrice = dressRentPrice;
-		this.jewelryPrice = jewelryPrice;
-		this.dressContent = dressContent;
-		this.dressFiitngTime = dressFiitngTime;
-		this.dressMending = dressMending;
-		this.dressParking = dressParking;
-		this.makeupBasicPrice = makeupBasicPrice;
-		this.makeupParent = makeupParent;
-		this.makeupVisitor = makeupVisitor;
-		this.makeupParentPrice = makeupParentPrice;
-		this.makeupVisitorPrice = makeupVisitorPrice;
-		this.hallType = hallType;
-		this.hallPrice = hallPrice;
-		this.hallServiceFood = hallServiceFood;
-		this.hallFoodtype = hallFoodtype;
-		this.hallFoodmenu = hallFoodmenu;
-		this.hallFoodprice = hallFoodprice;
-		this.hallMinPerson = hallMinPerson;
-		this.hallMaxPerson = hallMaxPerson;
-		this.hallStartTime = hallStartTime;
-		this.hallEndTime = hallEndTime;
-		this.hallServiceAudio = hallServiceAudio;
-		this.hallServiceDrink = hallServiceDrink;
-		this.hallServiceParking = hallServiceParking;
-		this.hallContent = hallContent;
-		this.fileName = fileName;
-		this.filePath = filePath;
-		this.hashTag = hashTag;
-	}
-
-
-	public String getDressMending() {
-		return dressMending;
-	}
-
-
-	public void setDressMending(String dressMending) {
-		this.dressMending = dressMending;
-	}
-
-
-	public String getDressParking() {
-		return dressParking;
-	}
-
-
-	public void setDressParking(String dressParking) {
-		this.dressParking = dressParking;
-	}
-
-	public int getDressFiitngTime() {
-		return dressFiitngTime;
-	}
-
-
-	public void setDressFiitngTime(int dressFiitngTime) {
-		this.dressFiitngTime = dressFiitngTime;
-	}
-
-
-	public String getDressContent() {
-		return dressContent;
-	}
-
-
-	public void setDressContent(String dressContent) {
-		this.dressContent = dressContent;
-	}
-
-	public int getJewelryPrice() {
-		return jewelryPrice;
-	}
-
-
-	public void setJewelryPrice(int jewelryPrice) {
-		this.jewelryPrice = jewelryPrice;
-	}
-
-
-	public int getDressRentPrice() {
-		return dressRentPrice;
-	}
-
-
-	public void setDressRentPrice(int dressRentPrice) {
-		this.dressRentPrice = dressRentPrice;
-	}
-
 
 	public CompanyInfo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	
+
+
+	@Override
+	public String toString() {
+		return "CompanyInfo [companyName=" + companyName + ", companyAddr=" + companyAddr + ", companyPhone="
+				+ companyPhone + ", code=" + code + ", companyContent=" + companyContent + ", companyLatitude="
+				+ companyLatitude + ", companyLongtitude=" + companyLongtitude + ", studioPrice=" + studioPrice
+				+ ", studioCamera=" + studioCamera + ", studioTime=" + studioTime + ", studioOption=" + studioOption
+				+ ", studioOptionPrice=" + studioOptionPrice + ", studioOptionType=" + studioOptionType
+				+ ", dressFittingPrice=" + dressFittingPrice + ", dressFiitngTime=" + dressFiitngTime
+				+ ", dressRentNum=" + dressRentNum + ", dressRentPrice=" + dressRentPrice + ", jewelryPrice="
+				+ jewelryPrice + ", dressContent=" + dressContent + ", dressMending=" + dressMending + ", dressParking="
+				+ dressParking + ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParent=" + makeupParent
+				+ ", makeupVisitor=" + makeupVisitor + ", makeupParentPrice=" + makeupParentPrice
+				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", hallType=" + hallType + ", hallPrice=" + hallPrice
+				+ ", hallServiceFood=" + hallServiceFood + ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu="
+				+ hallFoodmenu + ", hallFoodprice=" + hallFoodprice + ", hallMinPerson=" + hallMinPerson
+				+ ", hallMaxPerson=" + hallMaxPerson + ", hallStartTime=" + hallStartTime + ", hallEndTime="
+				+ hallEndTime + ", hallServiceAudio=" + hallServiceAudio + ", hallServiceDrink=" + hallServiceDrink
+				+ ", hallServiceParking=" + hallServiceParking + ", hallContent=" + hallContent + ", fileName="
+				+ fileName + ", filePath=" + filePath + ", hashTag=" + hashTag + "]";
+	}
+
+
+
 	public String getCompanyName() {
 		return companyName;
 	}
@@ -207,20 +195,60 @@ public class CompanyInfo {
 		this.code = code;
 	}
 
+	public String getCompanyContent() {
+		return companyContent;
+	}
+
+	public void setCompanyContent(String companyContent) {
+		this.companyContent = companyContent;
+	}
+
+	public String getCompanyLatitude() {
+		return companyLatitude;
+	}
+
+	public void setCompanyLatitude(String companyLatitude) {
+		this.companyLatitude = companyLatitude;
+	}
+
+	public String getCompanyLongtitude() {
+		return companyLongtitude;
+	}
+
+	public void setCompanyLongtitude(String companyLongtitude) {
+		this.companyLongtitude = companyLongtitude;
+	}
+
 	public int getStudioPrice() {
 		return studioPrice;
 	}
 
-	public void setStudioPric(int studioPrice) {
+	public void setStudioPrice(int studioPrice) {
 		this.studioPrice = studioPrice;
+	}
+
+	public String getStudioCamera() {
+		return studioCamera;
+	}
+
+	public void setStudioCamera(String studioCamera) {
+		this.studioCamera = studioCamera;
+	}
+
+	public String getStudioTime() {
+		return studioTime;
+	}
+
+	public void setStudioTime(String studioTime) {
+		this.studioTime = studioTime;
 	}
 
 	public String getStudioOption() {
 		return studioOption;
 	}
 
-	public void setStudioOption(String studiOption) {
-		this.studioOption = studiOption;
+	public void setStudioOption(String studioOption) {
+		this.studioOption = studioOption;
 	}
 
 	public String getStudioOptionPrice() {
@@ -247,12 +275,60 @@ public class CompanyInfo {
 		this.dressFittingPrice = dressFittingPrice;
 	}
 
+	public String getDressFiitngTime() {
+		return dressFiitngTime;
+	}
+
+	public void setDressFiitngTime(String dressFiitngTime) {
+		this.dressFiitngTime = dressFiitngTime;
+	}
+
 	public int getDressRentNum() {
 		return dressRentNum;
 	}
 
 	public void setDressRentNum(int dressRentNum) {
 		this.dressRentNum = dressRentNum;
+	}
+
+	public int getDressRentPrice() {
+		return dressRentPrice;
+	}
+
+	public void setDressRentPrice(int dressRentPrice) {
+		this.dressRentPrice = dressRentPrice;
+	}
+
+	public int getJewelryPrice() {
+		return jewelryPrice;
+	}
+
+	public void setJewelryPrice(int jewelryPrice) {
+		this.jewelryPrice = jewelryPrice;
+	}
+
+	public String getDressContent() {
+		return dressContent;
+	}
+
+	public void setDressContent(String dressContent) {
+		this.dressContent = dressContent;
+	}
+
+	public String getDressMending() {
+		return dressMending;
+	}
+
+	public void setDressMending(String dressMending) {
+		this.dressMending = dressMending;
+	}
+
+	public String getDressParking() {
+		return dressParking;
+	}
+
+	public void setDressParking(String dressParking) {
+		this.dressParking = dressParking;
 	}
 
 	public int getMakeupBasicPrice() {
@@ -295,11 +371,11 @@ public class CompanyInfo {
 		this.makeupVisitorPrice = makeupVisitorPrice;
 	}
 
-	public int getHallType() {
+	public String getHallType() {
 		return hallType;
 	}
 
-	public void setHallType(int hallType) {
+	public void setHallType(String hallType) {
 		this.hallType = hallType;
 	}
 
@@ -432,5 +508,6 @@ public class CompanyInfo {
 	}
 
 	
+
 	
 }

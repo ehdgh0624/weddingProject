@@ -127,4 +127,24 @@ public class MemberDao {
 		return list;
 	}
 
+	public int deleteMember(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("여긴 delete멤버");
+		Member vo = new Member();
+		vo.setMemberId(id);
+		
+		return sqlSession.delete("member.deleteMember", vo);
+
+	}
+
+	public int updateMember(Member vo) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(vo);
+		System.out.println("여긴 정보수정");
+		
+		
+		return sqlSession.update("member.updateMember",vo);
+	}
+
 }
