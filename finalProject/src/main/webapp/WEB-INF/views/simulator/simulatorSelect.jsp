@@ -205,7 +205,10 @@
 					<h2>보관함</h2>
 					<ul class="selected-list">
 						<!-- 선택된 옵션이 들어가는 자리 -->
-						<form id="cartSideBar" action="/cartSideBar.do" method="post">
+						<form id="cartSideBar" action="/simulatorCheck.do" method="post">
+							<input type="hidden" name="weddingLoc" value="${simulator.weddingLoc }">
+							<input type="hidden" name="weddingDate" value="${simulator.weddingDate }">
+							<input type="hidden" name="weddingPerson" value="${simulator.weddingPerson }">
 							<input type="hidden" name="option">	
 							<button type="submit" class="go-simulation">나의 웨딩 계산결과 보기</button>
 						</form>
