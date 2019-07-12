@@ -199,4 +199,12 @@
     <insert id="insertHallOption" parameterType="hallSelect">
      insert into hallSelect values(#{hallSelectRef},#{hallSelectType},#{hallSelectPrice},#{hallSelectEtc})
     </insert>
+    <select id="getCollectionlist" parameterType="member" resultType="scrapbook">
+    	select
+    	code as code,
+    	prd_no as prdNo
+    	from scrapbook
+    	where member_id=#{memberId}
+    </select>
+    
 </mapper>

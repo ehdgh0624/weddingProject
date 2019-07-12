@@ -21,6 +21,7 @@ import kr.co.member.model.dao.MemberDao;
 import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Service("memberService")
 public class MemberService {
@@ -185,6 +186,32 @@ public class MemberService {
 		int result = memberDao.updateMember(vo);
 		
 		return result;
+	}
+
+	public List<Scrapbook> getCollectionlist(Member m) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.getCollectionlist(m);
+	}
+
+	public Studio getStudioScrapList(int prdNo) {
+		// TODO Auto-generated method stub
+		return memberDao.getStudio(prdNo);
+	}
+
+	public Dress getDressScrapList(int prdNo) {
+		// TODO Auto-generated method stub
+		return memberDao.getDress(prdNo);
+	}
+
+	public Makeup getMakeupList(int prdNo) {
+		// TODO Auto-generated method stub
+		return memberDao.getMakeupList(prdNo);
+	}
+
+	public Hall getHallScrapList(int prdNo) {
+		// TODO Auto-generated method stub
+		return  memberDao.getHallList(prdNo);
 	}
 	
 

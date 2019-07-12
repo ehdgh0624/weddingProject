@@ -45,8 +45,10 @@ import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberEnroll;
+import kr.co.member.model.vo.SDMList;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.reservation.model.vo.ReservationComparator;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 
 
@@ -56,6 +58,67 @@ public class MemberController {
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
+	
+	@RequestMapping(value = "/weddingCollection.do")
+	public String weddingCollection(HttpSession session, Model model) {
+		
+		Member vo =(Member)session.getAttribute("member");
+		
+		
+		ArrayList<Studio> sList = new ArrayList<Studio>();
+		ArrayList<Dress> dList = new ArrayList<Dress>();
+		ArrayList<Makeup> mList = new ArrayList<Makeup>();
+		List<Scrapbook> list= memberService.getCollectionlist(vo);
+		
+		for(int i=0; i<list.size();i++) {
+			if(list.get(i).getCode().equals("S")) {
+				Studio s=memberService.getStudioScrapList(list.get(i).getPrdNo());
+				System.out.println(s);
+				sList.add(s);
+			}else if(list.get(i).getCode().equals("D")){
+				Dress d=memberService.getDressScrapList(list.get(i).getPrdNo());
+				System.out.println(d);
+				dList.add(d);
+			}else if(list.get(i).getCode().equals("M")) {
+				Makeup m = memberService.getMakeupList(list.get(i).getPrdNo());
+				System.out.println(m);
+				mList.add(m);
+			}
+		}
+		
+		SDMList sdmList = new SDMList(sList, dList, mList);
+		
+		model.addAttribute("sdmList",sdmList);
+		
+		
+		return "member/weddingColleciton";
+	}
+	
+	@RequestMapping(value = "/weddingCollection.do")
+	public String weddingHall(HttpSession session, Model model) {
+	
+		
+		Member vo =(Member)session.getAttribute("member");
+		
+		ArrayList<Hall> hList = new ArrayList<Hall>();
+		List<Scrapbook> list= memberService.getCollectionlist(vo);
+		
+		for(int i=0; i<list.size();i++) {
+			if(list.get(i).getCode().equals("H")) {
+				Hall h=memberService.getHallScrapList(list.get(i).getPrdNo());
+				System.out.println(h);
+				hList.add(h);
+
+		}
+
+		model.addAttribute("hallList",hList);
+		
+		
+		
+		}
+		return "member/weddingColleciton";
+	}
+	
 	
 	@RequestMapping(value = "/login.do")
 	public String memberLogin(HttpServletRequest request, @RequestParam String memberId, @RequestParam String memberPw) {
@@ -291,6 +354,7 @@ public class MemberController {
 		
 		return "member/myReservList";
 	}
+
 
 	@RequestMapping(value = "/companyEnroll.do",method=RequestMethod.POST)
 	public String companyEnroll(

@@ -13,6 +13,7 @@ import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
+import kr.co.scrapbook.model.vo.Scrapbook;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -161,6 +162,33 @@ public class MemberDao {
 		Hall vo = sqlSession.selectOne("member.getHallNo", h);
 		
 		return vo.getHallNo();
+	}
+
+	public List<Scrapbook> getCollectionlist(Member m) {
+		// TODO Auto-generated method stub
+		
+		
+		return sqlSession.selectList("member.getCollectionlist",m);
+	}
+
+	public Studio getStudio(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("studio.viewSelectOne",prdNo);
+	}
+
+	public Dress getDress(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("dress.viewSelectOne",prdNo);
+	}
+
+	public Makeup getMakeupList(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("makeup.viewSelectOne",prdNo);
+	}
+
+	public Hall getHallList(int prdNo) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
