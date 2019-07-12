@@ -33,26 +33,38 @@
 <!-- 					</div> -->
 <!-- 				</div> -->
 <!-- 			</div> -->
-			<div id="titlebar" class="property-titlebar margin-bottom-0 area">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12">
-							<a href="javascript:;" class="back-to-listings"></a>
-							<div class="property-title">
-								<h2>메이다이닝</h2>
-								<span> <a href="#location" class="listing-address"> <i
-										class="fa fa-map-marker"></i> 서울 도봉구 도봉로169길 208 (도봉동)
-								</a>
-								</span>
-								<div class="ctnr4_like">
-									 <a href="#"><img alt="" src="/resources/img/star_m1.png"></a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="clearfix"></div>
-				</div>
-			</div>
+		<!-- 상호명 table -->
+			<table style="width: 100%;">
+				<tr>
+					<!-- 이전페이지 -->
+					<td rowspan="2" style="width: 80px; height: 80px;">
+						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+					</td>
+					<!-- 상호명 -->
+					<td><span style="font-size: 28px;">${hall.hallName}</span></td>
+					<!-- 스크랩북 -->
+					<td style="float: right;">
+						<c:choose>
+							<c:when test="${not empty scrapbook}">
+								<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
+									<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
+									<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+								</button>
+							</c:otherwise>
+						</c:choose>
+					</td>
+				</tr>
+				<tr>
+					<!-- 상세주소 -->
+					<td>
+						<a style="font-size: 15px;" href="#map">${hall.hallAddr}</a>
+					</td>
+				</tr>
+			</table>
 
 			<div class="view-gallery-slide area">
 				<!-- 큰 이미지 영역 -->
