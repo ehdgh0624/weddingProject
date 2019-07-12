@@ -429,13 +429,11 @@
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>홀타입</th>';
-		addTable += '<th><select name="hallSelectType"><option value="0">갤러리</option><option value="1">골프장</option>';
-		addTable += '<option value="2">공공장소</option><option value="3">레스토랑</option><option value="4">문화공간</option>';
-		addTable += '<option value="5">선박</option><option value="6">스튜디오</option><option value="7">웨딩홀</option>';
-		addTable += '<option value="8">펜션</option><option value="9">하우스웨딩홀</option></select></th></tr>';
-		addTable += '<tr><th>예식장이름(홀이름)</th><th><input type="text" name="hallSelectName"></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value=0></th></tr>';
+		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
+		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
+		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value=" "></th></tr>';
+		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
+		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
 		
 		$('#hallOptionTableDiv').append(addTable);
@@ -445,7 +443,7 @@
 		var addTable ="";			
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
 		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOption"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
+		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
