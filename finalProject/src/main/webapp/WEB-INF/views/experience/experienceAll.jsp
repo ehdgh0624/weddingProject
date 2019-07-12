@@ -14,6 +14,7 @@
 	
 		<div style="text-align: right;  width: 1071px; ">
 			<a href="/experienceWriting.do" >
+			
 				<span style="font-size: 15px; color: red; ">글등록</span>
 			</a>
 			<br>

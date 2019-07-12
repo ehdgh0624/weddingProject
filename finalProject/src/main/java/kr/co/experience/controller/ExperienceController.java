@@ -122,8 +122,8 @@ public class ExperienceController {
 		for(int i=0; i<start.size()-1;i++) {
 			filename.add(editor.substring(start.get(i),end.get(i)));
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"+filename.get(i)+".jpg";
-			String file2 = "C:\\Users\\user1\\WeddingProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+filename.get(i)+".jpg";
+			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"+filename.get(i)+".jpg";
+			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"+filename.get(i)+".jpg";
 			try {
 				FileInputStream fis = new FileInputStream(file1);
 				FileOutputStream fos = new FileOutputStream(file2);
