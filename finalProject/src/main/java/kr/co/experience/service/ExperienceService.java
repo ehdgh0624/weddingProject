@@ -48,7 +48,7 @@ public class ExperienceService {
 
 
 	public ExperienePageDate edList(int reqPage) {
-		int numPerPage = 9;   //게시물의 숫자  
+		int numPerPage = 9;   //내가 지정한 , 페이지에 띄울 	게시물의 숫자  
 		int totalCount = experienceDao.totalCount();  //총개시물을 나타낸다
 //		int totalPage =(totalCount%numPerPage==0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;	
 		int totalpge = 0;	
@@ -59,22 +59,44 @@ public class ExperienceService {
 		}	
 		int start = (reqPage-1)*numPerPage+1;   
 		int end = reqPage*numPerPage; 
+	
 		ArrayList<Experience> list = (ArrayList<Experience>)experienceDao.selectList(start,end);				
 		String pageNavi ="";
 		int pageNaviSize = 5;    // <1 2 3 4 5 ?> 
-		int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;
-		if(pageNo !=1) {											
-			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
+		
+		
+		
+		/*int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;*/
+		
+		
+		/*int pageNo = (reqPage-1)+1*+1; 위에가 1 6 11 이여서 사이즈 5를 뺴고  1 ,2 , 3, 4, 5 나오게 하였따 */		
+		/*int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;*/
+		int pageNo = 0;
+		
+		if(reqPage <3) {
+			pageNo = 1;
+		}else if ( reqPage+2  > totalpge      ) {
+			pageNo = totalpge - pageNaviSize+1;						
+		}
+		else {
+			pageNo = reqPage-2;
+			
 		}
 		
+		
+		System.out.println(pageNo);
+		
+		if(pageNo !=1) {											
+			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
+		}		
 		int i = 1; 
 		while( !(i++>pageNaviSize || pageNo>totalpge)) {  
 			if(reqPage == pageNo) { 
 				 pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+pageNo+"'>"+pageNo+"</a>"; 
-					
+				pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+pageNo+"'>"+pageNo+"</a>";			 
 			}
+		
 			pageNo++;
 		}
 		if(pageNo <= totalpge) {

@@ -13,6 +13,7 @@ import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
+import kr.co.scrapbook.model.vo.Scrapbook;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -65,6 +66,8 @@ public class MemberDao {
 
 	public int insertDress(Dress md) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("드레스"+md);
 		if(md.getDressFilename()== null) {
 			md.setDressFilename("");
 		}
@@ -145,6 +148,54 @@ public class MemberDao {
 		
 		
 		return sqlSession.update("member.updateMember",vo);
+	}
+
+	public int getStudioNo(Studio s) {
+		// TODO Auto-generated method stub
+		Studio vo =sqlSession.selectOne("member.getStudioNo",s);
+		
+		return vo.getStudioNo();
+	}
+
+	public int getHallNo(Hall h) {
+		// TODO Auto-generated method stub
+		Hall vo = sqlSession.selectOne("member.getHallNo", h);
+		
+		return vo.getHallNo();
+	}
+
+	public List<Scrapbook> getCollectionlist(Member m) {
+		// TODO Auto-generated method stub
+		
+		
+		return sqlSession.selectList("member.getCollectionlist",m);
+	}
+
+	public Studio getStudio(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("studio.viewSelectOne",prdNo);
+	}
+
+	public Dress getDress(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("dress.viewSelectOne",prdNo);
+	}
+
+	public Makeup getMakeupList(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("makeup.viewSelectOne",prdNo);
+	}
+
+	public Hall getHallList(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("hall.viewSelectOne",prdNo);
+	}
+
+	public List<Reservation> getComanyRservation(Member vo) {
+		// TODO Auto-generated method stub
+		System.out.println("여긴왔냐 ?");
+		System.out.println(vo);
+		return sqlSession.selectOne("member.companyReservation");
 	}
 
 }
