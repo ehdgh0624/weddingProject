@@ -59,11 +59,49 @@ public class MemberController {
 	@Qualifier(value="memberService")
 	private MemberService memberService;
 	
+	
+	
+	@RequestMapping(value = "/companyReservation.do")
+	public String CompanyReservation(HttpSession session,Model model) {
+		Member vo =(Member)session.getAttribute("member");
+		System.out.println("업체 예약리스트확인");
+		 List<Reservation> list = memberService.getReservationList(vo);
+		
+		 Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
+		 System.out.println(list.get(0).getCode());
+		 System.out.println("reservaion디비 접근후");
+		 for(int i=0; i<list.size(); i++) {
+			String word=list.get(i).getCode();
+			Boolean b= true;
+			Iterator<Map.Entry<String, ArrayList<Reservation>>> entries = reservMap.entrySet().iterator();
+	
+			while(entries.hasNext()) {
+					Entry<String, ArrayList<Reservation>> entry =(Entry<String, ArrayList<Reservation>>)entries.next();
+					b=true;
+					if(entry.getKey().equals(word)) {
+						reservMap.get(word).add(list.get(i));
+						 System.out.println(entry.getKey() + "=" + entry.getValue().get(0));
+						 System.out.println(i);
+						b=false;
+					}
+					if(b) {
+						ArrayList<Reservation> rese = new ArrayList<Reservation>();
+						rese.add(list.get(i));
+						reservMap.put(word, rese);
+						 System.out.println(i);
+					}
+			 }
+		 }	
+		 
+		 model.addAttribute("resMap",reservMap);
+		
+		 return "member/companyReservation";
+	}
+	
 	@RequestMapping(value = "/weddingCollection.do")
-	public String weddingCollection(HttpSession session, Model model) {
+	public String WeddingCollection(HttpSession session, Model model) {
 		
 		Member vo =(Member)session.getAttribute("member");
-		
 		
 		ArrayList<Studio> sList = new ArrayList<Studio>();
 		ArrayList<Dress> dList = new ArrayList<Dress>();
@@ -87,16 +125,13 @@ public class MemberController {
 		}
 		
 		SDMList sdmList = new SDMList(sList, dList, mList);
-		
 		model.addAttribute("sdmList",sdmList);
-		
 		
 		return "member/weddingColleciton";
 	}
 	
 	@RequestMapping(value = "/weddingHall.do")
 	public String weddingHall(HttpSession session, Model model) {
-	
 		
 		Member vo =(Member)session.getAttribute("member");
 		

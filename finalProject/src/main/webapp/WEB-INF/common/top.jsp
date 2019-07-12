@@ -58,7 +58,7 @@
 					<li>
 						<p>업체관리</p>
 						<span><a href="/myCompanyPage.do">나의 업체 관리</a></span>
-						<span><a href="">업체 예약관리</a></span>
+						<span><a href="/companyReservation.do">업체 예약관리</a></span>
 					</li>
 					<!-- 일반 회원일때 -->
 					<li>

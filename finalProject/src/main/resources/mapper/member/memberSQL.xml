@@ -206,5 +206,22 @@
     	from scrapbook
     	where member_id=#{memberId}
     </select>
+     <select id="companyReservation" parameterType="member" resultType="reservation">
+    	select
+    	reservation_no as reservationNo,
+    	code as code,
+    	prd_no as prdNo,
+    	wedding_date as weddingDate,
+    	wedding_time as weddingTime,
+    	totalprice as totalPrice,
+    	member_id as memberId,
+    	member_name as memberName,
+    	pay_method as payMethod,
+    	order_memo as orderMemo,
+    	member_email as memberEmail,
+    	prd_name as prdName
+    	from reservation
+    	where prd_id=#{memberId} and order_status=1
+    </select>
     
 </mapper>

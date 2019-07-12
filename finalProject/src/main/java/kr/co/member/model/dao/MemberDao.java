@@ -191,4 +191,11 @@ public class MemberDao {
 		return sqlSession.selectOne("hall.viewSelectOne",prdNo);
 	}
 
+	public List<Reservation> getComanyRservation(Member vo) {
+		// TODO Auto-generated method stub
+		System.out.println("여긴왔냐 ?");
+		System.out.println(vo);
+		return sqlSession.selectOne("member.companyReservation");
+	}
+
 }

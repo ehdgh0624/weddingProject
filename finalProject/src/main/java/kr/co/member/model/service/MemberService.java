@@ -213,6 +213,11 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return  memberDao.getHallList(prdNo);
 	}
+
+	public List<Reservation> getReservationList(Member vo) {
+		// TODO Auto-generated method stub
+		return memberDao.getComanyRservation(vo);
+	}
 	
 
 }
