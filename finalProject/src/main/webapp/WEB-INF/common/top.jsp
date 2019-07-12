@@ -66,6 +66,9 @@
 						<span><a href="">웨딩홀</a></span>
 						<span><a href="">웨딩컬렉션</a></span>
 					</li>
+					<li>
+					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
+					</li>
 				</c:if>
 				<!-- 관리자 일떄 -->
 				<c:if test="${sessionScope.member.memberId eq 'admin' }">
