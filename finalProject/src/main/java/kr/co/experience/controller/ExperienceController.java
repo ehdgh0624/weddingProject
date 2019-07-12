@@ -184,7 +184,9 @@ public class ExperienceController {
 		int e = experienceService.insertexperience(ex);
 		System.out.println(ex);
 		System.out.println(e);
-		return "redirect:/index.jsp";				
+		return "redirect:/index.jsp";
+		
+		
 	}
 	
 	

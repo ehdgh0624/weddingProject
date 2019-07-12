@@ -65,6 +65,8 @@ public class MemberDao {
 
 	public int insertDress(Dress md) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("드레스"+md);
 		if(md.getDressFilename()== null) {
 			md.setDressFilename("");
 		}
@@ -145,6 +147,20 @@ public class MemberDao {
 		
 		
 		return sqlSession.update("member.updateMember",vo);
+	}
+
+	public int getStudioNo(Studio s) {
+		// TODO Auto-generated method stub
+		Studio vo =sqlSession.selectOne("member.getStudioNo",s);
+		
+		return vo.getStudioNo();
+	}
+
+	public int getHallNo(Hall h) {
+		// TODO Auto-generated method stub
+		Hall vo = sqlSession.selectOne("member.getHallNo", h);
+		
+		return vo.getHallNo();
 	}
 
 }
