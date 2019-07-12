@@ -1,5 +1,9 @@
 package kr.co.member.controller;
 
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,14 +18,18 @@ import java.util.Map.Entry;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import java.util.Comparator;
 
 import kr.co.collection.model.vo.Dress;
@@ -37,8 +45,10 @@ import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberEnroll;
+import kr.co.member.model.vo.SDMList;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.reservation.model.vo.ReservationComparator;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 
 
@@ -48,6 +58,67 @@ public class MemberController {
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
+	
+	@RequestMapping(value = "/weddingCollection.do")
+	public String weddingCollection(HttpSession session, Model model) {
+		
+		Member vo =(Member)session.getAttribute("member");
+		
+		
+		ArrayList<Studio> sList = new ArrayList<Studio>();
+		ArrayList<Dress> dList = new ArrayList<Dress>();
+		ArrayList<Makeup> mList = new ArrayList<Makeup>();
+		List<Scrapbook> list= memberService.getCollectionlist(vo);
+		
+		for(int i=0; i<list.size();i++) {
+			if(list.get(i).getCode().equals("S")) {
+				Studio s=memberService.getStudioScrapList(list.get(i).getPrdNo());
+				System.out.println(s);
+				sList.add(s);
+			}else if(list.get(i).getCode().equals("D")){
+				Dress d=memberService.getDressScrapList(list.get(i).getPrdNo());
+				System.out.println(d);
+				dList.add(d);
+			}else if(list.get(i).getCode().equals("M")) {
+				Makeup m = memberService.getMakeupList(list.get(i).getPrdNo());
+				System.out.println(m);
+				mList.add(m);
+			}
+		}
+		
+		SDMList sdmList = new SDMList(sList, dList, mList);
+		
+		model.addAttribute("sdmList",sdmList);
+		
+		
+		return "member/weddingColleciton";
+	}
+	
+	@RequestMapping(value = "/weddingHall.do")
+	public String weddingHall(HttpSession session, Model model) {
+	
+		
+		Member vo =(Member)session.getAttribute("member");
+		
+		ArrayList<Hall> hList = new ArrayList<Hall>();
+		List<Scrapbook> list= memberService.getCollectionlist(vo);
+		
+		for(int i=0; i<list.size();i++) {
+			if(list.get(i).getCode().equals("H")) {
+				Hall h=memberService.getHallScrapList(list.get(i).getPrdNo());
+				System.out.println(h);
+				hList.add(h);
+
+		}
+
+		model.addAttribute("hallList",hList);
+		
+		
+		
+		}
+		return "member/weddingHall";
+	}
+	
 	
 	@RequestMapping(value = "/login.do")
 	public String memberLogin(HttpServletRequest request, @RequestParam String memberId, @RequestParam String memberPw) {
@@ -284,7 +355,8 @@ public class MemberController {
 		return "member/myReservList";
 	}
 
-	@RequestMapping(value = "/companyEnroll.do")
+
+	@RequestMapping(value = "/companyEnroll.do",method=RequestMethod.POST)
 	public String companyEnroll(
 			CompanyInfo ci,
 			HttpSession session,
@@ -295,13 +367,59 @@ public class MemberController {
 			@RequestParam(value="hallSelectName",required = true) List<String> hallSelectName,
 			@RequestParam(value="hallSelectPeople",required = true) List<String> hallSelectPeople,
 			@RequestParam(value="hallSelectTime",required = true) List<String> hallSelectTime,
-			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc){
+			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc,
+			HttpServletRequest request,
+			@RequestParam MultipartFile fileNames
+			){
 		System.out.println("업체등록 로직 시작");
+		System.out.println("컨트롤러"+ci);
+		int code=ci.getCode();
 		int seqNo=0;
 		Member vo =(Member)session.getAttribute("member");	
 		HallSelectList hsl=new HallSelectList();
 		StudioSelectList ssl = new StudioSelectList();
-
+		ArrayList<StudioSelect> list = new ArrayList<StudioSelect>();
+		ArrayList<HallSelect> list2= new ArrayList<HallSelect>();
+		
+		
+		
+		String savePath="";
+		if(code==0) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
+		}else if(code==1) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
+		}else if(code==2) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
+		}else if(code==3) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}
+		System.out.println(savePath);
+		String originName = fileNames.getOriginalFilename();
+		String onlyFilename =  originName.substring(0, originName.indexOf("."));
+		String extension = originName.substring(originName.indexOf("."));
+		String filePath = onlyFilename+"_"+"1"+extension;
+		String fullPath = savePath +"/"+filePath;
+		if(!fileNames.isEmpty()) {
+			
+			try {
+				byte[] bytes = fileNames.getBytes();
+				File f = new File(fullPath);
+				FileOutputStream fos = new FileOutputStream(f);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				bos.write(bytes);
+				bos.close();
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		
+		ci.setFileName(originName);
+		ci.setFilePath(filePath);
+		System.out.println(originName+"//"+filePath);
+		
 		
 		int result=0;
 		int result2=0;
@@ -314,16 +432,16 @@ public class MemberController {
 		
 		 ci.setCompanyAddr(fullAddr);
 		
-		int code=ci.getCode();
-		
 		if(code==0) {
 			result=memberService.insertStudio(ci, vo);
 			if(result>0) {
 				seqNo=memberService.getStudioNo(ci.getCompanyName(),vo.getMemberId());
+				System.out.println(seqNo);
 				for(int i=0; i<studioOption.size(); i++) {
 					StudioSelect ss = new StudioSelect(seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
-					ssl.getList().add(ss);
+					list.add(ss);
 				}
+				ssl.setList(list);
 				result2=memberService.insertStudioOption(ssl);
 			}
 		}else if(code==1) {
@@ -331,13 +449,15 @@ public class MemberController {
 		}else if(code==2) {
 			result= memberService.insertMakeup(ci, vo);
 		}else if(code==3) {
+			
 			result=memberService.insertHall(ci, vo);
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
 					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,hallSelectPrice.get(i),hallSelectEtc.get(i));
-					hsl.getList().add(hs);
+					list2.add(hs);
 				}
+				hsl.setList(list2);
 				result2=memberService.insertHallOption(hsl);
 			}
 		}	

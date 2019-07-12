@@ -16,7 +16,7 @@
 	</div>
 
 		<div class="area">
-			<form action="/companyEnroll.do">
+			<form action="/companyEnroll.do" method="post" enctype="multipart/form-data">
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
@@ -126,7 +126,7 @@
 						</tr>
 						<tr>
 							<th>드레스피팅시간</th>
-							<th><input type="number" name="dressFittingTime" value="0"><br></th>
+							<th><input type="text" name="dressFittingTime" value=" "></th>
 						</tr>
 						<tr>
 							<th>드레스대여가능갯수</th>
@@ -178,15 +178,24 @@
 
 					<div id="fiveth" class="divbox" style="display:none;"><!-- 홀 -->
 						<!-- 체크시 아래 음식관련 도출 -->
+						<h1>웨딩홀!</h1>
 						<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
 								<col width="/">
 							</colgroup>
 							<tr>
+								<th>웨딩홀 최소인원</th>
+								<th><input type="number" name="hallMinPerson" value="0"></th>
+							</tr>
+							<tr>
+								<th>웨딩홀 최대인원</th>
+								<th><input type="number" name="hallMaxPerson" value="0"></th>
+							</tr>
+							<tr>
 								<th>웨딩홀 타입</th>
 								<th>
-									<select name="hallSelectType">
+									<select name="hallType">
 										<option value="0">갤러리</option>
 										<option value="1">골프장</option>
 										<option value="2">공공장소</option>
@@ -223,7 +232,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="text" name="hallFoodmenu" value=" "></th>
+									<th><input type="text" name="hallFoodprice" value=" "></th>
 								</tr>
 							<!--  -->
 								<tr>
@@ -233,16 +242,7 @@
 								<tr>
 									<th>웨딩홀 음향제공</th>
 									<th><input type="checkbox" name="hallServiceAudio"></th>
-								</tr>
-								<tr>
-									<th>웨딩홀 음향제공</th>
-									<th><input type="checkbox" name="hallServiceAudio"></th>
-								</tr>
-								<tr>
-									<th>웨딩홀운영시간</th>
-									<th><input type="number" name="hallStartTime" value="0">-<input type="number" name="hallEndTime" value="0"></th>
-								</tr>
-								
+								</tr>						
 								<tr>
 									<th>웨딩홀 주차제공</th>
 									<th><input type="checkbox" name="hallServiceParking"></th>
@@ -251,14 +251,18 @@
 						<span id="hallStep" class="lastBtn">다음</span>
 					</div>
 					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
+							
+							<label for="imgInp">
+								<img id="img" name="img"  src="#" width="100px" height="100px">
+							</label>
 							<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
 								<col width="/">
 							</colgroup>
 							<tr>
-								<th>사진등록</th>
-								<th><input type="file" name="fileName" value=" "></th>
+								<th>대표사진등록</th>
+								<th><input type="file" name="fileNames" value=" " id="imgInp"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
@@ -312,7 +316,6 @@
 						<span id="studioOption" class="lastBtn">다음</span>
 				</div>
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
-					
 					<h1>예식장등록</h1>
 					<div id="hallOptionTableDiv">
 						<table class="comm-tbl">
@@ -325,7 +328,7 @@
 								<th><input type="text" name="hallSelectName" value=" "></th>
 							</tr>
 							<tr>
-								<th>예식장인원</th>
+								<th>예식장인원(최소)</th>
 								<th><input type="text" name="hallSelectPeople" value=" "></th>
 							</tr>
 							<tr>
@@ -539,11 +542,40 @@
 	         $('#shopLatitude').val(items[0].point.y);
 	         $('#shopLongitude').val(items[0].point.x);
 	    });	
-	
-	
 	});
-	
 </script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function() {
+        readURL(this);
+    });        
+            CKEDITOR.config.height = 500;
+            CKEDITOR.config.toolbarCanCollapse = true;
+            CKEDITOR.replace('editor' , {                
+            filebrowserImageUploadUrl: '/experienceUpload.do'                   
+            });
+             CKEDITOR.on('dialogDefinition', function( ev ){
+                    var dialogName = ev.data.name;
+                    var dialogDefinition = ev.data.definition;
+         
+                    switch (dialogName) {
+                        case 'image': 
+                        	//Image Properties dialog
+                            //dialogDefinition.removeContents('info');
+                            dialogDefinition.removeContents('Link');
+                            dialogDefinition.removeContents('advanced');
+                            break;
+                    }                                                         
+                });                        
+        </script>
 
 
 

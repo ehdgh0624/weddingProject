@@ -50,5 +50,21 @@ $(document).ready(function(){
 		$cartSideBar.removeClass("open");
 	}
 	
+	//myPageContainer
+	$('.myPageContainer').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		arrows: true,
+		fade: false,
+		dots:false,
+		autoplay: false,
+		speed:800,
+		infinite:false,
+		autoplaySpeed: 3000,
+		easing: 'easeInOutQuint',
+		pauseOnHover:false,
+		prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
+		nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
+	});
 	
 });

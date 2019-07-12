@@ -22,6 +22,11 @@
 
 <script type="text/javascript" src="/resources/js/common.js"></script><!-- common.js -->
 
+<!-- 슬라이드 CSS & Jquery -->
+<link rel="stylesheet" type="text/css" href="/resources/css/plugin/slick.css">
+<script src="/resources/js/plugin/slick.js"></script>
+
+
 </head>
 <body class="clearfix">
 	<aside id="sideMenuBar">
@@ -63,8 +68,11 @@
 					<!-- 일반&업체 회원일때 -->
 					<li>
 						<p>스크랩북</p>
-						<span><a href="">웨딩홀</a></span>
-						<span><a href="">웨딩컬렉션</a></span>
+						<span><a href="/weddingHall.do">웨딩홀</a></span>
+						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
+					</li>
+					<li>
+					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
 					</li>
 				</c:if>
 				<!-- 관리자 일떄 -->
