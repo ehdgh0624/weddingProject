@@ -9,6 +9,7 @@
 
 <%-- wrap --%>
 <section id="adminWrap">
+<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
 	<div id="adminHeader">
@@ -162,7 +163,7 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="text" name="makeupBasicPrice" value="0"></th>
+								<th><input type="number" name="makeupBasicPrice" value="0"></th>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
@@ -232,7 +233,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="text" name="hallFoodprice" value=" "></th>
+									<th><input type="number" name="hallFoodprice" value="0"></th>
 								</tr>
 							<!--  -->
 								<tr>
@@ -262,7 +263,7 @@
 							</colgroup>
 							<tr>
 								<th>대표사진등록</th>
-								<th><input type="file" name="fileNames" value=" " id="imgInp"></th>
+								<th><input type="file" name="fileNames"  id="imgInp"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
@@ -297,7 +298,7 @@
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value=" " id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -557,25 +558,8 @@
     $("#imgInp").change(function() {
         readURL(this);
     });        
-            CKEDITOR.config.height = 500;
-            CKEDITOR.config.toolbarCanCollapse = true;
-            CKEDITOR.replace('editor' , {                
-            filebrowserImageUploadUrl: '/experienceUpload.do'                   
-            });
-             CKEDITOR.on('dialogDefinition', function( ev ){
-                    var dialogName = ev.data.name;
-                    var dialogDefinition = ev.data.definition;
-         
-                    switch (dialogName) {
-                        case 'image': 
-                        	//Image Properties dialog
-                            //dialogDefinition.removeContents('info');
-                            dialogDefinition.removeContents('Link');
-                            dialogDefinition.removeContents('advanced');
-                            break;
-                    }                                                         
-                });                        
-        </script>
+                            
+  </script>
 
 
 

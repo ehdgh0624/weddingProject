@@ -4,6 +4,7 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -22,15 +23,15 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import java.util.Comparator;
+import org.springframework.web.multipart.MultipartRequest;
 
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
@@ -427,7 +428,7 @@ public class MemberController {
 
 
 
-	@RequestMapping(value = "/companyEnroll.do",method=RequestMethod.POST)
+	@RequestMapping(value = "/companyEnroll.do" , method = RequestMethod.POST)
 	public String companyEnroll(
 			CompanyInfo ci,
 			HttpSession session,
@@ -451,10 +452,13 @@ public class MemberController {
 		StudioSelectList ssl = new StudioSelectList();
 		ArrayList<StudioSelect> list = new ArrayList<StudioSelect>();
 		ArrayList<HallSelect> list2= new ArrayList<HallSelect>();
-		
-		
-		
+	
 		String savePath="";
+		
+		String originName=fileNames.getOriginalFilename();
+		String onlyFileName=originName.substring(0,originName.indexOf("."));
+		String extension= originName.substring(originName.indexOf("."));
+		
 		if(code==0) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
 		}else if(code==1) {
@@ -465,13 +469,11 @@ public class MemberController {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
 		}
 		System.out.println(savePath);
-		String originName = fileNames.getOriginalFilename();
-		String onlyFilename =  originName.substring(0, originName.indexOf("."));
-		String extension = originName.substring(originName.indexOf("."));
-		String filePath = onlyFilename+"_"+"1"+extension;
+
+		String filePath = onlyFileName+"_"+"1"+extension;
 		String fullPath = savePath +"/"+filePath;
+		
 		if(!fileNames.isEmpty()) {
-			
 			try {
 				byte[] bytes = fileNames.getBytes();
 				File f = new File(fullPath);
