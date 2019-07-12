@@ -1,16 +1,20 @@
 package kr.co.hall.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.hall.service.HallService;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
+import kr.co.member.model.vo.Member;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Controller
 public class HallController {
@@ -79,8 +83,16 @@ public class HallController {
 		return mav;
 	}
 	@RequestMapping(value="/hallView.do")
-	public ModelAndView reservation() {
+	public ModelAndView reservation(HttpSession session, @RequestParam int hallNo ) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
+		mav.addObject("hall",hallService.selectOneHall(hallNo));
+		mav.addObject("galleryList", hallService.selectListGallery(hallNo, "H"));
+		mav.addObject("reviewList", hallService.selectListReview(hallNo, "H"));
+		if(m != null) {
+			Scrapbook scrap = hallService.selectOneScrapbook(m.getMemberId(),hallNo, "H");
+			mav.addObject("scrapbook",scrap);
+		}			
 		mav.setViewName("hall/hallView");
 		return mav;
 	}

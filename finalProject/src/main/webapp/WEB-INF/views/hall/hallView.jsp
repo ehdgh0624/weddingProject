@@ -88,32 +88,27 @@
 						<ul class="property-features ptnr_policy margin-top-0">
 							<li><i class="far fa-clock"></i> <span class="policy_title">이용시간</span>
 								<p>
-									메이다이닝 시크릿가든 - 11:00 ~ 15:00<br>메이다이닝 시크릿가든 - 17:00 ~ 21:00<br>메이다이닝
-									비탈길 - 17:00 ~ 21:00<br>메이다이닝 비탈길 - 11:00 ~ 15:00<br>메이다이닝
-									플랫가든 - 11:00 ~ 15:00<br>메이다이닝 플랫가든 - 17:00 ~ 21:00
+									메이다이닝 시크릿가든 - 11:00 ~ 15:00
 								</p></li>
 							<li><i class="fas fa-utensils"></i> <span
 								class="policy_title">식사</span>
 								<p>
-									<span class="policy_o">제공</span><br>뷔페(30여가지 계절메뉴) + 스테이크
-									메인
+									<span class="policy_o">제공</span>
 								</p></li>
 							<li><i class="fa fa-volume-up"></i> <span
 								class="policy_title">음향</span>
 								<p>
-									<span class="policy_o">제공</span>, 마이크수량 - 2개, 스피커수량 - 2개<br>유료
-									제공 (장소에 문의)
+									<span class="policy_o">제공</span>
 								</p></li>
 							<li><i class="fas fa-glass-martini-alt"></i> <span
 								class="policy_title">주류</span>
 								<p>
-									<span class="policy_o">제공</span> / 주류가격정책 - 유료제공<br>와인,
-									맥주, 소프트드링크(콜라/사이다)
+									<span class="policy_o">제공</span>
 								</p></li>
 							<li><i class="fas fa-parking"></i> <span
 								class="policy_title">주차</span>
 								<p>
-									<span class="policy_o">가능</span> / 주차비용 - 무료, 주차가능대수 - 50대
+									<span class="policy_o">가능</span>
 								</p></li>
 						</ul>
 					</div>
@@ -189,14 +184,14 @@
 											</tr>
 										</tbody>
 									</table>
-								</div>
+								</div><br>
 								<div class="form-group form-md-touchspin margin-bottom-30">
 									<label class="control-label">예상하객수<span
 										class="required">*</span></label>
 									<div class="input-group-wrap">
 										<div class="input-group w-60">
 											<input type="text" name="" id="" class="form-control"
-												placeholder="fuck" required> <span
+												placeholder="몇명이나오니?" required> <span
 												class="input-group-btn ui-datepicker-trigger">
 												<button class="btn default" type="button">명</button>
 											</span>
@@ -205,13 +200,43 @@
 									<span class="msg-error">80명이상 200명이하로 입력가능합니다<br></span>
 								</div>
 							</div>
-						</div>
 						<ul class="btn-group">
 							<li><a href="javascript:;" class="btn yellow-gold estm_next"
 								valid-target="#ctnr1_estimate" next-target="#ctnr2_estimate">
 									다음으로 </a></li>
 						</ul>
+						</div>
 						<div style="clear: both;"></div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h4 class="panel-title">
+									<a href="javascript:;"> 2단계 <strong>가격확인하기</strong>
+									</a>
+								</h4>
+							</div>
+							<div class="panel-body default-hide" id="ctnr2_estimate"
+								style="background-color: rgb(249, 243, 243); display: none;">
+								<div class="col-md-12">
+									<ul class="service_lst">
+										<div
+											class="form-group form-md-line-input form-md-floating-label">
+											<div class="form-control form-control-static margin-top-10">
+												제공하는 서비스가 없습니다.</div>
+											<label for="form_control_1">제공 서비스</label>
+										</div>
+									</ul>
+									<ul class="btn-group">
+										<li><a href="javascript:;" class="btn default estm_prev"
+											current-target="#ctnr2_estimate"
+											prev-target="#ctnr1_estimate"> 이전으로 </a></li>
+										<li><a href="javascript:;"
+											class="btn yellow-gold estm_submit" ptnr-code="106912520760"
+											available="1"> 전체 가격 확인 </a></li>
+									</ul>
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
 					</div>
 				</div>
 		</section>

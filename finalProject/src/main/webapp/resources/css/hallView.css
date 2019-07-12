@@ -30,7 +30,7 @@
 
 .table-scrollable>.table {
     width: 100%!important;
-    margin: 0!important;
+      margin-top: 10px;
     background-color: #fff;
     border: 1px solid #e7ecf1;
 }
@@ -38,6 +38,7 @@ tr {
     display: table-row;
     vertical-align: inherit;
     border-color: inherit;
+        height: 50px;
 }
 
 thead {
@@ -45,6 +46,11 @@ thead {
     vertical-align: middle;
     border-color: inherit;
 }
+section.hallView .contentsub{
+	width: 70%;
+	
+}
+
 /* 운영정책 */
 section.hallView .contentsub h3.desc-headline {
 	font-size: 16px;
@@ -110,6 +116,12 @@ section.hallView .contentsub h3.desc-headline {
 	color: #333;
 	background-color: #f5f5f5;
 	border-color: #ddd;
+	background: #eee;
+}
+
+.panel-title {
+    margin-top: 0;
+    font-size: 16px;
 }
 
 .ptnr_estimate .panel-body {
@@ -292,6 +304,13 @@ section.hallView .contentsub h3.desc-headline {
 	float: right;
 }
 
+.panel-default>.panel-heading{
+	    color: #333;
+    background-color: #f5f5f5;
+    border-color: #ddd;
+}
+
+
 .indent_g1 {
 	padding-left: 15px;
 }
@@ -311,4 +330,19 @@ section.hallView .contentsub h3.desc-headline {
 .ptnr_estimate .media-object {
 	width: 64px;
 	height: 64px;
+}
+
+ul {
+    list-style: none;
+    padding: 0px;
+    margin-bottom: 10px;
+        margin-top: 0;
+}
+
+#estimate_body1.ptnr_estimate .form-group{
+	margin-bottom: 0;
+}
+.service_lst + ul.btn-group {
+    border-top: 1px solid #DDD;
+    padding-top: 30px;
 }
