@@ -59,7 +59,57 @@ public class MemberController {
 	@Qualifier(value="memberService")
 	private MemberService memberService;
 	
+	@RequestMapping(value = "/myReservList.do")
+	public String myReservListView(HttpSession session,Model model) {
+		System.out.println("예약리스트페이지 온!");
+		Member vo =(Member)session.getAttribute("member");	
+		
+		
+		
+		List<Reservation> list=memberService.getAllReservList(vo);
+		
+		ReservationComparator comp = new ReservationComparator();
+		Collections.sort(list,comp);
+		System.out.println("정렬되었는지확인!");
+		for(int i=0;i<list.size();i++) {
+			System.out.println(list.get(i));
+		}
+		
+		
+		Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
+
+		SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
+		
+		for(int i=0; i<list.size(); i++) {
+			String word=format.format(list.get(i).getWeddingDate());
+			System.out.println("키값은"+word);
+			
+			Boolean b= true;
+			Iterator<Map.Entry<String, ArrayList<Reservation>>> entrie = reservMap.entrySet().iterator();
+		
+			while(entrie.hasNext()) {
+				Entry<String, ArrayList<Reservation>> entry =(Entry<String, ArrayList<Reservation>>)entrie.next();
+				if(entry.getKey().equals(word)) {
+					reservMap.get(word).add(list.get(i));
+					 System.out.println(entry.getKey() + "=" + entry.getValue().get(0));
+					 System.out.println(i);
+					b=false;
+				}
+			}
+			if(b) {
+				ArrayList<Reservation> rese = new ArrayList<Reservation>();
+				rese.add(list.get(i));
+				reservMap.put(word, rese);
+				 System.out.println(i);
+			}
+		}
+		
 	
+	
+		model.addAttribute("resMap",reservMap);
+		
+		return "member/myReservList";
+	}
 	
 	@RequestMapping(value = "/companyReservation.do")
 	public String CompanyReservation(HttpSession session,Model model) {
@@ -68,34 +118,44 @@ public class MemberController {
 		 List<Reservation> list = memberService.getReservationList(vo);
 		
 		 Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
-		 System.out.println(list.get(0).getCode());
+	
 		 System.out.println("reservaion디비 접근후");
+		 
+
 		 for(int i=0; i<list.size(); i++) {
 			String word=list.get(i).getCode();
+			System.out.println(list.get(i));
 			Boolean b= true;
+			
 			Iterator<Map.Entry<String, ArrayList<Reservation>>> entries = reservMap.entrySet().iterator();
-	
+			System.out.println(entries.hasNext());
+			
 			while(entries.hasNext()) {
 					Entry<String, ArrayList<Reservation>> entry =(Entry<String, ArrayList<Reservation>>)entries.next();
 					b=true;
+					System.out.println("여긴 왜안오냐");
+				
 					if(entry.getKey().equals(word)) {
 						reservMap.get(word).add(list.get(i));
 						 System.out.println(entry.getKey() + "=" + entry.getValue().get(0));
 						 System.out.println(i);
 						b=false;
 					}
-					if(b) {
-						ArrayList<Reservation> rese = new ArrayList<Reservation>();
-						rese.add(list.get(i));
-						reservMap.put(word, rese);
-						 System.out.println(i);
-					}
+					
 			 }
+			if(b) {
+				ArrayList<Reservation> rese = new ArrayList<Reservation>();
+				rese.add(list.get(i));
+				reservMap.put(word, rese);
+				 System.out.println(i);
+			}
 		 }	
 		 
 		 model.addAttribute("resMap",reservMap);
 		
 		 return "member/companyReservation";
+		 
+
 	}
 	
 	@RequestMapping(value = "/weddingCollection.do")
@@ -314,7 +374,6 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	//아직 적용안함
 	@RequestMapping(value = "/goAddTerms.do")
 	public String GoMemberTerms() {
 		System.out.println("회원등록 약관 호출");
@@ -338,57 +397,34 @@ public class MemberController {
 		return "member/addCompany";
 	}
 	
-	@RequestMapping(value = "/myReservList.do")
-	public String myReservListView(HttpSession session,Model model) {
-		System.out.println("예약리스트페이지 온!");
-		Member vo =(Member)session.getAttribute("member");	
+	@RequestMapping(value = "/companyDetailView.do")
+	public String companyDetailView(Model model,HttpServletRequest request) {
+		System.out.println("업체상세페이지");
 		
+		int no=Integer.parseInt(request.getParameter("prdNo"));
+		String code=request.getParameter("code");
 		
-		
-		List<Reservation> list=memberService.getAllReservList(vo);
-		
-		ReservationComparator comp = new ReservationComparator();
-		Collections.sort(list,comp);
-		System.out.println("정렬되었는지확인!");
-		for(int i=0;i<list.size();i++) {
-			System.out.println(list.get(i));
-		}
-		
-		
-		Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
-
-		SimpleDateFormat format= new SimpleDateFormat("yyyy-MM-dd");
-		
-		for(int i=0; i<list.size(); i++) {
-			String word=format.format(list.get(i).getWeddingDate());
-			System.out.println("키값은"+word);
-			
-			Boolean b= true;
-			Iterator<Map.Entry<String, ArrayList<Reservation>>> entries = reservMap.entrySet().iterator();
-			
-			while(entries.hasNext()) {
-				Entry<String, ArrayList<Reservation>> entry =(Entry<String, ArrayList<Reservation>>)entries.next();
-				if(entry.getKey().equals(word)) {
-					reservMap.get(word).add(list.get(i));
-					 System.out.println(entry.getKey() + "=" + entry.getValue().get(0));
-					 System.out.println(i);
-					b=false;
-				}
-			}
-			if(b) {
-				ArrayList<Reservation> rese = new ArrayList<Reservation>();
-				rese.add(list.get(i));
-				reservMap.put(word, rese);
-				 System.out.println(i);
-			}
-		}
-		
-	
-	
-		model.addAttribute("resMap",reservMap);
-		
-		return "member/myReservList";
+		if(code.equals("S")) {
+			Studio s=memberService.selectOneStudioNumber(no);
+			model.addAttribute("Studio",s);
+			return "member/companyDetailStudio";
+		}else if(code.equals("D")) {
+			Dress d=memberService.selectOneDressNumber(no);
+			model.addAttribute("Dress",d);
+			return "member/companyDetailDress";
+		}else if(code.equals("M")){
+			Makeup m=memberService.selectOneMakeupNumber(no);
+			model.addAttribute("Makeup",m);
+			return "member/companyDetailMakeup";
+		}else if(code.equals("H")){
+			Hall h=memberService.selectOneHallNumber(no);
+			model.addAttribute("Hall",h);
+			return "member/companyDetailHall";
+		}	
+		return "redirect:/myCompanyPage.do";		
 	}
+	
+
 
 
 	@RequestMapping(value = "/companyEnroll.do",method=RequestMethod.POST)

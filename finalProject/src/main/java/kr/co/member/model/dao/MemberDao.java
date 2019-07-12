@@ -195,7 +195,27 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		System.out.println("여긴왔냐 ?");
 		System.out.println(vo);
-		return sqlSession.selectOne("member.companyReservation");
+		return sqlSession.selectList("member.companyReservation",vo);
+	}
+
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("");
+	}
+
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Studio selectoneStudioNumber(int no) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

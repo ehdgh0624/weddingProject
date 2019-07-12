@@ -218,6 +218,26 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.getComanyRservation(vo);
 	}
+
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneHallNumber(no);
+	}
+
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneMakeupNumber(no);
+	}
+
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneDressNumber(no);
+	}
+
+	public Studio selectOneStudioNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectoneStudioNumber(no);
+	}
 	
 
 }
