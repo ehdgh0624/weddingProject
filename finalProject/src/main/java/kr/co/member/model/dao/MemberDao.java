@@ -188,7 +188,7 @@ public class MemberDao {
 
 	public Hall getHallList(int prdNo) {
 		// TODO Auto-generated method stub
-		return null;
+		return sqlSession.selectOne("hall.viewSelectOne",prdNo);
 	}
 
 }

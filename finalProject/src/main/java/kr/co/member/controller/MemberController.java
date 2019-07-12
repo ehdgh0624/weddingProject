@@ -94,7 +94,7 @@ public class MemberController {
 		return "member/weddingColleciton";
 	}
 	
-	@RequestMapping(value = "/weddingCollection.do")
+	@RequestMapping(value = "/weddingHall.do")
 	public String weddingHall(HttpSession session, Model model) {
 	
 		
@@ -116,7 +116,7 @@ public class MemberController {
 		
 		
 		}
-		return "member/weddingColleciton";
+		return "member/weddingHall";
 	}
 	
 	

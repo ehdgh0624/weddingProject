@@ -14,24 +14,23 @@
 	</div>
 	
 	<div class="area">
-	<h1>스튜디오</h1>
 	<hr>
-	<h1>메이크업</h1>
+	<h1>홀</h1>
 		<div class="clearfix myPageContainer">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-			<c:if test="${not empty sdmList.mList}">				<!-- 스튜디오 리스트가 있을 때 -->
-				<c:forEach items="${sdmList.mList}" var="m" varStatus="i">
+			<c:if test="${not empty hallList}">				<!-- 스튜디오 리스트가 있을 때 -->
+				<c:forEach items="${hallList}" var="h" varStatus="i">
 					<div class="photolist">
-						<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}">
+						<a href="/#.do?code=${h.code}&objectNo=${h.hallNo}">
 							<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
-							<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}" class="photolist-prdName">${m.makeupName}</a>
+							<a href="/#.do?code=${h.code}&objectNo=${h.hallNo}" class="photolist-prdName">${h.hallName}</a>
 							<br>
 							<br>
 							<br>
 							<div>
-								${m.makeupAddr}
+								${h.hallAddr}
 							</div>
 						</div>
 					</div>
