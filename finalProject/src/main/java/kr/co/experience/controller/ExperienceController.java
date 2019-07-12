@@ -35,7 +35,10 @@ import kr.co.experience.vo.ExperienePageDate;
 public class ExperienceController {	
 	@Autowired
 	private ExperienceService experienceService;		
+/*	
+	@RequestMapping(value="/experienceReview.do")
 	
+	*/
 	
 	@RequestMapping(value="/experienceAll.do")
 	public String ExperienceAll(HttpServletRequest request) {
@@ -49,6 +52,8 @@ public class ExperienceController {
 			
 		return "redirect:/experienceAllList.do?reqPage="+reqPage; // 페이지를  1 을 보내준다 
 	}
+	
+	
 	@RequestMapping(value="/experienceAllList.do")
 	public ModelAndView experienceAllList(int reqPage) {
 		
@@ -190,15 +195,6 @@ public class ExperienceController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping(value = "/experienceUpload.do", method = RequestMethod.POST)
     public void communityImageUpload(HttpServletRequest request, HttpServletResponse response, @RequestParam MultipartFile upload,MultipartHttpServletRequest multiFile) {
 		
@@ -271,9 +267,5 @@ public class ExperienceController {
         }                       
       return;
 	}
-	
-	
-	
-	
 	
 }

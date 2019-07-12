@@ -23,7 +23,7 @@
 		<div style="text-align: center;">		
 		 	<c:forEach items="${expd.exList}" var="e" varStatus="i">
 		 	  
-				<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235); ">
+				<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
 					<div style="padding:5px; height: 70%;">
 						<div>
 							<div>

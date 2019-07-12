@@ -1,15 +1,55 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%--  Header --%>
+<jsp:include page="/WEB-INF/common/header.jsp"/>
+<div><img src = "/resources/upload/${experience.experienceFilePath}" style="width:100%;height:600px;"></div>
+<%--  Header --%>
+<%-- <jsp:include page="/WEB-INF/common/sub.jsp"/> --%>
+<%-- wrap --%>
+<section id="wrap">
+	<div class="area">
+	<table class="comm-tbl">
+				<tr>
+					<th colspan="2"  style="text-align:center; "><span>${experience.experienceTitle } 제목맨</span></th>
+			
+				</tr>
+				<tr>
+					<th colspan="2" style="text-align:center; ">${ experience.experienceContent}</th>
+					
+				</tr>
+				<tr>
 
-${experience.experienceNo }번호맨
-${experience.experienceTitle } 제목맨
+				</tr>		    
+		    </table>
+		
+		<table class="comm-tbl">
+		<tr>
+			<th style="font-size: 20px;padding: 30px;" >댓글()</th>
+		</tr>	
+		<tr>
+			<td>ddd</td>
+		</tr>	
+		<tr>
+			<td>ddd</td>
+		</tr>	
+		<tr>
+			<td>ddd</td>
+		</tr>	
+		<tr>
+			<td>ddd</td>
+		</tr>	
+		<tr>
+			<td>
+				<form action="/experienceReview.do?experienceNo=${experience.experienceNo}">
+					<div class="common-tbl-btn-group" style="padding-top:0px;">
+				    	<button type="submit" class="btn-style1" >댓글작성하기</button>
+				    </div>
+				</form>
+		   </td> 	
+		</tr>				
+		</table>
+	</div>
+</section>
 
-</body>
-</html>
+<%--  footer --%>
+<jsp:include page="/WEB-INF/common/footer.jsp"/>
