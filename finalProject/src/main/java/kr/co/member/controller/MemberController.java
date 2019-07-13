@@ -32,12 +32,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
+import org.springframework.web.servlet.ModelAndView;
 
+import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
+import kr.co.hall.service.HallService;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
@@ -333,6 +336,7 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
+	
 	@RequestMapping(value = "/myCompanyPage.do")
 	public String MyCompanyView(HttpSession session,Model model) {
 		System.out.println("나의업체 관리페이지");
@@ -389,6 +393,19 @@ public class MemberController {
 		return "member/addCompanyTerms";
 	}
 	
+	@RequestMapping(value = "/deleteStudioOption.do",produces="text/html;charset=utf-8")
+	public String deleteStudioOption(@RequestParam int no,@RequestParam int type) {
+		System.out.println("스튜디오옵션삭제시작");
+
+		int result=memberService.deleteStudioOption(no,type);
+		if(result>0) {
+			System.out.println("삭제성공");
+		}
+		
+		return "member/addCompanyTerms";
+	}
+	
+
 
 	
 	@RequestMapping(value = "/enrollCompanyPage.do")
@@ -399,30 +416,42 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/companyDetailView.do")
-	public String companyDetailView(Model model,HttpServletRequest request) {
+	public ModelAndView companyDetailView(Model model,HttpServletRequest request) {
 		System.out.println("업체상세페이지");
-		
+		ModelAndView mav = new ModelAndView();
 		int no=Integer.parseInt(request.getParameter("prdNo"));
 		String code=request.getParameter("code");
 		
 		if(code.equals("S")) {
-			Studio s=memberService.selectOneStudioNumber(no);
-			model.addAttribute("Studio",s);
-			return "member/companyDetailStudio";
+		
+			
+			mav.addObject("studio", memberService.selectOneStudioNumber(no));
+			mav.addObject("studioSelectList0", memberService.selectListStudioOptionNumber(no, 0));
+			mav.addObject("studioSelectList1", memberService.selectListStudioOptionNumber(no, 1));
+			mav.addObject("studioSelectList2", memberService.selectListStudioOptionNumber(no, 2));
+			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "S"));
+			
+			mav.setViewName("member/companyDetailStudio");
+			return mav;
+			
 		}else if(code.equals("D")) {
-			Dress d=memberService.selectOneDressNumber(no);
-			model.addAttribute("Dress",d);
-			return "member/companyDetailDress";
+		
+			mav.addObject("dress", memberService.selectOneDressNumber(no));
+			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "D"));
+			mav.setViewName("member/companyDetailDress");
+			return mav;
 		}else if(code.equals("M")){
-			Makeup m=memberService.selectOneMakeupNumber(no);
-			model.addAttribute("Makeup",m);
-			return "member/companyDetailMakeup";
+	
+			mav.addObject("makeup", memberService.selectOneDressNumber(no));
+			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "M"));
+			mav.setViewName("member/companyDetailMakeup");
+			return mav;
 		}else if(code.equals("H")){
-			Hall h=memberService.selectOneHallNumber(no);
-			model.addAttribute("Hall",h);
-			return "member/companyDetailHall";
+			// 아직 홀 진행중	
+			
+			return mav;
 		}	
-		return "redirect:/myCompanyPage.do";		
+		return mav;	
 	}
 	
 

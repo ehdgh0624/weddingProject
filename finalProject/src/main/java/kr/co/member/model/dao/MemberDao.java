@@ -1,6 +1,8 @@
 package kr.co.member.model.dao;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Repository;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
@@ -200,22 +204,47 @@ public class MemberDao {
 
 	public Hall selectOneHallNumber(int no) {
 		// TODO Auto-generated method stub
+		
+		//홀은 현재 미구현
 		return sqlSession.selectOne("");
 	}
 
 	public Makeup selectOneMakeupNumber(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
 	}
 
 	public Dress selectOneDressNumber(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Dress)sqlSession.selectOne("dress.viewSelectOne",no);
 	}
 
 	public Studio selectoneStudioNumber(int no) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne",no);
+	}
+
+	public List<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("studioNo", studioNo);
+		map.put("studioOptionType", studioOptionType);
+		return sqlSession.selectList("studioSelect.selectListOption",map);
+	}
+
+	public List<Gallery> selectListGallery(int galleryNo, String galleryCode) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("galleryNo", galleryNo);
+		map.put("galleryCode", galleryCode);
+		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+
+	public int deleteStudioOption(int no, int type) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("studioNo", no);
+		map.put("studioType", type);
+		return sqlSession.delete("studioSelect.deleteStudioOption",map );
 	}
 
 }

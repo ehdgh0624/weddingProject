@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.common.method.Location;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
@@ -238,6 +239,23 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.selectoneStudioNumber(no);
 	}
-	
+
+	public ArrayList<StudioSelect> selectListStudioOptionNumber(int studioNo, int studioOptionType) {
+		// TODO Auto-generated method stub
+		return (ArrayList<StudioSelect>)memberDao.selectListStudioOption(studioNo, studioOptionType);
+	}
+
+	public ArrayList<Gallery> selectListGalleryNumber(int galleryNo, String galleryCode) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Gallery>)memberDao.selectListGallery(galleryNo, galleryCode);
+	}
+
+	public int deleteStudioOption(int no, int type) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.deleteStudioOption(no,type);
+	}
+
+
 
 }
