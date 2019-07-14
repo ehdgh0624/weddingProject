@@ -348,6 +348,7 @@
 	function submitReservation(){
 		var code = "D";
 		var prdNo = ${dress.dressNo};
+		var prdId = '${dress.memberId}';
 		var prdName = '${dress.dressName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -367,7 +368,7 @@
 		}
 		$.ajax({
 			url : "/reservationDress.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){

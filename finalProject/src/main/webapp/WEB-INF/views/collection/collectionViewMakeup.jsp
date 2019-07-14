@@ -248,6 +248,7 @@
 	function submitReservation(){
 		var code = "M";
 		var prdNo = ${makeup.makeupNo};
+		var prdId = '${makeup.memberId}';
 		var prdName = '${makeup.makeupName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -263,7 +264,7 @@
 		}
 		$.ajax({
 			url : "/reservationMakeup.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){

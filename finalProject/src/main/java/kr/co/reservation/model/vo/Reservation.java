@@ -28,6 +28,9 @@ public class Reservation {
 	private String bankNum;					//계좌번호
 	private String bankHolder;				//예금주
 	private String bankDate;				//입금기한
+	private String impUid;					//결제 시 고유ID
+	private int applyNum;					//카드사 승인번호
+	private String paymentDate;				//결제일시(시,분,초까지)
 	private String option1;					//옵션1
 	private Date option1Date;
 	private String option1Time;
@@ -45,9 +48,9 @@ public class Reservation {
 			String weddingTime, int totalPrice, String memberId, String memberName, String memberPhone,
 			String payMethod, int amount, int orderStatus, String deliveryNum, Date orderDate, String orderMemo,
 			String orderAddr, String memberEmail, String receiveName, String receivePhone, String bankName,
-			String bankNum, String bankHolder, String bankDate, String option1, Date option1Date, String option1Time,
-			String option2, Date option2Date, String option2Time, String option3, Date option3Date,
-			String option3Time) {
+			String bankNum, String bankHolder, String bankDate, String impUid, int applyNum, String paymentDate,
+			String option1, Date option1Date, String option1Time, String option2, Date option2Date, String option2Time,
+			String option3, Date option3Date, String option3Time) {
 		super();
 		this.reservationNo = reservationNo;
 		this.code = code;
@@ -74,6 +77,9 @@ public class Reservation {
 		this.bankNum = bankNum;
 		this.bankHolder = bankHolder;
 		this.bankDate = bankDate;
+		this.impUid = impUid;
+		this.applyNum = applyNum;
+		this.paymentDate = paymentDate;
 		this.option1 = option1;
 		this.option1Date = option1Date;
 		this.option1Time = option1Time;
@@ -83,20 +89,6 @@ public class Reservation {
 		this.option3 = option3;
 		this.option3Date = option3Date;
 		this.option3Time = option3Time;
-	}
-	@Override
-	public String toString() {
-		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdId="
-				+ prdId + ", prdName=" + prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime
-				+ ", totalPrice=" + totalPrice + ", memberId=" + memberId + ", memberName=" + memberName
-				+ ", memberPhone=" + memberPhone + ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus="
-				+ orderStatus + ", deliveryNum=" + deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo
-				+ ", orderAddr=" + orderAddr + ", memberEmail=" + memberEmail + ", receiveName=" + receiveName
-				+ ", receivePhone=" + receivePhone + ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder="
-				+ bankHolder + ", bankDate=" + bankDate + ", option1=" + option1 + ", option1Date=" + option1Date
-				+ ", option1Time=" + option1Time + ", option2=" + option2 + ", option2Date=" + option2Date
-				+ ", option2Time=" + option2Time + ", option3=" + option3 + ", option3Date=" + option3Date
-				+ ", option3Time=" + option3Time + "]";
 	}
 	public int getReservationNo() {
 		return reservationNo;
@@ -248,6 +240,24 @@ public class Reservation {
 	public void setBankDate(String bankDate) {
 		this.bankDate = bankDate;
 	}
+	public String getImpUid() {
+		return impUid;
+	}
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
+	}
+	public int getApplyNum() {
+		return applyNum;
+	}
+	public void setApplyNum(int applyNum) {
+		this.applyNum = applyNum;
+	}
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
 	public String getOption1() {
 		return option1;
 	}
@@ -302,6 +312,20 @@ public class Reservation {
 	public void setOption3Time(String option3Time) {
 		this.option3Time = option3Time;
 	}
-	
-	
+	@Override
+	public String toString() {
+		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdId="
+				+ prdId + ", prdName=" + prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime
+				+ ", totalPrice=" + totalPrice + ", memberId=" + memberId + ", memberName=" + memberName
+				+ ", memberPhone=" + memberPhone + ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus="
+				+ orderStatus + ", deliveryNum=" + deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo
+				+ ", orderAddr=" + orderAddr + ", memberEmail=" + memberEmail + ", receiveName=" + receiveName
+				+ ", receivePhone=" + receivePhone + ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder="
+				+ bankHolder + ", bankDate=" + bankDate + ", impUid=" + impUid + ", applyNum=" + applyNum
+				+ ", paymentDate=" + paymentDate + ", option1=" + option1 + ", option1Date=" + option1Date
+				+ ", option1Time=" + option1Time + ", option2=" + option2 + ", option2Date=" + option2Date
+				+ ", option2Time=" + option2Time + ", option3=" + option3 + ", option3Date=" + option3Date
+				+ ", option3Time=" + option3Time + "]";
+	}
+
 }

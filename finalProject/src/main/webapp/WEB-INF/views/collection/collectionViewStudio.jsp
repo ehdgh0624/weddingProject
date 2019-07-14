@@ -283,6 +283,7 @@
 	function submitReservation(){
 		var code = "S";
 		var prdNo = ${studio.studioNo};
+		var prdId = '${studio.memberId}';
 		var prdName = '${studio.studioName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -298,7 +299,7 @@
 		var option3 = $('#option3 option:selected').text().substring(0,$('#option3 option:selected').text().indexOf("("));
 		$.ajax({
 			url : "/reservationStudio.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){
