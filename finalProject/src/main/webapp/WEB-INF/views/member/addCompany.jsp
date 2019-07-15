@@ -298,7 +298,7 @@
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="text" name="studioOptionPrice" value=" " id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -330,7 +330,7 @@
 							</tr>
 							<tr>
 								<th>예식장인원(최소)</th>
-								<th><input type="text" name="hallSelectPeople" value=" "></th>
+								<th><input type="text" name="hallSelectPerson" value=" "></th>
 							</tr>
 							<tr>
 								<th>예식장시간</th>
