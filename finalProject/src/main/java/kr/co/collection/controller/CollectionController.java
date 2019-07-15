@@ -382,7 +382,7 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/reservationGoods.do")
-	public String insertReservationGoods(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String memberId, @RequestParam String memberName, @RequestParam String memberPhone, @RequestParam String memberEmail, @RequestParam String payMethod, @RequestParam int amount, @RequestParam String orderMemo, @RequestParam String orderAddr, @RequestParam String receiveName, @RequestParam String receivePhone, @RequestParam String impUid, @RequestParam int applyNum, @RequestParam String paymentDate) {
+	public String insertReservationGoods(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String memberId, @RequestParam String memberName, @RequestParam String memberPhone, @RequestParam String memberEmail, @RequestParam String payMethod, @RequestParam int amount, @RequestParam String orderMemo, @RequestParam String orderAddr, @RequestParam String receiveName, @RequestParam String receivePhone, @RequestParam String bankName, @RequestParam String bankNum, @RequestParam String bankHolder, @RequestParam String bankDate, @RequestParam String impUid, @RequestParam int applyNum, @RequestParam String paymentDate) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		vo = new Reservation();
@@ -397,10 +397,14 @@ public class CollectionController {
 		vo.setMemberEmail(memberEmail);
 		vo.setPayMethod(payMethod);
 		vo.setAmount(amount);
-		vo.setOrderMemo(orderMemo);
+		vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
 		vo.setOrderAddr(orderAddr);
 		vo.setReceiveName(receiveName);
 		vo.setReceivePhone(receivePhone);
+		vo.setBankName(bankName);
+		vo.setBankNum(bankNum);
+		vo.setBankHolder(bankHolder);
+		vo.setBankDate(bankDate);
 		vo.setImpUid(impUid);
 		vo.setApplyNum(applyNum);
 		vo.setPaymentDate(paymentDate);
@@ -435,7 +439,7 @@ public class CollectionController {
 			vo.setMemberEmail(m.getEmail());
 			vo.setPayMethod(payMethod);
 			vo.setAmount(amount);
-			vo.setOrderMemo(orderMemo);
+			vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
 			vo.setOrderAddr(orderAddr);
 			vo.setReceiveName(receiveName);
 			vo.setReceivePhone(receivePhone);

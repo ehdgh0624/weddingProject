@@ -18,6 +18,7 @@ public class Reservation {
 	private int amount;						//구매 수량
 	private int orderStatus;				//주문 상태(결제대기=0/결제완료=1/결제취소대기=2/결제취소완료=3)
 	private String deliveryNum;				//배송번호(택배)
+	private int deliveryStatus;				//배송 상태(상품준비중=0/발송준비중=1/배송중=2/배송완료=3)
 	private Date orderDate;					//주문날짜 or 예약날짜
 	private String orderMemo;				//주문메모
 	private String orderAddr;				//배송예정주소
@@ -46,11 +47,11 @@ public class Reservation {
 	}
 	public Reservation(int reservationNo, String code, int prdNo, String prdId, String prdName, Date weddingDate,
 			String weddingTime, int totalPrice, String memberId, String memberName, String memberPhone,
-			String payMethod, int amount, int orderStatus, String deliveryNum, Date orderDate, String orderMemo,
-			String orderAddr, String memberEmail, String receiveName, String receivePhone, String bankName,
-			String bankNum, String bankHolder, String bankDate, String impUid, int applyNum, String paymentDate,
-			String option1, Date option1Date, String option1Time, String option2, Date option2Date, String option2Time,
-			String option3, Date option3Date, String option3Time) {
+			String payMethod, int amount, int orderStatus, String deliveryNum, int deliveryStatus, Date orderDate,
+			String orderMemo, String orderAddr, String memberEmail, String receiveName, String receivePhone,
+			String bankName, String bankNum, String bankHolder, String bankDate, String impUid, int applyNum,
+			String paymentDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
+			String option2Time, String option3, Date option3Date, String option3Time) {
 		super();
 		this.reservationNo = reservationNo;
 		this.code = code;
@@ -67,6 +68,7 @@ public class Reservation {
 		this.amount = amount;
 		this.orderStatus = orderStatus;
 		this.deliveryNum = deliveryNum;
+		this.deliveryStatus = deliveryStatus;
 		this.orderDate = orderDate;
 		this.orderMemo = orderMemo;
 		this.orderAddr = orderAddr;
@@ -179,6 +181,12 @@ public class Reservation {
 	}
 	public void setDeliveryNum(String deliveryNum) {
 		this.deliveryNum = deliveryNum;
+	}
+	public int getDeliveryStatus() {
+		return deliveryStatus;
+	}
+	public void setDeliveryStatus(int deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
 	}
 	public Date getOrderDate() {
 		return orderDate;
@@ -318,14 +326,13 @@ public class Reservation {
 				+ prdId + ", prdName=" + prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime
 				+ ", totalPrice=" + totalPrice + ", memberId=" + memberId + ", memberName=" + memberName
 				+ ", memberPhone=" + memberPhone + ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus="
-				+ orderStatus + ", deliveryNum=" + deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo
-				+ ", orderAddr=" + orderAddr + ", memberEmail=" + memberEmail + ", receiveName=" + receiveName
-				+ ", receivePhone=" + receivePhone + ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder="
-				+ bankHolder + ", bankDate=" + bankDate + ", impUid=" + impUid + ", applyNum=" + applyNum
-				+ ", paymentDate=" + paymentDate + ", option1=" + option1 + ", option1Date=" + option1Date
-				+ ", option1Time=" + option1Time + ", option2=" + option2 + ", option2Date=" + option2Date
-				+ ", option2Time=" + option2Time + ", option3=" + option3 + ", option3Date=" + option3Date
-				+ ", option3Time=" + option3Time + "]";
+				+ orderStatus + ", deliveryNum=" + deliveryNum + ", deliveryStatus=" + deliveryStatus + ", orderDate="
+				+ orderDate + ", orderMemo=" + orderMemo + ", orderAddr=" + orderAddr + ", memberEmail=" + memberEmail
+				+ ", receiveName=" + receiveName + ", receivePhone=" + receivePhone + ", bankName=" + bankName
+				+ ", bankNum=" + bankNum + ", bankHolder=" + bankHolder + ", bankDate=" + bankDate + ", impUid="
+				+ impUid + ", applyNum=" + applyNum + ", paymentDate=" + paymentDate + ", option1=" + option1
+				+ ", option1Date=" + option1Date + ", option1Time=" + option1Time + ", option2=" + option2
+				+ ", option2Date=" + option2Date + ", option2Time=" + option2Time + ", option3=" + option3
+				+ ", option3Date=" + option3Date + ", option3Time=" + option3Time + "]";
 	}
-
 }

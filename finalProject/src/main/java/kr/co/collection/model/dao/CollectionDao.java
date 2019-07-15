@@ -213,6 +213,10 @@ public class CollectionDao {
 		map.put("orderAddr",vo.getOrderAddr());
 		map.put("receiveName",vo.getReceiveName());
 		map.put("receivePhone",vo.getReceivePhone());
+		map.put("bankName", vo.getBankName());
+		map.put("bankNum", vo.getBankNum());
+		map.put("bankHolder", vo.getBankHolder());
+		map.put("bankDate", vo.getBankDate());
 		map.put("impUid",vo.getImpUid());
 		map.put("applyNum",vo.getApplyNum());
 		map.put("paymentDate", vo.getPaymentDate());
