@@ -97,6 +97,10 @@ section.hall .filteoBtn{
 	width: 100%;
 	height: 75px;
 }
+
+section.hall .area{
+	    margin: 0px auto 30px;
+}
 section.hall .photoZone{
 	width: 100%;
 	height: 850px;
