@@ -394,4 +394,14 @@ public class AdminController {
 		model.addAttribute("gList", gList);
 		return "/admin/goodsCarePage";
 	}
+	@RequestMapping(value="/reservationManager.do")
+	public String reservationManager(HttpServletRequest request) {
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+	}
+	
 }

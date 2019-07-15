@@ -93,7 +93,7 @@
 					</li>
 					<li>
 						<p>주문관리</p>
-						<span><a href="">주문신청관리</a></span>
+						<span><a href="/reservationManager.do">주문신청관리</a></span>
 					</li>
 				</c:if>
 			</ul>
