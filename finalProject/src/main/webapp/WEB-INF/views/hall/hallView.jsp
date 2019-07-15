@@ -154,24 +154,28 @@
 							<tr>
 									<th rowspan="4">기본 옵션</th>
 									<th>예식장
-										<td>
-										<select>
-												<option>옵션</option>
-										</select>
-										</td>
+									<td>
+									<select id="hallOption">
+										<option value="default">옵션</option>
+										<c:forEach items="${hallSelect}" var="hs">
+											<option value="${hs.hallSelectNo }">${hs.hallType }</option>
+										</c:forEach>
+									</select>
+									
+									</td>
 									</th>
 								</tr>
 								<tr>
 									<th>대관료</th>
-									<td>얼마일까?</td>
+									<td id="price"></td>
 								</tr>
 								<tr>
 									<th>비고</th>
-									<td>왜 결혼을 하는것인가?</td>
+									<td id="etc"></td>
 								</tr>
 							<tr>
 								<th>하객수</th>
-								<td><input type="text" id="hallPerson" name="hallPerson" placeholder="하객수를 입력하세요."> <span>100이상 입력하세요</span></td>
+								<td><input type="text" id="hallPerson" name="hallPerson" placeholder="하객수를 입력하세요."> <span id="personSpan">?</span></td>
 							</tr>
 							<tr>
 									<th id="makeupOption-th" rowspan="1">부가 옵션</th>
@@ -239,6 +243,29 @@
 							focusOnSelect : true
 						});
 					});
+	
+	/*옵션 선택시 대관료 비고 바꾸기 시작*/
+	
+	$("#hallOption").change(function(){
+		var result = $(this).val();
+		if($("#hallOption option:selected").val() != 'default'){
+			$.ajax({
+				url : "/hallOption.do",
+				type : "get",
+				data : {result:result},
+				dataType : "json",
+				success : function(data){
+					$("#price").text(data.hallSelectPrice+"원");
+					$("#etc").text(data.hallSelectEtc);
+				},
+				error : function(){
+					alert("다시!!!")
+				}
+			});
+		};	// #hallOptionn 이프문
+	});
+	
+	/*옵션 선택시 대관료 비고 바꾸기 끝*/
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){

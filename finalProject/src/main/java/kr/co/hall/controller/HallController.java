@@ -1,6 +1,10 @@
 package kr.co.hall.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +12,16 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.co.hall.service.HallService;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
+import kr.co.hall.vo.HallSelect;
 import kr.co.member.model.vo.Member;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -96,6 +105,15 @@ public class HallController {
 		}			
 		mav.setViewName("hall/hallView");
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/hallOption.do", produces="text/html;charset=utf-8")
+	public void selectOption(@RequestParam int result,HttpServletResponse response) throws IOException {
+		response.setCharacterEncoding("utf-8");
+		HallSelect hs = hallService.selectOption(result);
+		response.getWriter().println(new Gson().toJson(hs));
+		
 	}
 	
 }

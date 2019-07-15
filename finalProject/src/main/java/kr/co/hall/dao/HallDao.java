@@ -90,11 +90,11 @@ public class HallDao {
 		map.put("objectNo", objectNo);
 		return (Scrapbook)sqlSession.selectOne("scrapbook.selectOneScrapbook",map);
 	}
-	public List<HallSelect> selectListHall(int objectNo) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("code", objectNo);
-		
-		return sqlSession.selectList("hallSelect.selectListHallSelect",map);
+	public List<HallSelect> selectListHall(int hallNo) {
+		return  sqlSession.selectList("hallSelect.selectListHallSelect",hallNo);
+	}
+	public HallSelect selectOption(int result) {
+		return sqlSession.selectOne("hallSelect.selectOption",result);
 	}
 	
 }

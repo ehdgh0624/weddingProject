@@ -146,8 +146,13 @@ public class HallService {
 	}
 
 
-	public ArrayList<HallSelect> selectListHall(int objectNo) {
-		return (ArrayList<HallSelect>)hallDao.selectListHall(objectNo);
+	public ArrayList<HallSelect> selectListHall(int hallNo) {
+		return (ArrayList<HallSelect>)hallDao.selectListHall(hallNo);
+	}
+
+
+	public HallSelect selectOption(int result) {
+		return (HallSelect)hallDao.selectOption(result);
 	}
 
 }
