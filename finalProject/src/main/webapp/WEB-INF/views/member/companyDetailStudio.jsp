@@ -95,92 +95,73 @@
 		<div id="studioOption" class="divbox"><!--스튜디오 옵션  -->
 		<h1>스튜디오 옵션</h1>
 		<div id='studioOptionTableDiv'>
-			<table class="comm-tbl" id="studioOptionTable1">
+			<table class="comm-tbl" id="studioOptionTable0">
 				<colgroup>
 					<col width="15%">
 					<col width="/">
-					<col width="5%">
-					<col width="10%">
-					<col width="15%">
 				</colgroup>
 				<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
-					<c:set var="countF" value="${i.count }"/>
+					<c:set var="countS" value="${i.count }"/>
 				</c:forEach>
+				<tr>
+					<th rowspan="${countS+1}" class="ssnapRow" id="rowThF">본식스냅
+						<button class="tsnapRow"  id="addList0">추가</button>
+						<button class="tsnapRow" id="selectList0">옵션전체삭제</button>
+					</th>
+				</tr>
 				<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
-					<tr id="fsnap">
-						<c:if test="${i.count==1 }">
-							<th rowspan='${countF}' class="fsnapRow">본식 스냅</th>
-						</c:if>
-						<td class="fsnap">
-								<input type="hidden" value="${ss0.studioSelectNo }">
-								<input type="text" value="${ss0.studioOption}"><span class="deleteOption">삭제</span>
-								<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption">수정</span>
-							
-						</td>
-						<c:if test="${i.count==1 }">
-							<td rowspan='${countF }' class="fsnapRow">추가</td>
-							<td rowspan='${countF }' class="fsnapRow"><span id="selectList0">옵션전체삭제</span></td>
-						</c:if>
+					<tr class="fsnap">
+						<td><input type="hidden" value="${ss0.studioSelectNo }">
+						<input type="text" value="${ss0.studioOption}"><span class="deleteOption">삭제</span>
+						<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption">수정</span></td>
 					</tr>
 				</c:forEach>
 			</table>
 							
-			<table class="comm-tbl" id="studioOptionTable2">
+			<table class="comm-tbl" id="studioOptionTable1">
 				<colgroup>
 					<col width="15%">
 					<col width="/">
-					<col width="5%">
-					<col width="10%">
-					<col width="15%">
 				</colgroup>
 				<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
 					<c:set var="countS" value="${i.count }"/>
 				</c:forEach>
-				<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
-				<tr id="ssnap">
-					<c:if test="${i.count==1 }">
-						<th rowspan="${countS}" class="ssnapRow">스튜디오 스냅</th>
-					</c:if>
-					<td class="ssnap">
-							<input type="hidden" value="${ss1.studioSelectNo }">
-							<input type="text" value="${ss1.studioOption}"><span class="deleteOption">삭제</span>
-							<input type="text" value="${ss1.studioOptionPrice}"><span class="updateOption">수정</span>
-						
-					</td>
-					<c:if test="${i.count==1 }">
-						<td rowspan='${countS}' class="ssnapRow">추가</td>
-						<td rowspan='${countS}' class="ssnapRow"><span id="selectList1">옵션전체삭제</span></td>
-					</c:if>
+				<tr>
+					<th rowspan="${countS+1}" class="ssnapRow" id="rowThS">스튜디오 스냅
+						<button class="tsnapRow"  id="addList1">추가</button>
+						<button class="tsnapRow" id="selectList1">옵션전체삭제</button>
+					</th>
 				</tr>
+				<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
+					<tr class="ssnap">
+						<td><input type="hidden" value="${ss1.studioSelectNo }">
+						<input type="text" value="${ss1.studioOption}"><span class="deleteOption">삭제</span>
+						<input type="text" value="${ss1.studioOptionPrice}"><span class="updateOption">수정</span></td>
+					</tr>
 				</c:forEach>
 			</table>
 				
-			<table class="comm-tbl" id="studioOptionTable3">
+			<table class="comm-tbl" id="studioOptionTable2">
 				<colgroup>
 					<col width="15%">
 					<col width="/">
-					<col width="5%">
-					<col width="10%">
-					<col width="15%">
 				</colgroup>
 				<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
-					<c:set var="countT" value="${i.count }"/>
+					<c:set var="countS" value="${i.count }"/>
 				</c:forEach>
-				<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
-				<tr id="tsnap">
-					<c:if test="${i.count==1 }">
-						<th rowspan='${countT}' class="tsnapRow">영상 스냅</th>
-					</c:if>
-					<td class="tsnap">
-							<input type="hidden" value="${ss2.studioSelectNo }">
-							<input type="text" value="${ss2.studioOption}"><span class="deleteOption">삭제</span>
-							<input type="text" value="${ss2.studioOptionPrice}"><span class="updateOption">수정</span>
-					</td>
-					<c:if test="${i.count==1 }">
-						<td rowspan='${countT }' class="tsnapRow">추가</td>
-						<td rowspan='${countT }' class="tsnapRow"><span id="selectList2">옵션전체삭제</span></td>
-					</c:if>
+				
+				<tr>
+					<th rowspan="${countS+1}" class="ssnapRow" id="rowThT">영상스냅
+						<button class="tsnapRow" id="addList2">추가</button>
+						<button class="tsnapRow" id="selectList2">옵션전체삭제</button>
+					</th>
 				</tr>
+				<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
+					<tr class="tsnap">
+						<td><input type="hidden" value="${ss2.studioSelectNo }">
+						<input type="text" value="${ss2.studioOption}"><span class="deleteOption">삭제</span>
+						<input type="text" value="${ss2.studioOptionPrice}"><span class="updateOption">수정</span></td>
+					</tr>
 				</c:forEach>
 			</table>
 		</div>
@@ -218,17 +199,21 @@ $(document).ready(function(){
 	$('#third').val(stringTelArray[2]);
 	
 });
+
+
+
+
+
+
 <!--옵션수정-->
 $('.updateOption').click(function(){
-	var optionNo=$(this).prev().prev('input').val();
-	var option = $(this).prev('input').val();
-	var price = $(this).next('input').val();
-	var type=0;
-	var no=$('#no').val();
+	var optionNo=$(this).prev().prev().prev().prev('input').val();
+	var option = $(this).prev().prev().prev('input').val();
+	var price = $(this).prev('input').val();
 	
 	$.ajax({
 		url:"/updateOneStudioOption.do",
-		data:{type:type,no:no,option:option,price:price,optionNo,optionNo},
+		data:{option:option,price:price,optionNo:optionNo},
 		type:"get",
 		success:function(data){
 			if(data>0){
@@ -251,18 +236,18 @@ $('.updateOption').click(function(){
 
 <!--개별삭제-->
 $('.deleteOption').click(function(){
-	var submitDelete = $(this).prev().prev('input').val();
+	var optionNo = $(this).parent().children().eq(0).val();
 	var select = $(this);
-	console.log(submitDelete);
+	console.log(optionNo);
 	$.ajax({
 		url:"/deleteOneStudioOption.do",
-		data:{submitDelete:submitDelete},
+		data:{optionNo:optionNo},
 		type:"get",
 		success:function(data){
 			if(data>0){
 				alert("삭제성공");
 				console.log("삭제성공");
-				select.parent('div').remove();
+				select.parent('td').remove();
 			}else{
 				console.log("삭제실패");
 			}
@@ -273,7 +258,58 @@ $('.deleteOption').click(function(){
 	})
 });
 
+<!--옵션추가-->
+$('#addList0').click(function(){
+	
+	var addTable="";
+	var studioNo=${studio.studioNo};
+	addTable+="<tr class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+	addTable+="<input type='text' name='studioOptionPrice'>";
+	addTable+="<input type='hidden'  name='studioOptionType' value='0'>";
+	addTable+="<input type='hidden' name='studioNo' value='"+studioNo+"'>";
+	addTable+="</form></td></tr>";
 
+	var number=$('#rowThF').attr('rowspan');
+
+	$('#rowThF').attr('rowspan',number+1);
+	
+	$('#studioOptionTable0').append(addTable);
+	
+});
+$('#addList1').click(function(){
+	
+	var addTable="";
+	var studioNo=${studio.studioNo};
+	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+	addTable+="<input type='text' name='studioOptionPrice'>";
+	addTable+="<input type='hidden'  name='studioOptionType' value='1'>";
+	addTable+="<input type='hidden' name='studioNo' value='"+studioNo+"'>";
+	addTable+="</form></td></tr>";
+
+	var number=$('#rowThF').attr('rowspan');
+
+	$('#rowThS').attr('rowspan',number+1);
+	
+	$('#studioOptionTable1').append(addTable);
+	
+});
+$('#addList2').click(function(){
+	
+	var addTable="";
+	var studioNo=${studio.studioNo};
+	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+	addTable+="<input type='text' name='studioOptionPrice'>";
+	addTable+="<input type='hidden'  name='studioOptionType' value='2'>";
+	addTable+="<input type='hidden' name='studioNo' value='"+studioNo+"'>";
+	addTable+="</form></td></tr>";
+
+	var number=$('#rowThF').attr('rowspan');
+
+	$('#rowThT').attr('rowspan',number+1);
+	
+	$('#studioOptionTable2').append(addTable);
+	
+});
 
 <!--전체삭제-->
 $('#selectList0').click(function(){
