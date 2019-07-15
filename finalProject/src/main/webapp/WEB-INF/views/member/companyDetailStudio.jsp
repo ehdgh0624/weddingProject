@@ -99,55 +99,73 @@
 				<colgroup>
 					<col width="15%">
 					<col width="/">
+					<col width="5%">
 					<col width="10%">
 					<col width="15%">
 				</colgroup>
 			
 				<tr id="fsnap">
-					<th>본식 스냅</th>
+					<th rowspan="2">본식 스냅</th>
 					<th>
+					<c:if test="${empty studioSelectList0}">	
+						<h1>옵션이없습니다</h1>
+					</c:if>
 					<c:if test="${not empty studioSelectList0}">
 						<c:forEach items="${studioSelectList0}" var="ss0">
 						<div>
 							<input type="text" value="${ss0.studioOption}"><span class="deleteOption0">삭제</span>
-							<input type="text" value="${ss0.studioOptionPrice}">
+							<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption0">수정</span>
 						</div>
+					
 						</c:forEach>
 					</c:if>
 					</th>
-					<th ><span>옵션수정</span></th>
+					<th>추가</th>
 					<th><span id="selectList0">옵션전체삭제</span></th>
+				</tr>
+				<tr>
+					<td>
+						<div>
+							<input type="text" value="${ss0.studioOption}"><span class="deleteOption0">삭제</span>
+							<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption0">수정</span>
+						</div>
+					
+					</td>
 				</tr>	
 				<tr id="ssnap">
 					<th>스튜디오 스냅</th>
 					<th>
+						<c:if test="${empty studioSelectList1}">	
+							<h1>옵션이없습니다</h1>
+						</c:if>
 					<c:if test="${not empty studioSelectList1}">
 						<c:forEach items="${studioSelectList1}" var="ss1">
 						<div>
 							<input type="text" value="${ss1.studioOption}"><span class="deleteOption1">삭제</span>
-							<input type="text" value="${ss1.studioOptionPrice}">
+							<input type="text" value="${ss1.studioOptionPrice}"><span class="updateOptoon1">수정</span>
 						</div>
 						</c:forEach>
 					</c:if>
 					</th>
-					<th><span>옵션수정</span></th>
+					<th>추가</th>
 					<th><span id="selectList1">옵션전체삭제</span></th>
 				</tr>
-		
-			
 				<tr id="tsnap">
 					<th>본식 영상 촬영</th>
-					<th>	
+					<th>
+						<c:if test="${empty studioSelectList2}">	
+							<h1>옵션이없습니다</h1>
+						</c:if>
 						<c:if test="${not empty studioSelectList2}">	
 						<c:forEach items="${studioSelectList2}" var="ss2">
 						<div>
 							<input type="text" value="${ss2.studioOption}"><span class="deleteOption2">삭제</span>
-							<input type="text" value="${ss2.studioOptionPrice}">
+							<input type="text" value="${ss2.studioOptionPrice}"><span class="updateOptoon2">수정</span>
 						</div>
 						</c:forEach>
 						</c:if>	
 					</th>
-					<th><span>옵션수정</span></th>
+					<th>추가</th>
 					<th><span id="selectList2">옵션전체삭제</span></th>
 				</tr>
 			
@@ -186,21 +204,19 @@ $(document).ready(function(){
 	$('#second').val(stringTelArray[1]);
 	$('#third').val(stringTelArray[2]);
 	
-	
-	$('#studioOptionAdd').click(function(){
-		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
-		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
-		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value=" "></th></tr>';
-		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
-		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
-		
-		$('#hallOptionTableDiv').append(addTable);
-	});
-
-
 });
+<!--옵션수정-->
+$('.updateOption0').click(function(){
+	var submitUpdate =new Array();
+	submitupate[0]=$(this).siblings('input').val();
+	submitupdate[1]=$(this).siblings('input').val();
+	$(this).siblings('input').val();
+	console.log(submitUpdate[0]);
+	console.log(submitUpdate[1]);
+
+	
+});
+
 
 <!--개별삭제-->
 $('.deleteOption0').click(function(){
@@ -217,7 +233,7 @@ $('.deleteOption0').click(function(){
 		success:function(data){
 			if(data>0){
 				console.log("삭제성공");
-				select.parents('div').remove();
+				select.parent('div').remove();
 			}else{
 				console.log("삭제실패");
 			}
