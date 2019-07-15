@@ -10,23 +10,23 @@
    	 insert into studio values(seq_studio_no.nextval,#{memberId},
    	 #{code},#{studioName},#{studioTel},#{studioLoc},#{studioAddr},
    	 #{studioPrice},#{studioContent},#{studioTime},#{studioCamera},#{studioFilename},#{studioFilepath},#{status},#{viewstatus},#{studioScope},
-   	 #{studioTag},#{studioLatitude},#{studioLongtitude})
+   	 #{studioTag},#{studioLatitude},#{studioLongitud})
     </insert>
     <insert id="insertDress" parameterType="dress">
      insert into dress values(seq_dress_no.nextval,#{memberId},
      #{code},#{dressName},#{dressTel},#{dressLoc},#{dressAddr},
      #{dressFittingPrice},#{dressRentNum},#{dressRentPrice},
      #{jewelryPrice},#{dressContent},#{dressFittingTime},
-     #{dressMending},#{dressParking},#{dressFileName},
-     #{dressFilePath},#{status},#{viewStatus},#{dressScope},#{dressTag},
-     #{dressLatitude},#{dressLongtitude})
+     #{dressMending},#{dressParking},#{dressFilename},
+     #{dressFilepath},#{status},#{viewstatus},#{dressScope},#{dressTag},
+     #{dressLatitude},#{dressLongitud})
     </insert>
     <insert id="insertMakeup" parameterType="makeup">
      insert into makeup values(seq_makeup_no.nextval,#{memberId},
    	#{code},#{makeupName},#{makeupTel},#{makeupLoc},#{makeupAddr}
    	,#{makeupBasicPrice},#{makeupParentPrice},#{makeupVisitorPrice}
-   	,#{makeupFilename},#{makeupFilepath},#{status},#{viewstatus}
-   	,#{makeupScope},#{makeupTag},#{makeupLatitude},#{makeupLongtitude})
+   	,#{makeupContent},#{makeupFilename},#{makeupFilepath},#{status},#{viewstatus}
+   	,#{makeupScope},#{makeupTag},#{makeupLatitude},#{makeupLongitud})
     </insert>
     <insert id="insertHall" parameterType="hall">
     insert into hall values(hall_seq.nextval,#{memberId},#{code},#{hallType},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
@@ -168,5 +168,60 @@
 			order_date as orderDate
 		from reservation where member_id=#{memberId}
 	</select>
+	 <select id="deleteMember"  parameterType="member">
+		delete from member where memberId=#{memberId}
+	</select>
+	 <update id="updateMember"  parameterType="member">
+		update member set
+		member_pw=#{memberPw},
+		member_name=#{memberName},
+		phone=#{phone},
+		email=#{email},
+	    addr=#{addr},
+	    marry_schedule=#{marrySchedule},
+	    expect_visitor=#{expectVisitor},
+	    budget = #{budget}
+	    where member_Id=#{memberId}
+	</update>
+	 <insert id="insertStudioOption" parameterType="studioSelect">
+     insert into studio_select values(#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
+    </insert>
+    <select id="getStudioNo" parameterType="studio" resultType="studio">
+    	select
+    	studio_no as studioNo
+    	from studio where member_id=#{memberId} and studio_name=#{studioName}
+    </select>
+      <select id="getHallNo" parameterType="hall" resultType="hall">
+    	select
+    	hall_no as hallNo
+    	from hall where member_id=#{memberId} and hall_name=#{hallName}
+    </select>
+    <insert id="insertHallOption" parameterType="hallSelect">
+     insert into hallSelect values(#{hallSelectRef},#{hallSelectType},#{hallSelectPrice},#{hallSelectEtc})
+    </insert>
+    <select id="getCollectionlist" parameterType="member" resultType="scrapbook">
+    	select
+    	code as code,
+    	prd_no as prdNo
+    	from scrapbook
+    	where member_id=#{memberId}
+    </select>
+     <select id="companyReservation" parameterType="member" resultType="reservation">
+    	select
+    	reservation_no as reservationNo,
+    	code as code,
+    	prd_no as prdNo,
+    	wedding_date as weddingDate,
+    	wedding_time as weddingTime,
+    	totalprice as totalPrice,
+    	member_id as memberId,
+    	member_name as memberName,
+    	pay_method as payMethod,
+    	order_memo as orderMemo,
+    	member_email as memberEmail,
+    	prd_name as prdName
+    	from reservation
+    	where prd_id=#{memberId} and order_status=1
+    </select>
     
 </mapper>

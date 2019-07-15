@@ -12,6 +12,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.hall.vo.Hall;
 import kr.co.simulator.model.dao.SimulatorDao;
 import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 
 @Service("simulatorService")
 public class SimulatorService {
@@ -69,13 +70,15 @@ public class SimulatorService {
 		return simulatorDao.newSimulator(simulator);
 	}
 
-	//웨딩드레스 더보기
-	/*public ArrayList<Dress> dSearchList(String weddingLoc) {
-		
-		return (ArrayList<Dress>)simulatorDao.dSearchList(weddingLoc);
-	}*/
-
+	//Simulator 웨딩계산기 고유번호 받아오기
+	public int simulatorNo(Simulator simulator) {
+		return simulatorDao.simulatorNo(simulator);
+	}
 	
+	//simulatorSelect 넣기
+	public int newSimulatorSelect(SimulatorSelect simulatorSelect) {
+		return simulatorDao.newSimulatorSelect(simulatorSelect);
+	}	
 
 	
 	

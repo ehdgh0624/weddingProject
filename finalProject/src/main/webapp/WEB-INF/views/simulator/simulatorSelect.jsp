@@ -6,6 +6,8 @@
 <%--  Sub --%>
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 
+<script type="text/javascript" src="/resources/js/content.js"></script><!-- common.js -->
+
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
@@ -203,8 +205,14 @@
 					<h2>보관함</h2>
 					<ul class="selected-list">
 						<!-- 선택된 옵션이 들어가는 자리 -->
+						<form id="cartSideBar" action="/simulatorCheck.do" method="post">
+							<input type="hidden" name="weddingLoc" value="${simulator.weddingLoc }">
+							<input type="hidden" name="weddingDate" value="${simulator.weddingDate }">
+							<input type="hidden" name="weddingPerson" value="${simulator.weddingPerson }">
+							<input type="hidden" name="option">	
+							<button type="submit" class="go-simulation">나의 웨딩 계산결과 보기</button>
+						</form>
 					</ul>
-					<button class="go-simulation">나의 웨딩 계산결과 보기</button>
 				</div>
 			</div>
 		</aside>
@@ -213,51 +221,55 @@
 
 
 <script>
-// 로드완료 되면 사진 게시물 3개 바로 가져와서 보여주게
-$(document).ready(function(){
-	//슬라이드
-	$('.simulator-select-group-list').slick({
-		slidesToShow: 3,
-		slidesToScroll: 3,
-		arrows: true,
-		fade: false,
-		dots:false,
-		autoplay: false,
-		speed:800,
-		infinite:false,
-		autoplaySpeed: 3000,
-		easing: 'easeInOutQuint',
-		pauseOnHover:false,
-		prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
-		nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
-	});
-	
-	//장바구니
-	var $menuOpenBtn = $(".cart-sideBar .cart-sideBar-btn");
-	var $cartSideBar = $(".cart-sideBar-container");
-	var menuState = false;
-	
-	$menuOpenBtn.click(function () {
-		if ( menuState ) {
-			menuClose();
-			menuState = false;
-			$(this).removeClass("active");
-		}else {
-			menuOpen();
-			menuState = true;
-			$(this).addClass("active");
-		}
-		return false;
-	});
+//맘에 들어 클릭 시
+function cart_click(cart){
+	$(cart).parent().parent().parent().parent().parent(".simulator-select-group-list").siblings('.none-btn').hide();
+	$(cart).parent().parent().addClass('selected');
+	$(cart).parent().parent().parent().parent().parent(".simulator-select-group-list").addClass('selected');
+	if($(cart).parent().parent().hasClass("selected")){
+		var $cart = $(cart).parent().parent(".selected").clone();
+		$(".selected-list").children("#cartSideBar").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
+		$(".selected-list").find('.simulator-select-btn-group').remove();
+	}
+}
 
-	//장바구니 :: 열기
-	function menuOpen () {
-		$cartSideBar.addClass("open");
-	}
-	//장바구니 :: 닫기
-	function menuClose () {
-		$cartSideBar.removeClass("open");
-	}
+$(document).ready(function(){
+	//나의 웨딩 계산결과 보기
+	$(".go-simulation").click(function(e){
+		e.preventDefault();
+		
+		var cartArr = [];
+		$('#cartSideBar').children('.simulator-select-list-con').each(function(){
+			var cartOneArr = {};
+			cartOneArr[0] = $(this).find('.simulator-select-img-thum').children('span').html();
+			cartOneArr[1] = $(this).find('.simulator-select-list-no').html();
+			cartOneArr[2] = $(this).find('.simulator-select-list-code').html();
+			cartOneArr[3] = $(this).find('.simulator-select-list-tel').html();
+			cartOneArr[4] = $(this).find('.simulator-select-list-tit').html();
+			cartOneArr[5] = $(this).find('.simulator-select-list-addr').html();
+			cartOneArr[6] = $(this).find('.simulator-select-list-price').children('b').html();
+			cartOneArr[7] = $(this).find('.simulator-select-list-tag').html();
+			
+			cartArr.push(cartOneArr);
+			
+			console.log(cartOneArr);
+			console.log(cartArr);
+		});
+		
+		/*var option = {
+			data : {cartArr:cartArr},
+			success : function(data){
+				console.log('성공');
+			}
+		};*/
+		
+		//자바스크립트 배열을 json String 형식으로 변환
+		var option = JSON.stringify(cartArr);
+		console.log(option);
+		
+		$("input[name=option]").val(option);
+		$("#cartSideBar")[0].submit();
+	});
 	
 	//고르지 않기
 	$(".none-btn").each(function(){
@@ -267,6 +279,7 @@ $(document).ready(function(){
 		})
 	});
 	
+	// 로드완료 되면 사진 게시물 3개 바로 가져와서 보여주게
 	//웨딩홀 더보기
 	hall_more(1);
 	$("#hall-more").on('click',function(){
@@ -278,7 +291,6 @@ $(document).ready(function(){
 	$("#dress-more").on('click',function(){
 		dress_more($(this).val()); //$(this).val() : 다음 시작값 
 	});
-	
 	//메이크업 더보기
 	makeup_more(1);
 	$("#makeup-more").on('click',function(){
@@ -293,15 +305,6 @@ $(document).ready(function(){
 	
 });
 
-// 맘에 들어 선택 시/*function cart_select(){
-	//$(this).removeAttr('tabindex');
-	//$(this).parent().parent().addClass('selected');
-	//if($(this).parent().parent().has("selected")){
-		//$(this).parents(".simulator-select-group-list").find(".simulator-select-btn-group").css('display','none');
-		//var $cart = $(this).parent().parent(".selected").removeClass('slick-current slick-slide slick-active').clone().appendTo('.selected-list');
-		//$(".selected-list").append($cart.removeAttr('data-slick-index').removeAttr('aria-hidden').removeAttr('tabindex').removeAttr('role').removeAttr('style'));
-	//}
-}*/
 
 
 //웨딩홀 더보기
@@ -319,21 +322,19 @@ function hall_more(start){
 				h = data[i];
 				for(var j=0;j<h.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/hall/"+h[j].hallPath+"') no-repeat center center; background-size:cover;'></span></div>";
-					html += "<em class='simulator-select-list-no'>"+h[j].hallNo+"</em><em class='simulator-select-list-code'>"+h[j].code+"</em>";
-					html += "<h3 class='simulator-select-list-tit'>"+h[j].hallName+"</h3>";
-					html += "<p class='simulator-select-list-addr'>"+h[j].hallAddr+"</p>";
-					html += "<p class='simulator-select-list-price'>평균 <b>"+h[j].hallPrice+"</b> 원</p>";
-					html += "<p class='simulator-select-list-tag'>"+h[j].hallTag+"</p></div>";
-					html += "<div class='simulator-select-btn-group'><a href='' class='btn-1'>상세 보기</a><button class='btn-2 hall-select'>맘에 들어!</button></div>";
+					html += "<span style='background:#f5f5f5 url('/resources/upload/hall/"+h[j].hallPath+"') no-repeat center center; background-size:cover;' value="+h[j].hallPath+"></span></div>";
+					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em><em class='simulator-select-list-tel' value="+h[j].hallTel+">"+h[j].hallTel+"</em>";
+					html += "<h3 class='simulator-select-list-tit' value="+h[j].hallName+">"+h[j].hallName+"</h3>";
+					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
+					html += "<p class='simulator-select-list-price' value="+h[j].hallPrice+">평균 <b>"+h[j].hallPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-tag' value="+h[j].hallTag+">"+h[j].hallTag+"</p></div>";
+					html += "<div class='simulator-select-btn-group'><a href='' class='btn-1'>상세 보기</a><button class='btn-2 hall-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(h.length);
 				}
 			}
-			//웨딩홀 더보기 출력
-			//slideIndex++;
-			$('.hall-group-list').slick('slickAdd',html);
 			
-			//$(".hall-group-list").append(html);
+			//웨딩홀 더보기 출력
+			$('.hall-group-list').slick('slickAdd',html);
 			
 			//value, currentCount 세팅
 			$("#hall-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -347,16 +348,6 @@ function hall_more(start){
 				$("#hall-more").attr("cursor","not-allowed");
 				$("#hall-more").css('display','none');
 			}
-			
-			// 홀 맘에 들어 클릭 시
-			$(".hall-select").on('click',function(){
-				$(this).parent().parent().addClass('selected');
-				$(this).parents(".simulator-select-group-list").addClass('selected');
-				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent(".selected").clone();
-					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
-				}
-			});
 						
 		},
 		error : function(data){
@@ -364,6 +355,7 @@ function hall_more(start){
 		}
 	});
 }
+
 
 //드레스 더보기
 function dress_more(start){
@@ -380,23 +372,19 @@ function dress_more(start){
 				d = data[i]; //dress 객체
 				for(var j=0;j<d.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/dress/"+d[j].dressFilepath+"') no-repeat center center; background-size:cover;'></span></div>";
-					html += "<em class='simulator-select-list-no'>"+d[j].dressNo+"</em><em class='simulator-select-list-code'>"+d[j].code+"</em>";
-					html += "<h3 class='simulator-select-list-tit'>"+d[j].dressName+"</h3>";
-					html += "<p class='simulator-select-list-addr'>"+d[j].dressAddr+"</p>";
-					html += "<p class='simulator-select-list-price'>평균 <b>"+d[j].dressRentPrice+"</b> 원</p>";
-					html += "<p class='simulator-select-list-tag'>"+d[j].dressTag+"</p></div>";
-					html += "<div class='simulator-select-btn-group'><a href='/collectionViewDress.do?dressNo="+d[j].dressNo+"' class='btn-1'>상세 보기</a><button class='btn-2 dress-select'>맘에 들어!</button></div>";
+					html += "<span style='background:#f5f5f5 url('/resources/upload/dress/"+d[j].dressFilepath+"') no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+"></span></div>";
+					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em><em class='simulator-select-list-tel' value="+d[j].dressTel+">"+d[j].dressTel+"</em>";
+					html += "<h3 class='simulator-select-list-tit' value="+d[j].dressName+">"+d[j].dressName+"</h3>";
+					html += "<p class='simulator-select-list-addr' value="+d[j].dressAddr+">"+d[j].dressAddr+"</p>";
+					html += "<p class='simulator-select-list-price' value="+d[j].dressRentPrice+">평균 <b>"+d[j].dressRentPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-tag' value="+d[j].dressTag+">"+d[j].dressTag+"</p></div>";
+					html += "<div class='simulator-select-btn-group'><a href='/collectionViewDress.do?dressNo="+d[j].dressNo+"' class='btn-1'>상세 보기</a><button class='btn-2 dress-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(d.length);
 				}
 			}
 			
 			//드레스 더보기 출력
-			//slideIndex++;
 			$('.dress-group-list').slick('slickAdd',html);
-			
-			//드레스 더보기 출력
-			//$(".dress-group-list").append(html);
 			
 			//value, currentCount 세팅
 			$("#dress-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -411,21 +399,14 @@ function dress_more(start){
 				$("#dress-more").css('display','none');
 			}
 			
-			// 드레스 맘에 들어 선택 시
-			$(".dress-select").on('click',function(){
-				$(this).parent().parent().addClass('selected');
-				$(this).parents(".simulator-select-group-list").addClass('selected');
-				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent(".selected").clone();
-					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
-				}
-			});
 		},
 		error : function(data){
 			console.log("드레스 ajax 처리 실패");
 		}
 	});
 }
+
+
 
 //메이크업 더보기
 function makeup_more(start){
@@ -442,23 +423,19 @@ function makeup_more(start){
 				make = data[i]; //makeup 객체
 				for(var j=0;j<make.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/makeup/"+make[j].makeupFilepath+"') no-repeat center center; background-size:cover;'></span></div>";
-					html += "<em class='simulator-select-list-no'>"+make[j].makeupNo+"</em><em class='simulator-select-list-code'>"+make[j].code+"</em>";
-					html += "<h3 class='simulator-select-list-tit'>"+make[j].makeupName+"</h3>";
-					html += "<p class='simulator-select-list-addr'>"+make[j].makeupAddr+"</p>";
-					html += "<p class='simulator-select-list-price'>평균 <b>"+make[j].makeupBasicPrice+"</b> 원</p>";
-					html += "<p class='simulator-select-list-tag'>"+make[j].makeupTag+"</p></div>";
-					html += "<div class='simulator-select-btn-group'><a href='/collectionViewMakeup.do?makeupNo="+make[j].makeupNo+"' class='btn-1'>상세 보기</a><button class='btn-2 makeup-select'>맘에 들어!</button></div>";
+					html += "<span style='background:#f5f5f5 url('/resources/upload/makeup/"+make[j].makeupFilepath+"') no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+"></span></div>";
+					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em><em class='simulator-select-list-tel' value="+make[j].makeupTel+">"+make[j].makeupTel+"</em>";
+					html += "<h3 class='simulator-select-list-tit' value="+make[j].makeupName+">"+make[j].makeupName+"</h3>";
+					html += "<p class='simulator-select-list-addr' value="+make[j].makeupAddr+">"+make[j].makeupAddr+"</p>";
+					html += "<p class='simulator-select-list-price' value="+make[j].makeupBasicPrice+">평균 <b>"+make[j].makeupBasicPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-tag' value="+make[j].makeupTag+">"+make[j].makeupTag+"</p></div>";
+					html += "<div class='simulator-select-btn-group'><a href='/collectionViewMakeup.do?makeupNo="+make[j].makeupNo+"' class='btn-1'>상세 보기</a><button class='btn-2 makeup-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(make.length);
 				}
 			}
 			
 			//메이크업 더보기 출력
-			//slideIndex++;
 			$('.makeup-group-list').slick('slickAdd',html);
-			
-			//메이크업 더보기 출력
-			//$(".makeup-group-list").append(html);
 			
 			//value, currentCount 세팅
 			$("#makeup-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -473,15 +450,6 @@ function makeup_more(start){
 				$("#makeup-more").css('display','none');
 			}
 			
-			// 메이크업 맘에 들어 선택 시
-			$(".makeup-select").on('click',function(){
-				$(this).parent().parent().addClass('selected');
-				$(this).parents(".simulator-select-group-list").addClass('selected');
-				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent(".selected").clone();
-					$(".selected-list").append($cart.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
-				}
-			});
 		},
 		error : function(data){
 			console.log("메이크업 ajax 처리 실패");
@@ -504,23 +472,19 @@ function studio_more(start){
 				st = data[i]; //makeup 객체
 				for(var j=0;j<st.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/studio/"+st[j].studioFilepath+"') no-repeat center center; background-size:cover;'></span></div>";
-					html += "<em class='simulator-select-list-no'>"+st[j].studioNo+"</em><em class='simulator-select-list-code'>"+st[j].code+"</em>";
-					html += "<h3 class='simulator-select-list-tit'>"+st[j].studioName+"</h3>";
-					html += "<p class='simulator-select-list-addr'>"+st[j].studioAddr+"</p>";
-					html += "<p class='simulator-select-list-price'>평균 <b>"+st[j].studioPrice+"</b> 원</p>";
-					html += "<p class='simulator-select-list-tag'>"+st[j].studioTag+"</p></div>";
-					html += "<div class='simulator-select-btn-group'><a href='/collectionViewStudio.do?studioNo="+st[j].studioNo+"' class='btn-1'>상세 보기</a><button class='btn-2 studio-select'>맘에 들어!</button></div>";
+					html += "<span style='background:#f5f5f5 url('/resources/upload/studio/"+st[j].studioFilepath+"') no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
+					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em><em class='simulator-select-list-tel' value="+st[j].studioTel+">"+st[j].studioTel+"</em>";
+					html += "<h3 class='simulator-select-list-tit' value="+st[j].studioName+">"+st[j].studioName+"</h3>";
+					html += "<p class='simulator-select-list-addr' value="+st[j].studioAddr+">"+st[j].studioAddr+"</p>";
+					html += "<p class='simulator-select-list-price' value="+st[j].studioPrice+">평균 <b>"+st[j].studioPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-tag' value="+st[j].studioTag+">"+st[j].studioTag+"</p></div>";
+					html += "<div class='simulator-select-btn-group'><a href='/collectionViewStudio.do?studioNo="+st[j].studioNo+"' class='btn-1'>상세 보기</a><button class='btn-2 studio-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(st.length);
 				}
 			}
 			
 			//스튜디오 더보기 출력
-			//slideIndex++;
 			$('.studio-group-list').slick('slickAdd',html);
-			
-			//스튜디오 더보기 출력
-			//$(".studio-group-list").append(html);
 			
 			//value, currentCount 세팅
 			$("#studio-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -534,18 +498,6 @@ function studio_more(start){
 				$("#studio-more").attr("cursor","not-allowed");
 				$("#studio-more").css('display','none');
 			}
-			
-			// 스튜디오 맘에 들어 선택 시
-			$(".studio-select").on('click',function(){
-				$(this).parent().parent().addClass('selected');
-				$(this).parents(".simulator-select-group-list").addClass('selected');
-				if($(this).parent().parent().hasClass("selected")){
-					var $cart = $(this).parent().parent(".selected").clone();
-					//var $list = $cart.toArray();
-					console.log($cart);
-					$(".selected-list").append($list.removeClass('slick-current slick-slide slick-active selected').removeAttr('data-slick-index aria-hidden tabindex role style'));
-				}
-			});
 		},
 		error : function(data){
 			console.log("스튜디오 ajax 처리 실패");

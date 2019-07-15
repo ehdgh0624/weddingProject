@@ -139,11 +139,11 @@ body {width:100%; background-color:#fff;}
 #gnb > ul > li .gnb-2dep ul li a{display:block; text-align:center; font-size:16px; color:#333; font-weight:500;}
 
 /* ****************** 서브비주얼 ********************** */
-#subVisual{width:100%; height:200px; }
+#subVisual{width:100%; height:200px; background:url(/resources/img/sub_visual03.jpg) no-repeat center center;}
 
 /* ****************** Footer ********************** */
 #footer{padding:20px 30px; background-color:#333; text-align:center;}
-.footer-inner{}
+.footer-inner{margin-bottom:0;}
 .footer-inner > img{max-height:47px;}
 .footer-inner > p{padding-top:25px; color:#fff; opacity:0.6; letter-spacing:1.5px;}
 

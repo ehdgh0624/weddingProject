@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="experience">
+
+<select id="experienceAll" parameterType="experience" resultType="experience">
+
+select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from experience
+</select>
+
+<select id="experienceDetail" parameterType="experience" resultType="experience">
+select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from experience where experience_no=#{experienceNo}
+
+</select>
+
+<insert id="insertexperience" parameterType="experience">
+insert into EXPERIENCE values(EXPERIENCE_SEQ.nextval,
+							#{experienceWriter},
+							#{experienceTitle},
+							#{experienceContent},
+							sysdate,
+							null,
+							null,
+							null,
+							null,
+							null,
+							#{experienceFileName},
+							#{experienceFilePath}
+							)
+
+</insert>
+<select id="experienceselectList" parameterType="map" resultType="experience">
+select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from 
+		(select ROWNUM as rnum, m.* from 
+		(select * from  experience order by experience_no)
+		m) where rnum between #{start} and #{end}
+		
+</select>
+</mapper>

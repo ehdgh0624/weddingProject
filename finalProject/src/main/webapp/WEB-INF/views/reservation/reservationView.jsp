@@ -1,15 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
 
 <%-- wrap --%>
-<section id="wrap">
-	<div class="area">
-		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+
+	<div id="myPageContainer" class="clearfix">
+		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		예약번호 : ${reservation.reservationNo}
 		<br>
 		타입분류 : ${reservation.code}
@@ -148,7 +150,7 @@
 		
 		
 	</div>
+	
+	<%--  footer --%>
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
-
-<%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>

@@ -23,6 +23,12 @@
 					location.href = "/index.jsp";
 				</script>
 			</c:when>
+			<c:when test="${cause == 3}">
+				<script>
+					alert("결제 실패 : 메인 페이지로 이동합니다.");
+					location.href = "/index.jsp";
+				</script>
+			</c:when>
 		</c:choose>
 	</div>
 </section>

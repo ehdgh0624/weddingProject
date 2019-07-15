@@ -137,6 +137,7 @@ public class CollectionDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", vo.getCode());
 		map.put("prdNo", vo.getPrdNo());
+		map.put("prdId", vo.getPrdId());
 		map.put("prdName",vo.getPrdName());
 		map.put("weddingDate", weddingDate);
 		map.put("weddingTime", vo.getWeddingTime());
@@ -157,6 +158,7 @@ public class CollectionDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", vo.getCode());
 		map.put("prdNo", vo.getPrdNo());
+		map.put("prdId", vo.getPrdId());
 		map.put("prdName",vo.getPrdName());
 		map.put("weddingDate", weddingDate);
 		map.put("weddingTime", vo.getWeddingTime());
@@ -178,6 +180,7 @@ public class CollectionDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", vo.getCode());
 		map.put("prdNo", vo.getPrdNo());
+		map.put("prdId", vo.getPrdId());
 		map.put("prdName", vo.getPrdName());
 		map.put("weddingDate", weddingDate);
 		map.put("weddingTime", vo.getWeddingTime());
@@ -190,6 +193,30 @@ public class CollectionDao {
 		map.put("option2", vo.getOption2());
 		map.put("option3", vo.getOption3());
 		return sqlSession.insert("reservation.insertReservationMakeup",map);
+	}
+	
+	public int insertReservationGoods(Reservation vo, String weddingDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", vo.getCode());
+		map.put("prdNo", vo.getPrdNo());
+		map.put("prdName", vo.getPrdName());
+		map.put("weddingDate", weddingDate);
+		map.put("weddingTime", vo.getWeddingTime());
+		map.put("totalPrice", vo.getTotalPrice());
+		map.put("memberId", vo.getMemberId());
+		map.put("memberName", vo.getMemberName());
+		map.put("memberPhone", vo.getMemberPhone());
+		map.put("memberEmail", vo.getMemberEmail());
+		map.put("payMethod",vo.getPayMethod());
+		map.put("amount", vo.getAmount());
+		map.put("orderMemo", vo.getOrderMemo());
+		map.put("orderAddr",vo.getOrderAddr());
+		map.put("receiveName",vo.getReceiveName());
+		map.put("receivePhone",vo.getReceivePhone());
+		map.put("impUid",vo.getImpUid());
+		map.put("applyNum",vo.getApplyNum());
+		map.put("paymentDate", vo.getPaymentDate());
+		return sqlSession.insert("reservation.insertReservationGoods",map);
 	}
 	
 	public int selectReservationNo(String memberId) {

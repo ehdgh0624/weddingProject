@@ -19,34 +19,31 @@
 						<col width="20%">
 						<col width="/">
 					</colgroup>
-					
 					<c:if test="${not empty memberAll.studio}">			
-						<tr>
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${memberAll.studio.studioNo }&code=${memberAll.studio.code }'">
 							<th>스튜디오</th>
 							<th><span>${memberAll.studio.studioName }</span></th>
 						</tr>
 					</c:if>
 					<c:if test="${not empty memberAll.dress}">			
-						<tr>
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${memberAll.dress.dressNo }&code=${memberAll.dress.code }'">
 							<th>드레스</th>
 							<th><span>${memberAll.dress.dressName }</span></th>
 						</tr>
 					</c:if>
 					<c:if test="${not empty memberAll.makeup}">			
-						<tr>
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${memberAll.makeup.makeupNo }&code=${memberAll.makeup.code }'">
 							<th>메이크업</th>
 							<th><span>${memberAll.makeup.makeupName }</span></th>
 						</tr>
 					</c:if>
 					<c:if test="${not empty memberAll.hall}">			
-						<tr>
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${memberAll.hall.hallNo }&code=${memberAll.hall.code }'">
 							<th>홀</th>
 							<th><span>${memberAll.hall.hallName }</span></th>
 						</tr>
 					</c:if>
-				
-				</table>
-				
+				</table>		
 			<c:if test="${empty memberAll.studio }">
 				<c:if test="${empty memberAll.dress }">
 					<c:if test="${empty memberAll.makeup }">
@@ -57,8 +54,7 @@
 					</c:if>
 				</c:if>
 			</c:if>
-		</div>
-		
+		</div>	
 	</div>
 	
 	<%--  footer --%>

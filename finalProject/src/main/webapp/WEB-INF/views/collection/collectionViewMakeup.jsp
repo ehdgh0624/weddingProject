@@ -90,19 +90,24 @@
 					${makeup.makeupContent}
 					<br> <br> <br>
 					<h2>가격확인 및 예약문의</h2>
-					<hr>
+					<br>
 
 					<form>
-						<table>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
 							<tr>
-								<td>예식일</td>
-								<td>예식시간</td>
+								<th>예식일</th>
+								<td colspan="2">
+									<input type="text" name="weddingDate" id="weddingDate" class="datepicker wedding-date middle" placeholder="예식일을 선택해주세요" required>
+								</td>
 							</tr>
 							<tr>
-								<td><input type="text" name="weddingDate" id="weddingDate"
-									class="datepicker wedding-date" placeholder="예식일을 선택해주세요"
-									required></td>
-								<td><select name="weddingTime" id="weddingTime">
+								<th>예식시간</th>
+								<td colspan="2">
+									<select name="weddingTime" id="weddingTime">
 										<option value="default">::: 예식 시작 시간 선택 :::</option>
 										<option>AM 11:00</option>
 										<option>AM 11:30</option>
@@ -119,73 +124,52 @@
 										<option>PM 5:00</option>
 										<option>PM 5:30</option>
 										<option>PM 6:00</option>
-								</select></td>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<th colspan="2" style="background-color: pink;">예약 옵션</th>
+								<th colspan="2" style="text-align: center;">예약 옵션</th>
 							</tr>
-							<tr>
-								<td colspan="2">제공 서비스</td>
-							</tr>
-							<tr>
-								<td colspan="2"><hr></td>
-							</tr>
-							<c:if test="${not empty makeup.makeupBasicPrice}">
+							<c:if test="${makeup.makeupBasicPrice != 0}">
 								<tr>
-									<td>[기본 옵션]</td>
-								</tr>
-								<tr>
+									<th>기본 옵션</th>
 									<td>
 										<input type="checkbox" class="optionCheckBox" id="option1" name="makeupBasicPrice" value="신랑신부 메이크업" checked onclick="return false;"> 신랑신부 메이크업
-									</td>
-									<td>
 										<span style="float: right;">가격 : <span id="option1Price">${makeup.makeupBasicPrice}</span>원</span>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
 							</c:if>
-							<c:if test="${not empty makeup.makeupParentPrice}">
-								<tr>
-									<td>[부가 옵션]</td>
-								</tr>
+							<c:if test="${makeup.makeupParentPrice != 0 || makeup.makeupVisitorPrice != 0}">
+							<tr>
+								<th id="makeupOption2-th" rowspan="3">부가 옵션</th>
+							</tr>
+							</c:if>
+							<c:if test="${makeup.makeupParentPrice != 0}">
 								<tr>
 									<td>
 										<input type="checkbox" class="optionCheckBox" id="option2" name="makeupParentPrice" value="혼주 메이크업"> 혼주 메이크업
-									</td>
-									<td>
 										<span style="float: right;">가격 : <span id="option2Price">${makeup.makeupParentPrice}</span>원</span>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
 							</c:if>
-							<c:if test="${not empty makeup.makeupVisitorPrice}">
-								<tr>
-									<td>[부가 옵션]</td>
-								</tr>
+							<c:if test="${makeup.makeupVisitorPrice != 0}">
 								<tr>
 									<td>
 										<input type="checkbox" class="optionCheckBox" id="option3" name="makeupVisitorPrice" value="하객 메이크업"> 하객 메이크업
-									</td>
-									<td>
 										<span style="float: right;">가격 : <span id="option3Price">${makeup.makeupVisitorPrice}</span>원</span>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
 							</c:if>
 							<tr>
-								<th>총계</th>
-								<td><span style="float: right;"><span id="allPrice"></span>원</span></td>
-							</tr>
-							<tr>
-								<td><input type="button" value="예약하기" onclick="reservation();"></td>
+								<th colspan="2">
+									총계
+									<span style="float: right;"><span id="allPrice"></span>원</span>								
+								</th>
 							</tr>
 						</table>
+						<div class="common-tbl-btn-group">
+							<button class="btn-style1" type="button" onclick="reservation();">예약하기</button>
+						</div>
 					</form>
 
 					<br> <br> <br>
@@ -207,8 +191,9 @@
 </section>
 <script>
 
-	/* 페이지 로드 시 총계 변경 */
+	/* 페이지 로드 시 이벤트 */
 	$(document).ready(function(){
+		/* 페이지 로드 시 총계 변경 */
 		var allPrice = 0;
 		if($('#option1').attr('checked') == 'checked'){
 			allPrice += parseInt($('#option1Price').text());
@@ -220,8 +205,16 @@
 			allPrice += parseInt($('#option3Price').text());			
 		}
 		$('#allPrice').text(allPrice);
+		/* 페애지 로드 시 총계 변경 끝 */
+		/* 부가 옵션이 없을 경우 rowspan 변경 */
+		var parentPrice = ${makeup.makeupParentPrice};
+		var visitorPrice = ${makeup.makeupVisitorPrice};
+		if(parentPrice == 0 || parentPrice == null || visitorPrice == 0 || visitorPrice == null){
+			$('#makeupOption2-th').prop('rowspan', 2);			
+		}
+		/* 부가 옵션이 없을 경우 rowspan 변경 끝 */
 	});
-	/* 페이지 로드 시 총계 변경 끝 */
+	/* 페에지 로드 시 이벤트 끝 */
 	
 	/* 체크박스 체크 시 총계 변경 */
 	$('.optionCheckBox').on("click",function(){
@@ -255,6 +248,7 @@
 	function submitReservation(){
 		var code = "M";
 		var prdNo = ${makeup.makeupNo};
+		var prdId = '${makeup.memberId}';
 		var prdName = '${makeup.makeupName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -270,7 +264,7 @@
 		}
 		$.ajax({
 			url : "/reservationMakeup.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){
@@ -290,9 +284,6 @@
 	}
 	/* 버튼 클릭 시 예약 끝 */
 	
-	/* 옵션 checkbox checked 시 가격 변경 */
-	
-	/* 옵션 checkbox checked 시 가격 변경 끝 */
 	
 	/* 옵션 select 박스 change 시 가격 변경 */
 	$('.studioSelectOption').on("change",function(){

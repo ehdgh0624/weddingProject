@@ -1,6 +1,8 @@
 package kr.co.member.model.dao;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Repository;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
+import kr.co.scrapbook.model.vo.Scrapbook;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -65,6 +70,8 @@ public class MemberDao {
 
 	public int insertDress(Dress md) {
 		// TODO Auto-generated method stub
+		
+		System.out.println("드레스"+md);
 		if(md.getDressFilename()== null) {
 			md.setDressFilename("");
 		}
@@ -125,6 +132,128 @@ public class MemberDao {
 	
 		
 		return list;
+	}
+
+	public int deleteMember(String id) {
+		// TODO Auto-generated method stub
+		System.out.println("여긴 delete멤버");
+		Member vo = new Member();
+		vo.setMemberId(id);
+		
+		return sqlSession.delete("member.deleteMember", vo);
+
+	}
+
+	public int updateMember(Member vo) {
+		// TODO Auto-generated method stub
+		
+		System.out.println(vo);
+		System.out.println("여긴 정보수정");
+		
+		
+		return sqlSession.update("member.updateMember",vo);
+	}
+
+	public int getStudioNo(Studio s) {
+		// TODO Auto-generated method stub
+		Studio vo =sqlSession.selectOne("member.getStudioNo",s);
+		
+		return vo.getStudioNo();
+	}
+
+	public int getHallNo(Hall h) {
+		// TODO Auto-generated method stub
+		Hall vo = sqlSession.selectOne("member.getHallNo", h);
+		
+		return vo.getHallNo();
+	}
+
+	public List<Scrapbook> getCollectionlist(Member m) {
+		// TODO Auto-generated method stub
+		
+		
+		return sqlSession.selectList("member.getCollectionlist",m);
+	}
+
+	public Studio getStudio(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("studio.viewSelectOne",prdNo);
+	}
+
+	public Dress getDress(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("dress.viewSelectOne",prdNo);
+	}
+
+	public Makeup getMakeupList(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("makeup.viewSelectOne",prdNo);
+	}
+
+	public Hall getHallList(int prdNo) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("hall.viewSelectOne",prdNo);
+	}
+
+	public List<Reservation> getComanyRservation(Member vo) {
+		// TODO Auto-generated method stub
+		System.out.println("여긴왔냐 ?");
+		System.out.println(vo);
+		return sqlSession.selectList("member.companyReservation",vo);
+	}
+
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		
+		//홀은 현재 미구현
+		return sqlSession.selectOne("");
+	}
+
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
+	}
+
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return (Dress)sqlSession.selectOne("dress.viewSelectOne",no);
+	}
+
+	public Studio selectoneStudioNumber(int no) {
+		// TODO Auto-generated method stub
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne",no);
+	}
+
+	public List<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType) {
+		// TODO Auto-generated method stub
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("studioNo", studioNo);
+		map.put("studioOptionType", studioOptionType);
+		return sqlSession.selectList("studioSelect.selectListOption",map);
+	}
+
+	public List<Gallery> selectListGallery(int galleryNo, String galleryCode) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("galleryNo", galleryNo);
+		map.put("galleryCode", galleryCode);
+		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+
+	public int deleteStudioOption(int no, int type) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("studioNo", no);
+		map.put("studioType", type);
+		return sqlSession.delete("studioSelect.deleteStudioOption",map );
+	}
+
+	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("studioNo", no);
+		map.put("studioType", type);
+		map.put("studioOption", submitDelete);
+		return sqlSession.delete("studioSelect.deleteOneStudioOption",map);
 	}
 
 }

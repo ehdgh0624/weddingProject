@@ -46,7 +46,6 @@
 					<h1>총금액 : ${total } // 나의 예산 : ${sessionScope.member.budget}</h1>	
 					<hr>			
 			</c:forEach>	
-			
 		</div>
 	</div>
 	

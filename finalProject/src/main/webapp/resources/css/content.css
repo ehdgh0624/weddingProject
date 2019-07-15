@@ -59,13 +59,15 @@
 .common-tbl-btn-group > button.btn-style2{background-color:#444;}
 .common-tbl-btn-group > button.btn-style3{background-color:#888;}
 .common-tbl-btn-group > button.btn-style4{background-color:#333;}
+.common-tbl-btn-group > button.big{width:300px;}
 .common-tbl-btn-group > button.small{width:100px; height:35px; font-size:15px;}
 
 
 /* ****************** 웨딩 계산기 ********************** */
 .simulator-box{padding:100px 0; text-align:center;}
-.simulator-tit{font-size:30px; margin-bottom:15px;}
-.simulator-sub-tit{font-size:20px; line-height:30px; color:#bbb; margin-bottom:20px;}
+.simulator-box.type2{padding:30px 0; text-align:left;}
+.simulator-tit{font-size:30px; margin-bottom:15px; text-align:center;}
+.simulator-sub-tit{font-size:20px; line-height:30px; color:#bbb; margin-bottom:20px; text-align:center;}
 .simulator-con{border:1px solid #ddd; border-radius:10px; padding:25px 15px; max-width:450px; margin:0 auto;}
 .simulator-tbl{width:100%; }
 .simulator-tbl tr:first-child th, .simulator-tbl tr:first-child td{border-top:0;}
@@ -73,7 +75,7 @@
 .simulator-tbl th{text-align:left; font-size:16px; font-weight:500;}
 .simulator-tbl input[type='text'].wedding-date{width:80%;}
 
-.simulator-select-list-no, .simulator-select-list-code{display:none;}
+.simulator-select-list-no, .simulator-select-list-code, .simulator-select-list-tel{display:none;}
 .simulator-select-tit{font-size:20px; line-height:30px; color:#2d2d2d; font-weight:500; padding:20px 0;}
 .simulator-select-comment{padding:20px; background:#f5f5f5; margin-bottom:50px;}
 .simulator-select-txt{padding-left:10px; position:relative; font-size:13px; line-height:20px; }
@@ -93,7 +95,7 @@ background:#f8f8f8 url(/resources/img/none_1.png) no-repeat 7px center; backgrou
 .simulator-select-list-con.selected:before{position:absolute; top:0; left:0; bottom:0; right:0; content:''; border:2px solid #888; z-index:1;}
 .simulator-select-list{box-shadow:3px 3px 5px #ddd; border-radius:3px;}
 .simulator-select-img-thum{position:relative; padding-top:61.2%; overflow:hidden;}
-.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0;}
+.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0; font-size:0; text-indext:-9999px;}
 .simulator-select-img-thum > span img{width:100%;}
 .simulator-select-list-tit, .simulator-select-list-addr, .simulator-select-list-price, .simulator-select-list-tag{padding:0 20px;}
 .simulator-select-list-tit{font-size:18px; line-height:24px; color:#666; font-weight:500; margin:5px 0;}
@@ -117,16 +119,42 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 .cart-sideBar-container.open{right:0; transition:right 0.4s; z-index:999;}
 .cart-sideBar-inner{padding:20px; padding-right:10px; height:calc(100% - 40px);}
 .cart-sideBar-inner > h2{padding:15px 0 20px; font-weight:500; border-bottom:1px solid #eee;}
-.selected-list{height:calc(100% - 116px); overflow-y:auto; margin-bottom:7px;}
-.selected-list > li{float:none; max-width:98%; margin:10px 0;}
+.cart-sideBar-inner form{}
+.selected-list{height:calc(100% - 55px);}
+.selected-list form{height:calc(100% - 61px); overflow-y:auto;}
+.selected-list li{float:none; max-width:98%; margin:10px 0;}
 .selected-list .simulator-select-list-tit{padding:0 10px; font-size:16px; line-height:22px;}
 .selected-list .simulator-select-list-price{padding:10px; font-size:11px;}
 .selected-list .simulator-select-list-price > b{font-size:16px;}
 .selected-list .simulator-select-btn-group,
 .selected-list .simulator-select-list-addr,
 .selected-list .simulator-select-list-tag{display:none;}
-.go-simulation{width:100%; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
+.go-simulation{position:absolute; bottom:20px; left:20px; width:260px; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
 
+/* ****************** 웨딩 계산기 :: 최종 계산 결과 ********************** */
+.simulator-topInfo{padding:20px 0;}
+.simulator-topInfo > dt, .simulator-topInfo > dd{float:left; font-size:14px; line-height:30px;}
+.simulator-topInfo > dt{width:80px;}
+.simulator-topInfo > dd{width:calc(100% - 80px);}
+.simulator-topInfo > dd p{display:inline; padding-left:15px; font-size:17px; font-weight:500;}
+.simulator-bottomInfo{border:1px solid #eee; padding:30px;}
+.simulator-info-con{padding:20px 0; border-bottom:1px solid #eee;}
+.simulator-info-tit{font-size:16px; font-weight:500;}
+.simulator-info-tit > span{display:inline-block; margin-right:7px; font-size:13px; padding:7px 10px; background:#eee; border-radius:5px; font-weight:400;}
+.simulator-info-detail{padding-top:15px; display:table; width:100%;}
+.simulator-info-detail > dt, .simulator-info-detail > dd{display:table-cell; vertical-align:middle;}
+.simulator-info-detail > dt{width:33%;}
+.simulator-info-detail > dd{width:67%; text-align:right;}
+.simulator-info-img{position:relative; padding-top:61.2%; overflow:hidden; background:#eee;}
+.simulator-info-img > span{position:absolute; top:0; left:0; bottom:0; right:0;}
+.simulator-info-detail > dd p, .simulator-info-tag{font-size:15px; line-height:35px; color:#555; font-weight:500;}
+.simulator-info-detail > dd p > b{font-size:18px;}
+.simulator-info-tag{color:#888;}
+.simulator-info-tag > span{margin-right:5px;}
+.simulator-total-price{padding-top:20px; text-align:right;}
+.simulator-total-price > h2{font-size:18px; line-height:35px; font-weight:500;}
+.simulator-total-price > h2 strong{font-weight:500;}
+.simulator-total-price > h2 p{font-size:22px; font-weight:600; color:rgb(254,67,30);}
 
 /* ****************** 이용약관 ********************** */
 .terms-tit{font-size: 18px;margin-bottom: 20px;font-weight:500;}
@@ -146,3 +174,15 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 .popupView .closeBtnDiv .closeBtn{float: right;margin-right: 20px;font-size: 50px;}
 .popupView h1{margin-top: 5%; }
 .papupBack{position: fixed;top:0;left:0;z-index:999;background-color: black;opacity: 0.7;width: 100%;height: 100%;display: none;}
+
+
+/* ****************** 형준 :: 갤러리 ********************** */
+.view-gallery-slide{}
+.view-big-gallery-list{background:#eee; padding:10px;}
+.view-big-gallery-list li img{max-width:100%; margin:0 auto;}
+.view-big-gallery-list .slick-prev, .view-big-gallery-list .slick-next{position:absolute; top:50%; margin-top:-25px; width:50px; height:50px; background:rgba(255,255,255,0.7); border-radius:40px;}
+.view-big-gallery-list .slick-prev{left:30px;}
+.view-big-gallery-list .slick-next{right:30px;}
+.view-small-gallery-list li{position:relative;}
+.view-small-gallery-list li img{max-width:96%; margin:0 auto; border:2px solid transparent;}
+.view-small-gallery-list li.slick-current img{border:2px solid #888;}

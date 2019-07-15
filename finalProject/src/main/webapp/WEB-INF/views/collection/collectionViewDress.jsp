@@ -91,8 +91,12 @@
 					<c:if
 						test="${not empty dress.dressFittingTime || not empty dress.dressMending || not empty dress.dressParking}">
 						<h2>운영정책</h2>
-						<hr>
-						<table>
+						<br>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
 							<c:if test="${not empty dress.dressFittingTime}">
 								<tr>
 									<th>피팅 소요 시간</th>
@@ -115,19 +119,24 @@
 					</c:if>
 					<br> <br> <br>
 					<h2>가격확인 및 예약문의</h2>
-					<hr>
+					<br>
 
 					<form>
-						<table>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
 							<tr>
-								<td>예식일</td>
-								<td>예식시간</td>
+								<th>예식일</th>
+								<td colspan="2">
+									<input type="text" name="weddingDate" id="weddingDate" class="datepicker wedding-date middle" placeholder="예식일을 선택해주세요" required>
+								</td>
 							</tr>
 							<tr>
-								<td><input type="text" name="weddingDate" id="weddingDate"
-									class="datepicker wedding-date" placeholder="예식일을 선택해주세요"
-									required></td>
-								<td><select name="weddingTime" id="weddingTime">
+								<th>예식시간</th>
+								<td colspan="2">
+									<select name="weddingTime" id="weddingTime">
 										<option value="default">::: 예식 시작 시간 선택 :::</option>
 										<option>AM 11:00</option>
 										<option>AM 11:30</option>
@@ -144,37 +153,25 @@
 										<option>PM 5:00</option>
 										<option>PM 5:30</option>
 										<option>PM 6:00</option>
-								</select></td>
+									</select>
+								</td>
 							</tr>
 							<tr>
-								<th colspan="2" style="background-color: pink;">예약 옵션</th>
+								<th colspan="3" style="text-align: center;">예약 옵션</th>
 							</tr>
-							<tr>
-								<td colspan="2">제공 서비스</td>
-							</tr>
-							<tr>
-								<td colspan="2"><hr></td>
-							</tr>
-							<c:if test="${not empty dress.dressFittingPrice}">
+							<c:if test="${dress.dressFittingPrice != 0}">
 								<tr>
-									<td>[기본 옵션]</td>
-								</tr>
-								<tr>
-									<td>
+									<th rowspan="2">기본 옵션</th>
+									<td colspan="2">
 										<input type="checkbox" class="optionCheckBox" id="option1" name="dressFittingPrice" value="드레스 피팅" checked onclick="return false;"> 드레스 피팅
-									</td>
-									<td>
 										<span style="float: right;">가격 : <span id="option1Price">${dress.dressFittingPrice}</span>원</span>
 									</td>
 								</tr>
 								<tr>
-									<td>서비스 이용일과 시간을 선택해주세요</td>
-								</tr>
-								<tr>
+									<td>방문일정</td>
 									<td>
-									<input type="text" name="option1Date" id="option1Date" class="datepicker wedding-date" placeholder="예약 날짜를 선택해주세요" required>
-									</td>
-									<td>
+										<input type="text" name="option1Date" id="option1Date" class="datepicker wedding-date middle" placeholder="예약 날짜를 선택해주세요" required>
+										<br>
 										<select name="option1Time" id="option1Time">
 											<option value="default">::: 예약 시간 선택 :::</option>
 											<option>AM 11:00</option>
@@ -192,59 +189,43 @@
 											<option>PM 5:00</option>
 											<option>PM 5:30</option>
 											<option>PM 6:00</option>
-										</select>
+										</select>									
 									</td>
-								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
 								</tr>
 							</c:if>
-							<c:if test="${not empty dress.dressRentNum}">
+							<c:if test="${dress.dressRentNum != 0 || dress.jewelryPrice != 0}">
 								<tr>
-									<td>[드레스 대여]</td>
+									<th id="makeupOption-th" rowspan="3">부가 옵션</th>
 								</tr>
+							</c:if>
+							<c:if test="${dress.dressRentNum != 0}">
 								<tr>
-									<td>
+									<td colspan="2">
 										<input type="checkbox" class="optionCheckBox" id="option2" name="dressRent" value="드레스 대여"> 드레스 대여
-									</td>
-									<td>
 										<span style="float: right;">대여 가능한 수량 : ${dress.dressRentNum} / 개별 대여 가격 : <span id="option2Price">${dress.dressRentPrice}</span>원</span>
-									</td>
-								</tr>
-								<tr>
-									<td></td>
-									<td>
+										<br>
 										<span style="float: right;">대여할 수량 : <input type="number" min="1" max="${dress.dressRentNum}" value="1" id="option2Amount" onchange="checkAmount();"></span>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
 							</c:if>
-							<c:if test="${not empty dress.jewelryPrice}">
+							<c:if test="${dress.jewelryPrice != 0}">
 								<tr>
-									<td>[쥬얼리 대여]</td>
-								</tr>
-								<tr>
-									<td>
+									<td colspan="2">
 										<input type="checkbox" class="optionCheckBox" id="option3" name="jewelryPrice" value="쥬얼리 대여"> 쥬얼리 대여
-									</td>
-									<td>
 										<span style="float: right;">대여 가격 : <span id="option3Price">${dress.jewelryPrice}</span>원</span>
 									</td>
 								</tr>
-								<tr>
-									<td colspan="2"><hr></td>
-								</tr>
 							</c:if>
 							<tr>
-								<th>총계</th>
-								<td><span style="float: right;"><span id="allPrice"></span>원</span></td>
-							</tr>
-							<tr>
-								<td><input type="button" value="예약하기" onclick="reservation();"></td>
+								<th colspan="3">
+									총계
+									<span style="float: right;"><span id="allPrice"></span>원</span>								
+								</th>
 							</tr>
 						</table>
+						<div class="common-tbl-btn-group">
+							<button class="btn-style1" type="button" onclick="reservation();">예약하기</button>
+						</div>
 					</form>
 
 					<br> <br> <br>
@@ -266,8 +247,9 @@
 </section>
 <script>
 
-	/* 페이지 로드 시 총계 변경 */
+	/* 페이지 로드 시 이벤트 */
 	$(document).ready(function(){
+		/* 페이지 로드 시 총계 변경 */
 		var allPrice = 0;
 		if($('#option1').attr('checked') == 'checked'){
 			allPrice += parseInt($('#option1Price').text());
@@ -279,8 +261,16 @@
 			allPrice += parseInt($('#option3Price').text());			
 		}
 		$('#allPrice').text(allPrice);
+		/* 페이지 로드 시 총계 변경 끝 */
+		/* 부가 옵션이 없을 경우 rowspan 변경 */
+		var dressRentNum = ${dress.dressRentNum};
+		var jewelryPrice = ${dress.jewelryPrice};
+		if(dressRentNum == 0 || jewelryPrice == 0){
+			$('#makeupOption-th').prop('rowspan',2);
+		}
+		/* 부가 옵션이 없을 경우 rowspan 변경 끝 */
 	});
-	/* 페이지 로드 시 총계 변경 끝 */
+	/* 페이지 로드 시 이벤트 끝 */
 	
 	/* 체크박스 체크 시 총계 변경 */
 	$('.optionCheckBox').on("click",function(){
@@ -304,6 +294,14 @@
 	
 	/* 드레스 대여 수량 변경 시 총계 변경 */
 	function checkAmount(){
+		var dressRentMax = ${dress.dressRentNum};
+		if($('#option2Amount').val() > dressRentMax){
+			alert("대여할 수 있는 최대 수량 : "+dressRentMax+"벌");
+			$('#option2Amount').val(dressRentMax);
+		}
+		if($('#option2Amount').val() == '' || $('#option2Amount').val() == 0){
+			$('#option2Amount').val('1');
+		}
 		var allPrice = 0;
 		if($('#option1').attr('checked') == 'checked'){
 			allPrice += parseInt($('#option1Price').text());
@@ -350,6 +348,7 @@
 	function submitReservation(){
 		var code = "D";
 		var prdNo = ${dress.dressNo};
+		var prdId = '${dress.memberId}';
 		var prdName = '${dress.dressName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -369,7 +368,7 @@
 		}
 		$.ajax({
 			url : "/reservationDress.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){
@@ -388,10 +387,6 @@
 		});		
 	}
 	/* 버튼 클릭 시 예약 끝 */
-	
-	/* 옵션 checkbox checked 시 가격 변경 */
-	
-	/* 옵션 checkbox checked 시 가격 변경 끝 */
 	
 	/* 옵션 select 박스 change 시 가격 변경 */
 	$('.studioSelectOption').on("change",function(){

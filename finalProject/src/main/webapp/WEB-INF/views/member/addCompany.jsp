@@ -2,26 +2,27 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
-<script
-   src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
+
 
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
 <%-- wrap --%>
 <section id="adminWrap">
-
+<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
+<script type="text/javascript"
+   src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
-	
+
 		<div class="area">
-			<form action="/companyEnroll.do">
+			<form action="/companyEnroll.do" method="post" enctype="multipart/form-data">
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
 					<h1>파트너 기본정보 등록</h1>
-					내 회원정보가져오기 <input type="checkbox" id="check">
+					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo">
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -39,8 +40,8 @@
 								<button type="button" onclick="sample4_execDaumPostcode()"
 								value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div>
-							<input type="text" name="#shopLatitude">
-							<input type="text" name="#shopLongtitude">
+							<input type="hidden" name="companyLatitude" id="shopLatitude">
+							<input type="hidden" name="companyLongtitude" id="shopLongitude">
 						</td>
 						</tr>
 						<tr>
@@ -71,7 +72,7 @@
 				</div>
 
 				<div id="seventh" class="divbox" style="display: none;">
-					<!-- 최종등록-->
+					<!-- 스튜디오-->
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -80,6 +81,14 @@
 						<tr>
 							<th>스튜디오평균가격</th>
 							<th><input type="number" name="studioPrice" value="0"></th>
+						</tr>
+						<tr>
+							<th>스튜디오평균시간</th>
+							<th><input type="text" name="studioTime" value=" " placeholder="ex)평균적으로 3시간, 3시간, 등등"></th>
+						</tr>
+						<tr>
+							<th>촬영장비</th>
+							<th><input type="text" name="studioCamera" value=" "></th>
 						</tr>
 					</table>
 					<span id="studioStep" class="studioBtn">다음</span>
@@ -118,7 +127,7 @@
 						</tr>
 						<tr>
 							<th>드레스피팅시간</th>
-							<th><input type="number" name="dressFittingTime" value="0"><br></th>
+							<th><input type="text" name="dressFittingTime" value=" "></th>
 						</tr>
 						<tr>
 							<th>드레스대여가능갯수</th>
@@ -154,7 +163,7 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="text" name="makeupBasicPrice" value="0"></th>
+								<th><input type="number" name="makeupBasicPrice" value="0"></th>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
@@ -170,11 +179,37 @@
 
 					<div id="fiveth" class="divbox" style="display:none;"><!-- 홀 -->
 						<!-- 체크시 아래 음식관련 도출 -->
+						<h1>웨딩홀!</h1>
 						<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
 								<col width="/">
 							</colgroup>
+							<tr>
+								<th>웨딩홀 최소인원</th>
+								<th><input type="number" name="hallMinPerson" value="0"></th>
+							</tr>
+							<tr>
+								<th>웨딩홀 최대인원</th>
+								<th><input type="number" name="hallMaxPerson" value="0"></th>
+							</tr>
+							<tr>
+								<th>웨딩홀 타입</th>
+								<th>
+									<select name="hallType">
+										<option value="0">갤러리</option>
+										<option value="1">골프장</option>
+										<option value="2">공공장소</option>
+										<option value="3">레스토랑</option>
+										<option value="4">문화공간</option>
+										<option value="5">선박</option>
+										<option value="6">스튜디오</option>
+										<option value="7">웨딩홀</option>
+										<option value="8">펜션</option>
+										<option value="9">하우스웨딩홀</option>			
+									</select>
+								</th>
+							</tr>
 							<tr>
 								<th>웨딩홀 식사제공</th>
 								<th><input type="checkbox" name="hallServiceFood" value=" "></th>
@@ -198,7 +233,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="text" name="hallFoodmenu" value=" "></th>
+									<th><input type="number" name="hallFoodprice" value="0"></th>
 								</tr>
 							<!--  -->
 								<tr>
@@ -208,16 +243,7 @@
 								<tr>
 									<th>웨딩홀 음향제공</th>
 									<th><input type="checkbox" name="hallServiceAudio"></th>
-								</tr>
-								<tr>
-									<th>웨딩홀 음향제공</th>
-									<th><input type="checkbox" name="hallServiceAudio"></th>
-								</tr>
-								<tr>
-									<th>웨딩홀운영시간</th>
-									<th><input type="number" name="hallStartTime" value="0">-<input type="number" name="hallEndTime" value="0"></th>
-								</tr>
-								
+								</tr>						
 								<tr>
 									<th>웨딩홀 주차제공</th>
 									<th><input type="checkbox" name="hallServiceParking"></th>
@@ -226,19 +252,33 @@
 						<span id="hallStep" class="lastBtn">다음</span>
 					</div>
 					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
+							
+							<label for="imgInp">
+								<img id="img" name="img"  src="#" width="100px" height="100px">
+							</label>
 							<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
 								<col width="/">
 							</colgroup>
 							<tr>
-								<th>사진등록</th>
-								<th><input type="file" name="fileName" value=" "></th>
+								<th>대표사진등록</th>
+								<th><input type="file" name="fileNames"  id="imgInp"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
 								<th><input type="text" name="hashTag" value=" "></th>
 							</tr>
+							<colgroup>
+								<col width="18%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>상세설명</th>
+								<th><input type="text" name="companyContent"></th>
+							</tr>
+							
+							
 							</table>		
 							<button type="submit">제출</button>
 					</div>		
@@ -258,7 +298,7 @@
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value=" " id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -277,7 +317,6 @@
 						<span id="studioOption" class="lastBtn">다음</span>
 				</div>
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
-					
 					<h1>예식장등록</h1>
 					<div id="hallOptionTableDiv">
 						<table class="comm-tbl">
@@ -286,25 +325,16 @@
 								<col width="/">
 							</colgroup>
 							<tr>
-								<th>홀타입</th>
-								<th>
-									<select name="hallSelectType">
-										<option value="0">갤러리</option>
-										<option value="1">골프장</option>
-										<option value="2">공공장소</option>
-										<option value="3">레스토랑</option>
-										<option value="4">문화공간</option>
-										<option value="5">선박</option>
-										<option value="6">스튜디오</option>
-										<option value="7">웨딩홀</option>
-										<option value="8">펜션</option>
-										<option value="9">하우스웨딩홀</option>			
-									</select>
-								</th>
-							</tr>
-							<tr>
 								<th>예식장이름(홀이름)</th>
 								<th><input type="text" name="hallSelectName" value=" "></th>
+							</tr>
+							<tr>
+								<th>예식장인원(최소)</th>
+								<th><input type="text" name="hallSelectPeople" value=" "></th>
+							</tr>
+							<tr>
+								<th>예식장시간</th>
+								<th><input type="text" name="hallSelectTime" value=" "></th>
 							</tr>
 							<tr>
 								<th>홀대여가격</th>
@@ -320,6 +350,7 @@
 					<span id="hallOption" class="hallOpt">다음</span>
 				</div>			
 			</form>	
+			<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
 		</div>	
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 	<%--  footer --%>
@@ -361,30 +392,48 @@
 		$('.divbox').css("display","none");
 		$('#studioOption').css("display","block");
 	});
-	
-	
-	
+
 	
 	$('.lastBtn').click(function(){
 		$('.divbox').css("display","none");
 		$('#sixth').css("display","block");
 	});
+
 	
-	$(document).on("click","#test1",function(){
-		
+	$('input[id="getMemberInfo"]').change(function() {
+	    var value = $(this).val();              // value
+	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
+	 
+	 
+	 
+	    if(checked){
+	    	var string=$('#totalAddr').val();
+			var strArray=string.split('/');
+		$('#sample4_jibunAddress').val(strArray[0]);
+		$('#sample4_extraAddress').val(strArray[1]);
+		$('#sample4_detailAddress').val(strArray[2]);
+		$('#sample4_postcode').val(strArray[3]);
+		$('#sample4_roadAddress').val(strArray[4]);
+	    } else{
+			$('#sample4_jibunAddress').val("");
+			$('#sample4_extraAddress').val("");
+			$('#sample4_detailAddress').val("");
+			$('#sample4_postcode').val("");   
+			$('#sample4_roadAddress').val();
+	    }
 	});
+	
+
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>홀타입</th>';
-		addTable += '<th><select name="hallSelectType"><option value="0">갤러리</option><option value="1">골프장</option>';
-		addTable += '<option value="2">공공장소</option><option value="3">레스토랑</option><option value="4">문화공간</option>';
-		addTable += '<option value="5">선박</option><option value="6">스튜디오</option><option value="7">웨딩홀</option>';
-		addTable += '<option value="8">펜션</option><option value="9">하우스웨딩홀</option></select></th></tr>';
-		addTable += '<tr><th>예식장이름(홀이름)</th><th><input type="text" name="hallSelectName"></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value=0></th></tr>';
+		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
+		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
+		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value=" "></th></tr>';
+		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
+		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
 		
 		$('#hallOptionTableDiv').append(addTable);
@@ -394,11 +443,13 @@
 		var addTable ="";			
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
 		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOption"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
+		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
 	});
+	
+	
 	
 	<!--주소-->
 	
@@ -471,13 +522,13 @@
 
 	$('#firstStep').click(function() {
 		var roadAddr = $('#sample4_roadAddress').val();
-		var detailAddr = $('#sample4_detailAddress').val();
-		var fullAddr = roadAddr + "" + detailAddr;
-		console.log(fullAddr);
+	
+		
+		console.log(roadAddr);
 	
 		
 		naver.maps.Service.geocode({
-	        address: fullAddr
+	        address: roadAddr
 	    }, function(status, response) {
 	        if (status !== naver.maps.Service.Status.OK) {
 	            return alert('Something wrong!');
@@ -491,27 +542,22 @@
 	         $('#shopLongitude').val(items[0].point.x);
 	    });	
 	});
-	
-	   function getXY(address) {
-
-		      naver.maps.Service.geocode({
-		         address: address
-		      }, function (status, response) {
-
-		         if (status !== naver.maps.Service.Status.OK) {
-		            return alert("someThing wrong");
-		         }
-
-		         var result = response.result, // 검색 결과의 컨테이너
-		            items = result.items; // 검색 결과의 배열
-
-		         $('#shopLatitude').val(items[0].point.y);
-		         $('#shopLongitude').val(items[0].point.x);
-		         console.log(items[0].point.y);
-		      });
-
-		   }
 </script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('#img').attr('src', e.target.result);
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+    $("#imgInp").change(function() {
+        readURL(this);
+    });        
+                            
+  </script>
 
 
 

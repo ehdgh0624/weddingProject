@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
 	<insert id="insertReservationStudio" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,
 		<choose>
 			<when test="#{option1 != null}">
 				#{option1}
@@ -33,7 +33,7 @@
 	</insert>
 	
 	<insert id="insertReservationDress" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,
 		<choose>
 			<when test="#{option2Amount != 0}">
 				#{option2Amount}
@@ -42,7 +42,7 @@
 				null
 			</otherwise>
 		</choose>
-		,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,#{option1},#{option1Date},#{option1Time},
+		,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},#{option1Date},#{option1Time},
 		<choose>
 			<when test="#{option2 != null}">
 				#{option2}
@@ -63,7 +63,7 @@
 		,null,null)
 	</insert>
 	<insert id="insertReservationMakeup" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,#{option1},null,null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},null,null,
 		<choose>
 			<when test="#{option2 != null}">
 				#{option2}
@@ -84,7 +84,27 @@
 		,null,null)
 	</insert>
 	
-	
+	<insert id="insertReservationGoods" parameterType="map">
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},'admin',#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},#{payMethod},#{amount},1,null,sysdate,#{orderMemo},#{orderAddr},#{memberEmail},#{receiveName},#{receivePhone},
+		<choose>
+			<when test='#{payMethod == "신용카드"}'>
+				null,null,null,null	
+			</when>
+			<otherwise>
+				#{bankName},#{bankNum},#{bankHolder},#{bankDate}
+			</otherwise>
+		</choose>
+		,
+		<choose>
+			<when test='#{payMethod == "신용카드"}'>
+				#{impUid},#{applyNum},#{paymentDate}
+			</when>
+			<otherwise>
+				null,null,null
+			</otherwise>
+		</choose>
+		,null,null,null,null,null,null,null,null,null)
+	</insert>
 	
 	
 	
@@ -93,11 +113,13 @@
 	<select id="selectReservationNo" parameterType="string" resultType="_int">
 		select reservation_no from (select rownum, reservation_no from reservation where member_id=#{memberId} order by rownum desc) where rownum=1 
 	</select>
+	
 	<select id="viewSelectOne" parameterType="map" resultType="reservation">
 		select
 		reservation_no as reservationNo,
 		code,
 		prd_no as prdNo,
+		prd_id as prdId,
 		prd_name as prdName,
 		wedding_date as weddingDate,
 		wedding_time as weddingTime,

@@ -5,7 +5,7 @@ public class HallSelect {
 	private String hallSelectType;
 	private int hallSelectPrice;
 	private String hallSelectEtc;
-	private String hallSelectName;
+
 
 	public HallSelect() {
 		super();
@@ -13,15 +13,20 @@ public class HallSelect {
 	}
 
 
-	public HallSelect(int hallSelectRef, String hallSelectType, int hallSelectPrice, String hallSelectEtc,
-			String hallSelectName) {
+	
+
+
+
+	public HallSelect(int hallSelectRef, String hallSelectType, int hallSelectPrice, String hallSelectEtc) {
 		super();
 		this.hallSelectRef = hallSelectRef;
 		this.hallSelectType = hallSelectType;
 		this.hallSelectPrice = hallSelectPrice;
 		this.hallSelectEtc = hallSelectEtc;
-		this.hallSelectName = hallSelectName;
 	}
+
+
+
 
 
 
@@ -57,13 +62,6 @@ public class HallSelect {
 		this.hallSelectEtc = hallSelectEtc;
 	}
 	
-	public String getHallSelectName() {
-		return hallSelectName;
-	}
-
-	public void setHallSelectName(String hallSelectName) {
-		this.hallSelectName = hallSelectName;
-	}
 
 	@Override
 	public String toString() {

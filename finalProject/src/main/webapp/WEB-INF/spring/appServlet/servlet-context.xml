@@ -45,8 +45,8 @@
 	<context:component-scan base-package="kr.co.review" />
 	<context:component-scan base-package="kr.co.rservation"/>
 	<context:component-scan base-package="kr.co.test"/>
-	
-	
+	<context:component-scan base-package="kr.co.experience"/>
+
 	<task:annotation-driven/>
 	
 </beans:beans>
