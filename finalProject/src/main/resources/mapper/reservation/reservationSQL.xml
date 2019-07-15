@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="reservation">
 	<insert id="insertReservationStudio" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,0,sysdate,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,
 		<choose>
 			<when test="#{option1 != null}">
 				#{option1}
@@ -42,7 +42,7 @@
 				null
 			</otherwise>
 		</choose>
-		,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},#{option1Date},#{option1Time},
+		,null,null,0,sysdate,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},#{option1Date},#{option1Time},
 		<choose>
 			<when test="#{option2 != null}">
 				#{option2}
@@ -63,7 +63,7 @@
 		,null,null)
 	</insert>
 	<insert id="insertReservationMakeup" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,default,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},null,null,
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,0,sysdate,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},null,null,
 		<choose>
 			<when test="#{option2 != null}">
 				#{option2}
@@ -94,7 +94,7 @@
 				1
 			</otherwise>
 		</choose>
-		,null,sysdate,#{orderMemo},#{orderAddr},#{memberEmail},#{receiveName},#{receivePhone},
+		,null,0,sysdate,#{orderMemo},#{orderAddr},#{memberEmail},#{receiveName},#{receivePhone},
 		<choose>
 			<when test='payMethod == "무통장"'>
 				#{bankName},#{bankNum},#{bankHolder},#{bankDate}
