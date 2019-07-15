@@ -117,7 +117,7 @@
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
 					<c:forEach items="${pd.hList }" var="h">
-					<div class="card" onclick="location.href='/hallView.do'">
+					<div class="card" onclick="location.href='/hallView.do?hallNo=${h.hallNo}'">
 						<div class="thumbnail">
 							<div class="centered">
 								<img src="https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png"
