@@ -247,4 +247,13 @@ public class MemberDao {
 		return sqlSession.delete("studioSelect.deleteStudioOption",map );
 	}
 
+	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("studioNo", no);
+		map.put("studioType", type);
+		map.put("studioOption", submitDelete);
+		return sqlSession.delete("studioSelect.deleteOneStudioOption",map);
+	}
+
 }

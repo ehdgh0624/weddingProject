@@ -256,6 +256,11 @@ public class MemberService {
 		return memberDao.deleteStudioOption(no,type);
 	}
 
+	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteOneStudioOption(no,type,submitDelete);
+	}
+
 
 
 }

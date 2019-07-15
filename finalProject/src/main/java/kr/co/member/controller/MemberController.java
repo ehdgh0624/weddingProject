@@ -28,7 +28,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
@@ -371,6 +371,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/memberDelete.do")
+
 	public String MemberDelete(HttpServletRequest request) {
 		System.out.println("탈퇴 호출");
 		String id = request.getParameter("memberId");
@@ -393,8 +394,9 @@ public class MemberController {
 		return "member/addCompanyTerms";
 	}
 	
-	@RequestMapping(value = "/deleteStudioOption.do",produces="text/html;charset=utf-8")
-	public String deleteStudioOption(@RequestParam int no,@RequestParam int type) {
+	@RequestMapping(value = "/deleteStudioOption.do")
+	@ResponseBody
+	public int deleteStudioOption(@RequestParam int type,@RequestParam int no) {
 		System.out.println("스튜디오옵션삭제시작");
 
 		int result=memberService.deleteStudioOption(no,type);
@@ -402,7 +404,20 @@ public class MemberController {
 			System.out.println("삭제성공");
 		}
 		
-		return "member/addCompanyTerms";
+		return result;
+	}
+	
+	@RequestMapping(value = "/deleteOneStudioOption.do")
+	@ResponseBody
+	public int deleteStudioOption(@RequestParam int type,@RequestParam int no,@RequestParam String submitDelete) {
+		System.out.println("스튜디오옵션삭제시작");
+
+		int result=memberService.deleteOneStudioOption(no,type,submitDelete);
+		if(result>0) {
+			System.out.println("삭제성공");
+		}
+		
+		return result;
 	}
 	
 

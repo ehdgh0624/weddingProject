@@ -7,4 +7,7 @@
 	<delete id="deleteStudioOption" parameterType="map">
 		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType}
 	</delete>
+	<delete id="deleteOneStudioOption" parameterType="map">
+		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType} and studio_option=#{studioOption}
+	</delete>
 </mapper>
