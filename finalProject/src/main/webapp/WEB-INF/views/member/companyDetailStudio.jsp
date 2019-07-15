@@ -228,7 +228,7 @@ $('.updateOption').click(function(){
 	
 	$.ajax({
 		url:"/updateOneStudioOption.do",
-		data:{type:type,no:no,option:option,price:price,optionNo,optionNo},
+		data:{type:type,no:no,option:option,price:price,optionNo:optionNo},
 		type:"get",
 		success:function(data){
 			if(data>0){
