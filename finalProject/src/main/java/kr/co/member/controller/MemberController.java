@@ -568,7 +568,7 @@ public class MemberController {
 				seqNo=memberService.getStudioNo(ci.getCompanyName(),vo.getMemberId());
 				System.out.println(seqNo);
 				for(int i=0; i<studioOption.size(); i++) {
-					StudioSelect ss = new StudioSelect(seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
+					StudioSelect ss = new StudioSelect(0,seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
 					list.add(ss);
 				}
 				ssl.setList(list);
