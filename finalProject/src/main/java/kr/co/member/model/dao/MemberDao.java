@@ -35,25 +35,30 @@ public class MemberDao {
 		return sqlSession.insert("member.insertMember",vo);
 	}
 
-	public Studio selectOneStudioMember(Member vo) {
+	public List<Studio> selectAllStudioMember(Member vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOneStudioMember",vo);
+		System.out.println("스튜디오");
+		
+		return sqlSession.selectList("member.selectAllStudioMember",vo);
+		
 	}
 
-	public Dress selectOneDressMember(Member vo) {
+	public List<Dress> selectAllDressMember(Member vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOneDressMember",vo);
+		System.out.println("드레스");
+		return sqlSession.selectList("member.selectAllDressMember",vo);
 	}
 
-	public Hall selectOneHallMember(Member vo) {
+	public List<Hall> selectAllHallMember(Member vo) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne("member.selectOneHallMember",vo);
+		System.out.println("홀");
+		return sqlSession.selectList("member.selectAllHallMember",vo);
 	}
 
-	public Makeup selectOneMakeupMember(Member vo) {
+	public List<Makeup> selectAllMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
 		
-		return sqlSession.selectOne("member.selectOneMakeupMember",vo);
+		return sqlSession.selectList("member.selectAllMakeupMember",vo);
 	}
 
 	public int insertStudio(Studio ms) {

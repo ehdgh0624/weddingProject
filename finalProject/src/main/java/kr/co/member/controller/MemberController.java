@@ -341,10 +341,10 @@ public class MemberController {
 	public String MyCompanyView(HttpSession session,Model model) {
 		System.out.println("나의업체 관리페이지");
 		Member vo =(Member)session.getAttribute("member");	
-		Studio ms = memberService.selectOneStudioMember(vo);
-		Dress md = memberService.selectOneDressMember(vo);
-		Hall mh = memberService.selectOneHallMember(vo);
-		Makeup mm = memberService.selctOneMakeupMember(vo);	
+		ArrayList<Studio> ms= (ArrayList<Studio>) memberService.selectAllStudioMember(vo);
+		ArrayList<Dress> md = (ArrayList<Dress>) memberService.selectAllDressMember(vo);
+		ArrayList<Hall> mh = (ArrayList<Hall>) memberService.selectAllHallMember(vo);
+		ArrayList<Makeup> mm = (ArrayList<Makeup>) memberService.selectAllMakeupMember(vo);	
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
 		
 		System.out.println(ms);

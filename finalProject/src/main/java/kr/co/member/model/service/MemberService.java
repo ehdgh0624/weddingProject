@@ -44,26 +44,26 @@ public class MemberService {
 		return memberDao.insertMember(vo);
 	}
 
-	public Studio selectOneStudioMember(Member vo) {
+	public List<Studio> selectAllStudioMember(Member vo) {
 		// TODO Auto-generated method stub
 		
 		
-		return memberDao.selectOneStudioMember(vo);
+		return memberDao.selectAllStudioMember(vo);
 	}
 
-	public Dress selectOneDressMember(Member vo) {
+	public List<Dress> selectAllDressMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneDressMember(vo);
+		return memberDao.selectAllDressMember(vo);
 	}
 
-	public Hall selectOneHallMember(Member vo) {
+	public List<Hall> selectAllHallMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneHallMember(vo);
+		return memberDao.selectAllHallMember(vo);
 	}
 
-	public Makeup selctOneMakeupMember(Member vo) {
+	public List<Makeup> selectAllMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneMakeupMember(vo);
+		return memberDao.selectAllMakeupMember(vo);
 	}
 
 	public int insertStudio(CompanyInfo ci, Member vo) {
