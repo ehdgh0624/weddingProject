@@ -10,7 +10,11 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelect;
+import kr.co.review.model.vo.Review;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 
 
@@ -60,6 +64,37 @@ public class HallDao {
 	public int totalCountPc() {
 		int count = sqlSession.selectOne("hall.countPc");
 		return count;
+	}
+	public Object selectOneHall(int hallNo) {
+		return (Hall)sqlSession.selectOne("hall.viewSelectOne",hallNo);
+	}
+	public List<Gallery> selectListGallery(int galleryNo, String galleryCode) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("galleryNo", galleryNo);
+		map.put("galleryCode", galleryCode);
+		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+	public List<Review> selectListReview(int objectNo, String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("reviewRef", objectNo);
+		map.put("code", code);
+		return sqlSession.selectList("review.selectListReview",map);
+	}
+	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		if(memberId == null) {
+			memberId = "null";
+		}
+		map.put("memberId", memberId);
+		map.put("code", code);
+		map.put("objectNo", objectNo);
+		return (Scrapbook)sqlSession.selectOne("scrapbook.selectOneScrapbook",map);
+	}
+	public List<HallSelect> selectListHall(int hallNo) {
+		return  sqlSession.selectList("hallSelect.selectListHallSelect",hallNo);
+	}
+	public HallSelect selectOption(int result) {
+		return sqlSession.selectOne("hallSelect.selectOption",result);
 	}
 	
 }
