@@ -99,6 +99,7 @@
 					paidAmount = rsp.paid_amount;
 					applyNum = rsp.apply_num;
 				}else if(payMethod == '휴대폰'){
+					impUid = rsp.imp_uid;
 					paidAmount = rsp.paid_amount;
 				}else{
 					paidAmount = rsp.paid_amount;

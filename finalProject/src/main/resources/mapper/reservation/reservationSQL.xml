@@ -108,6 +108,9 @@
 			<when test='payMethod == "신용카드"'>
 				#{impUid},#{applyNum},#{paymentDate}
 			</when>
+			<when test='payMethod == "휴대폰"'>
+				#{impUid},null,#{paymentDate}
+			</when>
 			<otherwise>
 				null,null,null
 			</otherwise>
@@ -140,6 +143,7 @@
 		amount,
 		order_status as orderStatus,
 		delivery_num as deliveryNum,
+		delivery_status as deliveryStatus,
 		order_date as orderDate,
 		order_memo as orderMemo,
 		order_addr as orderAddr,
@@ -150,6 +154,9 @@
 		bank_num as bankNum,
 		bank_holder as bankHolder,
 		bank_date as bankDate,
+		imp_uid as impUid,
+		apply_num as applyNum,
+		payment_date as paymentDate,
 		option1,
 		option1_date as option1Date,
 		option1_time as option1Time,
