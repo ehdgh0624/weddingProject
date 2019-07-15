@@ -245,5 +245,26 @@
 			</if>
 			) where rnum between ${start} and ${end}
 	</select>
+	<select id="searchGoodsCount" parameterType="string" resultType="_int">
+		select count(*) from Goods where goods_Name like '%'||#{keyword}||'%'
+	</select>
+	<select id="searchGoodsList" parameterType="map" resultType="goods">
+		select goods_no as goodsNo,
+				code as code,
+				goods_type as goodsType,
+				goods_name as goodsName,
+				goods_price as goodsPrice,
+				goods_scope as goodsScope,
+				goods_content as goodsContent,
+				viewstatus as viewstatus,
+				goods_filepath as goodsFilePath,
+				goods_tag as goodsTag from
+				(select rownum as rnum , g.* from 
+				(select * from goods where goods_name like '%'||#{keyword}||'%' order by goods_no desc)g)
+				 where rnum between ${start} and ${end}
+	</select>
+	<update id="memberAgree" parameterType="string">
+	update member set member_code = 1 where member_id = #{id}
+	</update>
 </mapper>
 

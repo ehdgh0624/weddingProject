@@ -18,6 +18,8 @@
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
 		<typeAlias type="kr.co.reservation.model.vo.Reservation" alias="reservation"/>
+		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
+		<typeAlias type="kr.co.qna.vo.QnA" alias="qna"/>
     </typeAliases>
 
 </configuration>

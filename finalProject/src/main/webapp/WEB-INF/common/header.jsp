@@ -87,7 +87,7 @@
 							<div class="gnb-2dep">
 								<ul>
 									<li><a href="">공지사항</a></li>
-								   	<li><a href="">Q&A</a></li>
+								   	<li><a href="/qnaMain.do">Q&A</a></li>
 								   	<li><a href="">경험담</a></li>
 								</ul>
 							</div>

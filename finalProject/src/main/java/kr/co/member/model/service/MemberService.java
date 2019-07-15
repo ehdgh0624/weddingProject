@@ -90,9 +90,9 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		System.out.println("메이크업등록시작");
 		String hashTag = ci.getHashTag();
-		Makeup mm = new Makeup(0,vo.getMemberId(),"M",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr(),ci.getMakeupBasicPrice(),ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,"","");
+		//Makeup mm = new Makeup(0,vo.getMemberId(),"M",ci.getCompanyName(),ci.getCompanyPhone(),"",ci.getCompanyAddr(),ci.getMakeupBasicPrice(),ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,"","");
 		
-		return memberDao.insertMakeup(mm);
+		return 0;
 	}
 
 	public int insertHall(CompanyInfo ci, Member vo) {

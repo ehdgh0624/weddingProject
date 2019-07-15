@@ -204,10 +204,11 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		int num = Integer.parseInt(request.getParameter("num"));
 		String code = request.getParameter("code");
+		String id = request.getParameter("id");
 			if(session !=null&&(Member)session.getAttribute("member")!=null) {
 				Member m = (Member)session.getAttribute("member");
 					if(m.getMemberId().equals("admin")) {
-						int result = adminService.agree(num,code);
+						int result = adminService.agree(num,code,id);
 						if(result >0) {
 							String agree = "업체허가하였습니다.";
 							String loc = "companyManager.do";
@@ -229,10 +230,11 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		int num = Integer.parseInt(request.getParameter("num"));
 		String code = request.getParameter("code");
+		String id = request.getParameter("id");
 			if(session !=null&&(Member)session.getAttribute("member")!=null) {
 				Member m = (Member)session.getAttribute("member");
 					if(m.getMemberId().equals("admin")) {
-						int result = adminService.reject(num,code);
+						int result = adminService.reject(num,code,id);
 						if(result >0) {
 							String agree = "업체거절하였습니다.";
 							String loc = "companyManager.do";
@@ -378,5 +380,18 @@ public class AdminController {
 			System.out.println("로그인후 사용가능");
 			return "redirect:/";
 		}	
+	}
+	
+	@RequestMapping(value="/searchGoods.do")
+	public String searchGoods(HttpServletRequest request, String keyword ,Model model) {
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		AdminGoods gList = adminService.searchGoods(reqPage,keyword);
+		model.addAttribute("gList", gList);
+		return "/admin/goodsCarePage";
 	}
 }
