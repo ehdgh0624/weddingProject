@@ -1,6 +1,7 @@
 package kr.co.android.controller;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.android.model.service.AndroidService;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 
 @Controller
 public class AndroidController {
@@ -66,29 +68,13 @@ public class AndroidController {
 	@ResponseBody
 	public Map<String, Object> androidGetReserVation(HttpServletRequest request) {
 		String memberId=request.getParameter("id");
-		String memberPw= request.getParameter("pw");
 		
-		Member m =androidService.login(memberId,memberPw);
+		
+		ArrayList<Reservation> rList = (ArrayList<Reservation>)androidService.getReservation(memberId);
 		
 		
 		Map<String, Object> result = new HashMap<String, Object>();
-		if(m==null) {
-			result.put("memberName","로그인실패");
-			result.put("memberCode", "404");
-		}else {
-			result.put("memberNo", m.getMemberNo());
-			result.put("memberId", m.getMemberId());
-			result.put("memberPw", m.getMemberPw());
-			result.put("memberName", m.getMemberName());
-			result.put("phone", m.getPhone());
-			result.put("birthDay", m.getBirthDay());
-			result.put("email", m.getEmail());
-			result.put("addr", m.getAddr());
-			result.put("marrySchedule", m.getMarrySchedule().toString());
-			result.put("expectVisitor", m.getExpectVisitor());
-			result.put("budget", m.getBudget());
-			result.put("memberCode", m.getMemberCode());
-		}
+
 		
 	
 		
