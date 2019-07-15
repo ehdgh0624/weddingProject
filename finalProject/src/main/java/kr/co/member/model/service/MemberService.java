@@ -261,6 +261,11 @@ public class MemberService {
 		return memberDao.deleteOneStudioOption(no,type,submitDelete);
 	}
 
+	public int updateOneStudioOption(int no, int type, String option, String price) {
+		// TODO Auto-generated method stub
+		return memberDao.updateOneStudioOption(no,type,option,price);
+	}
+
 
 
 }

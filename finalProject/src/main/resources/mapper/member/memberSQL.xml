@@ -184,7 +184,7 @@
 	    where member_Id=#{memberId}
 	</update>
 	 <insert id="insertStudioOption" parameterType="studioSelect">
-     insert into studio_select values(#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
+     insert into studio_select values(seq_studio_select_no.nextval,#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
     </insert>
     <select id="getStudioNo" parameterType="studio" resultType="studio">
     	select

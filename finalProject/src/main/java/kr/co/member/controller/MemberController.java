@@ -420,6 +420,19 @@ public class MemberController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/updateOneStudioOption.do")
+	@ResponseBody
+	public int updateOneStudioOption(@RequestParam int type,@RequestParam int no,@RequestParam String option,@RequestParam String price) {
+		System.out.println("스튜디오옵션수정시작");
+
+		int result=memberService.updateOneStudioOption(no,type,option,price);
+		if(result>0) {
+			System.out.println("수정성공");
+		}
+		
+		return result;
+	}
+	
 
 
 	

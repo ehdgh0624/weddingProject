@@ -8,6 +8,12 @@
 		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType}
 	</delete>
 	<delete id="deleteOneStudioOption" parameterType="map">
-		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType} and studio_option=#{studioOption}
+		delete from studio_select where studio_select_no=#{studio_select_no}
 	</delete>
+	<update id="updateOneStudioOption" parameterType="map">
+		update studio_select set 
+		studio_option=#{studioOption},
+		studio_option=#{studioOptionPrice}
+		where studio_select_no=#{studio_select_no}
+	</update>
 </mapper>

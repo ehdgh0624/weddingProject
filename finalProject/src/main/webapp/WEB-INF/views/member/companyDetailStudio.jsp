@@ -95,7 +95,7 @@
 		<div id="studioOption" class="divbox"><!--스튜디오 옵션  -->
 		<h1>스튜디오 옵션</h1>
 		<div id='studioOptionTableDiv'>
-			<table class="comm-tbl" id="studioOptionTableDiv">
+			<table class="comm-tbl" id="studioOptionTable1">
 				<colgroup>
 					<col width="15%">
 					<col width="/">
@@ -103,72 +103,85 @@
 					<col width="10%">
 					<col width="15%">
 				</colgroup>
-			
-				<tr id="fsnap">
-					<th rowspan="2">본식 스냅</th>
-					<th>
-					<c:if test="${empty studioSelectList0}">	
-						<h1>옵션이없습니다</h1>
-					</c:if>
-					<c:if test="${not empty studioSelectList0}">
-						<c:forEach items="${studioSelectList0}" var="ss0">
-						<div>
-							<input type="text" value="${ss0.studioOption}"><span class="deleteOption0">삭제</span>
-							<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption0">수정</span>
-						</div>
-					
-						</c:forEach>
-					</c:if>
-					</th>
-					<th>추가</th>
-					<th><span id="selectList0">옵션전체삭제</span></th>
-				</tr>
-				<tr>
-					<td>
-						<div>
-							<input type="text" value="${ss0.studioOption}"><span class="deleteOption0">삭제</span>
-							<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption0">수정</span>
-						</div>
-					
-					</td>
-				</tr>	
+				<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
+					<c:set var="countF" value="${i.count }"/>
+				</c:forEach>
+				<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
+					<tr id="fsnap">
+						<c:if test="${i.count==1 }">
+							<th rowspan='${countF}' class="fsnapRow">본식 스냅</th>
+						</c:if>
+						<td class="fsnap">
+								<input type="hidden" value="${ss0.studioSelectNo }">
+								<input type="text" value="${ss0.studioOption}"><span class="deleteOption">삭제</span>
+								<input type="text" value="${ss0.studioOptionPrice}"><span class="updateOption">수정</span>
+							
+						</td>
+						<c:if test="${i.count==1 }">
+							<td rowspan='${countF }' class="fsnapRow">추가</td>
+							<td rowspan='${countF }' class="fsnapRow"><span id="selectList0">옵션전체삭제</span></td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</table>
+							
+			<table class="comm-tbl" id="studioOptionTable2">
+				<colgroup>
+					<col width="15%">
+					<col width="/">
+					<col width="5%">
+					<col width="10%">
+					<col width="15%">
+				</colgroup>
+				<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
+					<c:set var="countS" value="${i.count }"/>
+				</c:forEach>
+				<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
 				<tr id="ssnap">
-					<th>스튜디오 스냅</th>
-					<th>
-						<c:if test="${empty studioSelectList1}">	
-							<h1>옵션이없습니다</h1>
-						</c:if>
-					<c:if test="${not empty studioSelectList1}">
-						<c:forEach items="${studioSelectList1}" var="ss1">
-						<div>
-							<input type="text" value="${ss1.studioOption}"><span class="deleteOption1">삭제</span>
-							<input type="text" value="${ss1.studioOptionPrice}"><span class="updateOptoon1">수정</span>
-						</div>
-						</c:forEach>
+					<c:if test="${i.count==1 }">
+						<th rowspan="${countS}" class="ssnapRow">스튜디오 스냅</th>
 					</c:if>
-					</th>
-					<th>추가</th>
-					<th><span id="selectList1">옵션전체삭제</span></th>
+					<td class="ssnap">
+							<input type="hidden" value="${ss1.studioSelectNo }">
+							<input type="text" value="${ss1.studioOption}"><span class="deleteOption">삭제</span>
+							<input type="text" value="${ss1.studioOptionPrice}"><span class="updateOption">수정</span>
+						
+					</td>
+					<c:if test="${i.count==1 }">
+						<td rowspan='${countS}' class="ssnapRow">추가</td>
+						<td rowspan='${countS}' class="ssnapRow"><span id="selectList1">옵션전체삭제</span></td>
+					</c:if>
 				</tr>
+				</c:forEach>
+			</table>
+				
+			<table class="comm-tbl" id="studioOptionTable3">
+				<colgroup>
+					<col width="15%">
+					<col width="/">
+					<col width="5%">
+					<col width="10%">
+					<col width="15%">
+				</colgroup>
+				<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
+					<c:set var="countT" value="${i.count }"/>
+				</c:forEach>
+				<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
 				<tr id="tsnap">
-					<th>본식 영상 촬영</th>
-					<th>
-						<c:if test="${empty studioSelectList2}">	
-							<h1>옵션이없습니다</h1>
-						</c:if>
-						<c:if test="${not empty studioSelectList2}">	
-						<c:forEach items="${studioSelectList2}" var="ss2">
-						<div>
-							<input type="text" value="${ss2.studioOption}"><span class="deleteOption2">삭제</span>
-							<input type="text" value="${ss2.studioOptionPrice}"><span class="updateOptoon2">수정</span>
-						</div>
-						</c:forEach>
-						</c:if>	
-					</th>
-					<th>추가</th>
-					<th><span id="selectList2">옵션전체삭제</span></th>
+					<c:if test="${i.count==1 }">
+						<th rowspan='${countT}' class="tsnapRow">영상 스냅</th>
+					</c:if>
+					<td class="tsnap">
+							<input type="hidden" value="${ss2.studioSelectNo }">
+							<input type="text" value="${ss2.studioOption}"><span class="deleteOption">삭제</span>
+							<input type="text" value="${ss2.studioOptionPrice}"><span class="updateOption">수정</span>
+					</td>
+					<c:if test="${i.count==1 }">
+						<td rowspan='${countT }' class="tsnapRow">추가</td>
+						<td rowspan='${countT }' class="tsnapRow"><span id="selectList2">옵션전체삭제</span></td>
+					</c:if>
 				</tr>
-			
+				</c:forEach>
 			</table>
 		</div>
 		<div>
@@ -206,32 +219,48 @@ $(document).ready(function(){
 	
 });
 <!--옵션수정-->
-$('.updateOption0').click(function(){
-	var submitUpdate =new Array();
-	submitupate[0]=$(this).siblings('input').val();
-	submitupdate[1]=$(this).siblings('input').val();
-	$(this).siblings('input').val();
-	console.log(submitUpdate[0]);
-	console.log(submitUpdate[1]);
-
+$('.updateOption').click(function(){
+	var optionNo=$(this).prev().prev('input').val();
+	var option = $(this).prev('input').val();
+	var price = $(this).next('input').val();
+	var type=0;
+	var no=$('#no').val();
 	
+	$.ajax({
+		url:"/updateOneStudioOption.do",
+		data:{type:type,no:no,option:option,price:price,optionNo,optionNo},
+		type:"get",
+		success:function(data){
+			if(data>0){
+				alert("수정성공");
+				console.log("수정성공");
+			}else{
+				console.log("수정실패");
+			}
+		},
+		error : function(){
+			console.log("ajax실패")
+		}
+		
+	})
 });
+
+
+
 
 
 <!--개별삭제-->
-$('.deleteOption0').click(function(){
-	var submitDelete = $(this).prev('input').val();
+$('.deleteOption').click(function(){
+	var submitDelete = $(this).prev().prev('input').val();
 	var select = $(this);
-	var type=0;
-	var no=$('#no').val();
 	console.log(submitDelete);
-	
 	$.ajax({
 		url:"/deleteOneStudioOption.do",
-		data:{type:type,no:no,submitDelete:submitDelete},
+		data:{submitDelete:submitDelete},
 		type:"get",
 		success:function(data){
 			if(data>0){
+				alert("삭제성공");
 				console.log("삭제성공");
 				select.parent('div').remove();
 			}else{
@@ -241,64 +270,7 @@ $('.deleteOption0').click(function(){
 		error : function(){
 			console.log("ajax실패")
 		}
-		
 	})
-	
-});
-
-$('.deleteOption1').click(function(){
-	var submitDelete = $(this).prev('input').val();
-	var select = $(this);
-	var type=1;
-	var no=$('#no').val();
-	console.log(submitDelete);
-	
-	$.ajax({
-		
-		url:"/deleteOneStudioOption.do",
-		data:{type:type,no:no,submitDelete:submitDelete},
-		type:"get",
-		success:function(data){
-			if(data>0){
-				console.log("삭제성공");
-				select.parent('div').remove();
-			}else{
-				console.log("삭제실패");
-			}
-		},
-		error : function(){
-			console.log("ajax실패")
-		}
-		
-	})
-	
-});
-
-$('.deleteOption2').click(function(){
-	var select = $(this);
-	var submitDelete = $(this).prev('input').val();
-	var type=2;
-	var no=$('#no').val();
-	console.log(submitDelete);
-	
-	$.ajax({
-		url:"/deleteOneStudioOption.do",
-		data:{type:type,no:no,submitDelete:submitDelete},
-		type:"get",
-		success:function(data){
-			if(data>0){
-				console.log("삭제성공");
-				select.parent('div').remove();
-			}else{
-				console.log("삭제실패");
-			}
-		},
-		error : function(){
-			console.log("ajax실패")
-		}
-		
-	})
-	
 });
 
 
@@ -312,8 +284,9 @@ $('#selectList0').click(function(){
 		data:{type:type,no:no},
 		type:"get",
 		success:function(data){
+			alert("전체삭제성공");
 			console.log("삭제성공")
-			$('#fsnap').remove();
+			$('.fsnap').remove();
 		},
 		error : function(){
 			console.log("ajax실패")
@@ -333,17 +306,14 @@ $('#selectList1').click(function(){
 		success:function(data){
 			
 			if(data>0){
+				alert("전체삭제성공");
 				console.log("삭제성공");
-				$('#ssnap').remove();
+				$('.ssnap').remove();
 				
 			}else{
 				console.log("삭제실패")
 				
-			}
-			
-			
-			
-					
+			}		
 		},
 		error : function(){
 			console.log("ajax실패")
@@ -363,8 +333,9 @@ $('#selectList2').click(function(){
 		dataType: 'text',
 		type:"get",
 		success:function(data){
+			alert("전체삭제성공");
 			console.log("삭제성공")
-			$('#tsnap').remove();
+			$('.tsnap').remove();
 		},
 		error : function(){
 			console.log("ajax실패")
@@ -373,29 +344,6 @@ $('#selectList2').click(function(){
 	})
 	
 });
-
-
-function getStudioOption(){
-	$.ajax({
-		url:"/getSurplusStudioOptionLIst",
-		success : function(data){
-			var $select = $("#studioOptionType");
-			$select.find("option").remove();
-			$select.append("<option value=''>옵션선택</option>");
-			for(var i=0;i<data.length;i++){
-				var studioType = data[i].studioType;
-				var studioOption = data[i].studioOption;
-				$select.append("<option value='"+studioType+"'>"+studioOption+"</option>");
-			}
-		},
-		error : function(){
-			console.log("못가져왔다");
-		}
-	});
-}
-
-
-
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
