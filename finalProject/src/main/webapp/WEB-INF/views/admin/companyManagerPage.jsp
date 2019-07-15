@@ -41,8 +41,8 @@
 					<td>${c.id }</td>
 					<td>${c.tel}</td>
 					<td>${c.addr }</td>
-					<td style="text-align: center;"><button type="button" onclick="agree(${c.comNo},'${c.code }')" class="agree-btn">신청 허가</button></td>
-					<td style="text-align: center;"><button type="button" onclick="reject(${c.comNo},'${c.code }')" class="reject-btn">신청 거절</button></td>
+					<td style="text-align: center;"><button type="button" onclick="agree(${c.comNo},'${c.code }','${c.id } ')" class="agree-btn">신청 허가</button></td>
+					<td style="text-align: center;"><button type="button" onclick="reject(${c.comNo},'${c.code }','${c.id }')" class="reject-btn">신청 거절</button></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -60,11 +60,11 @@
          </div>
 	</div>
 	<script>
-		function agree(num,code){
-			location.href ='/agreeUpdate.do?num='+num+"&code="+code;
+		function agree(num,code,id){
+			location.href ='/agreeUpdate.do?num='+num+"&code="+code+"&id="+id;
 		}
-		function reject(num,code){
-			location.href ='/rejectUpdate.do?num='+num+"&code="+code;
+		function reject(num,code,id){
+			location.href ='/rejectUpdate.do?num='+num+"&code="+code+"&id="+id;
 		}
 		$(document).ready(function(){
 			var type = '${param.type}';

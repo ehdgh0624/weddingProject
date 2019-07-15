@@ -16,7 +16,6 @@
 <!-- script -->
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
 
-
 <!-- Datapicker 달력 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -88,7 +87,7 @@
 							<div class="gnb-2dep">
 								<ul>
 									<li><a href="">공지사항</a></li>
-								   	<li><a href="">Q&A</a></li>
+								   	<li><a href="/qnaMain.do">Q&A</a></li>
 								   	<li><a href="/experienceAll.do">경험담</a></li>
 								</ul>
 							</div>

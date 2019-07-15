@@ -28,6 +28,46 @@
 		var receiveName = '${reservation.receiveName}';
 		var receivePhone = '${reservation.receivePhone}';
 		/* 결제 성공 시 넘겨줄 정보 끝 */
+
+		/* 상황에 따른 PG사 선택 */
+		var callPg = null;
+		if(payMethod == '신용카드'){
+			callPg = "html5_inicis";
+		}else if(payMethod == '휴대폰'){
+			callPg = "danal";
+		}
+		/* 상황에 따른 PG사 선택 끝 */
+		
+		/* 상황에 따른 결제방식 선택 */
+		var callPayMethod = null;
+		if(payMethod == '신용카드'){
+			callPayMethod = "card";
+		}else if(payMethod == '무통장'){
+			callPayMethod = "vbank";
+		}else{
+			callPayMethod = "phone";
+		}		
+		/* 상황에 따른 결제방식 선택 끝 */
+		
+		/* 무통장 입금기한 */
+		var vbankDue = null;
+		if(payMethod == '무통장'){
+			var year = new Date().getFullYear().toString();
+			var month = YYYYMMDDhhmm(new Date().getMonth()+1,2);
+			var day = YYYYMMDDhhmm(new Date().getDate()+3,2);
+			var hour = YYYYMMDDhhmm(new Date().getHours(),2);
+			var minute = YYYYMMDDhhmm(new Date().getMinutes(),2);
+			var second = YYYYMMDDhhmm(new Date().getSeconds(),2);
+			vbankDue = year+month+day+hour+minute+second;
+		}
+		function YYYYMMDDhhmm(number, length){
+			var str = number.toString();
+			while(str.length < length){
+				str = '0' + str;
+			}
+		}			
+		/* 무통장 입금기한 */
+
 		/* 결제코드에 사용될 초단위 시간 */
 		var d = new Date();
 		var date = d.getFullYear()+''+(d.getMonth()+1)+''+d.getDate()+''+d.getHours()+''+d.getMinutes()+''+d.getSeconds();
@@ -35,6 +75,9 @@
 		/* 결제코드에 사용될 초단위 시간 끝 */
 		IMP.init('imp06800707');				//내 가맹점 식별코드
 		IMP.request_pay({
+			pg: callPg,							//복수 pg 사용 시 : KG이니시스(웹표준방식)
+			pay_method : callPayMethod,
+			vbank_due : vbankDue,
 			merchant_uid : "ID"+date,			//결제ID
 			name : prdName,						//결제상품명
 			amount : 100,						//결제금액 : 테스트 시 price 지우고 100입력
@@ -42,9 +85,28 @@
 			buyer_name : memberName				//주문자 이름
 		},function(rsp){
 			if(rsp.success){
-				var impUid = rsp.imp_uid;			//고유ID
-				var paidAmount = rsp.paid_amount;	//결제금액
-				var applyNum = rsp.apply_num;		//카드사 승인번호
+				var impUid = null;			//고유ID
+				var paidAmount = null;		//결제금액
+				var applyNum = 0;			//카드사 승인번호
+				
+				var vbankNum = null;		//가상계좌 입금 계좌번호
+				var vbankName = null;		//가상계좌 은행
+				var vbankHolder = null;		//예금주
+				var vbankDate = null;		//가상계좌 입금기한
+				
+				if(payMethod == '신용카드'){
+					impUid = rsp.imp_uid;
+					paidAmount = rsp.paid_amount;
+					applyNum = rsp.apply_num;
+				}else if(payMethod == '휴대폰'){
+					paidAmount = rsp.paid_amount;
+				}else{
+					paidAmount = rsp.paid_amount;
+					vbankNum = rsp.vbank_num;
+					vbankName = rsp.vbank_name;
+					vbankHolder = "관리자";
+					vbankDate = rsp.vbank_date;
+				}
 				$('#submitCode').val(code);
 				$('#submitPrdNo').val(prdNo);
 				$('#submitPrdName').val(prdName);
@@ -61,6 +123,10 @@
 				$('#submitOrderAddr').val(orderAddr);
 				$('#submitReceiveName').val(receiveName);
 				$('#submitReceivePhone').val(receivePhone);
+				$('#submitBankName').val(vbankName);
+				$('#submitBankNum').val(vbankNum);
+				$('#submitBankHolder').val(vbankHolder);
+				$('#submitBankDate').val(vbankDate);				
 				$('#submitImpUid').val(impUid);
 				$('#submitApplyNum').val(applyNum);
 				$('#submitPaymentDate').val(paymentDate);
@@ -99,6 +165,10 @@
 	<input id="submitOrderAddr" name="orderAddr" type="text" style="cursor: inherit;width:10px;" readonly>
 	<input id="submitReceiveName" name="receiveName" type="text" style="cursor: inherit;width:10px;" readonly>
 	<input id="submitReceivePhone" name="receivePhone" type="text" style="cursor: inherit;width:10px;" readonly>
+	<input id="submitBankName" name="bankName" type="text" style="cursor: inherit;width:10px;" readonly>
+	<input id="submitBankNum" name="bankNum" type="text" style="cursor: inherit;width:10px;" readonly>
+	<input id="submitBankHolder" name="bankHolder" type="text" style="cursor: inherit;width:10px;" readonly>
+	<input id="submitBankDate" name="bankDate" type="text" style="cursor: inherit;width:10px;" readonly>
 	<input id="submitImpUid" name="impUid" type="text" style="cursor: inherit;width:10px;" readonly>
 	<input id="submitApplyNum" name="applyNum" type="text" style="cursor: inherit;width:10px;" readonly>
 	<input id="submitPaymentDate" name="paymentDate" type="text" style="cursor: inherit;width:10px;" readonly>

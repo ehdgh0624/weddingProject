@@ -89,11 +89,11 @@
 					<li>
 						<p>상품관리</p>
 						<span><a href="/addGoodsPage.do">상품등록</a></span>
-						<span><a href="/goodsCare.do">재품관리</a></span>
+						<span><a href="/goodsCare.do">제품관리</a></span>
 					</li>
 					<li>
 						<p>주문관리</p>
-						<span><a href="">주문신청관리</a></span>
+						<span><a href="/reservationManager.do">주문신청관리</a></span>
 					</li>
 				</c:if>
 			</ul>
