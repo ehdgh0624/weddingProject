@@ -122,6 +122,7 @@ public class AdminDao {
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("num", String.valueOf(num));
 		map.put("code", code);
+		System.out.println(map.get("code"));
 		return sqlSession.update("admin.agreeUpdate",map);
 		}
 
@@ -199,6 +200,24 @@ public class AdminDao {
 		List list = sqlSession.selectList("admin.searchViewList", map);
 		ac.setaList((ArrayList<CompanyVo>)list);
 		return ac;
+	}
+
+	public int searchGoodsCount(String keyword) {
+		
+		return sqlSession.selectOne("admin.searchGoodsCount",keyword);
+	}
+
+	public ArrayList<Goods> searchGoodsList(int start, int end, String keyword) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("keyword", keyword);
+		List list = sqlSession.selectList("admin.searchGoodsList",map); 
+		return (ArrayList<Goods>)list;
+	}
+
+	public int memberAgree(String id) {
+		return sqlSession.update("admin.memberAgree",id);
 	}
 
 	

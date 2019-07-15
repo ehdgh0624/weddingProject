@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="qna">
+  <insert id="insertQna" parameterType="qna">
+  	<if test="qnaCheck == 0">
+  	insert into qna values(
+  		qna_seq.nextval,
+  		#{qnaTitle},
+  		#{qnaContent},
+  		#{qnaWriter},
+  		sysdate,
+  		0,
+  		#{qnaPw},
+  		#{qnaCategory},
+  		null,
+  		null,
+  		0
+  		 	)
+  	</if>
+  	<if test="qnaCheck == 1">
+  	insert into qna values(
+  		qna_seq.nextval,
+  		#{qnaTitle},
+  		#{qnaContent},
+  		#{qnaWriter},
+  		sysdate,
+  		1,
+  		null,
+  		#{qnaCategory},
+  		null,
+  		null,
+  		0
+  		 	)
+  	</if>
+  </insert>
+  <select id="qnaCountAll" resultType="_int">
+  	select count(*) from qna
+  </select>
+  <select id="qnaAllList" parameterType="map" resultType="qna">
+  	select 
+  		rnum as rnum,
+  		qna_no as qnaNo,
+  		qna_title as qnaTitle,
+  		qna_Content as qnaContent,
+  		qna_writer as qnaWriter,
+  		qna_date as qnaDate,
+  		qna_Check as qnaCheck,
+  		qna_pw as qnaPw,
+  		qna_category as qnaCategory,
+  		qna_answer as qnaAnswer,
+  		qna_Answer_Date as qnaAnswerDate,
+  		qna_Status as qnaStatus
+  		from (select rownum as rnum ,q.* from (select * from qna order by qna_No )q) where rnum between #{start} and #{end} order by rnum desc
+  
+  </select>
+  <select id="selectOneQna" parameterType="_int" resultType="qna">
+  	select 
+  		qna_no as qnaNo,
+  		qna_title as qnaTitle,
+  		qna_Content as qnaContent,
+  		qna_writer as qnaWriter,
+  		qna_date as qnaDate,
+  		qna_Check as qnaCheck,
+  		qna_pw as qnaPw,
+  		qna_category as qnaCategory,
+  		qna_answer as qnaAnswer,
+  		qna_Answer_Date as qnaAnswerDate,
+  		qna_Status as qnaStatus
+  		from qna where qna_no = #{qnaNo}
+  </select>
+  <select id="pwChk" parameterType="map" resultType="_int">
+  	select count(*) from qna where qna_no = ${num} and qna_pw = #{pass}
+  </select>
+  <update id="commentUpdate" parameterType="qna">
+  	update qna set qna_answer=#{qnaAnswer} , qna_answer_date = sysdate , qna_status = 1 where qna_no = ${qnaNo}
+  </update>
+  <update id="updateQna" parameterType="qna">
+  	update qna set qna_title = #{qnaTitle} , qna_category = #{qnaCategory} ,qna_content = #{qnaContent}
+  	<if test="qnaCheck == 0">
+  		, qna_check = 0 , qna_pw = #{qnaPw}
+  	</if>
+  	<if test="qnaCheck == 1">
+  		, qna_check = 1 , qna_pw = null
+  	</if>
+  	where qna_NO = #{qnaNo}
+  </update>
+  <delete id="deleteQna" parameterType="_int">
+  	delete from qna where qna_no = #{qnaNo}
+  </delete>
+  <select id="qnaSearch" parameterType="string" resultType="_int">
+  	select count(*) from qna where qna_writer like '%'||#{keyword}||'%'
+  </select>
+  <select id="qnaSearchList" parameterType="map" resultType="qna">
+  	select 
+  		rnum as rnum,
+  		qna_no as qnaNo,
+  		qna_title as qnaTitle,
+  		qna_Content as qnaContent,
+  		qna_writer as qnaWriter,
+  		qna_date as qnaDate,
+  		qna_Check as qnaCheck,
+  		qna_pw as qnaPw,
+  		qna_category as qnaCategory,
+  		qna_answer as qnaAnswer,
+  		qna_Answer_Date as qnaAnswerDate,
+  		qna_Status as qnaStatus
+  		from (select rownum as rnum ,q.* from (select * from qna where qna_writer like '%'||#{keyword}||'%' order by qna_No )q) where rnum between #{start} and #{end} order by rnum desc
+  </select>
+</mapper>

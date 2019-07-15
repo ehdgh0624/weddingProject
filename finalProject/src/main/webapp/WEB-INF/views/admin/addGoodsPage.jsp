@@ -56,7 +56,7 @@
 						</td>
 					</tr>
 				</table>
-				<input type="submit" value="등록" class="delete-btn">
+				<div class="common-tbl-btn-group "  style="margin-bottom: 20px;"><button class="btn-style1" type="submit">등록</button> </div>
 			</form>
 	</div>
 	

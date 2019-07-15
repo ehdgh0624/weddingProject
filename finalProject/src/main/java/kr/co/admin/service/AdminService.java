@@ -155,11 +155,16 @@ public class AdminService {
 		return ac;
 	}
 	@Transactional
-	public int agree(int num, String code) {
-		return adminDao.agree(num,code);
+	public int agree(int num, String code, String id) {
+		int result = adminDao.agree(num,code);
+		if(result >0) {
+			int result1 = adminDao.memberAgree(id);
+		}
+		
+		return result;
 	}
 	@Transactional
-	public int reject(int num, String code) {
+	public int reject(int num, String code, String id) {
 		return adminDao.reject(num,code);
 	}
 	public AdminCompany searchCompany(int reqPage, String type, String keyword) {
@@ -254,6 +259,37 @@ public class AdminService {
 			ac.setPageNavi(pageNavi);
 		return ac;
 		
+	}
+	public AdminGoods searchGoods(int reqPage, String keyword) {
+		int total = adminDao.searchGoodsCount(keyword);
+		int pageNum = 9;
+		int totalPage = (total%pageNum==0)?(total/pageNum):(total/pageNum)+1;
+	    int start = (reqPage*pageNum-pageNum)+1;
+	    int end  = reqPage*pageNum;
+	    ArrayList<Goods> gl = adminDao.searchGoodsList(start,end,keyword);
+	    
+	    String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='/searchGoods.do?reqPage="+(pageNo-1)+"&keyword="+keyword+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/searchGoods.do?reqPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/searchGoods.do?reqPage="+pageNo+"&keyword="+keyword+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		AdminGoods ag = new AdminGoods(gl, pageNavi);
+		
+		return ag;
 	}
 
 }

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
@@ -12,143 +13,281 @@
 
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-		예약번호 : ${reservation.reservationNo}
-		<br>
-		타입분류 : ${reservation.code}
-		<br>
-		<c:choose>
-			<c:when test="${reservation.code == 'S' || reservation.code == 'D' || reservation.code == 'M'}">
-				업체번호 : ${reservation.prdNo}
-				<br>
-				결혼 예정일 : ${reservation.weddingDate}
-				<br>
-				결혼 예정시각 : ${reservation.weddingTime}
-				<br>
-				총 가격 : ${reservation.totalPrice}
-				<br>
-				예약자 아이디 : ${reservation.memberId}
-				<br>
-				예약자 이름 : ${reservation.memberName}
-				<br>
-				예약자 연락처 : ${reservation.memberPhone}
-				<br>
-				예약자 이메일 : ${reservation.memberEmail}
-				<br>
-				주문날짜 : ${reservation.orderDate}
-				<br>
-				<c:if test="${not empty reservation.option1 || not empty reservation.option2 || not empty reservation.option3}">
-					<c:if test="${not empty reservation.option1}">
-						옵션1 : ${reservation.option1}
-						<br>
-						<c:if test="${not empty reservation.option1Date}">
-							옵션1 예약날짜 : ${reservation.option1Date}
-						<br>
+		<div class="common-tbl-box">
+
+			<h2 class="comm-content-tit">예약리스트</h2> 
+			<h1>결혼예정일 : ${reservation.weddingDate} ${reservation.weddingTime}<span style="float: right;">총 결제금액 : ${reservation.totalPrice}</span></h1>
+			<br>
+			<table class="comm-tbl">
+				<colgroup>
+					<col width="30%">
+					<col width="/">
+				</colgroup>
+				<tr>
+					<th colspan="2" style="text-align: center;">예약자 정보</th>
+				</tr>
+				<tr>
+					<th>예약자 ID</th>
+					<td>${reservation.memberId}</td>
+				</tr>
+				<tr>
+					<th>예약자 성함</th>
+					<td>${reservation.memberName}</td>
+				</tr>
+				<tr>
+					<th>예약자 연락처</th>
+					<td>${reservation.memberPhone}</td>
+				</tr>
+				<tr>
+					<th>예약자 이메일</th>
+					<td>${reservation.memberEmail}</td>
+				</tr>
+				<tr>
+					<th colspan="2" style="text-align: center;">주문 정보</th>
+				</tr>
+				<tr>
+					<th>주문일</th>
+					<td>${reservation.orderDate}</td>
+				</tr>
+				<tr>
+					<c:choose>
+						<c:when test="${reservation.code == 'G'}">
+							<th>상품명</th>
+						</c:when>
+						<c:otherwise>
+							<th>업체명</th>
+						</c:otherwise>
+					</c:choose>
+					<td>${reservation.prdName}</td>
+				</tr>
+				<c:choose>
+					<c:when test="${reservation.code == 'G'}">
+						<tr>
+							<th>주문수량</th>
+							<td>${reservation.amount}</td>
+						</tr>
+						<tr>
+							<th>총 결제금액</th>
+							<td>${reservation.totalPrice}</td>
+						</tr>
+						<tr>
+							<th>주문메모</th>
+							<td>${reservation.orderMemo}</td>
+						</tr>
+						<tr>
+							<th colspan="2" style="text-align: center;">배송 정보</th>
+						</tr>
+						<tr>
+							<th>배송예정 주소</th>
+							<td>${reservation.orderAddr}</td>
+						</tr>
+						<tr>
+							<th>수령인</th>
+							<td>${reservation.receiveName}</td>
+						</tr>
+						<tr>
+							<th>수령인 연락처</th>
+							<td>${reservation.receivePhone}</td>
+						</tr>
+						<tr>
+							<th>배송상태</th>
+							<c:if test="${reservation.deliveryStatus == 0}">
+								<td>상품준비중</td>
+							</c:if>
+							<c:if test="${reservation.deliveryStatus == 1}">
+								<td>발송준비중</td>						
+							</c:if>
+							<c:if test="${reservation.deliveryStatus == 2}">
+								<td>배송중</td>						
+							</c:if>
+							<c:if test="${reservation.deliveryStatus == 3}">
+								<td>배송완료</td>						
+							</c:if>
+						</tr>
+						<c:if test="${reservation.deliveryStatus == 2 || reservation.deliveryStatus == 3}">
+							<tr>
+								<th>배송번호(송장번호)</th>
+								<td>${reservation.deliveryNum}</td>
+							</tr>
 						</c:if>
-						<c:if test="${not empty reservation.option1Time}">
-							옵션1 예약시간 : ${reservation.option1Time}
-						<br>
+						<tr>
+							<th colspan="2" style="text-align: center;">결제 정보</th>
+						</tr>
+						<tr>
+							<th>결제수단</th>
+							<td>${reservation.payMethod}</td>
+						</tr>
+						<tr>
+							<th>결제상태</th>
+							<c:choose>
+								<c:when test="${reservation.orderStatus == 0}">
+									<td>결제대기</td>
+								</c:when>
+								<c:when test="${reservation.orderStatus == 1}">
+									<td>결제완료</td>
+								</c:when>
+								<c:when test="${reservation.orderStatus == 2}">
+									<td>결제취소 대기</td>
+								</c:when>
+								<c:otherwise>
+									<td>결제취소 완료</td>
+								</c:otherwise>
+							</c:choose>
+						</tr>
+						<c:if test="${reservation.payMethod == '신용카드' || reservation.payMethod == '휴대폰'}">
+							<tr>
+								<th>결제일시</th>
+								<td>${reservation.paymentDate}</td>
+							</tr>
 						</c:if>
-					</c:if>
-					<c:if test="${not empty reservation.option2}">
-						옵션2 : ${reservation.option2}
-						<br>
-						<c:if test="${not empty reservation.option2Date}">
-							옵션2 예약날짜 : ${reservation.option2Date}
-						<br>
-						</c:if>
-						<c:if test="${not empty reservation.option2Time}">
-							옵션2 예약시간 : ${reservation.option2Time}
-						<br>
+						<c:if test="${reservation.payMethod == '무통장'}">
+							<c:choose>
+								<c:when test="${reservation.orderStatus == 0}">
+									<tr>
+										<th>가상계좌</th>
+										<td>${reservation.bankNum}</td>
+									</tr>
+									<tr>
+										<th>은행명</th>
+										<td>${reservation.bankName}</td>
+									</tr>
+									<tr>
+										<th>예금주</th>
+										<td>${reservation.bankHolder}</td>
+									</tr>
+									<tr>
+										<th>입금기한</th>
+										<td>${reservation.bankDate}</td>
+									</tr>							
+								</c:when>
+								<c:when test="${reservation.orderStatus == 1}">
+									<tr>
+										<th>결제일시</th>
+										<td>${reservation.paymentDate}</td>
+									</tr>							
+								</c:when>
+							</c:choose>
+						</c:if>	
+					</c:when>
+					<c:otherwise>
+						<c:if test="${reservation.code == 'S'}">
+							<tr>
+								<th>분류</th>
+								<td>스튜디오</td>
+							</tr>
+							<c:if test="${not empty reservation.option1}">
+								<tr>
+									<th rowspan="2">옵션1</th>
+									<td>옵션명 : ${reservation.option1}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option2}">
+								<tr>
+									<th rowspan="3">옵션2</th>
+									<td>옵션명 : ${reservation.option2}</td>
+								</tr>
+								<tr>
+									<td>
+										방문일자 :
+										<span>${reservation.option2Date}</span>
+										<span>${reservation.option2Time}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option3}">
+								<tr>
+									<th rowspan="2">옵션3</th>
+									<td>옵션명 : ${reservation.option3}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
 						</c:if>
 						<c:if test="${reservation.code == 'D'}">
-							대여수량 : ${reservation.amount}
+							<tr>
+								<th>분류</th>
+								<td>드레스</td>
+							</tr>
+							<c:if test="${not empty reservation.option1}">
+								<tr>
+									<th rowspan="3">옵션1</th>
+									<td>옵션명 : ${reservation.option1}</td>
+								</tr>
+								<tr>
+									<td>
+										방문일자 :
+										<span>${reservation.option1Date}</span>
+										<span>${reservation.option1Time}</span>
+									</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option2}">
+								<tr>
+									<th rowspan="2">옵션2</th>
+									<td>옵션명 : ${reservation.option2}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option3}">
+								<tr>
+									<th rowspan="2">옵션3</th>
+									<td>옵션명 : ${reservation.option3}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
 						</c:if>
-					</c:if>
-					<c:if test="${not empty reservation.option3}">
-						옵션3 : ${reservation.option3}
-						<c:if test="${not empty reservation.option3Date}">
-							옵션3 예약날짜 : ${reservation.option3Date}
-						<br>
+						<c:if test="${reservation.code == 'M'}">
+							<tr>
+								<th>분류</th>
+								<td>메이크업</td>
+							</tr>
+							<c:if test="${not empty reservation.option1}">
+								<tr>
+									<th rowspan="2">옵션1</th>
+									<td>옵션명 : ${reservation.option1}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option2}">
+								<tr>
+									<th rowspan="2">옵션2</th>
+									<td>옵션명 : ${reservation.option2}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty reservation.option3}">
+								<tr>
+									<th rowspan="2">옵션3</th>
+									<td>옵션명 : ${reservation.option3}</td>
+								</tr>
+								<tr>
+									<td>가격 : </td>
+								</tr>
+							</c:if>
 						</c:if>
-						<c:if test="${not empty reservation.option3Time}">
-							옵션3 예약시간 : ${reservation.option3Time}
-						</c:if>
-					</c:if>
-				</c:if>			
-			</c:when>
-			<c:otherwise>
-				상품번호 : ${reservation.prdNo}
-				<br>
-				결혼 예정일 : ${reservation.weddingDate}
-				<br>
-				결혼 예정시각 : ${reservation.weddingTime}
-				<br>
-				총 가격 : ${reservation.totalPrice}
-				<br>
-				예약자 아이디 : ${reservation.memberId}
-				<br>
-				예약자 이름 : ${reservation.memberName}
-				<br>
-				예약자 연락처 : ${reservation.memberPhone}
-				<br>
-				예약자 이메일 : ${reservation.memberEmail}
-				<br>
-				결제수단 : ${reservation.payMethod}
-				<br>
-				구매수량 : ${reservation.amount}
-				<br>
-				<c:choose>
-					<c:when test="${reservation.orderStatus == 0}">
-						주문상태 : 결제대기 중
-						<br>
-					</c:when>
-					<c:when test="${reservation.orderStatus == 1}">
-						주문상태 : 결제완료				
-						<br>
-					</c:when>
-					<c:when test="${reservation.orderStatus == 2}">
-						주문상태 : 결제취소 대기
-						<br>
-					</c:when>
-					<c:otherwise>
-						주문상태 : 결제취소 완료
-						<br>
 					</c:otherwise>
 				</c:choose>
-				<c:choose>
-					<c:when test="${not empty reservation.deliveryNum}">
-						송장번호 : ${reservation.deliveryNum}
-						<br>
-					</c:when>
-					<c:otherwise>
-						송장번호 : 준비 중
-						<br>
-					</c:otherwise>
-				</c:choose>
-				주문날짜 : ${reservation.orderDate}
-				<br>
-				주문메모 : 	${reservation.orderMemo}
-				<br>
-				배송예정 주소 : ${reservation.orderAddr}
-				<br>
-				수령인 이름 : ${reservation.receiveName}
-				<br>
-				수령인 연락처 : ${reservation.receivePhone}
-				<br>
-				입금 은행 : ${reservation.bankName}
-				<br>
-				입금 계좌 : ${reservation.bankNum}
-				<br>
-				예금주 : ${reservation.bankHolder}
-				<br>
-				입금기한 : ${reservation.bankDate}
-				<br>
-			</c:otherwise>
-		</c:choose>
-		<br>
-		
-		
-		
+			</table>
+			<hr>
+		</div>	
 	</div>
 	
 	<%--  footer --%>

@@ -6,9 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.dao.HallDao;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
+import kr.co.hall.vo.HallSelect;
+import kr.co.review.model.vo.Review;
+import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Service("hallService")
 public class HallService {
@@ -120,6 +124,35 @@ public class HallService {
 		HallPage pd = new HallPage(hList, pageNavi, reqPage);
 		return pd;
 	}
-	
+
+
+	public Object selectOneHall(int hallNo) {
+		return hallDao.selectOneHall(hallNo);
+	}
+
+
+	public ArrayList<Gallery> selectListGallery(int galleryNo, String galleryCode) {
+		return (ArrayList<Gallery>)hallDao.selectListGallery(galleryNo,galleryCode);
+	}
+
+
+	public ArrayList<Review> selectListReview(int objectNo, String code){
+		return (ArrayList<Review>)hallDao.selectListReview(objectNo, code);
+	}
+
+
+	public Scrapbook selectOneScrapbook(String memberId, int objectNo, String code) {
+		return hallDao.selectOneScrapbook(memberId, code, objectNo);
+	}
+
+
+	public ArrayList<HallSelect> selectListHall(int hallNo) {
+		return (ArrayList<HallSelect>)hallDao.selectListHall(hallNo);
+	}
+
+
+	public HallSelect selectOption(int result) {
+		return (HallSelect)hallDao.selectOption(result);
+	}
 
 }
