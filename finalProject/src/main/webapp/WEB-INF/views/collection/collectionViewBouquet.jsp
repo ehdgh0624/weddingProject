@@ -3,8 +3,20 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <jsp:include page="/WEB-INF/common/header.jsp"/>
-<%--  Header --%>
+<%-- Header --%>
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
+<%-- 우편번호 찾기 API --%>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+
+<style>
+	/* 페이지 로드 시 input number 화살표 버튼 제거 */
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+	/* 페이지 로드 시 input number 화살표 버튼 제거 끝 */
+</style>
 
 <%-- wrap --%>
 <section id="wrap">
@@ -68,6 +80,7 @@
 					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
 				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
+
 					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
 					<!-- 이미지 경로로 대체할 예정 -->
 				</div>
@@ -190,11 +203,11 @@
 									<th>연락처</th>
 									<td>
 										<div>
-											<input type="text" id="receivePhone1" style="width:100px;">
+											<input type="number" id="receivePhone1" style="width:100px;" maxlength="3" oninput="checkMax(this)">
 											-
-											<input type="text" id="receivePhone2" style="width:100px;">
+											<input type="number" id="receivePhone2" style="width:100px;" maxlength="4" oninput="checkMax(this)">
 											-
-											<input type="text" id="receivePhone3" style="width:100px;">
+											<input type="number" id="receivePhone3" style="width:100px;" maxlength="4" oninput="checkMax(this)">
 										</div>
 										<div style="width:150px;display: inline-block;">
 											<input type="radio" name="receivePhoneSelect" id="memberPhoneSelect" checked> 회원정보와 동일
@@ -208,7 +221,7 @@
 									<th>배송지</th>
 									<td>
 										<input type="text" id="receiveAddr1" style="width:100px;" readonly>
-										<button type="button" class="">우편번호 찾기</button>									
+										<button type="button" id="addrSearchBtn" onclick="sample4_execDaumPostcode()" style="display: none;">우편번호 찾기</button>
 										<br>
 										<input type="text" id="receiveAddr2" readonly>
 										<input type="text" id="receiveAddr3" placeholder="상세주소를 입력해주세요.">
@@ -217,7 +230,7 @@
 								<tr>
 									<th>주문메모 및 요청사항</th>
 									<td>
-										<textarea id="orderMemo"></textarea>
+										<input id="orderMemo" type="text" maxlength="80" oninput="checkMaxMemo(this)">
 									</td>
 								</tr>
 								<tr>
@@ -234,14 +247,6 @@
 										<div style="width:150px;display: inline-block;">
 											<input type="radio" name="paymentSelect" id="paymentPhoneSelect" class="payMethod" value="휴대폰">
 											휴대폰 결제
-										</div>
-										<div id="paymentBankInfo">
-											<br>
-											계좌번호 : SC제일은행 402-20-171330
-											<br>
-											예금주 : 장희은
-											<br>
-											입금기한 : 2019년 7월 15일
 										</div>
 									</td>
 								</tr>
@@ -279,6 +284,78 @@
 	</div>
 </section>
 <script>
+	/* 주문메모 길이 체크 */
+	function checkMaxMemo(checkMemo){
+		if(checkMemo.value.length > checkMemo.maxLength){
+			checkMemo.value = checkMemo.value.slice(0, checkMemo.maxLength);
+		}
+	}
+	/* 주문메모 길이 체크 끝 */
+
+	/* 연락처 길이 체크 */
+	function checkMax(checkPhone){
+		if(checkPhone.value.length > checkPhone.maxLength){
+			checkPhone.value = checkPhone.value.slice(0, checkPhone.maxLength);
+		}
+	}		
+	/* 연락처 길이 체크 끝 */
+
+	/* 수령인 연락처 checked를 변경했을 때 */
+	$('input[name=receivePhoneSelect]').click(function(){
+		if($('#memberPhoneSelect').prop("checked") == true){			
+			var memberPhone = '${sessionScope.member.phone}';				//세션으로부터 회원 연락처를 받아 변수에 저장
+			$('#receivePhone1').val(memberPhone.substring(0,3));			//연락처 input에 회원 연락처 앞번호가 세팅됨
+			$('#receivePhone2').val(memberPhone.substring(3,7));			//연락처 input에 회원 연락처 가운데 번호가 세팅됨
+			$('#receivePhone3').val(memberPhone.substring(7,11));			//연락처 input에 회원 연락처 마지막 번호가 세팅됨
+			$('#receivePhone1').prop('readonly',true);						//수령인 input 수정 불가 설정
+			$('#receivePhone2').prop('readonly',true);						//수령인 input 수정 불가 설정
+			$('#receivePhone3').prop('readonly',true);						//수령인 input 수정 불가 설정
+		}
+		if($('#receivePhoneSelect').prop("checked") == true){
+			var memberPhone = '${sessionScope.member.phone}';				//세션으로부터 회원 연락처를 받아 변수에 저장
+			$('#receivePhone1').val('');									//연락처 input에 회원 연락처 앞번호가 세팅됨
+			$('#receivePhone2').val('');									//연락처 input에 회원 연락처 가운데 번호가 세팅됨
+			$('#receivePhone3').val('');									//연락처 input에 회원 연락처 마지막 번호가 세팅됨
+			$('#receivePhone1').prop('readonly',false);						//수령인 input 수정 불가 설정
+			$('#receivePhone2').prop('readonly',false);						//수령인 input 수정 불가 설정
+			$('#receivePhone3').prop('readonly',false);						//수령인 input 수정 불가 설정			
+		}
+	});
+	/* 수령인 연락처 checked를 변경했을 때 끝 */
+
+	/* 수령인 선택 checked를 변경했을 때 */
+	$('input[name=receiveNameSelect]').click(function(){
+		if($('#memberNameSelect').prop("checked") == true){
+			$('#receiveName').val('${sessionScope.member.memberName}');		//수령인 input에 자동으로 회원 이름이 세팅됨
+			$('#receiveName').prop('readonly',true);						//수령인 input 수정 불가 설정				
+		}
+		if($('#receiveNameSelect').prop("checked") == true){
+			$('#receiveName').val('');										//수령인 input에 자동으로 회원 이름이 세팅됨
+			$('#receiveName').prop('readonly',false);						//수령인 input 수정 불가 설정
+		}
+	});
+	/* 수령인 선택 checked를 변경했을 때 끝 */
+
+	/* 배송지 선택 checked를 변경했을 때 */
+	$('input[name=orderAddrSelect]').click(function(){
+		if($('#memberAddrSelect').prop("checked") == true){
+			var addr = '${sessionScope.member.addr}';		//세션으로부터 회원 주소를 받아 변수에 저장
+			var addrArr = addr.split('/');					//회원 주소를 슬라이드(/) 기준으로 잘라 배열에 저장함
+			$('#receiveAddr1').val(addrArr[3]);				//배열의 4번쨰 공간에 저장된  우편번호를 출력함
+			$('#receiveAddr2').val(addrArr[4]);				//배열의 5번째 공간에 저장된 지역주소를 출력함
+			$('#receiveAddr3').val(addrArr[2]);				//배열의 3번째 공간에 저장된 상세주소를 출력함
+			$('#addrSearchBtn').hide();						//우편번호 찾기 버튼 숨김
+		}
+		if($('#newAddrSelect').prop("checked") == true){
+			$('#receiveAddr1').val('');
+			$('#receiveAddr1').prop('readonly',false);
+			$('#receiveAddr2').val('');
+			$('#receiveAddr2').prop('readonly',false);
+			$('#receiveAddr3').val('');
+			$('#addrSearchBtn').show();
+		}
+	});
+	/* 배송지 선택 checked를 변경했을 때 끝 */
 
 	/* 페이지 로드 시 이벤트 */
 	$(document).ready(function(){
@@ -332,9 +409,27 @@
 						$('#receiveAddr2').val(addrArr[4]);								//배열의 5번째 공간에 저장된 지역주소를 출력함
 						$('#receiveAddr3').val(addrArr[2]);								//배열의 3번째 공간에 저장된 상세주소를 출력함
 					}else{
-						if($('.payMethod:checked').val() == '신용카드'){
-							window.open("","popup_window","width=850, height=650, scrollbars=no");
-							submitPayment();
+						if('${sessionScope.member.memberId}' != ''){
+							if($('#receiveName').val() == ''){
+								alert("수령인을 확인해주세요.");
+							}else{
+								if($('#receivePhone1').val() == '' || $('#receivePhone2').val() == '' || $('#receivePhone3').val() == ''){
+									alert("연락처를 확인해주세요.");
+								}else{
+									if($('#receiveAddr1').val() == '' || $('#receiveAddr2').val() == '' || $('#receiveAddr3').val() == ''){
+										alert("배송지를 확인해주세요.");
+									}else{
+										if($('#paymentCardSelect').prop("checked") == false && $('#paymentBankSelect').prop("checked") == false && $('#paymentPhoneSelect').prop("checked") == false){
+											alert("결제수단을 선택해주세요.");
+										}else{
+											window.open("","popup_window","width=950, height=650, scrollbars=no");
+											submitPayment();
+										}
+									}
+								}
+							}							
+						}else{
+							alert("로그인 후 진행해주세요.");
 						}
 					}
 				}else{
@@ -354,9 +449,9 @@
 		var payMethod = $('.payMethod:checked').val();
 		var amount = $('#goodsAmount').val();
 		var orderMemo = $('#orderMemo').val();
-		var orderAddr = '('+$('#receiveAddr1').val()+') '+$('#receiveAddr2').val()+' '+$('#receiveAddr1').val();
+		var orderAddr = '('+$('#receiveAddr1').val()+') '+$('#receiveAddr2').val()+' '+$('#receiveAddr3').val();
 		var receiveName = $('#receiveName').val();
-		var receivePhone = $('#receivePhone1').val()+$('#receivePhone2').val()+$('#receivePhone3').val()
+		var receivePhone = $('#receivePhone1').val()+$('#receivePhone2').val()+$('#receivePhone3').val();
 		$('#submitCode').val(code);
 		$('#submitPrdNo').val(prdNo);
 		$('#submitPrdName').val(prdName);
@@ -440,6 +535,39 @@
 		});
 	});
 	/* 스크랩북 on/off 끝 */	
+	
+	/* 우편번호 찾기 */
+	function sample4_execDaumPostcode() {
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
+	
+	            // 도로명 주소의 노출 규칙에 따라 주소를 표시한다.
+	            // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
+	            var roadAddr = data.roadAddress; // 도로명 주소 변수
+	            var extraRoadAddr = ''; // 참고 항목 변수
+	
+	            // 법정동명이 있을 경우 추가한다. (법정리는 제외)
+	            // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+	            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+	                extraRoadAddr += data.bname;
+	            }
+	            // 건물명이 있고, 공동주택일 경우 추가한다.
+	            if(data.buildingName !== '' && data.apartment === 'Y'){
+	               extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+	            }
+	            // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
+	            if(extraRoadAddr !== ''){
+	                extraRoadAddr = ' (' + extraRoadAddr + ')';
+	            }
+	
+	            // 우편번호와 주소 정보를 해당 필드에 넣는다.
+	            document.getElementById('receiveAddr1').value = data.zonecode;	//우편번호
+	            document.getElementById("receiveAddr2").value = roadAddr;		//도로명주소
+	        }
+	    }).open();
+	}
+	/* 우편번호 찾기 끝 */
 	
 	</script>
 <%--  footer --%>

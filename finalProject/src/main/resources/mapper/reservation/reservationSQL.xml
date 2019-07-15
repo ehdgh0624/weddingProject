@@ -85,18 +85,27 @@
 	</insert>
 	
 	<insert id="insertReservationGoods" parameterType="map">
-		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},'admin',#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},#{payMethod},#{amount},1,null,sysdate,#{orderMemo},#{orderAddr},#{memberEmail},#{receiveName},#{receivePhone},
+		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},'admin',#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},#{payMethod},#{amount},
 		<choose>
-			<when test='#{payMethod == "신용카드"}'>
-				null,null,null,null	
+			<when test='payMethod == "무통장"'>
+				0
 			</when>
 			<otherwise>
+				1
+			</otherwise>
+		</choose>
+		,null,sysdate,#{orderMemo},#{orderAddr},#{memberEmail},#{receiveName},#{receivePhone},
+		<choose>
+			<when test='payMethod == "무통장"'>
 				#{bankName},#{bankNum},#{bankHolder},#{bankDate}
+			</when>
+			<otherwise>
+				null,null,null,null	
 			</otherwise>
 		</choose>
 		,
 		<choose>
-			<when test='#{payMethod == "신용카드"}'>
+			<when test='payMethod == "신용카드"'>
 				#{impUid},#{applyNum},#{paymentDate}
 			</when>
 			<otherwise>
