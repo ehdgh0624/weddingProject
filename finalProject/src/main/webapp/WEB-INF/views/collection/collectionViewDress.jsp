@@ -504,7 +504,7 @@
 				infoWindow.open(map,marker);
 			}
 		});
-	}
+	};
 	</script>
 <%--  footer --%>
 <jsp:include page="/WEB-INF/common/footer.jsp" />

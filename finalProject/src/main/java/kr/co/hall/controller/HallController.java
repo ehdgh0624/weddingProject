@@ -89,6 +89,7 @@ public class HallController {
 		mav.addObject("hall",hallService.selectOneHall(hallNo));
 		mav.addObject("galleryList", hallService.selectListGallery(hallNo, "H"));
 		mav.addObject("reviewList", hallService.selectListReview(hallNo, "H"));
+		mav.addObject("hallSelect",hallService.selectListHall(hallNo));
 		if(m != null) {
 			Scrapbook scrap = hallService.selectOneScrapbook(m.getMemberId(),hallNo, "H");
 			mav.addObject("scrapbook",scrap);

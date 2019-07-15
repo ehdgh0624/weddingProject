@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="hallSelect">
+	<select id="selectListHallSelect" parameterType="map" resultType="hall">
+		select hall_select_ref as hallSelectRef,
+			   hall_select_type as hallSelectType,
+			   hall_select_price as hallSelectPrice,
+			   hall_select_etc as hallSelectEtc from hall_select where hall_select_ref=#{hallSelectRef}
+	</select>
+</mapper>

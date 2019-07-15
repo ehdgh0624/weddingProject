@@ -10,6 +10,7 @@ import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.dao.HallDao;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
+import kr.co.hall.vo.HallSelect;
 import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -142,6 +143,11 @@ public class HallService {
 
 	public Scrapbook selectOneScrapbook(String memberId, int objectNo, String code) {
 		return hallDao.selectOneScrapbook(memberId, code, objectNo);
+	}
+
+
+	public ArrayList<HallSelect> selectListHall(int objectNo) {
+		return (ArrayList<HallSelect>)hallDao.selectListHall(objectNo);
 	}
 
 }

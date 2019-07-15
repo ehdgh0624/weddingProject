@@ -16,24 +16,16 @@
 <!-- font awesome -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
+	<%-- 네이버 지도 API --%>
+<script type="text/javascript"
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
 
 <%-- wrap --%>
 <section id="wrap">
 	<div class="">
 		<section class="hallView">
-<!-- 			<div class="hallName "> -->
-<!-- 				<div class="subName area"> -->
-<!-- 					<div class="backBtn">&lt;</div> -->
-<!-- 					<div class="text"> -->
-<!-- 						<h5> -->
-<!-- 							홀 제목 <a href="#"><img alt="" src="/resources/img/star_m1.png"></a> -->
-<!-- 						</h5> -->
-<!-- 						<p>홀 주소</p> -->
-
-<!-- 					</div> -->
-<!-- 				</div> -->
-<!-- 			</div> -->
-		<!-- 상호명 table -->
+			<div>
+			<!-- 상호명 table -->
 			<table style="width: 100%;">
 				<tr>
 					<!-- 이전페이지 -->
@@ -65,192 +57,159 @@
 					</td>
 				</tr>
 			</table>
-
-			<div class="view-gallery-slide area">
-				<!-- 큰 이미지 영역 -->
-				<ul class="view-big-gallery-list slider-for">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-				</ul>
-				<!-- 작은 이미지 영역 -->
-				<ul class="view-small-gallery-list slider-nav">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-				</ul>
-			</div>
+			<!-- 상호명 테이블 끝 -->
 			<br>
-			<div class="content area">
-				<div class="contentsub">
-					<h3 class="desc-headline">상세설명</h3>
-					<div>
-						<h2>스타 쉐프가 선사하는 음식</h2>
-						<p>내가 그린 기린 그림은 목이 긴 그린 기린 그림이고 니가 그린 기린 그림은 목인 짧은 그린 기린 그림이다.</p>
-					</div>
+			<!-- 사진 carousel -->
+			<div class="view-gallery-slide">
+			<!-- 큰 이미지 영역 -->
+			<ul class="view-big-gallery-list slider-for">
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+			</ul>
+			<!-- 작은 이미지 영역 -->
+			<ul class="view-small-gallery-list slider-nav">
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+				<li><img src="/resources/img/test_img2.jpg"></li>
+			</ul>
+		</div>
+			<!-- 사진 carousel 끝 -->
+			<br> <br> <br>
+			<!-- 상세설명, 리뷰, 지도가 포함된 content 시작 -->
+			<div style="position: relative;">
+				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
+				<div style="width: 70%; display: inline-block;">
+					<h2>상세설명</h2>
+					<hr>
+					${hall.hallContent} <br> <br> <br>
+					<c:if
+						test="${not empty hall.hallServiceFood || not empty hall.hallServiceAudio || not empty hall.hallServiceDrink || not empty hall.hallServicePark}">
+						<h2>운영정책</h2>
+						<br>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
+							<c:if test="${not empty hall.hallServiceFood}">
+								<tr>
+									<th>음식</th>
+									<td>${hall.hallServiceFood}</td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty hall.hallServiceAudio}">
+								<tr>
+									<th>음향</th>
+									<td>${hall.hallServiceAudio}</td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty hall.hallServiceDrink}">
+								<tr>
+									<th>주류</th>
+									<td>${hall.hallServiceDrink}</td>
+								</tr>
+							</c:if>
+							<c:if test="${not empty hall.hallServicePark}">
+								<tr>
+									<th>주차</th>
+									<td>${hall.hallServicePark}</td>
+								</tr>
+							</c:if>
+						</table>
+					</c:if>
+					<br> <br> <br>
+					<h2>가격확인 및 예약문의</h2>
+					<br>
 
-					<h3 class="desc-headline">운영정책</h3>
-					<div>
-						<ul class="property-features ptnr_policy margin-top-0">
-							<li><i class="far fa-clock"></i> <span class="policy_title">이용시간</span>
-								<p>
-									메이다이닝 시크릿가든 - 11:00 ~ 15:00
-								</p></li>
-							<li><i class="fas fa-utensils"></i> <span
-								class="policy_title">식사</span>
-								<p>
-									<span class="policy_o">제공</span>
-								</p></li>
-							<li><i class="fa fa-volume-up"></i> <span
-								class="policy_title">음향</span>
-								<p>
-									<span class="policy_o">제공</span>
-								</p></li>
-							<li><i class="fas fa-glass-martini-alt"></i> <span
-								class="policy_title">주류</span>
-								<p>
-									<span class="policy_o">제공</span>
-								</p></li>
-							<li><i class="fas fa-parking"></i> <span
-								class="policy_title">주차</span>
-								<p>
-									<span class="policy_o">가능</span>
-								</p></li>
-						</ul>
-					</div>
-
-					<h3 class="desc-headline" style="font-size: 20px; color: #f46629;">
-						<i class="fa fa-calculator"></i> 가격확인 및 예약문의
-					</h3>
-					<div class="ptnr_estimate">
-						<div class="panel panel-default" style="background-color: #f9f3f3">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a href="javascript:;"> 1단계 예식정보입력 및 대관선택 </a>
-								</h4>
-							</div>
-							<div class="panel-body" id="ctnr1_estimate">
-								<div class="form-group margin-bottom-45">
-									<label class="control-label">결혼 예정일</label>
-									<div class="input-group-wrap">
-										<div class="input-group w-60">
-											<input type="text" name="weddingDate" id="weddingDate"
-												class="datepicker wedding-date form-control"
-												placeholder="예식일을 선택해주세요" required> <span
-												class="input-group-btn ui-datepicker-trigger">
-												<button class="btn default" type="button">
-													<i class="far fa-calendar-alt"></i>
-												</button>
-											</span>
-										</div>
-										<div class="input-group w-40">
-											<input type="text" name="timepicker"
+					<form>
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="30%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>예식일</th>
+								<td colspan="2">
+									<input type="text" name="weddingDate" id="weddingDate" class="datepicker wedding-date middle" placeholder="예식일을 선택해주세요" required>
+								</td>
+							</tr>
+							<tr>
+								<th>예식시간</th>
+								<td colspan="2">
+									<div class="input-group w-40">
+											<input type="text" name="hallTime"
 												class="form-control time_element" /> <span
 												class="input-group-btn ui-datepicker-trigger">
-												<button class="btn default" type="button">
-													<i class="far fa-clock"></i>
-												</button>
+
 											</span>
 										</div>
-									</div>
-								</div>
-								<div class="form-group">
-									<label>언제 대관하고 싶으신가요?</label>
-									<div class="input-group-wrap">
-										<select
-											class="form-control form_input input_necessary attr_select_time toggle_box"
-											id="select_venue_service">
-											<option>메이다이닝 시크릿가든 / 80명 ~ 200명 /
-												11:00 ~ 15:00</option>
+								</td>
+							</tr>
+							<tr>
+								<th colspan="3" style="text-align: center;">예약 옵션</th>
+							</tr>
+							<tr>
+									<th rowspan="4">기본 옵션</th>
+									<th>예식장
+										<td>
+										<select>
+												<option>옵션</option>
 										</select>
-									</div>
-								</div>
-								<div class="table-scrollable">
-									<table class="table table-bordered table-hover" border="1">
-										<thead>
-											<tr>
-												<th></th>
-												<th>상세정보</th>
-											</tr>
-										</thead>
-										<tbody>
-											<tr>
-												<td>대관정책/요금</td>
-												<td id="tb_desc2">장소가 정한 시간동안만 이용가능해요<br>대관료:
-													2,500,000원
-												</td>
-											</tr>
-											<tr id="ctnr_people_policy" style="display: none;">
-												<td>인원정책</td>
-												<td id="tb_desc3"></td>
-											</tr>
-											<tr>
-												<td>비고</td>
-												<td id="tb_desc4" style="white-space: pre-wrap;">메이다이닝</td>
-											</tr>
-										</tbody>
-									</table>
-								</div><br>
-								<div class="form-group form-md-touchspin margin-bottom-30">
-									<label class="control-label">예상하객수<span
-										class="required">*</span></label>
-									<div class="input-group-wrap">
-										<div class="input-group w-60">
-											<input type="text" name="" id="" class="form-control"
-												placeholder="몇명이나오니?" required> <span
-												class="input-group-btn ui-datepicker-trigger">
-												<button class="btn default" type="button">명</button>
-											</span>
-										</div>
-									</div>
-									<span class="msg-error">80명이상 200명이하로 입력가능합니다<br></span>
-								</div>
-							</div>
-						<ul class="btn-group">
-							<li><a href="javascript:;" class="btn yellow-gold estm_next"
-								valid-target="#ctnr1_estimate" next-target="#ctnr2_estimate">
-									다음으로 </a></li>
-						</ul>
+										</td>
+									</th>
+								</tr>
+								<tr>
+									<th>대관료</th>
+									<td>얼마일까?</td>
+								</tr>
+								<tr>
+									<th>비고</th>
+									<td>왜 결혼을 하는것인가?</td>
+								</tr>
+							<tr>
+								<th>하객수</th>
+								<td><input type="text" id="hallPerson" name="hallPerson" placeholder="하객수를 입력하세요."> <span>100이상 입력하세요</span></td>
+							</tr>
+							<tr>
+									<th id="makeupOption-th" rowspan="1">부가 옵션</th>
+									<th>식사</th>
+									<td colspan="2">
+										식사종류
+										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">비싸다</span>원</span>
+										<br>
+										<span style="float: right;">식권 수량 : <input type="number" min="1" max="100" value="0" id="option2Amount" onchange="checkAmount();"></span>
+									</td>
+								</tr>
+								<tr>
+								<th colspan="3">
+									총계
+									<span style="float: right;"><span id="allPrice"></span>원</span>								
+								</th>
+							</tr>
+						</table>
+						<div class="common-tbl-btn-group">
+							<button class="btn-style1" type="button" onclick="reservation();">예약하기</button>
 						</div>
-						<div style="clear: both;"></div>
-						<div class="panel panel-default">
-							<div class="panel-heading">
-								<h4 class="panel-title">
-									<a href="javascript:;"> 2단계 <strong>가격확인하기</strong>
-									</a>
-								</h4>
-							</div>
-							<div class="panel-body default-hide" id="ctnr2_estimate"
-								style="background-color: rgb(249, 243, 243); display: none;">
-								<div class="col-md-12">
-									<ul class="service_lst">
-										<div
-											class="form-group form-md-line-input form-md-floating-label">
-											<div class="form-control form-control-static margin-top-10">
-												제공하는 서비스가 없습니다.</div>
-											<label for="form_control_1">제공 서비스</label>
-										</div>
-									</ul>
-									<ul class="btn-group">
-										<li><a href="javascript:;" class="btn default estm_prev"
-											current-target="#ctnr2_estimate"
-											prev-target="#ctnr1_estimate"> 이전으로 </a></li>
-										<li><a href="javascript:;"
-											class="btn yellow-gold estm_submit" ptnr-code="106912520760"
-											available="1"> 전체 가격 확인 </a></li>
-									</ul>
-								</div>
-								<div class="clearfix"></div>
-							</div>
-						</div>
-					</div>
+					</form>
+
+					<br> <br> <br>
+					<h2>후기 및 Q&A</h2>
+					<hr>
 				</div>
+				<!-- 상세설명, 리뷰, 지도 끝 -->
+				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
+				<div
+					style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
+				<!-- static 끝 -->
+			</div>
+		</div>
+
+
+		<!-- 지도 위치 -->
+		<div id="map" style="float: left; margin-left: 20px; width: 800px; height: 300px; margin-bottom: 50px;"></div>
 		</section>
 	</div>
 </section>
@@ -280,6 +239,57 @@
 							focusOnSelect : true
 						});
 					});
+	
+	/* 스크랩북 on/off */
+	$(document).on("click",".defaultStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/scrapOn.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){					
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
+					select.addClass('scrapStar');
+					select.removeClass('defaultStar');
+					alert("스크랩북에 추가되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+	$(document).on("click",".scrapStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/scrapOff.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
+					select.removeClass('scrapStar');
+					select.addClass('defaultStar');
+					alert("스크랩북에서 삭제되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");					
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+	/* 스크랩북 on/off 끝 */	
 </script>
 
 <script src="/resources/js/timepicki/timepicki.js"></script>
