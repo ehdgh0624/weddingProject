@@ -256,14 +256,19 @@ public class MemberService {
 		return memberDao.deleteStudioOption(no,type);
 	}
 
-	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+	public int deleteOneStudioOption(int optionNo) {
 		// TODO Auto-generated method stub
-		return memberDao.deleteOneStudioOption(no,type,submitDelete);
+		return memberDao.deleteOneStudioOption(optionNo);
 	}
 
-	public int updateOneStudioOption(int no, int type, String option, String price) {
+	public int updateOneStudioOption(int no, String option, String price) {
 		// TODO Auto-generated method stub
-		return memberDao.updateOneStudioOption(no,type,option,price);
+		return memberDao.updateOneStudioOption(no,option,price);
+	}
+
+	public int addStudioOption(StudioSelect s) {
+		// TODO Auto-generated method stub
+		return memberDao.addStudionOption(s);
 	}
 
 

@@ -247,24 +247,30 @@ public class MemberDao {
 		return sqlSession.delete("studioSelect.deleteStudioOption",map );
 	}
 
-	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+	public int deleteOneStudioOption(int optionNo) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("studioNo", no);
-		map.put("studioType", type);
-		map.put("studioOption", submitDelete);
+		map.put("studioSelectNo", optionNo);
 		return sqlSession.delete("studioSelect.deleteOneStudioOption",map);
 	}
 
-	public int updateOneStudioOption(int no, int type, String option, String price) {
+	public int updateOneStudioOption(int no, String option, String price) {
 		// TODO Auto-generated method stub
 		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("studioNo", no);
-		map.put("studioType", type);
+		
+		int priceNumber=Integer.parseInt(price);
+		map.put("studioSelectNo", no);
 		map.put("studioOption",option);
-		map.put("studipOptionPrice", price);
+		map.put("studioOptionPrice", priceNumber);
+		
+		System.out.println(option+price+no);
 		
 		return sqlSession.update("studioSelect.updateOneStduioOption",map);
+	}
+
+	public int addStudionOption(StudioSelect s) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("studioSelect.insertStudioOption",s);
 	}
 
 }
