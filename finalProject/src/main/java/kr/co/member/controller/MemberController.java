@@ -515,7 +515,7 @@ public class MemberController {
 			@RequestParam(value="studioOptionType",required = true) List<Integer> studioOptionType,
 			@RequestParam(value="hallSelectPrice",required = true) List<Integer> hallSelectPrice,
 			@RequestParam(value="hallSelectName",required = true) List<String> hallSelectName,
-			@RequestParam(value="hallSelectPeople",required = true) List<String> hallSelectPeople,
+			@RequestParam(value="hallSelectPerson",required = true) List<String> hallSelectPeople,
 			@RequestParam(value="hallSelectTime",required = true) List<String> hallSelectTime,
 			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc,
 			HttpServletRequest request,

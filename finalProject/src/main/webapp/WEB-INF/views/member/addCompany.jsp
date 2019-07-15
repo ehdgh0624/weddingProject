@@ -431,7 +431,7 @@
 		var addTable ="";
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
 		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
-		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value=" "></th></tr>';
+		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value="0"></th></tr>';
 		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
 		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
