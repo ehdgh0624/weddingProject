@@ -30,7 +30,7 @@ $(document).ready(function(){
 		scrollWidth = getScrollBarWidth();
 		var win_width = $(window).outerWidth() + getScrollBarWidth();
 
-		var visual_height = $(window).height()	- 100;
+		var visual_height = $(window).height() - 30;
 		
 		if ( win_width > 800 ) {
 			$("#mainVisual").height(visual_height);
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		$(window).resize(function  () {
 			var win_width = $(window).outerWidth() + getScrollBarWidth();
 
-			var visual_height = $(window).height()	- 100;
+			var visual_height = $(window).height() - 30;
 
 			if ( win_width > 800 ) {
 				$("#mainVisual").height(visual_height);
@@ -51,18 +51,18 @@ $(document).ready(function(){
 		});
 	});
 	
-	/* *********************** 메인 입양 유기견 리스트  ************************ */
-	$('.main-adopt-list').slick({
-		slidesToShow:4,
+	/* *********************** 메인 비주얼  ************************ */
+	$('.main-visual-container').slick({
+		slidesToShow:1,
 		slideToScroll:1,
-		arrows:true,
-		fade:false,
+		arrows:false,
+		fade:true,
 		dots:false,
 		autoplay:true,
 		spped:2000,
 		infinite:true,
 		autoplaySpeed:3000,
-		pauseOnHover:true
+		pauseOnHover:false
 	});
 	
 	/* *********************** 메인 후원 상품 리스트  ************************ */
