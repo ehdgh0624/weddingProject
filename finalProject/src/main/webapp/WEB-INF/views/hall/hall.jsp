@@ -162,6 +162,58 @@
 	});
 	
 </script>
+<script>
+	/* 로드 시 주소 앞자리만 가져오기 */
+	/* 로드 시 주소 앞자리만 가져오기 끝*/
 
+	$(document).on("click",".defaultStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/hscrapOn.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){					
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b2.png" class="photolist-scrapStar-size">');
+					select.addClass('scrapStar');
+					select.removeClass('defaultStar');
+					alert("스크랩북에 추가되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+	$(document).on("click",".scrapStar",function(){
+		var select = $(this);
+		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
+		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		$.ajax({
+			url : "/hscrapOff.do",
+			type : "get",
+			data : {objectNo:objectNo,code:code},
+			success : function(data){
+				if(data == 1){
+					select.find('img').remove();
+					select.append('<img src="/resources/img/star_b1.png" class="photolist-scrapStar-size">');
+					select.removeClass('scrapStar');
+					select.addClass('defaultStar');
+					alert("스크랩북에서 삭제되었습니다.");
+				}else{
+					alert("로그인 후 실행해주세요.");					
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});
+	});
+</script>
 <%--  footer --%>
 <jsp:include page="/WEB-INF/common/footer.jsp" />

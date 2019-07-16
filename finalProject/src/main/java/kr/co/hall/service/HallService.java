@@ -22,7 +22,7 @@ public class HallService {
 	private HallDao hallDao;
 	
 
-	public HallPage allHallList(int reqPage) {
+	public HallPage allHallList(int reqPage,String memberId) {
 		//페이지 당 게시물 수
 				int numPerPage = 9;
 				//현재 등록되어있는 총 게시물 수
@@ -33,6 +33,13 @@ public class HallService {
 				int start = totalCount - (reqPage * numPerPage - 1);
 				int end = totalCount - (reqPage-1) * numPerPage;
 				ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.pageHallList(start,end);
+				ArrayList<Scrapbook> scrapList = new ArrayList<Scrapbook>();
+				for(int i=0;i<hList.size();i++) {
+					Scrapbook sb = hallDao.selectOneScrapbook(memberId, hList.get(i).getCode(), hList.get(i).getHallNo());
+					if(sb != null) {
+						scrapList.add(sb);
+					}
+				}
 				String pageNavi = "";
 				int pageNaviSize = 5;
 				int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
@@ -51,7 +58,7 @@ public class HallService {
 				if(pageNo <= totalPage) {
 					pageNavi += "<a class='pageBtn' href='/hall.do?reqPage="+pageNo+"'>다음</a>";
 				}
-				HallPage pd = new HallPage(hList, pageNavi, reqPage);
+				HallPage pd = new HallPage(hList, pageNavi, reqPage,scrapList);
 				return pd;
 	}
 
@@ -88,7 +95,7 @@ public class HallService {
 					pageNavi += "<a class='pageBtn' href='/hallSc.do?reqPage="+(pageNo)+"&hallLoc="+h.getHallLoc()+"&hallType="+h.getHallType()
 					+"&menuType="+h.getHallFoodtype()+"&hallPerson="+person+"&searckHall="+h.getHallName()+"'>다음</a>";
 				}
-				HallPage pd = new HallPage(hList, pageNavi, reqPage);
+				HallPage pd = new HallPage(hList, pageNavi, reqPage,null);
 				return pd;
 	}
 
@@ -122,12 +129,12 @@ public class HallService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='pageBtn' href='/hallPc.do?reqPage="+pageNo+"'>다음</a>";
 		}
-		HallPage pd = new HallPage(hList, pageNavi, reqPage);
+		HallPage pd = new HallPage(hList, pageNavi, reqPage,null);
 		return pd;
 	}
 
 
-	public Object selectOneHall(int hallNo) {
+	public Hall selectOneHall(int hallNo) {
 		return hallDao.selectOneHall(hallNo);
 	}
 
@@ -164,6 +171,16 @@ public class HallService {
 
 	public int selectReservationNo(String memberId) {
 		return hallDao.selectReservationNo(memberId);
+	}
+
+
+	public int deleteOneScrap(int objectNo, String code, String memberId) {
+		return hallDao.deleteOneScrap(objectNo, code, memberId);
+	}
+
+
+	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
+		return hallDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
 	}
 
 }
