@@ -8,7 +8,7 @@
 /* ****************** 공통 컨텐츠 클래스 ********************** */
 #content-wrapper{padding:100px 0;}
 .comm-content-tit{position:relative; font-size:26px; color:#2b2b2b; text-align:center; font-weight:500; padding:20px 0; margin-bottom:50px;}
-.comm-content-tit:after{display:block; content:""; width:50px; height:4px; background-color:rgba(254,67,30); position:absolute; bottom:0; left:50%; margin-left:-30px;}
+.comm-content-tit:after{display:block; content:""; width:50px; height:4px; /*background-color:rgba(254,67,30);*/background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); position:absolute; bottom:0; left:50%; margin-left:-25px;}
 
 /* 공통 :: PAGING */
 .paging{width:100%; text-align:center; margin:30px 0;}
@@ -27,10 +27,11 @@
 
 /* 공통 :: Table */
 .common-tbl-box{padding:70px 50px; background-color:#f8f8f8;}
+.comm-login-box{max-width:800px; margin:0 auto 100px;}
 .comm-tbl{width:100%; margin:0 auto; background-color:#fff;}
 .comm-tbl th, .comm-tbl td{border:1px solid #ddd; padding:15px; text-align:left; font-weight:normal; line-height:20px;}
-.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid rgba(254,67,30);}
-.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid rgb(254,67,30);}
+.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid #faaca8;}
+.comm-tbl tr:first-child th, .comm-tbl tr:first-child td{border-top:2px solid #faaca8;}
 .comm-tbl th{font-size:17px; line-height:20px; font-weight:500;}
 .comm-tbl input[type='text'], .comm-tbl input[type='password'], .comm-tbl input[type='file'],
 .comm-tbl select, .comm-tbl textarea{padding:7px; border:1px solid #ddd; border-radius:4px; width:90%;}
@@ -51,17 +52,31 @@
 .comm-tbl .reject-btn{padding: 5px 10px;border-radius: 3px;color:white;background-color: #333}
 .comm-tbl td.answerStay{color:gray}
 .comm-tbl td.answerComplete{color:blue}
+
 /* 공통 :: Table :: 버튼 */
 .common-tbl-btn-group{padding-top:30px; text-align:center;}
 .common-tbl-btn-group.right{text-align:right;}
 .common-tbl-btn-group.join-btn-group{display:inline-block; text-align:right; padding-top:0; width:auto; max-width:20%; vertical-align:middle;}
 .common-tbl-btn-group > button{width:130px; height:50px; border-radius:5px; font-size:17px; color:#fff; margin:0 10px;}
-.common-tbl-btn-group > button.btn-style1{background-color:rgba(254,67,30);}
+.common-tbl-btn-group > button.btn-style1{/*background: #f05053; 
+background: -moz-linear-gradient(top, #f05053 0%, #e1eec3 100%); 
+background: -webkit-linear-gradient(top, #f05053 0%,#e1eec3 100%); 
+background: linear-gradient(to bottom, #f05053 0%,#e1eec3 100%);*/
+/*background-image: linear-gradient(to top, #f5efef 0%, #feada6 100%);*/
+background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%);}
 .common-tbl-btn-group > button.btn-style2{background-color:#444;}
 .common-tbl-btn-group > button.btn-style3{background-color:#888;}
 .common-tbl-btn-group > button.btn-style4{background-color:#333;}
 .common-tbl-btn-group > button.big{width:300px;}
 .common-tbl-btn-group > button.small{width:100px; height:35px; font-size:15px;}
+
+/* 로그인 */
+.login-tbl{float:left; width:75%;}
+.login-tbl-btn-group{float:right; width:25%; padding-top:0; text-align:right;}
+.login-tbl-btn-group > button{width:80%; height:45px; }
+.login-tbl-btn-group .login-btn{margin-bottom:4px; height:85px;}
+
+
 
 
 /* ****************** 웨딩 계산기 ********************** */
@@ -162,13 +177,13 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 /* ****************** 이용약관 ********************** */
 .terms-tit{font-size: 18px;margin-bottom: 20px;font-weight:500;}
 .terms-tit > span{color : #5cc2e4; margin-right:5px;}
-.terms-box{height:250px; border:1px solid rgba(254,67,30); background:#fff; padding:20px; font-size:13px; line-height:25px; overflow-y:scroll;}
+.terms-box{height:250px; border:1px solid #faaca8; background:#fff; padding:20px; font-size:13px; line-height:25px; overflow-y:scroll;}
 .terms-chk{margin-bottom:50px; padding-top:15px; font-size:14px; line-height:18px;}
 .terms-tab-list{height:50px; text-align:center; line-height:50px;}
 .terms-tab-list > .t_mid{float:left; width:calc(100%/3); height:50px; background:#fff;}
 .terms-tab-list > .t_mid:hover{cursor:pointer;}
 .terms-tab-list > .t_mid > h2{font-size:17px; font-weight:500;}
-.terms-tab-con{border:1px solid rgba(254,67,30); height:250px; overflow-y:scroll; background:#fff;}
+.terms-tab-con{border:1px solid #faaca8; height:250px; overflow-y:scroll; background:#fff;}
 .terms-tab-con > .c_mid{ text-align:left; line-height:25px; padding:20px;}
 /***********************팝업창********************************/
 .popupView{position: fixed;z-index:1000;top: 50%;left: 50%;display: none;width: 500px;height: 300px;background-color: white;margin-left: -250px;margin-top: -150px; text-align: center;}

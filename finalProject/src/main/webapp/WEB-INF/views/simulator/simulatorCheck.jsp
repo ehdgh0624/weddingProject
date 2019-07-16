@@ -8,7 +8,18 @@
 
 
 <script>
-$(function(){
+function addComma(num) {
+	return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+$(document).ready(function(){//
+	$(".simulator-info-price").each(function(){
+		$(this).find("strong").text(addComma($(this).find("strong").html()));
+	});
+	
+	$(".simulator-total-price").each(function(){
+		$(this).find("p").children("b").text(addComma($(this).find("p").children("b").html()));
+	});
 	//$(".simulator-info-price").find("strong").text(addComma($(".simulator-info-price").children("strong").html()));
 	/*var price1 = $(".simulator-info-price").find("strong").html();
 	var price1Finish = price1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');

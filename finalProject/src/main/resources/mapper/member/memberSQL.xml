@@ -169,7 +169,7 @@
 		from reservation where member_id=#{memberId}
 	</select>
 	 <select id="deleteMember"  parameterType="member">
-		delete from member where memberId=#{memberId}
+		delete from member where member_Id=#{memberId}
 	</select>
 	 <update id="updateMember"  parameterType="member">
 		update member set

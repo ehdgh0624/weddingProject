@@ -143,6 +143,7 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		System.out.println("여긴 delete멤버");
 		Member vo = new Member();
+		System.out.println(vo.getMemberId());
 		vo.setMemberId(id);
 		
 		return sqlSession.delete("member.deleteMember", vo);
