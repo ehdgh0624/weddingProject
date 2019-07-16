@@ -91,6 +91,7 @@
 							<th><input type="text" name="studioCamera" value=" "></th>
 						</tr>
 					</table>
+					<span id="studioBackStep" class="backBtn">이전</span>
 					<span id="studioStep" class="studioBtn">다음</span>
 				</div>
 				<div id="second" class="divbox" style="display: none;">
@@ -111,6 +112,7 @@
 							</select></th>
 						</tr>
 					</table>
+					<span id="secondBack">이전</span>
 					<span id="secondStep">다음</span>
 				</div>
 				<div id="third" class="divbox" style="display: none;">
@@ -152,6 +154,7 @@
 							<th><input type="text" name="dressContent" value=" "></th>
 						</tr>
 					</table>
+					<span id="dressBackStep" class="backBtn">이전</span>
 					<span id="dressStep" class="lastBtn">다음</span>
 				</div>
 				<div id="fourth"  class="divbox" style="display:none;"><!--메이크업  -->
@@ -174,6 +177,7 @@
 								<th><input type="number" name="makeupVisitorPrice" value="0"></th>
 							</tr>
 						</table>
+						<span id="makeupBackStep" class="backBtn">이전</span>
 						<span id="makeupStep" class="lastBtn">다음</span>
 					</div>
 
@@ -248,7 +252,8 @@
 									<th>웨딩홀 주차제공</th>
 									<th><input type="checkbox" name="hallServiceParking"></th>
 								</tr>
-						</table>					
+						</table>
+						<span id="hallBackStep" class="backBtn2">이전</span>					
 						<span id="hallStep" class="lastBtn">다음</span>
 					</div>
 					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
@@ -280,6 +285,7 @@
 							
 							
 							</table>		
+							<span id="finalBackBtn" class="backBtn3">이전</span>
 							<button type="submit">제출</button>
 					</div>		
 				</div>
@@ -314,6 +320,7 @@
 						</table>
 					</div>
 						<span id="studioOptionAdd">옵션추가</span><br>
+						<span id="studioOptionBackStep" class="backBtn2">이전</span>
 						<span id="studioOption" class="lastBtn">다음</span>
 				</div>
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
@@ -347,6 +354,7 @@
 						</table>
 					</div>
 					<span id="hallOptionAdd">옵션추가</span><br>
+					<span id="hallOption]BackStep" class="backBtn">이전</span>
 					<span id="hallOption" class="hallOpt">다음</span>
 				</div>			
 			</form>	
@@ -358,6 +366,7 @@
 </section>
 
 <script><!--페이지 처리 스크립트-->
+
 	$(document).ready(function(){
 		$('#first').css("display","block");	
 	});
@@ -382,6 +391,11 @@
 			$('#hallOption').css("display","block");
 		}
 	});
+	<!--두번째 뒤로-->
+	$('#secondBack').click(function(){
+		$('.divbox').css("display","none");
+		$('#first').css("display","block");	
+	});
 	
 	$('.hallOpt').click(function(){
 		$('.divbox').css("display","none");
@@ -398,14 +412,41 @@
 		$('.divbox').css("display","none");
 		$('#sixth').css("display","block");
 	});
+	$('.backBtn').click(function(){
+		$('.divbox').css("display","none");
+		$('#second').css("display","block");
+	});
+	$('#studioOptionBackStep').click(function(){
+		$('.divbox').css("display","none");
+		$('#seventh').css("display","block");
+	});
 
+	$('#hallBackStep').click(function(){
+		$('.divbox').css("display","none");
+		$('#hallOption').css("display","block");
+	});
+	
+	$('#finalBackBtn').click(function(){
+		$('.divbox').css("display","none");
+		if($('#choice').val()==0){
+			$('#studioOption').css("display","block");
+		}
+		if($('#choice').val()==1){
+			$('#third').css("display","block");
+		}
+		if($('#choice').val()==2){
+			$('#fourth').css("display","block");
+		}
+		if($('#choice').val()==3){
+			$('#fiveth').css("display","block");
+		}
+	});
+	
+	
 	
 	$('input[id="getMemberInfo"]').change(function() {
 	    var value = $(this).val();              // value
 	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
-	 
-	 
-	 
 	    if(checked){
 	    	var string=$('#totalAddr').val();
 			var strArray=string.split('/');
@@ -522,22 +563,15 @@
 
 	$('#firstStep').click(function() {
 		var roadAddr = $('#sample4_roadAddress').val();
-	
-		
 		console.log(roadAddr);
-	
-		
 		naver.maps.Service.geocode({
 	        address: roadAddr
 	    }, function(status, response) {
 	        if (status !== naver.maps.Service.Status.OK) {
 	            return alert('Something wrong!');
 	        }
-
 	        var result = response.result, // 검색 결과의 컨테이너
 	            items = result.items; // 검색 결과의 배열
-
-	        
 	         $('#shopLatitude').val(items[0].point.y);
 	         $('#shopLongitude').val(items[0].point.x);
 	    });	
