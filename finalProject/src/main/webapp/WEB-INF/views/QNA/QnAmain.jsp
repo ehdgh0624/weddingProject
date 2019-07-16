@@ -10,7 +10,7 @@
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
-			<div class="common-tbl-btn-group right" style="margin-bottom: 20px;padding-top:0;"><button class="btn-style1" onclick="location.href='/qnawritePage.do'">글쓰기</button> </div>
+			<div class="common-tbl-btn-group right" style="margin-bottom: 20px;padding-top:0;margin-top: 20px;"><button class="btn-style1" onclick="location.href='/qnawritePage.do'">글쓰기</button> </div>
 			
 			<table class="comm-tbl type2">
 				<colgroup>

@@ -233,13 +233,33 @@ public class AdminDao {
 		return (ArrayList<Reservation>)list;
 	}
 
-	public int reservationUpdate(int no, int ds, String dn) {
+	public int reservationUpdate(int no, int ds, String dn, int os) {
 		Map<String,String> map = new HashMap<String,String>();
 		map.put("no",String.valueOf(no));
 		map.put("ds", String.valueOf(ds));
 		map.put("dn",dn);
+		map.put("os",String.valueOf(os));
 		
 		return sqlSession.update("admin.reservationUpdate",map);
+	}
+
+	public int searchReTotal(int select, int type, String keyword) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("select", String.valueOf(select));
+		map.put("type", String.valueOf(type));
+		map.put("keyword", keyword);
+		return sqlSession.selectOne("admin.searchReTotal",map);
+	}
+
+	public ArrayList<Reservation> searchRe(int start, int end, int select, int type, String keyword) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("select", String.valueOf(select));
+		map.put("type", String.valueOf(type));
+		map.put("keyword", keyword);
+		List list = sqlSession.selectList("admin.searchRe",map);
+		return (ArrayList<Reservation>)list;
 	}
 
 	
