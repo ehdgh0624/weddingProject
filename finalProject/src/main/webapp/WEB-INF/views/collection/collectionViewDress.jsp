@@ -461,6 +461,7 @@
 			}
 		}else{
 			alert("로그인 후 다시 시도해주세요.");
+			location.href="/loginPage.do";
 		}
 	}
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit 끝 */
@@ -641,6 +642,7 @@
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -665,6 +667,7 @@
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
