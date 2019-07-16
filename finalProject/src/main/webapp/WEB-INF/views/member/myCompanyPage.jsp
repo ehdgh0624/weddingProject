@@ -11,8 +11,9 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix">
-		<!-- 여기에 내용 작서어어어어어엉!!! -->	
-				<div class="common-tbl-box">
+		<!-- 여기에 내용 작서어어어어어엉!!! -->
+		<div class="area">
+			<div class="common-tbl-box">
 				<table class="comm-tbl">		
 					<colgroup>
 						<col width="10%">
@@ -54,17 +55,21 @@
 					</c:forEach>
 					</c:if>
 				</table>		
-			<c:if test="${empty memberAll.studio }">
-				<c:if test="${empty memberAll.dress }">
-					<c:if test="${empty memberAll.makeup }">
-						<c:if test="${empty memberAll.hall }">
-							<h1>등록된 업체가없습니다.</h1>
-							<a href="/goCompanyTerms.do">업체등록 하러가기</a>
-						</c:if>	
+				<c:if test="${empty memberAll.studio }">
+					<c:if test="${empty memberAll.dress }">
+						<c:if test="${empty memberAll.makeup }">
+							<c:if test="${empty memberAll.hall }">
+								<h1>등록된 업체가 없습니다.</h1>
+								<div class="common-tbl-btn-group">
+									<button class="btn-style1 big" onclick="location.href='/goCompanyTerms.do'">업체등록 하러가기</button>
+									<!-- <a href="/goCompanyTerms.do">업체등록 하러가기</a> -->
+								</div>
+							</c:if>	
+						</c:if>
 					</c:if>
 				</c:if>
-			</c:if>
-		</div>	
+			</div>
+		</div>
 	</div>
 	
 	<%--  footer --%>

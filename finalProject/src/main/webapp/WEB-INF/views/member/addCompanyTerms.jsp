@@ -9,7 +9,7 @@
 
 <%-- wrap --%>
 <section id="wrap">
-<div class="area">
+	<div class="area">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<h1 class="comm-content-tit">이용약관</h1>
 		<form action="/enrollCompanyPage.do" method="post" onsubmit="return check()">

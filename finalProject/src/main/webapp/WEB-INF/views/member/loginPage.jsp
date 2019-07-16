@@ -7,7 +7,7 @@
 
 <section id="wrap">
 	<div class="area">
-		<h2 class="comm-content-tit" style="margin:50px 0 60px;">로그인</h2>
+		<h2 class="comm-content-tit" style="margin:80px 0 60px;">로그인</h2>
 		<div class="comm-login-box"><!-- common-tbl-box -->
 			<form action="/login.do" form="post" class="clearfix">
 				<table class="comm-tbl login-tbl">

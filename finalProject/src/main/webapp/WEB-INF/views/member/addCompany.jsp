@@ -21,7 +21,7 @@
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
-					<h1>파트너 기본정보 등록</h1>
+					<h1 class="main-comm-tit type2">파트너 기본정보 등록</h1>
 					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo">
 					<table class="comm-tbl">
 						<colgroup>
@@ -34,15 +34,14 @@
 						</tr>
 						<tr>
 							<th>우편번호</th>
-							<td><input type="text" id="sample4_postcode"
-								placeholder="우편번호" name="postNum">
-							<div class="common-tbl-btn-group join-btn-group">
-								<button type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-							</div>
-							<input type="hidden" name="companyLatitude" id="shopLatitude">
-							<input type="hidden" name="companyLongtitude" id="shopLongitude">
-						</td>
+							<td><input type="text" class="small" id="sample4_postcode" placeholder="우편번호" name="postNum">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" onclick="sample4_execDaumPostcode()"
+									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								</div>
+								<input type="hidden" name="companyLatitude" id="shopLatitude">
+								<input type="hidden" name="companyLongtitude" id="shopLongitude">
+							</td>
 						</tr>
 						<tr>
 							<th>도로명주소</th>
@@ -55,7 +54,7 @@
 							<th>지번주소</th>
 							<th><input type="text" id="sample4_jibunAddress"
 								placeholder="지번주소" name="jibunAddr"> <input type="text"
-								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
+								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:3px;"></th>
 						</tr>
 
 						<tr>

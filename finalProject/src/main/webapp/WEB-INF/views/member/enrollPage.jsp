@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 <section id="wrap">
 	<div class="area">
-		<h2 class="comm-content-tit">회원가입</h2>
+		<h2 class="comm-content-tit" style="margin-top:30px;">회원가입</h2>
 		<div class="common-tbl-box">
 			<form action="/memberEnroll.do" method="post">
 				<br>
