@@ -70,12 +70,10 @@
 						<th><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
 					</tr>
-					
 					<tr>
 						<th>상세주소</th>
 						<th><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></th>
 					</tr>
-					
 					<tr>
 						<th>드레스컨테츠</th>
 						<th><input type="text" name="dressContent" value="${dress.dressContent }"></th>
@@ -90,6 +88,7 @@
 						</th>
 					</tr>
 				</table>
+				<span onclick="location.href='/insertGallery.do?code=D&$no=${dress.dressNo }">갤러리 등록하러가기</span>
 				<hr>
 			<button type="submit" class="btn-style1" id="updateDress">수정</button>
 		</form>

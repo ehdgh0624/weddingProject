@@ -78,15 +78,15 @@
 					
 					<tr>
 						<th>웨딩홀음식타입</th>
-						<th><input type="text" name="hallFoodtype" value="${hall.Foodtype }"></th>
+						<th><input type="text" name="hallFoodtype" value="${hall.hallFoodtype }"></th>
 					</tr>
 					<tr>
 						<th>웨딩홀음식메뉴</th>
-						<th><input type="text" name="hallFoodmenu" value="${hall.foodmenu }"></th>
+						<th><input type="text" name="hallFoodmenu" value="${hall.hallFoodmenu }"></th>
 					</tr>
 					<tr>
 						<th>웨딩홀음식가격</th>
-						<th><input type="text" name="hallFoodprice" value="${hall.foodprice }"></th>
+						<th><input type="text" name="hallFoodprice" value="${hall.hallFoodprice }"></th>
 					</tr>
 					<tr>
 						<th>웨딩홀운영시간</th>
@@ -117,7 +117,7 @@
 				<hr>
 			<button type="submit" class="btn-style1" id="updateStudio">수정</button>
 		</form>
-		
+		<span onclick="location.href='/insertGallery.do?code=H&$no=${hall.hallNo }">갤러리 등록하러가기</span>
 		
 		<div id="studioOption" class="divbox"><!--스튜디오 옵션  -->
 		<h1>스튜디오 옵션</h1>

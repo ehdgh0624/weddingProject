@@ -73,7 +73,7 @@ public class ReviewController {
 				}else if(vo.getCode().equals("M")) {
 					
 				}
-				int scopeResult = reviewService.update
+				int scopeResult = reviewService.update();
 				mav.addObject("code",vo.getCode());
 				mav.addObject("objectNo",vo.getReviewRef());
 				mav.setViewName("review/reviewSuccess");

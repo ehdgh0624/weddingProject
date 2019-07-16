@@ -89,6 +89,7 @@
 				<hr>
 			<button type="submit" class="btn-style1" id="updatemakeup">수정</button>
 		</form>
+		<span onclick="location.href='/insertGallery.do?code=M&$no=${makeup.makeupNo }">갤러리 등록하러가기</span>
 
 		<input type="hidden" id="totalAddr" value="${makeup.makeupAddr }">
 		<input type="hidden" id="phone" value="${makeup.makeupTel }">

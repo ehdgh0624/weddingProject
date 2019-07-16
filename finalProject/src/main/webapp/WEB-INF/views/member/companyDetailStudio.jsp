@@ -90,6 +90,7 @@
 				<hr>
 			<button type="submit" class="btn-style1" id="updateStudio">수정</button>
 		</form>
+		<span onclick="location.href='/insertGallery.do?code=S&$no=${studio.studioNo }">갤러리 등록하러가기</span>
 		
 		
 		<div id="studioOption" class="divbox"><!--스튜디오 옵션  -->

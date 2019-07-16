@@ -549,8 +549,11 @@ public class MemberController {
 			mav.setViewName("member/companyDetailMakeup");
 			return mav;
 		}else if(code.equals("H")){
-			// 아직 홀 진행중	
 			
+			// 아직 홀 진행중	
+			mav.addObject("hall", memberService.selectOneHallNumber(no));
+			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "H"));
+			mav.setViewName("member/companyDetailHall");
 			return mav;
 		}	
 		return mav;	
