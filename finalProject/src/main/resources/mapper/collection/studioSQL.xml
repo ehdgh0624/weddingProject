@@ -8,6 +8,6 @@
 		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_loc as studioLoc, studio_addr as studioAddr, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag from (select rownum as rnum, s.* from (select * from studio where status=1 and viewstatus=0 order by studio_no) s) where (rnum between #{start} and #{end}) order by rnum desc
 	</select>
 	<select id="viewSelectOne" parameterType="_int" resultType="studio">
-		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_tel as studioTel, studio_addr as studioAddr, studio_price as studioPrice, studio_content as studioContent, studio_time as studioTime, studio_camera as studioCamera, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where studio_no=#{studioNo} and status=0 and viewstatus=0
+		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_tel as studioTel, studio_addr as studioAddr, studio_price as studioPrice, studio_content as studioContent, studio_time as studioTime, studio_camera as studioCamera, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where studio_no=#{studioNo}
 	</select>
 </mapper>
