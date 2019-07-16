@@ -72,7 +72,7 @@
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
 					</li>
 					<li>
-					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
+					<span><a href="/enrollCompanyPage.do">업체등록 하러가기</a></span>
 					</li>
 				</c:if>
 				<!-- 관리자 일떄 -->
