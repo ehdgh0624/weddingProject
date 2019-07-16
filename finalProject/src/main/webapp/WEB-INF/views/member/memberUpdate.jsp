@@ -39,7 +39,10 @@
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<th><input type="text" name="Phone" value="${sessionScope.member.phone }"></th>
+						<th>
+						<input type="text" name="fPhone" id="fPhone">-<input type="text" name="sPhone" id="sPhone">-<input type="text" name="tPhone" id="tPhone">
+						<input type="hidden" id="phone" value="${sessionScope.member.phone }">
+						</th>
 					</tr>
 					<tr>
 						<th>생년월일</th>
@@ -101,7 +104,7 @@
 		</form>
 			<span onclick="location.href='/memberDelete.do?memberId=${sessionScope.member.memberId}'">탈퇴</span>
 	</div>
-	<input type="text" id="totalAddr" value="${sessionScope.member.addr }">
+	<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
 </div>	
 
 
@@ -121,6 +124,12 @@ $(document).ready(function(){
 	$('#sample4_detailAddress').val(strArray[2]);
 	$('#sample4_postcode').val(strArray[3]);
 	$('#sample4_roadAddress').val(strArray[4]);
+	
+	var phone=$('#phone').val();	
+	var phoneArray=phone.split('/');
+	$("#fPhone").val(phoneArray[0]);
+	$("#sPhone").val(phoneArray[1]);	
+	$("#tPhone").val(phoneArray[2]);
 
 	console.log(strArray[0]);
 });

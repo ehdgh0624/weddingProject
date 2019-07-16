@@ -265,16 +265,19 @@ public class MemberController {
 					vos.getDetailAddr()+"/"+
 					vos.getPostNum()+"/"+
 					vos.getRoadAddr();
+		String phone=vos.getfPhone()+"/"+
+					vos.getsPhone()+"/"+
+					vos.gettPhone();
 		
 		System.out.println(addr);
 		Member vo = new Member();
 		vo.setAddr(addr);
+		vo.setPhone(phone);
 		vo.setBirthDay(vos.getBirthDay());
 		vo.setEmail(vos.getEmail());
 		vo.setMemberId(vos.getMemberId());
 		vo.setMemberName(vos.getMemberName());
 		vo.setMemberPw(vos.getMemberPw());
-		vo.setPhone(vos.getPhone());
 		vo.setMarrySchedule(vos.getMarrySchedule());
 		vo.setExpectVisitor(vos.getExpectVisitor());
 		vo.setBudget(vos.getBudget());
@@ -318,15 +321,18 @@ public class MemberController {
 					vos.getDetailAddr()+"/"+
 					vos.getPostNum()+"/"+
 					vos.getRoadAddr();
-		
+		String phone=vos.getfPhone()+"/"+
+					vos.getsPhone()+"/"+
+					vos.gettPhone();
 		Member vo = new Member();
+		vo.setPhone(phone);
 		vo.setAddr(addr);
+		
 		vo.setBirthDay(vos.getBirthDay());
 		vo.setEmail(vos.getEmail());
 		vo.setMemberId(vos.getMemberId());
 		vo.setMemberName(vos.getMemberName());
 		vo.setMemberPw(vos.getMemberPw());
-		vo.setPhone(vos.getPhone());
 		
 		
 		int result = memberService.insertMember(vo);
@@ -375,9 +381,9 @@ public class MemberController {
 	public String MemberDelete(HttpServletRequest request) {
 		System.out.println("탈퇴 호출");
 		String id = request.getParameter("memberId");
-		
+		System.out.println(id);
 		memberService.deleteMember(id);
-		return "member/mypage";
+		return "redirect:/index.jsp";
 	}
 	
 	@RequestMapping(value = "/goAddTerms.do")

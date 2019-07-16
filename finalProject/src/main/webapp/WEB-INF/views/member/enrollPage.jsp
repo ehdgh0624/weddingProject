@@ -33,7 +33,7 @@
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<th><input type="text" name="Phone"></th>
+						<th><input type="text" name="fPhone">-<input type="text" name="sPhone">-<input type="text" name="tPhone"></th>
 					</tr>
 					<tr>
 						<th>생년월일</th>
