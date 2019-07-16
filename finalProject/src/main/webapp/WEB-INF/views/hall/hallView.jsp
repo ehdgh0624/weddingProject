@@ -12,7 +12,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- css -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/hallView.css">
+	href="/resources/css/myHall.css">
 <!-- font awesome -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
@@ -23,7 +23,7 @@
 <%-- wrap --%>
 <section id="wrap">
 	<div class="">
-		<section class="hallView">
+		<section class="hallView area">
 			<div>
 			<!-- 상호명 table -->
 			<table style="width: 100%;">
@@ -313,7 +313,6 @@
 		var foodType = ${hall.hallFoodtype};
 		var foodCount = $("#option2Amount").val();
 		var option = $("#hoption").text();
-		alert("가보자!");
 		$.ajax({
 			url : "/reservationHall.do",
 			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,price:price,person:person,foodType:foodType,foodCount:foodCount,option:option},
@@ -321,7 +320,7 @@
 			success : function(data){
 				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/hall.do";
+					location.href="/myHall.do";
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";

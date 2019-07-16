@@ -151,4 +151,10 @@ public class HallController {
 			return -1;
 		}
 	}
+	@RequestMapping(value="/myHall.do")
+	public ModelAndView myHall() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("hall/myHall");
+		return mav;
+	}
 }
