@@ -60,7 +60,7 @@
 				<button class="btn-style2 small" onclick="location.href='/qnaUpdatePage.do?qnaNo=${qna.qnaNo}'">글수정</button>
 				<button class="btn-style3 small" onclick="location.href='/qnaDelete.do?qnaNo=${qna.qnaNo}'">글삭제</button>
 		</c:if>
-				<button class="btn-style1 small" onclick="window.history.back()">목록으로</button>
+				<button class="btn-style1 small" onclick="location.href='/qnaMain.do'">목록으로</button>
 			</div>
 		<c:if test="${sessionScope.member.memberCode == 2 && qna.qnaStatus == 0 }">
 			<form action="/commentUpdate.do?">

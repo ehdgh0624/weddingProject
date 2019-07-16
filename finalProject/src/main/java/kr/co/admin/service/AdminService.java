@@ -325,8 +325,44 @@ public class AdminService {
 		return ar;
 	}
 	@Transactional
-	public int reservationUpdate(int no, int ds, String dn) {
-		return adminDao.reservationUpdate(no,ds,dn);
+	public int reservationUpdate(int no, int ds, String dn, int os) {
+		return adminDao.reservationUpdate(no,ds,dn,os);
+	}
+	
+	public AdminReservation searchReser(int reqPage, int select, int type, String keyword) {
+		int total = adminDao.searchReTotal(select,type,keyword);
+		System.out.println("service 토탈:"+total);
+		int pageNum = 10;
+		int totalPage = (total%pageNum==0)?(total/pageNum):(total/pageNum)+1;
+	    int start = (reqPage*pageNum-pageNum)+1;
+	    int end  = reqPage*pageNum;
+	    ArrayList<Reservation> list = adminDao.searchRe(start,end,select,type,keyword);
+	    for(Reservation r : list) {
+	    	System.out.println("service 리스트:"+r);
+	    }
+	    String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='/searchReser.do?reqPage="+(pageNo-1)+"&select="+select+"&type="+type+"&keyword="+keyword+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/searchReser.do?reqPage="+pageNo+"&select="+select+"&type="+type+"&keyword="+keyword+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/searchReser.do?reqPage="+(pageNo)+"&select="+select+"&type="+type+"&keyword="+keyword+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		AdminReservation ar = new AdminReservation(list,pageNavi);
+			    
+		
+		return ar;
 	}
 
 }

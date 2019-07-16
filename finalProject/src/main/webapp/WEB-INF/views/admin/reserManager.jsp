@@ -11,6 +11,23 @@
 	</div>
 
 		<div id="myPageContainer" class="clearfix area">
+		 <!-- 검색박스 -->
+          <div class="board-search-box">
+             <form action="/searchReser.do" method="get">
+               <select name="select" id="select"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
+                  <option value="0">==선택==</option>
+                  <option value="1">회원</option>
+                  <option value="2">결제상태</option>
+                  <option value="3">배송상태</option>
+               </select>
+               <select name="type" id="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
+					
+               </select>
+               <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" id="searchInput"value="${param.keyword }">
+               <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
+            </form>
+         </div>
+         <br><br><br><br>
 		<table class=comm-tbl>
 			<colgroup>
 				<col width="2%">
@@ -20,11 +37,11 @@
 				<col width="10%">
 				<col width="10%">
 				<col width="5%">
-				<col width="5%">
+				<col width="10%">
+				<col width="10%">
 				<col width="8%">
 				<col width="8%">
-				<col width="8%">
-				<col width="5%">
+				<col width="7%">
 			</colgroup>
 			<tr>
 				<th>NO</th>
@@ -51,16 +68,16 @@
 					<td>${r.payMethod } </td>
 					<c:choose>
 						<c:when test="${r.orderStatus == 0 }">
-							<td>결제 <br>대기</td>
+							<td class="os">결제 대기</td>
 						</c:when>
 						<c:when test="${r.orderStatus == 1}">
-							<td>결제 <br>완료</td>
+							<td class="os">결제 완료</td>
 						</c:when>
 						<c:when test="${r.orderStatus == 2 }">
-							<td>결제 <br>취소 <br>대기</td>
+							<td class="os">결제 취소 <br>대기</td>
 						</c:when>
 						<c:when test="${r.orderStatus == 3 }">
-							<td>결제 <br>취소</td>
+							<td class="os">결제 취소</td>
 						</c:when>
 					</c:choose>
 					<c:choose>
@@ -84,17 +101,7 @@
 			</c:forEach>
 		</table>
 		<div class="paging">${ar.pageNavi}</div>
-		  <!-- 검색박스 -->
-          <div class="board-search-box">
-             <form action="/searchMember.do" method="get">
-               <select name="type" id="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
-                  <option value="memberId">아이디</option>
-                  <option value="memberName">이름</option>
-               </select>
-               <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
-               <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
-            </form>
-         </div>
+		 
 	</div>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
@@ -108,6 +115,8 @@
 			$(this).parent().siblings('.dn').append("<input type='text' naem='dn'>")
 			$(this).parent().siblings('.ds').html("")	
 			$(this).parent().siblings('.ds').append("<select name='ds'> <option value='0'>상품 준비중</option><option value='1'>발송 준비중</option><option value='2'>배송중</option><option value='3'>배송완료</option> </select>")	
+			$(this).parent().siblings('.os').html("")	
+			$(this).parent().siblings('.os').append("<select name='ds'> <option value='0'>결제 대기</option><option value='1'>결제 완료</option><option value='2'>결제 취소 대기</option><option value='3'>결제완료</option> </select>")	
 		});
 	});
 	$(".ok-btn").each(function(){
@@ -115,9 +124,59 @@
 			var reserNo = $(this).attr("title");
 			var dn = $(this).parent().siblings('.dn').children().val();
 			var ds = $(this).parent().siblings('.ds').children().val();
+			var os = $(this).parent().siblings('.os').children().val();
 			
-			location.href="/reservationUpdate.do?reservationNo="+reserNo+"&deliveryNum="+dn+"&deliveryStatus="+ds;
+			location.href="/reservationUpdate.do?reservationNo="+reserNo+"&deliveryNum="+dn+"&deliveryStatus="+ds+"&orderStats="+os;
 		});
 	});
-		
+	$("#select").change(function(){
+		if($("#select").val() == 1){
+			$("#type").html("");
+			$("#type").append("<option value='0'>아이디</option><option value='1'>이름</option>");
+			$("#searchInput").attr("placeholder","검색어를 입력해주세요.")
+		}else if($("#select").val() == 2){
+			$("#type").html("");
+			$("#type").append("<option value='0'>결제대기</option><option value='1'>결제완료</option><option value='2'>결제취소대기</option><option value='3'>결제취소</option>");
+			$("#searchInput").attr("placeholder","아이디를 입력해주세요.")
+			
+		}else if($("#select").val() == 3){
+			$("#type").html("");
+			$("#type").append("<option value='0'>상품준비중</option><option value='1'>배송준비중</option><option value='2'>배송중</option><option value='3'>배송완료</option>");
+			$("#searchInput").attr("placeholder","아이디를 입력해주세요.")
+		}
+	});
+	$(document).ready(function(){
+		var select = "${param.select}";
+		var type = "${param.type}";
+		if(select == 1){
+			$("#select").children().eq(1).attr("selected",true);
+			if(type == 0){
+				$("#type").append("<option value='0' selected>아이디</option><option value='1'>이름</option>");
+			}else if(type == 1){
+				$("#type").append("<option value='0' >아이디</option><option value='1' selected>이름</option>");
+			}
+		}else if(select == 2){
+			$("#select").children().eq(2).attr("selected",true);
+			if(type == 0){
+				$("#type").append("<option value='0' selected>결제대기</option><option value='1'>결제완료</option><option value='2'>결제취소대기</option><option value='3'>결제취소</option>");
+			}else if(type == 1){
+				$("#type").append("<option value='0' >결제대기</option><option value='1' selected>결제완료</option><option value='2'>결제취소대기</option><option value='3'>결제취소</option>");
+			}else if(type == 2){
+				$("#type").append("<option value='0' >결제대기</option><option value='1' >결제완료</option><option value='2' selected>결제취소대기</option><option value='3'>결제취소</option>");
+			}else if(type == 3){
+				$("#type").append("<option value='0' >결제대기</option><option value='1' >결제완료</option><option value='2'>결제취소대기</option><option value='3' selected>결제취소</option>");
+			}
+		}else if(select == 3){
+			$("#select").children().eq(3).attr("selected",true);
+			if(type == 0){
+				$("#type").append("<option value='0' selected>상품준비중</option><option value='1'>배송준비중</option><option value='2'>배송중</option><option value='3'>배송완료</option>");
+			}else if(type == 1){
+				$("#type").append("<option value='0'>상품준비중</option><option value='1' selected>배송준비중</option><option value='2'>배송중</option><option value='3'>배송완료</option>");
+			}else if(type == 2){
+				$("#type").append("<option value='0'>상품준비중</option><option value='1'>배송준비중</option><option value='2' selected>배송중</option><option value='3'>배송완료</option>");
+			}else if(type == 3){
+				$("#type").append("<option value='0'>상품준비중</option><option value='1'>배송준비중</option><option value='2'>배송중</option><option value='3' selected>배송완료</option>");
+			}
+		}
+	});
 </script>

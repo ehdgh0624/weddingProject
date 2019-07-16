@@ -6,6 +6,7 @@ public class Review {
 	private int reviewNo;
 	private String code;
 	private int reviewRef;
+	private String memberId;
 	private String reviewWriter;
 	private String reviewContent;
 	private Date reviewDate;
@@ -16,12 +17,13 @@ public class Review {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Review(int reviewNo, String code, int reviewRef, String reviewWriter, String reviewContent, Date reviewDate,
-			int reviewScope, String reviewFilename, String reviewFilepath) {
+	public Review(int reviewNo, String code, int reviewRef, String memberId, String reviewWriter, String reviewContent,
+			Date reviewDate, int reviewScope, String reviewFilename, String reviewFilepath) {
 		super();
 		this.reviewNo = reviewNo;
 		this.code = code;
 		this.reviewRef = reviewRef;
+		this.memberId = memberId;
 		this.reviewWriter = reviewWriter;
 		this.reviewContent = reviewContent;
 		this.reviewDate = reviewDate;
@@ -46,6 +48,12 @@ public class Review {
 	}
 	public void setReviewRef(int reviewRef) {
 		this.reviewRef = reviewRef;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getReviewWriter() {
 		return reviewWriter;
@@ -82,6 +90,13 @@ public class Review {
 	}
 	public void setReviewFilepath(String reviewFilepath) {
 		this.reviewFilepath = reviewFilepath;
+	}
+	@Override
+	public String toString() {
+		return "Review [reviewNo=" + reviewNo + ", code=" + code + ", reviewRef=" + reviewRef + ", memberId=" + memberId
+				+ ", reviewWriter=" + reviewWriter + ", reviewContent=" + reviewContent + ", reviewDate=" + reviewDate
+				+ ", reviewScope=" + reviewScope + ", reviewFilename=" + reviewFilename + ", reviewFilepath="
+				+ reviewFilepath + "]";
 	}
 	
 }

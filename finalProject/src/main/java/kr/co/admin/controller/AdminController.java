@@ -437,11 +437,17 @@ public class AdminController {
 		HttpSession session = request.getSession(false); 
 		int no = Integer.parseInt(request.getParameter("reservationNo"));
 		int ds = Integer.parseInt(request.getParameter("deliveryStatus"));
-		String dn = request.getParameter("deliveryNum");
+		int os = Integer.parseInt(request.getParameter("orderStats"));
+		String dn;
+		if(request.getParameter("deliveryNum")!=null) {
+			dn = request.getParameter("deliveryNum");
+		}else {
+			dn=" ";
+		}
 		if(session !=null&&(Member)session.getAttribute("member")!=null) {
 			Member m = (Member)session.getAttribute("member");
 				if(m.getMemberId().equals("admin")) {
-					int result = adminService.reservationUpdate(no,ds,dn);
+					int result = adminService.reservationUpdate(no,ds,dn,os);
 						if(result>0) {
 							model.addAttribute("msg", "주문 정보를 수정하였습니다.");
 							model.addAttribute("loc", "reservationManager.do");
@@ -459,6 +465,42 @@ public class AdminController {
 			System.out.println("로그인후 사용가능");
 			return "redirect:/";
 		}	
+	}
+	@RequestMapping(value="/searchReser.do")
+	public String searchReser(HttpServletRequest request,Model model) {
+		int select = Integer.parseInt(request.getParameter("select"));
+		int type = Integer.parseInt(request.getParameter("type"));
+		String keyword ;
+		if(request.getParameter("keyword")!=null) {
+			keyword = request.getParameter("keyword");
+		}else {
+			keyword ="none";
+		}
+		System.out.println("컨트롤러 select:"+select);
+		System.out.println("컨트롤러 type:"+type);
+		System.out.println("컨트롤러 keyword:"+keyword);
+		int reqPage;
+		HttpSession session = request.getSession(false);
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				AdminReservation ar = adminService.searchReser(reqPage,select,type,keyword);
+				model.addAttribute("ar", ar);
+				return "admin/reserManager";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+		System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}	
+		
 	}
 	
 }
