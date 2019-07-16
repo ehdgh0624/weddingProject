@@ -62,7 +62,6 @@
 				<h1 class="header-logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:80px"></a></h1>
 				<!-- 주메뉴 -->
 				<nav id="gnb" class="total-menu">
-					<div id="gnbBg"></div>
 					<ul class="clearfix">
 						<li class="gnb01">
 							<a href="/hall.do">웨딩홀</a>
