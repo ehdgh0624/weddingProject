@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectAllList"  resultType="_int">
-	select count(*) from hall 
+	select count(*) from hall  where status=1 and viewstatus=0
 	</select>
 	
 	<select id="searchList" parameterType="map"  resultType="_int">

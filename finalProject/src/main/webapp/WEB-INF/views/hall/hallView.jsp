@@ -86,7 +86,7 @@
 					<hr>
 					${hall.hallContent} <br> <br> <br>
 					<c:if
-						test="${not empty hall.hallServiceFood || not empty hall.hallServiceAudio || not empty hall.hallServiceDrink || not empty hall.hallServicePark}">
+						test="${not empty hall.hallTime || not empty hall.hallServiceFood || not empty hall.hallServiceAudio || not empty hall.hallServiceDrink || not empty hall.hallServicePark}">
 						<h2>운영정책</h2>
 						<br>
 						<table class="comm-tbl">
@@ -94,6 +94,12 @@
 								<col width="30%">
 								<col width="/">
 							</colgroup>
+							<c:if test="${not empty hall.hallTime}">
+								<tr>
+									<th>운영시간</th>
+									<td>${hall.hallTime}</td>
+								</tr>
+							</c:if>
 							<c:if test="${not empty hall.hallServiceFood}">
 								<tr>
 									<th>음식</th>
@@ -121,6 +127,7 @@
 						</table>
 					</c:if>
 					<br> <br> <br>
+					
 					<h2>가격확인 및 예약문의</h2>
 					<br>
 
@@ -140,7 +147,7 @@
 								<th>예식시간</th>
 								<td colspan="2">
 									<div class="input-group w-40">
-											<input type="text" name="hallTime"
+											<input type="text" name="hallTime" id="hallTime"
 												class="form-control time_element" /> <span
 												class="input-group-btn ui-datepicker-trigger">
 
@@ -167,7 +174,7 @@
 								</tr>
 								<tr>
 									<th>대관료</th>
-									<td id="price"></td>
+									<td><span id="price"></span>원</td>
 								</tr>
 								<tr>
 									<th>비고</th>
@@ -175,16 +182,16 @@
 								</tr>
 							<tr>
 								<th>하객수</th>
-								<td><input type="text" id="hallPerson" name="hallPerson" placeholder="하객수를 입력하세요."> <span id="personSpan">?</span></td>
+								<td><input type="text" id="hallPerson" name="hallPerson" placeholder="하객수를 입력하세요."> <span id="personSpan"></span></td>
 							</tr>
 							<tr>
 									<th id="makeupOption-th" rowspan="1">부가 옵션</th>
 									<th>식사</th>
 									<td colspan="2">
 										식사종류
-										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">비싸다</span>원</span>
+										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">${hall.hallFoodprice }</span>원</span>
 										<br>
-										<span style="float: right;">식권 수량 : <input type="number" min="1" max="100" value="0" id="option2Amount" onchange="checkAmount();"></span>
+										<span style="float: right;">식권 수량 : <input type="number" min="${hall.hallMinPerson }" max="${hall.hallMaxPerson }" value="0" id="option2Amount" onchange="checkAmount();"></span>
 									</td>
 								</tr>
 								<tr>
@@ -201,6 +208,7 @@
 
 					<br> <br> <br>
 					<h2>후기 및 Q&A</h2>
+					
 					<hr>
 				</div>
 				<!-- 상세설명, 리뷰, 지도 끝 -->
@@ -222,6 +230,9 @@
 	$(document)
 			.ready(
 					function() {
+						//로드 시 대관료 초기화
+						$('#price').text(0);
+
 						// 갤러리 슬라이드
 						$('.slider-for')
 								.slick(
@@ -244,25 +255,74 @@
 						});
 					});
 	
+	/* 예약 하기 시작*/
+	
+	function reservation(){
+		if($('#hallTime').val() == ''){
+			alert("예식 시간을 선택해주세요.");
+		}else if($("#hallOption option:selected").val() == 'default'){
+			alert("기본옵션을 선택해주세요.");
+		}else if($("#hallPerson").val() == ''){
+			alert("하객수를 입력해주세요.")
+		}else if($("#option2Amount").val() == 0){
+			alert("식권 수량을 정해주세요.");	
+		}else if(${hall.hallMinPerson} > $("#option2Amount").val() < ${hall.hallMaxPerson}){
+			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
+			$('#personSpan').css('color','red');
+		}
+		
+		
+	}; // function close;
+	
+	/* 예약 하기 종료*/
+	
+	/* 식권 수량 변경 시 총계 변경 시작 */
+	
+	function checkAmount(){
+		var food = ${hall.hallFoodprice };
+		var price = parseInt($('#price').text());
+		var num = parseInt($("#option2Amount").val());
+		var total = food * num;
+		var regexp = /\B(?=(\d{3})+(?!\d))/g;
+		var result = (price+total).toString().replace(regexp,',');	// 음식의 값 + 수량 = 총계 , 나누기
+		if($('#option2Amount').prop('checked') == false){
+			$('#allPrice').text(result);	
+		}
+			
+	}
+	
+	/* 식권 수량 변경 시 총계 변경 끝 */
+	
+	
 	/*옵션 선택시 대관료 비고 바꾸기 시작*/
 	
 	$("#hallOption").change(function(){
 		var result = $(this).val();
+		var amount = parseInt($("#option2Amount").val());
+		var food = parseInt($('#option2Price').text());
+		var total = food * amount;
 		if($("#hallOption option:selected").val() != 'default'){
 			$.ajax({
 				url : "/hallOption.do",
 				type : "get",
 				data : {result:result},
 				dataType : "json",
+				async: false,
 				success : function(data){
-					$("#price").text(data.hallSelectPrice+"원");
-					$("#etc").text(data.hallSelectEtc);
+					var price = data.hallSelectPrice;
+					$("#price").text(price);
+					$("#etc").text(data.hallSelectEtc);	
+					$('#allPrice').text((price+total).toString().replace(/\B(?=(\d{3})+(?!\d))/g,','));
 				},
 				error : function(){
 					alert("다시!!!")
 				}
 			});
-		};	// #hallOptionn 이프문
+		}else{
+			var price = 0;
+			$("#price").text(price);
+			$('#allPrice').text((price+total).toString().replace(/\B(?=(\d{3})+(?!\d))/g,','));			
+		}	// #hallOptionn 이프문
 	});
 	
 	/*옵션 선택시 대관료 비고 바꾸기 끝*/
