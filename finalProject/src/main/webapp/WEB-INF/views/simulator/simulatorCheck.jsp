@@ -7,6 +7,19 @@
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 
 
+<script>
+$(function(){
+	//$(".simulator-info-price").find("strong").text(addComma($(".simulator-info-price").children("strong").html()));
+	/*var price1 = $(".simulator-info-price").find("strong").html();
+	var price1Finish = price1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	$(".simulator-info-price").find("strong").text(price1Finish);
+	
+	var price2 = $(".simulator-total-price").find("p").children("b").html();
+	var price2Finish = price2.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	$(".simulator-total-price").find("p").children("b").text(price1Finish);*/
+});
+</script>
+
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
@@ -22,49 +35,56 @@
 				<dd>: <p>${simulator.weddingPerson }명</p></dd>
 			</dl>
 			<div class="simulator-bottomInfo">
-				<c:forEach items="${simulatorList }" var="slist">
+				<c:if test="${not empty simulatorList }">
+					<c:forEach items="${simulatorList }" var="slist">
+						<div class="simulator-info-con">
+							<h3 class="simulator-info-tit">
+								<c:choose>
+									<c:when test="${slist.code eq 'H' }"><span>웨딩홀</span></c:when>
+									<c:when test="${slist.code eq 'D' }"><span>드레스</span></c:when>
+									<c:when test="${slist.code eq 'M' }"><span>메이크업&헤어</span></c:when>
+									<c:when test="${slist.code eq 'S' }"><span>스튜디오</span></c:when>
+								</c:choose>
+								${slist.prdName }
+							</h3>
+							<dl class="simulator-info-detail clearfix">
+								<dt><div class="simulator-info-img"><span></span></div></dt>
+								<dd>
+									<p class="simulator-info-addr">${slist.prdLoc }</p>
+									<p class="simulator-info-tel">${slist.prdTel }</p>
+									<p class="simulator-info-price">평균 견적가<br/> <b><strong>${slist.prdPrice }</strong> 원</b></p>
+								</dd>
+							</dl>
+							<dl class="simulator-info-detail clearfix">
+								<dt>
+									<p class="simulator-info-tag">
+										<c:forTokens var="tag" items="${slist.prdTag }" delims=",">
+										    <span><c:out value="${tag}"/></span>
+										</c:forTokens>
+									</p>
+								</dt>
+								<dd>
+									<div class="common-tbl-btn-group right" style="padding-top:0;">
+										<button class="btn-style1" style="margin:0;">상세정보 보기</button>
+									</div>
+								</dd>
+							</dl>
+						</div>
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty simulatorList }">
 					<div class="simulator-info-con">
-						<h3 class="simulator-info-tit">
-							<c:choose>
-								<c:when test="${slist.code eq 'H' }"><span>웨딩홀</span></c:when>
-								<c:when test="${slist.code eq 'D' }"><span>드레스</span></c:when>
-								<c:when test="${slist.code eq 'M' }"><span>메이크업&헤어</span></c:when>
-								<c:when test="${slist.code eq 'S' }"><span>스튜디오</span></c:when>
-							</c:choose>
-							${slist.prdName }
-						</h3>
-						<dl class="simulator-info-detail clearfix">
-							<dt><div class="simulator-info-img"><span></span></div></dt>
-							<dd>
-								<p class="simulator-info-addr">${slist.prdLoc }</p>
-								<p class="simulator-info-tel">${slist.prdTel }</p>
-								<p class="simulator-info-price">평균 견적가<br/> <b>${slist.prdPrice } 원</b></p>
-							</dd>
-						</dl>
-						<dl class="simulator-info-detail clearfix">
-							<dt>
-								<p class="simulator-info-tag">
-									<c:forTokens var="tag" items="${slist.prdTag }" delims=",">
-									    <span><c:out value="${tag}"/></span>
-									</c:forTokens>
-								</p>
-							</dt>
-							<dd>
-								<div class="common-tbl-btn-group right" style="padding-top:0;">
-									<button class="btn-style1" style="margin:0;">상세정보 보기</button>
-								</div>
-							</dd>
-						</dl>
+						<p class="none">${msg }</p>
 					</div>
-				</c:forEach>
+				</c:if>
 				<div class="simulator-total-price">
 					<h2>
 						<strong>평균 전체견적가</strong>
 						<c:if test="${empty sessionScope.member }">
-							<p>${totalPrice } 원</p>
+							<p><b>${totalPrice }</b> 원</p>
 						</c:if>
 						<c:if test="${not empty sessionScope.member }">
-							<p>${simulator.simulatorTotalPrice } 원</p>
+							<p><b>${simulator.simulatorTotalPrice }</b> 원</p>
 						</c:if>
 					</h2>
 				</div>
@@ -80,6 +100,8 @@
 		</div>
 	</div>	
 </section>
+
+
 
 <%--  Footer --%>
 <jsp:include page="/WEB-INF/common/footer.jsp"/>

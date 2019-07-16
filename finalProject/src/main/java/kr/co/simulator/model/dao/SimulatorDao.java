@@ -97,16 +97,13 @@ public class SimulatorDao {
 		return sqlSession.insert("simulator.newSimulatorSelect", simulatorSelect);
 	}
 
-	
-
-	//웨딩드레스 더보기
-	/*public List<Dress> dSearchList(String weddingLoc, int start, int end) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("weddingLoc", weddingLoc);
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList("simulator.ajaxDressList", map);
-	}*/
+	// 총 금액 업데이트 
+	public int updatePrice(int simulatorNo, int totalPrice) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("simulatorNo", simulatorNo);
+		map.put("totalPrice", totalPrice);
+		return sqlSession.update("simulator.updatePrice", map);
+	}
 
 
 	

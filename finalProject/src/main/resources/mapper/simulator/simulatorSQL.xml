@@ -104,6 +104,9 @@
 	<insert id="newSimulatorSelect" parameterType="simulatorSelect">
 		insert into simulator_select values(#{simulatorNo},#{code},#{prdNo},#{prdName},#{prdPrice},#{prdTel},#{prdLoc},#{prdTag},#{prdFilepath})
 	</insert>
+	<update id="updatePrice" parameterType="map">
+		update simulator set simulator_total_price=#{totalPrice} where simulator_no=#{simulatorNo}
+	</update>
 	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">
 		{call
 			declear
