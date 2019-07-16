@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +15,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+
 import kr.co.android.model.service.AndroidService;
+import kr.co.android.model.vo.ReservationList;
+import kr.co.member.controller.MemberController;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 
@@ -69,17 +74,74 @@ public class AndroidController {
 	public Map<String, Object> androidGetReserVation(HttpServletRequest request) {
 		String memberId=request.getParameter("id");
 		
+		System.out.println("접근중:"+memberId);
+		ArrayList<Reservation> List = (ArrayList<Reservation>)androidService.getReservation(memberId);
 		
-		ArrayList<Reservation> rList = (ArrayList<Reservation>)androidService.getReservation(memberId);
+		
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+
+		ReservationList rlist = new ReservationList();
+		
+		rlist.setList(List);
+		
+		
+		Gson gson = new Gson();
+		String msg = gson.toJson(rlist);
+		result.put("result", msg);
+		System.out.println(result);
+		
+		
+		
+		
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/viewInvitation.do")
+	@ResponseBody
+	public Map<String, Object> viewInvitation(HttpServletRequest request) {
+		String memberId=request.getParameter("id");
+		
+		System.out.println("접근중:"+memberId);
+		androidService.getMyInvitation(memberId);
+		
 		
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 
 		
-	
 		
+		
+		Gson gson = new Gson();
 		
 		
 		return result;
+	}
+	
+	@RequestMapping(value = "/getNumber.do")
+	@ResponseBody
+	public String getNumber(HttpServletRequest request) {
+		String memberId=request.getParameter("id");
+		
+		
+		Random ran = new Random();
+		int number=ran.nextInt(999999)+1;
+		
+		System.out.println("접근중:"+memberId);
+		androidService.setNumber(memberId,number);
+		
+		
+		String numberString= Integer.toString(number);
+		Map<String, String> result = new HashMap<String, String>();
+
+		
+		result.put("number", numberString);
+		
+		
+		MemberController mc = new MemberController();
+		mc.MemberLogin();
+		
+		return "";
 	}
 }

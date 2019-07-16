@@ -33,6 +33,14 @@ public class AndroidService {
 		
 		return androidDao.getRservation(memberId);
 	}
-	
-	
+
+	public void getMyInvitation(String memberId) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public int setNumber(String memberId, int number) {
+		// TODO Auto-generated method stub
+		return androidDao.setNumber(memberId,number);
+	}
 }

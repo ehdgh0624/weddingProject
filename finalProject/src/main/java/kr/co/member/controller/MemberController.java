@@ -605,7 +605,8 @@ public class MemberController {
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
-					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,hallSelectPrice.get(i),hallSelectEtc.get(i));
+					HallSelect  hs = new HallSelect(0,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
+		
 					list2.add(hs);
 				}
 				hsl.setList(list2);

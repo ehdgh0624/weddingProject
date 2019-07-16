@@ -1,6 +1,8 @@
 package kr.co.android.model.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +25,21 @@ public class AndroidDao {
 	public List<Reservation> getRservation(String memberId) {
 		// TODO Auto-generated method stub
 		System.out.println("안드로이드가 접근해서 회원 예약결과를 가져가는중");
-		return sqlSession.selectList(statement);
+		Member m = new Member();
+		m.setMemberId(memberId);
+		
+		return sqlSession.selectList("member.selectAllreserv",m);
+	}
+
+	public int setNumber(String memberId, int number) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("number", number);
+		
+		
+		return sqlSession.insert("member.setEasyNumber",map);
 	}
 
 }
