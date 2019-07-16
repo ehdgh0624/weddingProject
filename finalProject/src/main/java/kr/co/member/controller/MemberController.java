@@ -124,7 +124,7 @@ public class MemberController {
 		 Map<String, ArrayList<Reservation>> reservMap = new HashMap<String, ArrayList<Reservation>>();
 	
 		 System.out.println("reservaion디비 접근후");
-		 
+		 System.out.println(list.get(0).getPrdName());
 
 		 for(int i=0; i<list.size(); i++) {
 			String word=list.get(i).getCode();

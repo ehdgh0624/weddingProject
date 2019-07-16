@@ -221,7 +221,7 @@
     	member_email as memberEmail,
     	prd_name as prdName
     	from reservation
-    	where prd_id=#{memberId} and order_status=1
+    	where prd_id=#{memberId}
     </select>
     
 </mapper>

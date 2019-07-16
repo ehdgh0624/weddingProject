@@ -35,7 +35,7 @@
 							<th>결제수단</th>
 						</tr>
 						<c:forEach var="list" items="${entry.value }"> <!-- 키값꺼내오기 -->
-							<tr onclick="location.href='/reservationView.do?reservationNo=${list.reservationNo }'">
+							<tr onclick="location.href='/reservationView.do?memberId=${list.memberId }&reservationNo=${list.reservationNo }'">
 								<td>${list.reservationNo }</td>
 								<td>${list.memberName }(${list.memberId })</td>
 								<td>${list.memberEmail }</td>
