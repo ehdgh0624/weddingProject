@@ -188,7 +188,26 @@
 									<th id="makeupOption-th" rowspan="1">부가 옵션</th>
 									<th>식사</th>
 									<td colspan="2">
-										식사종류
+										<c:if test="${not empty hall.hallFoodtype }">
+											<c:if test="${hall.hallFoodtype == 0 }">
+												메뉴 : x
+											</c:if>
+											<c:if test="${hall.hallFoodtype == 1 }">
+												메뉴 : 한식
+											</c:if>
+											<c:if test="${hall.hallFoodtype == 2 }">
+												메뉴 : 일식
+											</c:if>
+											<c:if test="${hall.hallFoodtype == 3 }">
+												메뉴 : 중식
+											</c:if>
+											<c:if test="${hall.hallFoodtype == 4 }">
+												메뉴 : 양식
+											</c:if>
+											<c:if test="${hall.hallFoodtype == 5 }">
+												메뉴 : 뷔페
+											</c:if>
+										</c:if>
 										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">${hall.hallFoodprice }</span>원</span>
 										<br>
 										<span style="float: right;">식권 수량 : <input type="number" min="${hall.hallMinPerson }" max="${hall.hallMaxPerson }" value="0" id="option2Amount" onchange="checkAmount();"></span>
@@ -286,6 +305,8 @@
 		var prdId = '${hall.memberId}';
 		var prdName = '${hall.hallName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
+		var weddingTime = $('#hallTime').val();
+		var totalPrice = $('#allPrice').text();
 		
 	};	//function close;
 	
