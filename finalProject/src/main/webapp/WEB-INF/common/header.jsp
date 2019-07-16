@@ -86,7 +86,7 @@
 							<a href="">커뮤니티</a>
 							<div class="gnb-2dep">
 								<ul>
-									<li><a href="">공지사항</a></li>
+									<li><a href="/noticeMain.do">공지사항</a></li>
 								   	<li><a href="/qnaMain.do">Q&A</a></li>
 								   	<li><a href="/experienceAll.do">경험담</a></li>
 								</ul>

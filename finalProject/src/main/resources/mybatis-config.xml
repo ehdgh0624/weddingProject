@@ -25,6 +25,7 @@
 		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
 		<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
 		<typeAlias type="kr.co.hall.vo.HallSelect" alias="hallSelect"/>
+		<typeAlias type="kr.co.notice.vo.Notice" alias="notice"/>
     </typeAliases>
 </configuration>
 
