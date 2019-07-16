@@ -163,7 +163,7 @@
 					
 					<h1 class="terms-tit"><span>(필수)</span>개인정보의 수집 및 이용 안내</h1>
 					<div id="mid" class="terms-tab-list clearfix">
-						<div id="t_mid1" class="t_mid" style="background-color:#fe431e; color:#ffffff;">
+						<div id="t_mid1" class="t_mid" style="background-color:#faaca8; color:#ffffff;">
 							<h2>수집하는 개인정보의 항목</h2>
 						</div>
 						<div id="t_mid2" class="t_mid">
@@ -266,7 +266,7 @@
 			$('#c_mid1').css('display','block');
 			$('#c_mid2').css('display','none');
 			$('#c_mid3').css('display','none');
-			$(this).css('background-color','#fe431e');
+			$(this).css('background-color','#faaca8');
 			$(this).css('color','#ffffff');
 			$('#t_mid2').css('background-color','#ffffff');
 			$('#t_mid2').css('color','black');
@@ -277,7 +277,7 @@
 			$('#c_mid1').css('display','none');
 			$('#c_mid2').css('display','block');
 			$('#c_mid3').css('display','none');
-			$(this).css('background-color','#fe431e');
+			$(this).css('background-color','#faaca8');
 			$(this).css('color','#ffffff');
 			$('#t_mid1').css('background-color','#ffffff');
 			$('#t_mid1').css('color','black');
@@ -288,7 +288,7 @@
 			$('#c_mid1').css('display','none');
 			$('#c_mid2').css('display','none');
 			$('#c_mid3').css('display','block');
-			$(this).css('background-color','#fe431e');
+			$(this).css('background-color','#faaca8');
 			$(this).css('color','#ffffff');
 			$('#t_mid2').css('background-color','#ffffff');
 			$('#t_mid2').css('color','black');

@@ -59,7 +59,7 @@
 					<c:if test="${empty memberAll.dress }">
 						<c:if test="${empty memberAll.makeup }">
 							<c:if test="${empty memberAll.hall }">
-								<h1>등록된 업체가 없습니다.</h1>
+								<h1 class="none">등록된 업체가 없습니다.</h1>
 								<div class="common-tbl-btn-group">
 									<button class="btn-style1 big" onclick="location.href='/goCompanyTerms.do'">업체등록 하러가기</button>
 									<!-- <a href="/goCompanyTerms.do">업체등록 하러가기</a> -->
