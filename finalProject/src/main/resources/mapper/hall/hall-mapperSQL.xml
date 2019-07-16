@@ -34,7 +34,7 @@
 	</select>
 	
 	<select id="selectAllList"  resultType="_int">
-	select count(*) from hall 
+	select count(*) from hall  where status=1 and viewstatus=0
 	</select>
 	
 	<select id="searchList" parameterType="map"  resultType="_int">
@@ -163,7 +163,7 @@
 	hall_min_person as hallMinPerson,
 	hall_max_person as hallMaxPerson,
 	hall_scope as hallScope,
-	hall_foodtype as hallFoodetype,
+	hall_foodtype as hallFoodtype,
 	hall_foodMenu as hallFoodmenu,
 	hall_foodprice as hallFoodprice,
 	hall_tel as hallTel,

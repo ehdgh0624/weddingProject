@@ -6,7 +6,7 @@
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 <section id="wrap">
 	<div class="area">
-		<h2 class="comm-content-tit">회원가입</h2>
+		<h2 class="comm-content-tit" style="margin-top:30px;">회원가입</h2>
 		<div class="common-tbl-box">
 			<form action="/memberEnroll.do" method="post">
 				<br>
@@ -17,31 +17,31 @@
 					</colgroup>
 					<tr>
 						<th>아이디</th>
-						<th><input type="text" name="memberId"></th>
+						<td><input type="text" name="memberId" class="middle"></td>
 					</tr>
 					<tr>
 						<th>비밀번호</th>
-						<th><input type="password" name="memberPw"></th>
+						<td><input type="password" name="memberPw" class="middle"></td>
 					</tr>
 					<tr>
 						<th>비밀번호 확인</th>
-						<th><input type="password" name="pwCheck"></th>
+						<td><input type="password" name="pwCheck" class="middle"></td>
 					</tr>
 					<tr>
 						<th>이름</th>
-						<th><input type="text" name="memberName"></th>
+						<td><input type="text" name="memberName" class="middle"></td>
 					</tr>
 					<tr>
 						<th>전화번호</th>
-						<th><input type="text" name="fPhone">-<input type="text" name="sPhone">-<input type="text" name="tPhone"></th>
+						<td><input type="text" name="fPhone" class="small"> - <input type="text" name="sPhone" class="small"> - <input type="text" name="tPhone" class="small"></td>
 					</tr>
 					<tr>
 						<th>생년월일</th>
-						<th><input type="text" name="birthDay"></th>
+						<td><input type="text" name="birthDay" class="middle" placeholder="ex) 901122"> <span class="comment">ex) 901122</span></td>
 					</tr>
 					<tr>
 						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode" class="middle" placeholder="우편번호" name="postNum">
+						<td><input type="text" id="sample4_postcode" class="short" placeholder="우편번호" name="postNum">
 							<div class="common-tbl-btn-group join-btn-group">
 								<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div>
@@ -55,17 +55,17 @@
 					
 					<tr>
 						<th>지번주소</th>
-						<th><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
+						<td><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
+						<input type="text" id="sample4_extraAddress" placeholder="지번주소 추가사항" name="extraAddr" style="margin-top:3px;"></td>
 					</tr>
 					
 					<tr>
 						<th>상세주소</th>
-						<th><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></th>
+						<td><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<th><input type="text" name="email"></th>
+						<td><input type="text" name="email" class="middle"> <span class="comment">ex) abcd1234@naver.com</span></td>
 					</tr>
 					<!--  이후 수정페이지에서 등록예정
 								-----------------필수항목x-----------------------------				
@@ -74,10 +74,10 @@
 								예산 : <input type="text" name="budget"><br>
 							-->
 				</table>
-				<div class="login-btn-box">
-					<button type="submit">회원가입</button>
-					<button type="reset">초기화</button>
-					<button type="button" onclick="location.href='/index.jsp'">메인페이지로</button>
+				<div class="common-tbl-btn-group">
+					<button type="submit" class="btn-style1">회원가입</button>
+					<button type="reset" class="btn-style3">초기화</button>
+					<button type="button" onclick="location.href='/index.jsp'" class="btn-style2">메인페이지로</button>
 					<br>
 
 				</div>
