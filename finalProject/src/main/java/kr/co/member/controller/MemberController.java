@@ -220,7 +220,7 @@ public class MemberController {
 	
 	
 	@RequestMapping(value = "/login.do")
-	public String memberLogin(HttpServletRequest request, @RequestParam String memberId, @RequestParam String memberPw) {
+	public String memberLogin(HttpServletRequest request, @RequestParam String memberId, @RequestParam String memberPw,Model model) {
 		System.out.println("로그인 호출");
 		Member memberSet = new Member();
 		memberSet.setMemberId(memberId);
@@ -236,7 +236,9 @@ public class MemberController {
 			System.out.println("로그인성공");
 			return "redirect:/";
 		}else {
-			view = "member/loginFailed";
+			model.addAttribute("msg", "아이디 , 패스워드를 확인해 주세요");
+			model.addAttribute("loc", "loginPage.do");
+			view = "common/msg";
 			System.out.println("로그인실패");
 		}
 		return view;
@@ -378,12 +380,18 @@ public class MemberController {
 	
 	@RequestMapping(value = "/memberDelete.do")
 
-	public String MemberDelete(HttpServletRequest request) {
+	public String MemberDelete(HttpServletRequest request , Model model) {
 		System.out.println("탈퇴 호출");
 		String id = request.getParameter("memberId");
 		System.out.println(id);
+		HttpSession session = request.getSession(false);
+		if(session != null && session.getAttribute("member") != null) {
+			session.invalidate();
+		}
+		model.addAttribute("msg", "회원탈퇴 되었습니다.");
+		model.addAttribute("loc", "");
 		memberService.deleteMember(id);
-		return "redirect:/index.jsp";
+		return "common/msg";
 	}
 	
 	@RequestMapping(value = "/goAddTerms.do")
