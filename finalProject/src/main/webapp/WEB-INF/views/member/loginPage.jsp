@@ -7,10 +7,10 @@
 
 <section id="wrap">
 	<div class="area">
-		<h2 class="comm-content-tit">로그인</h2>
-		<div class="common-tbl-box">
-			<form action="/login.do" form="post">
-				<table class="comm-tbl">
+		<h2 class="comm-content-tit" style="margin:50px 0 60px;">로그인</h2>
+		<div class="comm-login-box"><!-- common-tbl-box -->
+			<form action="/login.do" form="post" class="clearfix">
+				<table class="comm-tbl login-tbl">
 					<colgroup>
 						<col width="20%">
 						<col width="/">
@@ -24,9 +24,9 @@
 						<th><input type="password" name="memberPw"></th>
 					</tr>
 				</table>
-				<div class="common-tbl-btn-group">
-					<button type="submit" class="btn-style1">로그인</button>
-					<button type="button" class="btn-style2" onclick="location.href='/goAddTerms.do'">회원가입</button>
+				<div class="common-tbl-btn-group login-tbl-btn-group">
+					<button type="submit" class="btn-style1 login-btn">로그인</button>
+					<button type="button" class="btn-style3" onclick="location.href='/goAddTerms.do'">회원가입</button>
 				</div>
 			</form>
 		</div>
