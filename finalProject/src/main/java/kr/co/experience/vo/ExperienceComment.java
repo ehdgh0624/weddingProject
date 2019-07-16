@@ -1,17 +1,17 @@
 package kr.co.experience.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ExperienceComment {
-
-	 private int experienceCommentNo;
-	 private int experienceCommentLevel;
-	 private String experienceCommentWriter;
-	 private String experienceCommentContent;
-	 private int experienceCommentRef;
-	 private int experienceCommentCommentRef;
-	 private Date experienceCommentDate;
-	 private int experienceCommentGood;
+	
+	public int experienceCommentNo;
+	public int experienceCommentLevel;
+	public String experienceCommentWriter;
+	public String experienceCommentContent;
+	public int experienceCommentRef;
+	public int experienceCommentCommentRef;
+	public Date experienceCommentDate;
+	public int experienceCommentGood;
 	public ExperienceComment() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -77,5 +77,7 @@ public class ExperienceComment {
 	public void setExperienceCommentGood(int experienceCommentGood) {
 		this.experienceCommentGood = experienceCommentGood;
 	}
+
+	
 	
 }

@@ -18,9 +18,11 @@
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
 		<typeAlias type="kr.co.experience.vo.Experience" alias="experience"/>
+		<typeAlias type="kr.co.experience.vo.ExperienceComment" alias="experienceComment"/>
 		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
 		<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
 		<typeAlias type="kr.co.hall.vo.HallSelect" alias="hallSelect"/>
+		
     </typeAliases>
 </configuration>
 

@@ -56,8 +56,8 @@
           </div>
           
 		  <div class="board-search-box">
-             <form action="" method="get">
-               <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
+             <form action="/exsearchExperience.do" method="get">
+               <select name="type" id="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
                   <option value="title">제목</option> 
                </select>
                <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
