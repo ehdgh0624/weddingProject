@@ -23,6 +23,7 @@ import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
 import kr.co.hall.vo.HallSelect;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
 @Controller
@@ -116,4 +117,38 @@ public class HallController {
 		
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/reservationHall.do")
+	public int insertReservationHall(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdId, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam int price, @RequestParam int person, @RequestParam int foodType, @RequestParam int foodCount, @RequestParam String option) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdId(prdId);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setHallSelect(option);
+			vo.setHallPrice(price);
+			vo.setHallPerson(person);
+			vo.setHallFoodcount(foodCount);
+			vo.setHallFoodtype(foodType);
+			int result = hallService.insertReservationHall(vo,weddingDate);
+			System.out.println(result);
+			if(result > 0) {
+				result = hallService.selectReservationNo(m.getMemberId());
+				return result;
+			}else {
+				return result;
+			}
+		}else {
+			return -1;
+		}
+	}
 }
