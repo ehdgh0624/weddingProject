@@ -18,6 +18,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.goods.model.vo.Goods;
 import kr.co.hall.vo.Hall;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 
 @Repository("adminDao")
 public class AdminDao {
@@ -218,6 +219,27 @@ public class AdminDao {
 
 	public int memberAgree(String id) {
 		return sqlSession.update("admin.memberAgree",id);
+	}
+
+	public int totalreservation() {
+		return sqlSession.selectOne("admin.reservationCount");
+	}
+
+	public ArrayList<Reservation> reservation(int start, int end) {
+		Map<String, Integer> map = new HashMap<String,Integer>();
+		map.put("start", start);
+		map.put("end", end);
+		List list = sqlSession.selectList("admin.reservationAll", map);
+		return (ArrayList<Reservation>)list;
+	}
+
+	public int reservationUpdate(int no, int ds, String dn) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("no",String.valueOf(no));
+		map.put("ds", String.valueOf(ds));
+		map.put("dn",dn);
+		
+		return sqlSession.update("admin.reservationUpdate",map);
 	}
 
 	

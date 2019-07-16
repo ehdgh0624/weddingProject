@@ -10,7 +10,7 @@
 
 <%-- wrap --%>
 <section id="wrap">
-	<div class="area">
+	<div class="area" style="padding-top:50px;">
 		<input type="hidden" id="weddingLoc" name="weddingLoc" value="${simulator.weddingLoc }">
 		<input type="hidden" id="weddingDate" name="weddingDate" value="${simulator.weddingDate }">
 		<input type="hidden" id="weddingPerson" name="weddingPerson" value="${simulator.weddingPerson }">
@@ -20,7 +20,7 @@
 			<div class="simulator-select-con">
 				<c:choose>
 					<c:when test="${empty hList }">
-						<p class="none">검색 결과 없음</p>
+						<p class="none">${msg }</p>
 					</c:when>
 					<c:when test="${not empty hList }">
 						<div class="simulator-select-group">
@@ -64,7 +64,7 @@
 			<div class="simulator-select-con">
 				<c:choose>
 					<c:when test="${empty dList }">
-						<p class="none">검색 결과 없음</p>
+						<p class="none">${msg }</p>
 					</c:when>
 					<c:when test="${not empty dList }">
 						<div class="simulator-select-group">
@@ -108,7 +108,7 @@
 			<div class="simulator-select-con">
 				<c:choose>
 					<c:when test="${empty mList }">
-						<p class="none">검색 결과 없음</p>
+						<p class="none">${msg }</p>
 					</c:when>
 					<c:when test="${not empty mList }">
 						<div class="simulator-select-group">
@@ -152,7 +152,7 @@
 			<div class="simulator-select-con">
 				<c:choose>
 					<c:when test="${empty stList }">
-						<p class="none">검색 결과 없음</p>
+						<p class="none">${msg }</p>
 					</c:when>
 					<c:when test="${not empty stList }">
 						<div class="simulator-select-group">
@@ -233,6 +233,15 @@ function cart_click(cart){
 	}
 }
 
+//콤마찍기
+/*function addComma(num) {
+  //var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  //return num.toString().replace(regexp, ',');
+  
+  //num = String(num);
+  return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}*/
+
 $(document).ready(function(){
 	//나의 웨딩 계산결과 보기
 	$(".go-simulation").click(function(e){
@@ -247,7 +256,8 @@ $(document).ready(function(){
 			cartOneArr[3] = $(this).find('.simulator-select-list-tel').html();
 			cartOneArr[4] = $(this).find('.simulator-select-list-tit').html();
 			cartOneArr[5] = $(this).find('.simulator-select-list-addr').html();
-			cartOneArr[6] = $(this).find('.simulator-select-list-price').children('b').html();
+			cartOneArr[6] = $(this).find('.simulator-select-list-price').children('em').html();
+			//cartOneArr[6] = $(this).find('.simulator-select-list-price').val();
 			cartOneArr[7] = $(this).find('.simulator-select-list-tag').html();
 			
 			cartArr.push(cartOneArr);
@@ -326,7 +336,7 @@ function hall_more(start){
 					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em><em class='simulator-select-list-tel' value="+h[j].hallTel+">"+h[j].hallTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+h[j].hallName+">"+h[j].hallName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
-					html += "<p class='simulator-select-list-price' value="+h[j].hallPrice+">평균 <b>"+h[j].hallPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-price' value="+h[j].hallPrice+">평균 <b>"+h[j].hallPrice+"</b><em>"+h[j].hallPrice+"</em> 원</p>";
 					html += "<p class='simulator-select-list-tag' value="+h[j].hallTag+">"+h[j].hallTag+"</p></div>";
 					html += "<div class='simulator-select-btn-group'><a href='' class='btn-1'>상세 보기</a><button class='btn-2 hall-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(h.length);
@@ -335,6 +345,8 @@ function hall_more(start){
 			
 			//웨딩홀 더보기 출력
 			$('.hall-group-list').slick('slickAdd',html);
+			
+			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#hall-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -376,7 +388,7 @@ function dress_more(start){
 					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em><em class='simulator-select-list-tel' value="+d[j].dressTel+">"+d[j].dressTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+d[j].dressName+">"+d[j].dressName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+d[j].dressAddr+">"+d[j].dressAddr+"</p>";
-					html += "<p class='simulator-select-list-price' value="+d[j].dressRentPrice+">평균 <b>"+d[j].dressRentPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-price' value="+d[j].dressRentPrice+">평균 <b>"+d[j].dressRentPrice+"</b><em>"+d[j].dressRentPrice+"</em> 원</p>";
 					html += "<p class='simulator-select-list-tag' value="+d[j].dressTag+">"+d[j].dressTag+"</p></div>";
 					html += "<div class='simulator-select-btn-group'><a href='/collectionViewDress.do?dressNo="+d[j].dressNo+"' class='btn-1'>상세 보기</a><button class='btn-2 dress-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(d.length);
@@ -385,6 +397,8 @@ function dress_more(start){
 			
 			//드레스 더보기 출력
 			$('.dress-group-list').slick('slickAdd',html);
+			
+			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#dress-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -427,7 +441,7 @@ function makeup_more(start){
 					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em><em class='simulator-select-list-tel' value="+make[j].makeupTel+">"+make[j].makeupTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+make[j].makeupName+">"+make[j].makeupName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+make[j].makeupAddr+">"+make[j].makeupAddr+"</p>";
-					html += "<p class='simulator-select-list-price' value="+make[j].makeupBasicPrice+">평균 <b>"+make[j].makeupBasicPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-price' value="+make[j].makeupBasicPrice+">평균 <b>"+make[j].makeupBasicPrice+"</b><em>"+make[j].makeupBasicPrice+"</em> 원</p>";
 					html += "<p class='simulator-select-list-tag' value="+make[j].makeupTag+">"+make[j].makeupTag+"</p></div>";
 					html += "<div class='simulator-select-btn-group'><a href='/collectionViewMakeup.do?makeupNo="+make[j].makeupNo+"' class='btn-1'>상세 보기</a><button class='btn-2 makeup-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(make.length);
@@ -436,6 +450,8 @@ function makeup_more(start){
 			
 			//메이크업 더보기 출력
 			$('.makeup-group-list').slick('slickAdd',html);
+			
+			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#makeup-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -476,7 +492,7 @@ function studio_more(start){
 					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em><em class='simulator-select-list-tel' value="+st[j].studioTel+">"+st[j].studioTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+st[j].studioName+">"+st[j].studioName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+st[j].studioAddr+">"+st[j].studioAddr+"</p>";
-					html += "<p class='simulator-select-list-price' value="+st[j].studioPrice+">평균 <b>"+st[j].studioPrice+"</b> 원</p>";
+					html += "<p class='simulator-select-list-price' value="+st[j].studioPrice+">평균 <b>"+st[j].studioPrice+"</b><em>"+st[j].studioPrice+"</em> 원</p>";
 					html += "<p class='simulator-select-list-tag' value="+st[j].studioTag+">"+st[j].studioTag+"</p></div>";
 					html += "<div class='simulator-select-btn-group'><a href='/collectionViewStudio.do?studioNo="+st[j].studioNo+"' class='btn-1'>상세 보기</a><button class='btn-2 studio-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(st.length);
@@ -485,6 +501,8 @@ function studio_more(start){
 			
 			//스튜디오 더보기 출력
 			$('.studio-group-list').slick('slickAdd',html);
+			
+			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#studio-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값

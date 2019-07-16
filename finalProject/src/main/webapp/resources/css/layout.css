@@ -116,7 +116,7 @@ body {width:100%; background-color:#fff;}
 
 /* ****************** Header ********************** */
 #header{position:relative; width:100%; }
-#headerInner{position:relative; padding:0 20px;}
+#headerInner{position:relative; padding:0 20px; text-align:center;}
 #header .header-logo{position:relative; z-index:100; text-align:center; margin-bottom:10px;}
 #header .header-logo a{}
 
@@ -127,16 +127,25 @@ body {width:100%; background-color:#fff;}
 
 /* ****************** GNB ********************** */
 #gnbBg{display:none; position:absolute; left:0; top:70px; width:100%; height:200px; background:#f5f5f5; z-index:98;}
-#gnb{position:relative; left:0; top:0; width:100%; z-index:99;}
+#gnb{position:relative; top:0px; left:0; width:100%; z-index:99;}
 #gnb > ul{text-align:center;}
-#gnb > ul > li{position:relative; display:inline-block; min-width:230px;}
-#gnb > ul > li > a{position:relative; z-index:100; display:block; height:70px; line-height:70px; text-align:center; font-size:18px; font-weight:500;}
+#gnb > ul > li{position:relative; display:inline-block; min-width:200px;}
+#gnb > ul > li > a{position:relative; z-index:100; display:block; height:70px; line-height:70px; text-align:center; font-size:17px; color:#58626c; font-weight:500;}
 
 /* GNB :: 2차 전체메뉴 */
-#gnb > ul > li .gnb-2dep{display:none; position:absolute; top:70px; left:0; z-index:99; width:100%; height:200px; text-align:center;}
-#gnb > ul > li .gnb-2dep ul{padding:15px 0;}
-#gnb > ul > li .gnb-2dep ul li{position:relative; padding:10px;}
-#gnb > ul > li .gnb-2dep ul li a{display:block; text-align:center; font-size:16px; color:#333; font-weight:500;}
+#gnb > ul > li .gnb-2dep{display:none; position:absolute; top:70px; left:6%; z-index:99; width:88%; /*height:200px;*/ text-align:center; background-color:rgba(88, 98, 108,0.7); border-radius:10px;}
+#gnb > ul > li .gnb-2dep ul{padding:10px 0;}
+#gnb > ul > li .gnb-2dep ul li{position:relative; padding:8px 10px;}
+#gnb > ul > li .gnb-2dep ul li a{display:block; text-align:center; font-size:15px; color:#fff; font-weight:400;}
+
+
+/* ****************** Header :: Main ********************** */
+#header.main {position:absolute;}
+#header.main .header-logo{display:inline-block; margin-bottom:0;}
+#header.main #gnb{position:absolute; top:50px;}
+#header.main #gnb > ul > li.gnb02{margin-right:80px;}
+#header.main #gnb > ul > li.gnb03{margin-left:80px;}
+#header.main #gnb > ul > li .gnb-2dep{background-color:rgba(88, 98, 108,0.5);}
 
 /* ****************** 서브비주얼 ********************** */
 #subVisual{width:100%; height:200px; background:url(/resources/img/sub_visual03.jpg) no-repeat center center;}
@@ -168,8 +177,14 @@ body {width:100%; background-color:#fff;}
 #myPageContainer{padding:10px;}
 
 /* ****************** Main :: Visual ********************** */
-#mainVisual{width:100%; height:820px; background:#fff; text-align:center; font-size:36px; overflow:hidden; position:relative; max-height:820px;}
-
+#mainVisual{width:100%; height:820px; background:#fff; background-size:cover; text-align:center; font-size:36px; overflow:hidden; position:relative; margin-bottom:30px;}
+#mainVisual .slick-list{width:100%; height:100%;}
+#mainVisual .slick-track{height:100%;}
+.main-visual-container{height:100%;}
+.main-visual-container li{width:100%; height:100%;}
+.main-visual-container li .main-visual-con{width:100%; height:100%; position:relative;}
+.main-visual-container li .main-visual-con > span{display:block; width:100%; height:100%;}
+.main-visual-container li img{max-width:100%; opacity:0}
 
 /* ****************** Main :: mainContainer ********************** */
 #mainContainer{padding-top:50px;}

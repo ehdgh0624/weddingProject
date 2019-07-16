@@ -42,11 +42,12 @@
 	<context:component-scan base-package="kr.co.collection" />
 	<context:component-scan base-package="kr.co.simulator" />
 	<context:component-scan base-package="kr.co.hall" />
+	<context:component-scan base-package="kr.co.hallSelect" />
 	<context:component-scan base-package="kr.co.review" />
 	<context:component-scan base-package="kr.co.rservation"/>
 	<context:component-scan base-package="kr.co.test"/>
 	<context:component-scan base-package="kr.co.experience"/>
-
+	<context:component-scan base-package="kr.co.android"/>
 	<task:annotation-driven/>
 	
 </beans:beans>

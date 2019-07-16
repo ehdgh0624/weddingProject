@@ -44,26 +44,26 @@ public class MemberService {
 		return memberDao.insertMember(vo);
 	}
 
-	public Studio selectOneStudioMember(Member vo) {
+	public List<Studio> selectAllStudioMember(Member vo) {
 		// TODO Auto-generated method stub
 		
 		
-		return memberDao.selectOneStudioMember(vo);
+		return memberDao.selectAllStudioMember(vo);
 	}
 
-	public Dress selectOneDressMember(Member vo) {
+	public List<Dress> selectAllDressMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneDressMember(vo);
+		return memberDao.selectAllDressMember(vo);
 	}
 
-	public Hall selectOneHallMember(Member vo) {
+	public List<Hall> selectAllHallMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneHallMember(vo);
+		return memberDao.selectAllHallMember(vo);
 	}
 
-	public Makeup selctOneMakeupMember(Member vo) {
+	public List<Makeup> selectAllMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneMakeupMember(vo);
+		return memberDao.selectAllMakeupMember(vo);
 	}
 
 	public int insertStudio(CompanyInfo ci, Member vo) {
@@ -256,14 +256,19 @@ public class MemberService {
 		return memberDao.deleteStudioOption(no,type);
 	}
 
-	public int deleteOneStudioOption(int no, int type, String submitDelete) {
+	public int deleteOneStudioOption(int optionNo) {
 		// TODO Auto-generated method stub
-		return memberDao.deleteOneStudioOption(no,type,submitDelete);
+		return memberDao.deleteOneStudioOption(optionNo);
 	}
 
-	public int updateOneStudioOption(int no, int type, String option, String price) {
+	public int updateOneStudioOption(int no, String option, String price) {
 		// TODO Auto-generated method stub
-		return memberDao.updateOneStudioOption(no,type,option,price);
+		return memberDao.updateOneStudioOption(no,option,price);
+	}
+
+	public int addStudioOption(StudioSelect s) {
+		// TODO Auto-generated method stub
+		return memberDao.addStudionOption(s);
 	}
 
 

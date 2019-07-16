@@ -78,6 +78,11 @@ public class SimulatorService {
 	//simulatorSelect 넣기
 	public int newSimulatorSelect(SimulatorSelect simulatorSelect) {
 		return simulatorDao.newSimulatorSelect(simulatorSelect);
+	}
+
+	// 총 금액 업데이트 
+	public int updatePrice(int simulatorNo, int totalPrice) {
+		return simulatorDao.updatePrice(simulatorNo, totalPrice);
 	}	
 
 	

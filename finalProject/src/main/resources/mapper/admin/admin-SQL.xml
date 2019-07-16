@@ -266,5 +266,42 @@
 	<update id="memberAgree" parameterType="string">
 	update member set member_code = 1 where member_id = #{id}
 	</update>
+	
+	<select id="reservationCount" resultType="_int">
+		select count(*) from reservation where code = 'G'
+	</select>
+	<select id="reservationAll" parameterType="map" resultType="reservation">
+		select
+			reservation_No as reservationNo,
+			code,
+			prd_no as prdNo,
+			prd_id as prdId,
+			prd_name as prdName,
+			wedding_date as weddingDate,
+			wedding_time as weddingTime,
+			totalprice as totalPrice,
+			member_id as memberId,
+			member_name as memberName,
+			member_phone as memberPhone,
+			pay_method as payMethod,
+			amount,
+			order_status as orderStatus,
+			delivery_num as deliveryNum,
+			delivery_Status as deliveryStatus, 
+			order_date as orderDate,
+			order_memo as orderMemo,
+			order_addr as orderAddr,
+			member_email as memberEmail,
+			receive_name as receiveName,
+			receive_phone as receivePhone,
+			bank_name as bankName,
+			bank_num as bankNum,
+			bank_holder as bankHolder,
+			bank_date as bankDate
+		from(select rownum as rnum ,r.* from (select * from reservation where code = 'G' order by reservation_no desc)r) where rnum between #{start} and #{end}
+	</select>
+	<update id="reservationUpdate" parameterType="map">
+		update reservation set delivery_status=${ds} ,delivery_num=#{dn} where reservation_No = ${no}
+	</update>
 </mapper>
 
