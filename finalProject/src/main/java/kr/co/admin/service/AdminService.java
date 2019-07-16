@@ -11,8 +11,10 @@ import kr.co.admin.dao.AdminDao;
 import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
+import kr.co.admin.vo.AdminReservation;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 
 @Service("adminService")
 public class AdminService {
@@ -262,7 +264,7 @@ public class AdminService {
 	}
 	public AdminGoods searchGoods(int reqPage, String keyword) {
 		int total = adminDao.searchGoodsCount(keyword);
-		int pageNum = 9;
+		int pageNum = 10;
 		int totalPage = (total%pageNum==0)?(total/pageNum):(total/pageNum)+1;
 	    int start = (reqPage*pageNum-pageNum)+1;
 	    int end  = reqPage*pageNum;
@@ -290,6 +292,41 @@ public class AdminService {
 		AdminGoods ag = new AdminGoods(gl, pageNavi);
 		
 		return ag;
+	}
+	public AdminReservation reservationManager(int reqPage) {
+		int total = adminDao.totalreservation();
+		int pageNum = 10;
+		int totalPage = (total%pageNum==0)?(total/pageNum):(total/pageNum)+1;
+	    int start = (reqPage*pageNum-pageNum)+1;
+	    int end  = reqPage*pageNum;
+	    ArrayList<Reservation> list = adminDao.reservation(start,end);
+	    String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='/adminPage.do?reqPage="+(pageNo-1)+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/adminPage.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/adminPage.do?reqPage="+(pageNo)+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		AdminReservation ar = new AdminReservation(list,pageNavi);
+			    
+		
+		return ar;
+	}
+	@Transactional
+	public int reservationUpdate(int no, int ds, String dn) {
+		return adminDao.reservationUpdate(no,ds,dn);
 	}
 
 }
