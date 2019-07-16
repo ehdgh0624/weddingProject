@@ -41,9 +41,9 @@
 					</tr>
 					<tr>
 						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode" placeholder="우편번호" name="postNum">
+						<td><input type="text" id="sample4_postcode" class="middle" placeholder="우편번호" name="postNum">
 							<div class="common-tbl-btn-group join-btn-group">
-									<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div>
 						</td>
 					</tr>
