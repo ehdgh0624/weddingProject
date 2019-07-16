@@ -9,6 +9,7 @@
 
 <%-- wrap --%>
 <section id="adminWrap">
+<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
 	<div id="adminHeader">
@@ -162,7 +163,7 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="text" name="makeupBasicPrice" value="0"></th>
+								<th><input type="number" name="makeupBasicPrice" value="0"></th>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
@@ -232,7 +233,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="text" name="hallFoodprice" value=" "></th>
+									<th><input type="number" name="hallFoodprice" value="0"></th>
 								</tr>
 							<!--  -->
 								<tr>
@@ -262,7 +263,7 @@
 							</colgroup>
 							<tr>
 								<th>대표사진등록</th>
-								<th><input type="file" name="fileNames" value=" " id="imgInp"></th>
+								<th><input type="file" name="fileNames"  id="imgInp"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
@@ -297,7 +298,7 @@
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -329,7 +330,7 @@
 							</tr>
 							<tr>
 								<th>예식장인원(최소)</th>
-								<th><input type="text" name="hallSelectPeople" value=" "></th>
+								<th><input type="text" name="hallSelectPerson" value=" "></th>
 							</tr>
 							<tr>
 								<th>예식장시간</th>
@@ -428,13 +429,11 @@
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>홀타입</th>';
-		addTable += '<th><select name="hallSelectType"><option value="0">갤러리</option><option value="1">골프장</option>';
-		addTable += '<option value="2">공공장소</option><option value="3">레스토랑</option><option value="4">문화공간</option>';
-		addTable += '<option value="5">선박</option><option value="6">스튜디오</option><option value="7">웨딩홀</option>';
-		addTable += '<option value="8">펜션</option><option value="9">하우스웨딩홀</option></select></th></tr>';
-		addTable += '<tr><th>예식장이름(홀이름)</th><th><input type="text" name="hallSelectName"></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value=0></th></tr>';
+		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
+		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
+		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value="0"></th></tr>';
+		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
+		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
 		
 		$('#hallOptionTableDiv').append(addTable);
@@ -444,7 +443,7 @@
 		var addTable ="";			
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
 		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOption"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
+		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
@@ -557,25 +556,8 @@
     $("#imgInp").change(function() {
         readURL(this);
     });        
-            CKEDITOR.config.height = 500;
-            CKEDITOR.config.toolbarCanCollapse = true;
-            CKEDITOR.replace('editor' , {                
-            filebrowserImageUploadUrl: '/experienceUpload.do'                   
-            });
-             CKEDITOR.on('dialogDefinition', function( ev ){
-                    var dialogName = ev.data.name;
-                    var dialogDefinition = ev.data.definition;
-         
-                    switch (dialogName) {
-                        case 'image': 
-                        	//Image Properties dialog
-                            //dialogDefinition.removeContents('info');
-                            dialogDefinition.removeContents('Link');
-                            dialogDefinition.removeContents('advanced');
-                            break;
-                    }                                                         
-                });                        
-        </script>
+                            
+  </script>
 
 
 

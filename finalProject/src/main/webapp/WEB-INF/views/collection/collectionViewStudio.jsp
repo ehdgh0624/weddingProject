@@ -9,6 +9,31 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
 
+<script>
+	$(document).ready(function(){
+		// 갤러리 슬라이드
+	    $('.slider-for').slick({
+		  slidesToShow: 1,
+		  slidesToScroll: 1,
+		  arrows: true,
+		  fade: false,
+		  prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
+		  nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
+		  asNavFor: '.slider-nav'
+		});
+	    
+		$('.slider-nav').slick({
+		  slidesToShow: 4,
+		  slidesToScroll: 1,
+		  asNavFor: '.slider-for',
+		  dots: false,
+		  centerMode: false,
+		  focusOnSelect: true
+		});
+	});
+</script>
+
+
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
@@ -20,28 +45,31 @@
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
 						<button
-							style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+							style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상호명 -->
-					<td><span style="font-size: 28px;">${studio.studioName}</span>
-					</td>
+					<td>
+						<span style="font-size: 28px;">${studio.studioName}</span>
 					<!-- 스크랩북 -->
-					<td style="float: right;"><c:choose>
-							<c:when test="${not empty scrapbook}">
-								<button class="scrapStar" id="${studio.studioNo}"
-									name="${studio.code}">
-									<img src="/resources/img/star_b2.png"
-										style="width: 30px; height: 30px;">
-								</button>
-							</c:when>
-							<c:otherwise>
-								<button class="defaultStar" id="${studio.studioNo}"
-									name="${studio.code}">
-									<img src="/resources/img/star_b1.png"
-										style="width: 30px; height: 30px;">
-								</button>
-							</c:otherwise>
-						</c:choose></td>
+						<span style="float: right;">
+							<c:choose>
+								<c:when test="${not empty scrapbook}">
+									<button class="scrapStar" id="${studio.studioNo}"
+										name="${studio.code}">
+										<img src="/resources/img/star_b2.png"
+											style="width: 30px; height: 30px;">
+									</button>
+								</c:when>
+								<c:otherwise>
+									<button class="defaultStar" id="${studio.studioNo}"
+										name="${studio.code}">
+										<img src="/resources/img/star_b1.png"
+											style="width: 30px; height: 30px;">
+									</button>
+								</c:otherwise>
+							</c:choose>						
+						</span>
+					</td>
 				</tr>
 				<tr>
 					<!-- 상세주소 -->
@@ -52,42 +80,22 @@
 			<!-- 상호명 테이블 끝 -->
 			<br>
 			<!-- 사진 carousel -->
-			<div>
-				<div
-					style="max-width: 1200px; height: 600px; background-color: pink; border-radius: 3px; overflow: hidden;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 0; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div
-					style="width: 190px; height: 120px; background-color: pink; margin: 8px 0 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
+			<!-- 큰 이미지 li 갯수, 순서와 작은 이미지 li 갯수, 순서가 일치해야함!! -->
+			<div class="view-gallery-slide">
+				<!-- 큰 이미지 영역 -->
+				<ul class="view-big-gallery-list slider-for">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
+				<!-- 작은 이미지 영역 -->
+				<ul class="view-small-gallery-list slider-nav">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>
@@ -283,6 +291,7 @@
 	function submitReservation(){
 		var code = "S";
 		var prdNo = ${studio.studioNo};
+		var prdId = '${studio.memberId}';
 		var prdName = '${studio.studioName}';
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
@@ -298,7 +307,7 @@
 		var option3 = $('#option3 option:selected').text().substring(0,$('#option3 option:selected').text().indexOf("("));
 		$.ajax({
 			url : "/reservationStudio.do",
-			data : {code:code,prdNo:prdNo,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
 				if(data > 0){

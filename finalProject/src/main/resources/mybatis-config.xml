@@ -16,7 +16,11 @@
     	<typeAlias type="kr.co.simulator.model.vo.Simulator" alias="simulator"/>
     	<typeAlias type="kr.co.simulator.model.vo.SimulatorSelect" alias="simulatorSelect"/>  
     	<typeAlias type="kr.co.hall.vo.Hall" alias="hall"/>    
+    	<typeAlias type="kr.co.hall.vo.HallSelect" alias="hallSelect"/>
 		<typeAlias type="kr.co.test.vo.Test" alias="test"/>
+		<typeAlias type="kr.co.reservation.model.vo.Reservation" alias="reservation"/>
+		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
+		<typeAlias type="kr.co.qna.vo.QnA" alias="qna"/>
 		<typeAlias type="kr.co.experience.vo.Experience" alias="experience"/>
 		<typeAlias type="kr.co.admin.vo.CompanyVo" alias="company"/>
 		<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>

@@ -24,6 +24,7 @@ import kr.co.admin.service.AdminService;
 import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
+import kr.co.admin.vo.AdminReservation;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
@@ -129,7 +130,6 @@ public class AdminController {
 							bos.close();
 						}
 					} catch (IOException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			
@@ -204,10 +204,11 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		int num = Integer.parseInt(request.getParameter("num"));
 		String code = request.getParameter("code");
+		String id = request.getParameter("id");
 			if(session !=null&&(Member)session.getAttribute("member")!=null) {
 				Member m = (Member)session.getAttribute("member");
 					if(m.getMemberId().equals("admin")) {
-						int result = adminService.agree(num,code);
+						int result = adminService.agree(num,code,id);
 						if(result >0) {
 							String agree = "업체허가하였습니다.";
 							String loc = "companyManager.do";
@@ -229,10 +230,11 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		int num = Integer.parseInt(request.getParameter("num"));
 		String code = request.getParameter("code");
+		String id = request.getParameter("id");
 			if(session !=null&&(Member)session.getAttribute("member")!=null) {
 				Member m = (Member)session.getAttribute("member");
 					if(m.getMemberId().equals("admin")) {
-						int result = adminService.reject(num,code);
+						int result = adminService.reject(num,code,id);
 						if(result >0) {
 							String agree = "업체거절하였습니다.";
 							String loc = "companyManager.do";
@@ -379,4 +381,84 @@ public class AdminController {
 			return "redirect:/";
 		}	
 	}
+	
+	@RequestMapping(value="/searchGoods.do")
+	public String searchGoods(HttpServletRequest request, String keyword ,Model model) {
+		int reqPage;
+		HttpSession session = request.getSession(false); 
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+				if(m.getMemberId().equals("admin")) {
+					AdminGoods gList = adminService.searchGoods(reqPage,keyword);
+					model.addAttribute("gList", gList);
+					return "/admin/goodsCarePage";
+				}else {
+					System.out.println("알수없는 접근자가 접근했습니다.");
+					return "redirect:/";
+				}
+		}else{
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}
+	}
+	@RequestMapping(value="/reservationManager.do")
+	public String reservationManager(HttpServletRequest request,Model model) {
+		int reqPage;
+		HttpSession session = request.getSession(false);
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		}catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+			if(m.getMemberId().equals("admin")) {
+				AdminReservation ar = adminService.reservationManager(reqPage);
+				model.addAttribute("ar", ar);
+				return "admin/reserManager";
+			}else {
+				System.out.println("알수없는 접근자가 접근했습니다.");
+				return "redirect:/";
+			}
+		}else {
+		System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}	
+			
+				
+	}
+	@RequestMapping(value="/reservationUpdate.do")
+	public String reservationUpdate(HttpServletRequest request,Model model) {
+		HttpSession session = request.getSession(false); 
+		int no = Integer.parseInt(request.getParameter("reservationNo"));
+		int ds = Integer.parseInt(request.getParameter("deliveryStatus"));
+		String dn = request.getParameter("deliveryNum");
+		if(session !=null&&(Member)session.getAttribute("member")!=null) {
+			Member m = (Member)session.getAttribute("member");
+				if(m.getMemberId().equals("admin")) {
+					int result = adminService.reservationUpdate(no,ds,dn);
+						if(result>0) {
+							model.addAttribute("msg", "주문 정보를 수정하였습니다.");
+							model.addAttribute("loc", "reservationManager.do");
+							return "common/msg";
+						}else {
+							model.addAttribute("msg", "주문 정보 수정 실패");
+							model.addAttribute("loc", "reservationManager.do");
+							return "common/msg";
+						}
+				}else {
+					System.out.println("알수없는 접근자가 접근했습니다.");
+					return "redirect:/";
+			}
+		}else {
+			System.out.println("로그인후 사용가능");
+			return "redirect:/";
+		}	
+	}
+	
 }

@@ -19,34 +19,41 @@
 						<col width="20%">
 						<col width="/">
 					</colgroup>
-					
-					<c:if test="${not empty memberAll.studio}">			
-						<tr>
+					<c:if test="${not empty memberAll.studio}">	
+						<c:forEach items="${memberAll.studio }" var="s">		
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${s.studioNo }&code=${s.code }'">
 							<th>스튜디오</th>
-							<th><span>${memberAll.studio.studioName }</span></th>
+							
+							<th><span>${s.studioName }</span></th>
+							
 						</tr>
+						</c:forEach>
 					</c:if>
-					<c:if test="${not empty memberAll.dress}">			
-						<tr>
+					<c:if test="${not empty memberAll.dress}">		
+						<c:forEach items="${memberAll.dress }" var="d">
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${d.dressNo }&code=${d.code }'">
 							<th>드레스</th>
-							<th><span>${memberAll.dress.dressName }</span></th>
+							<th><span>${d.dressName }</span></th>
 						</tr>
+						</c:forEach>	
 					</c:if>
-					<c:if test="${not empty memberAll.makeup}">			
-						<tr>
+					<c:if test="${not empty memberAll.makeup}">		
+						<c:forEach items="${memberAll.makeup }" var="m">
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${m.makeupNo }&code=${m.code }'">
 							<th>메이크업</th>
-							<th><span>${memberAll.makeup.makeupName }</span></th>
+							<th><span>${m.makeupName }</span></th>
 						</tr>
+						</c:forEach>
 					</c:if>
-					<c:if test="${not empty memberAll.hall}">			
-						<tr>
+					<c:if test="${not empty memberAll.hall}">	
+					<c:forEach items="${memberAll.hall }" var="h">		
+						<tr onclick="location.href='/companyDetailView.do?prdNo=${h.hallNo }&code=${h.code }'">
 							<th>홀</th>
-							<th><span>${memberAll.hall.hallName }</span></th>
+							<th><span>${h.hallName }</span></th>
 						</tr>
+					</c:forEach>
 					</c:if>
-				
-				</table>
-				
+				</table>		
 			<c:if test="${empty memberAll.studio }">
 				<c:if test="${empty memberAll.dress }">
 					<c:if test="${empty memberAll.makeup }">
@@ -57,8 +64,7 @@
 					</c:if>
 				</c:if>
 			</c:if>
-		</div>
-		
+		</div>	
 	</div>
 	
 	<%--  footer --%>

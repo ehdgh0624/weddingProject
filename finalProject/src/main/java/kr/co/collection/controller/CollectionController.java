@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.aspectj.weaver.MemberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -204,12 +205,16 @@ public class CollectionController {
 	}
 	
 	@RequestMapping("/collectionViewGoods.do")
-	public ModelAndView collectionViewGoods(String goodsType, int goodsNo) {
-		Goods g = collectionService.selectOneGoods(goodsNo);
-		ArrayList<Gallery> gList = collectionService.selectListGallery(goodsNo, "G");
+	public ModelAndView collectionViewGoods(HttpSession session, @RequestParam String goodsType, @RequestParam int goodsNo) {
+		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("goods", g);
-		mav.addObject("galleryList", gList);
+		mav.addObject("goods", collectionService.selectOneGoods(goodsNo));
+		mav.addObject("galleryList", collectionService.selectListGallery(goodsNo, "G"));
+		mav.addObject("reviewList", collectionService.selectListReview(goodsNo, "G"));
+		if(m != null) {
+			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), goodsNo, "G");
+			mav.addObject("scrapbook", scrap);
+		}
 		if(goodsType.equals("B")) {
 			mav.setViewName("collection/collectionViewBouquet");
 		}else if(goodsType.equals("I")) {
@@ -279,13 +284,14 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationStudio.do")
-	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
+	public int insertReservationStudio(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdId, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option2Date, @RequestParam String option2Time, @RequestParam String option3) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
 			vo = new Reservation();
 			vo.setCode(code);
 			vo.setPrdNo(prdNo);
+			vo.setPrdId(prdId);
 			vo.setPrdName(prdName);
 			vo.setWeddingTime(weddingTime);
 			vo.setTotalPrice(totalPrice);
@@ -311,13 +317,14 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationDress.do")
-	public int insertReservationDress(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option1Date, @RequestParam String option1Time, @RequestParam String option2, @RequestParam int option2Amount, @RequestParam String option3) throws ParseException {
+	public int insertReservationDress(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdId, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option1Date, @RequestParam String option1Time, @RequestParam String option2, @RequestParam int option2Amount, @RequestParam String option3) throws ParseException {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
 			vo = new Reservation();
 			vo.setCode(code);
 			vo.setPrdNo(prdNo);
+			vo.setPrdId(prdId);
 			vo.setPrdName(prdName);
 			vo.setWeddingTime(weddingTime);
 			vo.setTotalPrice(totalPrice);
@@ -344,13 +351,14 @@ public class CollectionController {
 	
 	@ResponseBody
 	@RequestMapping("/reservationMakeup.do")
-	public int insertReservationMakeup(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
+	public int insertReservationMakeup(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdId, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String option1, @RequestParam String option2, @RequestParam String option3) {
 		Member m = (Member) session.getAttribute("member");
 		Reservation vo = null;
 		if(m != null) {
 			vo = new Reservation();
 			vo.setCode(code);
 			vo.setPrdNo(prdNo);
+			vo.setPrdId(prdId);
 			vo.setPrdName(prdName);
 			vo.setWeddingTime(weddingTime);
 			vo.setTotalPrice(totalPrice);
@@ -373,9 +381,75 @@ public class CollectionController {
 		}
 	}
 	
-	@ResponseBody
-	@RequestMapping("/perInfo.do")
-	public int personallInformationPage(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam int amount) {
-		return 0;
+	@RequestMapping("/reservationGoods.do")
+	public String insertReservationGoods(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String memberId, @RequestParam String memberName, @RequestParam String memberPhone, @RequestParam String memberEmail, @RequestParam String payMethod, @RequestParam int amount, @RequestParam String orderMemo, @RequestParam String orderAddr, @RequestParam String receiveName, @RequestParam String receivePhone, @RequestParam String bankName, @RequestParam String bankNum, @RequestParam String bankHolder, @RequestParam String bankDate, @RequestParam String impUid, @RequestParam int applyNum, @RequestParam String paymentDate) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		vo = new Reservation();
+		vo.setCode(code);
+		vo.setPrdNo(prdNo);
+		vo.setPrdName(prdName);
+		vo.setWeddingTime(weddingTime);
+		vo.setTotalPrice(totalPrice);
+		vo.setMemberId(memberId);
+		vo.setMemberName(memberName);
+		vo.setMemberPhone(memberPhone);
+		vo.setMemberEmail(memberEmail);
+		vo.setPayMethod(payMethod);
+		vo.setAmount(amount);
+		vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
+		vo.setOrderAddr(orderAddr);
+		vo.setReceiveName(receiveName);
+		vo.setReceivePhone(receivePhone);
+		vo.setBankName(bankName);
+		vo.setBankNum(bankNum);
+		vo.setBankHolder(bankHolder);
+		vo.setBankDate(bankDate);
+		vo.setImpUid(impUid);
+		vo.setApplyNum(applyNum);
+		vo.setPaymentDate(paymentDate);
+		int result = collectionService.insertReservationGoods(vo,weddingDate);
+		if(m != null) {
+			if(result > 0) {
+				result = collectionService.selectReservationNo(m.getMemberId());
+				return "redirect:/reservationView.do?reservationNo="+result;
+			}else {
+				return "redirect:/index.jsp";
+			}
+		}else {
+			return "redirect:/index.jsp";
+		}
+	}
+	
+	@RequestMapping("/paymentPage.do")
+	public ModelAndView personallInformationPage(HttpSession session, @RequestParam String code, @RequestParam int prdNo, @RequestParam String prdName, @RequestParam String weddingDate, @RequestParam String weddingTime, @RequestParam int totalPrice, @RequestParam String payMethod, @RequestParam int amount, @RequestParam String orderMemo, @RequestParam String orderAddr, @RequestParam String receiveName, @RequestParam String receivePhone) {
+		Member m = (Member) session.getAttribute("member");
+		Reservation vo = null;
+		ModelAndView mav = new ModelAndView();
+		if(m != null) {
+			vo = new Reservation();
+			vo.setCode(code);
+			vo.setPrdNo(prdNo);
+			vo.setPrdName(prdName);
+			vo.setWeddingTime(weddingTime);
+			vo.setTotalPrice(totalPrice);
+			vo.setMemberId(m.getMemberId());
+			vo.setMemberName(m.getMemberName());
+			vo.setMemberPhone(m.getPhone());
+			vo.setMemberEmail(m.getEmail());
+			vo.setPayMethod(payMethod);
+			vo.setAmount(amount);
+			vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
+			vo.setOrderAddr(orderAddr);
+			vo.setReceiveName(receiveName);
+			vo.setReceivePhone(receivePhone);
+			mav.addObject("reservation", vo);
+			mav.addObject("weddingDate", weddingDate);
+			mav.setViewName("payment/paymentPage");
+			return mav;
+		}else {
+			mav.setViewName("member/loginPage");
+			return mav;
+		}
 	}
 }

@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.common.method.Location;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
@@ -43,26 +44,26 @@ public class MemberService {
 		return memberDao.insertMember(vo);
 	}
 
-	public Studio selectOneStudioMember(Member vo) {
+	public List<Studio> selectAllStudioMember(Member vo) {
 		// TODO Auto-generated method stub
 		
 		
-		return memberDao.selectOneStudioMember(vo);
+		return memberDao.selectAllStudioMember(vo);
 	}
 
-	public Dress selectOneDressMember(Member vo) {
+	public List<Dress> selectAllDressMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneDressMember(vo);
+		return memberDao.selectAllDressMember(vo);
 	}
 
-	public Hall selectOneHallMember(Member vo) {
+	public List<Hall> selectAllHallMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneHallMember(vo);
+		return memberDao.selectAllHallMember(vo);
 	}
 
-	public Makeup selctOneMakeupMember(Member vo) {
+	public List<Makeup> selectAllMakeupMember(Member vo) {
 		// TODO Auto-generated method stub
-		return memberDao.selectOneMakeupMember(vo);
+		return memberDao.selectAllMakeupMember(vo);
 	}
 
 	public int insertStudio(CompanyInfo ci, Member vo) {
@@ -218,6 +219,58 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return memberDao.getComanyRservation(vo);
 	}
-	
+
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneHallNumber(no);
+	}
+
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneMakeupNumber(no);
+	}
+
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneDressNumber(no);
+	}
+
+	public Studio selectOneStudioNumber(int no) {
+		// TODO Auto-generated method stub
+		return memberDao.selectoneStudioNumber(no);
+	}
+
+	public ArrayList<StudioSelect> selectListStudioOptionNumber(int studioNo, int studioOptionType) {
+		// TODO Auto-generated method stub
+		return (ArrayList<StudioSelect>)memberDao.selectListStudioOption(studioNo, studioOptionType);
+	}
+
+	public ArrayList<Gallery> selectListGalleryNumber(int galleryNo, String galleryCode) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Gallery>)memberDao.selectListGallery(galleryNo, galleryCode);
+	}
+
+	public int deleteStudioOption(int no, int type) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.deleteStudioOption(no,type);
+	}
+
+	public int deleteOneStudioOption(int optionNo) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteOneStudioOption(optionNo);
+	}
+
+	public int updateOneStudioOption(int no, String option, String price) {
+		// TODO Auto-generated method stub
+		return memberDao.updateOneStudioOption(no,option,price);
+	}
+
+	public int addStudioOption(StudioSelect s) {
+		// TODO Auto-generated method stub
+		return memberDao.addStudionOption(s);
+	}
+
+
 
 }
