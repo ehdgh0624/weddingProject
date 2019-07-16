@@ -255,7 +255,7 @@
 						});
 					});
 	
-	/* 예약 하기 시작*/
+	/* 예약 클릭시 조건 확인 시작*/
 	
 	function reservation(){
 		if($('#hallTime').val() == ''){
@@ -265,16 +265,31 @@
 		}else if($("#hallPerson").val() == ''){
 			alert("하객수를 입력해주세요.")
 		}else if($("#option2Amount").val() == 0){
-			alert("식권 수량을 정해주세요.");	
-		}else if(${hall.hallMinPerson} > $("#option2Amount").val() < ${hall.hallMaxPerson}){
+			alert($("#hallPerson").val());
+		}else if(${hall.hallMinPerson} > $("#hallPerson").val() && $("#hallPerson").val() < ${hall.hallMaxPerson}){
 			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
 			$('#personSpan').css('color','red');
-		}
-		
-		
+		}else {
+			$('#personSpan').text('');
+			submitReservation();
+			
+		};	// if close;	
 	}; // function close;
 	
-	/* 예약 하기 종료*/
+	/* 예약 클릭시 조건 확인 종료*/
+	
+	/* 예약 데이터 등록하기 시작*/
+	
+	function submitReservation(){
+		var code = "H";
+		var prdNo = ${hall.hallNo};
+		var prdId = '${hall.memberId}';
+		var prdName = '${hall.hallName}';
+		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
+		
+	};	//function close;
+	
+	/* 에약 데이터 등록하기 종료*/
 	
 	/* 식권 수량 변경 시 총계 변경 시작 */
 	
