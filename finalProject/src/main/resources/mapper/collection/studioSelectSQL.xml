@@ -2,12 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="studioSelect">
 	<select id="selectListOption" parameterType="map" resultType="studioSelect">
-		select studio_option as studioOption, studio_option_price as studioOptionPrice, studio_option_type as studioOptionType from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioOptionType}
+		select 
+		studio_select_no as studioSelectNo,
+		studio_option as studioOption, 
+		studio_option_price as 
+		studioOptionPrice, 
+		studio_option_type as 
+		studioOptionType from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioOptionType}
 	</select>
 	<delete id="deleteStudioOption" parameterType="map">
 		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType}
 	</delete>
 	<delete id="deleteOneStudioOption" parameterType="map">
-		delete from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioType} and studio_option=#{studioOption}
+		delete from studio_select where studio_select_no=#{studioSelectNo}
 	</delete>
+	<update id="updateOneStduioOption" parameterType="map">
+		update studio_select set 
+		studio_option=#{studioOption},
+		studio_option_price=#{studioOptionPrice}
+		where studio_select_no=#{studioSelectNo}
+	</update>
+	<insert id="insertStudioOption" parameterType="studioSelect">
+		insert into studio_select 
+		values(seq_studio_select_no.nextval,#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
+		
+	</insert>
 </mapper>

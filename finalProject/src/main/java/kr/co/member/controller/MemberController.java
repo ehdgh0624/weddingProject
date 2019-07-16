@@ -341,10 +341,10 @@ public class MemberController {
 	public String MyCompanyView(HttpSession session,Model model) {
 		System.out.println("나의업체 관리페이지");
 		Member vo =(Member)session.getAttribute("member");	
-		Studio ms = memberService.selectOneStudioMember(vo);
-		Dress md = memberService.selectOneDressMember(vo);
-		Hall mh = memberService.selectOneHallMember(vo);
-		Makeup mm = memberService.selctOneMakeupMember(vo);	
+		ArrayList<Studio> ms= (ArrayList<Studio>) memberService.selectAllStudioMember(vo);
+		ArrayList<Dress> md = (ArrayList<Dress>) memberService.selectAllDressMember(vo);
+		ArrayList<Hall> mh = (ArrayList<Hall>) memberService.selectAllHallMember(vo);
+		ArrayList<Makeup> mm = (ArrayList<Makeup>) memberService.selectAllMakeupMember(vo);	
 		MemberAll ma = new MemberAll(md,ms,mm,mh);
 		
 		System.out.println(ms);
@@ -409,12 +409,26 @@ public class MemberController {
 	
 	@RequestMapping(value = "/deleteOneStudioOption.do")
 	@ResponseBody
-	public int deleteStudioOption(@RequestParam int type,@RequestParam int no,@RequestParam String submitDelete) {
+	public int deleteStudioOption(@RequestParam int optionNo) {
 		System.out.println("스튜디오옵션삭제시작");
 
-		int result=memberService.deleteOneStudioOption(no,type,submitDelete);
+		int result=memberService.deleteOneStudioOption(optionNo);
 		if(result>0) {
 			System.out.println("삭제성공");
+		}
+		
+		return result;
+	}
+	
+	@RequestMapping(value = "/updateOneStudioOption.do")
+	@ResponseBody
+	public int updateOneStudioOption(@RequestParam String option,@RequestParam String price,@RequestParam int optionNo) {
+		System.out.println("스튜디오옵션수정시작");
+
+		System.out.println(option+price+optionNo);
+		int result=memberService.updateOneStudioOption(optionNo,option,price);
+		if(result>0) {
+			System.out.println("수정성공");
 		}
 		
 		return result;
@@ -428,6 +442,26 @@ public class MemberController {
 		System.out.println("업체등록페이지");
 
 		return "member/addCompany";
+	}
+	
+	@RequestMapping(value = "/studioOptionAdd.do")
+	public String studioOptionAdd(HttpServletRequest request) {
+		System.out.println("스튜디오옵션등록페이지");
+		String price=request.getParameter("studioOptionPrice");
+		System.out.println(price);
+		String type=request.getParameter("studioOptionType");
+		System.out.println(type);
+		String no=request.getParameter("studioNo");
+		System.out.println(no);
+		String name=request.getParameter("studioOption");
+		System.out.println(name);
+		
+		StudioSelect ss =new StudioSelect(0,Integer.parseInt(no), name, Integer.parseInt(price), Integer.parseInt(type));
+		
+		int result=memberService.addStudioOption(ss);
+		
+		
+		return "redirect:/companyDetailView.do?prdNo="+no+"&code=S";
 	}
 	
 	@RequestMapping(value = "/companyDetailView.do")
@@ -481,7 +515,7 @@ public class MemberController {
 			@RequestParam(value="studioOptionType",required = true) List<Integer> studioOptionType,
 			@RequestParam(value="hallSelectPrice",required = true) List<Integer> hallSelectPrice,
 			@RequestParam(value="hallSelectName",required = true) List<String> hallSelectName,
-			@RequestParam(value="hallSelectPeople",required = true) List<String> hallSelectPeople,
+			@RequestParam(value="hallSelectPerson",required = true) List<String> hallSelectPeople,
 			@RequestParam(value="hallSelectTime",required = true) List<String> hallSelectTime,
 			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc,
 			HttpServletRequest request,
@@ -555,7 +589,7 @@ public class MemberController {
 				seqNo=memberService.getStudioNo(ci.getCompanyName(),vo.getMemberId());
 				System.out.println(seqNo);
 				for(int i=0; i<studioOption.size(); i++) {
-					StudioSelect ss = new StudioSelect(seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
+					StudioSelect ss = new StudioSelect(0,seqNo, studioOption.get(i),studioOptionPrice.get(i), studioOptionType.get(i));
 					list.add(ss);
 				}
 				ssl.setList(list);

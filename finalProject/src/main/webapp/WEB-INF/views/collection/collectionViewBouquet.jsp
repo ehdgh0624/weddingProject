@@ -17,18 +17,44 @@
     }
 	/* 페이지 로드 시 input number 화살표 버튼 제거 끝 */
 </style>
+<script>
+	$(document).ready(function(){
+		// 갤러리 슬라이드
+	    $('.slider-for').slick({
+		  slidesToShow: 1,
+		  slidesToScroll: 1,
+		  arrows: true,
+		  fade: false,
+		  prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
+		  nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
+		  asNavFor: '.slider-nav'
+		});
+	    
+		$('.slider-nav').slick({
+		  slidesToShow: 4,
+		  slidesToScroll: 1,
+		  asNavFor: '.slider-for',
+		  dots: false,
+		  centerMode: false,
+		  focusOnSelect: true
+		});
+	});
+</script>
+
 
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
+				
+				
 		<div>
 			<!-- 상품명 table -->
 			<table style="width: 100%;">
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상품명 -->
 					<td><span style="font-size: 28px;">${goods.goodsName}</span></td>
@@ -58,36 +84,22 @@
 			<!-- 상호명 테이블 끝 -->
 			<br>
 			<!-- 사진 carousel -->
-			<div>
-				<div style="max-width: 1200px; height: 600px; background-color: pink; border-radius: 3px; overflow: hidden;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 0; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 0 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
+			<!-- 큰 이미지 li 갯수, 순서와 작은 이미지 li 갯수, 순서가 일치해야함!! -->
+			<div class="view-gallery-slide">
+				<!-- 큰 이미지 영역 -->
+				<ul class="view-big-gallery-list slider-for">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
+				<!-- 작은 이미지 영역 -->
+				<ul class="view-small-gallery-list slider-nav">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>

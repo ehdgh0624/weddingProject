@@ -9,6 +9,40 @@
 <%-- 우편번호 찾기 API --%>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
+<style>
+	/* 페이지 로드 시 input number 화살표 버튼 제거 */
+	input[type="number"]::-webkit-outer-spin-button,
+	input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+    }
+	/* 페이지 로드 시 input number 화살표 버튼 제거 끝 */
+</style>
+<script>
+	$(document).ready(function(){
+		// 갤러리 슬라이드
+	    $('.slider-for').slick({
+		  slidesToShow: 1,
+		  slidesToScroll: 1,
+		  arrows: true,
+		  fade: false,
+		  prevArrow: '<button type="button" data-role="none" class="slick-prev" aria-label="Prev" tabindex="0" role="button"><img src="/resources/img/left_arrow.png"></button>',
+		  nextArrow: '<button type="button" data-role="none" class="slick-next" aria-label="Next" tabindex="0" role="button"><img src="/resources/img/right_arrow.png"></button>',
+		  asNavFor: '.slider-nav'
+		});
+	    
+		$('.slider-nav').slick({
+		  slidesToShow: 4,
+		  slidesToScroll: 1,
+		  asNavFor: '.slider-for',
+		  dots: false,
+		  centerMode: false,
+		  focusOnSelect: true
+		});
+	});
+</script>
+
+
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
@@ -19,24 +53,26 @@
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상품명 -->
-					<td><span style="font-size: 28px;">${goods.goodsName}</span></td>
+					<td>
+						<span style="font-size: 28px;">${goods.goodsName}</span>
 					<!-- 스크랩북 -->
-					<td style="float: right;">
-						<c:choose>
-							<c:when test="${not empty scrapbook}">
-								<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
-									<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:when>
-							<c:otherwise>
-								<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
-									<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:otherwise>
-						</c:choose>
+						<span style="float: right;">
+							<c:choose>
+								<c:when test="${not empty scrapbook}">
+									<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:when>
+								<c:otherwise>
+									<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:otherwise>
+							</c:choose>
+						</span>						
 					</td>
 				</tr>
 				<tr>
@@ -49,35 +85,22 @@
 			<!-- 상호명 테이블 끝 -->
 			<br>
 			<!-- 사진 carousel -->
-			<div>
-				<div style="max-width: 1200px; height: 600px; background-color: pink; border-radius: 3px; overflow: hidden;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 0; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 4px 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
-				<div style="width: 190px; height: 120px; background-color: pink; margin: 8px 0 8px 4px; display: inline-block; overflow: hidden; border-radius: 3px;">
-					<img src="/resources/img/test_img2.jpg" style="width: 100%;">
-					<!-- 이미지 경로로 대체할 예정 -->
-				</div>
+			<!-- 큰 이미지 li 갯수, 순서와 작은 이미지 li 갯수, 순서가 일치해야함!! -->
+			<div class="view-gallery-slide">
+				<!-- 큰 이미지 영역 -->
+				<ul class="view-big-gallery-list slider-for">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
+				<!-- 작은 이미지 영역 -->
+				<ul class="view-small-gallery-list slider-nav">
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+					<li><img src="/resources/img/test_img2.jpg"></li>
+				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>
@@ -193,11 +216,11 @@
 									<th>연락처</th>
 									<td>
 										<div>
-											<input type="text" id="receivePhone1" style="width:100px;">
+											<input type="number" id="receivePhone1" style="width:100px;" maxlength="3" oninput="checkMax(this)">
 											-
-											<input type="text" id="receivePhone2" style="width:100px;">
+											<input type="number" id="receivePhone2" style="width:100px;" maxlength="4" oninput="checkMax(this)">
 											-
-											<input type="text" id="receivePhone3" style="width:100px;">
+											<input type="number" id="receivePhone3" style="width:100px;" maxlength="4" oninput="checkMax(this)">
 										</div>
 										<div style="width:150px;display: inline-block;">
 											<input type="radio" name="receivePhoneSelect" id="memberPhoneSelect" checked> 회원정보와 동일

@@ -61,7 +61,7 @@
 				<c:forEach items="${pd.sList}" var="s" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}">
-							<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="${s.studioFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}" class="photolist-prdName">${s.studioName}</a>
@@ -139,7 +139,7 @@
 				<c:forEach items="${pd.dList}" var="d" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}">
-							<img src="/resources/img/test_img2.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="${d.dressFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}" class="photolist-prdName">${d.dressName}</a>
@@ -189,8 +189,21 @@
 								</c:forEach>
 								<span style="float: right;">분류 : <span>드레스</span></span>
 							</div>
+							<br>
 							<div>
-								<span style="vertical-align: middle;font-size: 18px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${d.dressScope}.png" style="height:18px;vertical-align: middle;">	
+								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
+								<c:forEach items="${fn:split(d.dressTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+										<span>${item}</span>
+										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
+											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
+										</c:if>
+									</c:if>
+								</c:forEach>
+							</div>
+							<br>
+							<div>
+								<span style="vertical-align: middle;font-size: 13px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${d.dressScope}.png" style="height:13px;vertical-align: middle;">	
 							</div>
 						</div>
 					</div>
@@ -204,7 +217,7 @@
 				<c:forEach items="${pd.mList}" var="m" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}">
-							<img src="/resources/img/test_img3.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="${m.makeupFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}" class="photolist-prdName">${m.makeupName}</a>
@@ -254,8 +267,21 @@
 								</c:forEach>
 								<span style="float: right;">분류 : <span>메이크업</span></span>
 							</div>	
+							<br>
 							<div>
-								<span style="vertical-align: middle;font-size: 18px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${m.makeupScope}.png" style="height:18px;vertical-align: middle;">	
+								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
+								<c:forEach items="${fn:split(m.makeupTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+										<span>${item}</span>
+										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
+											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
+										</c:if>
+									</c:if>
+								</c:forEach>
+							</div>
+							<br>
+							<div>
+								<span style="vertical-align: middle;font-size: 13px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${m.makeupScope}.png" style="height:13px;vertical-align: middle;">	
 							</div>
 						</div>
 					</div>
@@ -269,7 +295,7 @@
 				<c:forEach items="${pd.gList}" var="g" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${g.goodsType}&objectNo=${g.goodsNo}">
-							<img src="/resources/img/test_img4.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="${g.goodsFilePath}" class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${g.goodsType}&objectNo=${g.goodsNo}" class="photolist-prdName">${g.goodsName}</a>
@@ -315,8 +341,21 @@
 									타입 : <span>청첩장</span>
 								</c:if>
 							</div>
+							<br>
 							<div>
-								<span style="vertical-align: middle;font-size: 18px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${g.goodsScope}.png" style="height:18px;vertical-align: middle;">	
+								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
+								<c:forEach items="${fn:split(g.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+										<span>${item}</span>
+										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
+											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
+										</c:if>
+									</c:if>
+								</c:forEach>
+							</div>
+							<br>
+							<div>
+								<span style="vertical-align: middle;font-size: 13px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${g.goodsScope}.png" style="height:13px;vertical-align: middle;">	
 							</div>
 						</div>
 					</div>
