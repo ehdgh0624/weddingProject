@@ -18,6 +18,8 @@ import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
+import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 @Repository("memberDao")
 public class MemberDao {
 	@Autowired
@@ -278,6 +280,16 @@ public class MemberDao {
 	public int addStudionOption(StudioSelect s) {
 		// TODO Auto-generated method stub
 		return sqlSession.insert("studioSelect.insertStudioOption",s);
+	}
+	
+	public List<Simulator> getSimulator(Member vo) {
+		
+		return sqlSession.selectList("simulator.getSimulator",vo);
+	}
+
+	public List<SimulatorSelect> getMyWeddingCost(int s) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("simulator.mySelectList",s);
 	}
 
 }
