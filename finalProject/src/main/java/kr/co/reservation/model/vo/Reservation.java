@@ -41,6 +41,11 @@ public class Reservation {
 	private String option3;					//옵션3
 	private Date option3Date;
 	private String option3Time;
+	private String hallSelect;				//홀 옵션
+	private int hallPrice;					//대관료
+	private int hallPerson;					//하객수
+	private int hallFoodtype;				//음식종류(전체=0/한식=1/일식=2/중식=3/양식=4/뷔페=5)
+	private int hallFoodcount;				//식권수량
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -51,7 +56,8 @@ public class Reservation {
 			String orderMemo, String orderAddr, String memberEmail, String receiveName, String receivePhone,
 			String bankName, String bankNum, String bankHolder, String bankDate, String impUid, int applyNum,
 			String paymentDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
-			String option2Time, String option3, Date option3Date, String option3Time) {
+			String option2Time, String option3, Date option3Date, String option3Time, String hallSelect, int hallPrice,
+			int hallPerson, int hallFoodtype, int hallFoodcount) {
 		super();
 		this.reservationNo = reservationNo;
 		this.code = code;
@@ -91,6 +97,11 @@ public class Reservation {
 		this.option3 = option3;
 		this.option3Date = option3Date;
 		this.option3Time = option3Time;
+		this.hallSelect = hallSelect;
+		this.hallPrice = hallPrice;
+		this.hallPerson = hallPerson;
+		this.hallFoodtype = hallFoodtype;
+		this.hallFoodcount = hallFoodcount;
 	}
 	public int getReservationNo() {
 		return reservationNo;
@@ -320,6 +331,36 @@ public class Reservation {
 	public void setOption3Time(String option3Time) {
 		this.option3Time = option3Time;
 	}
+	public String getHallSelect() {
+		return hallSelect;
+	}
+	public void setHallSelect(String hallSelect) {
+		this.hallSelect = hallSelect;
+	}
+	public int getHallPrice() {
+		return hallPrice;
+	}
+	public void setHallPrice(int hallPrice) {
+		this.hallPrice = hallPrice;
+	}
+	public int getHallPerson() {
+		return hallPerson;
+	}
+	public void setHallPerson(int hallPerson) {
+		this.hallPerson = hallPerson;
+	}
+	public int getHallFoodtype() {
+		return hallFoodtype;
+	}
+	public void setHallFoodtype(int hallFoodtype) {
+		this.hallFoodtype = hallFoodtype;
+	}
+	public int getHallFoodcount() {
+		return hallFoodcount;
+	}
+	public void setHallFoodcount(int hallFoodcount) {
+		this.hallFoodcount = hallFoodcount;
+	}
 	@Override
 	public String toString() {
 		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdId="
@@ -333,6 +374,9 @@ public class Reservation {
 				+ impUid + ", applyNum=" + applyNum + ", paymentDate=" + paymentDate + ", option1=" + option1
 				+ ", option1Date=" + option1Date + ", option1Time=" + option1Time + ", option2=" + option2
 				+ ", option2Date=" + option2Date + ", option2Time=" + option2Time + ", option3=" + option3
-				+ ", option3Date=" + option3Date + ", option3Time=" + option3Time + "]";
+				+ ", option3Date=" + option3Date + ", option3Time=" + option3Time + ", hallSelect=" + hallSelect
+				+ ", hallPrice=" + hallPrice + ", hallPerson=" + hallPerson + ", hallFoodtype=" + hallFoodtype
+				+ ", hallFoodcount=" + hallFoodcount + "]";
 	}
+
 }
