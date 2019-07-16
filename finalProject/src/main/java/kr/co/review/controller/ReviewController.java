@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.member.model.vo.Member;
 import kr.co.review.model.service.ReviewService;
@@ -26,9 +27,13 @@ public class ReviewController {
 	private ReviewService reviewService;
 
 	@RequestMapping("/fileUpload.do")
-	public String fileUpload(HttpSession session, HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mtfRequest, Review vo){
+	public ModelAndView fileUpload(HttpSession session, HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mtfRequest, Review vo){
 		Member m = (Member) session.getAttribute("member");
+		ModelAndView mav = new ModelAndView();
 		if(m != null) {
+			vo.setMemberId(m.getMemberId());
+			vo.setReviewWriter(m.getMemberName());
+			vo.setReviewContent(vo.getReviewContent().replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;").replace("\r\n", "<br>"));
 			List<MultipartFile> fileList = mtfRequest.getFiles("uploadFile");
 			if(!fileList.get(0).equals("")) {
 				String src = mtfRequest.getParameter("src");
@@ -59,8 +64,30 @@ public class ReviewController {
 				vo.setReviewFilename(fileName);
 				vo.setReviewFilepath(filePath);
 			}
+			int result = reviewService.insertReview(vo);
+			if(result > 0) {
+				if(vo.getCode().equals("S")) {
+					
+				}else if(vo.getCode().equals("D")) {
+					
+				}else if(vo.getCode().equals("M")) {
+					
+				}
+				int scopeResult = reviewService.update
+				mav.addObject("code",vo.getCode());
+				mav.addObject("objectNo",vo.getReviewRef());
+				mav.setViewName("review/reviewSuccess");
+				return mav;
+			}else {
+				mav.addObject("code",vo.getCode());
+				mav.addObject("objectNo",vo.getReviewRef());
+				mav.setViewName("review/reviewFailed");
+				return mav;
+			}
 		}else {
-			return "redirect:/loginPage.do";
+			mav.addObject("cause",1);
+			mav.setViewName("review/reviewFailed");
+			return mav;
 		}
 	}
 }

@@ -443,10 +443,12 @@
 							}							
 						}else{
 							alert("로그인 후 진행해주세요.");
+							location.href="/loginPage.do";
 						}
 					}
 				}else{
 					alert("로그인 후 진행해주세요.");
+					location.href="/loginPage.do";
 				}				
 			}
 		}
@@ -516,6 +518,7 @@
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -540,6 +543,7 @@
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){

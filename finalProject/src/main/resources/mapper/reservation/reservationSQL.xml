@@ -29,7 +29,7 @@
 				null
 			</otherwise>
 		</choose>
-		,null,null)		
+		,null,null,null,null,null,null,null)		
 	</insert>
 	
 	<insert id="insertReservationDress" parameterType="map">
@@ -60,7 +60,7 @@
 				null
 			</otherwise>
 		</choose>
-		,null,null)
+		,null,null,null,null,null,null,null)
 	</insert>
 	<insert id="insertReservationMakeup" parameterType="map">
 		insert into reservation values(seq_reservation_no.nextval,#{code},#{prdNo},#{prdId},#{prdName},#{weddingDate},#{weddingTime},#{totalPrice},#{memberId},#{memberName},#{memberPhone},null,null,null,null,0,sysdate,null,null,#{memberEmail},null,null,null,null,null,null,null,null,null,#{option1},null,null,
@@ -81,7 +81,7 @@
 				null
 			</otherwise>
 		</choose>
-		,null,null)
+		,null,null,null,null,null,null,null)
 	</insert>
 	
 	<insert id="insertReservationGoods" parameterType="map">
@@ -115,7 +115,7 @@
 				null,null,null
 			</otherwise>
 		</choose>
-		,null,null,null,null,null,null,null,null,null)
+		,null,null,null,null,null,null,null,null,null,null,null,null,null,null)
 	</insert>
 	
 	
