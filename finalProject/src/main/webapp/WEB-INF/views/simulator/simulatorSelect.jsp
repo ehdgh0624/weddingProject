@@ -234,13 +234,13 @@ function cart_click(cart){
 }
 
 //콤마찍기
-/*function addComma(num) {
+function addComma(num) {
   //var regexp = /\B(?=(\d{3})+(?!\d))/g;
   //return num.toString().replace(regexp, ',');
   
   //num = String(num);
   return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-}*/
+}
 
 $(document).ready(function(){
 	//나의 웨딩 계산결과 보기
@@ -346,6 +346,9 @@ function hall_more(start){
 			//웨딩홀 더보기 출력
 			$('.hall-group-list').slick('slickAdd',html);
 			
+			$(".simulator-select-list-price").each(function(){
+				$(this).children("b").text(addComma($(this).children("b").html()));
+			});
 			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
@@ -398,6 +401,9 @@ function dress_more(start){
 			//드레스 더보기 출력
 			$('.dress-group-list').slick('slickAdd',html);
 			
+			$(".simulator-select-list-price").each(function(){
+				$(this).children("b").text(addComma($(this).children("b").html()));
+			});
 			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
@@ -451,6 +457,9 @@ function makeup_more(start){
 			//메이크업 더보기 출력
 			$('.makeup-group-list').slick('slickAdd',html);
 			
+			$(".simulator-select-list-price").each(function(){
+				$(this).children("b").text(addComma($(this).children("b").html()));
+			});
 			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
@@ -502,6 +511,9 @@ function studio_more(start){
 			//스튜디오 더보기 출력
 			$('.studio-group-list').slick('slickAdd',html);
 			
+			$(".simulator-select-list-price").each(function(){
+				$(this).children("b").text(addComma($(this).children("b").html()));
+			});
 			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
