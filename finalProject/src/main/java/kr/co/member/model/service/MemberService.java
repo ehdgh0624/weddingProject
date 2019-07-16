@@ -74,7 +74,7 @@ public class MemberService {
 		String locCode=new Location().getLoccode(ci.getCompanyAddr());
 			
 		Studio ms = new Studio(0,vo.getMemberId(),"S",ci.getCompanyName(),ci.getCompanyPhone(),locCode,ci.getCompanyAddr()
-				,ci.getStudioPrice(),ci.getCompanyContent(),ci.getStudioTime(),ci.getStudioCamera(),ci.getFileName(),ci.getFilePath()
+				,ci.getStudioPrice(),ci.getCompanyContent(),ci.getStudioTime(),ci.getStudioCamera(),ci.getFileNames(),ci.getFilePath()
 				,0,0,0,hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude());
 		
 		System.out.println(ms);
@@ -91,7 +91,7 @@ public class MemberService {
 		System.out.println("멤붜"+vo);
 		Dress md = new Dress(0,vo.getMemberId(),"D",ci.getCompanyName(),ci.getCompanyPhone(),locCode,ci.getCompanyAddr()
 				,ci.getDressFittingPrice(),ci.getDressRentNum(),ci.getDressRentPrice(),ci.getJewelryPrice(),ci.getDressContent()
-				,ci.getDressFittingTime(),ci.getDressMending(),ci.getDressParking(),ci.getFileName(),ci.getFilePath()
+				,ci.getDressFittingTime(),ci.getDressMending(),ci.getDressParking(),ci.getFileNames(),ci.getFilePath()
 				,0,0,0,hashTag,ci.getCompanyLatitude(),ci.getCompanyLongtitude());
 	
 		
@@ -107,7 +107,7 @@ public class MemberService {
 				ci.getCompanyName(),ci.getCompanyPhone(),
 				locCode,ci.getCompanyAddr(),ci.getMakeupBasicPrice(),
 				ci.getMakeupParentPrice(),ci.getMakeupVisitorPrice(),ci.getCompanyContent(),
-				ci.getFileName(),ci.getFilePath(),0,0,0,hashTag,
+				ci.getFileNames(),ci.getFilePath(),0,0,0,hashTag,
 				ci.getCompanyLatitude(),ci.getCompanyLongtitude());
 		
 		return memberDao.insertMakeup(mm);
@@ -121,7 +121,7 @@ public class MemberService {
 		
 		Hall mh = new Hall(0, vo.getMemberId(), "H", ci.getHallType(), 
 				ci.getCompanyName(), locCode, ci.getCompanyAddr(), 
-				ci.getCompanyContent(), ci.getFileName(),
+				ci.getCompanyContent(), ci.getFileNames(),
 				ci.getFilePath(), ci.getHallPrice(), 
 				ci.getHallMinPerson(), ci.getHallMaxPerson(), 
 				0/*홀별점*/, ci.getHallFoodtype(), ci.getHallFoodmenu(), 

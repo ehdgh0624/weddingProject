@@ -13,6 +13,9 @@ public class CompanyInfo {
 	private String extraAddr;//참고주소 58번째줄 id="sample4_extraAddress" placeholder="참고항목" name="extraAddr">
 	private String companyAddr;//업체주소  받는값없음
 	private String companyPhone;//업체전화번호//68번째줄 <input type="text" name="companyPhone" value=" ">
+	private String fPhone;
+	private String sPhone;
+	private String tPhone;
 	
 	
 	private int code;//업체분류//106번째줄 code<select name="code" id="choice">
@@ -79,15 +82,15 @@ public class CompanyInfo {
 	}
 	public CompanyInfo(String companyName, String postNum, String roadAddr, String companyLatitude,
 			String companyLongtitude, String jibunAddr, String detailAddr, String extraAddr, String companyAddr,
-			String companyPhone, int code, String companyContent, String fileName, String filePath, String hashTag,
-			int studioPrice, String studioCamera, String studioTime, String studioOption, String studioOptionPrice,
-			int studioOptionType, int dressFittingPrice, String dressFittingTime, int dressRentNum, int dressRentPrice,
-			int jewelryPrice, String dressContent, String dressMending, String dressParking, int makeupBasicPrice,
-			int makeupParentPrice, int makeupVisitorPrice, String hallSelectName, String hallSelectPerson,
-			String hallSelectTime, int hallSelectPrice, String hallSelectEtc, int hallPrice, String hallType,
-			int hallMinPerson, int hallMaxPerson, String hallServiceFood, String hallServiceAudio,
-			String hallServiceDrink, String hallServiceParking, int hallFoodtype, String hallFoodmenu,
-			int hallFoodprice) {
+			String companyPhone, String fPhone, String sPhone, String tPhone, int code, String companyContent,
+			String fileNames, String filePath, String hashTag, int studioPrice, String studioCamera, String studioTime,
+			String studioOption, String studioOptionPrice, int studioOptionType, int dressFittingPrice,
+			String dressFittingTime, int dressRentNum, int dressRentPrice, int jewelryPrice, String dressContent,
+			String dressMending, String dressParking, int makeupBasicPrice, int makeupParentPrice,
+			int makeupVisitorPrice, String hallSelectName, String hallSelectPerson, String hallSelectTime,
+			int hallSelectPrice, String hallSelectEtc, int hallPrice, String hallType, int hallMinPerson,
+			int hallMaxPerson, String hallServiceFood, String hallServiceAudio, String hallServiceDrink,
+			String hallServiceParking, int hallFoodtype, String hallFoodmenu, int hallFoodprice) {
 		super();
 		this.companyName = companyName;
 		this.postNum = postNum;
@@ -99,9 +102,12 @@ public class CompanyInfo {
 		this.extraAddr = extraAddr;
 		this.companyAddr = companyAddr;
 		this.companyPhone = companyPhone;
+		this.fPhone = fPhone;
+		this.sPhone = sPhone;
+		this.tPhone = tPhone;
 		this.code = code;
 		this.companyContent = companyContent;
-		this.fileNames = fileName;
+		this.fileNames = fileNames;
 		this.filePath = filePath;
 		this.hashTag = hashTag;
 		this.studioPrice = studioPrice;
@@ -137,28 +143,6 @@ public class CompanyInfo {
 		this.hallFoodtype = hallFoodtype;
 		this.hallFoodmenu = hallFoodmenu;
 		this.hallFoodprice = hallFoodprice;
-	}
-	@Override
-	public String toString() {
-		return "CompanyInfo [companyName=" + companyName + ", postNum=" + postNum + ", roadAddr=" + roadAddr
-				+ ", companyLatitude=" + companyLatitude + ", companyLongtitude=" + companyLongtitude + ", jibunAddr="
-				+ jibunAddr + ", detailAddr=" + detailAddr + ", extraAddr=" + extraAddr + ", companyAddr=" + companyAddr
-				+ ", companyPhone=" + companyPhone + ", code=" + code + ", companyContent=" + companyContent
-				+ ", fileName=" + fileNames + ", filePath=" + filePath + ", hashTag=" + hashTag + ", studioPrice="
-				+ studioPrice + ", studioCamera=" + studioCamera + ", studioTime=" + studioTime + ", studioOption="
-				+ studioOption + ", studioOptionPrice=" + studioOptionPrice + ", studioOptionType=" + studioOptionType
-				+ ", dressFittingPrice=" + dressFittingPrice + ", dressFittingTime=" + dressFittingTime
-				+ ", dressRentNum=" + dressRentNum + ", dressRentPrice=" + dressRentPrice + ", jewelryPrice="
-				+ jewelryPrice + ", dressContent=" + dressContent + ", dressMending=" + dressMending + ", dressParking="
-				+ dressParking + ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
-				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", hallSelectName=" + hallSelectName
-				+ ", hallSelectPerson=" + hallSelectPerson + ", hallSelectTime=" + hallSelectTime + ", hallSelectPrice="
-				+ hallSelectPrice + ", hallSelectEtc=" + hallSelectEtc + ", hallPrice=" + hallPrice + ", hallType="
-				+ hallType + ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson
-				+ ", hallServiceFood=" + hallServiceFood + ", hallServiceAudio=" + hallServiceAudio
-				+ ", hallServiceDrink=" + hallServiceDrink + ", hallServiceParking=" + hallServiceParking
-				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu=" + hallFoodmenu + ", hallFoodprice="
-				+ hallFoodprice + "]";
 	}
 	public String getCompanyName() {
 		return companyName;
@@ -220,6 +204,24 @@ public class CompanyInfo {
 	public void setCompanyPhone(String companyPhone) {
 		this.companyPhone = companyPhone;
 	}
+	public String getfPhone() {
+		return fPhone;
+	}
+	public void setfPhone(String fPhone) {
+		this.fPhone = fPhone;
+	}
+	public String getsPhone() {
+		return sPhone;
+	}
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
+	}
+	public String gettPhone() {
+		return tPhone;
+	}
+	public void settPhone(String tPhone) {
+		this.tPhone = tPhone;
+	}
 	public int getCode() {
 		return code;
 	}
@@ -232,11 +234,11 @@ public class CompanyInfo {
 	public void setCompanyContent(String companyContent) {
 		this.companyContent = companyContent;
 	}
-	public String getFileName() {
+	public String getFileNames() {
 		return fileNames;
 	}
-	public void setFileName(String fileName) {
-		this.fileNames = fileName;
+	public void setFileNames(String fileNames) {
+		this.fileNames = fileNames;
 	}
 	public String getFilePath() {
 		return filePath;
@@ -448,6 +450,30 @@ public class CompanyInfo {
 	public void setHallFoodprice(int hallFoodprice) {
 		this.hallFoodprice = hallFoodprice;
 	}
-
+	@Override
+	public String toString() {
+		return "CompanyInfo [companyName=" + companyName + ", postNum=" + postNum + ", roadAddr=" + roadAddr
+				+ ", companyLatitude=" + companyLatitude + ", companyLongtitude=" + companyLongtitude + ", jibunAddr="
+				+ jibunAddr + ", detailAddr=" + detailAddr + ", extraAddr=" + extraAddr + ", companyAddr=" + companyAddr
+				+ ", companyPhone=" + companyPhone + ", fPhone=" + fPhone + ", sPhone=" + sPhone + ", tPhone=" + tPhone
+				+ ", code=" + code + ", companyContent=" + companyContent + ", fileNames=" + fileNames + ", filePath="
+				+ filePath + ", hashTag=" + hashTag + ", studioPrice=" + studioPrice + ", studioCamera=" + studioCamera
+				+ ", studioTime=" + studioTime + ", studioOption=" + studioOption + ", studioOptionPrice="
+				+ studioOptionPrice + ", studioOptionType=" + studioOptionType + ", dressFittingPrice="
+				+ dressFittingPrice + ", dressFittingTime=" + dressFittingTime + ", dressRentNum=" + dressRentNum
+				+ ", dressRentPrice=" + dressRentPrice + ", jewelryPrice=" + jewelryPrice + ", dressContent="
+				+ dressContent + ", dressMending=" + dressMending + ", dressParking=" + dressParking
+				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
+				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", hallSelectName=" + hallSelectName
+				+ ", hallSelectPerson=" + hallSelectPerson + ", hallSelectTime=" + hallSelectTime + ", hallSelectPrice="
+				+ hallSelectPrice + ", hallSelectEtc=" + hallSelectEtc + ", hallPrice=" + hallPrice + ", hallType="
+				+ hallType + ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson
+				+ ", hallServiceFood=" + hallServiceFood + ", hallServiceAudio=" + hallServiceAudio
+				+ ", hallServiceDrink=" + hallServiceDrink + ", hallServiceParking=" + hallServiceParking
+				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu=" + hallFoodmenu + ", hallFoodprice="
+				+ hallFoodprice + "]";
+	}
+	
+	
 	
 }

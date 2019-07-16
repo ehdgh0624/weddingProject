@@ -64,7 +64,7 @@
 						</tr>
 						<tr>
 							<th>업체전화번호</th>
-							<th><input type="text" name="companyPhone" value=" "></th>
+							<th><input type="text" name="fPhone" id="fPhone" value=" ">-<input type="text" id="sPhone" name="sPhone">-<input type="text" id="tPhone" name="tPhone"></th>
 						</tr>
 					</table>
 					<span id="firstStep">다음</span>
@@ -358,6 +358,7 @@
 				</div>			
 			</form>	
 			<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
+			<input type="hidden" id="memberPhone" value="${sessionScope.member.phone }">
 		</div>	
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 	<%--  footer --%>
@@ -390,7 +391,7 @@
 			$('#hallOption').css("display","block");
 		}
 	});
-	<!--두번째 뒤로-->
+
 	$('#secondBack').click(function(){
 		$('.divbox').css("display","none");
 		$('#first').css("display","block");	
@@ -448,18 +449,29 @@
 	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
 	    if(checked){
 	    	var string=$('#totalAddr').val();
+	    	var phone=$('#memberPhone').val();
 			var strArray=string.split('/');
+			var phoneArray=phone.split('/');
 		$('#sample4_jibunAddress').val(strArray[0]);
 		$('#sample4_extraAddress').val(strArray[1]);
 		$('#sample4_detailAddress').val(strArray[2]);
 		$('#sample4_postcode').val(strArray[3]);
 		$('#sample4_roadAddress').val(strArray[4]);
+		
+		$('#fPhone').val(phoneArray[0]);
+		$('#sPhone').val(phoneArray[1]);
+		$('#tPhone').val(phoneArray[2]);
+		
 	    } else{
 			$('#sample4_jibunAddress').val("");
 			$('#sample4_extraAddress').val("");
 			$('#sample4_detailAddress').val("");
 			$('#sample4_postcode').val("");   
 			$('#sample4_roadAddress').val();
+			
+			$('#fPhone').val("");
+			$('#sPhone').val("");
+			$('#tPhone').val("");
 	    }
 	});
 	

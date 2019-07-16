@@ -227,6 +227,7 @@ public class MemberDao {
 
 	public Studio selectoneStudioNumber(int no) {
 		// TODO Auto-generated method stub
+		System.out.println(no);
 		return (Studio)sqlSession.selectOne("studio.viewSelectOne",no);
 	}
 

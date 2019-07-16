@@ -535,6 +535,8 @@ public class MemberController {
 			HttpServletRequest request,
 			@RequestParam MultipartFile fileNames
 			){
+		String phone=ci.getfPhone()+"/"+ci.getsPhone()+"/"+ci.gettPhone();
+		ci.setCompanyPhone(phone);
 		System.out.println("업체등록 로직 시작");
 		System.out.println("컨트롤러"+ci);
 		int code=ci.getCode();
@@ -581,7 +583,7 @@ public class MemberController {
 			
 		}
 		
-		ci.setFileName(originName);
+		ci.setFileNames(originName);
 		ci.setFilePath(filePath);
 		System.out.println(originName+"//"+filePath);
 		
