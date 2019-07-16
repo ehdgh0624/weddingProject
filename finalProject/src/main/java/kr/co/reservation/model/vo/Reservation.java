@@ -6,6 +6,7 @@ public class Reservation {
 	private int reservationNo;				//예약번호 --
 	private String code;					//타입분류--
 	private int prdNo;						//업체번호, 상품번호--
+	private String prdId;					//업체아이디
 	private String prdName;					//업체이름
 	private Date weddingDate;				//결혼 예정일--
 	private String weddingTime;				//결혼 예정시각
@@ -17,6 +18,7 @@ public class Reservation {
 	private int amount;						//구매 수량
 	private int orderStatus;				//주문 상태(결제대기=0/결제완료=1/결제취소대기=2/결제취소완료=3)
 	private String deliveryNum;				//배송번호(택배)
+	private int deliveryStatus;				//배송 상태(상품준비중=0/발송준비중=1/배송중=2/배송완료=3)
 	private Date orderDate;					//주문날짜 or 예약날짜
 	private String orderMemo;				//주문메모
 	private String orderAddr;				//배송예정주소
@@ -27,6 +29,9 @@ public class Reservation {
 	private String bankNum;					//계좌번호
 	private String bankHolder;				//예금주
 	private String bankDate;				//입금기한
+	private String impUid;					//결제 시 고유ID
+	private int applyNum;					//카드사 승인번호
+	private String paymentDate;				//결제일시(시,분,초까지)
 	private String option1;					//옵션1
 	private Date option1Date;
 	private String option1Time;
@@ -36,20 +41,28 @@ public class Reservation {
 	private String option3;					//옵션3
 	private Date option3Date;
 	private String option3Time;
+	private String hallSelect;				//홀 옵션
+	private int hallPrice;					//대관료
+	private int hallPerson;					//하객수
+	private int hallFoodtype;				//음식종류(전체=0/한식=1/일식=2/중식=3/양식=4/뷔페=5)
+	private int hallFoodcount;				//식권수량
 	public Reservation() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Reservation(int reservationNo, String code, int prdNo, String prdName, Date weddingDate, String weddingTime,
-			int totalPrice, String memberId, String memberName, String memberPhone, String payMethod, int amount,
-			int orderStatus, String deliveryNum, Date orderDate, String orderMemo, String orderAddr, String memberEmail,
-			String receiveName, String receivePhone, String bankName, String bankNum, String bankHolder,
-			String bankDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
-			String option2Time, String option3, Date option3Date, String option3Time) {
+	public Reservation(int reservationNo, String code, int prdNo, String prdId, String prdName, Date weddingDate,
+			String weddingTime, int totalPrice, String memberId, String memberName, String memberPhone,
+			String payMethod, int amount, int orderStatus, String deliveryNum, int deliveryStatus, Date orderDate,
+			String orderMemo, String orderAddr, String memberEmail, String receiveName, String receivePhone,
+			String bankName, String bankNum, String bankHolder, String bankDate, String impUid, int applyNum,
+			String paymentDate, String option1, Date option1Date, String option1Time, String option2, Date option2Date,
+			String option2Time, String option3, Date option3Date, String option3Time, String hallSelect, int hallPrice,
+			int hallPerson, int hallFoodtype, int hallFoodcount) {
 		super();
 		this.reservationNo = reservationNo;
 		this.code = code;
 		this.prdNo = prdNo;
+		this.prdId = prdId;
 		this.prdName = prdName;
 		this.weddingDate = weddingDate;
 		this.weddingTime = weddingTime;
@@ -61,6 +74,7 @@ public class Reservation {
 		this.amount = amount;
 		this.orderStatus = orderStatus;
 		this.deliveryNum = deliveryNum;
+		this.deliveryStatus = deliveryStatus;
 		this.orderDate = orderDate;
 		this.orderMemo = orderMemo;
 		this.orderAddr = orderAddr;
@@ -71,6 +85,9 @@ public class Reservation {
 		this.bankNum = bankNum;
 		this.bankHolder = bankHolder;
 		this.bankDate = bankDate;
+		this.impUid = impUid;
+		this.applyNum = applyNum;
+		this.paymentDate = paymentDate;
 		this.option1 = option1;
 		this.option1Date = option1Date;
 		this.option1Time = option1Time;
@@ -80,6 +97,11 @@ public class Reservation {
 		this.option3 = option3;
 		this.option3Date = option3Date;
 		this.option3Time = option3Time;
+		this.hallSelect = hallSelect;
+		this.hallPrice = hallPrice;
+		this.hallPerson = hallPerson;
+		this.hallFoodtype = hallFoodtype;
+		this.hallFoodcount = hallFoodcount;
 	}
 	public int getReservationNo() {
 		return reservationNo;
@@ -98,6 +120,12 @@ public class Reservation {
 	}
 	public void setPrdNo(int prdNo) {
 		this.prdNo = prdNo;
+	}
+	public String getPrdId() {
+		return prdId;
+	}
+	public void setPrdId(String prdId) {
+		this.prdId = prdId;
 	}
 	public String getPrdName() {
 		return prdName;
@@ -165,6 +193,12 @@ public class Reservation {
 	public void setDeliveryNum(String deliveryNum) {
 		this.deliveryNum = deliveryNum;
 	}
+	public int getDeliveryStatus() {
+		return deliveryStatus;
+	}
+	public void setDeliveryStatus(int deliveryStatus) {
+		this.deliveryStatus = deliveryStatus;
+	}
 	public Date getOrderDate() {
 		return orderDate;
 	}
@@ -225,6 +259,24 @@ public class Reservation {
 	public void setBankDate(String bankDate) {
 		this.bankDate = bankDate;
 	}
+	public String getImpUid() {
+		return impUid;
+	}
+	public void setImpUid(String impUid) {
+		this.impUid = impUid;
+	}
+	public int getApplyNum() {
+		return applyNum;
+	}
+	public void setApplyNum(int applyNum) {
+		this.applyNum = applyNum;
+	}
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
 	public String getOption1() {
 		return option1;
 	}
@@ -279,18 +331,52 @@ public class Reservation {
 	public void setOption3Time(String option3Time) {
 		this.option3Time = option3Time;
 	}
+	public String getHallSelect() {
+		return hallSelect;
+	}
+	public void setHallSelect(String hallSelect) {
+		this.hallSelect = hallSelect;
+	}
+	public int getHallPrice() {
+		return hallPrice;
+	}
+	public void setHallPrice(int hallPrice) {
+		this.hallPrice = hallPrice;
+	}
+	public int getHallPerson() {
+		return hallPerson;
+	}
+	public void setHallPerson(int hallPerson) {
+		this.hallPerson = hallPerson;
+	}
+	public int getHallFoodtype() {
+		return hallFoodtype;
+	}
+	public void setHallFoodtype(int hallFoodtype) {
+		this.hallFoodtype = hallFoodtype;
+	}
+	public int getHallFoodcount() {
+		return hallFoodcount;
+	}
+	public void setHallFoodcount(int hallFoodcount) {
+		this.hallFoodcount = hallFoodcount;
+	}
 	@Override
 	public String toString() {
-		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdName="
-				+ prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime + ", totalPrice="
-				+ totalPrice + ", memberId=" + memberId + ", memberName=" + memberName + ", memberPhone=" + memberPhone
-				+ ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus=" + orderStatus + ", deliveryNum="
-				+ deliveryNum + ", orderDate=" + orderDate + ", orderMemo=" + orderMemo + ", orderAddr=" + orderAddr
-				+ ", memberEmail=" + memberEmail + ", receiveName=" + receiveName + ", receivePhone=" + receivePhone
-				+ ", bankName=" + bankName + ", bankNum=" + bankNum + ", bankHolder=" + bankHolder + ", bankDate="
-				+ bankDate + ", option1=" + option1 + ", option1Date=" + option1Date + ", option1Time=" + option1Time
-				+ ", option2=" + option2 + ", option2Date=" + option2Date + ", option2Time=" + option2Time
-				+ ", option3=" + option3 + ", option3Date=" + option3Date + ", option3Time=" + option3Time + "]";
+		return "Reservation [reservationNo=" + reservationNo + ", code=" + code + ", prdNo=" + prdNo + ", prdId="
+				+ prdId + ", prdName=" + prdName + ", weddingDate=" + weddingDate + ", weddingTime=" + weddingTime
+				+ ", totalPrice=" + totalPrice + ", memberId=" + memberId + ", memberName=" + memberName
+				+ ", memberPhone=" + memberPhone + ", payMethod=" + payMethod + ", amount=" + amount + ", orderStatus="
+				+ orderStatus + ", deliveryNum=" + deliveryNum + ", deliveryStatus=" + deliveryStatus + ", orderDate="
+				+ orderDate + ", orderMemo=" + orderMemo + ", orderAddr=" + orderAddr + ", memberEmail=" + memberEmail
+				+ ", receiveName=" + receiveName + ", receivePhone=" + receivePhone + ", bankName=" + bankName
+				+ ", bankNum=" + bankNum + ", bankHolder=" + bankHolder + ", bankDate=" + bankDate + ", impUid="
+				+ impUid + ", applyNum=" + applyNum + ", paymentDate=" + paymentDate + ", option1=" + option1
+				+ ", option1Date=" + option1Date + ", option1Time=" + option1Time + ", option2=" + option2
+				+ ", option2Date=" + option2Date + ", option2Time=" + option2Time + ", option3=" + option3
+				+ ", option3Date=" + option3Date + ", option3Time=" + option3Time + ", hallSelect=" + hallSelect
+				+ ", hallPrice=" + hallPrice + ", hallPerson=" + hallPerson + ", hallFoodtype=" + hallFoodtype
+				+ ", hallFoodcount=" + hallFoodcount + "]";
 	}
-	
+
 }

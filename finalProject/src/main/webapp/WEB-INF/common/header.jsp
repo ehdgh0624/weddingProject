@@ -16,7 +16,6 @@
 <!-- script -->
 <script src="http://code.jquery.com/jquery-3.4.0.min.js"></script><!-- jQuery 선언 -->
 
-
 <!-- Datapicker 달력 -->
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
@@ -39,7 +38,7 @@
 					<!-- 로그인 전 -->
 					<c:choose>
 						<c:when test="${empty sessionScope.member }">
-					  		<ul class="header-util-box area clearfix">
+					  		<ul class="header-util-box area clearfix" style="margin-bottom:0;">
 								<li><a href="/loginPage.do">로그인</a></li>
 					       		<li><a href="/goAddTerms.do">회원가입</a></li>
 					       		<li><a href="">업체등록</a></li>
@@ -47,7 +46,7 @@
 				    	</c:when>
 				    	<c:when test="${not empty sessionScope.member }">
 				    	<!--  로그인 후-->
-				  			<ul class="header-util-box area clearfix">
+				  			<ul class="header-util-box area clearfix" style="margin-bottom:0;">
 							<li><a href="/logout.do">로그아웃</a></li>
 							<c:if test="${sessionScope.member.memberCode != 2 }">
 				       		<li><a href="/mypage.do">마이페이지</a></li>
@@ -63,7 +62,6 @@
 				<h1 class="header-logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:80px"></a></h1>
 				<!-- 주메뉴 -->
 				<nav id="gnb" class="total-menu">
-					<div id="gnbBg"></div>
 					<ul class="clearfix">
 						<li class="gnb01">
 							<a href="/hall.do">웨딩홀</a>
@@ -87,8 +85,8 @@
 							<a href="">커뮤니티</a>
 							<div class="gnb-2dep">
 								<ul>
-									<li><a href="">공지사항</a></li>
-								   	<li><a href="">Q&A</a></li>
+									<li><a href="/noticeMain.do">공지사항</a></li>
+								   	<li><a href="/qnaMain.do">Q&A</a></li>
 								   	<li><a href="/experienceAll.do">경험담</a></li>
 								</ul>
 							</div>

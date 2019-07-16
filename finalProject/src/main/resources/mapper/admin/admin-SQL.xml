@@ -245,5 +245,176 @@
 			</if>
 			) where rnum between ${start} and ${end}
 	</select>
+	<select id="searchGoodsCount" parameterType="string" resultType="_int">
+		select count(*) from Goods where goods_Name like '%'||#{keyword}||'%'
+	</select>
+	<select id="searchGoodsList" parameterType="map" resultType="goods">
+		select goods_no as goodsNo,
+				code as code,
+				goods_type as goodsType,
+				goods_name as goodsName,
+				goods_price as goodsPrice,
+				goods_scope as goodsScope,
+				goods_content as goodsContent,
+				viewstatus as viewstatus,
+				goods_filepath as goodsFilePath,
+				goods_tag as goodsTag from
+				(select rownum as rnum , g.* from 
+				(select * from goods where goods_name like '%'||#{keyword}||'%' order by goods_no desc)g)
+				 where rnum between ${start} and ${end}
+	</select>
+	<update id="memberAgree" parameterType="string">
+	update member set member_code = 1 where member_id = #{id}
+	</update>
+	
+	<select id="reservationCount" resultType="_int">
+		select count(*) from reservation where code = 'G'
+	</select>
+	<select id="reservationAll" parameterType="map" resultType="reservation">
+		select
+			reservation_No as reservationNo,
+			code,
+			prd_no as prdNo,
+			prd_id as prdId,
+			prd_name as prdName,
+			wedding_date as weddingDate,
+			wedding_time as weddingTime,
+			totalprice as totalPrice,
+			member_id as memberId,
+			member_name as memberName,
+			member_phone as memberPhone,
+			pay_method as payMethod,
+			amount,
+			order_status as orderStatus,
+			delivery_num as deliveryNum,
+			delivery_Status as deliveryStatus, 
+			order_date as orderDate,
+			order_memo as orderMemo,
+			order_addr as orderAddr,
+			member_email as memberEmail,
+			receive_name as receiveName,
+			receive_phone as receivePhone,
+			bank_name as bankName,
+			bank_num as bankNum,
+			bank_holder as bankHolder,
+			bank_date as bankDate
+		from(select rownum as rnum ,r.* from (select * from reservation where code = 'G' order by reservation_no desc)r) where rnum between #{start} and #{end}
+	</select>
+	<update id="reservationUpdate" parameterType="map">
+		update reservation set delivery_status=${ds} ,delivery_num=#{dn},order_status=${os} where reservation_No = ${no}
+	</update>
+	
+	<select id="searchReTotal" parameterType="map" resultType="_int">
+		select count(*) from reservation where
+		<choose>
+			<when test="select == 1">
+				<if test="type == 0">
+					member_id like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 1">
+					member_name like '%'||#{keyword}||'%'
+				</if>
+			</when>
+			<when test="select == 2 ">
+				<if test="type == 0">
+					order_status = 0 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 1">
+					order_status = 1 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 2">
+					order_status = 2 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 3">
+					order_status = 3 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+			</when>
+			<when test="select == 3">
+				<if test="type == 0">
+					delivery_Status = 0 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 1">
+					delivery_Status = 1 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 2">
+					delivery_Status = 2 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 3">
+					delivery_Status = 3 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+			</when>
+		</choose>
+	</select>
+	<select id="searchRe" parameterType="map" resultType="reservation">
+		select
+			reservation_No as reservationNo,
+			code,
+			prd_no as prdNo,
+			prd_id as prdId,
+			prd_name as prdName,
+			wedding_date as weddingDate,
+			wedding_time as weddingTime,
+			totalprice as totalPrice,
+			member_id as memberId,
+			member_name as memberName,
+			member_phone as memberPhone,
+			pay_method as payMethod,
+			amount,
+			order_status as orderStatus,
+			delivery_num as deliveryNum,
+			delivery_Status as deliveryStatus, 
+			order_date as orderDate,
+			order_memo as orderMemo,
+			order_addr as orderAddr,
+			member_email as memberEmail,
+			receive_name as receiveName,
+			receive_phone as receivePhone,
+			bank_name as bankName,
+			bank_num as bankNum,
+			bank_holder as bankHolder,
+			bank_date as bankDate
+		from(select rownum as rnum ,r.* from (select * from reservation where code = 'G'
+		<choose>
+			<when test="select == 1">
+				<if test="type == 0">
+				 and	member_id like '%'||#{keyword}||'%'
+				</if>
+				<if test="type == 1">
+				 and	member_name like '%'||#{keyword}||'%'
+				</if>
+			</when>
+			<when test="select == 2 ">
+				<if test="type == 0">
+				and	order_status = 0 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 1">
+				and	order_status = 1 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 2">
+				and	order_status = 2 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 3">
+				and	order_status = 3 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+			</when>
+			<when test="select == 3">
+				<if test="type == 0">
+				and	delivery_Status = 0 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 1">
+				and	delivery_Status = 1 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 2">
+				and	delivery_Status = 2 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+				<if test="type == 3">
+				and	delivery_Status = 3 <if test="keyword != none"> and member_id like '%'||#{keyword}||'%'</if>
+				</if>
+			</when>
+		</choose>
+		
+		 order by reservation_no desc)r) where rnum between #{start} and #{end}
+	</select>
+	
 </mapper>
 

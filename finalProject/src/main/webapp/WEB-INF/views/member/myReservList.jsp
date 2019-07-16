@@ -15,7 +15,7 @@
 		<div class="common-tbl-box">
 			<h2 class="comm-content-tit">예약리스트</h2> 
 				<c:forEach var="entry" items="${resMap }">
-					<h1>결혼예정일 :${entry.key }<h1>		
+					<h1>결혼예정일 :${entry.key }</h1>		
 					<table class="comm-tbl">		
 						<colgroup>
 							<col width="20%">
@@ -46,7 +46,6 @@
 					<h1>총금액 : ${total } // 나의 예산 : ${sessionScope.member.budget}</h1>	
 					<hr>			
 			</c:forEach>	
-			
 		</div>
 	</div>
 	

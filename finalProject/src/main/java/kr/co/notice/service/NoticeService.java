@@ -1,0 +1,57 @@
+package kr.co.notice.service;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import kr.co.notice.dao.NoticeDao;
+import kr.co.notice.vo.Notice;
+import kr.co.notice.vo.NoticePageData;
+
+@Service("noticeService")
+public class NoticeService {
+	@Autowired
+	@Qualifier(value="noticeDao")
+	NoticeDao noticeDao;
+
+	public NoticePageData noticeAll(int reqPage) {
+		int totalCount = noticeDao.totalCount();
+		int pageNum = 10;
+		int totalPage = (totalCount%pageNum == 0)?(totalCount/pageNum):(totalCount/pageNum)+1;
+		int start = (reqPage*pageNum-pageNum)+1;
+		int end = reqPage*pageNum;
+		ArrayList<Notice> list =noticeDao.noticeMain(start,end); 
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage-1)/pageNaviSize)*pageNaviSize+1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='/noticeMain.do?reqPage="+(pageNo-1)+"'><img src='/resources/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/noticeMain.do?reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/noticeMain.do?reqPage="+(pageNo)+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		NoticePageData npd = new NoticePageData(list, pageNavi);
+		return npd;
+	}
+	@Transactional
+	public Notice noticeView(int noticeNo) {
+		Notice n = noticeDao.noticeView(noticeNo);
+		if(n != null) {
+			noticeDao.noticeViewUpdate(noticeNo);
+		}
+		return n;
+	}
+}

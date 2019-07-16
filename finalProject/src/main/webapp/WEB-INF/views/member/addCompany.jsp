@@ -9,6 +9,7 @@
 
 <%-- wrap --%>
 <section id="adminWrap">
+<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
 <script type="text/javascript"
    src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
 	<div id="adminHeader">
@@ -20,7 +21,7 @@
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
-					<h1>파트너 기본정보 등록</h1>
+					<h1 class="main-comm-tit type2">파트너 기본정보 등록</h1>
 					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo">
 					<table class="comm-tbl">
 						<colgroup>
@@ -33,15 +34,14 @@
 						</tr>
 						<tr>
 							<th>우편번호</th>
-							<td><input type="text" id="sample4_postcode"
-								placeholder="우편번호" name="postNum">
-							<div class="common-tbl-btn-group join-btn-group">
-								<button type="button" onclick="sample4_execDaumPostcode()"
-								value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-							</div>
-							<input type="hidden" name="companyLatitude" id="shopLatitude">
-							<input type="hidden" name="companyLongtitude" id="shopLongitude">
-						</td>
+							<td><input type="text" class="small" id="sample4_postcode" placeholder="우편번호" name="postNum">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" onclick="sample4_execDaumPostcode()"
+									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								</div>
+								<input type="hidden" name="companyLatitude" id="shopLatitude">
+								<input type="hidden" name="companyLongtitude" id="shopLongitude">
+							</td>
 						</tr>
 						<tr>
 							<th>도로명주소</th>
@@ -54,7 +54,7 @@
 							<th>지번주소</th>
 							<th><input type="text" id="sample4_jibunAddress"
 								placeholder="지번주소" name="jibunAddr"> <input type="text"
-								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
+								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:3px;"></th>
 						</tr>
 
 						<tr>
@@ -64,7 +64,7 @@
 						</tr>
 						<tr>
 							<th>업체전화번호</th>
-							<th><input type="text" name="companyPhone" value=" "></th>
+							<th><input type="text" name="fPhone" id="fPhone" value=" ">-<input type="text" id="sPhone" name="sPhone">-<input type="text" id="tPhone" name="tPhone"></th>
 						</tr>
 					</table>
 					<span id="firstStep">다음</span>
@@ -90,6 +90,7 @@
 							<th><input type="text" name="studioCamera" value=" "></th>
 						</tr>
 					</table>
+					<span id="studioBackStep" class="backBtn">이전</span>
 					<span id="studioStep" class="studioBtn">다음</span>
 				</div>
 				<div id="second" class="divbox" style="display: none;">
@@ -110,6 +111,7 @@
 							</select></th>
 						</tr>
 					</table>
+					<span id="secondBack">이전</span>
 					<span id="secondStep">다음</span>
 				</div>
 				<div id="third" class="divbox" style="display: none;">
@@ -151,6 +153,7 @@
 							<th><input type="text" name="dressContent" value=" "></th>
 						</tr>
 					</table>
+					<span id="dressBackStep" class="backBtn">이전</span>
 					<span id="dressStep" class="lastBtn">다음</span>
 				</div>
 				<div id="fourth"  class="divbox" style="display:none;"><!--메이크업  -->
@@ -162,7 +165,7 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="text" name="makeupBasicPrice" value="0"></th>
+								<th><input type="number" name="makeupBasicPrice" value="0"></th>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
@@ -173,6 +176,7 @@
 								<th><input type="number" name="makeupVisitorPrice" value="0"></th>
 							</tr>
 						</table>
+						<span id="makeupBackStep" class="backBtn">이전</span>
 						<span id="makeupStep" class="lastBtn">다음</span>
 					</div>
 
@@ -232,7 +236,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="text" name="hallFoodprice" value=" "></th>
+									<th><input type="number" name="hallFoodprice" value="0"></th>
 								</tr>
 							<!--  -->
 								<tr>
@@ -247,7 +251,8 @@
 									<th>웨딩홀 주차제공</th>
 									<th><input type="checkbox" name="hallServiceParking"></th>
 								</tr>
-						</table>					
+						</table>
+						<span id="hallBackStep" class="backBtn2">이전</span>					
 						<span id="hallStep" class="lastBtn">다음</span>
 					</div>
 					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
@@ -262,7 +267,7 @@
 							</colgroup>
 							<tr>
 								<th>대표사진등록</th>
-								<th><input type="file" name="fileNames" value=" " id="imgInp"></th>
+								<th><input type="file" name="fileNames"  id="imgInp"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
@@ -279,6 +284,7 @@
 							
 							
 							</table>		
+							<span id="finalBackBtn" class="backBtn3">이전</span>
 							<button type="submit">제출</button>
 					</div>		
 				</div>
@@ -297,7 +303,7 @@
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -313,6 +319,7 @@
 						</table>
 					</div>
 						<span id="studioOptionAdd">옵션추가</span><br>
+						<span id="studioOptionBackStep" class="backBtn2">이전</span>
 						<span id="studioOption" class="lastBtn">다음</span>
 				</div>
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
@@ -329,7 +336,7 @@
 							</tr>
 							<tr>
 								<th>예식장인원(최소)</th>
-								<th><input type="text" name="hallSelectPeople" value=" "></th>
+								<th><input type="text" name="hallSelectPerson" value=" "></th>
 							</tr>
 							<tr>
 								<th>예식장시간</th>
@@ -346,10 +353,12 @@
 						</table>
 					</div>
 					<span id="hallOptionAdd">옵션추가</span><br>
+					<span id="hallOption]BackStep" class="backBtn">이전</span>
 					<span id="hallOption" class="hallOpt">다음</span>
 				</div>			
 			</form>	
 			<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
+			<input type="hidden" id="memberPhone" value="${sessionScope.member.phone }">
 		</div>	
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 	<%--  footer --%>
@@ -357,6 +366,7 @@
 </section>
 
 <script><!--페이지 처리 스크립트-->
+
 	$(document).ready(function(){
 		$('#first').css("display","block");	
 	});
@@ -381,6 +391,11 @@
 			$('#hallOption').css("display","block");
 		}
 	});
+
+	$('#secondBack').click(function(){
+		$('.divbox').css("display","none");
+		$('#first').css("display","block");	
+	});
 	
 	$('.hallOpt').click(function(){
 		$('.divbox').css("display","none");
@@ -397,28 +412,66 @@
 		$('.divbox').css("display","none");
 		$('#sixth').css("display","block");
 	});
+	$('.backBtn').click(function(){
+		$('.divbox').css("display","none");
+		$('#second').css("display","block");
+	});
+	$('#studioOptionBackStep').click(function(){
+		$('.divbox').css("display","none");
+		$('#seventh').css("display","block");
+	});
 
+	$('#hallBackStep').click(function(){
+		$('.divbox').css("display","none");
+		$('#hallOption').css("display","block");
+	});
+	
+	$('#finalBackBtn').click(function(){
+		$('.divbox').css("display","none");
+		if($('#choice').val()==0){
+			$('#studioOption').css("display","block");
+		}
+		if($('#choice').val()==1){
+			$('#third').css("display","block");
+		}
+		if($('#choice').val()==2){
+			$('#fourth').css("display","block");
+		}
+		if($('#choice').val()==3){
+			$('#fiveth').css("display","block");
+		}
+	});
+	
+	
 	
 	$('input[id="getMemberInfo"]').change(function() {
 	    var value = $(this).val();              // value
 	    var checked = $(this).prop('checked');  // checked 상태 (true, false)
-	 
-	 
-	 
 	    if(checked){
 	    	var string=$('#totalAddr').val();
+	    	var phone=$('#memberPhone').val();
 			var strArray=string.split('/');
+			var phoneArray=phone.split('/');
 		$('#sample4_jibunAddress').val(strArray[0]);
 		$('#sample4_extraAddress').val(strArray[1]);
 		$('#sample4_detailAddress').val(strArray[2]);
 		$('#sample4_postcode').val(strArray[3]);
 		$('#sample4_roadAddress').val(strArray[4]);
+		
+		$('#fPhone').val(phoneArray[0]);
+		$('#sPhone').val(phoneArray[1]);
+		$('#tPhone').val(phoneArray[2]);
+		
 	    } else{
 			$('#sample4_jibunAddress').val("");
 			$('#sample4_extraAddress').val("");
 			$('#sample4_detailAddress').val("");
 			$('#sample4_postcode').val("");   
 			$('#sample4_roadAddress').val();
+			
+			$('#fPhone').val("");
+			$('#sPhone').val("");
+			$('#tPhone').val("");
 	    }
 	});
 	
@@ -428,13 +481,11 @@
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>홀타입</th>';
-		addTable += '<th><select name="hallSelectType"><option value="0">갤러리</option><option value="1">골프장</option>';
-		addTable += '<option value="2">공공장소</option><option value="3">레스토랑</option><option value="4">문화공간</option>';
-		addTable += '<option value="5">선박</option><option value="6">스튜디오</option><option value="7">웨딩홀</option>';
-		addTable += '<option value="8">펜션</option><option value="9">하우스웨딩홀</option></select></th></tr>';
-		addTable += '<tr><th>예식장이름(홀이름)</th><th><input type="text" name="hallSelectName"></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value=0></th></tr>';
+		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
+		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
+		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value="0"></th></tr>';
+		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
+		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
 		
 		$('#hallOptionTableDiv').append(addTable);
@@ -444,7 +495,7 @@
 		var addTable ="";			
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
 		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOption"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="number" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
+		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
@@ -523,22 +574,15 @@
 
 	$('#firstStep').click(function() {
 		var roadAddr = $('#sample4_roadAddress').val();
-	
-		
 		console.log(roadAddr);
-	
-		
 		naver.maps.Service.geocode({
 	        address: roadAddr
 	    }, function(status, response) {
 	        if (status !== naver.maps.Service.Status.OK) {
 	            return alert('Something wrong!');
 	        }
-
 	        var result = response.result, // 검색 결과의 컨테이너
 	            items = result.items; // 검색 결과의 배열
-
-	        
 	         $('#shopLatitude').val(items[0].point.y);
 	         $('#shopLongitude').val(items[0].point.x);
 	    });	
@@ -557,25 +601,8 @@
     $("#imgInp").change(function() {
         readURL(this);
     });        
-            CKEDITOR.config.height = 500;
-            CKEDITOR.config.toolbarCanCollapse = true;
-            CKEDITOR.replace('editor' , {                
-            filebrowserImageUploadUrl: '/experienceUpload.do'                   
-            });
-             CKEDITOR.on('dialogDefinition', function( ev ){
-                    var dialogName = ev.data.name;
-                    var dialogDefinition = ev.data.definition;
-         
-                    switch (dialogName) {
-                        case 'image': 
-                        	//Image Properties dialog
-                            //dialogDefinition.removeContents('info');
-                            dialogDefinition.removeContents('Link');
-                            dialogDefinition.removeContents('advanced');
-                            break;
-                    }                                                         
-                });                        
-        </script>
+                            
+  </script>
 
 
 

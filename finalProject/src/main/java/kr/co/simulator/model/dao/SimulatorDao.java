@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.hall.vo.Hall;
 import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 
 @Repository("simulatorDao")
 public class SimulatorDao {
@@ -86,22 +87,23 @@ public class SimulatorDao {
 		return sqlSession.insert("simulator.newSimulator", simulator);
 	}
 
-	
-	
-	/*public Simulator newSimulator(Simulator simulator) {
-		return sqlSession.selectOne("simulator.newSimulator", simulator);
-	}*/
-	
-	
+	//Simulator 웨딩계산기 고유번호 받아오기
+	public int simulatorNo(Simulator simulator) {
+		return sqlSession.selectOne("simulator.simulatorNo", simulator);
+	}
 
-	//웨딩드레스 더보기
-	/*public List<Dress> dSearchList(String weddingLoc, int start, int end) {
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("weddingLoc", weddingLoc);
-		map.put("start", start);
-		map.put("end", end);
-		return sqlSession.selectList("simulator.ajaxDressList", map);
-	}*/
+	//simulatorSelect 넣기
+	public int newSimulatorSelect(SimulatorSelect simulatorSelect) {
+		return sqlSession.insert("simulator.newSimulatorSelect", simulatorSelect);
+	}
+
+	// 총 금액 업데이트 
+	public int updatePrice(int simulatorNo, int totalPrice) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("simulatorNo", simulatorNo);
+		map.put("totalPrice", totalPrice);
+		return sqlSession.update("simulator.updatePrice", map);
+	}
 
 
 	

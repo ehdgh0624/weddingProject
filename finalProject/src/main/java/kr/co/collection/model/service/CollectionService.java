@@ -328,6 +328,11 @@ public class CollectionService {
 		return collectionDao.insertReservationMakeup(vo, weddingDate);
 	}
 	
+	@Transactional
+	public int insertReservationGoods(Reservation vo, String weddingDate) {
+		return collectionDao.insertReservationGoods(vo, weddingDate);
+	}
+	
 	public int selectReservationNo(String memberId) {
 		return collectionDao.selectReservationNo(memberId);
 	}

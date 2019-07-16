@@ -54,14 +54,9 @@
 				<div class="paging">${gList.pageNavi}</div>
 		  <!-- 검색박스 -->
           <div class="board-search-box">
-             <form action="" method="get">
-               <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
-                  <option value="goodsName">상품명</option>
-                  <option value="B">부케</option>
-                  <option value="I">청첩장</option>
-               </select>
-               <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="">
-               <button type="submit" class="bbs-search-btn" tit le="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
+             <form action="/searchGoods.do" method="get">
+               <input placeholder="상품명을 입력해주세요." type="search" name="keyword" class="search-word" value="">
+               <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
             </form>
          </div>
 			</div>

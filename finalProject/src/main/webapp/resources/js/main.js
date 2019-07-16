@@ -30,7 +30,7 @@ $(document).ready(function(){
 		scrollWidth = getScrollBarWidth();
 		var win_width = $(window).outerWidth() + getScrollBarWidth();
 
-		var visual_height = $(window).height()	- 100;
+		var visual_height = $(window).height();
 		
 		if ( win_width > 800 ) {
 			$("#mainVisual").height(visual_height);
@@ -41,7 +41,7 @@ $(document).ready(function(){
 		$(window).resize(function  () {
 			var win_width = $(window).outerWidth() + getScrollBarWidth();
 
-			var visual_height = $(window).height()	- 100;
+			var visual_height = $(window).height();
 
 			if ( win_width > 800 ) {
 				$("#mainVisual").height(visual_height);
@@ -51,33 +51,27 @@ $(document).ready(function(){
 		});
 	});
 	
-	/* *********************** 메인 입양 유기견 리스트  ************************ */
-	$('.main-adopt-list').slick({
-		slidesToShow:4,
+	/* *********************** 메인 비주얼  ************************ */
+	$('.main-visual-container').slick({
+		slidesToShow:1,
 		slideToScroll:1,
-		arrows:true,
-		fade:false,
+		arrows:false,
+		fade:true,
 		dots:false,
 		autoplay:true,
 		spped:2000,
 		infinite:true,
 		autoplaySpeed:3000,
-		pauseOnHover:true
+		pauseOnHover:false
 	});
 	
-	/* *********************** 메인 후원 상품 리스트  ************************ */
-	$('.main-sponse-list').slick({
-		slideToShow:1,
-		slideToScroll:1,
-		arrows:false,
-		dots:true,
-		fade:false,
-		autoplay:true,
-		autoplay:true,
-		spped:2000,
-		infinite:true,
-		autoplaySpeed:3000,
-		pauseOnHover:true
+	// 메인 section별 활성화
+	var bottom_position = $("#mainBottom").offset().top - ($("#mainBottom").outerHeight());
+
+	$(window).scroll(function(){
+		if ($(window).scrollTop() >= bottom_position) {
+			$("#mainBottom").addClass("animated");
+		}
 	});
 	
 	/* *********************** 메인 공지사항&봉사활동 탭  ************************ */

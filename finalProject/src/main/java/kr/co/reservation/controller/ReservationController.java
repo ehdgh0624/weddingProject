@@ -1,5 +1,6 @@
 package kr.co.reservation.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,11 +21,17 @@ public class ReservationController {
 	private ReservationService reservationService;
 	
 	@RequestMapping("/reservationView.do")
-	public ModelAndView selectOneReservation(HttpSession session, @RequestParam int reservationNo) {
+	public ModelAndView selectOneReservation(HttpSession session, @RequestParam String memberId, @RequestParam int reservationNo) {
 		Member m = (Member) session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
 		if(m != null) {
-			Reservation res = reservationService.selectOneReservation(reservationNo, m.getMemberId());
+			Reservation res = null;
+			if(m.getMemberId().equals(memberId)) {
+				res = reservationService.selectOneReservation(reservationNo, m.getMemberId());				
+			}else {
+				res = reservationService.selectOneReservation(reservationNo, memberId);
+			}
+			
 			if(res != null) {
 				mav.addObject("reservation", res);
 				mav.setViewName("reservation/reservationView");				

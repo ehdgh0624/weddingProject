@@ -6,6 +6,9 @@ public class MemberEnroll {
 	private String memberId;
 	private String memberPw;
 	private String memberName;
+	private String fPhone;
+	private String sPhone;
+	private String tPhone;
 	private String phone;
 	private String birthDay;
 	private String postNum;
@@ -21,13 +24,16 @@ public class MemberEnroll {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MemberEnroll(String memberId, String memberPw, String memberName, String phone, String birthDay,
-			String postNum, String roadAddr, String jibunAddr, String extraAddr, String detailAddr, String email,
-			Date marrySchedule, int expectVisitor, int budget) {
+	public MemberEnroll(String memberId, String memberPw, String memberName, String fPhone, String sPhone,
+			String tPhone, String phone, String birthDay, String postNum, String roadAddr, String jibunAddr,
+			String extraAddr, String detailAddr, String email, Date marrySchedule, int expectVisitor, int budget) {
 		super();
 		this.memberId = memberId;
 		this.memberPw = memberPw;
 		this.memberName = memberName;
+		this.fPhone = fPhone;
+		this.sPhone = sPhone;
+		this.tPhone = tPhone;
 		this.phone = phone;
 		this.birthDay = birthDay;
 		this.postNum = postNum;
@@ -39,6 +45,14 @@ public class MemberEnroll {
 		this.marrySchedule = marrySchedule;
 		this.expectVisitor = expectVisitor;
 		this.budget = budget;
+	}
+	@Override
+	public String toString() {
+		return "MemberEnroll [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
+				+ ", fPhone=" + fPhone + ", sPhone=" + sPhone + ", tPhone=" + tPhone + ", phone=" + phone
+				+ ", birthDay=" + birthDay + ", postNum=" + postNum + ", roadAddr=" + roadAddr + ", jibunAddr="
+				+ jibunAddr + ", extraAddr=" + extraAddr + ", detailAddr=" + detailAddr + ", email=" + email
+				+ ", marrySchedule=" + marrySchedule + ", expectVisitor=" + expectVisitor + ", budget=" + budget + "]";
 	}
 	public String getMemberId() {
 		return memberId;
@@ -57,6 +71,24 @@ public class MemberEnroll {
 	}
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+	public String getfPhone() {
+		return fPhone;
+	}
+	public void setfPhone(String fPhone) {
+		this.fPhone = fPhone;
+	}
+	public String getsPhone() {
+		return sPhone;
+	}
+	public void setsPhone(String sPhone) {
+		this.sPhone = sPhone;
+	}
+	public String gettPhone() {
+		return tPhone;
+	}
+	public void settPhone(String tPhone) {
+		this.tPhone = tPhone;
 	}
 	public String getPhone() {
 		return phone;
@@ -124,14 +156,8 @@ public class MemberEnroll {
 	public void setBudget(int budget) {
 		this.budget = budget;
 	}
-	@Override
-	public String toString() {
-		return "MemberEnroll [memberId=" + memberId + ", memberPw=" + memberPw + ", memberName=" + memberName
-				+ ", phone=" + phone + ", birthDay=" + birthDay + ", postNum=" + postNum + ", roadAddr=" + roadAddr
-				+ ", jibunAddr=" + jibunAddr + ", extraAddr=" + extraAddr + ", detailAddr=" + detailAddr + ", email="
-				+ email + ", marrySchedule=" + marrySchedule + ", expectVisitor=" + expectVisitor + ", budget=" + budget
-				+ "]";
-	}
+
+	
 
 	
 	

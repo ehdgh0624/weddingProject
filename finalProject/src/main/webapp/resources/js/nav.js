@@ -12,7 +12,8 @@ $(document).ready(function(){
 	var $gnb_dep1 = $("#gnb > ul > li");
 	var $gnb_dep2 = $("#gnb > ul > li .gnb-2dep");
 	
-	gnb_total_on();
+	//gnb_total_on();
+	gnb_each_on();
 	
 	//gnb 전체메뉴
 	function gnb_total_on(){
@@ -32,7 +33,21 @@ $(document).ready(function(){
 				$gnb.find("#gnbBg").stop().slideUp("fast");
 			}
 		}
+	}
+	
+	// gnb 각각메뉴
+	function gnb_each_on () {
+		$gnbList.children("li").children("a").on("mouseenter focus",function  () {
+			$gnbList.children("li").removeClass("on").children(".gnb-2dep").hide();
+			$(this).parent("li").addClass("on").children(".gnb-2dep").stop().slideDown(300);
+		})
 		
+		$gnbList.on("mouseleave",gnb_return);
+		$gnbList.find("a").last().on("focusout",gnb_return);
+		
+		function gnb_return () {
+			$gnbList.children("li").removeClass("on").children(".gnb-2dep").hide();
+		}
 	}
 	
 	//MyPage

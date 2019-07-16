@@ -50,7 +50,7 @@
     	member_code as memberCode
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
     </select>
-    <select id ="selectOneStudioMember" parameterType="member" resultType="studio">
+    <select id ="selectAllStudioMember" parameterType="member" resultType="studio">
     	select
     	studio_no as studioNo,
     	member_id as memberId,
@@ -73,7 +73,7 @@
     	studio_longitud as studioLongtitude
     	from studio where member_id=#{memberId}
     </select>
-     <select id ="selectOneDressMember" parameterType="member" resultType="dress">
+     <select id ="selectAllDressMember" parameterType="member" resultType="dress">
      	select
     	dress_no as dressNo,
     	member_id as memberId,
@@ -100,7 +100,7 @@
     	dress_longitud as dressLongitud
     	from dress where member_id=#{memberId}
      </select>
-     <select id ="selectOneMakeupMember" parameterType="member" resultType="makeup">
+     <select id ="selectAllMakeupMember" parameterType="member" resultType="makeup">
      select
     	makeup_no as makeupNo,
     	member_id as memberId,
@@ -123,7 +123,7 @@
     	makeup_longitud as makeupLongitud
     	from makeup where member_id=#{memberId}
      </select>
-      <select id ="selectOneHallMember" parameterType="member" resultType="hall">
+      <select id ="selectAllHallMember" parameterType="member" resultType="hall">
           select
     	hall_no as hallNo,
     	member_id as memberId,
@@ -169,7 +169,7 @@
 		from reservation where member_id=#{memberId}
 	</select>
 	 <select id="deleteMember"  parameterType="member">
-		delete from member where memberId=#{memberId}
+		delete from member where member_Id=#{memberId}
 	</select>
 	 <update id="updateMember"  parameterType="member">
 		update member set
@@ -184,7 +184,7 @@
 	    where member_Id=#{memberId}
 	</update>
 	 <insert id="insertStudioOption" parameterType="studioSelect">
-     insert into studio_select values(#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
+     insert into studio_select values(seq_studio_select_no.nextval,#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
     </insert>
     <select id="getStudioNo" parameterType="studio" resultType="studio">
     	select
@@ -205,6 +205,23 @@
     	prd_no as prdNo
     	from scrapbook
     	where member_id=#{memberId}
+    </select>
+     <select id="companyReservation" parameterType="member" resultType="reservation">
+    	select
+    	reservation_no as reservationNo,
+    	code as code,
+    	prd_no as prdNo,
+    	wedding_date as weddingDate,
+    	wedding_time as weddingTime,
+    	totalprice as totalPrice,
+    	member_id as memberId,
+    	member_name as memberName,
+    	pay_method as payMethod,
+    	order_memo as orderMemo,
+    	member_email as memberEmail,
+    	prd_name as prdName
+    	from reservation
+    	where prd_id=#{memberId}
     </select>
     
 </mapper>

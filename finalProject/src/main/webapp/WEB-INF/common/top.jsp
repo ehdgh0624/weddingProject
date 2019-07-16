@@ -58,7 +58,7 @@
 					<li>
 						<p>업체관리</p>
 						<span><a href="/myCompanyPage.do">나의 업체 관리</a></span>
-						<span><a href="">업체 예약관리</a></span>
+						<span><a href="/companyReservation.do">업체 예약관리</a></span>
 					</li>
 					<!-- 일반 회원일때 -->
 					<li>
@@ -92,11 +92,11 @@
 					<li>
 						<p>상품관리</p>
 						<span><a href="/addGoodsPage.do">상품등록</a></span>
-						<span><a href="/goodsCare.do">재품관리</a></span>
+						<span><a href="/goodsCare.do">제품관리</a></span>
 					</li>
 					<li>
 						<p>주문관리</p>
-						<span><a href="">주문신청관리</a></span>
+						<span><a href="/reservationManager.do">주문신청관리</a></span>
 					</li>
 				</c:if>
 			</ul>

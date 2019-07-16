@@ -1,7 +1,6 @@
 package kr.co.simulator.controller;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +24,7 @@ import kr.co.hall.vo.Hall;
 import kr.co.member.model.vo.Member;
 import kr.co.simulator.model.service.SimulatorService;
 import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 import net.sf.json.JSONObject;
 
 @Controller("simulatorController")
@@ -47,13 +47,6 @@ public class SimulatorController {
 			Member m = (Member)session.getAttribute("member");
 			simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 			
-			/*int result = simulatorService.newSimulator(simulator);
-			if(result > 0) {
-				System.out.println("성공");
-			}else {
-				System.out.println("실패");
-			}*/
-			
 			System.out.println("됫다!");
 		}else { //로그인 안했을때
 			simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
@@ -70,6 +63,8 @@ public class SimulatorController {
 			model.addAttribute("hTotal", hTotal);
 			model.addAttribute("hList", hList);
 			model.addAttribute("simulator", simulator);
+		}else {
+			model.addAttribute("msg", "검색결과가 없습니다.");
 		}
 		
 		//웨딩드레스
@@ -80,6 +75,8 @@ public class SimulatorController {
 			model.addAttribute("dTotal", dTotal);
 			model.addAttribute("dList", dList);
 			model.addAttribute("simulator", simulator);
+		}else {
+			model.addAttribute("msg", "검색결과가 없습니다.");
 		}
 		
 		//메이크업
@@ -90,6 +87,8 @@ public class SimulatorController {
 			model.addAttribute("mTotal", mTotal);
 			model.addAttribute("mList", mList);
 			model.addAttribute("simulator", simulator);
+		}else {
+			model.addAttribute("msg", "검색결과가 없습니다.");
 		}
 		
 		//스튜디오
@@ -100,6 +99,8 @@ public class SimulatorController {
 			model.addAttribute("stTotal", stTotal);
 			model.addAttribute("stList", stList);
 			model.addAttribute("simulator", simulator);
+		}else {
+			model.addAttribute("msg", "검색결과가 없습니다.");
 		}
 		
 		return "simulator/simulatorSelect";
@@ -168,24 +169,120 @@ public class SimulatorController {
 	
 	
 	//나의 웨딩 계산결과 보기
-	@RequestMapping(value="/cartSideBar.do")
-	public String cartSideBar(HttpServletRequest request, String option) {
-		System.out.println("여7기이이이이ㅣ");
-		System.out.println(option);
+	@RequestMapping(value="/simulatorCheck.do")
+	public String cartSideBar(HttpServletRequest request, @RequestParam String weddingLoc, @RequestParam String weddingDate, @RequestParam String weddingPerson, String option, Model model) {
+		System.out.println("여기이이 "+option);
+		System.out.println(weddingLoc+weddingDate+weddingPerson);
 		
+		HttpSession session = request.getSession(false);
+		
+		//넘어온 String 타입 option을 Json 타입으로 파싱
 		JsonParser parser = new JsonParser();
 		Object obj = parser.parse(option);
 		
 		//전체 카테고리 리스트
 		com.google.gson.JsonArray jsonArr = (com.google.gson.JsonArray)obj;
-		
 		System.out.println("배열 길이 : "+jsonArr.size());
 		
 		//선택한 카테고리 하나!
-		com.google.gson.JsonObject jsonObj = (com.google.gson.JsonObject)jsonArr.get(0);
-		String name = jsonObj.get("1").getAsString();
+		com.google.gson.JsonObject jsonObj = null;
+		SimulatorSelect simulatorSelect = null;
+		ArrayList<SimulatorSelect> simulatorList = new ArrayList<SimulatorSelect>();
+		int totalPrice = 0;
 		
-		System.out.println("이거 : "+name);
+		//com.google.gson.JsonObject jsonObj = (com.google.gson.JsonObject)jsonArr.get(0);
+		//String name = jsonObj.get("1").getAsString();
+
+		if(session != null && (Member)session.getAttribute("member") != null) { //로그인 했을 때
+			Member m = (Member)session.getAttribute("member");
+			Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
+			
+			// Simulator 생성
+			int result = simulatorService.newSimulator(simulator);
+			if(result > 0) { //Simulator 생성 성공 시
+				if(jsonArr.size() != 0) {
+					for(int i=0;i<jsonArr.size();i++) {
+						jsonObj = (com.google.gson.JsonObject)jsonArr.get(i);
+						
+						simulatorSelect = new SimulatorSelect();
+						int simulatorNo = simulatorService.simulatorNo(simulator);
+						System.out.println("여기기ㅣㅣㅣㅣ : "+simulatorNo);
+						
+						simulatorSelect.setSimulatorNo(simulatorNo);
+						simulatorSelect.setCode(jsonObj.get("2").getAsString());
+						simulatorSelect.setPrdNo(jsonObj.get("1").getAsInt());
+						simulatorSelect.setPrdName(jsonObj.get("4").getAsString());
+						simulatorSelect.setPrdPrice(jsonObj.get("6").getAsInt());
+						simulatorSelect.setPrdTel(jsonObj.get("3").getAsString());
+						simulatorSelect.setPrdLoc(jsonObj.get("5").getAsString());
+						simulatorSelect.setPrdTag(jsonObj.get("7").getAsString());
+						simulatorSelect.setPrdFilepath(jsonObj.get("0").getAsString());
+						
+						int selectResult = simulatorService.newSimulatorSelect(simulatorSelect);
+						if(selectResult > 0) {
+							simulatorList.add(simulatorSelect);
+							totalPrice += simulatorSelect.getPrdPrice();
+							int priceResult = simulatorService.updatePrice(simulatorNo, totalPrice);
+							System.out.println(priceResult);
+							if(priceResult > 0) {
+								simulator.setSimulatorTotalPrice(totalPrice);
+							}
+						}else {
+							System.out.println("실패");
+						}
+					}
+					
+					model.addAttribute("simulatorList", simulatorList);
+					
+				}else {
+					model.addAttribute("msg", "선택하신 것이 없습니다.");
+				}
+				
+				model.addAttribute("simulator", simulator);
+				model.addAttribute("totalPrice", totalPrice);
+				
+				System.out.println("성공");
+				
+			}else { //Simulator 생성 실패 시
+				System.out.println("실패");
+			}
+			
+			System.out.println("로그인 후");
+		}else { //로그인 안했을 때
+			Simulator simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
+			if(jsonArr.size() != 0) {
+				for(int i=0;i<jsonArr.size();i++) {
+					jsonObj = (com.google.gson.JsonObject)jsonArr.get(i);
+					
+					simulatorSelect = new SimulatorSelect();
+					
+					simulatorSelect.setCode(jsonObj.get("2").getAsString());
+					simulatorSelect.setPrdNo(jsonObj.get("1").getAsInt());
+					simulatorSelect.setPrdName(jsonObj.get("4").getAsString());
+					simulatorSelect.setPrdPrice(jsonObj.get("6").getAsInt());
+					simulatorSelect.setPrdTel(jsonObj.get("3").getAsString());
+					simulatorSelect.setPrdLoc(jsonObj.get("5").getAsString());
+					simulatorSelect.setPrdTag(jsonObj.get("7").getAsString());
+					simulatorSelect.setPrdFilepath(jsonObj.get("0").getAsString());
+					
+					simulatorList.add(simulatorSelect);
+					System.out.println(simulatorList.size());
+					System.out.println(simulatorSelect.getPrdName());
+					totalPrice += simulatorSelect.getPrdPrice();
+				}
+				System.out.println("여기!! : "+simulatorList.size());
+				
+				model.addAttribute("simulatorList", simulatorList);
+				
+			}else {
+				model.addAttribute("msg", "선택하신 것이 없습니다.");
+			}
+			
+			model.addAttribute("simulator", simulator);
+			model.addAttribute("totalPrice", totalPrice);
+			
+			System.out.println("로그인 전");
+		}
 		
 		return "simulator/simulatorCheck";
 	}

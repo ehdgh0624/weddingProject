@@ -11,97 +11,103 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix">
-		<!-- 여기에 내용 작서어어어어어엉!!! -->
-	
-		<div class="common-tbl-box">
-		<form action="/memberUpdateEnroll.do" method="post">
+		<div class="area">
+			<!-- 여기에 내용 작서어어어어어엉!!! -->
 			<h2 class="comm-content-tit">계정관리</h2>
-			<table class="comm-tbl">		
-					<colgroup>
-						<col width="20%">
-						<col width="/">
-					</colgroup>
-					<tr>
-						<th>아이디</th>
-						<th><input type="text" name="memberId" value="${sessionScope.member.memberId }" readonly="readonly"></th>
-					</tr>
-					<tr>
-						<th>비밀번호</th>
-						<th><input type="password" name="memberPw" value="${sessionScope.member.memberPw }"></th>
-					</tr>
-					<tr>
-						<th>비밀번호 확인</th>
-						<th><input type="password" name="pwCheck" ></th>
-					</tr>
-					<tr>
-						<th>이름</th>
-						<th><input type="text" name="memberName" value="${sessionScope.member.memberName }"></th>
-					</tr>
-					<tr>
-						<th>전화번호</th>
-						<th><input type="text" name="Phone" value="${sessionScope.member.phone }"></th>
-					</tr>
-					<tr>
-						<th>생년월일</th>
-						<th><input type="text" name="birthDay" value="${sessionScope.member.birthDay }" readonly="readonly"></th>
-					</tr>
-									<tr>
-						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode" placeholder="우편번호" name="postNum" value="${post }">
-							<div class="common-tbl-btn-group join-btn-group">
-									<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<th>도로명주소</th>
-						<td><input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr">
-						<span id="guide" style="color:#999;display:none"></span></td>
-					</tr>
-					
-					<tr>
-						<th>지번주소</th>
-						<th><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
-						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
-					</tr>
-					<tr>
-						<th>상세주소</th>
-						<th><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></th>
-					</tr>
-					<tr>
-						<th>이메일</th>
-						<th><input type="text" name="email" value="${sessionScope.member.email }"></th>
-					</tr>
-				</table>
-				<hr>
-				<c:if test="${empty sessionScope.member.marrySchedule }">
-					<span id="addInfo">추가입력!</span><br>
-				</c:if>
-				<div style="display:none" id="infoMarry">
-					<table class="comm-tbl">
+			<div class="common-tbl-box">
+				<form action="/memberUpdateEnroll.do" method="post">
+					<table class="comm-tbl">		
 						<colgroup>
 							<col width="20%">
 							<col width="/">
 						</colgroup>
 						<tr>
-							<th>결혼예정일</th>
-							<th><input type="date" name="marrySchedule" value="${sessionScope.member.marrySchedule }" id="ck"></th>
+							<th>아이디</th>
+							<td><input type="text" name="memberId" class="middle" value="${sessionScope.member.memberId }" readonly="readonly"></td>
 						</tr>
 						<tr>
-							<th>예상하객수</th>
-							<th><input type="number" name="expectVisitor" value="${sessionScope.member.expectVisitor }"></th>
+							<th>비밀번호</th>
+							<td><input type="password" class="middle" name="memberPw" value="${sessionScope.member.memberPw }"></td>
 						</tr>
 						<tr>
-							<th>예산</th>
-							<th><input type="number" name="budget" value="${sessionScope.member.budget }"></th>
+							<th>비밀번호 확인</th>
+							<td><input type="password" class="middle" name="pwCheck" ></td>
 						</tr>
-					</table>	
-				</div>
-			<button type="submit" class="btn-style1">수정</button>
-		</form>
-			<span onclick="location.href='/memberDelete.do?memberId=${sessionScope.member.memberId}'">탈퇴</span>
-	</div>
-	<input type="text" id="totalAddr" value="${sessionScope.member.addr }">
+						<tr>
+							<th>이름</th>
+							<td><input type="text" class="middle" name="memberName" value="${sessionScope.member.memberName }"></td>
+						</tr>
+						<tr>
+							<th>전화번호</th>
+							<td>
+							<input type="text" name="fPhone" id="fPhone" class="small"> - <input type="text" name="sPhone" id="sPhone" class="small"> - <input type="text" name="tPhone" id="tPhone" class="small">
+							<input type="hidden" id="phone" value="${sessionScope.member.phone }">
+							</td>
+						</tr>
+						<tr>
+							<th>생년월일</th>
+							<td><input type="text" name="birthDay" value="${sessionScope.member.birthDay }" readonly="readonly" class="middle"></td>
+						</tr>
+										<tr>
+							<th>우편번호</th>
+							<td><input type="text" id="sample4_postcode" class="short" placeholder="우편번호" name="postNum" value="${post }">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<th>도로명주소</th>
+							<td><input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr">
+							<span id="guide" style="color:#999;display:none"></span></td>
+						</tr>
+						
+						<tr>
+							<th>지번주소</th>
+							<td><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
+							<input type="text" id="sample4_extraAddress" placeholder="지번주소 추가사항" name="extraAddr" style="margin-top:3px;"></td>
+						</tr>
+						<tr>
+							<th>상세주소</th>
+							<td><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></td>
+						</tr>
+						<tr>
+							<th>이메일</th>
+							<td><input type="text" name="email" class="middle" value="${sessionScope.member.email }"></td>
+						</tr>
+					</table>
+					<hr>
+					<c:if test="${empty sessionScope.member.marrySchedule }">
+						<span id="addInfo">추가입력!</span><br>
+					</c:if>
+					<div style="display:none" id="infoMarry">
+						<table class="comm-tbl">
+							<colgroup>
+								<col width="20%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>결혼예정일</th>
+								<td><input type="text" class="datepicker short" name="marrySchedule" value="${sessionScope.member.marrySchedule }" id="ck"></td>
+							</tr>
+							<tr>
+								<th>예상하객수</th>
+								<td><input type="number" class="short" name="expectVisitor" value="${sessionScope.member.expectVisitor }"> 명</td>
+							</tr>
+							<tr>
+								<th>예산</th>
+								<td><input type="number" class="short" name="budget" value="${sessionScope.member.budget }"> 만원</td>
+							</tr>
+						</table>	
+					</div>
+					<div class="common-tbl-btn-group">
+						<button type="submit" class="btn-style1">수정</button>
+						<button type="button" class="btn-style2" onclick="location.href='/memberDelete.do?memberId=${sessionScope.member.memberId}'">탈퇴</button>
+					</div>
+				</form>
+			</div>
+		</div>
+		<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
 </div>	
 
 
@@ -121,6 +127,12 @@ $(document).ready(function(){
 	$('#sample4_detailAddress').val(strArray[2]);
 	$('#sample4_postcode').val(strArray[3]);
 	$('#sample4_roadAddress').val(strArray[4]);
+	
+	var phone=$('#phone').val();	
+	var phoneArray=phone.split('/');
+	$("#fPhone").val(phoneArray[0]);
+	$("#sPhone").val(phoneArray[1]);	
+	$("#tPhone").val(phoneArray[2]);
 
 	console.log(strArray[0]);
 });
