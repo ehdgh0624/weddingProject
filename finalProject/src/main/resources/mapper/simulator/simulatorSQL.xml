@@ -107,6 +107,31 @@
 	<update id="updatePrice" parameterType="map">
 		update simulator set simulator_total_price=#{totalPrice} where simulator_no=#{simulatorNo}
 	</update>
+	<select id="mySelectList" parameterType="simulator" resultType="simulatorSelect">
+			select 
+			simulator_no as simulatorNo,
+			code as code,
+			prd_no as prdNo,
+			prd_name as prdName,
+			prd_price as prdPrice,
+			prd_tel as prdTel,
+			prd_loc as prdLoc,
+			prd_tag as prdTag
+			from simulator_select
+			where simulator_no =#{simulatorNo}
+	</select>
+	<select id="getSimulator" parameterType="member" resultType="simulator">
+			select 
+			simulator_no as simulatorNo,
+			member_id as memberId,
+			wedding_date as weddingDate,
+			wedding_loc as weddingLoc,
+			wedding_person as weddingPerson,
+			simulator_total_price as simulatorTotalPrice,
+			simulator_date as simulatorDate
+			from simulator where member_id=#{memberId}
+	</select>
+	
 	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">
 		{call
 			declear

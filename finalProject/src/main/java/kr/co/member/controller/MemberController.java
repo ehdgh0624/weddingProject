@@ -53,6 +53,8 @@ import kr.co.member.model.vo.SDMList;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.reservation.model.vo.ReservationComparator;
 import kr.co.scrapbook.model.vo.Scrapbook;
+import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 
 
 
@@ -164,7 +166,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/weddingCollection.do")
 	public String WeddingCollection(HttpSession session, Model model) {
-		
+	
 		Member vo =(Member)session.getAttribute("member");
 		
 		ArrayList<Studio> sList = new ArrayList<Studio>();
@@ -312,6 +314,20 @@ public class MemberController {
 		System.out.println("회원가입페이지 호출");
 		return "member/enrollPage";
 	}
+	
+	@RequestMapping(value = "/resultMyWeddingCost.do")
+	public ModelAndView resultMyWeddingCost(HttpSession session) {
+		System.out.println("웨딩비용계산결과를 가져가겠어요 오늘밤");
+		ModelAndView mav = new ModelAndView();
+		Member vo =(Member)session.getAttribute("member");	
+		ArrayList<Simulator> s = (ArrayList<Simulator>) memberService.getSimulator(vo);
+		
+		mav.addObject("simulator",s);
+		mav.setViewName("member/myWeddingCost");
+		
+		return mav;
+	}
+	
 	
 	@RequestMapping(value = "/memberEnroll.do")
 	public String MemberEnroll(MemberEnroll vos) {

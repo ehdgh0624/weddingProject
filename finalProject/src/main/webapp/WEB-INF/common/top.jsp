@@ -63,7 +63,7 @@
 					<!-- 일반 회원일때 -->
 					<li>
 						<p>리스트</p>
-						<span><a href="">웨딩비용계산결과</a></span>
+						<span><a href="/resultMyWeddingCost.do">웨딩비용계산결과</a></span>
 					</li>
 					<!-- 일반&업체 회원일때 -->
 					<li>
@@ -72,7 +72,7 @@
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
 					</li>
 					<li>
-					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
+					<span><a href="/enrollCompanyPage.do">업체등록 하러가기</a></span>
 					</li>
 				</c:if>
 				<!-- 관리자 일떄 -->
