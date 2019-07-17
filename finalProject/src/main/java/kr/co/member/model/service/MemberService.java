@@ -283,6 +283,26 @@ public class MemberService {
 		return memberDao.getSimulator(vo);
 	}
 
+	public List<Gallery> getGalleryList(String no, String code) {
+		// TODO Auto-generated method stub
+		return memberDao.getGalleryList(no,code);
+	}
+
+	public int deleteGallery(String filepath) {
+		// TODO Auto-generated method stub
+		return memberDao.deleteGallery(filepath);
+	}
+
+	public int addGall(ArrayList<Gallery> gList) {
+		// TODO Auto-generated method stub
+		int result=0;
+		for(int i=0;i<gList.size();i++) {
+			result+=memberDao.addGall(gList.get(i));
+		}
+		
+		return result;
+	}
+
 
 
 }

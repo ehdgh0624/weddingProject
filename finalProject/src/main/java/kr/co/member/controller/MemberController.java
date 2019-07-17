@@ -41,6 +41,7 @@ import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.service.HallService;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
@@ -65,6 +66,86 @@ public class MemberController {
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
+	
+	@RequestMapping(value = "/deleteGallery.do")
+	@ResponseBody
+	public int deleteGallery(@RequestParam String filepath) {
+		
+		
+		
+		return memberService.deleteGallery(filepath);
+	}
+	
+	@RequestMapping(value = "/saveGallery.do")
+	@ResponseBody
+	public String saveGallery(
+			@RequestParam(value="filename",required = true) List<MultipartFile> filenameList,
+			HttpServletRequest request
+			) {
+		String code=request.getParameter("code");
+		String no= request.getParameter("prdNo");
+		String savePath="";
+		ArrayList<String> originNameList = new ArrayList<String>();
+		ArrayList<String> onlyFileNameList = new ArrayList<String>();
+		ArrayList<String> extensionList = new ArrayList<String>();
+		
+		for(int i=0;i<filenameList.size();i++) {
+			originNameList.add(filenameList.get(i).getOriginalFilename());
+			System.out.println(filenameList.get(i).getOriginalFilename());
+			onlyFileNameList.add(originNameList.get(i).substring(0,originNameList.get(i).indexOf(".")));
+			extensionList.add(originNameList.get(i).substring(originNameList.get(i).indexOf(".")));
+		}
+		
+		
+		if(code.equals("S")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
+		}else if(code.equals("D")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
+		}else if(code.equals("M")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
+		}else if(code.equals("H")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}
+		
+		
+
+		System.out.println(savePath);
+
+		ArrayList<String> filePathList = new ArrayList<String>();
+		ArrayList<String> fullPathList = new ArrayList<String>();
+		for(int i=0;i<filenameList.size();i++) {
+			filePathList.add(onlyFileNameList.get(i)+"_"+"1"+extensionList.get(i));
+			fullPathList.add(savePath+"/"+filePathList.get(i));
+		}
+		for(int i=0;i<filenameList.size();i++) {
+			if(!filenameList.get(i).isEmpty()) {
+				try {
+					byte[] bytes = filenameList.get(i).getBytes();
+					File f = new File(fullPathList.get(i));
+					FileOutputStream fos = new FileOutputStream(f);
+					BufferedOutputStream bos = new BufferedOutputStream(fos);
+					bos.write(bytes);
+					bos.close();
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+		}
+	
+		ArrayList<Gallery> gList = new ArrayList<Gallery>();
+		for(int i=0;i<filenameList.size();i++) {
+			Gallery g = new Gallery(Integer.parseInt(no), code, originNameList.get(i), filePathList.get(i));
+			
+			gList.add(g);
+		}
+		int result=memberService.addGall(gList);
+		
+		return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
+	};
+	
 	
 	@RequestMapping(value = "/myReservList.do")
 	public String myReservListView(HttpSession session,Model model) {
@@ -495,6 +576,18 @@ public class MemberController {
 		System.out.println("업체등록페이지");
 
 		return "member/addCompany";
+	}
+	
+	@RequestMapping(value = "/insertGallery.do")
+	public String insertGallery(HttpServletRequest request,Model model) {
+		System.out.println("갤러리록페이지");
+		String code=request.getParameter("code");
+		String no=request.getParameter("no");
+
+		ArrayList<Gallery> list = (ArrayList<Gallery>) memberService.getGalleryList(no,code);
+		model.addAttribute("gallList", list);
+		
+		return "member/controllGallery";
 	}
 	
 	@RequestMapping(value = "/studioOptionAdd.do")

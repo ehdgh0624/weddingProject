@@ -90,7 +90,41 @@
 				<hr>
 			<button type="submit" class="btn-style1" id="updateStudio">수정</button>
 		</form>
-		<span onclick="location.href='/insertGallery.do?code=S&$no=${studio.studioNo }">갤러리 등록하러가기</span>
+		<div>
+			<button>추가</button>
+			<form action="/saveGallery.do" method="post" enctype="multipart/form-data">
+			<table class="comm-tbl" id="gall">
+					<colgroup>
+						<col width="20%">
+						<col width="/">
+						<col width="20%">
+						<col width="10%">
+					</colgroup>
+					<tr>
+						<th>No</th>
+						<th>파일이미지</th>
+						<th>미리보기</th>
+						<th>삭제</th>
+					</tr>
+					<c:forEach items="${galleryList }" var="s" varStatus="i">
+					<tr>
+						<td>${i.count }</td>
+						<td>
+							<span>${s.filename }</span>
+						</td>
+						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
+						<td><input type="hidden" value="${s.filepath }">
+						<span class="imgDelete">삭제</span></td>
+					</tr>
+					</c:forEach>
+			</table>
+			<input type="hidden"  value="${studio.studioNo }" name="prdNo">
+			<input type="hidden" value="S" name="code">
+			<button type="submit">저장</button>
+			</form>
+		</div>
+		<br><br>
+		<span id="addGallery">사진추가하기</span>		
 		
 		
 		<div id="studioOption" class="divbox"><!--스튜디오 옵션  -->
@@ -166,14 +200,6 @@
 				</c:forEach>
 			</table>
 		</div>
-		<div>
-			<select name="studioOptionType" id="studioOptionType">
-				<option value='0'>본식</option>
-				<option value='1'>스튜디오</option>
-				<option value='2'>영상</option>
-			</select>		
-			<span id="studioOptionAdd" >옵션추가</span>
-		</div>
 	</div>
 		<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
 		<input type="hidden" id="phone" value="${studio.studioTel }">
@@ -182,7 +208,55 @@
 
 
 
-<script>
+<script type="text/javascript">
+
+
+
+
+$('#addGallery').click(function(){
+	
+	var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
+	addTable+= "<td><img src='' style='width:300px; heigth:300px'></td>";
+	addTable+= "<td><span class='imgDelete'>삭제</span></td>";
+	addTable+= "<tr>";
+	
+	$('#gall').append(addTable);
+});
+
+
+$('.imgDelete').click(function(){
+	 var filepath = $(this).prev('input').val();
+		console.log(filepath);
+		$.ajax({
+			url:"/deleteGallery.do",
+
+			data:{filepath:filepath},
+
+			type:"get",
+			success:function(data){
+				if(data>0){
+					alert("수정성공");
+					console.log("삭제성공");
+				}else{
+					console.log("삭제실패");
+				}
+			},
+			error : function(){
+				console.log("ajax실패")
+			}
+			
+		})
+		 $(this).parent().parent().remove();
+})
+
+
+
+
+
+
+
+
+
 $(document).ready(function(){	
 	var string=$('#totalAddr').val();
 	var strArray=string.split('/');
@@ -383,6 +457,7 @@ $('#selectList2').click(function(){
 	})
 	
 });
+
 </script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script>
