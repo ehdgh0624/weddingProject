@@ -66,7 +66,7 @@ $(document).ready(function(){
 	});
 	
 	// 메인 section별 활성화
-	var bottom_position = $("#mainBottom").offset().top - ($("#mainBottom").outerHeight());
+	var bottom_position = $("#mainBottom").offset().top - ($("#mainBottom").outerHeight() / 0.75);
 
 	$(window).scroll(function(){
 		if ($(window).scrollTop() >= bottom_position) {
