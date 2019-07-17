@@ -397,7 +397,7 @@ public class CollectionController {
 		vo.setMemberEmail(memberEmail);
 		vo.setPayMethod(payMethod);
 		vo.setAmount(amount);
-		vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
+		vo.setOrderMemo(orderMemo.replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;").replace("\r\n", "<br>"));
 		vo.setOrderAddr(orderAddr);
 		vo.setReceiveName(receiveName);
 		vo.setReceivePhone(receivePhone);
@@ -412,7 +412,7 @@ public class CollectionController {
 		if(m != null) {
 			if(result > 0) {
 				result = collectionService.selectReservationNo(m.getMemberId());
-				return "redirect:/reservationView.do?reservationNo="+result;
+				return "redirect:/reservationView.do?memberId="+m.getMemberId()+"&reservationNo="+result;
 			}else {
 				return "redirect:/index.jsp";
 			}
@@ -439,7 +439,7 @@ public class CollectionController {
 			vo.setMemberEmail(m.getEmail());
 			vo.setPayMethod(payMethod);
 			vo.setAmount(amount);
-			vo.setOrderMemo(orderMemo.replace("\\r", "<br>").replace("\\n", "<br>").replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;"));
+			vo.setOrderMemo(orderMemo.replace("<","&lt;").replace(">", "&gt;").replace(" ", "&nbsp;").replace("\"","&quot;").replace("\r\n", "<br>"));
 			vo.setOrderAddr(orderAddr);
 			vo.setReceiveName(receiveName);
 			vo.setReceivePhone(receivePhone);

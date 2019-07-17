@@ -248,24 +248,239 @@
 					</form>
 
 					<br> <br> <br>
+					<!-- 리뷰 출력 -->
 					<h2>후기 및 Q&A</h2>
 					<hr>
+					<div style="text-align: center;">
+						<span style="color:orange;font-size: 80px;vertical-align: middle;margin-right:30px;">${studio.studioScope/2}</span>
+						<img src="/resources/img/scope-star/scope-star${studio.studioScope}.png" style="vertical-align: middle;">
+					</div>
+					<hr>
+					<c:if test="${not empty reviewList}">
+						<c:forEach items="${reviewList}" var="r">
+							<div>
+								<div style="width:10%;float: left;">
+									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
+								</div>
+								<div style="width:90%;display: inline-block;">
+									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
+									<span>[작성일 : ${r.reviewDate}]</span>
+									<span style="float: right;">
+										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
+									</span>
+									<br>
+									<br>
+									<div style="width:100%;height:120px;overflow: hidden;display: inline-block;">
+										<img src="/resources/img/test_img4.jpg">
+									</div>
+									<br>
+									<br>
+									<span style="font-weight: bolder;">[이용후기]</span>
+									<span>${r.reviewContent}</span>
+								</div>
+							</div>
+							<br>
+							<hr>
+						</c:forEach>
+					</c:if>
+					<!-- 리뷰 출력 끝 -->
+					
+					<!-- 리뷰 입력 -->
+					<form id="fileUploadForm" action="/fileUpload.do" method="post" enctype="multipart/form-data">
+						<div style="visibility: hidden;position: absolute;top:0;">
+							<input type="text" id="code" name="code" value="S" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="reviewRef" name="reviewRef" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="reviewScope" name="reviewScope" style="cursor: inherit;width:10px;" readonly>
+						</div>
+						<div id="reviewWrite" style="display: none;">
+							<!-- 별점(위치 개별이동 금지) -->
+							<div>
+								<div style="font-size: 16px;line-height: 25px;">총평</div>
+								<img id="reviewScopeStar" src="/resources/img/scope-star/scope-star10.png" usemap="#imgmap20197162448" style="vertical-align: middle;height:30px;">
+								<map id="imgmap20197162448" name="imgmap20197162448">
+									<area shape="rect" coords="161,1,176,42" id="scope-star10" onmouseover="reviewScopeStar(10);" />
+									<area shape="rect" coords="145,1,160,42" id="scope-star9" onmouseover="reviewScopeStar(9);" />
+									<area shape="rect" coords="125,1,140,42" id="scope-star8" onmouseover="reviewScopeStar(8);" />
+									<area shape="rect" coords="109,1,124,42" id="scope-star7" onmouseover="reviewScopeStar(7);" />
+									<area shape="rect" coords="89,1,104,42" id="scope-star6" onmouseover="reviewScopeStar(6);" />
+									<area shape="rect" coords="73,1,88,42" id="scope-star5" onmouseover="reviewScopeStar(5);" />
+									<area shape="rect" coords="53,1,68,42" id="scope-star4" onmouseover="reviewScopeStar(4);" />
+									<area shape="rect" coords="37,1,52,42" id="scope-star3" onmouseover="reviewScopeStar(3);" />
+									<area shape="rect" coords="17,1,32,42" id="scope-star2" onmouseover="reviewScopeStar(2);" />
+									<area shape="rect" coords="1,1,16,42" id="scope-star1" onmouseover="reviewScopeStar(1);" />
+								</map>
+								<span style="vertical-align: middle;font-size:16px;"><span id="starScore">5</span>점</span>
+							</div>
+							<!-- 별점 끝 -->
+							
+							<br>
+							<br>
+							<br>
+							<div>
+								<div>후기 이미지를 등록해보세요(최대 5장)</div>
+								<br>
+								<div style="width:100%;border-radius: 5px;border:2px solid aliceblue;box-sizing: border-box;">
+									<label id="uploadLabel" for="reviewImageUpload">
+										<div style="width:100%;background-color: aliceblue;padding:15px;box-sizing: border-box;float: left;font-size: 16px;cursor: pointer;">
+											사진업로드 (여기를 클릭하세요★)<input multiple="multiple" type="file" class="reviewImageUpload" id="reviewImageUpload" name="uploadFile" style="width:400px;cursor: pointer;visibility: hidden;">
+										</div>
+									</label>
+									<br>
+									<br>
+									<br>
+									<div style="padding:20px;box-sizing: border-box;">
+										<img alt="" src="" id="img1" style="max-width:150px;max-height:100px;margin:3px;">
+										<img alt="" src="" id="img2" style="max-width:150px;max-height:100px;margin:3px;">
+										<img alt="" src="" id="img3" style="max-width:150px;max-height:100px;margin:3px;">
+										<img alt="" src="" id="img4" style="max-width:150px;max-height:100px;margin:3px;">
+										<img alt="" src="" id="img5" style="max-width:150px;max-height:100px;margin:3px;">
+										<span id="notImg">업로드 된 사진이 없어요 :)</span>
+									</div>
+								</div>
+							</div>
+							
+							<br>
+							<br>
+							<br>
+							<div>
+								<div style="font-size:16px;">여러분이 남겨주신 리뷰는 큰 도움이 됩니다.</div>
+								<br>
+								<textarea id="reviewContent" name="reviewContent" style="width:100%;height:150px;box-sizing: border-box;padding:20px;border-radius: 5px;border:2px solid aliceblue;" placeholder="이곳에 후기를 남겨주세요."></textarea>
+							</div>
+						</div>
+						
+						<br><br><br>
+						<div style="background-color:aliceblue;width:100%;border-radius: 5px;padding:20px;line-height: 30px;box-sizing: border-box;">
+							<div style="font-size: 25px;font-weight: bolder;">#후기 남기면 혜택 팡팡!</div>
+							<div style="font-size: 15px;line-height: 20px;">
+								- 방문/예약문의 후기 건당 1,000원
+								<br>
+								- 사진없는 실제 웨딩후기 건당 1,000원						
+								<br>
+								- 사진있는 실제웨딩후기 건당 2,000원
+								<br>
+								#5,000원 이상 적립하고 현금으로 환급해보세요!
+							</div>
+						</div>
+						<div class="common-tbl-btn-group">
+							<button id="reviewWriteBtn" class="btn-style1" type="button" style="width:80%;" onclick="reviewShow();">♥ 후기 쓰고 혜택받자!</button>
+						</div>
+					</form>
+					<!-- 리뷰 입력 끝 -->
+					<br> <br> <br>
+					<h2>위치</h2>
+					<hr>
+					<!-- 지도 위치 -->
+					<div id="map" style="float: left; margin-left: 20px; width: 800px; height: 300px; margin-bottom: 50px;"></div>
+					<!-- 상세설명, 리뷰, 지도 끝 -->
 				</div>
-				<!-- 상세설명, 리뷰, 지도 끝 -->
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div
-					style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
+				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
 				<!-- static 끝 -->
 			</div>
 		</div>
-
-
-		<!-- 지도 위치 -->
-		<div id="map"
-			style="float: left; margin-left: 20px; width: 800px; height: 300px; margin-bottom: 50px;"></div>
 	</div>
 </section>
 <script>
+	/* 이미지 업로드 시 미리보기 */
+	$(document).ready(function(){
+		if($("#img1").attr("src") == "" && $("#img2").attr("src") == "" && $("#img3").attr("src") == "" && $("#img4").attr("src") == "" && $("#img5").attr("src") == ""){
+			$('#notImg').show();
+			$('#img1').hide();
+			$('#img2').hide();
+			$('#img3').hide();
+			$('#img4').hide();
+			$('#img5').hide();
+		}
+		$(document).on("change",".reviewImageUpload", handleImgFileSelect);
+	});
+	
+	function handleImgFileSelect(e){
+		$('#notImg').show();
+		$('#img1').attr('src', '');
+		$('#img2').attr('src', '');
+		$('#img3').attr('src', '');
+		$('#img4').attr('src', '');
+		$('#img5').attr('src', '');
+		if($('#reviewImageUpload')[0].files.length > 5){
+			alert("파일 수가 너무 많습니다.");
+			$('#reviewImageUpload')[0].remove();
+			$('#fileUploadForm').append('<input multiple="multiple" type="file" class="reviewImageUpload" id="reviewImageUpload" name="uploadFile" style="width:400px;cursor: pointer;visibility: hidden;">');
+		}else{
+			$('#notImg').hide();
+			var files = e.target.files;
+			var filesArr = Array.prototype.slice.call(files);
+			filesArr.forEach(function(f){
+				if(!f.type.match("image.*")){
+					alert("이미지 확장자만 가능합니다.");
+					return;
+				}
+				sel_file = f;
+				var reader = new FileReader();
+				reader.onload = function(e){
+	
+					if($('#img1').attr('src') == ""){
+						$('#img1').attr('src', e.target.result);
+						$('#img1').show();
+					}else if($('#img2').attr('src') == ""){
+						$('#img2').attr('src', e.target.result);
+						$('#img2').show();
+					}else if($('#img3').attr('src') == ""){
+						$('#img3').attr('src', e.target.result);
+						$('#img3').show();
+					}else if($('#img4').attr('src') == ""){
+						$('#img4').attr('src', e.target.result);
+						$('#img4').show();
+					}else if($('#img5').attr('src') == ""){
+						$('#img5').attr('src', e.target.result);
+						$('#img5').show();
+					}
+				}
+				reader.readAsDataURL(f);
+			})
+		}
+	}
+	/* 이미지 업로드 시 미리보기 끝 */
+	
+	/* 총평 별점 위에 마우스 over 시 별점 바뀜 */
+	function reviewScopeStar(scopeStar){
+		$('#reviewScopeStar').prop("src","/resources/img/scope-star/scope-star"+scopeStar+".png");
+		$('#starScore').text(scopeStar/2);
+	}
+	/* 총평 별점 위에 마우스 over 시 별점 바뀜 */
+
+	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
+	function reviewShow(){
+		if(${sessionScope.member != null}){
+			if($('#reviewWrite').css('display') == 'none'){
+				$('#reviewWrite').show();
+				$('#reviewWriteBtn').text("♥ 후기 저장");				
+			}else{
+				if($('#reviewContent').val() == ''){
+					alert("리뷰 내용을 작성해주세요.");
+				}else{
+					var reviewRef = ${studio.studioNo};
+					var reviewScope = $('#starScore').text() * 2;
+					$('#reviewRef').val(reviewRef);
+					$('#reviewScope').val(reviewScope);
+					$('#fileUploadForm').submit();					
+				}
+			}
+		}else{
+			alert("로그인 후 다시 시도해주세요.");
+			location.href="/loginPage.do";
+		}
+	}
+	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit 끝 */
+	
+	/* 페이지 로드 시 이벤트 */
+	$(document).ready(function(){
+		/* 페이지 로드 시 총계 변경 */
+		var allPrice = 0;
+		$('#allPrice').text(allPrice);
+		/* 페애지 로드 시 총계 변경 끝 */
+	});
+	/* 페에지 로드 시 이벤트 끝 */
 	
 	/* 버튼 클릭 시 예약 */
 	function reservation(){
@@ -310,9 +525,10 @@
 			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
 			type : "post",
 			success : function(data){
+				var memberId = '${sessionScope.member.memberId}';
 				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/reservationView.do?reservationNo="+data;
+					location.href="/reservationView.do?memberId="+memberId+"&reservationNo="+data;
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
