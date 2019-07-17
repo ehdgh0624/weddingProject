@@ -63,4 +63,9 @@ section.myHall .btn-area {
 }
 section.myHall .btn-area button {
 	background: orange;
+	font-weight:bold;
+	font-size : 15px;
+	border-radius:5px;
+	padding: 15px 20px 15px 20px;
+	margin-left: 10px;
 }

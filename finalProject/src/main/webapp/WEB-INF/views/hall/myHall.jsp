@@ -59,8 +59,8 @@
 					</div>
 				</div>
 				<div class="btn-area">
-					<button>크흠</button>
-					<button>크흠2</button>
+					<button>메인으로 가기</button>
+					<button>메세지 보내기</button>
 				</div>
 			</div>		
 		</section>
