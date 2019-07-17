@@ -122,7 +122,7 @@
 					<div class="card" >
 						<div class="thumbnail">
 							<div class="centered">
-							<a href="/hallView.do?hallNo=${h.hallNo}&code=${h.code }">
+							<a href="/hallView.do?hallNo=${h.hallNo}">
 								<img src="https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png"
 									alt="" />
 									</a>

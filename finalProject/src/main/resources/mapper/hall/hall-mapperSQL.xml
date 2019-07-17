@@ -186,4 +186,7 @@
 	hall_date as hallDate
 	from hall where hall_no=#{hallNo}
 	</select>
+	<update id="updateScope" parameterType="map">
+		update hall set hall_scope=(#{reviewSum}+#{reviewScope})/(#{reviewCount}+1) where code=#{code} and hall_no=#{objectNo}
+	</update>
 </mapper>

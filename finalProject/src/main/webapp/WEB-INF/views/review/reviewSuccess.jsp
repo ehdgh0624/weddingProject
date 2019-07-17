@@ -29,6 +29,12 @@
 					location.href = "/collectionViewMakeup.do?makeupNo="+${objectNo};
 				</script>
 			</c:when>
+			<c:when test="${code == 'H'}">
+				<script>
+					alert("리뷰를 성공적으로 등록했습니다.");
+					location.href = "/hallView.do?hallNo="+${objectNo};
+				</script>
+			</c:when>
 		</c:choose>
 	</div>
 </section>
