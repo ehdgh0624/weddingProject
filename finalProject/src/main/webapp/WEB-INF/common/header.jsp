@@ -41,7 +41,7 @@
 					  		<ul class="header-util-box area clearfix" style="margin-bottom:0;">
 								<li><a href="/loginPage.do">로그인</a></li>
 					       		<li><a href="/goAddTerms.do">회원가입</a></li>
-					       		<li><a href="">업체등록</a></li>
+					       		
 					    	</ul>
 				    	</c:when>
 				    	<c:when test="${not empty sessionScope.member }">
@@ -50,6 +50,7 @@
 							<li><a href="/logout.do">로그아웃</a></li>
 							<c:if test="${sessionScope.member.memberCode != 2 }">
 				       		<li><a href="/mypage.do">마이페이지</a></li>
+				       		<li><a href="/enrollCompanyPage.do">업체등록</a></li>
 				       		</c:if>
 				       		<c:if test="${sessionScope.member.memberCode == 2 }">
 				       			<li><a href="/adminPage.do">관리자페이지</a></li>
