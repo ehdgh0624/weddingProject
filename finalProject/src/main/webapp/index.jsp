@@ -102,6 +102,7 @@ $(document).ready(function(){
 			</ul>
 		</div>
 	</div>
+
 	<!-- 메인 하단 컨텐츠 -->
 	<div id="mainBottom">
 		<div class="main-bottom-area clearfix">
@@ -124,6 +125,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 	</div>
+	
 </section>
 
 <%--  footer --%>

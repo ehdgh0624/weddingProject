@@ -26,6 +26,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/plugin/slick.css">
 <script src="/resources/js/plugin/slick.js"></script>
 
+<!-- 메인 :: 아코디언 -->
+<link rel='stylesheet' type='text/css' href='/resources/css/plugin/jquery.kwicks.css' />
+<script src='/resources/js/plugin/jquery.kwicks.js' type='text/javascript'></script>
 
 </head>
 <body class="clearfix">
@@ -72,9 +75,9 @@
 						<span><a href="/weddingHall.do">웨딩홀</a></span>
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
 					</li>
-					<li>
+					<!-- <li>
 					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
-					</li>
+					</li> -->
 					<li>
 					<span><a href="/myexperience.do">내가 등록한 경험담</a></span>
 					</li>
