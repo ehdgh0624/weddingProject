@@ -9,10 +9,10 @@
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
-	<div id="memberTypeBtn" class="area">
-	<button onclick="location.href='/adminPage.do'">모든회원</button> 
-	<button onclick="location.href='/adminPage.do?sCode=1'">일반회원</button> 
-	<button onclick="location.href='/adminPage.do?sCode=2'">업체회원</button> 
+	<div id="memberTypeBtn" class="btn-wrap">
+	<button class="btn-samll" onclick="location.href='/adminPage.do'">모든회원</button> 
+	<button class="btn-samll" onclick="location.href='/adminPage.do?sCode=1'">일반회원</button> 
+	<button class="btn-samll" onclick="location.href='/adminPage.do?sCode=2'">업체회원</button> 
 	</div>
 	<div id="myPageContainer" class="clearfix area">
 		<table class=comm-tbl>
