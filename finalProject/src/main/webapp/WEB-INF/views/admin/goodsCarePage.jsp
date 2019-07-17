@@ -10,10 +10,10 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 
-		<div id="goodsTypeBtn" class="area">
-			<button onclick="location.href='/goodsCare.do'">모든상품</button> 
-			<button onclick="location.href='/goodsCare.do?code=1'">부케</button> 
-			<button onclick="location.href='/goodsCare.do?code=2'">청첩장</button> 
+		<div id="goodsTypeBtn" class="btn-wrap">
+			<button class="btn-samll" onclick="location.href='/goodsCare.do'">모든상품</button> 
+			<button class="btn-samll" onclick="location.href='/goodsCare.do?code=1'">부케</button> 
+			<button class="btn-samll" onclick="location.href='/goodsCare.do?code=2'">청첩장</button> 
 		</div>
 	<div id="goodsCareContainer" class="clearfix area">
 		<!-- 상품 선택창-->
@@ -21,7 +21,7 @@
 			<c:if test="${not empty gList.list}">
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
 					<div class="photolist">
-						<a href="/goodsView.do?goodsNo=${g.goodsNo}">
+						<a href="/collectionViewGoods.do?goodsType=${g.goodsType}&goodsNo=${g.goodsNo}"><!-- //goodsType="+code+"&goodsNo="+objectNo -->
 							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div style="padding:10px;">

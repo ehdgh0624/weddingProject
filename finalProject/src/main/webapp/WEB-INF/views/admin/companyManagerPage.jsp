@@ -11,12 +11,12 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 	<!-- 업체 분류 페이지 버튼 -->
-	<div id="companyTypeBtn" class="area">
-		<button onclick="location.href='/companyManager.do'">모든업체</button> 
-		<button onclick="location.href='/companyManager.do?typeCode=1'">호텔</button> 
-		<button onclick="location.href='/companyManager.do?typeCode=2'">스튜디오</button> 
-		<button onclick="location.href='/companyManager.do?typeCode=3'">드레스</button> 
-		<button onclick="location.href='/companyManager.do?typeCode=4'">메이크업</button> 
+	<div id="companyTypeBtn" class="btn-wrap">
+		<button class="btn-samll" onclick="location.href='/companyManager.do'">모든업체</button> 
+		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=1'">호텔</button> 
+		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=2'">스튜디오</button> 
+		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=3'">드레스</button> 
+		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=4'">메이크업</button> 
 	</div>
 	<div id="myPageContainer" class="clearfix area">
 		<table class=comm-tbl>

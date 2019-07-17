@@ -103,7 +103,7 @@ public class AdminController {
 		}
 	}
 	@RequestMapping(value="/addGoods.do")
-	public String addGoods(HttpServletRequest request,@RequestParam MultipartFile img,Goods g) {
+	public String addGoods(HttpServletRequest request,@RequestParam MultipartFile img,Goods g,Model model) {
 		int result = 0;
 		if(!img.isEmpty()) {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmm");
@@ -137,9 +137,13 @@ public class AdminController {
 			result = adminService.addGoods(g);
 		}
 		if(result>0) {
-			return "/admin/addGoodsPage";
+			model.addAttribute("msg", "상품을 등록하였습니다.");
+			model.addAttribute("loc", "goodsCare.do");
+			return "common/msg";
 		}else {
-			return "/admin/addGoodsPage";
+			model.addAttribute("msg", "상품을 등록하였습니다.");
+			model.addAttribute("loc", "addGoods.do");
+			return "common/msg";
 		}
 	}
 	@RequestMapping("/searchMember.do")
@@ -476,9 +480,6 @@ public class AdminController {
 		}else {
 			keyword ="none";
 		}
-		System.out.println("컨트롤러 select:"+select);
-		System.out.println("컨트롤러 type:"+type);
-		System.out.println("컨트롤러 keyword:"+keyword);
 		int reqPage;
 		HttpSession session = request.getSession(false);
 		try {
