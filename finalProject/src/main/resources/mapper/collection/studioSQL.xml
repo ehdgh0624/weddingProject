@@ -11,6 +11,6 @@
 		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_tel as studioTel, studio_addr as studioAddr, studio_price as studioPrice, studio_content as studioContent, studio_time as studioTime, studio_camera as studioCamera, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where studio_no=#{studioNo} and status=1 and viewstatus=0
 	</select>
 	<update id="updateScope" parameterType="map">
-		update studio set studio_scope=(studio_scope+#{reviewScope})/#{reviewCount} where code=#{code} and studio_no=#{objectNo}
+		update studio set studio_scope=(#{reviewSum}+#{reviewScope})/(#{reviewCount}+1) where code=#{code} and studio_no=#{objectNo}
 	</update>
 </mapper>

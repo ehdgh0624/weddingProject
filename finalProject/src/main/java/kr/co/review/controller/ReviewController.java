@@ -2,6 +2,7 @@ package kr.co.review.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -65,10 +66,19 @@ public class ReviewController {
 				vo.setReviewFilename(fileName);
 				vo.setReviewFilepath(filePath);
 			}
+			ArrayList<Review> reviewList = reviewService.selectCountReview(vo.getCode(), vo.getReviewRef());
+			int reviewCount = 0;
+			int reviewSum = 0;
+			if(!reviewList.isEmpty()) {
+				reviewCount = reviewList.size();
+				
+				for(Review i : reviewList) {
+					reviewSum += i.getReviewScope();
+				}
+			}
+			int scopeResult = reviewService.updateScope(vo.getCode(), vo.getReviewRef(), vo.getReviewScope(), reviewCount, reviewSum);
 			int result = reviewService.insertReview(vo);
 			if(result > 0) {
-				int reviewCount = reviewService.selectCountReview(vo.getCode(), vo.getReviewRef());
-				int scopeResult = reviewService.updateScope(vo.getCode(), vo.getReviewRef(), vo.getReviewScope(), reviewCount);
 				mav.addObject("code",vo.getCode());
 				mav.addObject("objectNo",vo.getReviewRef());
 				mav.setViewName("review/reviewSuccess");
