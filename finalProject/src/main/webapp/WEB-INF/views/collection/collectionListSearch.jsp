@@ -116,8 +116,7 @@
 								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
 								<c:forEach items="${fn:split(s.studioTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<span>${item}</span>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -195,8 +194,7 @@
 								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
 								<c:forEach items="${fn:split(d.dressTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<span>${item}</span>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -274,8 +272,7 @@
 								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
 								<c:forEach items="${fn:split(m.makeupTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<span>${item}</span>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -349,8 +346,7 @@
 								<c:set var="doneLoop" value="false"/> 											<!-- 반복문 break -->
 								<c:forEach items="${fn:split(g.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<span>${item}</span>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>

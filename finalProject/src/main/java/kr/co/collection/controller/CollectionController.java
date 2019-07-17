@@ -1,14 +1,10 @@
 package kr.co.collection.controller;
 
-import java.sql.Date;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.aspectj.weaver.MemberImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -19,8 +15,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
-import kr.co.gallery.model.vo.Gallery;
-import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
@@ -137,6 +131,19 @@ public class CollectionController {
 		mav.setViewName("collection/collectionList");
 		return mav;
 	}
+	
+/*	//태그 클릭
+	@RequestMapping("/collectionListSearch.do")
+	public ModelAndView collectionListSearch(HttpSession session, @RequestParam String keyword, @RequestParam int reqPage) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		SearchPageData pd = collectionService.pageSearchList();
+		
+	}*/
+
 	
 	@RequestMapping("/collectionView.do")
 	public String collectionView(String code, int objectNo) {
@@ -452,6 +459,5 @@ public class CollectionController {
 			return mav;
 		}
 	}
-	
 	
 }

@@ -50,7 +50,7 @@ public class ReviewController {
 					String fileSave = System.currentTimeMillis() + originFileName;
 					String safeFile = savePath + fileSave;					//변경된 파일명
 					fileName += originFileName;
-					filePath += safeFile;
+					filePath += fileSave;
 					if(index < fileList.size()) {
 						fileName += ",";
 						filePath += ",";
