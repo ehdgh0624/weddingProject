@@ -75,9 +75,9 @@
 						<span><a href="/weddingHall.do">웨딩홀</a></span>
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
 					</li>
-					<li>
+					<!-- <li>
 					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
-					</li>
+					</li> -->
 					<li>
 					<span><a href="/myexperience.do">내가 등록한 경험담</a></span>
 					</li>
