@@ -3,6 +3,8 @@
 <%--  Header --%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <jsp:include page="/WEB-INF/common/header.jsp" />
+<%-- Sub --%>
+<jsp:include page="/WEB-INF/common/sub.jsp" />
 <!-- css -->
 <link rel="stylesheet" type="text/css" href="/resources/css/hall.css"> 
 
@@ -117,22 +119,57 @@
 				</div>
 				<div class="photoZone area"><!-- 결혼식장 정보,선택  하는 곳 !-->
 					<c:forEach items="${pd.hList }" var="h">
-					<div class="card" onclick="location.href='/hallView.do?hallNo=${h.hallNo}'">
+					<div class="card" >
 						<div class="thumbnail">
 							<div class="centered">
+							<a href="/hallView.do?hallNo=${h.hallNo}&code=${h.code }">
 								<img src="https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png"
 									alt="" />
+									</a>
 			
 							</div>
 						</div>
 						<div class="text">
-							<h5>${h.hallName } <a href="#"><img alt="" src="/resources/img/star_m1.png"></a></h5>
+							<h5>${h.hallName } 
+							<a>
+									<span class="photolist-scrapStar-location">
+								<c:choose>
+									<c:when test="${not empty pd.scrapList}">							<!-- scrapList 조회 결과가 있을 때 -->
+										<c:set var="doneLoop" value="false"/> 							<!-- doneLoop : forEach문을 돌릴 조건 -->
+										<c:forEach items="${pd.scrapList}" var="scrap" varStatus="j">	<!-- 로그인한 id를 조건으로 현재 페이지에서 스크랩한 정보 배열을 불러옴 -->
+											<c:if test="${not doneLoop}"> 								<!-- doneLoop이 false일 경우 이 태그 안의 구문이 수행됨 -->
+												<c:choose>
+													<c:when test="${h.hallNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
+														<button class="scrapStar" id="${h.hallNo}" name="${h.code}">
+															<img src="/resources/img/star_m2.png" class="photolist-scrapStar-size">			<!-- 노란 별 이미지를 띄우고 -->
+														</button>
+														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
+													</c:when>
+													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
+														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
+															<button class="defaultStar" id="${h.hallNo}" name="${h.code}">
+																<img src="/resources/img/star_m1.png" class="photolist-scrapStar-size">		<!-- 빈 별 이미지를 띄움 -->
+															</button>
+														</c:if>
+													</c:otherwise>
+												</c:choose>
+											</c:if>
+										</c:forEach>									
+									</c:when>
+									<c:otherwise>														<!-- scrapList 조회 결과가 없을 때 -->
+										<button class="defaultStar" id="${h.hallNo}" name="${h.code}">
+											<img src="/resources/img/star_m1.png" class="photolist-scrapStar-size">		<!-- 빈 별 이미지만 띄움 -->										
+										</button>
+									</c:otherwise>
+								</c:choose>
+							</span>
+							</a>
+							</h5>
 							<p>${h.hallAddr }</p>
 							<div class="bottom">
 								<p>
 									인원 <span>${h.hallMinPerson } ~ ${h.hallMaxPerson } </span>
 								</p>
-								<p>평점 아이콘  후기</p>
 							</div>
 						</div>
 					</div>
@@ -177,7 +214,7 @@
 			success : function(data){
 				if(data == 1){					
 					select.find('img').remove();
-					select.append('<img src="/resources/img/star_b2.png" class="photolist-scrapStar-size">');
+					select.append('<img src="/resources/img/star_m2.png" class="photolist-scrapStar-size">');
 					select.addClass('scrapStar');
 					select.removeClass('defaultStar');
 					alert("스크랩북에 추가되었습니다.");
@@ -201,7 +238,7 @@
 			success : function(data){
 				if(data == 1){
 					select.find('img').remove();
-					select.append('<img src="/resources/img/star_b1.png" class="photolist-scrapStar-size">');
+					select.append('<img src="/resources/img/star_m1.png" class="photolist-scrapStar-size">');
 					select.removeClass('scrapStar');
 					select.addClass('defaultStar');
 					alert("스크랩북에서 삭제되었습니다.");
