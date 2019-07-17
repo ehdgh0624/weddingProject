@@ -11,6 +11,6 @@
 		select goods_no as goodsNo, code, goods_type as goodsType, goods_name as goodsName, goods_price as goodsPrice, goods_scope as goodsScope, goods_content as goodsContent, goods_filename as goodsFileName, goods_filepath as goodsFilePath, goods_tag as goodsTag from goods where goods_no=#{goodsNo}
 	</select>
 	<update id="updateScope" parameterType="map">
-		update goods set goods_scope=(goods_scope+#{reviewScope})/#{reviewCount} where code=#{code} and goods_no=#{objectNo}
+		update goods set goods_scope=(#{reviewSum}+#{reviewScope})/#{reviewCount} where code=#{code} and goods_no=#{objectNo}
 	</update>
 </mapper>

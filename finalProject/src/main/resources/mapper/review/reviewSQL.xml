@@ -10,6 +10,6 @@
 	</insert>
 	
 	<select id="selectCountReview" parameterType="map" resultType="review">
-		select review_no as reviewNo from review where code=#{code} and review_ref=#{objectNo}
+		select review_scope as reviewScope from review where code=#{code} and review_ref=#{objectNo}
 	</select>
 </mapper>
