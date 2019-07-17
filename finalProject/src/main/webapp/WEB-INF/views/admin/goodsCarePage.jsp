@@ -21,7 +21,7 @@
 			<c:if test="${not empty gList.list}">
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
 					<div class="photolist">
-						<a href="/goodsView.do?goodsNo=${g.goodsNo}">
+						<a href="/collectionViewGoods.do?goodsType=${g.goodsType}&goodsNo=${g.goodsNo}"><!-- //goodsType="+code+"&goodsNo="+objectNo -->
 							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div style="padding:10px;">
