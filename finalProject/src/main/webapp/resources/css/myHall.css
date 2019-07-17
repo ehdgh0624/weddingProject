@@ -56,6 +56,14 @@ section.myHall .subDiv .total ul {
 	float: right;
 }
 section.myHall .subDiv .total ul li {
+	text-align: right;
+	font-weight: bold;
+	
+}
+section.myHall .subDiv .total ul li p {
+	color: orange;
+	font-size: 20px;
+	margin-top: 3px;
 }
 section.myHall .btn-area {
 	margin-top: 15px;

@@ -54,7 +54,7 @@
 					<div class="total">
 						<ul>
 							<li>total</li>
-							<li>3,000,00원<li>
+							<li><p>3,000,00원</p></li>
 						</ul>
 					</div>
 				</div>
