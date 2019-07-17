@@ -48,6 +48,7 @@ public class HallController {
 		HallPage pd = hallService.allHallList(reqPage,memberId);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
+		System.out.println(pd.gethList());
 		mav.setViewName("hall/hall");
 	      return mav;
 	}
