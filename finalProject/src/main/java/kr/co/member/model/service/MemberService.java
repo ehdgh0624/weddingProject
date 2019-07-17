@@ -23,6 +23,8 @@ import kr.co.member.model.vo.CompanyInfo;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
+import kr.co.simulator.model.vo.Simulator;
+import kr.co.simulator.model.vo.SimulatorSelect;
 
 @Service("memberService")
 public class MemberService {
@@ -269,6 +271,16 @@ public class MemberService {
 	public int addStudioOption(StudioSelect s) {
 		// TODO Auto-generated method stub
 		return memberDao.addStudionOption(s);
+	}
+
+	public List<SimulatorSelect> getMyWeddingCost(int s) {
+		// TODO Auto-generated method stub
+		return memberDao.getMyWeddingCost(s);
+	}
+
+	public List<Simulator> getSimulator(Member vo) {
+		// TODO Auto-generated method stub
+		return memberDao.getSimulator(vo);
 	}
 
 

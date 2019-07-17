@@ -11,6 +11,7 @@ import kr.co.hall.dao.HallDao;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallPage;
 import kr.co.hall.vo.HallSelect;
+import kr.co.reservation.model.vo.Reservation;
 import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -153,6 +154,16 @@ public class HallService {
 
 	public HallSelect selectOption(int result) {
 		return (HallSelect)hallDao.selectOption(result);
+	}
+
+
+	public int insertReservationHall(Reservation vo, String weddingDate) {
+		return hallDao.insertReservationHall(vo,weddingDate);
+	}
+
+
+	public int selectReservationNo(String memberId) {
+		return hallDao.selectReservationNo(memberId);
 	}
 
 }

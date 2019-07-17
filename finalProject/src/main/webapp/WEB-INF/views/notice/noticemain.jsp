@@ -11,7 +11,16 @@
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
-		<c:if test="${sessionScope.member.memberCode == 2}"><div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;"><button class="btn-style1" onclick="location.href='/notice/noticeWriterPage.jsp'">글쓰기</button> </div></c:if>
+		<div style="text-align: right;  width: 1071px; ">
+			<br>
+			<br>
+		</div>	
+	
+		<c:if test="${sessionScope.member.memberCode == 2}">
+		<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
+		<button class="btn-style1" onclick="location.href='/noticeWriting.do'">글쓰기</button>
+		</div>
+		 </c:if>
 		<table class="comm-tbl type" style="margin-top: 20px;">
 				<colgroup>
 					<col width="7%">

@@ -8,4 +8,8 @@
 	<insert id="insertReview" parameterType="review">
 		insert into review values(seq_review_no.nextval,#{code},#{reviewRef},#{memberId},#{reviewWriter},#{reviewContent},sysdate,#{reviewScope},#{reviewFilename},#{reviewFilepath})
 	</insert>
+	
+	<select id="selectCountReview" parameterType="map" resultType="review">
+		select review_scope as reviewScope from review where code=#{code} and review_ref=#{objectNo}
+	</select>
 </mapper>

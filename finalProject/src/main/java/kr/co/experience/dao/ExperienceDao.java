@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.experience.vo.Experience;
 import kr.co.experience.vo.ExperienceComment;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 @Repository("experienceDao")
 public class ExperienceDao {
 
@@ -106,6 +107,9 @@ public class ExperienceDao {
 	public Experience eFind(int experienceNo) {
 		
 		return sqlSession.selectOne("experience.eFind",experienceNo);
+	}
+	public Reservation selectSearch(String memberId) {
+		return sqlSession.selectOne("reservation.selectSearch",memberId);
 	}
 	
 }

@@ -80,8 +80,8 @@ insert into experience_comment values(experience_comment_SEQ.nextval,
 										#{experienceCommentContent},
 										#{experienceCommentRef},
 										#{experienceCommentCommentRef},
-										sysdate,
-										0)
+										sysdate
+										)
 
 </insert>
 <select id="selectCommentList" parameterType="_int" resultType="experienceComment">
@@ -93,8 +93,8 @@ select experience_comment_no as experienceCommentNo ,
     experience_comment_content as experienceCommentContent ,
     experience_ref as experienceRef,
     experience_comment_ref as experienceCommentRef,
-    experience_comment_date as experienceCommentDate,
-    experience_good as experienceCommentGood from 
+    experience_comment_date as experienceCommentDate
+    from 
     experience_comment where experience_ref=#{experienceNo }
 </select>
 
@@ -113,8 +113,8 @@ select experience_comment_no as experienceCommentNo ,
 											#{experienceCommentContent},
 											#{experienceCommentRef},
 											#{experienceCommentNo},
-											sysdate,
-											0)	
+											sysdate
+											)	
 </insert>
 <delete id="CommentDelete" parameterType="_int">
 				delete from EXPERIENCE_COMMENT 

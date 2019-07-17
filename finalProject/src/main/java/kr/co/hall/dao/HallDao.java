@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
 import kr.co.hall.vo.HallSelect;
+import kr.co.reservation.model.vo.Reservation;
 import kr.co.review.model.vo.Review;
 import kr.co.scrapbook.model.vo.Scrapbook;
 
@@ -95,6 +96,30 @@ public class HallDao {
 	}
 	public HallSelect selectOption(int result) {
 		return sqlSession.selectOne("hallSelect.selectOption",result);
+	}
+	public int insertReservationHall(Reservation vo, String weddingDate) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", vo.getCode());
+		map.put("prdNo", vo.getPrdNo());
+		map.put("prdId", vo.getPrdId());
+		map.put("prdName",vo.getPrdName());
+		map.put("weddingDate", weddingDate);
+		map.put("weddingTime", vo.getWeddingTime());
+		map.put("totalPrice", vo.getTotalPrice());
+		map.put("memberId", vo.getMemberId());
+		map.put("memberName", vo.getMemberName());
+		map.put("memberPhone", vo.getMemberPhone());
+		map.put("memberEmail", vo.getMemberEmail());
+		map.put("option", vo.getHallSelect());
+		map.put("price", vo.getHallPrice());
+		map.put("person", vo.getHallPerson());
+		map.put("foodType", vo.getHallFoodtype());
+		map.put("foodCount", vo.getHallFoodcount());
+		return sqlSession.insert("reservation.insertReservationHall",map);
+	}
+	public int selectReservationNo(String memberId) {
+		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
+		return result;
 	}
 	
 }

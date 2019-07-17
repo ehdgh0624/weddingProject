@@ -1,0 +1,15 @@
+section.myHall .allDiv{
+	width: 100%;
+	height: 1000px;
+	border: 1px solid red;
+}
+
+section.myHall .subDiv{
+	width:50%;
+	height:500px;
+	border: 1px solid gray;
+}
+
+section.myHall .subDiv>h1{
+	float: right;
+}

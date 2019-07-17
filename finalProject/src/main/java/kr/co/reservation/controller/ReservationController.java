@@ -22,10 +22,12 @@ public class ReservationController {
 	
 	@RequestMapping("/reservationView.do")
 	public ModelAndView selectOneReservation(HttpSession session, @RequestParam String memberId, @RequestParam int reservationNo) {
+		System.out.println("예약페이지 뷰");
 		Member m = (Member) session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
 		if(m != null) {
 			Reservation res = null;
+			System.out.println(memberId);
 			if(m.getMemberId().equals(memberId)) {
 				res = reservationService.selectOneReservation(reservationNo, m.getMemberId());				
 			}else {
@@ -44,5 +46,19 @@ public class ReservationController {
 			mav.setViewName("reservation/reservationViewFailed");
 		}
 		return mav;
+	}
+	
+	@RequestMapping("/cancelPay.do")
+	public int updateOrderStatusCancel(HttpSession session, @RequestParam int reservationNo, @RequestParam String memberId) {
+		Member m = (Member) session.getAttribute("member");
+		int result = 0;
+		if(m != null) {
+			if(m.getMemberId().equals(memberId)) {
+				result = reservationService.updateOrderStatusCancel(reservationNo);
+			}
+			return result;
+		}else {
+			return -1;
+		}
 	}
 }

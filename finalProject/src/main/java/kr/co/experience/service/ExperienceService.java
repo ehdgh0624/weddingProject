@@ -14,6 +14,7 @@ import kr.co.experience.vo.Experience;
 import kr.co.experience.vo.ExperienceComment;
 import kr.co.experience.vo.ExperienceCommentData;
 import kr.co.experience.vo.ExperienePageDate;
+import kr.co.reservation.model.vo.Reservation;
 
 @Service("experienceService")
 public class ExperienceService {
@@ -245,6 +246,13 @@ public class ExperienceService {
 	public Experience eFind(int experienceNo) {
 		
 		return experienceDao.eFind(experienceNo);
+	}
+
+
+
+	public Reservation selectSearch(String memberId) {
+		
+		return experienceDao.selectSearch(memberId);
 	}
 
 

@@ -119,20 +119,22 @@
 						</tr>
 						<tr>
 							<th>결제상태</th>
+							<td id="orderStatus">
 							<c:choose>
 								<c:when test="${reservation.orderStatus == 0}">
-									<td>결제대기</td>
+									결제대기
 								</c:when>
 								<c:when test="${reservation.orderStatus == 1}">
-									<td>결제완료</td>
+									결제완료
 								</c:when>
 								<c:when test="${reservation.orderStatus == 2}">
-									<td>결제취소 대기</td>
+									결제취소 대기
 								</c:when>
 								<c:otherwise>
-									<td>결제취소 완료</td>
+									결제취소 완료
 								</c:otherwise>
 							</c:choose>
+							</td>
 						</tr>
 						<c:if test="${reservation.payMethod == '신용카드' || reservation.payMethod == '휴대폰'}">
 							<tr>
@@ -286,10 +288,40 @@
 					</c:otherwise>
 				</c:choose>
 			</table>
+			<c:if test="${reservation.code == 'G'}">
+				<button onclick="cancelPay()">결제취소</button>			
+			</c:if>
 			<hr>
 		</div>	
 	</div>
 	
+	<script>
+		function cancelPay(){
+			var reservationNo = ${reservation.reservationNo};
+			var memberId = '${reservation.memberId}';
+			var orderStatus = $('#orderStatus');
+			$.ajax({
+				url : "/cancelPay.do",
+				type : "post",
+				data : {reservationNo:reservationNo,memberId:memberId},
+				success : function(data){
+					if(data > 0){
+						orderStatus.text("결제취소 대기");
+						alert("결제취소를 신청했습니다. 최대 24시간까지 소요될 수 있습니다.");
+					}else if(data == 0){
+						alert("결제취소를 할 수 없습니다. 잠시 후 다시 시도해주세요.")						
+					}else{
+						alert("로그인 후 다시 시도해주세요.");
+						location.href="/loginPage.do"
+					}
+				},
+				error : function(){
+					alert("잠시 후 다시 시도해주세요.")
+				}
+			});
+		}
+	</script>
+
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>

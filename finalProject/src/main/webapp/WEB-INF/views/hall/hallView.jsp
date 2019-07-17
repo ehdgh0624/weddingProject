@@ -12,7 +12,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!-- css -->
 <link rel="stylesheet" type="text/css"
-	href="/resources/css/hallView.css">
+	href="/resources/css/myHall.css">
 <!-- font awesome -->
 <link rel="stylesheet" type="text/css"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
@@ -23,7 +23,7 @@
 <%-- wrap --%>
 <section id="wrap">
 	<div class="">
-		<section class="hallView">
+		<section class="hallView area">
 			<div>
 			<!-- 상호명 table -->
 			<table style="width: 100%;">
@@ -165,7 +165,7 @@
 									<select id="hallOption">
 										<option value="default">옵션</option>
 										<c:forEach items="${hallSelect}" var="hs">
-											<option value="${hs.hallSelectNo }">${hs.hallType }</option>
+											<option value="${hs.hallSelectNo }" id="hoption">${hs.hallType }</option>
 										</c:forEach>
 									</select>
 									
@@ -284,7 +284,7 @@
 		}else if($("#hallPerson").val() == ''){
 			alert("하객수를 입력해주세요.")
 		}else if($("#option2Amount").val() == 0){
-			alert($("#hallPerson").val());
+			alert("식권 수량을 입력하세요.");
 		}else if(${hall.hallMinPerson} > $("#hallPerson").val() && $("#hallPerson").val() < ${hall.hallMaxPerson}){
 			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
 			$('#personSpan').css('color','red');
@@ -300,14 +300,38 @@
 	/* 예약 데이터 등록하기 시작*/
 	
 	function submitReservation(){
-		var code = "H";
-		var prdNo = ${hall.hallNo};
-		var prdId = '${hall.memberId}';
-		var prdName = '${hall.hallName}';
-		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
-		var weddingTime = $('#hallTime').val();
-		var totalPrice = $('#allPrice').text();
-		
+		var code = "H";		//고유코드
+		var prdNo = ${hall.hallNo};		//고유번호
+/* 		var prdId = '${hall.memberId}';	//아이디 */
+		var prdId = 'test1';
+		var prdName = '${hall.hallName}';//아이디 이름
+		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/'); // 예약 날짜
+		var weddingTime = $('#hallTime').val();	//예약 시간
+		var totalPrice = parseInt($('#allPrice').text().replace(/,/gi,''));	// 에약 총액
+		var price = parseInt($("#price").text().replace(/,/gi,''));
+		var person = $("#hallPerson").val();
+		var foodType = ${hall.hallFoodtype};
+		var foodCount = $("#option2Amount").val();
+		var option = $("#hoption").text();
+		$.ajax({
+			url : "/reservationHall.do",
+			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,price:price,person:person,foodType:foodType,foodCount:foodCount,option:option},
+			type : "post",
+			success : function(data){
+				if(data > 0){
+					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
+					location.href="/myHall.do";
+				}else if(data == -1){
+					alert("로그인 후 다시 시도해주세요.");
+					location.href="/loginPage.do";
+				}else{
+					alert("지금은 예약할 수 없습니다.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.");
+			}
+		});		//ajax close;
 	};	//function close;
 	
 	/* 에약 데이터 등록하기 종료*/

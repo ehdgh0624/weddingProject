@@ -11,6 +11,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -33,6 +34,7 @@ import kr.co.experience.vo.ExperienceComment;
 import kr.co.experience.vo.ExperienceCommentData;
 import kr.co.experience.vo.ExperienePageDate;
 import kr.co.member.model.vo.Member;
+import kr.co.reservation.model.vo.Reservation;
 
 @Controller
 public class ExperienceController {
@@ -57,8 +59,13 @@ public class ExperienceController {
 	}
 
 	@RequestMapping(value = "/experienceAllList.do")
-	public ModelAndView experienceAllList(int reqPage) {
-
+	public ModelAndView experienceAllList(int reqPage, HttpSession session) {
+		
+		Member m = (Member)session.getAttribute("member");
+		m.getMemberId();
+		
+		Reservation r = experienceService.selectSearch(m.getMemberId());
+		
 		ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("expd", expd);
