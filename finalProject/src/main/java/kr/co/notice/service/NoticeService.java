@@ -54,4 +54,20 @@ public class NoticeService {
 		}
 		return n;
 	}
+	public int insertNotice(Notice n) {
+		
+		return noticeDao.insertNotice(n);
+	}
+	public Notice noticeUpdateView(int noticeNo) {
+	
+		return noticeDao.noticeView(noticeNo);
+	}
+	public int updateNotice(Notice n) {
+		
+		return noticeDao.updateNotice(n);
+	}
+	public int noticeDelete(int noticeNo) {
+		
+		return noticeDao.noticeDelete(noticeNo);
+	}
 }
