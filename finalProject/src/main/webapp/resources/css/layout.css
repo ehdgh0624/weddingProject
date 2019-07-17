@@ -174,7 +174,7 @@ body {width:100%; background-color:#fff;}
 .side-bar-list > li span > a{font-size:15px; color:#333; line-height:30px;}
 
 #adminHeader{width:calc(100% - 300px); padding:10px 0; background:#fff; position:fixed; top:0; right:0; text-align:center; border-bottom:1px solid #ddd; z-index:999;}
-#myPageContainer{padding:10px;}
+#myPageContainer{padding:10px; min-height:675px;}
 
 /* ****************** Main :: Visual ********************** */
 #mainVisual{width:100%; height:820px; background:#fff; background-size:cover; text-align:center; font-size:36px; overflow:hidden; position:relative; margin-bottom:30px;}
