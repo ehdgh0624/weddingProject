@@ -26,6 +26,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/plugin/slick.css">
 <script src="/resources/js/plugin/slick.js"></script>
 
+<!-- 메인 :: 아코디언 -->
+<link rel='stylesheet' type='text/css' href='/resources/css/plugin/jquery.kwicks.css' />
+<script src='/resources/js/plugin/jquery.kwicks.js' type='text/javascript'></script>
 
 </head>
 <body class="clearfix">

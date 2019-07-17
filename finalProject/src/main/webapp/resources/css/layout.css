@@ -239,5 +239,7 @@ background-size:cover; opacity:0.8; transition:all 0.5s;}
 #mainBottom.animated .main-bottom-left-box{top:30px; opacity:1.0;}
 #mainBottom.animated .main-bottom-right-box{top:-50px; opacity:1.0;}
 
-
-
+/* ****************** MyPage :: Main ********************** */
+.mypage-top-box{display:table; width:100%;}
+.mypage-top-box > div{display:table-cell; width:50%; vertical-align:middle;}
+.mypage-right-con > p{padding-top:15px; font-size:14px; line-height:24px; letter-spacing:1px; color:#707070}
