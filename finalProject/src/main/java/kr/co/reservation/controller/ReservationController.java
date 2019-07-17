@@ -47,4 +47,18 @@ public class ReservationController {
 		}
 		return mav;
 	}
+	
+	@RequestMapping("/cancelPay.do")
+	public int updateOrderStatusCancel(HttpSession session, @RequestParam int reservationNo, @RequestParam String memberId) {
+		Member m = (Member) session.getAttribute("member");
+		int result = 0;
+		if(m != null) {
+			if(m.getMemberId().equals(memberId)) {
+				result = reservationService.updateOrderStatusCancel(reservationNo);
+			}
+			return result;
+		}else {
+			return -1;
+		}
+	}
 }
