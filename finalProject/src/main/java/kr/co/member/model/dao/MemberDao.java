@@ -214,7 +214,7 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		
 		//홀은 현재 미구현
-		return sqlSession.selectOne("");
+		return sqlSession.selectOne("hall.viewSelectOne",no);
 	}
 
 	public Makeup selectOneMakeupNumber(int no) {
@@ -290,6 +290,31 @@ public class MemberDao {
 	public List<SimulatorSelect> getMyWeddingCost(int s) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("simulator.mySelectList",s);
+	}
+
+	public List<Gallery> getGalleryList(String no, String code) {
+		// TODO Auto-generated method stub
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		int Number=Integer.parseInt(no);
+		
+		map.put("galleryNo", Number);
+		map.put("galleryCode",code);
+		
+		return sqlSession.selectList("gallery.selectListGallery",map);
+	}
+
+	public int deleteGallery(String filepath) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("gallery.deleteGallery",filepath);
+	}
+
+	public int addGall(Gallery gallery) {
+		// TODO Auto-generated method stub
+		
+		return sqlSession.insert("gallery.addGallery",gallery);
+		
 	}
 
 }

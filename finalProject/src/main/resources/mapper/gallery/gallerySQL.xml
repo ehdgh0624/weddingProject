@@ -3,5 +3,13 @@
 <mapper namespace="gallery">
 	<select id="selectListGallery" parameterType="map" resultType="gallery">
 		select filename, filepath from gallery where gallery_no=#{galleryNo} and gallery_code=#{galleryCode}
-	</select>
+	</select>	
+	<delete id="deleteGallery" parameterType="String">
+		delete from gallery where filepath=#{filepath}
+	</delete>
+	<insert id="addGallery" parameterType="gallery">
+		insert into gallery values(#{galleryNo},#{galleryCode},#{filename},#{filepath})
+	
+	</insert>
+	
 </mapper>

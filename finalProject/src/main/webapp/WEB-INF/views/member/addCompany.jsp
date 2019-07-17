@@ -406,7 +406,6 @@
 		$('.divbox').css("display","none");
 		$('#studioOption').css("display","block");
 	});
-
 	
 	$('.lastBtn').click(function(){
 		$('.divbox').css("display","none");
