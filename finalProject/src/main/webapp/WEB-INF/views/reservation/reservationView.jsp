@@ -289,7 +289,9 @@
 				</c:choose>
 			</table>
 			<c:if test="${reservation.code == 'G'}">
-				<button onclick="cancelPay()">결제취소</button>			
+				<c:if test="${reservation.orderStatus == 1}">
+					<button id="cancelPayBtn" onclick="cancelPay()">결제취소</button>	
+				</c:if>
 			</c:if>
 			<hr>
 		</div>	
@@ -307,6 +309,7 @@
 				success : function(data){
 					if(data > 0){
 						orderStatus.text("결제취소 대기");
+						$('#cancelPayBtn').hide();
 						alert("결제취소를 신청했습니다. 최대 24시간까지 소요될 수 있습니다.");
 					}else if(data == 0){
 						alert("결제취소를 할 수 없습니다. 잠시 후 다시 시도해주세요.")						
