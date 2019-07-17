@@ -18,4 +18,12 @@ public class ReviewService {
 	public int insertReview(Review vo) {
 		return reviewDao.insertReview(vo);
 	}
+	
+	public int selectCountReview(String code, int objectNo) {
+		return reviewDao.selectCountReview(code, objectNo);
+	}
+	
+	public int updateScope(String code, int objectNo, int reviewScope, int reviewCount) {
+		return reviewDao.updateScope(code, objectNo, reviewScope, reviewCount);
+	}
 }
