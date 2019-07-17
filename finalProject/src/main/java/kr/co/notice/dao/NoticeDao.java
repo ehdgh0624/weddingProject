@@ -36,4 +36,21 @@ public class NoticeDao {
 	public void noticeViewUpdate(int noticeNo) {
 		sqlSession.update("notice.noticeViewUpdate", noticeNo);
 	}
+
+	public int insertNotice(Notice n) {
+		
+		
+		
+		return sqlSession.insert("notice.insertNotice",n);
+	}
+
+	public int updateNotice(Notice n) {
+		
+		return sqlSession.update("notice.updateNotice",n);
+	}
+
+	public int noticeDelete(int noticeNo) {
+		
+		return sqlSession.delete("notice.noticeDelete",noticeNo);
+	}
 }

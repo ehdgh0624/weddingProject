@@ -1,7 +1,8 @@
-package kr.co.review.controller;
+﻿package kr.co.review.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +30,7 @@ public class ReviewController {
 	@RequestMapping("/fileUpload.do")
 	public ModelAndView fileUpload(HttpSession session, HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mtfRequest, Review vo){
 		Member m = (Member) session.getAttribute("member");
+		System.out.println("리뷰 별점 : " + vo.getReviewScope());
 		ModelAndView mav = new ModelAndView();
 		if(m != null) {
 			vo.setMemberId(m.getMemberId());
@@ -64,16 +66,19 @@ public class ReviewController {
 				vo.setReviewFilename(fileName);
 				vo.setReviewFilepath(filePath);
 			}
+			ArrayList<Review> reviewList = reviewService.selectCountReview(vo.getCode(), vo.getReviewRef());
+			int reviewCount = 0;
+			int reviewSum = 0;
+			if(!reviewList.isEmpty()) {
+				reviewCount = reviewList.size();
+				
+				for(Review i : reviewList) {
+					reviewSum += i.getReviewScope();
+				}
+			}
+			int scopeResult = reviewService.updateScope(vo.getCode(), vo.getReviewRef(), vo.getReviewScope(), reviewCount, reviewSum);
 			int result = reviewService.insertReview(vo);
 			if(result > 0) {
-				if(vo.getCode().equals("S")) {
-					
-				}else if(vo.getCode().equals("D")) {
-					
-				}else if(vo.getCode().equals("M")) {
-					
-				}
-				int scopeResult = reviewService.update();
 				mav.addObject("code",vo.getCode());
 				mav.addObject("objectNo",vo.getReviewRef());
 				mav.setViewName("review/reviewSuccess");

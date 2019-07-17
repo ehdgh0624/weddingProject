@@ -26,6 +26,9 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/plugin/slick.css">
 <script src="/resources/js/plugin/slick.js"></script>
 
+<!-- 메인 :: 아코디언 -->
+<link rel='stylesheet' type='text/css' href='/resources/css/plugin/jquery.kwicks.css' />
+<script src='/resources/js/plugin/jquery.kwicks.js' type='text/javascript'></script>
 
 </head>
 <body class="clearfix">
@@ -63,7 +66,8 @@
 					<!-- 일반 회원일때 -->
 					<li>
 						<p>리스트</p>
-						<span><a href="/resultMyWeddingCost.do">웨딩비용계산결과</a></span>
+						<span><a href="">웨딩비용계산결과</a></span>
+						<span><a href="/resultMyWeddingCost.do">나의 웨딩 계산기 내역</a></span>
 					</li>
 					<!-- 일반&업체 회원일때 -->
 					<li>
@@ -71,9 +75,15 @@
 						<span><a href="/weddingHall.do">웨딩홀</a></span>
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
 					</li>
+					<!-- <li>
+					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
+					</li> -->
 					<li>
-					<span><a href="/enrollCompanyPage.do">업체등록 하러가기</a></span>
+					<span><a href="/myexperience.do">내가 등록한 경험담</a></span>
 					</li>
+					<!-- <li>
+					<span><a href="/enrollCompanyPage.do">업체등록 하러가기</a></span>
+					</li> -->
 				</c:if>
 				<!-- 관리자 일떄 -->
 				<c:if test="${sessionScope.member.memberId eq 'admin' }">
@@ -97,5 +107,11 @@
 					</li>
 				</c:if>
 			</ul>
+		</div>
+		<div class="common-tbl-btn-group">
+			<button class="btn-style3 small" onclick="location.href='/'">HOME</button>
+			<c:if test="${sessionScope.member.memberCode != 2 }">
+				<button class="btn-style1 small" onclick="location.href='/enrollCompanyPage.do'">업체등록 하기</button>
+			</c:if>
 		</div>
 	</aside>

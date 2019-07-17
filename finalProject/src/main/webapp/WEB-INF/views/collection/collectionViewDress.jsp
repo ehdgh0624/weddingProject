@@ -453,7 +453,7 @@
 					alert("리뷰 내용을 작성해주세요.");
 				}else{
 					var reviewRef = ${dress.dressNo};
-					var reviewScope = $('#starScore').text();
+					var reviewScope = $('#starScore').text() * 2;
 					$('#reviewRef').val(reviewRef);
 					$('#reviewScope').val(reviewScope);
 					$('#fileUploadForm').submit();					
@@ -590,9 +590,10 @@
 			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option1Date:option1Date,option1Time:option1Time,option2:option2,option2Amount:option2Amount,option3:option3},
 			type : "post",
 			success : function(data){
+				var memberId = '${sessionScope.member.memberId}';
 				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/reservationView.do?reservationNo="+data;
+					location.href="/reservationView.do?memberId="+memberId+"&reservationNo="+data;
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
@@ -619,7 +620,6 @@
 		if($('#option3 option:selected').val() != 'default'){
 			allPrice += parseInt($('#option3 option:selected').val());
 		}
-		console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
 		$('#allPrice').text(allPrice);
 	});
 	/* 옵션 select 박스 change 시 가격 변경 끝 */	

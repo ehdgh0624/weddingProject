@@ -1,6 +1,5 @@
 package kr.co.reservation.controller;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.member.model.vo.Member;
@@ -46,5 +46,22 @@ public class ReservationController {
 			mav.setViewName("reservation/reservationViewFailed");
 		}
 		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/cancelPay.do")
+	public int updateOrderStatusCancel(HttpSession session, @RequestParam int reservationNo, @RequestParam String memberId) {
+		System.out.println(reservationNo);
+		System.out.println(memberId);
+		Member m = (Member) session.getAttribute("member");
+		int result = 0;
+		if(m != null) {
+			if(m.getMemberId().equals(memberId)) {
+				result = reservationService.updateOrderStatusCancel(reservationNo);
+			}
+			return result;
+		}else {
+			return -1;
+		}
 	}
 }

@@ -16,7 +16,7 @@ select  experience_no as experienceNo,
 		experience_hall as experienceHall,
 		experience_filename as experienceFileName,
 		experience_filepath as experienceFilePath 
-		from experience
+		from experience 
 </select>
 
 <select id="experienceDetail" parameterType="experience" resultType="experience">
@@ -67,8 +67,137 @@ select  experience_no as experienceNo,
 		experience_filepath as experienceFilePath 
 		from 
 		(select ROWNUM as rnum, m.* from 
-		(select * from  experience order by experience_no)
+		(select * from  experience order by experience_no desc)
 		m) where rnum between #{start} and #{end}
 		
 </select>
+<insert id="experienceCommentInsert" parameterType="experienceComment">
+
+
+insert into experience_comment values(experience_comment_SEQ.nextval,
+										#{experienceCommentLevel},
+										#{experienceCommentWriter},
+										#{experienceCommentContent},
+										#{experienceCommentRef},
+										#{experienceCommentCommentRef},
+										sysdate
+										)
+
+</insert>
+<select id="selectCommentList" parameterType="_int" resultType="experienceComment">
+
+
+select experience_comment_no as experienceCommentNo ,
+    experience_comment_level as experienceCommentLevel ,
+    experience_comment_writer as experienceCommentWriter,
+    experience_comment_content as experienceCommentContent ,
+    experience_ref as experienceRef,
+    experience_comment_ref as experienceCommentRef,
+    experience_comment_date as experienceCommentDate
+    from 
+    experience_comment where experience_ref=#{experienceNo }
+</select>
+
+<update id="updateComment" parameterType="experienceComment">
+	update experience_comment set 
+	experience_comment_content=#{experienceCommentContent} 
+	where 
+	experience_comment_no =#{experienceCommentNo} 
+
+</update>
+<insert id="exCommentRegs" parameterType="experienceComment">
+
+	insert into experience_comment values(experience_comment_SEQ.nextval,
+											#{experienceCommentLevel},
+											#{experienceCommentWriter},
+											#{experienceCommentContent},
+											#{experienceCommentRef},
+											#{experienceCommentNo},
+											sysdate
+											)	
+</insert>
+<delete id="CommentDelete" parameterType="_int">
+				delete from EXPERIENCE_COMMENT 
+				where EXPERIENCE_COMMENT_NO=#{experienceCommentNo}
+
+</delete>
+<select id="selectListex" parameterType="map" resultType="experience">
+
+select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from 
+		(select ROWNUM as rnum, m.* from 
+		(select * from  experience 
+		where experience_title like '%'||#{keyword}||'%'
+		order by experience_no desc)m) 
+		where rnum between #{start} and #{end}
+
+
+</select>
+<select id="totalSearExperience" parameterType="map" resultType="_int">
+	select count(*) from experience 
+	where experience_title like  '%'||#{keyword}||'%'
+
+</select>
+
+<select id="selectId"  parameterType="String" resultType="experience">
+	select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from experience where experience_writer=#{memberId}
+
+ </select>
+ <delete id="exDelete" parameterType="_int">
+		delete from EXPERIENCE
+				where EXPERIENCE_NO=#{experienceNo}
+	 
+ </delete>
+ 
+ <update id="upDateexperience" parameterType="experience">
+ 		update experience set 
+ 		experience_title=#{experienceTitle},
+		experience_content=#{experienceContent},
+		experience_filename=#{experienceFileName},
+		experience_filepath=#{experienceFilePath} 
+		where 
+		experience_no =#{experienceNo}
+ 
+ 
+ </update>
+ <select id="eFind" parameterType="experience" resultType="experience" >
+ 
+ 	select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from experience where experience_no=#{experienceNo}
+ 
+ </select>
 </mapper>

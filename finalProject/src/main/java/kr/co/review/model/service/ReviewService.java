@@ -1,5 +1,7 @@
 package kr.co.review.model.service;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -17,5 +19,13 @@ public class ReviewService {
 	@Transactional
 	public int insertReview(Review vo) {
 		return reviewDao.insertReview(vo);
+	}
+	
+	public ArrayList<Review> selectCountReview(String code, int objectNo) {
+		return reviewDao.selectCountReview(code, objectNo);
+	}
+	
+	public int updateScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum) {
+		return reviewDao.updateScope(code, objectNo, reviewScope, reviewCount, reviewSum);
 	}
 }
