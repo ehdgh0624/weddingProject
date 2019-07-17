@@ -40,7 +40,7 @@
 					</tr>
 					<tr>
 						<th>태그</th>
-						<td><input type="text" name="goodsTag" class="middle" placeholder="#태그를 입력해 주세요"> <span style="color:gray"> ex) #웨딩 #결혼식 #웨딩부케 #웨딩청첩장</span></td>
+						<td><input type="text" name="goodsTag" class="middle" placeholder="#태그를 입력해 주세요" id="tag"> <span style="color:gray"> ex) #웨딩 #결혼식 #웨딩부케 #웨딩청첩장</span></td>
 					</tr>
 					<tr>
 						<th>상품내용</th>
@@ -77,5 +77,18 @@
 				$("#img-view").attr('src','');
 			}
 		}
+		
+		$("#tag").focus(function(){
+			if($("#tag").val() == ""){
+				$("#tag").val("#");
+			}
+				
+		});
+		$("#tag").keyup(function(e){
+			 if(e.keyCode == '32'){
+				 $("#tag").val($("#tag").val()+", #");					 
+				 }
+		 });
+		
 	</script>
 

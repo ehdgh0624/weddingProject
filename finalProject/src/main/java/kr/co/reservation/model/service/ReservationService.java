@@ -3,6 +3,7 @@ package kr.co.reservation.model.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.reservation.model.dao.ReservationDao;
 import kr.co.reservation.model.vo.Reservation;
@@ -15,5 +16,10 @@ public class ReservationService {
 	
 	public Reservation selectOneReservation(int reservationNo, String memberId) {
 		return reservationDao.selectOneReservation(reservationNo, memberId);
+	}
+	
+	@Transactional
+	public int updateOrderStatusCancel(int reservationNo) {
+		return reservationDao.updateOrderStatusCancel(reservationNo);
 	}
 }

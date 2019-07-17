@@ -66,6 +66,7 @@
 					<!-- 일반 회원일때 -->
 					<li>
 						<p>리스트</p>
+						<span><a href="">웨딩비용계산결과</a></span>
 						<span><a href="/resultMyWeddingCost.do">나의 웨딩 계산기 내역</a></span>
 					</li>
 					<!-- 일반&업체 회원일때 -->
@@ -73,6 +74,12 @@
 						<p>스크랩북</p>
 						<span><a href="/weddingHall.do">웨딩홀</a></span>
 						<span><a href="/weddingCollection.do">웨딩컬렉션</a></span>
+					</li>
+					<li>
+					<span><a href="/goCompanyTerms.do">업체등록 하러가기</a></span>
+					</li>
+					<li>
+					<span><a href="/myexperience.do">내가 등록한 경험담</a></span>
 					</li>
 					<!-- <li>
 					<span><a href="/enrollCompanyPage.do">업체등록 하러가기</a></span>
