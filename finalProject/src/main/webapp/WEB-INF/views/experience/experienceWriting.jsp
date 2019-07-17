@@ -32,7 +32,7 @@
 		    <div class="common-tbl-btn-group">
 		    	<button type="submit" class="btn-style1">등록하기</button>
 		    </div>
-		    <input type="hidden" id ="experienceWriter" value="아슙" name="experienceWriter">
+		    <input type="hidden" id ="experienceWriter" value="${sessionScope.member.memberId }" name="experienceWriter">
 		</form>
 	</div>
 </section>

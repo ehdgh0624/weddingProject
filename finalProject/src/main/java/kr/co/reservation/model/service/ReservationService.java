@@ -16,4 +16,8 @@ public class ReservationService {
 	public Reservation selectOneReservation(int reservationNo, String memberId) {
 		return reservationDao.selectOneReservation(reservationNo, memberId);
 	}
+	
+	public int updateOrderStatusCancel(int reservationNo) {
+		return reservationDao.updateOrderStatusCancel(reservationNo);
+	}
 }

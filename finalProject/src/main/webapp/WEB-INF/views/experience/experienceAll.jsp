@@ -28,9 +28,7 @@
 							<div>
 							<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
 							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">
-							대표사진 경로
-							${e.experienceFileName} 
-							대표사진명
+							
 							</a>
 							</div>
 						</div>
@@ -38,8 +36,7 @@
 					<div style="padding:20px;">
 						<div>
 							<div>
-							${e.experienceTitle}
-							제목
+							${e.experienceTitle}						
 							</div>
 						</div>
 					</div>
@@ -55,11 +52,9 @@
           </div>
           
 		  <div class="board-search-box">
-             <form action="" method="get">
-               <select name="type"><!-- option 세부항목은 각자 알아서 넣으시면 됩니다. -->
-                  <option value="title">제목</option> 
-               </select>
-               <input placeholder="검색어를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
+             <form action="/exsearchExperience.do" method="get">
+              
+               <input placeholder="글 제목을 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
                <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
             </form>
          </div>

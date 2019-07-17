@@ -31,4 +31,23 @@
    	<update id="noticeViewUpdate" parameterType="_int">
    		update notice set notice_Views = notice_views+1 where notice_no = #{noticeNo}
    	</update>
+   	<insert id="insertNotice" parameterType="notice">
+
+   	insert into notice values(notice_SEQ.nextval,#{noticeTitle},#{noticeContent},#{noticeWriter},sysdate,0)
+   	
+   	</insert>
+   	<update id="updateNotice" parameterType="notice">
+   		update notice set
+   		notice_title =#{noticeTitle},
+   		notice_content =#{noticeContent},
+   		notice_writer =#{noticeWriter}
+   		where 
+   		notice_no = #{noticeNo}
+   	
+   	</update>
+   	<delete id="noticeDelete" parameterType="_int">
+   		delete from notice
+   		where notice_no = #{noticeNo}
+   	
+   	</delete>
 </mapper>

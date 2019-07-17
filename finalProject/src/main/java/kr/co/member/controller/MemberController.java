@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 
@@ -34,6 +35,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.google.gson.Gson;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.Dress;
@@ -335,20 +338,26 @@ public class MemberController {
 		return mav;
 	}
 	
+	@ResponseBody
 	@RequestMapping(value = "/detailViewCost.do")
-	public ModelAndView detailViewCost(HttpServletRequest request) {
+	public void detailViewCost(HttpServletRequest request, HttpServletResponse response) {
 		System.out.println("웨딩비용계산결과를 가져가겠어요 오늘밤2");
-		String no=request.getParameter("a");
+		String no = request.getParameter("no");
 	
 		System.out.println(no);
-		ModelAndView mav = new ModelAndView();
-			
+		//ModelAndView mav = new ModelAndView();
+		
+		response.setContentType("application/json; charset=utf-8");
 		ArrayList<SimulatorSelect> ss = (ArrayList<SimulatorSelect>) memberService.getMyWeddingCost(Integer.parseInt(no));
 		
-		mav.addObject("simulatorSelect",ss);
-		mav.setViewName("member/myDetailViewCost");
+		try {
+			response.getWriter().println(new Gson().toJson(ss));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		//mav.addObject("simulatorSelect",ss);
+		//mav.setViewName("member/myDetailViewCost");
 		
-		return mav;
 	}
 	
 	

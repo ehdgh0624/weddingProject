@@ -1,24 +1,23 @@
 package kr.co.experience.vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class ExperienceComment {
-
-	 private int experienceCommentNo;
-	 private int experienceCommentLevel;
-	 private String experienceCommentWriter;
-	 private String experienceCommentContent;
-	 private int experienceCommentRef;
-	 private int experienceCommentCommentRef;
-	 private Date experienceCommentDate;
-	 private int experienceCommentGood;
+	
+	public int experienceCommentNo;
+	public int experienceCommentLevel;
+	public String experienceCommentWriter;
+	public String experienceCommentContent;
+	public int experienceCommentRef;
+	public int experienceCommentCommentRef;
+	public Date experienceCommentDate;
 	public ExperienceComment() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public ExperienceComment(int experienceCommentNo, int experienceCommentLevel, String experienceCommentWriter,
 			String experienceCommentContent, int experienceCommentRef, int experienceCommentCommentRef,
-			Date experienceCommentDate, int experienceCommentGood) {
+			Date experienceCommentDate) {
 		super();
 		this.experienceCommentNo = experienceCommentNo;
 		this.experienceCommentLevel = experienceCommentLevel;
@@ -27,7 +26,6 @@ public class ExperienceComment {
 		this.experienceCommentRef = experienceCommentRef;
 		this.experienceCommentCommentRef = experienceCommentCommentRef;
 		this.experienceCommentDate = experienceCommentDate;
-		this.experienceCommentGood = experienceCommentGood;
 	}
 	public int getExperienceCommentNo() {
 		return experienceCommentNo;
@@ -71,11 +69,9 @@ public class ExperienceComment {
 	public void setExperienceCommentDate(Date experienceCommentDate) {
 		this.experienceCommentDate = experienceCommentDate;
 	}
-	public int getExperienceCommentGood() {
-		return experienceCommentGood;
-	}
-	public void setExperienceCommentGood(int experienceCommentGood) {
-		this.experienceCommentGood = experienceCommentGood;
-	}
+	
+	
+
+	
 	
 }

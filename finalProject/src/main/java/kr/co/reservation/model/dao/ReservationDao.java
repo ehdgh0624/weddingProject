@@ -20,4 +20,8 @@ public class ReservationDao {
 		map.put("memberId", memberId);
 		return (Reservation)sqlSession.selectOne("reservation.viewSelectOne",map);
 	}
+	
+	public int updateOrderStatusCancel(int reservationNo) {
+		return sqlSession.update("reservation.updateOrderStatusCancel", reservationNo);
+	}
 }
