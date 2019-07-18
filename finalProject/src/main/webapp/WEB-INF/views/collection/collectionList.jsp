@@ -17,8 +17,19 @@
 				$('#searchHall').val($('#searchHall').val().replace(' ','')+',');
 			}
 		});
+		
+		$('#searchHall').focusout(function(){
+			for(var i=0;i < 5000;i++){					//횟수는 keyword input태그 글자 수 제한만큼 돌릴 것
+				if($('#searchHall').val().lastIndexOf(",") == $('#searchHall').val().length-1){
+					$('#searchHall').val($('#searchHall').val().substring(0, $('#searchHall').val().length-1));
+				}else{
+					break;
+				}				
+			}
+		});
 	});
 </script>
+
 
 <%-- wrap --%>
 <section id="wrap">
@@ -56,7 +67,7 @@
 						<option value="B">부케</option>
 						<option value="I">청첩장</option>
 					</select>
-					<input type="text" id="searchHall" name="keyword" placeholder="업체명이나 키워드, #태그를 검색해보세요"> <!-- 결혼식장 이름 입력 -->
+					<input type="text" id="searchHall" name="keyword" placeholder="키워드, #태그를 검색해보세요"> <!-- 결혼식장 이름 입력 -->
 					<button type="submit" id="btnHall">검색하기</button>     <!-- 결혼식장 이름 검색 -->   
 				</form>
 			</div>
