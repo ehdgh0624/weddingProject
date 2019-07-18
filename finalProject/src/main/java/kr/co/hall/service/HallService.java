@@ -184,4 +184,14 @@ public class HallService {
 		return hallDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
 	}
 
+
+	public Reservation selectOneReservation(String memberId, int hallNo, String code) {
+		ArrayList<Reservation> list = hallDao.selectOneReservation(hallNo,memberId,code);
+		Reservation res = null;
+		if(!list.isEmpty()) {
+			res = list.get(list.size()-1);
+		}
+		return res;
+	}
+
 }

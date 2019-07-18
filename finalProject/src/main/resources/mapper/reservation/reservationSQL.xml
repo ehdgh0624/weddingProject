@@ -185,4 +185,52 @@
 	<select id="selectSearch" resultType="reservation" parameterType="string">
 	select member_id as memberId from reservation where member_id=#{memberId}
 	</select>
+	
+	<select id="selectOneReservation" parameterType="map" resultType="reservation">
+		select
+		reservation_no as reservationNo,
+		code,
+		prd_no as prdNo,
+		prd_id as prdId,
+		prd_name as prdName,
+		wedding_date as weddingDate,
+		wedding_time as weddingTime,
+		totalprice as totalPrice,
+		member_id as memberId,
+		member_name as memberName,
+		member_phone as memberPhone,
+		pay_method as payMethod,
+		amount,
+		order_status as orderStatus,
+		delivery_num as deliveryNum,
+		delivery_status as deliveryStatus,
+		order_date as orderDate,
+		order_memo as orderMemo,
+		order_addr as orderAddr,
+		member_email as memberEmail,
+		receive_name as receiveName,
+		receive_phone as receivePhone,
+		bank_name as bankName,
+		bank_num as bankNum,
+		bank_holder as bankHolder,
+		bank_date as bankDate,
+		imp_uid as impUid,
+		apply_num as applyNum,
+		payment_date as paymentDate,
+		option1,
+		option1_date as option1Date,
+		option1_time as option1Time,
+		option2,
+		option2_date as option2Date,
+		option2_time as option2Time,
+		option3,
+		option3_date as option3Date,
+		option3_time as option3Time,
+		hall_select as hallSelect,
+		hall_price as hallPrice,
+		hall_person as hallPerson,
+		hall_foodtype as hallFoodtype,
+		hall_foodcount as hallFoodcount
+		from reservation where prd_no=#{hallNo} and member_id=#{memberId} and code=#{code}
+	</select>
 </mapper>

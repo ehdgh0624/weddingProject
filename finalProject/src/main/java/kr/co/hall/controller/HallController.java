@@ -108,6 +108,8 @@ public class HallController {
 		if(m != null) {
 			Scrapbook scrap = hallService.selectOneScrapbook(m.getMemberId(),hallNo, "H");
 			mav.addObject("scrapbook",scrap);
+			Reservation res = hallService.selectOneReservation(m.getMemberId(),hallNo,"H");
+			mav.addObject("reservation",res);
 		}			
 		mav.setViewName("hall/hallView");
 		return mav;

@@ -137,5 +137,16 @@ public class HallDao {
 		map.put("prdFilepath", prdFilepath);
 		return sqlSession.insert("scrapbook.insertOneScrap",map);
 	}
+	public ArrayList<Reservation> selectOneReservation(int hallNo, String memberId, String code) {
+		if(memberId == null) {
+			memberId = "null";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallNo", hallNo);
+		map.put("memberId", memberId);
+		map.put("code", code);
+		List<Reservation> list = sqlSession.selectList("reservation.selectOneReservation",map);
+		return (ArrayList<Reservation>) list;
+	}
 	
 }

@@ -460,18 +460,22 @@
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
 		if(${sessionScope.member != null}){
-			if($('#reviewWrite').css('display') == 'none'){
-				$('#reviewWrite').show();
-				$('#reviewWriteBtn').text("♥ 후기 저장");				
+			if(${reservation.memberId == null}){
+				alert("서비스를 이용하신 고객님만 작성 가능합니다.");
 			}else{
-				if($('#reviewContent').val() == ''){
-					alert("리뷰 내용을 작성해주세요.");
+				if($('#reviewWrite').css('display') == 'none'){
+					$('#reviewWrite').show();
+					$('#reviewWriteBtn').text("♥ 후기 저장");				
 				}else{
-					var reviewRef = ${hall.hallNo};
-					var reviewScope = $('#starScore').text() * 2;
-					$('#reviewRef').val(reviewRef);
-					$('#reviewScope').val(reviewScope);
-					$('#fileUploadForm').submit();					
+					if($('#reviewContent').val() == ''){
+						alert("리뷰 내용을 작성해주세요.");
+					}else{
+						var reviewRef = ${hall.hallNo};
+						var reviewScope = $('#starScore').text() * 2;
+						$('#reviewRef').val(reviewRef);
+						$('#reviewScope').val(reviewScope);
+						$('#fileUploadForm').submit();					
+					}
 				}
 			}
 		}else{
