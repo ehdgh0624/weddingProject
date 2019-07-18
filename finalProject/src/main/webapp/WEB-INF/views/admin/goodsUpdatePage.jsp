@@ -12,9 +12,9 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix area">
-		<h1>상품등록</h1>
+		<h1>상품수정</h1>
 		<br>
-			<form action="/addGoods.do" method="post" enctype="multipart/form-data">
+			<form action="/goodsUpdate.do" method="post" enctype="multipart/form-data">
 				<table class=comm-tbl>
 					<colgroup>
 						<col width="20%">
@@ -25,33 +25,56 @@
 						<td>
 							<select name="goodsType" class="middle">
 								<option value="">선택</option>
-	 							<option value="B">부케</option>
-	 							<option value="I">청첩장</option>
+								<c:if test="${g.goodsType eq 'B' }">
+	 								<option value="B" selected>부케</option>
+		 							<option value="I">청첩장</option>
+	 							</c:if>
+								<c:if test="${g.goodsType eq 'I' }">
+	 								<option value="B" >부케</option>
+		 							<option value="I" selected>청첩장</option>
+	 							</c:if>
 							</select>
 						</td>
 					</tr>
 					<tr>
 						<th>상품이름</th>
-						<td><input type="text" name="goodsName"class="short"></td>
+						<td><input type="text" name="goodsName"class="short" value="${g.goodsName }"></td>
 					</tr>
 					<tr>
 						<th>상품가격</th>
-						<td><input type="text" name="goodsPrice" class="num short"> 원</td>
+						<td><input type="text" name="goodsPrice" class="num short" value="${g.goodsPrice}"> 원</td>
 					</tr>
 					<tr>
 						<th>태그</th>
-						<td><input type="text" name="goodsTag" class="middle" placeholder="#태그를 입력해 주세요" id="tag"> <span style="color:gray"> ex) #웨딩 #결혼식 #웨딩부케 #웨딩청첩장</span></td>
+						<td><input type="text" name="goodsTag" class="middle" placeholder="#태그를 입력해 주세요" id="tag" value="${g.goodsTag }"> <span style="color:gray"> ex) #웨딩 #결혼식 #웨딩부케 #웨딩청첩장</span></td>
 					</tr>
 					<tr>
 						<th>상품내용</th>
-						<td><textarea rows="5" cols="10" name="goodsContent" style="resize: none;"></textarea></td>
+						<td><textarea rows="5" cols="10" name="goodsContent" style="resize: none;">${g.goodsContent }</textarea></td>
+					</tr>
+					<tr>
+						<th>숨김설정</th>
+						<td><select name="viewstatus" class="middle">
+								<option value="">선택</option>
+								<c:if test="${g.viewstatus == 0 }">
+	 								<option value="0" selected>보임설정</option>
+		 							<option value="1">안보임설정</option>
+	 							</c:if>
+								<c:if test="${g.viewstatus == 1 }">
+	 								<option value="0" >보임설정</option>
+		 							<option value="1" selected>안보임 설정</option>
+	 							</c:if>
+							</select></td>
 					</tr>
 					<tr>
 						<th>상품사진</th>
 						<td>
-							<input type="file" name="img" onchange="loadImg(this)" class="short"> 
+							<input type="file" name="img" onchange="loadImg(this)" class="short" id="file" style="display: none;"> 
+							<input type="hidden" name="goodsNo" class="short" value="${g.goodsNo}"> 
+							<input type="hidden" name="oldFilename" class="short" value="${g.goodsFileName }"> 
+							<input type="hidden" name="oldFilepath" class="short" value="${g.goodsFilePath }"> 
 							<div id="img-viewer" style="width: 80%;">
-								<img id="img-view" style="max-width:100%;">
+								<label for="file"><img id="img-view" style="max-width:100%;" src="/resources/img/goods/${g.goodsFilePath }"></label>
 							</div>
 						</td>
 					</tr>
@@ -86,7 +109,7 @@
 		});
 		$("#tag").keyup(function(e){
 			 if(e.keyCode == '32'){
-				 $("#tag").val($("#tag").val()+",#");					 
+				 $("#tag").val($("#tag").val()+", #");					 
 				 }
 		 });
 		

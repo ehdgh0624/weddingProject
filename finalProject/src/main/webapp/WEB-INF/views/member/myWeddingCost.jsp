@@ -104,7 +104,7 @@
 				success : function(data){
 					var html="";
 					var detailView;
-					html += "<tr class='listDetail'><td colspan='7'><div class='listDetail-box'><table class='comm-tbl type2'>";
+					html += "<tr class='listDetail'><td colspan='7' style='background:#f5f5f5;'><div class='listDetail-box'><table class='comm-tbl type2'>";
 					html += "<tr class='title'><th>CODE</th><th>업체명</th><th>가격</th><th>전화번호</th><th>업체지역</th></tr>";
 					for(var i in data){
 						detailView = data[i];
