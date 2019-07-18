@@ -48,7 +48,9 @@ public class AdminService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/adminPage.do?reqPage="+(pageNo)+"&sCode="+ssCode+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		
+		for(int j=0 ;j<ma.size();j++) {
+			ma.get(j).setPhone(ma.get(j).getPhone().replace("/", "-"));
+		}
 		AdminMember am = new AdminMember(ma,pageNavi);
 			    
 		
@@ -363,6 +365,17 @@ public class AdminService {
 			    
 		
 		return ar;
+	}
+	public Goods goodsUpdatePage(int goodsNo) {
+		return adminDao.goodsUpdatePage(goodsNo);
+	}
+	@Transactional
+	public int goodsUpdate(Goods g) {
+		return adminDao.goodsUpdate(g);
+	}
+	@Transactional
+	public int goodsDelete(int goodsNo) {
+		return adminDao.goodsDelete(goodsNo);
 	}
 
 }

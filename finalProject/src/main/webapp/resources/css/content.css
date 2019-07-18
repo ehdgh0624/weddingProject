@@ -209,4 +209,9 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 
 /* *********************동호 : 버튼*********************** */
 .btn-wrap .btn-samll{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:rgba(240,165,210,0.9); }
+.btn-wrap .btn-samll1{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#888 }
+.btn-wrap .btn-samll2{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#444 }
 .btn-wrap {width: 1200px; margin:0px auto 25px; }
+.goodsTypeBtn {width: 100%; margin:25px auto 25px; text-align: center;}
+.goodsTypeBtn .btn-samll1{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#888 }
+.goodsTypeBtn .btn-samll2{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#444 }
