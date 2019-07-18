@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.collection.model.vo.Collection;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
@@ -38,6 +39,17 @@ public class CollectionDao {
 		return count;
 	}
 	
+	public int totalCountKeyword(String keyword) {
+		String keywordIn = "%"+keyword+"%";
+		List list = sqlSession.selectList("collectionVo.selectKeywordList", keywordIn);
+		int count = list.size();
+		return count;
+	}
+	
+	public int totalCountSearch(String keyword, String searchAddr, String searchCode) {
+		String [] keywordArr = 
+	}
+	
 	public List<Studio> pageStudioList(int start, int end){
 		Map<String, Integer> map = new HashMap<String,Integer>();
 		map.put("start", start);
@@ -65,6 +77,14 @@ public class CollectionDao {
 		map.put("end", end);
 		map.put("goodsType", type);
 		return sqlSession.selectList("goods.pageSelectAllList",map);
+	}
+	
+	public List<Collection> pageTagSearchList(int start, int end, String keyword){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectList("collectionVo.pageSelectKeywordList",map);
 	}
 	
 	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
