@@ -81,7 +81,7 @@ public class MemberController {
 	
 	@RequestMapping(value = "/deleteGallery.do")
 	@ResponseBody
-	public int deleteGallery(HttpServletRequest request,@RequestParam String filepath,@RequestParam String code) {
+	public void deleteGallery(HttpServletRequest request,@RequestParam String filepath,@RequestParam String code) {
 		String savePath="";
 		if(code.equals("S")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
@@ -101,6 +101,7 @@ public class MemberController {
 			if (fe.isFile()) {
 				fe.delete();
 			}
+		}
 	}
 
 	@RequestMapping(value = "/checkId.do")

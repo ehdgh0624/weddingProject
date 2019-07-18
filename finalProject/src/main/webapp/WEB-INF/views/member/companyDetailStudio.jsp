@@ -112,7 +112,7 @@
 						<td>
 							<span>${s.filename }</span>
 						</td>
-						<td><img src="/resources/studio/${s.filepath }" style="width:300px;height:300px"></td>
+						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
 						<td><input type="hidden" value="${s.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
 					</tr>
 					</c:forEach>
@@ -335,7 +335,7 @@ $('.deleteOption').click(function(){
 $('#addList0').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='0'>";
@@ -352,7 +352,7 @@ $('#addList0').click(function(){
 $('#addList1').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='1'>";
@@ -369,7 +369,7 @@ $('#addList1').click(function(){
 $('#addList2').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='2'>";
