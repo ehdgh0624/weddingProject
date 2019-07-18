@@ -113,7 +113,7 @@
 							<span>${s.filename }</span>
 						</td>
 						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
-						<td><input type="hidden" value="${s.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
+						<td><input type="hidden" value="${s.filepath }" class="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
 					</tr>
 					</c:forEach>
 			</table>
@@ -223,7 +223,7 @@ $('#addGallery').click(function(){
 
 
 function imgDelete(tt){
-	var filepath = $("#oldpath").val();
+	var filepath = $(tt).prev().val();
 	var code = "S";
 	console.log(filepath);
 	$.ajax({
