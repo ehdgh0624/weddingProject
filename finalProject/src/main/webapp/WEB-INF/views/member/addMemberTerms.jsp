@@ -14,6 +14,7 @@
 		<h1 class="comm-content-tit" style="margin-top:30px;">이용약관</h1>
 		<form action="/enrollPage.do" method="post" onsubmit="return check()">
 			<div class="common-tbl-box">
+				<p class="terms-chk"><input type="checkbox" id="chk4" name="chk"><label for="chk4">전체동의.</label></p><br>
 				<div class="main">
 					<h1 class="terms-tit"><span>(필수)</span>사이트 이용약관</h1>
 					<div class="terms-box">
@@ -247,7 +248,7 @@
 						</tbody>
 					</table>
 					<p class="terms-chk"><input type="checkbox" id="chk3" name="chk"><label for="chk3">개인정보수집 및 이용에 동의 합니다.</label></p>
-					<p class="terms-chk"><input type="checkbox" id="chk4" name="chk"><label for="chk4">전체동의.</label></p><br>
+				
 					<div class="common-tbl-btn-group" style="padding-top:0;">
 						<button type="submit" class="btn-style1">확인</button>
 						<button type="button" onclick="location.href='/index.jsp'"class="btn-style3">취소</button>

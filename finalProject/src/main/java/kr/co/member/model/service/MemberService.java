@@ -303,6 +303,11 @@ public class MemberService {
 		return result;
 	}
 
+	public Member checkId(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.checkId(id);
+	}
+
 
 
 }

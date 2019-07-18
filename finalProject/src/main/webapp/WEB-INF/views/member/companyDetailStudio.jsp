@@ -210,8 +210,6 @@
 <script type="text/javascript">
 
 
-
-
 $('#addGallery').click(function(){
 	
 	var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
@@ -223,15 +221,14 @@ $('#addGallery').click(function(){
 });
 
 
+
 function imgDelete(tt){
 	var filepath = $("#oldpath").val();
 	var code = "S";
 	console.log(filepath);
 	$.ajax({
 		url:"/deleteGallery.do",
-
 		data:{filepath:filepath,code:code},
-
 		type:"get",
 		success:function(data){
 			if(data>0){
