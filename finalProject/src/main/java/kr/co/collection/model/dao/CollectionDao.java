@@ -47,7 +47,19 @@ public class CollectionDao {
 	}
 	
 	public int totalCountSearch(String keyword, String searchAddr, String searchCode) {
-		String [] keywordArr = 
+		String[] keywordArr = keyword.split(",");
+		if(keywordArr != null) {
+			for(int i = 0;i < keywordArr.length;i++) {
+				keywordArr[i] = "%"+keywordArr[i]+"%";
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keywordArr", keywordArr);
+		map.put("PrdAddr", searchAddr);
+		map.put("code", searchCode);
+		List list = sqlSession.selectList("collectionVo.selectSearchList", map);
+		int count = list.size();
+		return count;
 	}
 	
 	public List<Studio> pageStudioList(int start, int end){
@@ -85,6 +97,22 @@ public class CollectionDao {
 		map.put("end", end);
 		map.put("keyword", "%"+keyword+"%");
 		return sqlSession.selectList("collectionVo.pageSelectKeywordList",map);
+	}
+	
+	public List<Collection> pageSearchList(int start, int end, String keyword, String searchAddr, String searchCode){
+		String[] keywordArr = keyword.split(",");
+		if(keywordArr != null) {
+			for(int i = 0;i < keywordArr.length;i++) {
+				keywordArr[i] = "%"+keywordArr[i]+"%";
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keywordArr", keywordArr);
+		map.put("PrdAddr", searchAddr);
+		map.put("code", searchCode);
+		return sqlSession.selectList("collectionVo.pageSelectSearchList",map);
 	}
 	
 	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
