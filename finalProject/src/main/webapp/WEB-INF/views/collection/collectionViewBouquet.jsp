@@ -292,11 +292,21 @@
 									</span>
 									<br>
 									<br>
-									<div style="width:100%;height:120px;overflow: hidden;display: inline-block;">
-										<img src="/resources/img/test_img4.jpg">
-									</div>
-									<br>
-									<br>
+									<c:if test="${not empty r.reviewFilepath}">
+										<div style="width:100%;height:120px;overflow: hidden;display: inline-block;">
+											<c:set var="doneLoop" value="false"/> 									<!-- 반복문 break -->
+											<c:forEach items="${fn:split(r.reviewFilepath,',')}" var="item" varStatus="j">		<!-- 저장된 주소를 꺼내와 공백 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+												<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+													<img src="/resources/upload/review/${item}" style="width:100%;height:120px;">
+													<c:if test="${j.count == 1}">									<!-- 반복문이 두번 돌았을 때 -->
+														<c:set var="doneLoop" value="true"/> 						<!-- 반복문 break 활성화 -->
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</div>
+										<br>
+										<br>									
+									</c:if>
 									<span style="font-weight: bolder;">[이용후기]</span>
 									<span>${r.reviewContent}</span>
 								</div>
@@ -389,12 +399,6 @@
 						</div>
 					</form>
 					<!-- 리뷰 입력 끝 -->
-					<br> <br> <br>
-					<h2>위치</h2>
-					<hr>
-					<!-- 지도 위치 -->
-					<div id="map" style="float: left; margin-left: 20px; width: 800px; height: 300px; margin-bottom: 50px;"></div>
-					<!-- 상세설명, 리뷰, 지도 끝 -->
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
 				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>

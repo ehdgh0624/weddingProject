@@ -70,12 +70,10 @@
 						<th><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
 						<input type="text" id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
 					</tr>
-					
 					<tr>
 						<th>상세주소</th>
 						<th><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></th>
 					</tr>
-					
 					<tr>
 						<th>드레스컨테츠</th>
 						<th><input type="text" name="dressContent" value="${dress.dressContent }"></th>
@@ -90,9 +88,46 @@
 						</th>
 					</tr>
 				</table>
-				<hr>
 			<button type="submit" class="btn-style1" id="updateDress">수정</button>
 		</form>
+		
+		
+			<div>
+			<button>추가</button>
+			<form action="/saveGallery.do" method="post" enctype="multipart/form-data">
+			<table class="comm-tbl" id="gall">
+					<colgroup>
+						<col width="20%">
+						<col width="/">
+						<col width="20%">
+						<col width="10%">
+					</colgroup>
+					<tr>
+						<th>No</th>
+						<th>파일이미지</th>
+						<th>미리보기</th>
+						<th>삭제</th>
+					</tr>
+					<c:forEach items="${galleryList }" var="s" varStatus="i">
+					<tr>
+						<td>${i.count }</td>
+						<td>
+							<span>${s.filename }</span>
+						</td>
+						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
+						<td><input type="hidden" value="${s.filepath }">
+						<span class="imgDelete">삭제</span></td>
+					</tr>
+					</c:forEach>
+			</table>
+			<input type="hidden"  value="${dress.dressNo }" name="prdNo">
+			<input type="hidden" value="D" name="code">
+			<button type="submit">저장</button>
+			</form>
+		</div>
+		<br><br>
+		<span id="addGallery">사진추가하기</span>	
+
 
 		<input type="hidden" id="totalAddr" value="${dress.dressAddr }">
 		<input type="hidden" id="phone" value="${dress.dressTel }">
@@ -102,7 +137,20 @@
 
 
 <script>
-$(document).ready(function(){	
+$('#addGallery').click(function(){
+	
+	var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
+	addTable+= "<td><img src='' style='width:300px; heigth:300px'></td>";
+	addTable+= "<td><span class='imgDelete'>삭제</span></td>";
+	addTable+= "<tr>";
+	
+	$('#gall').append(addTable);
+});
+
+
+
+$(document).ready(function(){
+	
 	var string=$('#totalAddr').val();
 	var strArray=string.split('/');
 
