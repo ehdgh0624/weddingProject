@@ -48,7 +48,6 @@ public class HallController {
 		HallPage pd = hallService.allHallList(reqPage,memberId);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
-		System.out.println(pd.gethList());
 		mav.setViewName("hall/hall");
 	      return mav;
 	}
@@ -146,7 +145,6 @@ public class HallController {
 			vo.setHallFoodcount(foodCount);
 			vo.setHallFoodtype(foodType);
 			int result = hallService.insertReservationHall(vo,weddingDate);
-			System.out.println(result);
 			if(result > 0) {
 				result = hallService.selectReservationNo(m.getMemberId());
 				return result;

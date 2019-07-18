@@ -10,7 +10,6 @@
 <!-- Include English language -->
 <script src="dist/js/i18n/datepicker.en.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- css -->
 <link rel="stylesheet" type="text/css"
@@ -493,10 +492,17 @@
 			alert("하객수를 입력해주세요.")
 		}else if($("#option2Amount").val() == 0){
 			alert("식권 수량을 입력하세요.");
-		}else if(${hall.hallMinPerson} > $("#hallPerson").val() && $("#hallPerson").val() < ${hall.hallMaxPerson}){
+		}else if(${hall.hallMinPerson} > $("#hallPerson").val()){
 			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
 			$('#personSpan').css('color','red');
-		}else {
+			console.log(${hall.hallMinPerson});
+			console.log(${hall.hallMaxPerson});
+		}else if(${hall.hallMaxPerson} < $("#hallPerson").val()){
+			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
+			$('#personSpan').css('color','red');
+			console.log(${hall.hallMinPerson});
+			console.log(${hall.hallMaxPerson});
+		}else{
 			$('#personSpan').text('');
 			submitReservation();
 			
