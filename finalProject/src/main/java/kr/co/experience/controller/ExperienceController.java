@@ -61,14 +61,21 @@ public class ExperienceController {
 	@RequestMapping(value = "/experienceAllList.do")
 	public ModelAndView experienceAllList(int reqPage, HttpSession session) {
 		
-		Member m = (Member)session.getAttribute("member");
-		m.getMemberId();
-		
-		Reservation r = experienceService.selectSearch(m.getMemberId());
-		
-		ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
+		Member m  = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("expd", expd);
+		String no ="비로그인";
+		if(m != null) {
+			ArrayList<Reservation> list = experienceService.selectSearch(m.getMemberId());
+			
+			ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
+			mav.addObject("expd", expd);
+			mav.addObject("list",list);
+		}else {
+			
+			
+			ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
+			mav.addObject("expd", expd);
+		}
 		mav.setViewName("experience/experienceAll");
 
 		return mav;

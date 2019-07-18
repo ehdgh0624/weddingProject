@@ -9,22 +9,33 @@
 <jsp:include page="/WEB-INF/common/sub.jsp"/>
 
 <%-- wrap --%>
-<section id="wrap">
-	<div class="area">
+<script>
+function exintsert() {
+	location.href="/experienceWriting.do";
 	
-		<div style="text-align: right;  width: 1071px; ">
-			<a href="/experienceWriting.do" >
-				<span style="font-size: 15px; color: red; ">글등록</span>
-			</a>
+}
+</script>
+<section id="wrap">
+	<div class="area" >
+	
+		<div style="text-align: right;  width: 1165px; ">
+			
+			<c:if test="${not empty list}">	
+			
+			<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
+			<button class="btn-style1 small" onclick="exintsert();">글등록</button>
+			</div>
+			
+			</c:if>
 			<br>
 			<br>
 		</div>	
-		<div style="text-align: center;">		
+		<div >		
 		 	<c:forEach items="${expd.exList}" var="e" varStatus="i">
 		 	  
-				<div style="width:300px;height:300px;display:inline-block;margin:10px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
+				<div style="width:350px;height:350px;display:inline-block;margin:20px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
 					<div style="padding:5px; height: 70%;">
-						<div>
+						<div >
 							<div>
 							<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
 							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">
