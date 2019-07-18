@@ -211,8 +211,6 @@
 <script type="text/javascript">
 
 
-
-
 $('#addGallery').click(function(){
 	
 	var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
@@ -247,7 +245,7 @@ $('.imgDelete').click(function(){
 			
 		})
 		 $(this).parent().parent().remove();
-})
+});
 
 
 
