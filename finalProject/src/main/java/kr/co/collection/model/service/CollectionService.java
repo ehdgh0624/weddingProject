@@ -73,7 +73,7 @@ public class CollectionService {
 		//게시물 번호 범위
 		int start = totalCount - (reqPage * numPerPage - 1);
 		int end = totalCount - (reqPage-1) * numPerPage;
-		ArrayList<Collection> cList = (ArrayList<Collection>) collectionDao.pageTagSearchList(start, end, keyword);
+		ArrayList<Collection> cList = (ArrayList<Collection>) collectionDao.pageSearchList(start, end, keyword, searchAddr, searchCode);
 		ArrayList<Scrapbook> scrapList = null;
 		if(memberId != null) {
 			scrapList = new ArrayList<Scrapbook>();
