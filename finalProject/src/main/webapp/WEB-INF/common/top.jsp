@@ -66,7 +66,6 @@
 					<!-- 일반 회원일때 -->
 					<li>
 						<p>리스트</p>
-						<span><a href="">웨딩비용계산결과</a></span>
 						<span><a href="/resultMyWeddingCost.do">나의 웨딩 계산기 내역</a></span>
 					</li>
 					<!-- 일반&업체 회원일때 -->
