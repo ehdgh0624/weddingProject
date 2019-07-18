@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
@@ -66,6 +67,7 @@ public class SimulatorService {
 	}
 
 	//Simulator 생성
+	@Transactional
 	public int newSimulator(Simulator simulator) {
 		return simulatorDao.newSimulator(simulator);
 	}
@@ -76,11 +78,13 @@ public class SimulatorService {
 	}
 	
 	//simulatorSelect 넣기
+	@Transactional
 	public int newSimulatorSelect(SimulatorSelect simulatorSelect) {
 		return simulatorDao.newSimulatorSelect(simulatorSelect);
 	}
 
-	// 총 금액 업데이트 
+	// 총 금액 업데이트
+	@Transactional
 	public int updatePrice(int simulatorNo, int totalPrice) {
 		return simulatorDao.updatePrice(simulatorNo, totalPrice);
 	}	

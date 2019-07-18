@@ -33,16 +33,22 @@ public class HallController {
 	private HallService hallService;
 
 	@RequestMapping(value="/hall.do")	// 홀리시트 불러오기(페이지 처리)
-	public ModelAndView allHallList(HttpServletRequest request) {	//홀 정보 리스트 불러오기
+	public ModelAndView allHallList(HttpServletRequest request,HttpSession session) {	//홀 정보 리스트 불러오기
 		int reqPage;
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		} catch(NumberFormatException e) {
 			reqPage = 1;
 		}	
-		HallPage pd = hallService.allHallList(reqPage);
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		HallPage pd = hallService.allHallList(reqPage,memberId);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
+		System.out.println(pd.gethList());
 		mav.setViewName("hall/hall");
 	      return mav;
 	}
@@ -149,6 +155,36 @@ public class HallController {
 			}
 		}else {
 			return -1;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/hscrapOn.do")
+	public int insertOneScrap(HttpSession session, @RequestParam int objectNo, @RequestParam String code) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+			String prdName = null;
+			String prdFilepath = null;
+			prdName = hallService.selectOneHall(objectNo).getHallName();
+			prdFilepath = hallService.selectOneHall(objectNo).getHallPath();
+			return hallService.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
+		}else {
+			return 0;
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("/hscrapOff.do")
+	public int deleteOneScrap(HttpSession session, @RequestParam int objectNo, @RequestParam String code) {
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+			return hallService.deleteOneScrap(objectNo, code, memberId);
+		}else {
+			return 0;
 		}
 	}
 	@RequestMapping(value="/myHall.do")

@@ -4,6 +4,7 @@
 
 	<typeAliases>
     	<typeAlias type="kr.co.member.model.vo.Member" alias="member"/>
+    	<typeAlias type="kr.co.collection.model.vo.Collection" alias="collectionVo"/>
     	<typeAlias type="kr.co.collection.model.vo.Studio" alias="studio"/>
     	<typeAlias type="kr.co.collection.model.vo.StudioSelect" alias="studioSelect"/>
     	<typeAlias type="kr.co.collection.model.vo.Makeup" alias="makeup"/>

@@ -42,24 +42,33 @@
 						<th>Detail</th>
 					</tr>
 					<c:set var="total" value='0'></c:set>
-					<!-- 총금액세팅 -->
-					<c:forEach var="s" items="${simulator }">
-						<tr class="listView">
-							<td class="simNo">${s.simulatorNo }</td>
-							<td>${s.weddingDate }</td>
-							<td>${s.weddingLoc }</td>
-							<td>${s.weddingPerson }명</td>
-							<td><strong class="total-price">${s.simulatorTotalPrice }</strong> 원</td>
-							<td>${s.simulatorDate }</td>
-							<td>
-								<div class="common-tbl-btn-group" style="padding-top:0;">
-									<button class="btn-style1 small detail-view-btn" onclick="detailView(this, ${s.simulatorNo })">상세 보기</button>
-									<button class="btn-style3 small detail-close-btn" onclick="detailClose(this)" style="display:none;">상세 닫기</button>
-								</div>
+					<c:if test="${not empty simulator }">
+						<!-- 총금액세팅 -->
+						<c:forEach var="s" items="${simulator }">
+							<tr class="listView">
+								<td class="simNo">${s.simulatorNo }</td>
+								<td>${s.weddingDate }</td>
+								<td>${s.weddingLoc }</td>
+								<td>${s.weddingPerson }명</td>
+								<td><strong class="total-price">${s.simulatorTotalPrice }</strong> 원</td>
+								<td>${s.simulatorDate }</td>
+								<td>
+									<div class="common-tbl-btn-group" style="padding-top:0;">
+										<button class="btn-style1 small detail-view-btn" onclick="detailView(this, ${s.simulatorNo })">상세 보기</button>
+										<button class="btn-style3 small detail-close-btn" onclick="detailClose(this)" style="display:none;">상세 닫기</button>
+									</div>
+								</td>
+							</tr>
+							<!-- 상세보기가 들어가 -->
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty simulator }">
+						<tr>
+							<td colspan="7">
+								<p class="none">나의 웨딩 계산기 내역이 존재하지 않습니다.</p>
 							</td>
 						</tr>
-						<!-- 상세보기가 들어가 -->
-					</c:forEach>
+					</c:if>
 				</table>
 
 			</div>
@@ -95,7 +104,7 @@
 				success : function(data){
 					var html="";
 					var detailView;
-					html += "<tr class='listDetail'><td colspan='7'><div class='listDetail-box'><table class='comm-tbl type2'>";
+					html += "<tr class='listDetail'><td colspan='7' style='background:#f5f5f5;'><div class='listDetail-box'><table class='comm-tbl type2'>";
 					html += "<tr class='title'><th>CODE</th><th>업체명</th><th>가격</th><th>전화번호</th><th>업체지역</th></tr>";
 					for(var i in data){
 						detailView = data[i];

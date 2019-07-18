@@ -14,8 +14,7 @@
 	</div>
 	
 	<div class="area">
-	<hr>
-	<h1>홀</h1>
+	<h1 class="main-comm-tit type2">웨딩홀</h1>
 		<div class="clearfix myPageContainer">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 			<c:if test="${not empty hallList}">				<!-- 스튜디오 리스트가 있을 때 -->

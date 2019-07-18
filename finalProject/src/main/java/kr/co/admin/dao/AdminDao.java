@@ -262,6 +262,18 @@ public class AdminDao {
 		return (ArrayList<Reservation>)list;
 	}
 
+	public Goods goodsUpdatePage(int goodsNo) {
+		return (Goods)sqlSession.selectOne("admin.goodsUpdatePage",goodsNo);
+	}
+
+	public int goodsUpdate(Goods g) {
+		return sqlSession.update("admin.goodsUpdate",g);
+	}
+
+	public int goodsDelete(int goodsNo) {
+		return sqlSession.delete("admin.goodsDelete",goodsNo);
+	}
+
 	
 	
 }
