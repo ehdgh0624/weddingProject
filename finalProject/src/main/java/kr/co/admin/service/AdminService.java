@@ -12,6 +12,7 @@ import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.admin.vo.AdminReservation;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
@@ -376,6 +377,9 @@ public class AdminService {
 	@Transactional
 	public int goodsDelete(int goodsNo) {
 		return adminDao.goodsDelete(goodsNo);
+	}
+	public ArrayList<Gallery> goodsGallery(int goodsNo, String code) {
+		return adminDao.goodsGallery(goodsNo,code);
 	}
 
 }

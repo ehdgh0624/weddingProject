@@ -113,8 +113,7 @@
 							<span>${s.filename }</span>
 						</td>
 						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
-						<td><input type="hidden" value="${s.filepath }">
-						<span class="imgDelete">삭제</span></td>
+						<td><input type="hidden" value="${s.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
 					</tr>
 					</c:forEach>
 			</table>
@@ -215,38 +214,37 @@ $('#addGallery').click(function(){
 	
 	var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
 	addTable+= "<td><img src='' style='width:300px; heigth:300px'></td>";
-	addTable+= "<td><span class='imgDelete'>삭제</span></td>";
+	addTable+= "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
 	addTable+= "<tr>";
 	
 	$('#gall').append(addTable);
 });
 
 
-$('.imgDelete').click(function(){
-	 var filepath = $(this).prev('input').val();
-		console.log(filepath);
-		$.ajax({
-			url:"/deleteGallery.do",
 
-			data:{filepath:filepath},
-
-			type:"get",
-			success:function(data){
-				if(data>0){
-					alert("수정성공");
-					console.log("삭제성공");
-				}else{
-					console.log("삭제실패");
-				}
-			},
-			error : function(){
-				console.log("ajax실패")
+function imgDelete(tt){
+	var filepath = $("#oldpath").val();
+	var code = "S";
+	console.log(filepath);
+	$.ajax({
+		url:"/deleteGallery.do",
+		data:{filepath:filepath,code:code},
+		type:"get",
+		success:function(data){
+			if(data>0){
+				alert("수정성공");
+				console.log("삭제성공");
+			}else{
+				console.log("삭제실패");
 			}
-			
-		})
-		 $(this).parent().parent().remove();
-});
-
+		},
+		error : function(){
+			console.log("ajax실패")
+		}
+		
+	})
+	 $(tt).parent().parent().remove(); 
+}
 
 
 
@@ -337,7 +335,7 @@ $('.deleteOption').click(function(){
 $('#addList0').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='0'>";
@@ -354,7 +352,7 @@ $('#addList0').click(function(){
 $('#addList1').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='1'>";
@@ -371,7 +369,7 @@ $('#addList1').click(function(){
 $('#addList2').click(function(){
 	
 	var addTable="";
-	var studioNo=${studio.studioNo};
+	//var studioNo=${studio.studioNo};
 	addTable+="<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 	addTable+="<input type='text' name='studioOptionPrice'>";
 	addTable+="<input type='hidden'  name='studioOptionType' value='2'>";

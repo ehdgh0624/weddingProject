@@ -82,6 +82,45 @@
 				<div class="common-tbl-btn-group "  style="margin-bottom: 20px;"><button class="btn-style1" type="submit">등록</button> </div>
 			</form>
 	</div>
+	<div>
+			<button>추가</button>
+			<form action="/saveGallery.do" method="post" enctype="multipart/form-data">
+			<table class="comm-tbl" id="gall">
+					<colgroup>
+						<col width="20%">
+						<col width="/">
+						<col width="20%">
+						<col width="10%">
+					</colgroup>
+					<tr>
+						<th>No</th>
+						<th>파일이미지</th>
+						<th>미리보기</th>
+						<th>삭제</th>
+					</tr>
+					<c:forEach items="${gallery }" var="ga" varStatus="i">
+					<tr>
+						<td>${i.count }</td>
+						<td>
+							<span>${ga.filename }</span>
+						</td>
+						<td><img src="/resources/goods/${ga.filepath }" style="width:300px;height:300px"></td>
+						<td><input type="hidden" value="${ga.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
+					</tr>
+					</c:forEach>
+			</table>
+			<input type="hidden"  value="${g.goodsNo }" name="prdNo">
+			<c:if test="${g.goodsType == 'B' }">
+				<input type="hidden" value="B" name="code">
+			</c:if>
+			<c:if test="${g.goodsType == 'I' }">
+				<input type="hidden" value="I" name="code">
+			</c:if>
+			<button type="submit">저장</button>
+			</form>
+		</div>
+		<br><br>
+		<span id="addGallery">사진추가하기</span>	
 	
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
@@ -112,6 +151,39 @@
 				 $("#tag").val($("#tag").val()+", #");					 
 				 }
 		 });
-		
+		$('#addGallery').click(function(){
+			
+			var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
+			addTable+= "<td><img src='' style='width:300px; heigth:300px'></td>";
+			addTable+= "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
+			addTable+= "<tr>";
+			
+			$('#gall').append(addTable);
+		});
+		function imgDelete(tt){
+			var filepath = $("#oldpath").val();
+			var code = "${g.goodsType}";
+			console.log(filepath);
+			$.ajax({
+				url:"/deleteGallery.do",
+
+				data:{filepath:filepath,code:code},
+
+				type:"get",
+				success:function(data){
+					if(data>0){
+						alert("수정성공");
+						console.log("삭제성공");
+					}else{
+						console.log("삭제실패");
+					}
+				},
+				error : function(){
+					console.log("ajax실패")
+				}
+				
+			})
+			 $(tt).parent().parent().remove(); 
+		}
 	</script>
 

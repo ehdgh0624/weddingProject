@@ -26,6 +26,7 @@ import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.admin.vo.AdminReservation;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
@@ -533,11 +534,16 @@ public class AdminController {
 	public String goodsUpdatePage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		int goodsNo = Integer.parseInt(request.getParameter("goodsNo"));
+		String code = request.getParameter("code");
+		System.out.println(goodsNo +"con");
+		System.out.println(code +"con");
 		if (session != null && (Member) session.getAttribute("member") != null) {
 			Member m = (Member) session.getAttribute("member");
 			if (m.getMemberCode().equals("2")) {
 				Goods g = adminService.goodsUpdatePage(goodsNo);
+				ArrayList<Gallery> ga = adminService.goodsGallery(goodsNo,code);
 				model.addAttribute("g", g);
+				model.addAttribute("gallery", ga);
 				return "admin/goodsUpdatePage";
 			} else {
 				System.out.println("알수없는 접근자가 접근했습니다.");

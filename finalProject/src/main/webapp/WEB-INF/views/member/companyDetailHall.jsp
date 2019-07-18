@@ -141,8 +141,8 @@
 							<span>${s.filename }</span>
 						</td>
 						<td><img src="${s.filepath }" style="width:300px;height:300px"></td>
-						<td><input type="hidden" value="${s.filepath }">
-						<span class="imgDelete">삭제</span></td>
+						<td><img src="/resources/hall/${s.filepath }" style="width:300px;height:300px"></td>
+						<td><input type="hidden" value="${s.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
 					</tr>
 					</c:forEach>
 			</table>
@@ -199,6 +199,32 @@ $('#addGallery').click(function(){
 	
 	$('#gall').append(addTable);
 });
+
+function imgDelete(tt){
+	var filepath = $("#oldpath").val();
+	var code = "H";
+	console.log(filepath);
+	$.ajax({
+		url:"/deleteGallery.do",
+
+		data:{filepath:filepath,code:code},
+
+		type:"get",
+		success:function(data){
+			if(data>0){
+				alert("수정성공");
+				console.log("삭제성공");
+			}else{
+				console.log("삭제실패");
+			}
+		},
+		error : function(){
+			console.log("ajax실패")
+		}
+		
+	})
+	 $(tt).parent().parent().remove(); 
+}
 
 $(document).ready(function(){	
 	var string=$('#totalAddr').val();
