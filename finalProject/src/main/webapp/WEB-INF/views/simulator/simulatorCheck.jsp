@@ -50,8 +50,12 @@ $(document).ready(function(){//
 								</c:choose>
 								${slist.prdName }
 							</h3>
-							<dl class="simulator-info-detail clearfix">
-								<dt><div class="simulator-info-img"><span></span></div></dt>
+							<dl class="simulator-info-detail clearfix"><!-- prdFilepath -->
+								<dt>
+									<div class="simulator-info-img">
+										<span style="background:#f5f5f5 url('${slist.prdFilepath }') no-repeat center center; background-size:cover;"></span>
+									</div>
+								</dt>
 								<dd>
 									<p class="simulator-info-addr">${slist.prdLoc }</p>
 									<p class="simulator-info-tel">${slist.prdTel }</p>
