@@ -66,7 +66,7 @@ public class HallDao {
 		int count = sqlSession.selectOne("hall.countPc");
 		return count;
 	}
-	public Object selectOneHall(int hallNo) {
+	public Hall selectOneHall(int hallNo) {
 		return (Hall)sqlSession.selectOne("hall.viewSelectOne",hallNo);
 	}
 	public List<Gallery> selectListGallery(int galleryNo, String galleryCode) {
@@ -120,6 +120,22 @@ public class HallDao {
 	public int selectReservationNo(String memberId) {
 		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
 		return result;
+	}
+	public int deleteOneScrap(int objectNo, String code, String memberId) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		map.put("memberId", memberId);
+		return sqlSession.delete("scrapbook.deleteOneScrap",map);
+	}
+	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		map.put("memberId", memberId);
+		map.put("prdName", prdName);
+		map.put("prdFilepath", prdFilepath);
+		return sqlSession.insert("scrapbook.insertOneScrap",map);
 	}
 	
 }

@@ -29,7 +29,9 @@ public class ReservationController {
 			Reservation res = null;
 			System.out.println(memberId);
 			if(m.getMemberId().equals(memberId)) {
-				res = reservationService.selectOneReservation(reservationNo, m.getMemberId());				
+				res = reservationService.selectOneReservation(reservationNo, m.getMemberId());			
+				System.out.println(res.getHallFoodtype());
+				System.out.println(res);
 			}else {
 				res = reservationService.selectOneReservation(reservationNo, memberId);
 			}
