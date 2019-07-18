@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.dao.HallDao;
@@ -163,7 +164,7 @@ public class HallService {
 		return (HallSelect)hallDao.selectOption(result);
 	}
 
-
+	@Transactional
 	public int insertReservationHall(Reservation vo, String weddingDate) {
 		return hallDao.insertReservationHall(vo,weddingDate);
 	}
@@ -173,12 +174,12 @@ public class HallService {
 		return hallDao.selectReservationNo(memberId);
 	}
 
-
+	@Transactional
 	public int deleteOneScrap(int objectNo, String code, String memberId) {
 		return hallDao.deleteOneScrap(objectNo, code, memberId);
 	}
 
-
+	@Transactional
 	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
 		return hallDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
 	}

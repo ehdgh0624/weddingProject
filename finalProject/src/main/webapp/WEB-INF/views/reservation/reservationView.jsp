@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
@@ -16,7 +17,7 @@
 		<div class="common-tbl-box">
 
 			<h2 class="comm-content-tit">예약리스트</h2> 
-			<h1>결혼예정일 : ${reservation.weddingDate} ${reservation.weddingTime}<span style="float: right;">총 결제금액 : ${reservation.totalPrice}</span></h1>
+			<h1>결혼예정일 : ${reservation.weddingDate} ${reservation.weddingTime}<span style="float: right;">총 결제금액 : <fmt:formatNumber value="${reservation.totalPrice }"/>원</span></h1>
 			<br>
 			<table class="comm-tbl">
 				<colgroup>
@@ -284,6 +285,45 @@
 									<td>가격 : </td>
 								</tr>
 							</c:if>
+						</c:if>
+						<c:if test="${reservation.code == 'H'}">
+							<tr>
+								<th>분류</th>
+								<td>홀</td>
+							</tr>
+								<tr>
+									<th rowspan="3">대관 정보</th>
+									<td>옵션명 : ${reservation.hallSelect }</td>
+								</tr>
+								<tr>
+									<td>대관료 : <fmt:formatNumber value="${reservation.hallPrice }"/>원</td>
+								</tr>
+								<tr>
+									<td>예상 하객수 : ${reservation.hallPerson }명</td>
+								</tr>
+								<tr>
+									<th rowspan="3">식사</th>
+								</tr>
+								<tr>
+									<c:if test="${reservation.hallFoodtype == 1 }">
+									<td>식사 종류 : 한식</td>
+									</c:if>
+									<c:if test="${reservation.hallFoodtype == 2 }">
+									<td>식사 종류 : 일식</td>
+									</c:if>
+									<c:if test="${reservation.hallFoodtype == 3 }">
+									<td>식사 종류 : 중식</td>
+									</c:if>
+									<c:if test="${reservation.hallFoodtype == 4 }">
+									<td>식사 종류 : 양식</td>
+									</c:if>
+									<c:if test="${reservation.hallFoodtype == 5 }">
+									<td>식사 종류 : 뷔페</td>
+									</c:if>
+								</tr>
+								<tr>
+									<td> 식권 수량 : ${reservation.hallFoodcount }개 </td>
+								</tr>
 						</c:if>
 					</c:otherwise>
 				</c:choose>

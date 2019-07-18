@@ -10,6 +10,8 @@
 <!-- Include English language -->
 <script src="dist/js/i18n/datepicker.en.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/myHall.css">
@@ -524,9 +526,10 @@
 			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,price:price,person:person,foodType:foodType,foodCount:foodCount,option:option},
 			type : "post",
 			success : function(data){
+				var memberId = '${sessionScope.member.memberId}';
 				if(data > 0){
 					alert("예약을 완료했습니다. 주문장으로 이동합니다.");
-					location.href="/myHall.do";
+					location.href="/reservationView.do?memberId="+memberId+"&reservationNo="+data;
 				}else if(data == -1){
 					alert("로그인 후 다시 시도해주세요.");
 					location.href="/loginPage.do";
