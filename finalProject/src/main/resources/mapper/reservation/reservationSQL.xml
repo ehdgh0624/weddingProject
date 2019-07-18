@@ -165,7 +165,7 @@
 		hall_select as hallSelect,
 		hall_price as hallPrice,
 		hall_person as hallPerson,
-		hall_foodtype as hllaFoodtype,
+		hall_foodtype as hallFoodtype,
 		hall_foodcount as hallFoodcount
 		from reservation where reservation_no=#{reservationNo} and member_id=#{memberId}
 	</select>
@@ -182,4 +182,7 @@
 	<update id="updateOrderStatusCancel" parameterType="_int">
 		update reservation set order_status=2 where reservation_no=#{reservationNo}
 	</update>
+	<select id="selectSearch" resultType="reservation" parameterType="string">
+	select member_id as memberId from reservation where member_id=#{memberId}
+	</select>
 </mapper>

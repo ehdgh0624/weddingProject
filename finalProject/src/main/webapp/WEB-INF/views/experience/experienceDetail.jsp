@@ -41,17 +41,31 @@
 			   			<c:if test="${e.experienceCommentLevel == 1}">				  
 							<td width="10%">${e.experienceCommentWriter}</td> <!-- 작성자 -->
 							 <td width="50%">${e.experienceCommentContent}<br>			 
-							 </td><!-- 내용 -->			 				
-							 <td>${e.experienceCommentDate}</td>
-							<td><a href="#"  onclick="updateComment('${e.experienceCommentNo}','${e.experienceCommentContent}')" >수정</a>
+							 </td><!-- 내용 -->	
+							
+							<td>
+							 ${e.experienceCommentDate}
+							 </td>
+							 <td>							 				
+						 	<c:if test="${ sessionScope.member.memberId== e.experienceCommentWriter}">
+							
+							<a href="#"  onclick="updateComment('${e.experienceCommentNo}','${e.experienceCommentContent}')" >수정</a>
+							
+							</c:if>
+							<c:if test="${sessionScope.member.memberId=='admin' || sessionScope.member.memberId== e.experienceCommentWriter}">
+							
 								<a href="CommentDelete.do?experienceCommentNo=${e.experienceCommentNo}&experienceNo=${experience.e.experienceNo}">삭제하기</a>
-								<a href=# onclick="exCommentReg('${e.experienceCommentNo}','${experience.e.experienceNo}')">댓글달기</a></td>          			             									   		
+							
+							</c:if>	
+							
+								<a href=# onclick="exCommentReg('${e.experienceCommentNo}','${experience.e.experienceNo}')">댓글달기</a>
+							
+							</td>        			             									   		
 				   		</c:if>
-				   	</tr>
-				   	<c:forEach items="${experience.list }" var="ee">
-				   			   		
-				   		<c:if test="${ee.experienceCommentLevel == 2 && e.experienceCommentNo == ee.experienceCommentCommentRef}">					 				  
-					   	
+					   			
+						<c:forEach items="${experience.list}" var="k">
+					   		<c:if test="${k.experienceCommentLevel == 2 && k.experienceCommentRef ==e.experienceCommentNo  }">					 				  
+					 
 									<tr> 
 											<td>
 												  	${e.experienceCommentWriter}
@@ -61,11 +75,13 @@
 											</td >
 											<td>
 											<a href="#"  onclick="updateComment('${e.experienceCommentNo}','${e.experienceCommentContent}')" >수정</a>
-											<a href="CommentDelete.do?experienceCommentNo=${e.experienceCommentNo}&experienceNo=${experience.e.experienceNo}">삭제하기</a>
+											<a href="/CommentDelete.do?experienceCommentNo=${e.experienceCommentNo}&experienceNo=${experience.e.experienceNo}">삭제하기</a>
 											</td>
 									 </tr>
 					   	</c:if>
-					   	</c:forEach>					   			 
+										   			 
+						 </c:forEach>
+				   	</tr>
 		   			</c:forEach>
 		   	
 		   
@@ -78,9 +94,12 @@
 						<input type="hidden" name="experienceCommentWriter" value="${sessionScope.member.memberId }"> 
 						<input type="hidden" name="experienceCommentRef" value="${experience.e.experienceNo}"> 
 						<input type="hidden" name="experienceCommentLevel" value="1"> 
-						<input type="hidden" name="experienceCommentCommentRef" value="0"> 						
-						<textarea rows="1" class="form-control" name="experienceCommentContent"></textarea>
-						<button type="submit" class="btn btn-primary">댓글등록하기</button>																								
+ 						<input type="hidden" name="experienceCommentCommentRef" value="0"> 				
+					<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px; text-align: left;">
+						<textarea rows="1" class="form-control" name="experienceCommentContent" style="width: 88%"></textarea>
+		
+						<button type="submit" class="btn-style1 small">댓글등록하기</button>	
+					</div>																					
 					</form>
 				</td>	
 			</tr>			

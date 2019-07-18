@@ -25,14 +25,20 @@
 			</c:when>
 			<c:when test="${code == 'D'}">
 				<script>
-				alert("리뷰를 등록할 수 없습니다.");
+					alert("리뷰를 등록할 수 없습니다.");
 					location.href = "/collectionViewDress.do?dressNo="+${objectNo};
 				</script>
 			</c:when>
 			<c:when test="${code == 'M'}">
 				<script>
-				alert("리뷰를 등록할 수 없습니다.");
+					alert("리뷰를 등록할 수 없습니다.");
 					location.href = "/collectionViewMakeup.do?makeupNo="+${objectNo};
+				</script>
+			</c:when>
+			<c:when test="${code == 'H'}">
+				<script>
+					alert("리뷰를 등록할 수 없습니다.");
+					location.href = "/hallView.do?hallNo="+${objectNo};
 				</script>
 			</c:when>
 		</c:choose>

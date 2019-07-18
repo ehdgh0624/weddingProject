@@ -3,7 +3,7 @@
 <mapper namespace="studioSelect">
 	<select id="selectListOption" parameterType="map" resultType="studioSelect">
 		select 
-		studio_select_no as studioSelectNo,
+		studio_no as studioSelectNo,
 		studio_option as studioOption, 
 		studio_option_price as 
 		studioOptionPrice, 

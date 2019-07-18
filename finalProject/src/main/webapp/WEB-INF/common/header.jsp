@@ -83,7 +83,7 @@
 							<a href="/simulator/simulator.jsp">웨딩 계산기</a>
 						</li>
 						<li class="gnb04">
-							<a href="">커뮤니티</a>
+							<a href="/noticeMain.do">커뮤니티</a>
 							<div class="gnb-2dep">
 								<ul>
 									<li><a href="/noticeMain.do">공지사항</a></li>
