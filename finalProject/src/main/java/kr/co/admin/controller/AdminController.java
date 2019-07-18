@@ -26,6 +26,7 @@ import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.admin.vo.AdminReservation;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 
@@ -124,7 +125,7 @@ public class AdminController {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmm");
 			Date time = new Date();
 			String time1 = fomat.format(time);
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/img/goods/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/goods/");
 			String originName = img.getOriginalFilename();
 			// img1.jsp 실제파일명과 확장자 분리
 			String onlyFileName = originName.substring(0, originName.indexOf("."));// 파일명
@@ -533,11 +534,16 @@ public class AdminController {
 	public String goodsUpdatePage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		int goodsNo = Integer.parseInt(request.getParameter("goodsNo"));
+		String code = request.getParameter("code");
+		System.out.println(goodsNo +"con");
+		System.out.println(code +"con");
 		if (session != null && (Member) session.getAttribute("member") != null) {
 			Member m = (Member) session.getAttribute("member");
 			if (m.getMemberCode().equals("2")) {
 				Goods g = adminService.goodsUpdatePage(goodsNo);
+				ArrayList<Gallery> ga = adminService.goodsGallery(goodsNo,code);
 				model.addAttribute("g", g);
+				model.addAttribute("gallery", ga);
 				return "admin/goodsUpdatePage";
 			} else {
 				System.out.println("알수없는 접근자가 접근했습니다.");
@@ -553,7 +559,7 @@ public class AdminController {
 	public String goodsUpdate(HttpServletRequest request, @RequestParam MultipartFile img, String oldFilename,
 			String oldFilepath, Goods g, Model model) {
 
-		String savePath = request.getSession().getServletContext().getRealPath("/resources/img/goods");
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		if (!img.isEmpty()) {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date time = new Date();
