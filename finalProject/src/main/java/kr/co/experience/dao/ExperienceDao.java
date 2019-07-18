@@ -108,8 +108,10 @@ public class ExperienceDao {
 		
 		return sqlSession.selectOne("experience.eFind",experienceNo);
 	}
-	public Reservation selectSearch(String memberId) {
-		return sqlSession.selectOne("reservation.selectSearch",memberId);
+	public ArrayList<Reservation> selectSearch(String memberId) {
+		
+		List list = sqlSession.selectList("reservation.selectSearch",memberId);
+		return (ArrayList<Reservation>)list ;
 	}
 	
 }

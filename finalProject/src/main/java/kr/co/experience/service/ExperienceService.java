@@ -250,7 +250,7 @@ public class ExperienceService {
 
 
 
-	public Reservation selectSearch(String memberId) {
+	public ArrayList<Reservation> selectSearch(String memberId) {
 		
 		return experienceDao.selectSearch(memberId);
 	}

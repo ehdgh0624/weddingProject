@@ -13,7 +13,7 @@
 	<!-- 업체 분류 페이지 버튼 -->
 	<div id="companyTypeBtn" class="btn-wrap">
 		<button class="btn-samll" onclick="location.href='/companyManager.do'">모든업체</button> 
-		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=1'">호텔</button> 
+		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=1'">웨딩 홀</button> 
 		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=2'">스튜디오</button> 
 		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=3'">드레스</button> 
 		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=4'">메이크업</button> 
