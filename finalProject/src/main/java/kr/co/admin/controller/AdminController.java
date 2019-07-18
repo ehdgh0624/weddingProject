@@ -125,7 +125,7 @@ public class AdminController {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmm");
 			Date time = new Date();
 			String time1 = fomat.format(time);
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/img/goods/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/goods/");
 			String originName = img.getOriginalFilename();
 			// img1.jsp 실제파일명과 확장자 분리
 			String onlyFileName = originName.substring(0, originName.indexOf("."));// 파일명
@@ -559,7 +559,7 @@ public class AdminController {
 	public String goodsUpdate(HttpServletRequest request, @RequestParam MultipartFile img, String oldFilename,
 			String oldFilepath, Goods g, Model model) {
 
-		String savePath = request.getSession().getServletContext().getRealPath("/resources/img/goods");
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		if (!img.isEmpty()) {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date time = new Date();

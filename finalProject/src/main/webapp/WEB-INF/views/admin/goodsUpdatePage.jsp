@@ -74,7 +74,7 @@
 							<input type="hidden" name="oldFilename" class="short" value="${g.goodsFileName }"> 
 							<input type="hidden" name="oldFilepath" class="short" value="${g.goodsFilePath }"> 
 							<div id="img-viewer" style="width: 80%;">
-								<label for="file"><img id="img-view" style="max-width:100%;" src="/resources/img/goods/${g.goodsFilePath }"></label>
+								<label for="file"><img id="img-view" style="max-width:100%;" src="/resources/goods/${g.goodsFilePath }"></label>
 							</div>
 						</td>
 					</tr>
@@ -105,7 +105,7 @@
 							<span>${ga.filename }</span>
 						</td>
 						<td><img src="/resources/goods/${ga.filepath }" style="width:300px;height:300px"></td>
-						<td><input type="hidden" value="${ga.filepath }" id="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
+						<td><input type="hidden" value="${ga.filepath }" class="oldpath"><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
 					</tr>
 					</c:forEach>
 			</table>
@@ -161,7 +161,8 @@
 			$('#gall').append(addTable);
 		});
 		function imgDelete(tt){
-			var filepath = $("#oldpath").val();
+		
+			var filepath = $(tt).prev().val();
 			var code = "${g.goodsType}";
 			console.log(filepath);
 			$.ajax({
@@ -183,7 +184,7 @@
 				}
 				
 			})
-			 $(tt).parent().parent().remove(); 
+			 $(tt).parent().parent().remove();
 		}
 	</script>
 
