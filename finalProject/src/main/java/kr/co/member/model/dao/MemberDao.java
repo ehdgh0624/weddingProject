@@ -317,4 +317,9 @@ public class MemberDao {
 		
 	}
 
+	public Member checkId(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.selectCheckId",memberId);
+	}
+
 }
