@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
+import kr.co.collection.model.vo.SearchPageData;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
@@ -126,23 +127,55 @@ public class CollectionController {
 			memberId = m.getMemberId();
 		}
 		AllPageData pd = collectionService.pageInvitationList(reqPage, memberId);
-		ModelAndView mav =  new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd", pd);
 		mav.setViewName("collection/collectionList");
 		return mav;
 	}
 	
-/*	//태그 클릭
-	@RequestMapping("/collectionListSearch.do")
-	public ModelAndView collectionListSearch(HttpSession session, @RequestParam String keyword, @RequestParam int reqPage) {
+	//태그 클릭
+	@RequestMapping("/collectionListTagSearch.do")
+	public ModelAndView collectionTagSearchList(HttpServletRequest request, HttpSession session, @RequestParam String keyword) {
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		} catch(NumberFormatException e) {
+			reqPage = 1;
+		}		
 		Member m = (Member) session.getAttribute("member");
 		String memberId = null;
 		if(m != null) {
 			memberId = m.getMemberId();
 		}
-		SearchPageData pd = collectionService.pageSearchList();
-		
-	}*/
+		SearchPageData pd = collectionService.pageTagSearchList(reqPage, keyword, memberId);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pd", pd);
+		mav.addObject("keyword", keyword);
+		mav.setViewName("collection/collectionListSearch");
+		return mav;
+	}
+	
+	//검색창에서 검색
+	@RequestMapping("/collectionSearch.do")
+	public ModelAndView collectionSearchList(HttpServletRequest request, HttpSession session, @RequestParam String keyword, @RequestParam String searchAddr, @RequestParam String searchCode) {
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		} catch(NumberFormatException e) {
+			reqPage = 1;
+		}
+		Member m = (Member) session.getAttribute("member");
+		String memberId = null;
+		if(m != null) {
+			memberId = m.getMemberId();
+		}
+		SearchPageData pd = collectionService.pageSearchList(reqPage, keyword, searchAddr, searchCode, memberId);
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("pd", pd);
+		mav.addObject("keyword", keyword);
+		mav.setViewName("collection/collectionListSearch");
+		return mav;
+	}
 
 	
 	@RequestMapping("/collectionView.do")
