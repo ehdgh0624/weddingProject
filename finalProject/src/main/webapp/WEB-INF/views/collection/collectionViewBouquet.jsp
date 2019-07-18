@@ -106,7 +106,7 @@
 			<!-- 상세설명, 리뷰가 포함된 content 시작 -->
 			<div style="position: relative;">
 				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
-				<div style="width: 70%; display: inline-block;">
+				<div style="width: 100%; display: inline-block;">
 					<h2>상세설명</h2>
 					<hr>
 					${goods.goodsContent}
@@ -400,9 +400,6 @@
 					</form>
 					<!-- 리뷰 입력 끝 -->
 				</div>
-				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
-				<!-- static 끝 -->
 			</div>
 		</div>
 		<form id="paymentPage" action="/paymentPage.do" method="post" target="popup_window" style="visibility: hidden;position: absolute;top: 0;">

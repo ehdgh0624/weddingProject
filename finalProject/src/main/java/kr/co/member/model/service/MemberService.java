@@ -308,6 +308,11 @@ public class MemberService {
 		return memberDao.checkId(id);
 	}
 
+	public int changePw(String pwinput, String id) {
+		// TODO Auto-generated method stub
+		return memberDao.changePw(pwinput,id);
+	}
+
 
 
 }

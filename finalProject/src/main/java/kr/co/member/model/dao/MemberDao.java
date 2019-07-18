@@ -322,4 +322,14 @@ public class MemberDao {
 		return sqlSession.selectOne("member.selectCheckId",memberId);
 	}
 
+	public int changePw(String pwinput, String id) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberPw", pwinput);
+		map.put("memberId",id);
+		
+		
+		return sqlSession.update("member.changePw", map);
+	}
+
 }

@@ -15,7 +15,7 @@
 			<!-- 여기에 내용 작서어어어어어엉!!! -->
 			<h2 class="comm-content-tit">계정관리</h2>
 			<div class="common-tbl-box">
-				<form action="/memberUpdateEnroll.do" method="post">
+				
 					<table class="comm-tbl">		
 						<colgroup>
 							<col width="20%">
@@ -23,24 +23,36 @@
 						</colgroup>
 						<tr>
 							<th>아이디</th>
-							<td><input type="text" name="memberId" class="middle" value="${sessionScope.member.memberId }" readonly="readonly"></td>
+							<td><input type="text" name="memberId" class="middle" value="${sessionScope.member.memberId }" readonly="readonly" id="memberId"></td>
 						</tr>
 						<tr>
 							<th>비밀번호</th>
-							<td><input type="password" class="middle" name="memberPw" value="${sessionScope.member.memberPw }"></td>
+							<td>
+								<input type="password" class="middle" name="memberPw" value="${sessionScope.member.memberPw }" id="pwInput" readonly="readonly">
+								<span id="pwck" class="comment" style="display:none;">8자리이상</span>
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" class="btn-style3 small" id="changePw">변경</button>
+								</div>
+							</td>
 						</tr>
 						<tr>
 							<th>비밀번호 확인</th>
-							<td><input type="password" class="middle" name="pwCheck" ></td>
+							<td>
+							<input type="password" class="middle" name="pwCheck" id="ckpw">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" class="btn-style3 small" id="savePw" style="display:none">저장</button>
+								</div>
+							</td>
 						</tr>
+					<form action="/memberUpdateEnroll.do" method="post">
 						<tr>
-							<th>이름</th>
+							<th>이름<input type="hidden" value="${sessionScope.member.memberId }" name="memberId"></th>
 							<td><input type="text" class="middle" name="memberName" value="${sessionScope.member.memberName }"></td>
 						</tr>
 						<tr>
 							<th>전화번호</th>
 							<td>
-							<input type="text" name="fPhone" id="fPhone" class="small"> - <input type="text" name="sPhone" id="sPhone" class="small"> - <input type="text" name="tPhone" id="tPhone" class="small">
+							<input type="text" name="fPhone" id="fPhone" class="small" value="010" required="required"> <input type="text" name="sPhone" id="sPhone" class="small num phone" required="required"> - <input type="text" name="tPhone" id="tPhone" class="small num phone" required="required">
 							<input type="hidden" id="phone" value="${sessionScope.member.phone }">
 							</td>
 						</tr>
@@ -50,7 +62,7 @@
 						</tr>
 										<tr>
 							<th>우편번호</th>
-							<td><input type="text" id="sample4_postcode" class="short" placeholder="우편번호" name="postNum" value="${post }">
+							<td><input type="text" id="sample4_postcode" class="short" placeholder="우편번호" name="postNum" value="${post }" readonly="readonly">
 								<div class="common-tbl-btn-group join-btn-group">
 									<button type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 								</div>
@@ -58,22 +70,28 @@
 						</tr>
 						<tr>
 							<th>도로명주소</th>
-							<td><input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr">
+							<td><input type="text" id="sample4_roadAddress" placeholder="도로명주소" name="roadAddr" readonly="readonly">
 							<span id="guide" style="color:#999;display:none"></span></td>
 						</tr>
-						
 						<tr>
 							<th>지번주소</th>
-							<td><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr">
-							<input type="text" id="sample4_extraAddress" placeholder="지번주소 추가사항" name="extraAddr" style="margin-top:3px;"></td>
+							<td><input type="text" id="sample4_jibunAddress" placeholder="지번주소" name="jibunAddr" readonly="readonly">
+							<input type="text" id="sample4_extraAddress" placeholder="지번주소 추가사항" name="extraAddr" style="margin-top:3px;" readonly="readonly"></td>
 						</tr>
 						<tr>
 							<th>상세주소</th>
-							<td><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr"></td>
+							<td><input type="text" id="sample4_detailAddress" placeholder="상세주소" name="detailAddr" required="required"></td>
 						</tr>
 						<tr>
 							<th>이메일</th>
-							<td><input type="text" name="email" class="middle" value="${sessionScope.member.email }"></td>
+							<td><input type="text" name="email" class="middle" value="${sessionScope.member.email }" readonly="readonly" id="emailInput">
+							<span class="comment" style="display:inline-block; width:200px;" id="emailComment">ex) abcd1234@naver.com</span>
+							<span class="comment" id="emailPass" style="display:none; width:200px; color:blue">인증완료</span>	
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" class="btn-style3 small" id="emailChange">이메일변경</button>
+									<button type="button" class="btn-style3 small" id="emailCk" style="display:none;">이메일인증</button>
+								</div>	
+							</td>
 						</tr>
 					</table>
 					<hr>
@@ -113,6 +131,84 @@
 
 
 <script>
+$('#savePw').click(function(){
+	 var pwinput = $("#pwInput").val();
+	 var pwckinput =$("#ckpw").val();
+	 var id=$("#memberId").val();
+	 if(pwinput==pwckinput){
+			$.ajax({
+				url:"/changePw.do",
+				data:{pwinput:pwinput,id:id},
+				type:"get",
+				dataType:"json",
+				success:function(data){
+					if(data.result==1){
+						alert("변경완료");
+						console.log(data.result);
+					}else{
+						alert("변경실패");
+					}
+				},
+				error : function(){
+					console.log("ajax실패");
+					console.log(data.result);
+				}
+				
+			});
+	 }else{
+		 alert("비밀번호가 일치하지않습니다");
+	 }
+
+});
+
+
+$("#pwInput").keyup(function(){
+	var pw=$("#pwInput").val();
+	var checkpw2= /^[a-zA-Z0-9]{8,12}$/;
+	var checkpw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&_\-\+\=])[A-Za-z\d$@$!%*#?&_\-\+\=]{8,50}$/;
+	var check=/^[a-zA-Z0-9]{0,7}$/;
+	if(checkpw2.test(pw)==true){
+		$("#pwck").css("color","green");
+		$("#pwck").html("사용가능:[보안수준 약함]");
+		$("#savePw").css("display","block");
+		console.log("ㅇㅇㅇㅇ");
+	}
+	if(checkpw.test(pw)==true){
+		$("#pwck").css("color","blue");
+		$("#pwck").html("사용가능:[보안수준 강함]");
+		$("#savePw").css("display","block");
+		console.log("ㅇㅇㅇㅇ");
+	}
+	if(check.test(pw)==true){
+		$("#pwck").css("color","red");
+		$("#pwck").html("사용불가능");
+		$("#savePw").css("display","none");
+	}
+});
+
+$("#emailChange").click(function(){
+	
+	$("#emailChange").css("display","none");
+	$("#emailCk").css("display","inline-block");
+	$("#emailInput").attr("readonly",false);
+	
+	
+});
+
+$("#changePw").click(function(){
+	$("#pwInput").attr("readonly",false);
+	$("#changePw").css("display","none");
+	$("#pwck").css("display","block");
+});
+
+$("#savePw").click(function(){
+	
+	
+});
+
+
+
+
 $(document).ready(function(){
 	var value=$('#ck').val();	
 	if(value != ""){

@@ -10,6 +10,16 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/hall.css"> 
 <link rel="stylesheet" type="text/css" href="/resources/css/collectionList.css"> 
 
+<script>
+	$(document).ready(function(){
+		$('#searchHall').focusin(function(){
+			if($('#searchHall').val() != ''){
+				$('#searchHall').val($('#searchHall').val().replace(' ','')+',');
+			}
+		});
+	});
+</script>
+
 <%-- wrap --%>
 <section id="wrap">
 	<!-- 상위 검색창 -->

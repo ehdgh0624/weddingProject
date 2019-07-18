@@ -199,7 +199,7 @@ $("#idInput").keyup(function(){
 	
 });
 
-$("#pwInput").focusout(function(){
+$("#pwInput").keyup(function(){
 	var pw=$("#pwInput").val();
 	var checkpw2= /^[a-zA-Z0-9]{8,12}$/;
 	var checkpw = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*#?&_\-\+\=])[A-Za-z\d$@$!%*#?&_\-\+\=]{8,50}$/;
@@ -245,11 +245,7 @@ $("#emailck").focusout(function(){
 
 
 	
-$("#submit").click(function(){
-	
-	
-});
-	
+
 
 
 </script>

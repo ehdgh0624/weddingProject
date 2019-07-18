@@ -31,56 +31,122 @@
 		select objectNo, code, memberId, prdName, tel, loc, prdAddr, scope, fileName, filePath, tag from(
 		select rownum as rnum, a.* from(
 		select dress_no as objectNo, code, member_id as memberId, dress_name as prdName, dress_tel as tel, dress_loc as loc, dress_addr as prdAddr, dress_scope as scope, dress_filename as fileName, dress_filepath as filePath, dress_tag as tag from dress where status = 1
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				dress_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and dress_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}	
+		</if>
 		union all
 		select studio_no, code, member_id, studio_name, studio_tel, studio_loc, studio_addr, studio_scope, studio_filename, studio_filepath, studio_tag from studio where status = 1 and viewstatus = 0
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				studio_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and studio_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
 		union all
 		select goods_no, code, goods_name, goods_name, goods_name, goods_name, goods_name, goods_scope, goods_filename, goods_filepath, goods_tag from goods where viewstatus = 0
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				goods_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and goods_name=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
 		union all
 		select makeup_no, code, member_id, makeup_name, makeup_tel, makeup_loc, makeup_addr, makeup_scope, makeup_filename, makeup_filepath, makeup_tag from makeup where status = 1 and viewstatus = 0
-		)a)
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="#{keywordArr != null}">
-				<foreach collection="array" item="#{keywordArr}" separator="and">
-					tag like(#{keywordArr})
-				</foreach>
-			</if>
-			<if test="#{prdAddr != '전국'}">
-				and loc=#{prdAddr}
-			</if>
-			<if test="#{code != '전체'}">
-				and code=#{code}
-			</if>
-		</trim>	
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				makeup_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and makeup_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
+		)a) 
 	</select>
 	
 	<select id="pageSelectSearchList" parameterType="map" resultType="collectionVo">	
 		select objectNo, code, memberId, prdName, tel, loc, prdAddr, scope, fileName, filePath, tag from(
 		select rownum as rnum, a.* from(
 		select dress_no as objectNo, code, member_id as memberId, dress_name as prdName, dress_tel as tel, dress_loc as loc, dress_addr as prdAddr, dress_scope as scope, dress_filename as fileName, dress_filepath as filePath, dress_tag as tag from dress where status = 1
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				dress_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and dress_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}	
+		</if>
 		union all
 		select studio_no, code, member_id, studio_name, studio_tel, studio_loc, studio_addr, studio_scope, studio_filename, studio_filepath, studio_tag from studio where status = 1 and viewstatus = 0
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				studio_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and studio_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
 		union all
 		select goods_no, code, goods_name, goods_name, goods_name, goods_name, goods_name, goods_scope, goods_filename, goods_filepath, goods_tag from goods where viewstatus = 0
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				goods_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and goods_name=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
 		union all
 		select makeup_no, code, member_id, makeup_name, makeup_tel, makeup_loc, makeup_addr, makeup_scope, makeup_filename, makeup_filepath, makeup_tag from makeup where status = 1 and viewstatus = 0
-		)a)
-		<trim prefix="WHERE" prefixOverrides="AND | OR">
-			<if test="#{keywordArr != null}">
-				<foreach collection="array" item="#{keywordArr}" separator="and">
-					tag like(#{keywordArr})
-				</foreach>
-			</if>
-			<if test="#{prdAddr != '전국'}">
-				and loc=#{prdAddr}
-			</if>
-			<if test="#{code != '전체'}">
-				and code=#{code}
-			</if>
-			<if test="#{keywordArr != null || prdAddr != '전국' || code != '전체'}">
-				and
-			</if>
-			 rnum between #{start} and #{end} order by objectNo desc
-		</trim>	
+		<if test="keywordArr != null">
+			and
+			<foreach collection="keywordArr" index="i" item="item" separator="and">
+				makeup_tag like(#{item})
+			</foreach>
+		</if>
+		<if test='prdAddr != "전국"'>
+			and makeup_loc=#{prdAddr}
+		</if>
+		<if test='code != "전체"'>
+			and code=#{code}							
+		</if>
+		)a) where rnum between #{start} and #{end} order by objectNo desc
 	</select>
 	
 </mapper>

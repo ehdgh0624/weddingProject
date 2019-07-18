@@ -22,7 +22,7 @@
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionViewGoods.do?goodsType=${g.goodsType}&goodsNo=${g.goodsNo}"><!-- //goodsType="+code+"&goodsNo="+objectNo -->
-							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div style="padding:10px;background-color: #fafafa">
 						<div class="clearfix goodscare">
@@ -46,8 +46,8 @@
 							<p style="float:left;width:100%;font-size:22px;text-align: right;">${g.goodsPrice }원 </p>
 							</div>
 							<div class="goodsTypeBtn" >
-								<button class="btn-samll1" onclick="location.href='/goodsUpdatePage.do?goodsNo=${g.goodsNo}'">수정</button> 
-								<button class="btn-samll2" onclick="location.href='/goodsdelete.do?goodsNo=${g.goodsNo}'">삭제</button> 
+								<button class="btn-samll1" onclick="location.href='/goodsUpdatePage.do?goodsNo=${g.goodsNo}&code=${g.goodsType }'">수정</button> 
+								<button class="btn-samll2" onclick="location.href='/goodsdelete.do?goodsNo=${g.goodsNo}&code=${g.goodsType }'">삭제</button> 
 							</div>
 						</div>
 					</div>
