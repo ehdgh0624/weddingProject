@@ -438,5 +438,8 @@
 	<delete id="goodsDelete" parameterType="_int">
 		delete from goods where goods_No = #{goodsNo} 
 	</delete>
+	<select id="goodsGallery" parameterType="map" resultType="gallery">
+		select filename as filename, filepath as filepath from gallery where gallery_no=#{goodsNo} and gallery_code=#{code}
+	</select>
 </mapper>
 

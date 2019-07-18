@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -72,15 +73,32 @@ public class MemberController {
 	
 	@RequestMapping(value = "/deleteGallery.do")
 	@ResponseBody
-	public int deleteGallery(@RequestParam String filepath) {
-		
-		
+	public int deleteGallery(HttpServletRequest request,@RequestParam String filepath,@RequestParam String code) {
+		String savePath="";
+		if(code.equals("S")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
+		}else if(code.equals("D")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
+		}else if(code.equals("M")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
+		}else if(code.equals("H")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}else if(code.equals("B")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}else if(code.equals("I")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}
+		File fe = new File(savePath + "/" + filepath);
+		if (fe.exists()) { // 파일존재여부확인
+			if (fe.isFile()) {
+				fe.delete();
+			}
+		}
 		
 		return memberService.deleteGallery(filepath);
 	}
 	
 	@RequestMapping(value = "/saveGallery.do")
-	@ResponseBody
 	public String saveGallery(
 			@RequestParam(value="filename",required = true) List<MultipartFile> filenameList,
 			HttpServletRequest request
@@ -91,6 +109,10 @@ public class MemberController {
 		ArrayList<String> originNameList = new ArrayList<String>();
 		ArrayList<String> onlyFileNameList = new ArrayList<String>();
 		ArrayList<String> extensionList = new ArrayList<String>();
+		
+		SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+		Date time = new Date();
+		String time1 = fomat.format(time);
 		
 		for(int i=0;i<filenameList.size();i++) {
 			originNameList.add(filenameList.get(i).getOriginalFilename());
@@ -108,6 +130,10 @@ public class MemberController {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
 		}else if(code.equals("H")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}else if(code.equals("B")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}else if(code.equals("I")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		}
 		
 		
@@ -117,7 +143,7 @@ public class MemberController {
 		ArrayList<String> filePathList = new ArrayList<String>();
 		ArrayList<String> fullPathList = new ArrayList<String>();
 		for(int i=0;i<filenameList.size();i++) {
-			filePathList.add(onlyFileNameList.get(i)+"_"+"1"+extensionList.get(i));
+			filePathList.add(onlyFileNameList.get(i)+"_"+time1+extensionList.get(i));
 			fullPathList.add(savePath+"/"+filePathList.get(i));
 		}
 		for(int i=0;i<filenameList.size();i++) {
@@ -145,8 +171,11 @@ public class MemberController {
 			gList.add(g);
 		}
 		int result=memberService.addGall(gList);
-		
-		return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
+		if(code.equals("B") || code.equals("I")) {
+			return "admin/goodsCarePage";
+		}else {
+			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
+		}
 	};
 	
 	
