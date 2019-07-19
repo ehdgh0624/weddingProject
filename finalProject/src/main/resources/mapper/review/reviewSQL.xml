@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="review">
 	<select id="selectListReview" parameterType="map" resultType="review">
-		select review_no as reviewNo, review_writer as reviewWriter, review_content as reviewContent, review_date as reviewDate, review_scope as reviewScope, review_filename as reviewFilename, review_filepath as reviewFilepath from review where code=#{code} and review_ref=#{reviewRef} order by review_no desc
+		select review_no as reviewNo, member_id as memberId, review_writer as reviewWriter, review_content as reviewContent, review_date as reviewDate, review_scope as reviewScope, review_filename as reviewFilename, review_filepath as reviewFilepath from review where code=#{code} and review_ref=#{reviewRef} order by review_no desc
 	</select>
 	
 	<insert id="insertReview" parameterType="review">

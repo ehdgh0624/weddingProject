@@ -10,7 +10,7 @@
 <!-- Include English language -->
 <script src="dist/js/i18n/datepicker.en.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!-- css -->
 <link rel="stylesheet" type="text/css"
 	href="/resources/css/myHall.css">
@@ -237,29 +237,42 @@
 					<hr>
 					<c:if test="${not empty reviewList}">
 						<c:forEach items="${reviewList}" var="r">
-							<div>
+							<div class="reviewGroup" id="${r.reviewNo}">
 								<div style="width:10%;float: left;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
 								</div>
 								<div style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
+									<c:if test="${sessionScope.member.memberId eq r.memberId}">
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
 									</span>
 									<br>
 									<br>
-									<div style="width:100%;height:120px;overflow: hidden;display: inline-block;">
-										<img src="/resources/img/test_img4.jpg">
-									</div>
-									<br>
-									<br>
+									<c:if test="${not empty r.reviewFilepath}">
+										<div style="width:100%;height:120px;overflow: hidden;display: inline-block;">
+											<c:set var="doneLoop" value="false"/> 									<!-- 반복문 break -->
+											<c:forEach items="${fn:split(r.reviewFilepath,',')}" var="item" varStatus="j">		<!-- 저장된 주소를 꺼내와 공백 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+												<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+													<img src="/resources/upload/review/${item}" style="width:100%;height:120px;">
+													<c:if test="${j.count == 1}">									<!-- 반복문이 두번 돌았을 때 -->
+														<c:set var="doneLoop" value="true"/> 						<!-- 반복문 break 활성화 -->
+													</c:if>
+												</c:if>
+											</c:forEach>
+										</div>
+										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
+										<br>									
+									</c:if>
 									<span style="font-weight: bolder;">[이용후기]</span>
 									<span>${r.reviewContent}</span>
 								</div>
+								<br>
+								<hr>
 							</div>
-							<br>
-							<hr>
 						</c:forEach>
 					</c:if>
 					<!-- 리뷰 출력 끝 -->
@@ -390,6 +403,32 @@
 							focusOnSelect : true
 						});
 					});
+	
+	/* 리뷰 삭제 */
+	$(document).on("click",".deleteReview",function(){
+		var selectParents = $(this).parents('.reviewGroup');
+		var objectNo = ${hall.hallNo};
+		var code = "D";
+		var reviewScope = $(this).siblings('.dressScopeSpan').text();
+		var reviewNo = selectParents.attr('id');
+		var reviewFilepath = $(this).parents('.reviewUpdateGroup').siblings('.reviewFilepathAll').text();
+		$.ajax({
+			url : "/deleteReview.do",
+			type : "post",
+			data : {reviewNo:reviewNo, reviewFilepath:reviewFilepath,objectNo:objectNo,code:code,reviewScope:reviewScope},
+			success : function(data){
+				if(data > 0){
+					alert("리뷰를 삭제했습니다.");
+					location.reload();
+				}else{
+					alert("리뷰를 삭제할 수 없습니다.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.")
+			}
+		});
+	});
 	
 	/* 이미지 업로드 시 미리보기 */
 	$(document).ready(function(){
