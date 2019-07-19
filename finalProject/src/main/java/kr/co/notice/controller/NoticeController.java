@@ -81,10 +81,10 @@ public class NoticeController {
 				String fileName = upload.getOriginalFilename();
 
 				byte[] bytes = upload.getBytes();
-				/*
-				 * String root = request.getSession().getServletContext().getRealPath("/"); //
-				 * 절대경로 String uploadPath =root+fileName;//저장경로
-				 */
+				
+				  String root = request.getSession().getServletContext().getRealPath("/resources/editor/"); //경로잡아준다
+				  
+				
 
 				///// 글자 개행 및 날짜 맞춰서 초단위까지 해서 고유 파일처럼 보이게 하는 것
 
@@ -97,8 +97,13 @@ public class NoticeController {
 
 				
 				// 파일 아웃 스트림
+			/*
+			 * out = new FileOutputStream(new File(
+			 * "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice2/ID"
+			 * + filename + date1 +"KDC"+ filelast));
+			 */
 				out = new FileOutputStream(new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice2/ID"
+						root+"notice2/ID"
 								+ filename + date1 +"KDC"+ filelast));
 				out.write(bytes);
 				
@@ -135,7 +140,8 @@ public class NoticeController {
 	
 	}
 	@RequestMapping(value="/noticeWriting2.do")
-	public String noticeUpload(HttpServletRequest request, String editor) {
+	public String noticeUpload(HttpServletRequest request, String editor) { // 등록 누를시 발생하는 이벤트
+		 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");	
 		String noticeWriter = request.getParameter("userId");
 		String noticeTitle = request.getParameter("noticeTitle");
 		Pattern pattern2 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
@@ -145,10 +151,8 @@ public class NoticeController {
 			as = as.substring(0,as.length()-1);
 			System.out.println(as);
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice2/"
-					+ as;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice/"
-					+ as;
+			String file1 = root+"notice2/"+ as;
+			String file2 = root+"notice/"+ as;
 			try {
 				FileInputStream fis = new FileInputStream(file1);
 				FileOutputStream fos = new FileOutputStream(file2);
@@ -178,7 +182,7 @@ public class NoticeController {
 		return "redirect:/index.jsp";
 	}
 	@RequestMapping(value="noticeUpdateView.do")
-	public ModelAndView noticeUpdateView(HttpServletRequest request) {
+	public ModelAndView noticeUpdateView(HttpServletRequest request) {  //글 수정
 		
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		
@@ -190,11 +194,11 @@ public class NoticeController {
 		return mav;
 	}
 	@RequestMapping(value="/noticeUpDate.do")
-	public String noticeUpDate(HttpServletRequest request,String editor) {
+	public String noticeUpDate(HttpServletRequest request,String editor) { // 글수정 등록시 발생하는 이벤트
 		String noticeTitle = request.getParameter("noticeTitle");
 		int noticeNo = Integer.parseInt(request.getParameter("noticeNo"));
 		String noticeWriter =request.getParameter("noticeWriter");
-		
+		String root = request.getSession().getServletContext().getRealPath("/resources/editor/"); //경로잡아준다
 		String ed = editor;
 		if(ed.contains("KDC")) {			
 		Pattern pattern5 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
@@ -204,10 +208,8 @@ public class NoticeController {
 			as = as.substring(0,as.length()-1);			
 			System.out.println(as +"::::as임");						
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice2/"
-					+ as ;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\notice/"
-					+ as ;			
+			String file1 = root+"notice2/"+ as ;  //경로 경로  복사 경로  2 가 임시 1이 본 
+			String file2 = root+"notice/"+ as ;			
 			System.out.println(file1+":::::file1");
 			try {
 				FileInputStream fis = new FileInputStream(file1);
@@ -245,8 +247,7 @@ public class NoticeController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
+						root+"notice/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
 				listDetele.delete();
 				System.out.println("삭제성공");
 			}	
@@ -281,8 +282,7 @@ public class NoticeController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
+						root+"notice/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
 				boolean result = true; // 참 거짓으로 구분짓는다
 				for (int j = 0; j < list2.size(); j++) {     // 반복문으로 list2 사이즈만큼 반복한다.
 					if (list.get(i).equals(list2.get(j))) {  // if 문 list(i) 가 list2(i) 값는것이 있는지 반복해서 확인한다.
