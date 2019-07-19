@@ -68,7 +68,7 @@
 							<a href="/hall.do">웨딩홀</a>
 						</li>
 						<li class="gnb02">
-							<a href="/collectionList.do?code=none">웨딩 컬렉션</a>
+							<a href="/collectionList.do?code=D">웨딩 컬렉션</a>
 							<div class="gnb-2dep">
 								<ul>
 									<li><a href="/collectionList.do?code=D">드레스</a></li>

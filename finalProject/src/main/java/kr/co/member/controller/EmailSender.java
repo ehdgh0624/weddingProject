@@ -19,10 +19,10 @@ public class EmailSender  {
     public void SendEmail(MailVO email) throws Exception {
          
         MimeMessage msg = mailSender.createMimeMessage();
+        msg.setHeader("content-type", "text/html; charset=utf-8");
         msg.setSubject(email.getSubject());
-        msg.setText(email.getContents());
+        msg.setText(email.getContents(), "UTF-8", "html");
         msg.setRecipient(RecipientType.TO , new InternetAddress(email.getTo()));
-         
         mailSender.send(msg); 
     }
 }
