@@ -139,7 +139,11 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.8.8</version>
 		</dependency>
-		
+		<dependency>
+			 <groupId>org.aspectj</groupId> 
+			 <artifactId>aspectjtools</artifactId>
+			  <version>${org.aspectj-version}</version> 
+		 </dependency>
 		
 		<!-- Logging -->
 		<dependency>

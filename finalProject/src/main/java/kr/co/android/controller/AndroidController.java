@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -53,8 +56,20 @@ public class AndroidController {
 
 		
 		int result2 = androidService.deleteOneTimeLogin(memberId);
+		
 		int result=androidService.saveOneTimeLogin(number,memberId);
 		
+		Timer m_timer = new Timer();
+		TimerTask m_task = new TimerTask() {
+			
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				 androidService.deleteOneTimeLogin(memberId);
+			}
+		};
+		
+		m_timer.schedule(m_task, 60000);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		
@@ -146,5 +161,9 @@ public class AndroidController {
 		
 		return result;
 	}
+	
+   
+    
+
 	
 }
