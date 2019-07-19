@@ -48,7 +48,6 @@ public class HallController {
 		HallPage pd = hallService.allHallList(reqPage,memberId);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
-		System.out.println(pd.gethList());
 		mav.setViewName("hall/hall");
 	      return mav;
 	}
@@ -79,20 +78,15 @@ public class HallController {
 	      return mav;
 	   }
 	@RequestMapping(value="/hallPc.do")
-	public ModelAndView hallPc(HttpServletRequest request) {
+	public ModelAndView hallPc(HttpServletRequest request,String msg) {
 		int reqPage;
-		int hhCode;
-		try {
-			hhCode = Integer.parseInt(request.getParameter("hCode"));
-		}catch (NumberFormatException e) {
-			hhCode = 0;
-		}
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch (NumberFormatException e) {
 			reqPage = 1;
 		}
-		HallPage pd = hallService.hallPc(reqPage,hhCode);
+		HallPage pd = hallService.hallPc(reqPage,msg);
+		System.out.println(msg);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
 		mav.setViewName("hall/hall");
@@ -109,6 +103,8 @@ public class HallController {
 		if(m != null) {
 			Scrapbook scrap = hallService.selectOneScrapbook(m.getMemberId(),hallNo, "H");
 			mav.addObject("scrapbook",scrap);
+			Reservation res = hallService.selectOneReservation(m.getMemberId(),hallNo,"H");
+			mav.addObject("reservation",res);
 		}			
 		mav.setViewName("hall/hallView");
 		return mav;
@@ -146,7 +142,6 @@ public class HallController {
 			vo.setHallFoodcount(foodCount);
 			vo.setHallFoodtype(foodType);
 			int result = hallService.insertReservationHall(vo,weddingDate);
-			System.out.println(result);
 			if(result > 0) {
 				result = hallService.selectReservationNo(m.getMemberId());
 				return result;
