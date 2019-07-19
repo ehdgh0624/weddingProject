@@ -39,8 +39,16 @@ public class AndroidService {
 		
 	}
 
-	public int setNumber(String memberId, int number) {
+
+
+	public int saveOneTimeLogin(String number, String memberId) {
 		// TODO Auto-generated method stub
-		return androidDao.setNumber(memberId,number);
+		
+		return androidDao.saveOneTimeLogin(number,memberId);
+	}
+
+	public int deleteOneTimeLogin(String memberId) {
+		// TODO Auto-generated method stub
+		return androidDao.deleteOneTimeLogin(memberId);
 	}
 }

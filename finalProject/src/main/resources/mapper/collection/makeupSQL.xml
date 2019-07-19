@@ -13,4 +13,16 @@
 	<update id="updateScope" parameterType="map">
 		update makeup set makeup_scope=(#{reviewSum}+#{reviewScope})/(#{reviewCount}+1) where code=#{code} and makeup_no=#{objectNo}
 	</update>
+	<update id="deleteScope" parameterType="map">
+		update makeup set makeup_scope=
+		<choose>
+			<when test="cal == 0">
+				null
+			</when>
+			<otherwise>
+				#{cal}
+			</otherwise>
+		</choose>
+		where code=#{code} and makeup_no=#{objectNo}
+	</update>
 </mapper>

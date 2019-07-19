@@ -12,4 +12,8 @@
 	<select id="selectCountReview" parameterType="map" resultType="review">
 		select review_scope as reviewScope from review where code=#{code} and review_ref=#{objectNo}
 	</select>
+	
+	<delete id="deleteReview" parameterType="_int">
+		delete from review where review_no=#{reviewNo}
+	</delete>
 </mapper>

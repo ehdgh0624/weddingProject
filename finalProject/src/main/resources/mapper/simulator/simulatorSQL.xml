@@ -101,6 +101,9 @@
 	<select id="simulatorNo" parameterType="simulator" resultType="_int">
 		select simulator_no from (select rownum as rnum, simulator_no from (select * from simulator where member_id = #{memberId} order by simulator_date desc)) where rnum = 1
 	</select>
+	<select id="simulatorDate" parameterType="_int" resultType="string">
+		select simulator_date from simulator where simulator_no = #{simulatorNo}
+	</select>
 	<insert id="newSimulatorSelect" parameterType="simulatorSelect">
 		insert into simulator_select values(#{simulatorNo},#{code},#{prdNo},#{prdName},#{prdPrice},#{prdTel},#{prdLoc},#{prdTag},#{prdFilepath})
 	</insert>
@@ -108,7 +111,7 @@
 		update simulator set simulator_total_price=#{totalPrice} where simulator_no=#{simulatorNo}
 	</update>
 	<select id="mySelectList" parameterType="simulator" resultType="simulatorSelect">
-			select 
+		select 
 			simulator_no as simulatorNo,
 			code as code,
 			prd_no as prdNo,
@@ -117,11 +120,11 @@
 			prd_tel as prdTel,
 			prd_loc as prdLoc,
 			prd_tag as prdTag
-			from simulator_select
-			where simulator_no =#{simulatorNo}
+		from simulator_select
+		where simulator_no =#{simulatorNo}
 	</select>
 	<select id="getSimulator" parameterType="member" resultType="simulator">
-			select 
+		select 
 			simulator_no as simulatorNo,
 			member_id as memberId,
 			wedding_date as weddingDate,
@@ -129,7 +132,32 @@
 			wedding_person as weddingPerson,
 			simulator_total_price as simulatorTotalPrice,
 			simulator_date as simulatorDate
-			from simulator where member_id=#{memberId}
+		from simulator where member_id=#{memberId}
+	</select>
+	<select id="simulatorEmail" parameterType="_int" resultType="simulator">
+		select 
+			simulator_no as simulatorNo,
+			member_id as memberId,
+			wedding_date as weddingDate,
+			wedding_loc as weddingLoc,
+			wedding_person as weddingPerson,
+			simulator_total_price as simulatorTotalPrice,
+			simulator_date as simulatorDate
+		from simulator where simulator_no=#{num}
+	</select>
+	<select id="simulatorOptionEmail" parameterType="_int" resultType="simulatorSelect">
+		select 
+			simulator_no as simulatorNo,
+			code as code,
+			prd_no as prdNo,
+			prd_name as prdName,
+			prd_price as prdPrice,
+			prd_tel as prdTel,
+			prd_loc as prdLoc,
+			prd_tag as prdTag,
+			prd_filepath as prdFilepath
+		from simulator_select
+		where simulator_no =#{num}
 	</select>
 	
 	<!-- <select id="ajaxDressList" parameterType="map" resultType="dress">

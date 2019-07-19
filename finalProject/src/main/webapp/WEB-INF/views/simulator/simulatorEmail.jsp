@@ -37,12 +37,6 @@ $(document).ready(function(){//
 				<dt><img src="/resources/img/icon_person.png" width="20"> &nbsp;하객수</dt>
 				<dd>: <p>${simulator.weddingPerson }명</p></dd>
 			</dl>
-			<!-- 공유하기 :: 회원만 노출 -->
-			<c:if test="${not empty sessionScope.member}">
-				<div class="simulator-share-box">
-					<button class="simulator-share-btn" id="emailShare" onclick="emailShare(this,${simulatorNo},${simulator.simulatorTotalPrice },'${simulatorDate }')" value="${sessionScope.member.email }">이메일로 보내기</button>
-				</div>
-			</c:if>
 			
 			<div class="simulator-bottomInfo">
 				<c:if test="${not empty simulatorList }">
@@ -99,12 +93,7 @@ $(document).ready(function(){//
 				<div class="simulator-total-price">
 					<h2>
 						<strong>평균 전체견적가</strong>
-						<c:if test="${empty sessionScope.member }">
-							<p><b>${totalPrice }</b> 원</p>
-						</c:if>
-						<c:if test="${not empty sessionScope.member }">
-							<p><b>${simulator.simulatorTotalPrice }</b> 원</p>
-						</c:if>
+						<p><b>${simulator.simulatorTotalPrice }</b> 원</p>
 					</h2>
 				</div>
 			</div><br><br>
@@ -118,41 +107,7 @@ $(document).ready(function(){//
 			</div>
 		</div>
 	</div>
-	<!-- 이메일 전송알림 팝업창 -->
-	<div id="popupPw" class="popupView" >
-		<div class="closeBtnDiv"><button class="closeBtn" type="button" onclick="popClose()" style="float:right;">&times;</button></div>
-		<h1>웨딩계산기 견적 결과 <br>이메일 전송이 완료 되었습니다.</h1>
-	</div>
-	<div id="popupBack" class="papupBack"></div>
 </section>
-
-<script>
-function popClose() {
-	$("#popupPw").hide();
-	$("#popupBack").hide();
-}
-
-// 웨딩 계산기 견적 결과 이메일 전송
-function emailShare(emailBtn, num, price, finishDate){
-	var emailAddr = $(emailBtn).val();
-	console.log(num);
-	//var param = {emailAddr : $(emailBtn).val(), num : $("#simulatorNo").val()};
-	$.ajax({
-		url : "/simulatorEmail.do",
-		data : {emailAddr:emailAddr, num:num, price:price, finishDate:finishDate},
-		type : "post",
-		success : function(data){
-			$("#popupPw").show();
-			$("#popupBack").show();
-			msg = data;
-		},
-		error : function(){
-			console.log("이메일 전송 ajax실패");
-		}
-	});
-}
-</script>
-
 
 <%--  Footer --%>
 <jsp:include page="/WEB-INF/common/footer.jsp"/>

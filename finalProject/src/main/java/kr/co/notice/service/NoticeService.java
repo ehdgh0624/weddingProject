@@ -53,22 +53,27 @@ public class NoticeService {
 		}
 		return n;
 	}
+	@Transactional
 	public int insertNotice(Notice n) {
 		
 		return noticeDao.insertNotice(n);
 	}
+	@Transactional
 	public Notice noticeUpdateView(int noticeNo) {
 	
 		return noticeDao.noticeView(noticeNo);
 	}
+	@Transactional
 	public int updateNotice(Notice n) {
 		
 		return noticeDao.updateNotice(n);
 	}
+	@Transactional
 	public int noticeDelete(int noticeNo) {
 		
 		return noticeDao.noticeDelete(noticeNo);
 	}
+	@Transactional
 	public NoticePageData noticeSearch(int reqPage, String type, String keyword) {
 		int numPerPage = 100;
 		int totalCount = noticeDao.noticeSearch(type,keyword); 
