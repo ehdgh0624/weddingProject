@@ -282,13 +282,16 @@
 					<hr>
 					<c:if test="${not empty reviewList}">
 						<c:forEach items="${reviewList}" var="r">
-							<div>
+							<div class="reviewGroup" id="${r.reviewNo}">
 								<div style="width:10%;float: left;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
 								</div>
 								<div style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
+									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="goodsScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
 									</span>
@@ -306,15 +309,15 @@
 												</c:if>
 											</c:forEach>
 										</div>
-										<br>
+										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
 										<br>									
 									</c:if>
 									<span style="font-weight: bolder;">[이용후기]</span>
 									<span>${r.reviewContent}</span>
 								</div>
+								<br>
+								<hr>
 							</div>
-							<br>
-							<hr>
 						</c:forEach>
 					</c:if>
 					<!-- 리뷰 출력 끝 -->
@@ -421,6 +424,34 @@
 	</div>
 </section>
 <script>
+	/* 리뷰 삭제 */
+	$(document).on("click",".deleteReview",function(){
+		var selectParents = $(this).parents('.reviewGroup');
+		var objectNo = ${goods.goodsNo};
+		var code = "G";
+		var reviewScope = $(this).siblings('.goodsScopeSpan').text();
+		var reviewNo = selectParents.attr('id');
+		var reviewFilepath = $(this).parents('.reviewUpdateGroup').siblings('.reviewFilepathAll').text();
+		$.ajax({
+			url : "/deleteReview.do",
+			type : "post",
+			data : {reviewNo:reviewNo, reviewFilepath:reviewFilepath,objectNo:objectNo,code:code,reviewScope:reviewScope},
+			success : function(data){
+				if(data > 0){
+					alert("리뷰를 삭제했습니다.");
+					location.reload();
+				}else{
+					alert("리뷰를 삭제할 수 없습니다.");
+				}
+			},
+			error : function(){
+				alert("잠시 후 다시 시도해주세요.")
+			}
+		});
+	});
+	/* 리뷰 삭제 끝 */
+
+
 	/* 이미지 업로드 시 미리보기 */
 	$(document).ready(function(){
 		if($("#img1").attr("src") == "" && $("#img2").attr("src") == "" && $("#img3").attr("src") == "" && $("#img4").attr("src") == "" && $("#img5").attr("src") == ""){
@@ -442,7 +473,12 @@
 		$('#img4').attr('src', '');
 		$('#img5').attr('src', '');
 		if($('#reviewImageUpload')[0].files.length > 5){
-			alert("파일 수가 너무 많습니다.");
+			alert("이미지 수가 너무 많습니다.");
+			$('#img1').hide();
+			$('#img2').hide();
+			$('#img3').hide();		
+			$('#img4').hide();		
+			$('#img5').hide();		
 			$('#reviewImageUpload')[0].remove();
 			$('#fileUploadForm').append('<input multiple="multiple" type="file" class="reviewImageUpload" id="reviewImageUpload" name="uploadFile" style="width:400px;cursor: pointer;visibility: hidden;">');
 		}else{
