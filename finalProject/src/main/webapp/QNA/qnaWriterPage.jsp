@@ -17,7 +17,7 @@
 				</colgroup>
 				<tr>
 					<th>글제목</th>
-					<td><input type="text" name="qnaTitle" required="required"></td>
+					<td><input type="text" name="qnaTitle" id="qnaTitle"></td>
 				</tr>
 				<tr>
 					<th>작성자</th>
@@ -26,7 +26,7 @@
 				<tr>
 					<th>카테고리</th>
 					<td>
-						<select name="qnaCategory" required="required">
+						<select name="qnaCategory" id="qnaCategory">
 							<option value="">카테고리 선택</option>
 							<option value="1">홀</option>
 							<option value="2">스튜디오</option>
@@ -43,12 +43,12 @@
 				<tr>
 					<th>내용</th>
 					<td>	
-						<textarea rows="20" name="qnaContent" required="required"></textarea>
+						<textarea rows="20" name="qnaContent" id="qnaContent"></textarea>
 					</td>
 				</tr>
 			</table>
 			<div class="common-tbl-btn-group" style="margin-top: 30px;padding-top:0;">
-				<button type="submit" class="btn-style1">글등록</button>
+				<button type="submit" class="btn-style1" id="sub">글등록</button>
 				<button type="button" class="btn-style4" id="hisBack">취소</button>
 			</div>
 		</form>
@@ -58,13 +58,37 @@
 <script>
 	$("#pwchk").on("click",function(){
 		if($(this).prop("checked")){
-			$(this).after("<span><input type='password' name='qnaPw' class='middle'></span>");
+			$(this).after("<span><input type='password' name='qnaPw' id='qnaPw' class='middle'></span>");
 		}else{
 			$(this).siblings('span').remove();
 		}
 	});
 	$("#hisBack").on("click",function(){
 		window.history.back();
+	});
+	$("#sub").on("click",function(e){
+		console.log($("#qnaContent").val() == "")
+		if($("#qnaTitle").val()==""){
+			alert("제목을 입력하여 주세요");
+			$("#qnaTitle").focus();
+			e.preventDefault();
+		}else if($("#qnaCategory").val() ==""){
+			alert("카테고리를 선택해 주세요");
+			$("#qnaCategory").focus();
+			e.preventDefault();
+		}else if($("#qnaCategory").val() ==""){
+			alert("카테고리를 선택해 주세요");
+			$("#qnaCategory").focus();
+			e.preventDefault();
+		}else if($("#qnaPw").val()==""){
+				alert("비밀번호를 확인해주세요");
+				$("#qnaPw").focus();
+				e.preventDefault();	
+		}else if($("#qnaContent").val() == ""){
+			alert("내용 작성을 해주세요");
+			$("#qnaContent").focus();
+			e.preventDefault();	
+		} 
 	});
 </script>
 

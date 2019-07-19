@@ -155,7 +155,7 @@
 		var count = 0;
 		$('#addGallery').click(function() {
 							count = count + 1;
-							var addTable = "<tr><td></td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";
+							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";
 							addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
 							addTable += "<td><span class='imgDelete'>삭제</span></td>";
 							addTable += "<tr>";
@@ -316,13 +316,18 @@
 		});
 
 		$("#imgSub").click(function(e) {
-			for (var i = 0; i < count; i++) {
-				if ($(".filename").eq(i).val() == "") {
-					alert("파일이 비어있습니다.");
-					$(".filename").eq(i).focus();
-					e.preventDefault();
-					return;
+			if ($("#gall").children().find('tr').is(".imgtr")) {
+				for (var i = 0; i < count; i++) {
+					if ($(".filename").eq(i).val() == "") {
+						alert("파일이 비어있습니다.");
+						$(".filename").eq(i).focus();
+						e.preventDefault();		
+						return;
+					}
 				}
+			}else{
+				alert("사진을 추가하지 않았습니다.")
+				e.preventDefault();
 			}
 		});
 	</script>
