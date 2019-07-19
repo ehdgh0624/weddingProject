@@ -195,7 +195,7 @@ body {width:100%; background-color:#fff;}
 .main-comm-tit.type2:after{display:block; content:""; width:40px; height:3px; /*background-color:#e6c619;*/background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); position:absolute; bottom:0; left:0; margin-left:0;}
 .main-comm-tit.center{text-align:center;}
 .main-comm-tit.center:after{left:50%; margin-left:-20px;}
-.main-comm-sub-tit{position:relative; font-size:16px; color:#2b2b2b; text-align:left; font-weight:500; padding:0 15px; margin-bottom:15px; letter-spacing:0.5px;}
+.main-comm-sub-tit{position:relative; font-size:16px; color:#2b2b2b; text-align:left; font-weight:500; padding-left:15px; margin-bottom:15px; letter-spacing:0.5px;}
 .main-comm-sub-tit b{font-size:19px; font-weight:600;}
 .main-comm-sub-tit:before{display:block; content:""; width:5px; height:5px; /*background-color:#e6c619;*/background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); position:absolute; top:50%; left:0; margin-top:-1px;}
 
