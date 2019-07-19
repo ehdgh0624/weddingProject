@@ -67,18 +67,74 @@ import kr.co.reservation.model.vo.ReservationComparator;
 import kr.co.scrapbook.model.vo.Scrapbook;
 import kr.co.simulator.model.vo.Simulator;
 import kr.co.simulator.model.vo.SimulatorSelect;
-
+import kr.co.email.controller.*;;
 
 
 @Controller
 public class MemberController {
-	
 
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
 	@Qualifier(value="emailSender")
 	private EmailSender emailSender;
+	
+	
+	@RequestMapping(value = "/printId.do")
+	public String printId(@RequestParam String email) {
+		System.out.println("아이디찾기 호출");
+		
+		
+		
+		return "member/findId";
+	}
+	
+	
+	@RequestMapping(value = "/findId.do")
+	public String findId() {
+		System.out.println("아이디찾기 호출");
+		
+		return "member/findId";
+	}
+	
+
+	
+	@RequestMapping(value = "/findPw.do")
+	public String findPw() {
+		System.out.println("비밀번호찾기 호출");
+		
+		return "member/findPw";
+	}
+	
+	@RequestMapping(value = "/idList.do")
+	public String idList(HttpServletRequest request,Model model) {
+		System.out.println("아이디 리스트 호출");
+		String email=request.getParameter("email");
+		System.out.println(email);
+		ArrayList<Member> list=(ArrayList<Member>) memberService.getIdList(email);
+		
+		
+		System.out.println("아이디 받아왔습니다"+list.get(0).getMemberId());
+		for(int i=0; i<list.size();i++) {
+			String id=list.get(i).getMemberId();
+			
+			String changeFrontId=id.substring(0, 4);
+			
+			int countstr=id.substring(4).length();
+			for(int j=0;j<countstr;j++) {
+				changeFrontId=changeFrontId+"*";
+			}
+			list.get(i).setMemberId(changeFrontId);
+		
+			System.out.println(changeFrontId);
+		}
+		
+		
+		
+		model.addAttribute("list", list);
+		
+		return "member/idSearchList";
+	}
 	
 	@RequestMapping(value = "/deleteGallery.do")
 	@ResponseBody
@@ -888,6 +944,4 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
-
-
 }

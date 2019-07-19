@@ -30,6 +30,10 @@
 				</div>
 			</form>
 			<button type="button" class="btn-style3" id="oneTimeLogin">일회용 로그인</button>
+			<dvi style="float:right">
+				<button type="button" class="btn-style3" id="findId" onclick="location.href='/findId.do'">아이디찾기/</button>
+				<button type="button" class="btn-style3" id="findPw" onclick="location.href='/findPw.do'">비밀번호찾기</button>
+			</dvi>
 		</div>
 		<div class="comm-login-box" id="otloginbox" style="display:none;"><!-- common-tbl-box -->
 			<form action="/oneTimelogin.do" form="post" class="clearfix">
@@ -52,6 +56,11 @@
 	</div>
 </section>
 <script>
+	$("#findId").click(function(){
+		
+		
+	});
+
 	$("#oneTimeLogin").click(function(){
 		
 		$("#otloginbox").css("display","block");

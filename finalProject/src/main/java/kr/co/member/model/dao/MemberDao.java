@@ -354,4 +354,18 @@ public class MemberDao {
 		sqlSession.delete("member.deleteOneTimeLogin",memberId);
 	}
 
+	public Member searchPw(String memberId, String email) {
+		// TODO Auto-generated method stub
+		System.out.println(memberId+email);
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("memberId", memberId);
+		map.put("email",email);
+		return sqlSession.selectOne("member.searchPw",map);
+	}
+
+	public List<Member> getIdLIst(String email) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("member.getIdLIst",email);
+	}
+
 }

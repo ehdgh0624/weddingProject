@@ -50,6 +50,7 @@ public class HallController {
 		mav.addObject("pd",pd);
 		mav.setViewName("hall/hall");
 	      return mav;
+	      
 	}
 	
 	@RequestMapping(value="/hallSc.do")

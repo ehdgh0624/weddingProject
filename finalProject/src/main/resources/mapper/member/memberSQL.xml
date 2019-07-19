@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<select id="getIdLIst" parameterType="string" resultType="member">
+		select member_id as memberId
+		from member where email=#{email}
+	</select>
+
+	<select id="searchPw" parameterType="map" resultType="member">
+		select 
+    	member_no as memberNo,
+    	member_id as memberId,
+    	member_pw as memberPw,
+    	member_name as memberName,
+    	phone as phone,
+    	email as email,
+    	birthday as birthDay,
+    	addr as addr,
+    	marry_schedule as marrySchedule,
+    	expect_visitor as expectVisitor,
+    	budget as budget,
+    	enrollDate as enrollDate,
+    	member_code as memberCode
+  	    from member where member_id=#{memberId} and email=#{email}
+	</select>
 	<insert id="insertOneTime" parameterType="map">
 		insert into easylogin values(#{memberId},#{number})
 	</insert>

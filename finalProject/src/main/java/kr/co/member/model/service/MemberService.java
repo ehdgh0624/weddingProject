@@ -330,6 +330,20 @@ public class MemberService {
 		memberDao.deleteEasyNumber(memberId);
 	}
 
+	public Member searchPw(String memberId, String email) {
+		// TODO Auto-generated method stub
+		System.out.println(memberId+email+"memberService");
+		return memberDao.searchPw(memberId,email);
+		
+	}
+
+	public List<Member> getIdList(String email) {
+		// TODO Auto-generated method stub
+		
+		
+		return memberDao.getIdLIst(email);
+	}
+
 
 
 }
