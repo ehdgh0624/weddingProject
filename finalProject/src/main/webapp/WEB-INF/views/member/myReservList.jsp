@@ -33,7 +33,7 @@
 						</tr>
 						<c:set var="total" value='0'></c:set>  <!-- 총금액세팅 -->
 						<c:forEach var="list" items="${entry.value }"> <!-- 키값꺼내오기 -->
-							<tr onclick="location.href='/reservationView.do?memberId=${sessionScope.member.memberId }reservationNo=${list.reservationNo }'">
+							<tr onclick="location.href='/reservationView.do?memberId=${sessionScope.member.memberId }&reservationNo=${list.reservationNo }'">
 								<td>${list.reservationNo }</td>
 								<td>${list.code }</td>
 								<td>${list.prdName }</td>

@@ -321,7 +321,7 @@
 					<!-- 리뷰 입력 -->
 					<form id="fileUploadForm" action="/fileUpload.do" method="post" enctype="multipart/form-data">
 						<div style="visibility: hidden;position: absolute;top:0;">
-							<input type="text" id="code" name="code" value="D" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="code" name="code" value="I" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewRef" name="reviewRef" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewScope" name="reviewScope" style="cursor: inherit;width:10px;" readonly>
 						</div>

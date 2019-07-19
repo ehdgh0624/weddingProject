@@ -57,21 +57,23 @@
 						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상품명 -->
-					<td><span style="font-size: 28px;">${goods.goodsName}</span></td>
+					<td>
+						<span style="font-size: 28px;">${goods.goodsName}</span>
 					<!-- 스크랩북 -->
-					<td style="float: right;">
-						<c:choose>
-							<c:when test="${not empty scrapbook}">
-								<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
-									<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:when>
-							<c:otherwise>
-								<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
-									<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:otherwise>
-						</c:choose>
+						<span style="float: right;">
+							<c:choose>
+								<c:when test="${not empty scrapbook}">
+									<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:when>
+								<c:otherwise>
+									<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:otherwise>
+							</c:choose>
+						</span>
 					</td>
 				</tr>
 				<tr>
@@ -106,7 +108,7 @@
 			<!-- 상세설명, 리뷰가 포함된 content 시작 -->
 			<div style="position: relative;">
 				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
-				<div style="width: 70%; display: inline-block;">
+				<div style="width: 100%; display: inline-block;">
 					<h2>상세설명</h2>
 					<hr>
 					${goods.goodsContent}
@@ -320,7 +322,7 @@
 					<!-- 리뷰 입력 -->
 					<form id="fileUploadForm" action="/fileUpload.do" method="post" enctype="multipart/form-data">
 						<div style="visibility: hidden;position: absolute;top:0;">
-							<input type="text" id="code" name="code" value="G" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="code" name="code" value="B" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewRef" name="reviewRef" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewScope" name="reviewScope" style="cursor: inherit;width:10px;" readonly>
 						</div>
@@ -400,9 +402,6 @@
 					</form>
 					<!-- 리뷰 입력 끝 -->
 				</div>
-				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
-				<!-- static 끝 -->
 			</div>
 		</div>
 		<form id="paymentPage" action="/paymentPage.do" method="post" target="popup_window" style="visibility: hidden;position: absolute;top: 0;">
