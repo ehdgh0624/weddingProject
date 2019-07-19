@@ -78,20 +78,15 @@ public class HallController {
 	      return mav;
 	   }
 	@RequestMapping(value="/hallPc.do")
-	public ModelAndView hallPc(HttpServletRequest request) {
+	public ModelAndView hallPc(HttpServletRequest request,String msg) {
 		int reqPage;
-		int hhCode;
-		try {
-			hhCode = Integer.parseInt(request.getParameter("hCode"));
-		}catch (NumberFormatException e) {
-			hhCode = 0;
-		}
 		try {
 			reqPage = Integer.parseInt(request.getParameter("reqPage"));
 		}catch (NumberFormatException e) {
 			reqPage = 1;
 		}
-		HallPage pd = hallService.hallPc(reqPage,hhCode);
+		HallPage pd = hallService.hallPc(reqPage,msg);
+		System.out.println(msg);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
 		mav.setViewName("hall/hall");

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%--  Header --%>
  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+ <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <jsp:include page="/WEB-INF/common/header.jsp" />
 <%-- Sub --%>
 <jsp:include page="/WEB-INF/common/sub.jsp" />
@@ -161,6 +162,9 @@
 										</span>
 									</h5>
 									<p>${h.hallAddr }</p>
+									<c:forEach items="${fn:split(h.hallTag,',')}" var="tag">
+										<span id="tag" class="tag">${tag }</span>
+									</c:forEach>
 								</div>
 								<div class="bottom">
 									<p>
@@ -190,6 +194,12 @@
 	</div>
 </section>
 <script>
+	$(".tag").click(function(){
+	var msg=$(this).html();
+	$("#searchHall").val(msg);
+	location.href="/hallPc.do?="+msg;
+	});
+	
 	$("#pyeongieom").click(function(){	//평점 버튼 색상 변경
 		$("#pyeongieom").css("color","#f46629");
 		$("#pyeongieom").css("border","1px solid #f46629");
@@ -202,7 +212,6 @@
 		$("#choesinsun").css("color","#f46629");
 		$("#choesinsun").css("border","1px solid #f46629");
 	});
-	
 </script>
 <script>
 	/* 로드 시 주소 앞자리만 가져오기 */

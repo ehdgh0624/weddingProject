@@ -55,11 +55,11 @@ public class HallDao {
 		int count = sqlSession.selectOne("hall.searchList",map);
 		return count;
 	}
-	public List<Hall> hallPc(int start, int end , int hCode) {
-		Map<String, Integer> map = new HashMap<String,Integer>();
+	public List<Hall> hallPc(int start, int end , String msg) {
+		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("hCode", hCode);
+		map.put("msg", msg);
 		return sqlSession.selectList("hall.hallPc",map);
 	}
 	public int totalCountPc() {

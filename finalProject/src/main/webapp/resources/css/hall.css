@@ -212,3 +212,8 @@ section.hall .pageing{
 	width: 100%;
 	height: 86px;
 }
+
+section.hall #tag{
+	cursor: pointer;
+}
+
