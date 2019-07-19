@@ -336,7 +336,7 @@ public class ExperienceController {
 			// ck 에디터 이미지 업로드시 발생하는 코드
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
-			String fileUrl = "http://192.168.10.92/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
+			String fileUrl = "http://192.168.10.63/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
 			printWriter.println(
 					"<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
 							+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
