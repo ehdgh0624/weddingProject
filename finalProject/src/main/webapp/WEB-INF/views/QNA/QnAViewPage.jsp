@@ -9,7 +9,7 @@
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
-		<table class="comm-tbl type1">
+		<table class="comm-tbl type1" style="margin-top: 30px;">
 			<colgroup>
 				<col width="12.5%">
 			</colgroup>
@@ -52,7 +52,7 @@
 			</tr>
 			<tr>
 				<th >내용</th>
-				<td colspan="7" rowspan="50">${qna.qnaContent }</td>
+				<td colspan="7" rowspan="50"><div class="boardContent">${qna.qnaContent }</div></td>
 			</tr>
 		</table>
 			<div class="common-tbl-btn-group right" >

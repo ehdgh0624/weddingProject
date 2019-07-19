@@ -29,7 +29,7 @@
 			</tr>
 			<tr>
 				<th >내용</th>
-				<td colspan="5" rowspan="50">${n.noticeContent }</td>
+				<td colspan="5" rowspan="50"><div class="boardContent" >${n.noticeContent }</div></td>
 			</tr>
 		</table>
 			<c:if test="${sessionScope.member.memberCode == 2}">
