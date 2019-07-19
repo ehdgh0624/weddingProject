@@ -17,20 +17,16 @@ function exintsert() {
 </script>
 <section id="wrap">
 	<div class="area" >
-	
 		<div style="text-align: right;  width: 1165px; ">
-			
 			<c:if test="${not empty list}">	
-			
 			<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
-			<button class="btn-style1 small" onclick="exintsert();">글등록</button>
+				<button class="btn-style1 small" onclick="exintsert();">글등록</button>
 			</div>
-			
 			</c:if>
 			<br>
 			<br>
 		</div>	
-		<div >		
+		<div>		
 		 	<c:forEach items="${expd.exList}" var="e" varStatus="i">
 		 	  
 				<div style="width:350px;height:350px;display:inline-block;margin:20px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
@@ -46,7 +42,7 @@ function exintsert() {
 					</div>
 					<div style="padding:20px;">
 						<div>
-							<div>
+							<div style="text-align:  center;">
 							${e.experienceTitle}						
 							</div>
 						</div>

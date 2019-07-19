@@ -221,3 +221,4 @@ background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%
 .goodsTypeBtn {width: 100%; margin:25px auto 25px; text-align: center;}
 .goodsTypeBtn .btn-samll1{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#888 }
 .goodsTypeBtn .btn-samll2{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#444 }
+.boardContent{height:600px; max-height:800px; overflow-y: auto; }

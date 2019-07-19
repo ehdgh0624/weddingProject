@@ -49,4 +49,33 @@ public class ReviewDao {
 			return 0;
 		}
 	}
+	
+	public int deleteReview(int reviewNo) {
+		return sqlSession.delete("review.deleteReview",reviewNo);
+	}
+	
+	public int deleteScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum) {
+		int cal = 0;
+		if(reviewCount > 1) {
+			cal = (reviewSum-reviewScope) / (reviewCount-1);
+		}
+		System.out.println("dao cal : "+cal);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("objectNo", objectNo);
+		map.put("cal", cal);
+		if(code.equals("S")) {
+			return sqlSession.update("studio.deleteScope",map);
+		}else if(code.equals("D")) {
+			return sqlSession.update("dress.deleteScope",map);						
+		}else if(code.equals("M")) {
+			return sqlSession.update("makeup.deleteScope",map);						
+		}else if(code.equals("G")) {
+			return sqlSession.update("goods.deleteScope",map);			
+		}else if(code.equals("H")){
+			return sqlSession.update("hall.deleteScope",map);
+		}else {
+			return 0;
+		}		
+	}
 }

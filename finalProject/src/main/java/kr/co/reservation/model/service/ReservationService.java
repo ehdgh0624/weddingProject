@@ -22,4 +22,5 @@ public class ReservationService {
 	public int updateOrderStatusCancel(int reservationNo) {
 		return reservationDao.updateOrderStatusCancel(reservationNo);
 	}
+	
 }
