@@ -190,7 +190,7 @@
 		update hall set hall_scope=
 		<choose>
 			<when test="cal == 0">
-				null
+				0
 			</when>
 			<otherwise>
 				#{cal}
