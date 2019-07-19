@@ -86,7 +86,6 @@ public class HallController {
 			reqPage = 1;
 		}
 		HallPage pd = hallService.hallPc(reqPage,msg);
-		System.out.println(msg);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("pd",pd);
 		mav.setViewName("hall/hall");
