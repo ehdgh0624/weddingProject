@@ -31,15 +31,19 @@ public class AndroidDao {
 		return sqlSession.selectList("member.selectAllreserv",m);
 	}
 
-	public int setNumber(String memberId, int number) {
+
+	public int saveOneTimeLogin(String number, String memberId) {
 		// TODO Auto-generated method stub
-		
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("memberId", memberId);
 		map.put("number", number);
 		
-		
-		return sqlSession.insert("member.setEasyNumber",map);
+		return sqlSession.insert("member.insertOneTime",map);
+	}
+
+	public int deleteOneTimeLogin(String memberId) {
+		// TODO Auto-generated method stub
+		return sqlSession.delete("member.deleteOneTimeLogin",memberId);
 	}
 
 }

@@ -332,4 +332,26 @@ public class MemberDao {
 		return sqlSession.update("member.changePw", map);
 	}
 
+	public Member getMember(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.getMember",id);
+	}
+
+	public String getMemberId(String number) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("member.getMemberId",number);
+	}
+
+	public Member selectOneMemberOnlyId(String memberId) {
+		// TODO Auto-generated method stub
+		Member m = new Member();
+		m.setMemberId(memberId);
+		return sqlSession.selectOne("member.selectOneMemberOnly",m);
+	}
+
+	public void deleteEasyNumber(String memberId) {
+		// TODO Auto-generated method stub
+		sqlSession.delete("member.deleteOneTimeLogin",memberId);
+	}
+
 }

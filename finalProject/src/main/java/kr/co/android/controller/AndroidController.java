@@ -8,6 +8,7 @@ import java.util.Random;
 
 import javax.naming.spi.DirStateFactory.Result;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,7 +26,7 @@ import kr.co.reservation.model.vo.Reservation;
 
 @Controller
 public class AndroidController {
-
+	
 	@Autowired
 	@Qualifier(value="androidService")
 	AndroidService androidService;
@@ -34,6 +35,33 @@ public class AndroidController {
 	public void androidTest() {
 		System.out.println("안드로이드 로 접근했습니다.");
 	}
+	
+	@RequestMapping(value = "/oneTimeLogin.do")
+	@ResponseBody
+	public Map<String, Object> oneTimeLogin(HttpServletRequest request) {
+		String memberId=request.getParameter("id");
+		String memberPw= request.getParameter("pw");
+		
+		System.out.println(memberId+memberPw);
+		System.out.println("간편로그인입니다");
+		
+		Random ran = new Random();
+		
+		int random=ran.nextInt(999999)+1;
+		String number=Integer.toString(random);
+		
+
+		
+		int result2 = androidService.deleteOneTimeLogin(memberId);
+		int result=androidService.saveOneTimeLogin(number,memberId);
+		
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("number",number);
+		return map;
+	}
+	
 	@RequestMapping(value = "/android2.do")
 	@ResponseBody
 	public Map<String, Object> androidTest2(HttpServletRequest request) {
@@ -119,29 +147,4 @@ public class AndroidController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/getNumber.do")
-	@ResponseBody
-	public String getNumber(HttpServletRequest request) {
-		String memberId=request.getParameter("id");
-		
-		
-		Random ran = new Random();
-		int number=ran.nextInt(999999)+1;
-		
-		System.out.println("접근중:"+memberId);
-		androidService.setNumber(memberId,number);
-		
-		
-		String numberString= Integer.toString(number);
-		Map<String, String> result = new HashMap<String, String>();
-
-		
-		result.put("number", numberString);
-		
-		
-		MemberController mc = new MemberController();
-		mc.MemberLogin();
-		
-		return "";
-	}
 }
