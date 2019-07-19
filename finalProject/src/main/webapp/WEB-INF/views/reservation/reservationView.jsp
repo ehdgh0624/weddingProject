@@ -289,7 +289,7 @@
 						<c:if test="${reservation.code == 'H'}">
 							<tr>
 								<th>분류</th>
-								<td>홀</td>
+								<td>웨딩홀</td>
 							</tr>
 								<tr>
 									<th rowspan="3">대관 정보</th>

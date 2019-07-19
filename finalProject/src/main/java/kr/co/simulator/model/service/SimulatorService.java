@@ -87,7 +87,24 @@ public class SimulatorService {
 	@Transactional
 	public int updatePrice(int simulatorNo, int totalPrice) {
 		return simulatorDao.updatePrice(simulatorNo, totalPrice);
-	}	
+	}
+
+	// 웨딩계산기 견적 실행 날짜 
+	public String simulatorDate(int simulatorNo) {
+		return simulatorDao.simulatorDate(simulatorNo);
+	}
+
+	// 메일 링크 웨딩계산기 리스트 노출
+	public Simulator simulatorEmail(int num) {
+		return simulatorDao.simulatorEmail(num);
+	}
+
+	// 메일 링크 웨딩계산기 옵션 리스트 노출
+	public ArrayList<SimulatorSelect> simulatorOptionEmail(int num) {
+		return (ArrayList<SimulatorSelect>) simulatorDao.simulatorOptionEmail(num);
+	}
+
+		
 
 	
 	

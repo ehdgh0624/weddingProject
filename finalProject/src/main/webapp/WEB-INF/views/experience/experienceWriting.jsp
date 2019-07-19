@@ -30,15 +30,53 @@
 				</tr>		    
 		    </table>
 		    <div class="common-tbl-btn-group">
-		    	<button type="submit" class="btn-style1">등록하기</button>
+		    	<button type="submit" class="btn-style1" id="suv">등록하기</button>
 		    </div>
+		    
 		    <input type="hidden" id ="experienceWriter" value="${sessionScope.member.memberId }" name="experienceWriter">
 		</form>
 	</div>
 </section>
 <script>
+	
+	
+		$('#suv').click(function(kdc){
+		
+			if($('#experienceTitle').val() ==""){
+					alert("제목이 비어있습니다.");
+					$('#experienceTitle').focus();
+					kdc.preventDefault();
+					}
+			else if($('#imgInp').val()==""){
+				alert("사진이비어있습니다.")
+				$('#imgInp').focus();
+				kdc.preventDefault();
+			}
+			/* else if($("#cke_editor").chiledren('p').html() == ""){
+				alert("내용을 입력해주세요.")
+				$('#editor').focus();
+				kdc.preventDefault();
+			} */
+			});
+
+		function chk_file_type(obj) {
+	         var file_kind = obj.value.lastIndexOf('.');
+	         var file_name = obj.value.substring(file_kind + 1, obj.length);
+	         var file_type = file_name.toLowerCase();
+
+	         var check = new Array();
+	         check = [ 'jpg', 'gif', 'png', 'jpeg', 'bmp', 'jfif' ];
+
+	         if (check.indexOf(file_type) == -1) {
+	            alert("등록 할 수 없는 파일명 입니다.");
+	            $(obj).val("");
+	            return false;
+	         } else {
+	            return true;
+	         }
+	      }
     function readURL(input) {
-        if (input.files && input.files[0]) {
+        if (input.files && input.files[0] && chk_file_type(input)) {
             var reader = new FileReader();
             reader.onload = function(e) {
                 $('#img').attr('src', e.target.result);

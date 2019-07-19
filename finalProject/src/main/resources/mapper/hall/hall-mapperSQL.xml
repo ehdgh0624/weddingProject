@@ -115,8 +115,7 @@
 	</select>
 	
 	<select id="countPc"  resultType="_int">
-	select count(*) from hall <if test="hhCode==1">order by hall_scope</if>
-							  <if test="hhCode==2">order by hall_date</if>
+	select count(*) from hall where hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
 	</select>
 	
 	<select id="hallPc" parameterType="map" resultType="hall">
@@ -150,9 +149,7 @@
 	hall_latitude as hallLatitude,
 	hall_longitude as hallLongitude,
 	hall_date as hallDate
-	from (select rownum as rnum, d.* from (select * from hall where status=1
-	and viewstatus=0 order by hall_no) d) where (rnum between #{start} and
-	#{end}) order by rnum desc
+	from hall where hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
 	</select>
 	<select id="viewSelectOne" parameterType="_int" resultType="hall">
 	select hall_no as hallNo,

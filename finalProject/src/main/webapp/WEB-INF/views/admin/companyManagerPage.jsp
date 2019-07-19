@@ -20,6 +20,15 @@
 	</div>
 	<div id="myPageContainer" class="clearfix area">
 		<table class=comm-tbl>
+		<colgroup>
+				<col width="10%">
+				<col width="10%">
+				<col width="15%">
+				<col width="15%">
+				<col width="30%">
+				<col width="10%">
+				<col width="10%">
+			</colgroup>
 			<tr>
 				<th>업체 종류</th>
 				<th>업체 이름</th>

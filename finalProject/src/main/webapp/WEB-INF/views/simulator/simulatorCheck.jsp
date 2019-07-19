@@ -37,6 +37,13 @@ $(document).ready(function(){//
 				<dt><img src="/resources/img/icon_person.png" width="20"> &nbsp;하객수</dt>
 				<dd>: <p>${simulator.weddingPerson }명</p></dd>
 			</dl>
+			<!-- 공유하기 :: 회원만 노출 -->
+			<c:if test="${not empty sessionScope.member}">
+				<div class="simulator-share-box">
+					<button class="simulator-share-btn" id="emailShare" onclick="emailShare(this,${simulatorNo},${simulator.simulatorTotalPrice },'${simulatorDate }')" value="${sessionScope.member.email }">이메일로 보내기</button>
+				</div>
+			</c:if>
+			
 			<div class="simulator-bottomInfo">
 				<c:if test="${not empty simulatorList }">
 					<c:forEach items="${simulatorList }" var="slist">
@@ -72,7 +79,12 @@ $(document).ready(function(){//
 								</dt>
 								<dd>
 									<div class="common-tbl-btn-group right" style="padding-top:0;">
-										<button class="btn-style1" style="margin:0;">상세정보 보기</button>
+										<c:choose>
+											<c:when test="${slist.code eq 'H' }"><button class="btn-style1" style="margin:0;" onclick="location.href='/hallView.do?hallNo=${slist.prdNo}'">상세정보 보기</button></c:when>
+											<c:when test="${slist.code eq 'D' }"><button class="btn-style1" style="margin:0;" onclick="location.href='/collectionViewDress.do?dressNo=${slist.prdNo}'">상세정보 보기</button></c:when>
+											<c:when test="${slist.code eq 'M' }"><button class="btn-style1" style="margin:0;" onclick="location.href='/collectionViewMakeup.do?makeupNo=${slist.prdNo}'">상세정보 보기</button></c:when>
+											<c:when test="${slist.code eq 'S' }"><button class="btn-style1" style="margin:0;" onclick="location.href='/collectionViewStudio.do?studioNo=${slist.prdNo}'">상세정보 보기</button></c:when>
+										</c:choose>
 									</div>
 								</dd>
 							</dl>
@@ -105,9 +117,41 @@ $(document).ready(function(){//
 				<button class="btn-style1 big" onclick="location.href='/simulator/simulator.jsp'"><img src="/resources/img/icon_again.png" width="30">&nbsp;다시해보기</button>
 			</div>
 		</div>
-	</div>	
+	</div>
+	<!-- 이메일 전송알림 팝업창 -->
+	<div id="popupPw" class="popupView" >
+		<div class="closeBtnDiv"><button class="closeBtn" type="button" onclick="popClose()" style="float:right;">&times;</button></div>
+		<h1>웨딩계산기 견적 결과 <br>이메일 전송이 완료 되었습니다.</h1>
+	</div>
+	<div id="popupBack" class="papupBack"></div>
 </section>
 
+<script>
+function popClose() {
+	$("#popupPw").hide();
+	$("#popupBack").hide();
+}
+
+// 웨딩 계산기 견적 결과 이메일 전송
+function emailShare(emailBtn, num, price, finishDate){
+	var emailAddr = $(emailBtn).val();
+	console.log(num);
+	//var param = {emailAddr : $(emailBtn).val(), num : $("#simulatorNo").val()};
+	$.ajax({
+		url : "/simulatorEmail.do",
+		data : {emailAddr:emailAddr, num:num, price:price, finishDate:finishDate},
+		type : "post",
+		success : function(data){
+			$("#popupPw").show();
+			$("#popupBack").show();
+			msg = data;
+		},
+		error : function(){
+			console.log("이메일 전송 ajax실패");
+		}
+	});
+}
+</script>
 
 
 <%--  Footer --%>

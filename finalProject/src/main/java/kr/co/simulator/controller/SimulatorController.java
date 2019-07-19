@@ -195,17 +195,25 @@ public class SimulatorController {
 
 		if(session != null && (Member)session.getAttribute("member") != null) { //로그인 했을 때
 			Member m = (Member)session.getAttribute("member");
-			Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
+			//Simulator simulator = new Simulator(0,m.getMemberId(),weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
+			Simulator simulator = new Simulator();
+			simulator.setMemberId(m.getMemberId());
+			simulator.setWeddingDate(weddingDate);
+			simulator.setWeddingLoc(weddingLoc);
+			simulator.setWeddingPerson(Integer.parseInt(weddingPerson));
 			
 			// Simulator 생성
 			int result = simulatorService.newSimulator(simulator);
 			if(result > 0) { //Simulator 생성 성공 시
+				int simulatorNo = 0;
+				String simulatorDate = null;
 				if(jsonArr.size() != 0) {
 					for(int i=0;i<jsonArr.size();i++) {
 						jsonObj = (com.google.gson.JsonObject)jsonArr.get(i);
 						
 						simulatorSelect = new SimulatorSelect();
-						int simulatorNo = simulatorService.simulatorNo(simulator);
+						simulatorNo = simulatorService.simulatorNo(simulator);
+						simulatorDate = simulatorService.simulatorDate(simulatorNo);
 						System.out.println("여기기ㅣㅣㅣㅣ : "+simulatorNo);
 						
 						simulatorSelect.setSimulatorNo(simulatorNo);
@@ -233,6 +241,9 @@ public class SimulatorController {
 					}
 					
 					model.addAttribute("simulatorList", simulatorList);
+					model.addAttribute("simulatorNo", simulatorNo);
+					model.addAttribute("simulatorDate", simulatorDate);
+					System.out.println("날짜 : "+simulatorDate);
 					
 				}else {
 					model.addAttribute("msg", "선택하신 것이 없습니다.");
@@ -285,5 +296,24 @@ public class SimulatorController {
 		}
 		
 		return "simulator/simulatorCheck";
+	}
+	
+	
+	// 웨딩 계산기 메일 결과 링크 이동 후 리스트 뿌려주기
+	@RequestMapping(value="/simulatorEmailCheck.do")
+	public String simulatorEmail(HttpServletRequest request, @RequestParam String no, Model model ) {
+		
+		Simulator simulator = simulatorService.simulatorEmail(Integer.parseInt(no));
+		//ArrayList<SimulatorSelect> simulatorList = new ArrayList<SimulatorSelect>();
+		ArrayList<SimulatorSelect> simulatorList = simulatorService.simulatorOptionEmail(Integer.parseInt(no));
+		
+		if(simulator != null) {
+			model.addAttribute("simulator", simulator);
+			model.addAttribute("simulatorList", simulatorList);
+		}else {
+			model.addAttribute("msg", "선택하신 것이 없습니다.");
+		}
+		
+		return "simulator/simulatorEmail";
 	}
 }

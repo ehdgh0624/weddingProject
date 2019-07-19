@@ -101,7 +101,7 @@ public class HallService {
 	}
 
 
-	public HallPage hallPc(int reqPage, int hCode) {
+	public HallPage hallPc(int reqPage, String msg) {
 		//페이지 당 게시물 수
 		int numPerPage = 9;
 		//현재 등록되어있는 총 게시물 수
@@ -111,7 +111,7 @@ public class HallService {
 		//게시물 번호 범위
 		int start = totalCount - (reqPage * numPerPage - 1);
 		int end = totalCount - (reqPage-1) * numPerPage;
-		ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.hallPc(start,end,hCode);
+		ArrayList<Hall> hList = (ArrayList<Hall>) hallDao.hallPc(start,end,msg);
 		String pageNavi = "";
 		int pageNaviSize = 5;
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
@@ -182,6 +182,16 @@ public class HallService {
 	@Transactional
 	public int insertOneScrap(int objectNo, String code, String memberId, String prdName, String prdFilepath) {
 		return hallDao.insertOneScrap(objectNo, code, memberId, prdName, prdFilepath);
+	}
+
+
+	public Reservation selectOneReservation(String memberId, int hallNo, String code) {
+		ArrayList<Reservation> list = hallDao.selectOneReservation(hallNo,memberId,code);
+		Reservation res = null;
+		if(!list.isEmpty()) {
+			res = list.get(list.size()-1);
+		}
+		return res;
 	}
 
 }

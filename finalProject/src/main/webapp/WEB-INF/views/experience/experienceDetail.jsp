@@ -74,7 +74,7 @@
 							<div class="common-tbl-btn-group">
 								<form action="/UpdateComment.do">
 									<input id="level1ContentInput" name="level1ContentInput" class="level1ContentInput" type="text" value="${e.experienceCommentContent}" style="display:none; width: 688px; ">
-									<input type="submit" id="level1submit" style= "cursor:pointer; font-size: 15px; color:white;   border-radius: 5px; display: none; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small  " value="완료"  >
+									<input type="submit"  style= "cursor:pointer; font-size: 15px; color:white;   border-radius: 5px; display: none; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small abs" value="완료"  >
 									<input type="hidden" name="experienceCommentNo" id="experienceCommentNo" value="${e.experienceCommentNo}">
 									<input type="hidden"  name="experienceNo" id="experienceNo"  value="${experience.e.experienceNo}">
 								</form>
@@ -86,7 +86,7 @@
 							</span>
 							<p class="common-tbl-btn-group" style="padding-top:5px;">
 								<c:if test="${ sessionScope.member.memberId== e.experienceCommentWriter}">
-									<button id="level1updateComment" style="display:inline; width: 50px;" class="btn-style2 small" onclick="updateComment(this)" >수정</button>																																													
+									<button id="level1updateComment" id="level1ch"  style="display:inline; width: 50px;" class="btn-style2 small" onclick="updateComment(this)" >수정</button>																																													
 								</c:if>
 								<c:if test="${sessionScope.member.memberId=='admin' || sessionScope.member.memberId== e.experienceCommentWriter}">
 									<button style="width: 50px;" class="btn-style3 small" onclick="CommentDelete(${e.experienceCommentNo});">삭제</button>
@@ -104,12 +104,12 @@
 						<tr style="display: none;">
 							<td colspan="3">
 								<form action="/exCommentRegs.do" >
-									<input type="text"   id="experienceCommentContent" name="experienceCommentContent" style=" width: 89%;" >
 									<input type="hidden" id="experienceCommentWriter" name="experienceCommentWriter" value="${sessionScope.member.memberId}">
 									<input type="hidden" id="experienceCommentNo" name="experienceCommentNo" value="${e.experienceCommentNo}">
 									<input type="hidden" id="experienceCommentLevel"  name="experienceCommentLevel" value="2">
 									<input type="hidden" id="experienceCommentRef" name="experienceCommentRef" value="${e.experienceCommentRef }">
-									<input type="submit" id="level1submit" style= "cursor:pointer; font-size: 15px; color:white;   border-radius: 5px; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small  " value="완료"  >
+									<input type="text"   id="experienceCommentContent" name="experienceCommentContent" style=" width: 89%;" >
+									<input type="submit" id="level1submit" style= "cursor:pointer; font-size: 15px; color:white;   border-radius: 5px; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small  abs" value="완료"  >
 									<input type="hidden"  name="experienceNo" id="experienceNo"  value="${experience.e.experienceNo}">										
 								</form>												
 							</td>
@@ -125,7 +125,7 @@
 									 							 										   	
 									<form action="/UpdateComment2.do">		
 										<input id="level1ContentInput" name="level1ContentInput" class="level1ContentInput" type="text" value="${k.experienceCommentContent}" style="display: none;     width: 87%;">
-										<input type="submit" id="level1submit" style= "cursor:pointer; font-size: 15px; color:white;   border-radius: 5px; display: none; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small  " value="완료"  >
+										<input type="submit" id="level1submit"  style= "cursor:pointer; font-size: 15px; color:white;  border-radius: 5px; display: none; height:38px; width: 100px; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); 	border: 0;  outline :0;" class="btn-style2 small abs" value="완료"  >
 										<input type="hidden" name="experienceCommentNo" id="experienceCommentNo" value="${k.experienceCommentNo}">
 										<input type="hidden" name="experienceNo" id="experienceNo"  value="${experience.e.experienceNo}">																			             						
 									</form>
@@ -163,7 +163,9 @@
  						<input type="hidden" name="experienceCommentCommentRef" value="0"> 				
 						<div class="common-tbl-btn-group right" style="padding-top:0;text-align: left;">
 							<input type="text"  rows="1" class="form-control" name="experienceCommentContent" style="width: 88%"></textarea>
-							<button type="submit" class="btn-style1 small">댓글등록하기</button>	
+							<button  id="sub" type="submit" class="btn-style1 small">댓글등록하기</button>
+							
+							
 						</div>																					
 					</form>
 				</td>	
@@ -173,7 +175,21 @@
 	</div>
 </section>
 
+
+
 <script type="text/javascript">
+	
+	$(".abs").each(function(){
+		$(this).click(function(e){
+			if($(this).prev().val() ==""){
+				alert("댓글이 비어있습니다.");
+				e.preventDefault();
+			}else{
+			
+			}
+		});
+	});
+
 function exCommentReg(but) {
 			$(but).hide();
 			$(but).parent().parent().parent().next().show();
