@@ -23,7 +23,7 @@
 					<tr>
 						<th>상품타입</th>
 						<td>
-							<select name="goodsType" class="middle">
+							<select name="goodsType" class="middle" id="gType">
 								<option value="">선택</option>
 								<c:if test="${g.goodsType eq 'B' }">
 	 								<option value="B" selected>부케</option>
@@ -38,11 +38,11 @@
 					</tr>
 					<tr>
 						<th>상품이름</th>
-						<td><input type="text" name="goodsName"class="short" value="${g.goodsName }"></td>
+						<td><input type="text" name="goodsName"class="short" value="${g.goodsName }" id="gName"></td>
 					</tr>
 					<tr>
 						<th>상품가격</th>
-						<td><input type="text" name="goodsPrice" class="num short" value="${g.goodsPrice}"> 원</td>
+						<td><input type="text" name="goodsPrice" class="num short" value="${g.goodsPrice}" id="gPrice"> 원</td>
 					</tr>
 					<tr>
 						<th>태그</th>
@@ -50,11 +50,11 @@
 					</tr>
 					<tr>
 						<th>상품내용</th>
-						<td><textarea rows="5" cols="10" name="goodsContent" style="resize: none;">${g.goodsContent }</textarea></td>
+						<td><textarea rows="5" cols="10" name="goodsContent" style="resize: none;" id="gContent">${g.goodsContent }</textarea></td>
 					</tr>
 					<tr>
 						<th>숨김설정</th>
-						<td><select name="viewstatus" class="middle">
+						<td><select name="viewstatus" class="middle" id="view">
 								<option value="">선택</option>
 								<c:if test="${g.viewstatus == 0 }">
 	 								<option value="0" selected>보임설정</option>
@@ -79,11 +79,10 @@
 						</td>
 					</tr>
 				</table>
-				<div class="common-tbl-btn-group "  style="margin-bottom: 20px;"><button class="btn-style1" type="submit">등록</button> </div>
+				<div class="common-tbl-btn-group "  style="margin-bottom: 20px;"><button class="btn-style1" type="submit" id="sub">등록</button> </div>
 			</form>
 	</div>
-	<div>
-			<button>추가</button>
+	<div class="area">
 			<form action="/saveGallery.do" method="post" enctype="multipart/form-data">
 			<table class="comm-tbl" id="gall">
 					<colgroup>
@@ -116,29 +115,30 @@
 			<c:if test="${g.goodsType == 'I' }">
 				<input type="hidden" value="I" name="code">
 			</c:if>
-			<button type="submit">저장</button>
+			<button type="submit" id="imgSub">저장</button>
 			</form>
+		<span id="addGallery">사진추가하기</span>	
 		</div>
 		<br><br>
-		<span id="addGallery">사진추가하기</span>	
 	
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
 	<script>
-		function loadImg(f){
-			if(f.files.length !=0 && f.files[0] !=0){
-				//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
-				//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
-				var reader = new FileReader();
-				reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
-				reader.onload=function(e){ //다 읽어 왔으면 실행
-					$("#img-view").attr('src', e.target.result);
-				}
-			}else{
-				$("#img-view").attr('src','');
+	var count = 0;
+	function loadImg(f) {
+		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+			var reader = new FileReader();
+			reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+			reader.onload = function(e) { //다 읽어 왔으면 실행
+				$("#img-view").attr('src', e.target.result);
 			}
+		} else {
+			$("#img-view").attr('src', '');
 		}
+	}
 		
 		$("#tag").focus(function(){
 			if($("#tag").val() == ""){
@@ -152,8 +152,8 @@
 				 }
 		 });
 		$('#addGallery').click(function(){
-			
-			var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename'></label></td>";
+			count = count +1;
+			var addTable="<tr><td></td><td><label for='filename'><input type='file' class='filename' name='filename' onchange='chk(this)' id='multi'></label></td>";
 			addTable+= "<td><img src='' style='width:300px; heigth:300px'></td>";
 			addTable+= "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
 			addTable+= "<tr>";
@@ -161,7 +161,7 @@
 			$('#gall').append(addTable);
 		});
 		function imgDelete(tt){
-		
+			count = count - 1;
 			var filepath = $(tt).prev().val();
 			var code = "${g.goodsType}";
 			console.log(filepath);
@@ -186,5 +186,58 @@
 			})
 			 $(tt).parent().parent().remove();
 		}
+		
+		function chk_file_type(obj) {
+			var file_kind = obj.value.lastIndexOf('.');
+			var file_name = obj.value.substring(file_kind + 1, obj.length);
+			var file_type = file_name.toLowerCase();
+
+			var check = new Array();
+			check = [ 'jpg', 'gif', 'png', 'jpeg', 'bmp', 'jfif' ];
+
+			if (check.indexOf(file_type) == -1) {
+				alert("등록 할 수 없는 파일명 입니다.");
+				$(obj).val("");
+				return false;
+			} else {
+				return true;
+			}
+		}
+		function chk(f){
+			chk_file_type(f);
+		}
+		$("#sub").click(function(e){
+			if($("#gType").val() == ""){
+				alert("타입을 선택해주세요");
+				$("#gType").focus();
+				e.preventDefault();
+			}else if($("#gName").val() == ""){
+				alert("상품이름을 입력해주세요");
+				$("#gName").focus();
+				e.preventDefault();
+			}else if($("#gPrice").val() == ""){
+				alert("상품가격을 입력해주세요");
+				$("#gPrice").focus();
+				e.preventDefault();
+			}else if($("#tag").val() == ""){
+				alert("태그를 입력해주세요");
+				$("#tag").focus();
+				e.preventDefault();
+			}else if($("#gContent").val() == ""){
+				alert("상품내용을 입력해주세요");
+				$("#gContent").focus();
+				e.preventDefault();
+			}
+		});
+		$("#imgSub").click(function(e){
+			for(var i=0;i<count;i++){
+				if($(".filename").eq(i).val() == ""){
+					alert("파일이 비어있습니다.");
+					$(".filename").eq(i).focus();
+					e.preventDefault();
+					return;
+				}
+			}
+		});
 	</script>
 

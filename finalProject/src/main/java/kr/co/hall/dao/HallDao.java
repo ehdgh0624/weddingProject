@@ -55,11 +55,11 @@ public class HallDao {
 		int count = sqlSession.selectOne("hall.searchList",map);
 		return count;
 	}
-	public List<Hall> hallPc(int start, int end , int hCode) {
-		Map<String, Integer> map = new HashMap<String,Integer>();
+	public List<Hall> hallPc(int start, int end , String msg) {
+		Map<String, Object> map = new HashMap<String,Object>();
 		map.put("start", start);
 		map.put("end", end);
-		map.put("hCode", hCode);
+		map.put("msg", msg);
 		return sqlSession.selectList("hall.hallPc",map);
 	}
 	public int totalCountPc() {
@@ -136,6 +136,17 @@ public class HallDao {
 		map.put("prdName", prdName);
 		map.put("prdFilepath", prdFilepath);
 		return sqlSession.insert("scrapbook.insertOneScrap",map);
+	}
+	public ArrayList<Reservation> selectOneReservation(int hallNo, String memberId, String code) {
+		if(memberId == null) {
+			memberId = "null";
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallNo", hallNo);
+		map.put("memberId", memberId);
+		map.put("code", code);
+		List<Reservation> list = sqlSession.selectList("reservation.selectOneReservation",map);
+		return (ArrayList<Reservation>) list;
 	}
 	
 }

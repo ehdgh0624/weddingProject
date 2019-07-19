@@ -10,7 +10,6 @@
 <!-- Include English language -->
 <script src="dist/js/i18n/datepicker.en.js"></script>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- css -->
 <link rel="stylesheet" type="text/css"
@@ -461,18 +460,22 @@
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
 		if(${sessionScope.member != null}){
-			if($('#reviewWrite').css('display') == 'none'){
-				$('#reviewWrite').show();
-				$('#reviewWriteBtn').text("♥ 후기 저장");				
+			if(${reservation.memberId == null}){
+				alert("서비스를 이용하신 고객님만 작성 가능합니다.");
 			}else{
-				if($('#reviewContent').val() == ''){
-					alert("리뷰 내용을 작성해주세요.");
+				if($('#reviewWrite').css('display') == 'none'){
+					$('#reviewWrite').show();
+					$('#reviewWriteBtn').text("♥ 후기 저장");				
 				}else{
-					var reviewRef = ${hall.hallNo};
-					var reviewScope = $('#starScore').text() * 2;
-					$('#reviewRef').val(reviewRef);
-					$('#reviewScope').val(reviewScope);
-					$('#fileUploadForm').submit();					
+					if($('#reviewContent').val() == ''){
+						alert("리뷰 내용을 작성해주세요.");
+					}else{
+						var reviewRef = ${hall.hallNo};
+						var reviewScope = $('#starScore').text() * 2;
+						$('#reviewRef').val(reviewRef);
+						$('#reviewScope').val(reviewScope);
+						$('#fileUploadForm').submit();					
+					}
 				}
 			}
 		}else{
@@ -493,10 +496,17 @@
 			alert("하객수를 입력해주세요.")
 		}else if($("#option2Amount").val() == 0){
 			alert("식권 수량을 입력하세요.");
-		}else if(${hall.hallMinPerson} > $("#hallPerson").val() && $("#hallPerson").val() < ${hall.hallMaxPerson}){
+		}else if(${hall.hallMinPerson} > $("#hallPerson").val()){
 			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
 			$('#personSpan').css('color','red');
-		}else {
+			console.log(${hall.hallMinPerson});
+			console.log(${hall.hallMaxPerson});
+		}else if(${hall.hallMaxPerson} < $("#hallPerson").val()){
+			$('#personSpan').text(${hall.hallMinPerson}+"명 이상 ~"+${hall.hallMaxPerson}+"명 이하로 입력하세요.");
+			$('#personSpan').css('color','red');
+			console.log(${hall.hallMinPerson});
+			console.log(${hall.hallMaxPerson});
+		}else{
 			$('#personSpan').text('');
 			submitReservation();
 			

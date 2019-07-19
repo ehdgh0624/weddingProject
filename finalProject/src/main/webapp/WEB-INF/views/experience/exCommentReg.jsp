@@ -25,7 +25,9 @@
 		function javascript(){
 		    self.close();  
 		}
-
-</script>
+		
+		
+		
+	</script>
 </body>
 </html>
