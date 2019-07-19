@@ -49,6 +49,7 @@
 						<c:if test="${not empty param.searckHall}">
 							<span>'검색어 : ${param.searckHall }'</span>
 						</c:if>
+							<span id="tagSearch"></span>
 					</h3>
 					<form action="/hallSc.do" method="get">
 			            <select class="addr" name="hallLoc">   <!-- 지역 select -->
@@ -195,9 +196,11 @@
 </section>
 <script>
 	$(".tag").click(function(){
-	var msg=$(this).html();
+	var msgg=$(this).html();
+	var msg = msgg.substring(1);
+	location.href="/hallPc.do?msg="+msg;
 	$("#searchHall").val(msg);
-	location.href="/hallPc.do?="+msg;
+	$("#tagSearch").text("태그:" +msg);
 	});
 	
 	$("#pyeongieom").click(function(){	//평점 버튼 색상 변경
