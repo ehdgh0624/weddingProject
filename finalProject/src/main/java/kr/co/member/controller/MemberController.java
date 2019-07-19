@@ -105,6 +105,23 @@ public class MemberController {
 		memberService.deleteGallery(filepath);
 	}
 
+	@RequestMapping(value = "/changePw.do")
+	@ResponseBody
+	public String changePw(@RequestParam String pwinput,@RequestParam String id) {
+		System.out.println(pwinput);
+		System.out.println(id);
+		int result=memberService.changePw(pwinput,id);
+		System.out.println(result);
+		JSONObject obj = new JSONObject();
+		if(result>0) {
+			obj.put("result", "1");
+		}else {
+			obj.put("result", "0");
+		}
+	
+		return new Gson().toJson(obj);
+	}
+	
 	@RequestMapping(value = "/checkId.do")
 	@ResponseBody
 	public String checkId(@RequestParam String id) {
@@ -507,6 +524,7 @@ public class MemberController {
 					vos.getsPhone()+"/"+
 					vos.gettPhone();
 		Member vo = new Member();
+		
 		vo.setPhone(phone);
 		vo.setAddr(addr);
 		

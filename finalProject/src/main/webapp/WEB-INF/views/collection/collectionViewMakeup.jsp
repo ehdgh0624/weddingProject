@@ -205,6 +205,9 @@
 								<div style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
+									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
+										<span style="margin-left:10px;"><a>수정</a>	|	<a href="/deleteReview.do?reviewNo=${r.reviewNo}">삭제</a></span>
+									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
 									</span>

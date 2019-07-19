@@ -47,16 +47,21 @@ public class CollectionDao {
 	}
 	
 	public int totalCountSearch(String keyword, String searchAddr, String searchCode) {
-		String[] keywordArr = keyword.split(",");
-		if(keywordArr != null) {
+		String [] keywordArr = null;
+		if(keyword.length() > 0) {
+			keywordArr = keyword.split(",");			
 			for(int i = 0;i < keywordArr.length;i++) {
-				keywordArr[i] = "%"+keywordArr[i]+"%";
+				if(!keywordArr[i].equals("")) {
+					keywordArr[i] = "%"+keywordArr[i]+"%";
+				}
 			}
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("keywordArr", keywordArr);
-		map.put("PrdAddr", searchAddr);
+		map.put("prdAddr", searchAddr);
 		map.put("code", searchCode);
+		System.out.println("dao searchAddr : " + searchAddr);
+		System.out.println("dao searchCode : " + searchCode);
 		List list = sqlSession.selectList("collectionVo.selectSearchList", map);
 		int count = list.size();
 		return count;
@@ -100,17 +105,20 @@ public class CollectionDao {
 	}
 	
 	public List<Collection> pageSearchList(int start, int end, String keyword, String searchAddr, String searchCode){
-		String[] keywordArr = keyword.split(",");
-		if(keywordArr != null) {
+		String [] keywordArr = null;
+		if(keyword.length() > 0) {
+			keywordArr = keyword.split(",");			
 			for(int i = 0;i < keywordArr.length;i++) {
-				keywordArr[i] = "%"+keywordArr[i]+"%";
+				if(!keywordArr[i].equals("")) {
+					keywordArr[i] = "%"+keywordArr[i]+"%";
+				}
 			}
 		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("start", start);
 		map.put("end", end);
 		map.put("keywordArr", keywordArr);
-		map.put("PrdAddr", searchAddr);
+		map.put("prdAddr", searchAddr);
 		map.put("code", searchCode);
 		return sqlSession.selectList("collectionVo.pageSelectSearchList",map);
 	}
