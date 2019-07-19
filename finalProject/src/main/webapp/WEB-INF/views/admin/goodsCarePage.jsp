@@ -34,7 +34,7 @@
 									<span style="float:left;width: 70px; line-height:20px;background-color: lightgray; text-align: center; border-radius: 5px;font-size: 20px;">청첩장 </span>
 								</c:when>
 							</c:choose>
-							<span style="float:left;width:calc(100% - 100px); font-size: 22px;line-height: 20px;"><b>${g.goodsName}</b></span>
+							<span style="float:left;width:calc(100% - 100px); font-size: 22px;line-height: 20px;">${g.goodsName}</span>
 							<c:choose>
 							<c:when test="${g.viewstatus == 0}">
 								<span style="float:right;display:inline-block;"><img width="24px" src="/resources/img/viewstatus_on.png"></span>						
@@ -43,6 +43,7 @@
 								<span style="float:right;"><img src="/resources/img/viewstatus_off.png"></span>						
 							</c:when>
 							</c:choose>
+							<br><br>
 							<p style="float:left;width:100%;font-size:22px;text-align: right;">${g.goodsPrice }원 </p>
 							</div>
 							<div class="goodsTypeBtn" >

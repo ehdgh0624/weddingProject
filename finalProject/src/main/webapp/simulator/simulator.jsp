@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
+<jsp:include page="/WEB-INF/common/header.jsp" />
 <%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<jsp:include page="/WEB-INF/common/sub.jsp" />
 
 <%-- wrap --%>
 <section id="wrap">
 	<div class="area">
 		<div class="simulator-box">
 			<h2 class="simulator-tit">똑똑한 웨딩계산기</h2>
-			<p class="simulator-sub-tit">내 웨딩의 총 비용은 얼마일지를 <br>쉽고 빠르게 골라보고 가격을 확인해보세요</p>
+			<p class="simulator-sub-tit">
+				내 웨딩의 총 비용은 얼마일지를 <br>쉽고 빠르게 골라보고 가격을 확인해보세요
+			</p>
 			<div class="simulator-con">
 				<form action="/simulatorStandard.do" method="post">
 					<input type="hidden" name="start" value="1">
@@ -21,8 +23,7 @@
 						</colgroup>
 						<tr>
 							<th>지역</th>
-							<td>
-								<select name="weddingLoc" required>
+							<td><select name="weddingLoc" required>
 									<option value="전국">전국</option>
 									<option value="서울">서울</option>
 									<option value="광주">광주</option>
@@ -41,26 +42,40 @@
 									<option value="충북">충북</option>
 									<option value="충남">충남</option>
 									<option value="제주">제주</option>
-								</select>
-							</td>
+							</select></td>
 						</tr>
 						<tr>
 							<th>예식일</th>
-							<td><input type="text" name="weddingDate" class="datepicker wedding-date" placeholder="예식일을 선택해주세요" required></td>
+							<td><input type="text" name="weddingDate"
+								class="datepicker wedding-date" id="date"
+								placeholder="예식일을 선택해주세요"></td>
 						</tr>
 						<tr>
 							<th>하객수</th>
-							<td><input type="text" name="weddingPerson" class="num" placeholder="하객 수를 입력해주세요" required ></td>
+							<td><input type="text" name="weddingPerson" class="num"
+								placeholder="하객 수를 입력해주세요" id="person"></td>
 						</tr>
 					</table>
 					<div class="common-tbl-btn-group">
-						<button type="submit" class="btn-style1">계산 시작!!</button>
+						<button type="submit" class="btn-style1" id="sub">계산 시작!!</button>
 					</div>
 				</form>
 			</div>
 		</div>
 	</div>
 </section>
-
+<script>
+	$("#sub").click(function(e) {
+		if ($("#date").val() == "") {
+			alert("예식일을 선택해주세요");
+			$("#date").focus();
+			e.preventDefault();
+		} else if ($("#person").val() == "") {
+			alert("하객수를 입력해주세요");
+			$("#person").focus();
+			e.preventDefault();
+		}
+	});
+</script>
 <%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
+<jsp:include page="/WEB-INF/common/footer.jsp" />
