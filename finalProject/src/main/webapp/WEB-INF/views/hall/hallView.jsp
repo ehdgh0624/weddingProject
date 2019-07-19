@@ -451,7 +451,12 @@
 		$('#img4').attr('src', '');
 		$('#img5').attr('src', '');
 		if($('#reviewImageUpload')[0].files.length > 5){
-			alert("파일 수가 너무 많습니다.");
+			alert("이미지 수가 너무 많습니다.");
+			$('#img1').hide();
+			$('#img2').hide();
+			$('#img3').hide();		
+			$('#img4').hide();		
+			$('#img5').hide();	
 			$('#reviewImageUpload')[0].remove();
 			$('#fileUploadForm').append('<input multiple="multiple" type="file" class="reviewImageUpload" id="reviewImageUpload" name="uploadFile" style="width:400px;cursor: pointer;visibility: hidden;">');
 		}else{
