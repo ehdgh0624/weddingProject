@@ -53,4 +53,24 @@ public class NoticeDao {
 		
 		return sqlSession.delete("notice.noticeDelete",noticeNo);
 	}
+
+	public int noticeSearch(String type, String keyword) {
+		Map<String,String> map = new HashMap<String, String>();
+		map.put("type",type);
+		map.put("keyword",keyword);
+		
+		int result = sqlSession.selectOne("notice.noticeSearch",map);
+		return result;
+	}
+
+	public List<Notice> selectSearchList(int start, int end, String type, String keyword) {
+		
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("type", type);
+		map.put("keyword", keyword);
+		
+		return sqlSession.selectList("notice.selectSearchList",map);
+	}
 }

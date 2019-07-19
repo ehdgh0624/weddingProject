@@ -211,7 +211,7 @@ public class MemberController {
 		}
 		int result=memberService.addGall(gList);
 		if(code.equals("B") || code.equals("I")) {
-			return "/admin/addGoodsPage";
+			return "/admin/goodsCarePage";
 		}else {
 			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
 		}

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.collection.model.vo.AllPageData;
 import kr.co.collection.model.vo.Dress;
@@ -45,12 +46,11 @@ public class ExperienceService {
 	
 
 
-
+	@Transactional
 	public int insertexperience(Experience ex) {
 		// TODO Auto-generated method stub
 		return experienceDao.insertexperience(ex);
 	}
-
 
 
 	public ExperienePageDate edList(int reqPage) {
@@ -119,6 +119,7 @@ public class ExperienceService {
 		
 	
 	}
+	@Transactional
 	public int experienceCommentInsert(ExperienceComment ec) {
 		
 		return experienceDao.experienceCommentInsert(ec);
@@ -126,20 +127,21 @@ public class ExperienceService {
 
 
 
+	@Transactional
 	public int updateComment(ExperienceComment e) {
 	
 		return experienceDao.updateComment(e);
 	}
 
 
-
+	@Transactional
 	public int exCommentRegs(ExperienceComment e) {
 		// TODO Auto-generated method stub
 		return experienceDao.exCommentRegs(e);
 	}
 
 
-
+	@Transactional
 	public int CommentDelete(int experienceCommentNo) {
 		
 		return experienceDao.CommentDelete(experienceCommentNo);
@@ -220,14 +222,14 @@ public class ExperienceService {
 	}
 
 
-
+	@Transactional
 	public int exDelete(int experienceNo) {
 		
 		return experienceDao.exDelete(experienceNo);
 	}
 
 
-
+	@Transactional
 	public Experience exChg(int experienceNo) {
 		
 		
@@ -235,7 +237,7 @@ public class ExperienceService {
 	}
 
 
-
+	@Transactional
 	public int upDateexperience(Experience ex) {
 		// TODO Auto-generated method stub
 		return experienceDao.upDateexperience(ex);

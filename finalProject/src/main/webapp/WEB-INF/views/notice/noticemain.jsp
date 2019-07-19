@@ -49,7 +49,7 @@
 			<div class="paging">${npd.pageNavi}</div>
 		  <!-- 검색박스 -->
           <div class="board-search-box">
-             <form action="/qnaSearch.do" method="get">
+             <form action="/noticeSearch.do" method="get">
                <input placeholder="글 제목를 입력해주세요." type="search" name="keyword" class="search-word" value="${param.keyword }">
                <button type="submit" class="bbs-search-btn" title="검색"><img src="/resources/img/search_icon.png" style="width:30px;"></button>
             </form>
