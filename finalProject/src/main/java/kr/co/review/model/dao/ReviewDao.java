@@ -59,7 +59,6 @@ public class ReviewDao {
 		if(reviewCount > 1) {
 			cal = (reviewSum-reviewScope) / (reviewCount-1);
 		}
-		System.out.println("dao cal : "+cal);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);
 		map.put("objectNo", objectNo);

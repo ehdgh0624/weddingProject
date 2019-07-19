@@ -128,11 +128,6 @@ public class ReviewController {
 				reviewSum += i.getReviewScope();
 			}
 		}
-		System.out.println("delete code : "+code);
-		System.out.println("delete objectNo : "+objectNo);
-		System.out.println("delete reviewScope : "+reviewScope);
-		System.out.println("delete reviewCount : "+reviewCount);
-		System.out.println("delete reviewSum : "+reviewSum);
 		int result = reviewService.deleteReview(reviewNo);
 		int scopeResult = reviewService.deleteScope(code, objectNo, reviewScope, reviewCount, reviewSum);			
 		return scopeResult;

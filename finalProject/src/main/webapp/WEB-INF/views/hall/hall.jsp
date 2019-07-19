@@ -49,8 +49,9 @@
 						<c:if test="${not empty param.searckHall}">
 							<span>'검색어 : ${param.searckHall }'</span>
 						</c:if>
-							<span id="tagSearch"></span>
+						<span id="tagSearch"></span>						
 					</h3>
+
 					<form action="/hallSc.do" method="get">
 			            <select class="addr" name="hallLoc">   <!-- 지역 select -->
 			            	<option value="전국">모든지역</option>
@@ -195,12 +196,12 @@
 	</div>
 </section>
 <script>
-	$(".tag").click(function(){
-	var msgg=$(this).html();
-	var msg = msgg.substring(1);
-	location.href="/hallPc.do?msg="+msg;
-	$("#searchHall").val(msg);
-	$("#tagSearch").text("태그:" +msg);
+	
+	$("#tagSearch").html('태그 : #${param.msg}');//태그 클릭시 검색 조건 띄우기
+	$(".tag").click(function(){	//태그 클릭시 해당 태그 리스트 가져오기
+		var msgg = $(this).html();
+		var msg = msgg.substring(1);
+		location.href="/hallPc.do?msg="+msg;
 	});
 	
 	$("#pyeongieom").click(function(){	//평점 버튼 색상 변경
