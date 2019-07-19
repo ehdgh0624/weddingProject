@@ -235,10 +235,6 @@ function cart_click(cart){
 
 //콤마찍기
 function addComma(num) {
-  //var regexp = /\B(?=(\d{3})+(?!\d))/g;
-  //return num.toString().replace(regexp, ',');
-  
-  //num = String(num);
   return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
@@ -265,13 +261,6 @@ $(document).ready(function(){
 			console.log(cartOneArr);
 			console.log(cartArr);
 		});
-		
-		/*var option = {
-			data : {cartArr:cartArr},
-			success : function(data){
-				console.log('성공');
-			}
-		};*/
 		
 		//자바스크립트 배열을 json String 형식으로 변환
 		var option = JSON.stringify(cartArr);
@@ -316,7 +305,6 @@ $(document).ready(function(){
 });
 
 
-
 //웨딩홀 더보기
 function hall_more(start){
 	var param = {start : start, weddingPerson : $("#weddingPerson").val(), weddingLoc : $("#weddingLoc").val(), weddingDate : $("#weddingDate").val()}; //start라는 키값 넘겨줌
@@ -349,7 +337,6 @@ function hall_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#hall-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -404,7 +391,6 @@ function dress_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#dress-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -460,7 +446,6 @@ function makeup_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#makeup-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -514,7 +499,6 @@ function studio_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#studio-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
