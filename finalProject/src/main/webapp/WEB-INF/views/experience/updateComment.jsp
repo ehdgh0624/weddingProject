@@ -12,7 +12,7 @@
 <div style="text-align: center;" >
 	<h1 style="text-align: center;" >댓글 수정</h1>
 	<form action="/UpdateComment.do">
-	${experienceCommentNo}
+	
 	<input type="text" value="${experienceCommentContent}" name="experienceCommentContent">
 	<input type="hidden" name="experienceCommentNo" value="${experienceCommentNo}"> 
 	<br>

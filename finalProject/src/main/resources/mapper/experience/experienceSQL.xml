@@ -95,7 +95,7 @@ select experience_comment_no as experienceCommentNo ,
     experience_comment_ref as experienceCommentRef,
     experience_comment_date as experienceCommentDate
     from 
-    experience_comment where experience_ref=#{experienceNo }
+    experience_comment where experience_ref=#{experienceNo } order by experience_comment_no DESC
 </select>
 
 <update id="updateComment" parameterType="experienceComment">
@@ -118,7 +118,7 @@ select experience_comment_no as experienceCommentNo ,
 </insert>
 <delete id="CommentDelete" parameterType="_int">
 				delete from EXPERIENCE_COMMENT 
-				where EXPERIENCE_COMMENT_NO=#{experienceCommentNo}
+				where EXPERIENCE_COMMENT_NO=#{experienceCommentNo} 
 
 </delete>
 <select id="selectListex" parameterType="map" resultType="experience">
@@ -163,7 +163,7 @@ select  experience_no as experienceNo,
 		experience_hall as experienceHall,
 		experience_filename as experienceFileName,
 		experience_filepath as experienceFilePath 
-		from experience where experience_writer=#{memberId}
+		from experience where experience_writer=#{memberId}  order by experienceNo DESC
 
  </select>
  <delete id="exDelete" parameterType="_int">

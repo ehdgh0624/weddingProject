@@ -25,7 +25,7 @@
 					
 							<label for="imgInp">
 								<img id="img" name="img"  src="resources/upload/${ex.experienceFilePath}" width="100px" height="100px">
-								<button type="button" id="fileDelBtn">삭제</button>
+								
 							</label>
 						</td>
 					</tr>
@@ -40,24 +40,13 @@
 			    	 <input type="hidden" id="experienceNo" value="${ex.experienceNo}" name="experienceNo">	
 			    	 <input type="hidden" name="oldFilename" value="${ex.experienceFileName }">	    
 			    	 <input type="hidden" name="oldFilepath" value="${ex.experienceFilePath }">	
-			    	 <input type="hidden" id="status" name="status" value="stay">	 			    	 
+			    	 	 			    	 
 			    	</div>
 			    </form>	
 			</div>
 	</section>
 
 <script>
-$(document).ready(function(){
-	$('#fileDelBtn').click(function(){
-		if(confirm("첨부파일을 삭제하시겠습니까?")){
-			$("#fileDelBtn").hide();
-			$('#imgInp').show();
-			$("#status").val('delete');
-			$("#img").attr('src','');
-		};
-	});			
-});
-
 function readURL(input) {
     if (input.files && input.files[0]) {
         var reader = new FileReader();

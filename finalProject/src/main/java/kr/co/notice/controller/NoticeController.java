@@ -15,6 +15,7 @@ import java.util.regex.Pattern;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -319,5 +320,22 @@ public class NoticeController {
 		
 		return "redirect:/noticeMain.do";
 	}
+	@RequestMapping(value="/noticeSearch.do")
+	public ModelAndView noticeSearch(HttpServletRequest request, String type, String keyword) {
+		
+		int reqPage;
+		HttpSession session = request.getSession(false);
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		} catch (NumberFormatException e) {
+			reqPage = 1;
+		}
+		NoticePageData npd = noticeService.noticeSearch(reqPage,type,keyword);
+			
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("npd", npd);
+		mav.setViewName("notice/noticemain");
+		return mav;
 	
+	}
 }
