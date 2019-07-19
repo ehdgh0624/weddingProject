@@ -408,7 +408,7 @@
 	$(document).on("click",".deleteReview",function(){
 		var selectParents = $(this).parents('.reviewGroup');
 		var objectNo = ${hall.hallNo};
-		var code = "D";
+		var code = "H";
 		var reviewScope = $(this).siblings('.dressScopeSpan').text();
 		var reviewNo = selectParents.attr('id');
 		var reviewFilepath = $(this).parents('.reviewUpdateGroup').siblings('.reviewFilepathAll').text();
