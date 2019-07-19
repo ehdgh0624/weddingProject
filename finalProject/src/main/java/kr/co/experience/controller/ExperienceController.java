@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -157,7 +157,9 @@ public class ExperienceController {
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
 		String level1ContentInput = request.getParameter("level1ContentInput");		
 		ExperienceComment e = new ExperienceComment();
-
+			
+		level1ContentInput = level1ContentInput.replace("<", "");
+		
 		e.setExperienceCommentNo(experienceCommentNo);
 		e.setExperienceCommentContent(level1ContentInput);
 
@@ -171,8 +173,9 @@ public class ExperienceController {
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo")); 
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
 		String level1ContentInput = request.getParameter("level1ContentInput");		
+		level1ContentInput = level1ContentInput.replace("<", "");
 		ExperienceComment e = new ExperienceComment();
-
+		
 		e.setExperienceCommentNo(experienceCommentNo);
 		e.setExperienceCommentContent(level1ContentInput);
 
@@ -188,30 +191,45 @@ public class ExperienceController {
 	}
 
 	@RequestMapping(value = "/uploadTest.do")
-	public String uploadTest(HttpServletRequest request, @RequestParam MultipartFile experiencefile, String editor) {
+	public String uploadTest(HttpServletRequest request, @RequestParam MultipartFile experiencefile, String editor,Model model) {
+			String experienceTitle = request.getParameter("experienceTitle");	
+			String experiencefileCh = experiencefile.getOriginalFilename();
+			System.out.println(experiencefileCh+"::::::::::::experiencefileexperiencefileexperiencefile");
 		
+			experienceTitle = experienceTitle.replace("<", "");
+			if( experiencefileCh == null || experiencefileCh.length() ==0 &&  experienceTitle == null || experienceTitle.length() == 0 && editor ==null || editor.length()==0) {
+				
+				model.addAttribute("msg", "내용을 입력해주세요! ");
+				model.addAttribute("loc","experienceAll.do");
+				String view = "common/msg";
+				return view;
+			}
+			else if(experiencefileCh == null || experiencefileCh.length() ==0) {		
+				model.addAttribute("msg", "대표 사진을 등록해주세요");
+				model.addAttribute("loc","experienceAll.do");
+				String view = "common/msg";
+				return view;
+			}else if (experienceTitle == null || experienceTitle.length() == 0) {
+				model.addAttribute("msg", "제목을 써주세요");
+				model.addAttribute("loc","experienceAll.do");
+				String view = "common/msg";
+				return view;
+			}else if (editor ==null || editor.length()==0) {
+				model.addAttribute("msg", "내용을 써주세요");
+				model.addAttribute("loc","experienceAll.do");
+				String view = "common/msg";
+				return view;
+			}
+
 		String experienceWriter = request.getParameter("experienceWriter");
 		String imgInp = request.getParameter("imgInp");
-		String experienceTitle = request.getParameter("experienceTitle");
-
-	
-	
-		
-		
 		Pattern pattern2 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
 		Matcher matcher2 = pattern2.matcher(editor);					// 그 정규표현식에 매칭 
 		while (matcher2.find()) {	// 파인드 찾는다 							
 			String as = matcher2.group();
-			as = as.substring(0,as.length()-1);
-			
+			as = as.substring(0,as.length()-1);	
 			System.out.println(as);
-		
-		
-			
-	
-		
 			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
-		
 			// 파일 복사 코드
 			String file1 = root+"image2/"+ as;
 			String file2 = root+"image/"+ as;
@@ -232,37 +250,13 @@ public class ExperienceController {
 				e.printStackTrace();
 			}
 			// 여기까지 파일복사 코드
-
-		}// png까지 불러옴
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		}// png까지 불러옴		
 		SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 		Date date = new Date();
 		String dates = sd.format(date);
-		
 		Experience ex = new Experience();
-
 		editor = editor.replaceAll("image2", "image"); // 마지막 디비 들어갈때 개행처리
-
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload");
-
 		String oiginNname = experiencefile.getOriginalFilename();
 		// 파일명 확장자 나누기
 		String onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
@@ -278,12 +272,10 @@ public class ExperienceController {
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
 				bos.write(bytes);
 				bos.close();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-
 		ex.setExperienceWriter(experienceWriter);
 		ex.setExperienceTitle(experienceTitle);
 		ex.setExperienceContent(editor);
@@ -336,7 +328,7 @@ public class ExperienceController {
 			// ck 에디터 이미지 업로드시 발생하는 코드
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
-			String fileUrl = "http://192.168.10.63/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
+			String fileUrl = "http://192.168.10.92/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
 			printWriter.println(
 					"<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
 							+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
@@ -364,14 +356,22 @@ public class ExperienceController {
 	}
 
 	@RequestMapping(value = "/experienceCommentInsert.do")
-	public String experienceCommentInsert(HttpServletRequest request) {
+	public String experienceCommentInsert(HttpServletRequest request,Model model) {
 
 		String experienceCommentWriter = request.getParameter("experienceCommentWriter");
 		int experienceCommentRef = Integer.parseInt(request.getParameter("experienceCommentRef"));
 		int experienceCommentLevel = Integer.parseInt(request.getParameter("experienceCommentLevel"));
 		int experienceCommentCommentRef = Integer.parseInt(request.getParameter("experienceCommentCommentRef"));
 		String experienceCommentContent = request.getParameter("experienceCommentContent");
-
+		
+		experienceCommentContent = experienceCommentContent.replace("<", "");
+		if(experienceCommentContent == null || experienceCommentContent.length() ==0) {
+			model.addAttribute("msg", "댓글을 써주세요 ");
+			model.addAttribute("loc","experienceDetail.do?experienceNo="+experienceCommentRef);
+			String view = "common/msg";
+			return view;
+		}
+		
 		ExperienceComment ec = new ExperienceComment();
 
 		ec.setExperienceCommentWriter(experienceCommentWriter);
@@ -441,12 +441,45 @@ public class ExperienceController {
 
 	@RequestMapping(value = "/upDateloadTest.do")
 	public String upDateloadTest(HttpServletRequest request, @RequestParam MultipartFile experiencefile,
-			String editor ) {
+			String editor ,Model model) {		
+		String experiencefileCh = experiencefile.getOriginalFilename();		
+		String experienceTitle = request.getParameter("experienceTitle");
+		
+		
+		experienceTitle = experienceTitle.replace("<", "");
+		
+		if( experiencefileCh == null || experiencefileCh.length() ==0 &&  experienceTitle == null || experienceTitle.length() == 0 && editor ==null || editor.length()==0) {
+			
+			model.addAttribute("msg", "뭐하냐 아무것도안하고 ");
+			model.addAttribute("loc","experienceAll.do");
+			String view = "common/msg";
+			return view;
+		}
+		else if (experienceTitle == null || experienceTitle.length() == 0) {
+			model.addAttribute("msg", "제목을 써주세요");
+			model.addAttribute("loc","myexperience.do");
+			String view = "common/msg";
+			return view;
+		}else if (editor ==null || editor.length()==0) {
+			model.addAttribute("msg", "내용을 써주세요");
+			model.addAttribute("loc","myexperience.do");
+			String view = "common/msg";
+			return view;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		System.out.println("수정하기 버튼 눌름");
 		System.out.println(experiencefile);
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
 		String experienceWriter = request.getParameter("experienceWriter");
-		String experienceTitle = request.getParameter("experienceTitle");	
+			
 		String ed = editor;
 		String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 		if(ed.contains("KDC")) {
