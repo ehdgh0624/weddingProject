@@ -210,13 +210,11 @@ public class ExperienceController {
 			
 	
 		
-			
+			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 		
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"
-					+ as;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-					+ as;
+			String file1 = root+"image2/"+ as;
+			String file2 = root+"image/"+ as;
 			try {
 				FileInputStream fis = new FileInputStream(file1);
 				FileOutputStream fos = new FileOutputStream(file2);
@@ -326,12 +324,11 @@ public class ExperienceController {
 			SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date date = new Date();
 			String date1 = sd.format(date);
-
+			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 			
 			// 파일 아웃 스트림
 			out = new FileOutputStream(new File(
-					"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"
-							+ filename + date1 +"KDC"+ filelast));
+					root+"image2/ID"+ filename + date1 +"KDC"+ filelast));
 			out.write(bytes);
 			
 			System.out.println(fileName);
@@ -339,7 +336,7 @@ public class ExperienceController {
 			// ck 에디터 이미지 업로드시 발생하는 코드
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
-			String fileUrl = "http://192.168.10.92/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
+			String fileUrl = "http://192.168.10.63/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
 			printWriter.println(
 					"<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
 							+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
@@ -451,11 +448,11 @@ public class ExperienceController {
 		String experienceWriter = request.getParameter("experienceWriter");
 		String experienceTitle = request.getParameter("experienceTitle");	
 		String ed = editor;
+		String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 		if(ed.contains("KDC")) {
 			
 		Pattern pattern5 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
 		Matcher matcher5 = pattern5.matcher(editor);					// 그 정규표현식에 매칭 
-		
 		
 		while (matcher5.find()) {	// 파인드 찾는다 							
 			
@@ -463,10 +460,8 @@ public class ExperienceController {
 			as = as.substring(0,as.length()-1);			
 			System.out.println(as +"::::as임");						
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"
-					+ as ;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-					+ as ;			
+			String file1 = root+"image2/"+ as ;
+			String file2 = root+"image/"+ as ;			
 			System.out.println(file1+":::::file1");
 			try {
 				FileInputStream fis = new FileInputStream(file1);
@@ -530,8 +525,7 @@ public class ExperienceController {
 				bos.close();
 				String experienceFilePath = request.getParameter("experienceFilePath");
 				System.out.println(experienceFilePath+"::::experienceFilePath");
-				File fe = new File("C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\upload/"
-						+ experienceFilePath);
+				File fe = new File(savePath+"/"+ experienceFilePath);
 				if (fe.exists()) { // 파일존재여부확인
 					if (fe.isFile()) {
 						fe.delete();
@@ -585,8 +579,7 @@ public class ExperienceController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
+						root+"image/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
 				listDetele.delete();
 				System.out.println("삭제성공");
 			}	
@@ -621,8 +614,7 @@ public class ExperienceController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
+						root+"image/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
 				boolean result = true; // 참 거짓으로 구분짓는다
 				for (int j = 0; j < list2.size(); j++) {     // 반복문으로 list2 사이즈만큼 반복한다.
 					if (list.get(i).equals(list2.get(j))) {  // if 문 list(i) 가 list2(i) 값는것이 있는지 반복해서 확인한다.
