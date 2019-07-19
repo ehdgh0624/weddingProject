@@ -11,20 +11,23 @@
 <section id="wrap">
 	<div class="area">
 		<form action="/noticeWriting2.do" method="post" enctype="multipart/form-data">
-			<table class="comm-tbl">
+			<table class="comm-tbl" style="margin-top: 30px;">
 				<tr>
 					<th>제목</th>
-					<td><input type="text"  id="noticeTitle" name="noticeTitle"></td>
+					<td><input type="text"  id="noticeTitle" name="noticeTitle" required></td>
+				</tr>
+				<tr>
+					<th>작성자</th>
+					<td><input type="text"  id="noticeTitle" name="noticeWriter" value="${sessionScope.member.memberId }" required readonly></td>
 				</tr>
 				
 				<tr>
-					<td colspan="2"><textarea name="editor"  id="editor" cols="80"></textarea></td>
+					<td colspan="2"><textarea name="editor"  id="editor" cols="80" required></textarea></td>
 				</tr>		    
 		    </table>
 		    <div class="common-tbl-btn-group">
 		    	<button type="submit" class="btn-style1">등록하기</button>
 		    </div>
-		    <input type="hidden" id ="userId" value="${sessionScope.member.memberId }" name="userId">
 		</form>
 	</div>
 </section>

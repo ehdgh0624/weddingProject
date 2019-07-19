@@ -112,7 +112,7 @@ public class NoticeController {
 				// ck 에디터 이미지 업로드시 발생하는 코드
 				String callback = request.getParameter("CKEditorFuncNum");
 				printWriter = response.getWriter();
-				String fileUrl = "http://192.168.10.92/resources/editor/notice2/ID" + filename + date1 +"KDC"+filelast;// url경로
+				String fileUrl = "http://192.168.10.63/resources/editor/notice2/ID" + filename + date1 +"KDC"+filelast;// url경로
 				printWriter.println(
 						"<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
 								+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
@@ -142,7 +142,7 @@ public class NoticeController {
 	@RequestMapping(value="/noticeWriting2.do")
 	public String noticeUpload(HttpServletRequest request, String editor) { // 등록 누를시 발생하는 이벤트
 		 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");	
-		String noticeWriter = request.getParameter("userId");
+		String noticeWriter = request.getParameter("noticeWriter");
 		String noticeTitle = request.getParameter("noticeTitle");
 		Pattern pattern2 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
 		Matcher matcher2 = pattern2.matcher(editor);					// 그 정규표현식에 매칭 
