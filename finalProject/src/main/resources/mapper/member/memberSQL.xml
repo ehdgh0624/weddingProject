@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
+	<insert id="insertOneTime" parameterType="map">
+		insert into easylogin values(#{memberId},#{number})
+	</insert>
+	<delete id="deleteOneTimeLogin" parameterType="string">
+		delete from easylogin where member_Id=#{memberId}
+	</delete>
+	<select id="getMemberId" parameterType="string" resultType="string">
+		select member_id as memberId from easylogin
+		where easy_number=#{number}
+	</select>
+	 <select id="selectOneMemberOnly" parameterType="member" resultType="member">
+    	select 
+    	member_no as memberNo,
+    	member_id as memberId,
+    	member_pw as memberPw,
+    	member_name as memberName,
+    	phone as phone,
+    	email as email,
+    	birthday as birthDay,
+    	addr as addr,
+    	marry_schedule as marrySchedule,
+    	expect_visitor as expectVisitor,
+    	budget as budget,
+    	enrollDate as enrollDate,
+    	member_code as memberCode
+  	    from member where member_id=#{memberId}
+    </select>
+	
+
 	<update id="changePw" parameterType="string">
 		update member set
 		member_pw=#{memberPw}
@@ -59,6 +88,24 @@
     	enrollDate as enrollDate,
     	member_code as memberCode
   	    from member where member_id=#{memberId} and member_pw=#{memberPw}
+    </select>
+    
+       <select id="getMember" parameterType="string" resultType="member">
+    	select 
+    	member_no as memberNo,
+    	member_id as memberId,
+    	member_pw as memberPw,
+    	member_name as memberName,
+    	phone as phone,
+    	email as email,
+    	birthday as birthDay,
+    	addr as addr,
+    	marry_schedule as marrySchedule,
+    	expect_visitor as expectVisitor,
+    	budget as budget,
+    	enrollDate as enrollDate,
+    	member_code as memberCode
+  	    from member where member_id=#{id}
     </select>
     <select id ="selectAllStudioMember" parameterType="member" resultType="studio">
     	select

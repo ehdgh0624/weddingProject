@@ -57,7 +57,7 @@ public class ExperienceController {
 
 		return "redirect:/experienceAllList.do?reqPage=" + reqPage; // 페이지를 1 을 보내준다
 	}
-
+	
 	@RequestMapping(value = "/experienceAllList.do")
 	public ModelAndView experienceAllList(int reqPage, HttpSession session) {
 		
@@ -124,21 +124,22 @@ public class ExperienceController {
 		return mav;
 	}
 
-	@RequestMapping(value = "exCommentRegs.do")
+	@RequestMapping(value = "/exCommentRegs.do")
 	public String exCommentRegs(HttpServletRequest request) {
 		String experienceCommentWriter = request.getParameter("experienceCommentWriter");
 		String experienceCommentContent = request.getParameter("experienceCommentContent");
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
 		int experienceCommentLevel = Integer.parseInt(request.getParameter("experienceCommentLevel"));
 		int experienceCommentRef = Integer.parseInt(request.getParameter("experienceCommentRef"));
+		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
 		ExperienceComment e = new ExperienceComment();
 		e.setExperienceCommentWriter(experienceCommentWriter);
 		e.setExperienceCommentContent(experienceCommentContent);
 		e.setExperienceCommentNo(experienceCommentNo);
 		e.setExperienceCommentLevel(experienceCommentLevel);
-		e.setExperienceCommentRef(experienceCommentRef);
+		e.setExperienceCommentRef(experienceNo);
 		int result = experienceService.exCommentRegs(e);
-		return "redirect:/views/close.jsp";
+		return "redirect:/experienceDetail.do?experienceNo="+experienceNo;
 	}
 
 	@RequestMapping(value = "/UpdateComments.do", method = RequestMethod.GET)
@@ -152,17 +153,32 @@ public class ExperienceController {
 
 	@RequestMapping(value = "/UpdateComment.do")
 	public String updateComment(HttpServletRequest request) {
-		String experienceCommentContent = request.getParameter("experienceCommentContent");
+		int experienceNo = Integer.parseInt(request.getParameter("experienceNo")); 
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
-
+		String level1ContentInput = request.getParameter("level1ContentInput");		
 		ExperienceComment e = new ExperienceComment();
 
 		e.setExperienceCommentNo(experienceCommentNo);
-		e.setExperienceCommentContent(experienceCommentContent);
+		e.setExperienceCommentContent(level1ContentInput);
 
 		int result = experienceService.updateComment(e);
 
-		return "redirect:/views/close.jsp";
+		return "redirect:/experienceDetail.do?experienceNo="+experienceNo;
+
+	}
+	@RequestMapping(value = "/UpdateComment2.do")
+	public String updateComment2(HttpServletRequest request) {
+		int experienceNo = Integer.parseInt(request.getParameter("experienceNo")); 
+		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
+		String level1ContentInput = request.getParameter("level1ContentInput");		
+		ExperienceComment e = new ExperienceComment();
+
+		e.setExperienceCommentNo(experienceCommentNo);
+		e.setExperienceCommentContent(level1ContentInput);
+
+		int result = experienceService.updateComment(e);
+
+		return "redirect:/experienceDetail.do?experienceNo="+experienceNo;
 
 	}
 
@@ -194,13 +210,11 @@ public class ExperienceController {
 			
 	
 		
-			
+			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 		
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"
-					+ as;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-					+ as;
+			String file1 = root+"image2/"+ as;
+			String file2 = root+"image/"+ as;
 			try {
 				FileInputStream fis = new FileInputStream(file1);
 				FileOutputStream fos = new FileOutputStream(file2);
@@ -310,12 +324,11 @@ public class ExperienceController {
 			SimpleDateFormat sd = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date date = new Date();
 			String date1 = sd.format(date);
-
+			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 			
 			// 파일 아웃 스트림
 			out = new FileOutputStream(new File(
-					"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/ID"
-							+ filename + date1 +"KDC"+ filelast));
+					root+"image2/ID"+ filename + date1 +"KDC"+ filelast));
 			out.write(bytes);
 			
 			System.out.println(fileName);
@@ -323,7 +336,7 @@ public class ExperienceController {
 			// ck 에디터 이미지 업로드시 발생하는 코드
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
-			String fileUrl = "http://192.168.10.92/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
+			String fileUrl = "http://192.168.10.63/resources/editor/image2/ID" + filename + date1 +"KDC"+filelast;// url경로
 			printWriter.println(
 					"<script src='https://code.jquery.com/jquery-3.4.0.js' integrity='sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo='crossorigin='anonymous'></script>"
 							+ "<script type='text/javascript'>window.parent.CKEDITOR.tools.callFunction(" + callback
@@ -375,9 +388,10 @@ public class ExperienceController {
 	@RequestMapping(value = "CommentDelete.do")
 	public String CommentDelete(HttpServletRequest request) {
 		System.out.println("삭제버튼 누름");
+		
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
-
+		System.out.println(experienceCommentNo+"댓글 고유 번호 ");
 		int reuslt = experienceService.CommentDelete(experienceCommentNo);
 
 		System.out.println(experienceCommentNo);
@@ -432,24 +446,13 @@ public class ExperienceController {
 		System.out.println(experiencefile);
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
 		String experienceWriter = request.getParameter("experienceWriter");
-		String experienceTitle = request.getParameter("experienceTitle");
-
-		
-		
-		
-		
-	
-			
-		
-		
-		
-		
+		String experienceTitle = request.getParameter("experienceTitle");	
 		String ed = editor;
+		String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 		if(ed.contains("KDC")) {
 			
 		Pattern pattern5 = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
 		Matcher matcher5 = pattern5.matcher(editor);					// 그 정규표현식에 매칭 
-		
 		
 		while (matcher5.find()) {	// 파인드 찾는다 							
 			
@@ -457,10 +460,8 @@ public class ExperienceController {
 			as = as.substring(0,as.length()-1);			
 			System.out.println(as +"::::as임");						
 			// 파일 복사 코드
-			String file1 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image2/"
-					+ as ;
-			String file2 = "C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-					+ as ;			
+			String file1 = root+"image2/"+ as ;
+			String file2 = root+"image/"+ as ;			
 			System.out.println(file1+":::::file1");
 			try {
 				FileInputStream fis = new FileInputStream(file1);
@@ -485,40 +486,32 @@ public class ExperienceController {
 		String dates = sd.format(date);
 		Experience ex = new Experience();
 		editor = editor.replaceAll("image2", "image"); // 마지막 디비 들어갈때 문
+		
+		
+		
 		String savePath = request.getSession().getServletContext().getRealPath("/resources/upload");
-		
-		
-		
-		System.out.println(experiencefile+"니다experiencefile입니다");
 		String oiginNname = experiencefile.getOriginalFilename();
 		String onlyFilename = "";
 		String extension = "";
 		String filePath="";
-		System.out.println("오리지날 네임"+oiginNname);
 		// 파일명 확장자 나누기
 		
-		if(!oiginNname.equals("")) {
+		if(!oiginNname.equals("")) { // 새로 변경하였을때
 			
 		onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
 		 extension = oiginNname.substring(oiginNname.indexOf("."));
 			 filePath = onlyFilename + dates + "1" + extension;
-		}else {
+		}else { // 대표사진 변경안햇을때
 			
 				
-			String pa = request.getParameter("oldFilepath");
-			extension = pa.substring(pa.indexOf("."));
-			
+			/*
+			 * String pa = request.getParameter("oldFilepath"); extension =
+			 * pa.substring(pa.indexOf("."));
+			 */
 			onlyFilename = request.getParameter("oldFilename");
-			
 			filePath =  request.getParameter("oldFilepath");
 		
 		}
-		
-		// img`1 = 현재시간을 초단위.jsp
-		
-	
-		
-		
 		String fullPath = savePath + "/" + filePath;
 		
 		if (!experiencefile.isEmpty()) {
@@ -532,8 +525,7 @@ public class ExperienceController {
 				bos.close();
 				String experienceFilePath = request.getParameter("experienceFilePath");
 				System.out.println(experienceFilePath+"::::experienceFilePath");
-				File fe = new File("C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\upload/"
-						+ experienceFilePath);
+				File fe = new File(savePath+"/"+ experienceFilePath);
 				if (fe.exists()) { // 파일존재여부확인
 					if (fe.isFile()) {
 						fe.delete();
@@ -587,8 +579,7 @@ public class ExperienceController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
+						root+"image/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
 				listDetele.delete();
 				System.out.println("삭제성공");
 			}	
@@ -623,8 +614,7 @@ public class ExperienceController {
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
-						"C:\\Users\\kd\\fin\\FinalProject\\finalProject\\src\\main\\webapp\\resources\\editor\\image/"
-								+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
+						root+"image/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다		
 				boolean result = true; // 참 거짓으로 구분짓는다
 				for (int j = 0; j < list2.size(); j++) {     // 반복문으로 list2 사이즈만큼 반복한다.
 					if (list.get(i).equals(list2.get(j))) {  // if 문 list(i) 가 list2(i) 값는것이 있는지 반복해서 확인한다.

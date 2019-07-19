@@ -7,8 +7,8 @@
 
 <section id="wrap">
 	<div class="area">
-		<h2 class="comm-content-tit" style="margin:80px 0 60px;">로그인</h2>
-		<div class="comm-login-box"><!-- common-tbl-box -->
+		<h2 class="comm-content-tit" style="margin:80px 0 60px;" >로그인</h2>
+		<div class="comm-login-box" id="idpw"><!-- common-tbl-box -->
 			<form action="/login.do" form="post" class="clearfix">
 				<table class="comm-tbl login-tbl">
 					<colgroup>
@@ -29,10 +29,43 @@
 					<button type="button" class="btn-style3" onclick="location.href='/goAddTerms.do'">회원가입</button>
 				</div>
 			</form>
+			<button type="button" class="btn-style3" id="oneTimeLogin">일회용 로그인</button>
+		</div>
+		<div class="comm-login-box" id="otloginbox" style="display:none;"><!-- common-tbl-box -->
+			<form action="/oneTimelogin.do" form="post" class="clearfix">
+				<table class="comm-tbl login-tbl">
+					<colgroup>
+						<col width="20%">
+						<col width="/">
+					</colgroup>
+					<tr>
+						<th>숫자입력</th>
+						<th><input type="text" name="number" id="idInput" required="required"></th>
+					</tr>
+				</table>
+				<div class="common-tbl-btn-group login-tbl-btn-group">
+					<button type="submit" class="btn-style1 login-btn" id="loginot">1회용로그인</button>
+				</div>
+			</form>
+			<button type="button" class="btn-style3" id="idpwchange">아이디 로그인</button>
 		</div>
 	</div>
 </section>
 <script>
+	$("#oneTimeLogin").click(function(){
+		
+		$("#otloginbox").css("display","block");
+		$("#idpw").css("display","none");
+	});
+	
+	$("#idpwchange").click(function(){
+		
+		$("#otloginbox").css("display","none");
+		$("#idpw").css("display","block");
+	});
+
+
+
 	$("#login").click(function(){
 		var idvalue=$("#idInput").val();
 		var pwvalue=$("#pwInput").val();

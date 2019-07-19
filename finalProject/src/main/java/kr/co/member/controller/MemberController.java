@@ -72,6 +72,7 @@ import kr.co.simulator.model.vo.SimulatorSelect;
 
 @Controller
 public class MemberController {
+	
 
 	@Autowired
 	@Qualifier(value="memberService")
@@ -211,7 +212,7 @@ public class MemberController {
 		}
 		int result=memberService.addGall(gList);
 		if(code.equals("B") || code.equals("I")) {
-			return "/admin/addGoodsPage";
+			return "/admin/goodsCarePage";
 		}else {
 			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
 		}
@@ -377,6 +378,40 @@ public class MemberController {
 		
 		}
 		return "member/weddingHall";
+	}
+	
+	@RequestMapping(value = "/oneTimelogin.do")
+	public String oneTimeLogin(@RequestParam String number,Model model,HttpServletRequest request) {
+		System.out.println("로그인 호출");
+		
+
+		System.out.println(number);
+			
+		
+		String id="";
+		System.out.println(id);
+		
+		String memberId = memberService.getMemberId(number);
+		
+		Member member = memberService.selectOneMemberEasy(memberId);
+		HttpSession session = request.getSession(); 		
+		String view = "";
+		
+		
+		if(member!=null) {
+			memberService.deleteEasyNumber(memberId);
+			
+			session.setAttribute("member", member);
+			System.out.println(member);
+			System.out.println("로그인성공");
+			return "redirect:/";
+		}else {
+			model.addAttribute("msg", "아이디 , 패스워드를 확인해 주세요");
+			model.addAttribute("loc", "loginPage.do");
+			view = "common/msg";
+			System.out.println("로그인실패");
+		}
+		return view;
 	}
 	
 	
@@ -853,4 +888,6 @@ public class MemberController {
 			return "redirect:/index.jsp";
 		}
 	}
+
+
 }

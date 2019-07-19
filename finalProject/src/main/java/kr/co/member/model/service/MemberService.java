@@ -313,6 +313,23 @@ public class MemberService {
 		return memberDao.changePw(pwinput,id);
 	}
 
+	
+
+	public String getMemberId(String number) {
+		// TODO Auto-generated method stub
+		return memberDao.getMemberId(number);
+	}
+
+	public Member selectOneMemberEasy(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDao.selectOneMemberOnlyId(memberId);
+	}
+
+	public void deleteEasyNumber(String memberId) {
+		// TODO Auto-generated method stub
+		memberDao.deleteEasyNumber(memberId);
+	}
+
 
 
 }

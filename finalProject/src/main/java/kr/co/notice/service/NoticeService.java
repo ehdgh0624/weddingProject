@@ -46,7 +46,6 @@ public class NoticeService {
 		NoticePageData npd = new NoticePageData(list, pageNavi);
 		return npd;
 	}
-	@Transactional
 	public Notice noticeView(int noticeNo) {
 		Notice n = noticeDao.noticeView(noticeNo);
 		if(n != null) {
@@ -54,20 +53,70 @@ public class NoticeService {
 		}
 		return n;
 	}
+	@Transactional
 	public int insertNotice(Notice n) {
 		
 		return noticeDao.insertNotice(n);
 	}
+	@Transactional
 	public Notice noticeUpdateView(int noticeNo) {
 	
 		return noticeDao.noticeView(noticeNo);
 	}
+	@Transactional
 	public int updateNotice(Notice n) {
 		
 		return noticeDao.updateNotice(n);
 	}
+	@Transactional
 	public int noticeDelete(int noticeNo) {
 		
 		return noticeDao.noticeDelete(noticeNo);
+	}
+	@Transactional
+	public NoticePageData noticeSearch(int reqPage, String type, String keyword) {
+		int numPerPage = 100;
+		int totalCount = noticeDao.noticeSearch(type,keyword); 
+		int totalpge = 0;	
+		if(totalCount%numPerPage==0){ 
+			totalpge = (totalCount)/(numPerPage);
+		}else {
+			totalpge = (totalCount)/(numPerPage)+1;
+		}	
+		int start = (reqPage-1)*numPerPage+1;   
+		int end = reqPage*numPerPage; 
+		ArrayList<Notice> list = (ArrayList<Notice>)noticeDao.selectSearchList(start,end,type,keyword);
+		String pageNavi ="";
+		int pageNaviSize = 5;
+		int pageNo = 0;
+		
+		if(reqPage <3) {
+			pageNo = 1;
+		}else if ( reqPage+2  > totalpge      ) {
+			pageNo = totalpge - pageNaviSize+1;						
+		}
+		else {
+			pageNo = reqPage-2;
+			
+		}
+		if(pageNo !=1) {											
+			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
+		}		
+		int i = 1; 
+		while( !(i++>pageNaviSize || pageNo>totalpge)) {  
+			if(reqPage == pageNo) { 
+				 pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+pageNo+"'>"+pageNo+"</a>";			 
+			}
+		
+			pageNo++;
+		}
+		if(pageNo <= totalpge) {
+			pageNavi +="<a class='btn' href='/experienceAll.do?reqPage="+(pageNo)+"'>다음</a>";
+		}
+		NoticePageData npd = new NoticePageData(list,pageNavi);
+		
+		return npd;
 	}
 }
