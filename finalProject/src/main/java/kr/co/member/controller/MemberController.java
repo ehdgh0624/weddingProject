@@ -1,4 +1,4 @@
-package kr.co.member.controller;
+﻿package kr.co.member.controller;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -10,20 +10,25 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.mail.internet.MimeMessage;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpRequest;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
@@ -37,6 +42,7 @@ import org.springframework.web.multipart.MultipartRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.Dress;
@@ -51,6 +57,7 @@ import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.service.MemberService;
 import kr.co.member.model.vo.CompanyInfo;
+import kr.co.member.model.vo.MailVO;
 import kr.co.member.model.vo.Member;
 import kr.co.member.model.vo.MemberAll;
 import kr.co.member.model.vo.MemberEnroll;
@@ -69,18 +76,68 @@ public class MemberController {
 	@Autowired
 	@Qualifier(value="memberService")
 	private MemberService memberService;
+	@Qualifier(value="emailSender")
+	private EmailSender emailSender;
 	
 	@RequestMapping(value = "/deleteGallery.do")
 	@ResponseBody
-	public int deleteGallery(@RequestParam String filepath) {
+	public void deleteGallery(HttpServletRequest request,@RequestParam String filepath,@RequestParam String code) {
+		String savePath="";
+		if(code.equals("S")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
+		}else if(code.equals("D")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
+		}else if(code.equals("M")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
+		}else if(code.equals("H")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}else if(code.equals("B")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}else if(code.equals("I")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}
+		File fe = new File(savePath + "/" + filepath);
+		if (fe.exists()) { // 파일존재여부확인
+			if (fe.isFile()) {
+				fe.delete();
+			}
+		}
+		memberService.deleteGallery(filepath);
+	}
+
+	@RequestMapping(value = "/changePw.do")
+	@ResponseBody
+	public String changePw(@RequestParam String pwinput,@RequestParam String id) {
+		System.out.println(pwinput);
+		System.out.println(id);
+		int result=memberService.changePw(pwinput,id);
+		System.out.println(result);
+		JSONObject obj = new JSONObject();
+		if(result>0) {
+			obj.put("result", "1");
+		}else {
+			obj.put("result", "0");
+		}
+	
+		return new Gson().toJson(obj);
+	}
+	
+	@RequestMapping(value = "/checkId.do")
+	@ResponseBody
+	public String checkId(@RequestParam String id) {
 		
-		
-		
-		return memberService.deleteGallery(filepath);
+		Member m=memberService.checkId(id);
+		JSONObject obj = new JSONObject();
+		if(m!=null) {
+			obj.put("result", "0");
+		}else {
+			obj.put("result", "1");
+		}
+	
+		return new Gson().toJson(obj);
 	}
 	
 	@RequestMapping(value = "/saveGallery.do")
-	@ResponseBody
 	public String saveGallery(
 			@RequestParam(value="filename",required = true) List<MultipartFile> filenameList,
 			HttpServletRequest request
@@ -91,6 +148,10 @@ public class MemberController {
 		ArrayList<String> originNameList = new ArrayList<String>();
 		ArrayList<String> onlyFileNameList = new ArrayList<String>();
 		ArrayList<String> extensionList = new ArrayList<String>();
+		
+		SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+		Date time = new Date();
+		String time1 = fomat.format(time);
 		
 		for(int i=0;i<filenameList.size();i++) {
 			originNameList.add(filenameList.get(i).getOriginalFilename());
@@ -108,6 +169,10 @@ public class MemberController {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
 		}else if(code.equals("H")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		}else if(code.equals("B")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
+		}else if(code.equals("I")) {
+			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		}
 		
 		
@@ -117,7 +182,7 @@ public class MemberController {
 		ArrayList<String> filePathList = new ArrayList<String>();
 		ArrayList<String> fullPathList = new ArrayList<String>();
 		for(int i=0;i<filenameList.size();i++) {
-			filePathList.add(onlyFileNameList.get(i)+"_"+"1"+extensionList.get(i));
+			filePathList.add(onlyFileNameList.get(i)+"_"+time1+extensionList.get(i));
 			fullPathList.add(savePath+"/"+filePathList.get(i));
 		}
 		for(int i=0;i<filenameList.size();i++) {
@@ -145,8 +210,11 @@ public class MemberController {
 			gList.add(g);
 		}
 		int result=memberService.addGall(gList);
-		
-		return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
+		if(code.equals("B") || code.equals("I")) {
+			return "/admin/goodsCarePage";
+		}else {
+			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
+		}
 	};
 	
 	
@@ -456,6 +524,7 @@ public class MemberController {
 					vos.getsPhone()+"/"+
 					vos.gettPhone();
 		Member vo = new Member();
+		
 		vo.setPhone(phone);
 		vo.setAddr(addr);
 		

@@ -13,7 +13,7 @@
 /* 공통 :: PAGING */
 .paging{width:100%; text-align:center; margin:30px 0;}
 .paging a, .paging span{display:inline-block; vertical-align:middle; width:30px; height:30px; border:1px solid #ddd; text-align:center; font-size:12px; line-height:30px; color:#868686; letter-spacing:-0.25px; margin: 2px 0; background:#fff;}
-.paging .cur{border:1px solid #4b4b4b; background-color:#4b4b4b; color:#fff;}
+.paging .cur, .paging .selectPage{border:1px solid #4b4b4b; background-color:#4b4b4b; color:#fff;}
 .paging a.paging-arrow{line-height:28px;}
 .paging i{vertical-align:middle; color:inherit}
 
@@ -40,7 +40,7 @@
 .comm-tbl input[type='text'].short, .comm-tbl input[type='password'].short, .comm-tbl input[type='file'].short, .comm-tbl input[type='number'].short{width:30%;}
 .comm-tbl input[type='text'].middle, .comm-tbl input[type='password'].middle, .comm-tbl select.middle, .comm-tbl input[type='number'].middle{width:40%;}
 .comm-tbl .comment{padding-top:5px; font-size:12px; color:#888;}
-.comm-tbl .none{padding:40px 0; font-size:16px;}
+.comm-tbl .none{padding:40px 0; font-size:16px; text-align:center;}
 .common-tbl-box .none{font-size:20px; font-weight:500; text-align:center; padding:80px 0;}
 .comm-tbl.type2{width:100%; max-width:none;}
 .comm-tbl.type2 th, .comm-tbl.type2 td{padding:10px;}
@@ -106,14 +106,14 @@ background:#f8f8f8 url(/resources/img/more.png) no-repeat center center; backgro
 .simulator-select-group .none-btn{position:absolute; top:-55px; right:55px; height:40px; text-align:center; border:1px solid #ddd; border-radius:3px; padding:0 10px 0 35px;
 background:#f8f8f8 url(/resources/img/none_1.png) no-repeat 7px center; background-size:25px; transition:all 0.5s;}
 .simulator-select-group .none-btn:hover,
-.simulator-select-group .none-btn.selected{border:1px solid #666; background:#666 url(/resources/img/none_2.png) no-repeat 7px center; background-size:25px; color:#fff; transition:all 0.5s;}
+.simulator-select-group .none-btn.selected{border:1px solid #aaa; background:#aaa url(/resources/img/none_2.png) no-repeat 7px center; background-size:25px; color:#fff; transition:all 0.5s;}
 .simulator-select-group-list.selected .simulator-select-btn-group{display:none;}
 .simulator-select-list-con{float:left; width:360px; margin:10px 20px; }
 .simulator-select-list-con.selected{position:relative; }
-.simulator-select-list-con.selected:before{position:absolute; top:0; left:0; bottom:0; right:0; content:''; border:2px solid #888; z-index:1;}
+.simulator-select-list-con.selected:before{position:absolute; top:0; left:0; bottom:0; right:0; content:''; border:2px solid #faaca8; z-index:1;}
 .simulator-select-list{box-shadow:3px 3px 5px #ddd; border-radius:3px;}
 .simulator-select-img-thum{position:relative; padding-top:61.2%; overflow:hidden;}
-.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0; font-size:0; text-indext:-9999px;}
+.simulator-select-img-thum > span{position:absolute; top:0; left:0; right:0; bottom:0; font-size:0; text-indent:-9999px;}
 .simulator-select-img-thum > span img{width:100%;}
 .simulator-select-list-tit, .simulator-select-list-addr, .simulator-select-list-price, .simulator-select-list-tag{padding:0 20px;}
 .simulator-select-list-tit{font-size:18px; line-height:24px; color:#666; font-weight:500; margin:5px 0;}
@@ -124,17 +124,18 @@ background:#f8f8f8 url(/resources/img/none_1.png) no-repeat 7px center; backgrou
 .simulator-select-list-tag{padding:10px 20px; color:#888; line-height:20px;}
 .simulator-select-btn-group{padding:15px 10px; text-align:center;}
 .simulator-select-btn-group > a, .simulator-select-btn-group > button{display:inline-block; width:150px; height:35px; border-radius:3px; border:1px solid #ddd; margin:0 7px; font-size:14px; color:#666; font-weight:500; 
-background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:35px;}
-.simulator-select-btn-group > a:hover, .simulator-select-btn-group > button:hover{background-color:#666; color:#fff; transition:all 0.3s;}
+background-color:#fff; vertical-align:middle; line-height:35px;}
+.simulator-select-btn-group > a:hover, .simulator-select-btn-group > button:hover{background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); color:#fff; }
 .slick-prev.slick-arrow, .slick-next.slick-arrow{position:absolute; top:50%; margin-top:-13px; z-index:9;}
 .slick-prev.slick-arrow{left:-30px;}
 .slick-next.slick-arrow{right:-30px;}
 
 /* ****************** 웨딩 계산기 :: 장바구니 ********************** */
 .cart-sideBar{position:relative;}
-.cart-sideBar-btn{position:fixed; bottom:150px; right:50px; width:65px; height:65px; background:#888 url(/resources/img/cart.png) no-repeat center center; border-radius:10px; z-index:9; box-shadow:3px 3px 7px #ddd;}
+.cart-sideBar-btn{position:fixed; bottom:150px; right:50px; width:65px; height:65px; background:url(/resources/img/cart.png) no-repeat center center; background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); border-radius:10px; z-index:9; box-shadow:3px 3px 7px #ddd;}
 .cart-sideBar-container{position:fixed; top:0; right:-310px; width:300px; height:100%; background:#fff; box-shadow:-3px 3px 10px #ddd; transition:right 0.4s;}
 .cart-sideBar-btn.active{width:40px; height:40px; background:#ddd url(/resources/img/more.png) no-repeat center center; border-radius:40px; transform:rotate(45deg); top:20px; right:20px; bottom:auto; z-index:1000;}
+.cart-sideBar-btn.active img{display:none;}
 .cart-sideBar-container.open{right:0; transition:right 0.4s; z-index:999;}
 .cart-sideBar-inner{padding:20px; padding-right:10px; height:calc(100% - 40px);}
 .cart-sideBar-inner > h2{padding:15px 0 20px; font-weight:500; border-bottom:1px solid #eee;}
@@ -148,7 +149,8 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 .selected-list .simulator-select-btn-group,
 .selected-list .simulator-select-list-addr,
 .selected-list .simulator-select-list-tag{display:none;}
-.go-simulation{position:absolute; bottom:20px; left:20px; width:260px; padding:15px; border-radius:5px; text-align:center; background:#ddd; font-size:16px; font-weight:500;}
+.go-simulation{position:absolute; bottom:20px; left:20px; width:260px; padding:15px; border-radius:5px; text-align:center; text-shadow:2px 2px 3px rgba(0,0,0,0.3);
+background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%); font-size:16px; font-weight:500; color:#fff;}
 
 /* ****************** 웨딩 계산기 :: 최종 계산 결과 ********************** */
 .simulator-topInfo{padding:20px 0;}
@@ -209,4 +211,9 @@ background-color:#fff; transition:all 0.3s; vertical-align:middle; line-height:3
 
 /* *********************동호 : 버튼*********************** */
 .btn-wrap .btn-samll{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:rgba(240,165,210,0.9); }
+.btn-wrap .btn-samll1{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#888 }
+.btn-wrap .btn-samll2{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#444 }
 .btn-wrap {width: 1200px; margin:0px auto 25px; }
+.goodsTypeBtn {width: 100%; margin:25px auto 25px; text-align: center;}
+.goodsTypeBtn .btn-samll1{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#888 }
+.goodsTypeBtn .btn-samll2{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:#444 }

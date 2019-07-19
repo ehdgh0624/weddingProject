@@ -303,6 +303,16 @@ public class MemberService {
 		return result;
 	}
 
+	public Member checkId(String id) {
+		// TODO Auto-generated method stub
+		return memberDao.checkId(id);
+	}
+
+	public int changePw(String pwinput, String id) {
+		// TODO Auto-generated method stub
+		return memberDao.changePw(pwinput,id);
+	}
+
 
 
 }

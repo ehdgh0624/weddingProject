@@ -43,6 +43,8 @@ public class ReviewDao {
 			return sqlSession.update("makeup.updateScope",map);						
 		}else if(code.equals("G")) {
 			return sqlSession.update("goods.updateScope",map);			
+		}else if(code.equals("H")){
+			return sqlSession.update("hall.updateScope",map);
 		}else {
 			return 0;
 		}

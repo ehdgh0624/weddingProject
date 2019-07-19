@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -29,6 +30,10 @@ public class ReviewController {
 
 	@RequestMapping("/fileUpload.do")
 	public ModelAndView fileUpload(HttpSession session, HttpServletRequest request, HttpServletResponse response, MultipartHttpServletRequest mtfRequest, Review vo){
+		String goodsType = vo.getCode();
+		if(goodsType.equals("B") || goodsType.equals("I")) {			
+			vo.setCode("G");
+		}
 		Member m = (Member) session.getAttribute("member");
 		System.out.println("리뷰 별점 : " + vo.getReviewScope());
 		ModelAndView mav = new ModelAndView();
@@ -78,21 +83,27 @@ public class ReviewController {
 			}
 			int scopeResult = reviewService.updateScope(vo.getCode(), vo.getReviewRef(), vo.getReviewScope(), reviewCount, reviewSum);
 			int result = reviewService.insertReview(vo);
-			if(result > 0) {
-				mav.addObject("code",vo.getCode());
-				mav.addObject("objectNo",vo.getReviewRef());
-				mav.setViewName("review/reviewSuccess");
-				return mav;
+			if(goodsType.equals("B") || goodsType.equals("I")) {
+				mav.addObject("code", goodsType);
 			}else {
-				mav.addObject("code",vo.getCode());
-				mav.addObject("objectNo",vo.getReviewRef());
-				mav.setViewName("review/reviewFailed");
-				return mav;
+				mav.addObject("code",vo.getCode());				
 			}
+			mav.addObject("objectNo",vo.getReviewRef());
+			if(result > 0) {
+				mav.setViewName("review/reviewSuccess");
+			}else {
+				mav.setViewName("review/reviewFailed");
+			}
+			return mav;
 		}else {
 			mav.addObject("cause",1);
 			mav.setViewName("review/reviewFailed");
 			return mav;
 		}
 	}
+	
+/*	@RequestMapping("/deleteReview.do")
+	public ModelAndView deleteReview(HttpSession session, @RequestParam int reviewNo) {
+		
+	}*/
 }

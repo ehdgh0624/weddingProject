@@ -20,14 +20,6 @@ $(document).ready(function(){//
 	$(".simulator-total-price").each(function(){
 		$(this).find("p").children("b").text(addComma($(this).find("p").children("b").html()));
 	});
-	//$(".simulator-info-price").find("strong").text(addComma($(".simulator-info-price").children("strong").html()));
-	/*var price1 = $(".simulator-info-price").find("strong").html();
-	var price1Finish = price1.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	$(".simulator-info-price").find("strong").text(price1Finish);
-	
-	var price2 = $(".simulator-total-price").find("p").children("b").html();
-	var price2Finish = price2.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
-	$(".simulator-total-price").find("p").children("b").text(price1Finish);*/
 });
 </script>
 
@@ -58,8 +50,12 @@ $(document).ready(function(){//
 								</c:choose>
 								${slist.prdName }
 							</h3>
-							<dl class="simulator-info-detail clearfix">
-								<dt><div class="simulator-info-img"><span></span></div></dt>
+							<dl class="simulator-info-detail clearfix"><!-- prdFilepath -->
+								<dt>
+									<div class="simulator-info-img">
+										<span style="background:#f5f5f5 url(${slist.prdFilepath }) no-repeat center center; background-size:cover;"></span>
+									</div>
+								</dt>
 								<dd>
 									<p class="simulator-info-addr">${slist.prdLoc }</p>
 									<p class="simulator-info-tel">${slist.prdTel }</p>

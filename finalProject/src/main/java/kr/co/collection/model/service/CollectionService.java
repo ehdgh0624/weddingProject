@@ -9,8 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import kr.co.collection.model.dao.CollectionDao;
 import kr.co.collection.model.vo.AllPageData;
+import kr.co.collection.model.vo.Collection;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
+import kr.co.collection.model.vo.SearchPageData;
 import kr.co.collection.model.vo.Studio;
 import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
@@ -60,6 +62,98 @@ public class CollectionService {
 		AllPageData pd = new AllPageData(sList, dList, mList, null, null, pageNavi, reqPage);
 		return pd;
 	}	
+	
+	public SearchPageData pageSearchList(int reqPage, String keyword, String searchAddr, String searchCode, String memberId) {
+		//페이지 당 게시물 수
+		int numPerPage = 9;
+		//검색 조건에 따른 총 게시물 수
+		int totalCount = collectionDao.totalCountSearch(keyword, searchAddr, searchCode);
+		//페이지 수
+		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		//게시물 번호 범위
+		int start = totalCount - (reqPage * numPerPage - 1);
+		int end = totalCount - (reqPage-1) * numPerPage;
+		ArrayList<Collection> cList = (ArrayList<Collection>) collectionDao.pageSearchList(start, end, keyword, searchAddr, searchCode);
+		ArrayList<Scrapbook> scrapList = null;
+		if(memberId != null) {
+			scrapList = new ArrayList<Scrapbook>();
+			for(int i=0;i<cList.size();i++) {
+				Scrapbook sb = collectionDao.selectOneScrapbook(memberId, cList.get(i).getCode(), cList.get(i).getObjectNo());
+				if(sb != null) {
+					scrapList.add(sb);
+				}else {
+					scrapList.add(null);
+				}
+			}
+		}
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionSearch.do?searchAddr="+searchAddr+"&searchCode="+searchCode+"&keyword="+keyword+"&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/collectionSearch.do?searchAddr="+searchAddr+"&searchCode="+searchCode+"&keyword="+keyword+"&reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionSearch.do?searchAddr="+searchAddr+"&searchCode="+searchCode+"&keyword="+keyword+"&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		SearchPageData pd = new SearchPageData(cList, scrapList, pageNavi, reqPage);
+		return pd;
+	}
+	
+	public SearchPageData pageTagSearchList(int reqPage, String keyword, String memberId) {
+		//페이지 당 게시물 수
+		int numPerPage = 9;
+		//현재 등록되어있는 해당 keyword 게시물 수
+		int totalCount = collectionDao.totalCountKeyword(keyword);
+		//페이지 수
+		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
+		//게시물 번호 범위
+		int start = totalCount - (reqPage * numPerPage - 1);
+		int end = totalCount - (reqPage-1) * numPerPage;
+		ArrayList<Collection> cList = (ArrayList<Collection>) collectionDao.pageTagSearchList(start, end, keyword);
+		ArrayList<Scrapbook> scrapList = null;
+		if(memberId != null) {
+			scrapList = new ArrayList<Scrapbook>();
+			for(int i=0;i<cList.size();i++) {
+				Scrapbook sb = collectionDao.selectOneScrapbook(memberId, cList.get(i).getCode(), cList.get(i).getObjectNo());
+				if(sb != null) {
+					scrapList.add(sb);
+				}else {
+					scrapList.add(null);
+				}
+			}
+		}
+		String pageNavi = "";
+		int pageNaviSize = 5;
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
+		if(pageNo != 1) {
+			pageNavi += "<a class='paging-arrow prev-arrow' href='collectionListTagSearch.do?keyword="+keyword+"&reqPage="+(pageNo-1)+"'><img src='/img/left_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		
+		int i = 1;
+		while( !(i++>pageNaviSize || pageNo>totalPage) ) {
+			if(reqPage == pageNo) {
+				pageNavi += "<span class='cur'>"+pageNo+"</span>";
+			}else {
+				pageNavi += "<a class='' href='/collectionListTagSearch.do?keyword="+keyword+"&reqPage="+pageNo+"'>"+pageNo+"</a>";
+			}
+			pageNo++;
+		}
+		if(pageNo <= totalPage) {
+			pageNavi += "<a class='paging-arrow next-arrrow' href='/collectionListTagSearch.do?keyword="+keyword+"&reqPage="+pageNo+"'><img src='/img/right_arrow.png' style='width:30px;height:30px;'></a>";
+		}
+		SearchPageData pd = new SearchPageData(cList, scrapList, pageNavi, reqPage);
+		return pd;		
+	}
 	
 	public AllPageData pageStudioList(int reqPage, String memberId){
 		//페이지 당 게시물 수

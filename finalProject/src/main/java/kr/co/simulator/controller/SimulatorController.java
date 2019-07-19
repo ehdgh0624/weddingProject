@@ -213,7 +213,7 @@ public class SimulatorController {
 						simulatorSelect.setPrdNo(jsonObj.get("1").getAsInt());
 						simulatorSelect.setPrdName(jsonObj.get("4").getAsString());
 						simulatorSelect.setPrdPrice(jsonObj.get("6").getAsInt());
-						simulatorSelect.setPrdTel(jsonObj.get("3").getAsString());
+						simulatorSelect.setPrdTel(jsonObj.get("3").getAsString().replace('/', '-'));
 						simulatorSelect.setPrdLoc(jsonObj.get("5").getAsString());
 						simulatorSelect.setPrdTag(jsonObj.get("7").getAsString());
 						simulatorSelect.setPrdFilepath(jsonObj.get("0").getAsString());
@@ -260,7 +260,7 @@ public class SimulatorController {
 					simulatorSelect.setPrdNo(jsonObj.get("1").getAsInt());
 					simulatorSelect.setPrdName(jsonObj.get("4").getAsString());
 					simulatorSelect.setPrdPrice(jsonObj.get("6").getAsInt());
-					simulatorSelect.setPrdTel(jsonObj.get("3").getAsString());
+					simulatorSelect.setPrdTel(jsonObj.get("3").getAsString().replace('/', '-'));
 					simulatorSelect.setPrdLoc(jsonObj.get("5").getAsString());
 					simulatorSelect.setPrdTag(jsonObj.get("7").getAsString());
 					simulatorSelect.setPrdFilepath(jsonObj.get("0").getAsString());

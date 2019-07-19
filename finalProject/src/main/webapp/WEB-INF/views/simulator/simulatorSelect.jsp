@@ -199,7 +199,7 @@
 		
 		<!-- 보관함 SideBar -->
 		<aside class="cart-sideBar">
-			<button class="cart-sideBar-btn"></button>
+			<button class="cart-sideBar-btn"><img src="/resources/img/cart.png"></button>
 			<div class="cart-sideBar-container">
 				<div class="cart-sideBar-inner">
 					<h2>보관함</h2>
@@ -235,10 +235,6 @@ function cart_click(cart){
 
 //콤마찍기
 function addComma(num) {
-  //var regexp = /\B(?=(\d{3})+(?!\d))/g;
-  //return num.toString().replace(regexp, ',');
-  
-  //num = String(num);
   return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
 }
 
@@ -265,13 +261,6 @@ $(document).ready(function(){
 			console.log(cartOneArr);
 			console.log(cartArr);
 		});
-		
-		/*var option = {
-			data : {cartArr:cartArr},
-			success : function(data){
-				console.log('성공');
-			}
-		};*/
 		
 		//자바스크립트 배열을 json String 형식으로 변환
 		var option = JSON.stringify(cartArr);
@@ -316,7 +305,6 @@ $(document).ready(function(){
 });
 
 
-
 //웨딩홀 더보기
 function hall_more(start){
 	var param = {start : start, weddingPerson : $("#weddingPerson").val(), weddingLoc : $("#weddingLoc").val(), weddingDate : $("#weddingDate").val()}; //start라는 키값 넘겨줌
@@ -332,7 +320,7 @@ function hall_more(start){
 				h = data[i];
 				for(var j=0;j<h.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/hall/"+h[j].hallPath+"') no-repeat center center; background-size:cover;' value="+h[j].hallPath+"></span></div>";
+					html += "<span style='background:#f5f5f5 url("+h[j].hallPath+") no-repeat center center; background-size:cover;' value="+h[j].hallPath+">"+h[j].hallPath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em><em class='simulator-select-list-tel' value="+h[j].hallTel+">"+h[j].hallTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+h[j].hallName+">"+h[j].hallName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
@@ -349,7 +337,6 @@ function hall_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#hall-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -387,7 +374,7 @@ function dress_more(start){
 				d = data[i]; //dress 객체
 				for(var j=0;j<d.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/dress/"+d[j].dressFilepath+"') no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+"></span></div>";
+					html += "<span style='background:#f5f5f5 url("+d[j].dressFilepath+") no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+">"+d[j].dressFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em><em class='simulator-select-list-tel' value="+d[j].dressTel+">"+d[j].dressTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+d[j].dressName+">"+d[j].dressName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+d[j].dressAddr+">"+d[j].dressAddr+"</p>";
@@ -404,7 +391,6 @@ function dress_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#dress-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -443,7 +429,7 @@ function makeup_more(start){
 				make = data[i]; //makeup 객체
 				for(var j=0;j<make.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/makeup/"+make[j].makeupFilepath+"') no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+"></span></div>";
+					html += "<span style='background:#f5f5f5 url("+make[j].makeupFilepath+") no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+">"+make[j].makeupFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em><em class='simulator-select-list-tel' value="+make[j].makeupTel+">"+make[j].makeupTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+make[j].makeupName+">"+make[j].makeupName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+make[j].makeupAddr+">"+make[j].makeupAddr+"</p>";
@@ -460,7 +446,6 @@ function makeup_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#makeup-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값
@@ -497,7 +482,7 @@ function studio_more(start){
 				st = data[i]; //makeup 객체
 				for(var j=0;j<st.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url('/resources/upload/studio/"+st[j].studioFilepath+"') no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
+					html += "<span value="+st[j].studioFilepath+" style='background:#f5f5f5 url("+st[j].studioFilepath+") no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em><em class='simulator-select-list-tel' value="+st[j].studioTel+">"+st[j].studioTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+st[j].studioName+">"+st[j].studioName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+st[j].studioAddr+">"+st[j].studioAddr+"</p>";
@@ -514,7 +499,6 @@ function studio_more(start){
 			$(".simulator-select-list-price").each(function(){
 				$(this).children("b").text(addComma($(this).children("b").html()));
 			});
-			//$(".simulator-select-list-price").children("b").text(addComma($(".simulator-select-list-price").children("b").html()));
 			
 			//value, currentCount 세팅
 			$("#studio-more").val(Number(start)+3); //start값 형변환 반드시! <- val는 다음 시작값

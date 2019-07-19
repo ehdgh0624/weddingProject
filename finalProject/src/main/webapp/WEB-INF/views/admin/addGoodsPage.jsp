@@ -86,7 +86,7 @@
 		});
 		$("#tag").keyup(function(e){
 			 if(e.keyCode == '32'){
-				 $("#tag").val($("#tag").val()+", #");					 
+				 $("#tag").val($("#tag").val()+",#");					 
 				 }
 		 });
 		

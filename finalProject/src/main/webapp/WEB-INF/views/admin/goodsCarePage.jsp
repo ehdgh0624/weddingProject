@@ -22,28 +22,33 @@
 				<c:forEach items="${gList.list}" var="g" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionViewGoods.do?goodsType=${g.goodsType}&goodsNo=${g.goodsNo}"><!-- //goodsType="+code+"&goodsNo="+objectNo -->
-							<img src="/resources/img/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/goods/${g.goodsFilePath }" style="width:100%;height:60%;">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
-						<div style="padding:10px;">
-							<span style="float:left;">상품명 : ${g.goodsName}</span><br>
-							<span style="float:left;">가격 : ${g.goodsPrice }원 </span><br>
+						<div style="padding:10px;background-color: #fafafa">
+						<div class="clearfix goodscare">
 							<c:choose>
 								<c:when test="${g.goodsType eq 'B' }">
-									<span style="float:left;">타입 : 부케 </span><br>
+									<span style="float:left; width: 70px;line-height:20px;  background-color: lightgray; text-align: center; border-radius: 5px; font-size: 20px;">부케 </span>
 								</c:when>
 								<c:when test="${g.goodsType eq 'I' }">
-									<span style="float:left;">타입 : 청첩장 </span><br>
+									<span style="float:left;width: 70px; line-height:20px;background-color: lightgray; text-align: center; border-radius: 5px;font-size: 20px;">청첩장 </span>
 								</c:when>
 							</c:choose>
+							<span style="float:left;width:calc(100% - 100px); font-size: 22px;line-height: 20px;"><b>${g.goodsName}</b></span>
 							<c:choose>
 							<c:when test="${g.viewstatus == 0}">
-								<span style="float:left;">상품 상태 : 보임</span>						
+								<span style="float:right;display:inline-block;"><img width="24px" src="/resources/img/viewstatus_on.png"></span>						
 							</c:when>
 							<c:when test="${g.viewstatus == 1 }">
-								<span style="float:left;">상품 상태 : 안보임</span>						
+								<span style="float:right;"><img src="/resources/img/viewstatus_off.png"></span>						
 							</c:when>
 							</c:choose>
-								
+							<p style="float:left;width:100%;font-size:22px;text-align: right;">${g.goodsPrice }원 </p>
+							</div>
+							<div class="goodsTypeBtn" >
+								<button class="btn-samll1" onclick="location.href='/goodsUpdatePage.do?goodsNo=${g.goodsNo}&code=${g.goodsType }'">수정</button> 
+								<button class="btn-samll2" onclick="location.href='/goodsdelete.do?goodsNo=${g.goodsNo}&code=${g.goodsType }'">삭제</button> 
+							</div>
 						</div>
 					</div>
 					<c:if test="i%3==0">
@@ -61,6 +66,25 @@
          </div>
 			</div>
 	
+	<script>
+	function addComma(num) {
+		return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	}
+
+	$(document).ready(function(){//
+		/*$(".listView").click(function() {
+			var simulatorNo = $(this).children('.simNo').html();
+			detailView(simulatorNo);
+		});*/
+		
+		//가격 콤마 찍기
+		$("p").each(function(){
+			$(this).text(addComma($(this).html()));
+		});
+		
+		
+	});	
+	</script>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>

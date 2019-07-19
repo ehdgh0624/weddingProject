@@ -15,6 +15,7 @@ import kr.co.admin.vo.CompanyVo;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.hall.vo.Hall;
 import kr.co.member.model.vo.Member;
@@ -260,6 +261,26 @@ public class AdminDao {
 		map.put("keyword", keyword);
 		List list = sqlSession.selectList("admin.searchRe",map);
 		return (ArrayList<Reservation>)list;
+	}
+
+	public Goods goodsUpdatePage(int goodsNo) {
+		return (Goods)sqlSession.selectOne("admin.goodsUpdatePage",goodsNo);
+	}
+
+	public int goodsUpdate(Goods g) {
+		return sqlSession.update("admin.goodsUpdate",g);
+	}
+
+	public int goodsDelete(int goodsNo) {
+		return sqlSession.delete("admin.goodsDelete",goodsNo);
+	}
+
+	public ArrayList<Gallery> goodsGallery(int goodsNo, String code) {
+		Map<String,String> map = new HashMap<String,String>();
+		map.put("goodsNo",String.valueOf(goodsNo));
+		map.put("code", code);
+		List list = sqlSession.selectList("admin.goodsGallery",map);
+		return (ArrayList<Gallery>)list;
 	}
 
 	

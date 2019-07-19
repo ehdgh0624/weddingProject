@@ -415,6 +415,31 @@
 		
 		 order by reservation_no desc)r) where rnum between #{start} and #{end}
 	</select>
+	<select id="goodsUpdatePage" parameterType="_int" resultType="goods">
+			select goods_no as goodsNo,
+				code as code,
+				goods_type as goodsType,
+				goods_name as goodsName,
+				goods_price as goodsPrice,
+				goods_scope as goodsScope,
+				goods_content as goodsContent,
+				viewstatus as viewstatus,
+				goods_filename as goodsFileName,
+				goods_filepath as goodsFilePath,
+				goods_tag as goodsTag from goods where goods_no = #{goodsNo}
+				
+	</select>
+	<update id="goodsUpdate" parameterType="goods">
+		update goods
+			 set goods_type = #{goodsType} , goods_name=#{goodsName} , goods_price = #{goodsPrice},goods_tag = #{goodsTag},
+			 goods_content = #{goodsContent} , 	viewstatus = #{viewstatus} , goods_filename= #{goodsFileName} , goods_filepath=#{goodsFilePath} where goods_No = #{goodsNo}
 	
+	</update>
+	<delete id="goodsDelete" parameterType="_int">
+		delete from goods where goods_No = #{goodsNo} 
+	</delete>
+	<select id="goodsGallery" parameterType="map" resultType="gallery">
+		select filename as filename, filepath as filepath from gallery where gallery_no=#{goodsNo} and gallery_code=#{code}
+	</select>
 </mapper>
 

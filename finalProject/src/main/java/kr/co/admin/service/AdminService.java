@@ -12,6 +12,7 @@ import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.admin.vo.AdminReservation;
+import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
@@ -48,7 +49,9 @@ public class AdminService {
 		if(pageNo <= totalPage) {
 			pageNavi += "<a class='paging-arrow next-arrrow' href='/adminPage.do?reqPage="+(pageNo)+"&sCode="+ssCode+"'><img src='/resources/img/right_arrow.png' style='width:30px;height:30px;'></a>";
 		}
-		
+		for(int j=0 ;j<ma.size();j++) {
+			ma.get(j).setPhone(ma.get(j).getPhone().replace("/", "-"));
+		}
 		AdminMember am = new AdminMember(ma,pageNavi);
 			    
 		
@@ -363,6 +366,20 @@ public class AdminService {
 			    
 		
 		return ar;
+	}
+	public Goods goodsUpdatePage(int goodsNo) {
+		return adminDao.goodsUpdatePage(goodsNo);
+	}
+	@Transactional
+	public int goodsUpdate(Goods g) {
+		return adminDao.goodsUpdate(g);
+	}
+	@Transactional
+	public int goodsDelete(int goodsNo) {
+		return adminDao.goodsDelete(goodsNo);
+	}
+	public ArrayList<Gallery> goodsGallery(int goodsNo, String code) {
+		return adminDao.goodsGallery(goodsNo,code);
 	}
 
 }

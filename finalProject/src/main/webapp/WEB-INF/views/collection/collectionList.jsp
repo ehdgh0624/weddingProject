@@ -10,6 +10,27 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/hall.css"> 
 <link rel="stylesheet" type="text/css" href="/resources/css/collectionList.css"> 
 
+<script>
+	$(document).ready(function(){
+		$('#searchHall').focusin(function(){
+			if($('#searchHall').val() != ''){
+				$('#searchHall').val($('#searchHall').val().replace(' ','')+',');
+			}
+		});
+		
+		$('#searchHall').focusout(function(){
+			for(var i=0;i < 5000;i++){					//횟수는 keyword input태그 글자 수 제한만큼 돌릴 것
+				if($('#searchHall').val().lastIndexOf(",") == $('#searchHall').val().length-1){
+					$('#searchHall').val($('#searchHall').val().substring(0, $('#searchHall').val().length-1));
+				}else{
+					break;
+				}				
+			}
+		});
+	});
+</script>
+
+
 <%-- wrap --%>
 <section id="wrap">
 	<!-- 상위 검색창 -->
@@ -17,8 +38,8 @@
 		<div class="header"><!-- 검색div -->
 			<div class="headersub area"><!-- 가운데 정렬 div -->
 				<h3>★나에게 맞는 #Shop 찾기</h3>
-				<form action="/hallSc.do" method="get">
-					<select class="addr" name="hallLoc">   <!-- 지역 select -->
+				<form action="/collectionSearch.do" method="get">
+					<select class="addr" name="searchAddr" id="searchAddr">   <!-- 지역 select -->
 						<option value="전국">전국</option>
 						<option value="서울">서울</option>
 						<option value="부산">부산</option>
@@ -38,7 +59,7 @@
 						<option value="경남">경남</option>
 						<option value="제주">제주</option>
 					</select>
-					<select class="halltype" name="hallType">   <!-- 결혼식장 타입 -->
+					<select class="halltype" name="searchCode" id="searchCode">   <!-- 결혼식장 타입 -->
 						<option value="전체">분류</option>
 						<option value="S">스튜디오</option>
 						<option value="D">드레스</option>
@@ -46,7 +67,7 @@
 						<option value="B">부케</option>
 						<option value="I">청첩장</option>
 					</select>
-					<input type="text" id="searchHall" name="searckHall" placeholder="업체명이나 키워드, #태그를 검색해보세요"> <!-- 결혼식장 이름 입력 -->
+					<input type="text" id="searchHall" name="keyword" placeholder="키워드, #태그를 검색해보세요"> <!-- 결혼식장 이름 입력 -->
 					<button type="submit" id="btnHall">검색하기</button>     <!-- 결혼식장 이름 검색 -->   
 				</form>
 			</div>
@@ -117,7 +138,7 @@
 								<c:forEach items="${fn:split(s.studioTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -196,7 +217,7 @@
 								<c:forEach items="${fn:split(d.dressTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -275,7 +296,7 @@
 								<c:forEach items="${fn:split(m.makeupTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>
@@ -350,7 +371,7 @@
 								<c:forEach items="${fn:split(g.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 										<c:set var="keyword" value="${fn:split(item,'#')}" />
-										<a href="/collectionListSearch.do?keyword=${keyword[0]}">${item}</a>
+										<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
 										<c:if test="${j.count == 5}">											<!-- 반복문이 다섯 번 돌았을 때 -->
 											<c:set var="doneLoop" value="true"/> 								<!-- 반복문 break 활성화 -->
 										</c:if>

@@ -8,6 +8,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kr.co.collection.model.vo.Collection;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
@@ -34,6 +35,34 @@ public class CollectionDao {
 		}else if(type.equals("B") || type.equals("I")) {
 			list = sqlSession.selectList("goods.selectAllList", type);
 		}
+		int count = list.size();
+		return count;
+	}
+	
+	public int totalCountKeyword(String keyword) {
+		String keywordIn = "%"+keyword+"%";
+		List list = sqlSession.selectList("collectionVo.selectKeywordList", keywordIn);
+		int count = list.size();
+		return count;
+	}
+	
+	public int totalCountSearch(String keyword, String searchAddr, String searchCode) {
+		String [] keywordArr = null;
+		if(keyword.length() > 0) {
+			keywordArr = keyword.split(",");			
+			for(int i = 0;i < keywordArr.length;i++) {
+				if(!keywordArr[i].equals("")) {
+					keywordArr[i] = "%"+keywordArr[i]+"%";
+				}
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("keywordArr", keywordArr);
+		map.put("prdAddr", searchAddr);
+		map.put("code", searchCode);
+		System.out.println("dao searchAddr : " + searchAddr);
+		System.out.println("dao searchCode : " + searchCode);
+		List list = sqlSession.selectList("collectionVo.selectSearchList", map);
 		int count = list.size();
 		return count;
 	}
@@ -65,6 +94,33 @@ public class CollectionDao {
 		map.put("end", end);
 		map.put("goodsType", type);
 		return sqlSession.selectList("goods.pageSelectAllList",map);
+	}
+	
+	public List<Collection> pageTagSearchList(int start, int end, String keyword){
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keyword", "%"+keyword+"%");
+		return sqlSession.selectList("collectionVo.pageSelectKeywordList",map);
+	}
+	
+	public List<Collection> pageSearchList(int start, int end, String keyword, String searchAddr, String searchCode){
+		String [] keywordArr = null;
+		if(keyword.length() > 0) {
+			keywordArr = keyword.split(",");			
+			for(int i = 0;i < keywordArr.length;i++) {
+				if(!keywordArr[i].equals("")) {
+					keywordArr[i] = "%"+keywordArr[i]+"%";
+				}
+			}
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("start", start);
+		map.put("end", end);
+		map.put("keywordArr", keywordArr);
+		map.put("prdAddr", searchAddr);
+		map.put("code", searchCode);
+		return sqlSession.selectList("collectionVo.pageSelectSearchList",map);
 	}
 	
 	public Scrapbook selectOneScrapbook(String memberId, String code, int objectNo) {
