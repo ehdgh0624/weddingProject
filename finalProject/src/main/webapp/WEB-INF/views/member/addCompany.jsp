@@ -9,9 +9,9 @@
 
 <%-- wrap --%>
 <section id="adminWrap">
-<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
-<script type="text/javascript"
-   src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
+	<script type="text/javascript" src="/resources/editor/ckeditor/ckeditor.js"></script>
+	<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
+   
 	<div id="adminHeader">
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
@@ -64,7 +64,9 @@
 						</tr>
 						<tr>
 							<th>업체전화번호</th>
-							<th><input type="text" name="fPhone" id="fPhone" value=" ">-<input type="text" id="sPhone" name="sPhone">-<input type="text" id="tPhone" name="tPhone"></th>
+							<th><input type="text" name="fPhone" id="fPhone" value=" " class="small"> - 
+							<input type="text" id="sPhone" name="sPhone" class="small"> - <input type="text" id="tPhone" name="tPhone" class="small">
+							</th>
 						</tr>
 					</table>
 					<span id="firstStep">다음</span>
