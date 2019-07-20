@@ -405,7 +405,7 @@
 					<!-- 리뷰 입력 끝 -->
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함-->
-				<div style="background-color: pink; width: 28%; height: 400px; float: right;">
+				<div style="width: 28%; height: 400px; float: right;">
 				<!-- 태그 -->
 					<div style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
 						<c:forEach items="${fn:split(goods.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
@@ -795,9 +795,11 @@
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
-		var select = $(this);
+		var select = $('.defaultStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOn.do",
 			type : "get",
@@ -808,6 +810,11 @@
 					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
 					select.addClass('scrapStar');
 					select.removeClass('defaultStar');
+					if(scrapbookCount == 0){
+						scrapbook.text(1);						
+					}else{
+						scrapbook.text(scrapbookCount + 1);						
+					}
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
@@ -820,9 +827,11 @@
 		});
 	});
 	$(document).on("click",".scrapStar",function(){
-		var select = $(this);
+		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOff.do",
 			type : "get",
@@ -833,6 +842,13 @@
 					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
 					select.removeClass('scrapStar');
 					select.addClass('defaultStar');
+					if(scrapbookCount == 1){
+						scrapbook.text(0);						
+					}else if(scrapbookCount == 0){
+						scrapbook.text(0);						
+					}else{
+						scrapbook.text(scrapbookCount - 1);
+					}
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					

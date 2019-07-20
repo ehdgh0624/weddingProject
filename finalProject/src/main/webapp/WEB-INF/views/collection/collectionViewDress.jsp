@@ -716,7 +716,7 @@
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
-		var select = $(this);
+		var select = $('.defaultStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
 		var scrapbook = $('#scrapbookCount');
@@ -748,7 +748,7 @@
 		});
 	});
 	$(document).on("click",".scrapStar",function(){
-		var select = $(this);
+		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
 		var scrapbook = $('#scrapbookCount');

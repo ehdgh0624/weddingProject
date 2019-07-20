@@ -614,9 +614,11 @@
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
-		var select = $(this);
+		var select = $('.defaultStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOn.do",
 			type : "get",
@@ -627,6 +629,11 @@
 					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
 					select.addClass('scrapStar');
 					select.removeClass('defaultStar');
+					if(scrapbookCount == 0){
+						scrapbook.text(1);						
+					}else{
+						scrapbook.text(scrapbookCount + 1);						
+					}
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
@@ -639,9 +646,11 @@
 		});
 	});
 	$(document).on("click",".scrapStar",function(){
-		var select = $(this);
+		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOff.do",
 			type : "get",
@@ -652,6 +661,13 @@
 					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
 					select.removeClass('scrapStar');
 					select.addClass('defaultStar');
+					if(scrapbookCount == 1){
+						scrapbook.text(0);						
+					}else if(scrapbookCount == 0){
+						scrapbook.text(0);						
+					}else{
+						scrapbook.text(scrapbookCount - 1);
+					}
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					
