@@ -25,17 +25,16 @@ public class CollectionDao {
 	SqlSessionTemplate sqlSession;
 	
 	public int totalCount(String type) {
-		List list = null;
+		int count = 0;
 		if(type.equals("S")) {
-			list = sqlSession.selectList("studio.selectAllList");
+			return sqlSession.selectOne("studio.selectAllList");
 		}else if(type.equals("D")) {
-			list = sqlSession.selectList("dress.selectAllList");			
+			count = sqlSession.selectOne("dress.selectAllList");			
 		}else if(type.equals("M")) {
-			list = sqlSession.selectList("makeup.selectAllList");
+			return sqlSession.selectOne("makeup.selectAllList");
 		}else if(type.equals("B") || type.equals("I")) {
-			list = sqlSession.selectList("goods.selectAllList", type);
+			return sqlSession.selectOne("goods.selectAllList", type);
 		}
-		int count = list.size();
 		return count;
 	}
 	
