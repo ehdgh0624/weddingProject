@@ -207,6 +207,8 @@ public class CollectionController {
 		mav.addObject("galleryList", collectionService.selectListGallery(studioNo, "S"));
 		mav.addObject("reviewList", collectionService.selectListReview(studioNo, "S"));
 		if(m != null) {
+			int scrapCount = collectionService.selectScrapCount(studioNo, "S");
+			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), studioNo, "S");
 			mav.addObject("scrapbook", scrap);
 		}
@@ -222,6 +224,8 @@ public class CollectionController {
 		mav.addObject("galleryList", collectionService.selectListGallery(dressNo, "D"));
 		mav.addObject("reviewList", collectionService.selectListReview(dressNo, "D"));
 		if(m != null) {
+			int scrapCount = collectionService.selectScrapCount(dressNo, "D");
+			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), dressNo, "D");
 			mav.addObject("scrapbook", scrap);			
 		}
@@ -237,6 +241,8 @@ public class CollectionController {
 		mav.addObject("galleryList", collectionService.selectListGallery(makeupNo, "M"));
 		mav.addObject("reviewList", collectionService.selectListReview(makeupNo, "M"));
 		if(m != null) {
+			int scrapCount = collectionService.selectScrapCount(makeupNo, "M");
+			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), makeupNo, "M");
 			mav.addObject("scrapbook", scrap);
 		}
@@ -252,6 +258,8 @@ public class CollectionController {
 		mav.addObject("galleryList", collectionService.selectListGallery(goodsNo, "G"));
 		mav.addObject("reviewList", collectionService.selectListReview(goodsNo, "G"));
 		if(m != null) {
+			int scrapCount = collectionService.selectScrapCount(goodsNo, "G");
+			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), goodsNo, "G");
 			mav.addObject("scrapbook", scrap);
 		}

@@ -431,4 +431,8 @@ public class CollectionService {
 		return collectionDao.selectReservationNo(memberId);
 	}
 	
+	public int selectScrapCount(int objectNo, String code) {
+		return collectionDao.selectScrapCount(objectNo, code);
+	}
+	
 }

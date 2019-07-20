@@ -10,4 +10,7 @@
 	<delete id="deleteOneScrap" parameterType="map">
 		delete from scrapbook where prd_no=#{objectNo} and code=#{code} and member_id=#{memberId}
 	</delete>
+	<select id="selectScrapCount" parameterType="map" resultType="_int">
+		select count(*) cnt from scrapbook where code=#{code} and prd_no=#{objectNo}
+	</select>
 </mapper>

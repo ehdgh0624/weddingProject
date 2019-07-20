@@ -404,9 +404,51 @@
 					</form>
 					<!-- 리뷰 입력 끝 -->
 				</div>
-				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
-				<!-- static 끝 -->
+				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함-->
+				<div style="background-color: pink; width: 28%; height: 400px; float: right;">
+				<!-- 태그 -->
+					<div style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
+						<c:forEach items="${fn:split(goods.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+								<c:set var="keyword" value="${fn:split(item,'#')}" />
+								<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
+							</c:if>
+						</c:forEach>
+					</div>
+				<!-- 태그 끝 -->
+				<!-- 스크랩 -->
+					<div style="width:100%;height:140px;margin-top:10px;text-align: center;padding:20px;box-sizing: border-box;">
+					<!-- 스크랩북 -->
+						<div>
+							<c:choose>
+								<c:when test="${not empty scrapbook}">
+									<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:when>
+								<c:otherwise>
+									<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
+										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:otherwise>
+							</c:choose>
+						</div>						
+					<!-- 스크랩북 끝 -->
+					
+						<c:choose>
+							<c:when test="${empty scrapbookCount}">
+								0
+							</c:when>
+							<c:otherwise>							
+								<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
+							</c:otherwise>
+						</c:choose>
+						
+						명이 스크랩했습니다.
+					</div>
+				<!-- 스크랩 끝 -->
+				</div>
+				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함 끝-->
 			</div>
 		</div>
 		<form id="paymentPage" action="/paymentPage.do" method="post" target="popup_window" style="visibility: hidden;position: absolute;top: 0;">

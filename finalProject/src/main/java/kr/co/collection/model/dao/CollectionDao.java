@@ -283,4 +283,12 @@ public class CollectionDao {
 		int result = sqlSession.selectOne("reservation.selectReservationNo",memberId);
 		return result;
 	}
+	
+	public int selectScrapCount(int objectNo, String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		int result = sqlSession.selectOne("scrapbook.selectScrapCount",map);
+		return result;
+	}
 }
