@@ -23,7 +23,7 @@
 		<tr>
 			<td>${i.count }</td>
 			<td>${list.memberId }</td>
-			<td></td>
+			<td>${list.enrollDate }</td>
 		</tr>
 	</c:forEach>
 	
