@@ -534,10 +534,15 @@
 
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
+		var reviewOn = ${reviewOn};
 		if(${sessionScope.member != null}){
 			if($('#reviewWrite').css('display') == 'none'){
-				$('#reviewWrite').show();
-				$('#reviewWriteBtn').text("♥ 후기 저장");				
+				if(reviewOn == 1){
+					$('#reviewWrite').show();
+					$('#reviewWriteBtn').text("♥ 후기 저장");					
+				}else{
+					alert("예약자만 리뷰를 작성할 수 있습니다.");
+				}
 			}else{
 				if($('#reviewContent').val() == ''){
 					alert("리뷰 내용을 작성해주세요.");

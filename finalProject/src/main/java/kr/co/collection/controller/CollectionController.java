@@ -211,6 +211,13 @@ public class CollectionController {
 			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), studioNo, "S");
 			mav.addObject("scrapbook", scrap);
+			int reservationCount = collectionService.selectReservationCount(m.getMemberId(), studioNo, "S");		//해당 조건에 맞는 예약 수
+			int reviewCount = collectionService.selectReviewCount(m.getMemberId(), studioNo, "S");					//해당 조건으로 리뷰를 쓴 횟수
+			if(reservationCount > reviewCount) {
+				mav.addObject("reviewOn", 1);
+			}else {
+				mav.addObject("reviewOn", 0);
+			}
 		}
 		mav.setViewName("collection/collectionViewStudio");
 		return mav;
@@ -228,6 +235,13 @@ public class CollectionController {
 			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), dressNo, "D");
 			mav.addObject("scrapbook", scrap);			
+			int reservationCount = collectionService.selectReservationCount(m.getMemberId(), dressNo, "D");		//해당 조건에 맞는 예약 수
+			int reviewCount = collectionService.selectReviewCount(m.getMemberId(), dressNo, "D");					//해당 조건으로 리뷰를 쓴 횟수
+			if(reservationCount > reviewCount) {
+				mav.addObject("reviewOn", 1);
+			}else {
+				mav.addObject("reviewOn", 0);
+			}
 		}
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
@@ -245,6 +259,13 @@ public class CollectionController {
 			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), makeupNo, "M");
 			mav.addObject("scrapbook", scrap);
+			int reservationCount = collectionService.selectReservationCount(m.getMemberId(), makeupNo, "M");		//해당 조건에 맞는 예약 수
+			int reviewCount = collectionService.selectReviewCount(m.getMemberId(), makeupNo, "M");					//해당 조건으로 리뷰를 쓴 횟수
+			if(reservationCount > reviewCount) {
+				mav.addObject("reviewOn", 1);
+			}else {
+				mav.addObject("reviewOn", 0);
+			}
 		}
 		mav.setViewName("collection/collectionViewMakeup");
 		return mav;		
@@ -262,6 +283,13 @@ public class CollectionController {
 			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = collectionService.selectOneScrapbook(m.getMemberId(), goodsNo, "G");
 			mav.addObject("scrapbook", scrap);
+			int reservationCount = collectionService.selectReservationCount(m.getMemberId(), makeupNo, "M");		//해당 조건에 맞는 예약 수
+			int reviewCount = collectionService.selectReviewCount(m.getMemberId(), makeupNo, "M");					//해당 조건으로 리뷰를 쓴 횟수
+			if(reservationCount > reviewCount) {
+				mav.addObject("reviewOn", 1);
+			}else {
+				mav.addObject("reviewOn", 0);
+			}
 		}
 		if(goodsType.equals("B")) {
 			mav.setViewName("collection/collectionViewBouquet");

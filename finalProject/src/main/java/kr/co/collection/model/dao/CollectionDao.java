@@ -287,7 +287,22 @@ public class CollectionDao {
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("objectNo", objectNo);
 		map.put("code", code);
-		int result = sqlSession.selectOne("scrapbook.selectScrapCount",map);
-		return result;
+		return sqlSession.selectOne("scrapbook.selectScrapCount",map);
+	}
+	
+	public int selectReservationCount(String memberId, int objectNo, String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		return sqlSession.selectOne("reservation.selectReservationCount", map);
+	}
+	
+	public int selectReviewCount(String memberId, int objectNo, String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("memberId", memberId);
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		return sqlSession.selectOne("review.selectReviewCount", map);
 	}
 }

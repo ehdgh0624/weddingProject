@@ -233,4 +233,8 @@
 		hall_foodcount as hallFoodcount
 		from reservation where prd_no=#{hallNo} and member_id=#{memberId} and code=#{code}
 	</select>
+	
+	<select id="selectReservationCount" parameterType="map" resultType="_int">
+		select count(*) cnt from reservation where code=#{code} and prd_no=#{objectNo} and member_id=#{memberId}
+	</select>
 </mapper>

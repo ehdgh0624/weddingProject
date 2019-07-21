@@ -435,4 +435,11 @@ public class CollectionService {
 		return collectionDao.selectScrapCount(objectNo, code);
 	}
 	
+	public int selectReservationCount(String memberId, int objectNo, String code) {
+		return collectionDao.selectReservationCount(memberId, objectNo, code);
+	}
+	
+	public int selectReviewCount(String memberId, int objectNo, String code) {
+		return collectionDao.selectReviewCount(memberId, objectNo, code);
+	}
 }
