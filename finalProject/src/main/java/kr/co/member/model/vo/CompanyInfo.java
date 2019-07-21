@@ -17,8 +17,10 @@ public class CompanyInfo {
 	private String sPhone;
 	private String tPhone;
 	
+	private String getMemberInfo;
 	
-	private int code;//업체분류//106번째줄 code<select name="code" id="choice">
+	
+	private String code;//업체분류//106번째줄 code<select name="code" id="choice">
 	private String companyContent;//<input type="text" name="companyContent">
 
 	private String fileNames; //파일명input type="file" name="fileNames"  id="imgInp"
@@ -82,11 +84,11 @@ public class CompanyInfo {
 	}
 	public CompanyInfo(String companyName, String postNum, String roadAddr, String companyLatitude,
 			String companyLongtitude, String jibunAddr, String detailAddr, String extraAddr, String companyAddr,
-			String companyPhone, String fPhone, String sPhone, String tPhone, int code, String companyContent,
-			String fileNames, String filePath, String hashTag, int studioPrice, String studioCamera, String studioTime,
-			String studioOption, String studioOptionPrice, int studioOptionType, int dressFittingPrice,
-			String dressFittingTime, int dressRentNum, int dressRentPrice, int jewelryPrice, String dressContent,
-			String dressMending, String dressParking, int makeupBasicPrice, int makeupParentPrice,
+			String companyPhone, String fPhone, String sPhone, String tPhone, String getMemberInfo, String code,
+			String companyContent, String fileNames, String filePath, String hashTag, int studioPrice,
+			String studioCamera, String studioTime, String studioOption, String studioOptionPrice, int studioOptionType,
+			int dressFittingPrice, String dressFittingTime, int dressRentNum, int dressRentPrice, int jewelryPrice,
+			String dressContent, String dressMending, String dressParking, int makeupBasicPrice, int makeupParentPrice,
 			int makeupVisitorPrice, String hallSelectName, String hallSelectPerson, String hallSelectTime,
 			int hallSelectPrice, String hallSelectEtc, int hallPrice, String hallType, int hallMinPerson,
 			int hallMaxPerson, String hallServiceFood, String hallServiceAudio, String hallServiceDrink,
@@ -105,6 +107,7 @@ public class CompanyInfo {
 		this.fPhone = fPhone;
 		this.sPhone = sPhone;
 		this.tPhone = tPhone;
+		this.getMemberInfo = getMemberInfo;
 		this.code = code;
 		this.companyContent = companyContent;
 		this.fileNames = fileNames;
@@ -222,10 +225,16 @@ public class CompanyInfo {
 	public void settPhone(String tPhone) {
 		this.tPhone = tPhone;
 	}
-	public int getCode() {
+	public String getGetMemberInfo() {
+		return getMemberInfo;
+	}
+	public void setGetMemberInfo(String getMemberInfo) {
+		this.getMemberInfo = getMemberInfo;
+	}
+	public String getCode() {
 		return code;
 	}
-	public void setCode(int code) {
+	public void setCode(String code) {
 		this.code = code;
 	}
 	public String getCompanyContent() {
@@ -450,29 +459,7 @@ public class CompanyInfo {
 	public void setHallFoodprice(int hallFoodprice) {
 		this.hallFoodprice = hallFoodprice;
 	}
-	@Override
-	public String toString() {
-		return "CompanyInfo [companyName=" + companyName + ", postNum=" + postNum + ", roadAddr=" + roadAddr
-				+ ", companyLatitude=" + companyLatitude + ", companyLongtitude=" + companyLongtitude + ", jibunAddr="
-				+ jibunAddr + ", detailAddr=" + detailAddr + ", extraAddr=" + extraAddr + ", companyAddr=" + companyAddr
-				+ ", companyPhone=" + companyPhone + ", fPhone=" + fPhone + ", sPhone=" + sPhone + ", tPhone=" + tPhone
-				+ ", code=" + code + ", companyContent=" + companyContent + ", fileNames=" + fileNames + ", filePath="
-				+ filePath + ", hashTag=" + hashTag + ", studioPrice=" + studioPrice + ", studioCamera=" + studioCamera
-				+ ", studioTime=" + studioTime + ", studioOption=" + studioOption + ", studioOptionPrice="
-				+ studioOptionPrice + ", studioOptionType=" + studioOptionType + ", dressFittingPrice="
-				+ dressFittingPrice + ", dressFittingTime=" + dressFittingTime + ", dressRentNum=" + dressRentNum
-				+ ", dressRentPrice=" + dressRentPrice + ", jewelryPrice=" + jewelryPrice + ", dressContent="
-				+ dressContent + ", dressMending=" + dressMending + ", dressParking=" + dressParking
-				+ ", makeupBasicPrice=" + makeupBasicPrice + ", makeupParentPrice=" + makeupParentPrice
-				+ ", makeupVisitorPrice=" + makeupVisitorPrice + ", hallSelectName=" + hallSelectName
-				+ ", hallSelectPerson=" + hallSelectPerson + ", hallSelectTime=" + hallSelectTime + ", hallSelectPrice="
-				+ hallSelectPrice + ", hallSelectEtc=" + hallSelectEtc + ", hallPrice=" + hallPrice + ", hallType="
-				+ hallType + ", hallMinPerson=" + hallMinPerson + ", hallMaxPerson=" + hallMaxPerson
-				+ ", hallServiceFood=" + hallServiceFood + ", hallServiceAudio=" + hallServiceAudio
-				+ ", hallServiceDrink=" + hallServiceDrink + ", hallServiceParking=" + hallServiceParking
-				+ ", hallFoodtype=" + hallFoodtype + ", hallFoodmenu=" + hallFoodmenu + ", hallFoodprice="
-				+ hallFoodprice + "]";
-	}
+	
 	
 	
 	

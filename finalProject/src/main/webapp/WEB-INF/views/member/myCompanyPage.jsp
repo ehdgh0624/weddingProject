@@ -26,7 +26,6 @@
 							<th>스튜디오</th>
 							
 							<th><span>${s.studioName }</span></th>
-							
 						</tr>
 						</c:forEach>
 					</c:if>

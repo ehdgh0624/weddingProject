@@ -229,6 +229,7 @@ public class MemberService {
 
 	public Makeup selectOneMakeupNumber(int no) {
 		// TODO Auto-generated method stub
+		System.out.println(no);
 		return memberDao.selectOneMakeupNumber(no);
 	}
 

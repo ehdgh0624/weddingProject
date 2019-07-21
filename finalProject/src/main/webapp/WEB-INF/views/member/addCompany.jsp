@@ -17,12 +17,12 @@
 	</div>
 
 		<div class="area">
-			<form action="/companyEnroll.do" method="post" enctype="multipart/form-data">
+			<form action="/companyEnroll.do" method="post" enctype="multipart/form-data" id="formTag">
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
 					<h1 class="main-comm-tit type2">파트너 기본정보 등록</h1>
-					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo">
+					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo" value=" " name="getMemberInfo">
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -30,11 +30,11 @@
 						</colgroup>
 						<tr>
 							<th>업체이름</th>
-							<th><input type="text" name="companyName" value=" "></th>
+							<th><input type="text" name="companyName"  id="companyName"></th>
 						</tr>
 						<tr>
 							<th>우편번호</th>
-							<td><input type="text" class="small" id="sample4_postcode" placeholder="우편번호" name="postNum">
+							<td><input type="text" class="small" id="sample4_postcode" placeholder="우편번호" name="postNum" readonly="readonly">
 								<div class="common-tbl-btn-group join-btn-group">
 									<button type="button" onclick="sample4_execDaumPostcode()"
 									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
@@ -46,26 +46,27 @@
 						<tr>
 							<th>도로명주소</th>
 							<td><input type="text" id="sample4_roadAddress"
-								placeholder="도로명주소" name="roadAddr"> <span id="guide"
+								placeholder="도로명주소" name="roadAddr" readonly="readonly"> <span id="guide"
 								style="color: #999; display: none"></span></td>
 						</tr>
 
 						<tr>
 							<th>지번주소</th>
 							<th><input type="text" id="sample4_jibunAddress"
-								placeholder="지번주소" name="jibunAddr"> <input type="text"
+								placeholder="지번주소" name="jibunAddr" readonly="readonly"> <input type="text"
 								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:3px;"></th>
 						</tr>
 
 						<tr>
 							<th>상세주소</th>
 							<th><input type="text" id="sample4_detailAddress"
-								placeholder="상세주소" name="detailAddr"></th>
+								placeholder="상세주소" name="detailAddr" required="required"></th>
 						</tr>
 						<tr>
 							<th>업체전화번호</th>
-							<th><input type="text" name="fPhone" id="fPhone" value=" " class="small"> - 
-							<input type="text" id="sPhone" name="sPhone" class="small"> - <input type="text" id="tPhone" name="tPhone" class="small">
+							<th><input type="text" name="fPhone" id="fPhone" value=" " class="small num"> - 
+							<input type="text" id="sPhone" name="sPhone" class="small num"> - 
+							<input type="text" id="tPhone" name="tPhone" class="small num">
 							</th>
 						</tr>
 					</table>
@@ -81,15 +82,15 @@
 						</colgroup>
 						<tr>
 							<th>스튜디오평균가격</th>
-							<th><input type="number" name="studioPrice" value="0"></th>
+							<th><input type="text" name="studioPrice" value="" id="studioPrice" class="num"></th>
 						</tr>
 						<tr>
 							<th>스튜디오평균시간</th>
-							<th><input type="text" name="studioTime" value=" " placeholder="ex)평균적으로 3시간, 3시간, 등등"></th>
+							<th><input type="text" name="studioTime" value="" placeholder="ex)평균적으로 3시간, 3시간, 등등" id="studioTime"></th>
 						</tr>
 						<tr>
 							<th>촬영장비</th>
-							<th><input type="text" name="studioCamera" value=" "></th>
+							<th><input type="text" name="studioCamera" value="" id="studioCamera"></th>
 						</tr>
 					</table>
 					<span id="studioBackStep" class="backBtn">이전</span>
@@ -106,10 +107,10 @@
 						<tr>
 							<th>선택</th>
 							<th><select name="code" id="choice">
-									<option value="0">스튜디오</option>
-									<option value="1">드레스</option>
-									<option value="2">메이크업</option>
-									<option value="3">홀</option>
+									<option value="S">스튜디오</option>
+									<option value="D">드레스</option>
+									<option value="M">메이크업</option>
+									<option value="H">홀</option>
 							</select></th>
 						</tr>
 					</table>
@@ -126,33 +127,33 @@
 						</colgroup>
 						<tr>
 							<th>드레스피팅가격</th>
-							<th><input type="number" name="dressFittingPrice" value="0"></th>
+							<th><input type="text" name="dressFittingPrice" value="" id="dressFittingPrice"></th>
 						</tr>
 						<tr>
 							<th>드레스피팅시간</th>
-							<th><input type="text" name="dressFittingTime" value=" "></th>
+							<th><input type="text" name="dressFittingTime" value="" id="dressFittingTime"></th>
 						</tr>
 						<tr>
 							<th>드레스대여가능갯수</th>
-							<th><input type="number" name="dressRentNum" value="0"></th>
+							<th><input type="number" name="dressRentNum" value="" id="dressRentNum"></th>
 						</tr>
 						<tr>
 							<th>드레스렌트가격</th>
-							<th><input type="number" name="dressRentPrice" value="0"></th>
+							<th><input type="number" name="dressRentPrice" value="" id="dressRentPrice"></th>
 						</tr>
 						<tr>
 							<th>보석렌트가격</th>
-							<th><input type="number" name="jewelryPrice" value="0"></th>
+							<th><input type="number" name="jewelryPrice" value="" id="jewelryPrice"></th>
 						</tr>
 						<tr>
 							<th>체크옵션</th>
-							<th>가봉여부 <input type="checkbox" name="dressMending"><br>
-								주차여부 <input type="checkbox" name="dressParking">
+							<th>가봉여부 <input type="checkbox" name="dressMending" value=" "><br>
+								주차여부 <input type="checkbox" name="dressParking" value=" ">
 							</th>
 						</tr>
 						<tr>
 							<th>추가상세설명</th>
-							<th><input type="text" name="dressContent" value=" "></th>
+							<th><input type="text" name="dressContent" value="" id="dressContent"></th>
 						</tr>
 					</table>
 					<span id="dressBackStep" class="backBtn">이전</span>
@@ -167,15 +168,15 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="number" name="makeupBasicPrice" value="0"></th>
+								<th><input type="number" name="makeupBasicPrice" value="" id="makeupBasicPrice"></th>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
-								<th><input type="number" name="makeupParentPrice" value="0"></th>
+								<th><input type="number" name="makeupParentPrice" value="" id="makeupParentPrice"></th>
 							</tr>
 							<tr>
 								<th>하객메이크업 가격</th>
-								<th><input type="number" name="makeupVisitorPrice" value="0"></th>
+								<th><input type="number" name="makeupVisitorPrice" value="" id="makeupVisitorPrice"></th>
 							</tr>
 						</table>
 						<span id="makeupBackStep" class="backBtn">이전</span>
@@ -192,11 +193,11 @@
 							</colgroup>
 							<tr>
 								<th>웨딩홀 최소인원</th>
-								<th><input type="number" name="hallMinPerson" value="0"></th>
+								<th><input type="number" name="hallMinPerson" value="" id="hallMinPerson"></th>
 							</tr>
 							<tr>
 								<th>웨딩홀 최대인원</th>
-								<th><input type="number" name="hallMaxPerson" value="0"></th>
+								<th><input type="number" name="hallMaxPerson" value="" id="hallMaxPerson"></th>
 							</tr>
 							<tr>
 								<th>웨딩홀 타입</th>
@@ -234,24 +235,24 @@
 								</tr>
 								<tr>
 									<th>웨딩홀 음식메뉴</th>
-									<th><input type="text" name="hallFoodmenu" value=" "></th>
+									<th><input type="text" name="hallFoodmenu" value="" id="hallFoodmenu"></th>
 								</tr>
 								<tr>
 									<th>웨딩홀음식가격</th>
-									<th><input type="number" name="hallFoodprice" value="0"></th>
+									<th><input type="number" name="hallFoodprice" value="" id="hallFoodprice"></th>
 								</tr>
 							<!--  -->
 								<tr>
 									<th>웨딩홀 주류제공</th>
-									<th><input type="checkbox" name="hallServiceDrink"></th>
+									<th><input type="checkbox" name="hallServiceDrink" value=" "></th>
 								</tr>
 								<tr>
 									<th>웨딩홀 음향제공</th>
-									<th><input type="checkbox" name="hallServiceAudio"></th>
+									<th><input type="checkbox" name="hallServiceAudio" value=" "></th>
 								</tr>						
 								<tr>
 									<th>웨딩홀 주차제공</th>
-									<th><input type="checkbox" name="hallServiceParking"></th>
+									<th><input type="checkbox" name="hallServiceParking" value=" "></th>
 								</tr>
 						</table>
 						<span id="hallBackStep" class="backBtn2">이전</span>					
@@ -269,11 +270,11 @@
 							</colgroup>
 							<tr>
 								<th>대표사진등록</th>
-								<th><input type="file" name="fileNames"  id="imgInp"></th>
+								<th><input type="file" name="fileName"  id="imgInp" value="" required="required"></th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
-								<th><input type="text" name="hashTag" value=" "></th>
+								<th><input type="text" name="hashTag" value="" required="required"></th>
 							</tr>
 							<colgroup>
 								<col width="18%">
@@ -281,16 +282,13 @@
 							</colgroup>
 							<tr>
 								<th>상세설명</th>
-								<th><input type="text" name="companyContent"></th>
+								<th><input type="text" name="companyContent" value="" required="required"></th>
 							</tr>
-							
-							
 							</table>		
 							<span id="finalBackBtn" class="backBtn3">이전</span>
-							<button type="submit">제출</button>
+							<button type="submit" id="finalSubmit">제출</button>
 					</div>		
 				</div>
-				
 				<div id="studioOption" class="divbox" style="display:none;"><!--스튜디오 옵션  -->
 					<h1>스튜디오 옵션</h1>
 					<div id='studioOptionTableDiv'>
@@ -301,11 +299,11 @@
 							</colgroup>
 							<tr>
 								<th>스튜디오 옵션명</th>
-								<th><input type="text" name="studioOption" value=" " id="studioOption"></th>
+								<th><input type="text" name="studioOption" value="" id="studioOptionName"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>
+								<th><input type="text" name="studioOptionPrice" value="" id="studioOptionprice"></th>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
@@ -334,23 +332,23 @@
 							</colgroup>
 							<tr>
 								<th>예식장이름(홀이름)</th>
-								<th><input type="text" name="hallSelectName" value=" "></th>
+								<th><input type="text" name="hallSelectName" value="" id="hallSelectName"></th>
 							</tr>
 							<tr>
 								<th>예식장인원(최소)</th>
-								<th><input type="text" name="hallSelectPerson" value=" "></th>
+								<th><input type="text" name="hallSelectPerson" value="" id="hallSelectPerson"></th>
 							</tr>
 							<tr>
 								<th>예식장시간</th>
-								<th><input type="text" name="hallSelectTime" value=" "></th>
+								<th><input type="text" name="hallSelectTime" value="" id="hallSelectTime"></th>
 							</tr>
 							<tr>
 								<th>홀대여가격</th>
-								<th><input type="number" name="hallSelectPrice" value=0></th>
+								<th><input type="number" name="hallSelectPrice" value="" id="hallSelectPrice"></th>
 							</tr>
 							<tr>
 								<th>웨딩홀비고</th>
-								<th><input type="text" name="hallSelectEtc" value=" "></th>
+								<th><input type="text" name="hallSelectEtc" value="" id="hallSelectEtc"></th>
 							</tr>
 						</table>
 					</div>
@@ -367,29 +365,86 @@
 
 </section>
 
-<script><!--페이지 처리 스크립트-->
+<script>
 
+<!--널값 처리 스크립트-->
+$('#finalSubmit').click(function(){
+	if($('#studioPrice').val()==""||$('#studioTime').val()==""||$("#studioCamera").val()==""){
+		$('#studioPrice').val('0');
+		$('#studioTime').val('0');
+		$("#studioCamera").val(0);
+	};
+	if($('#dressFittingPrice').val()==""||$('#dressFittingTime').val()==""||$("#dressRentNum").val()==""||$("#dressRentPrice").val()==""||$("#jewelryPrice").val()==""||$("#dressContent").val()==""){
+		$('#dressFittingPrice').val('0');
+		$('#dressFittingTime').val('0');
+		$("#dressRentNum").val(0);
+		$("#dressRentPrice").val(0);
+		$("#jewelryPrice").val(0);
+		$("#dressContent").val(0);
+	};
+	if($('#makeupBasicPrice').val()==""||$('#makeupParentPrice').val()==""||$("#makeupVisitorPrice").val()==""){
+		$('#makeupBasicPrice').val('0');
+		$('#makeupParentPrice').val('0');
+		$("#makeupVisitorPrice").val('0');
+	};
+	if($('#hallMinPerson').val()==""||$('#hallMaxPerson').val()==""||$("#hallFoodmenu").val()==""||$("#hallFoodprice").val()==""){
+		$('#hallMinPerson').val('0');
+		$('#hallMaxPerson').val('0');
+		$("#hallFoodmenu").val('0');
+		$("#hallFoodprice").val('0');
+	};
+	if($('#studioOptionName').val('')==""||$('#studioOptionprice').val()==""){
+		$('#studioOptionprice').val('0');
+		$('#studioOptionName').val('0')
+	};
+	if($('#hallSelectName').val()==""||$('#hallSelectPerson').val()==""||$('#hallSelectTime').val()==""||$('#hallSelectPrice').val()==""||$('#hallSelectEtc').val()==""){
+		$('#hallSelectName').val('0');
+		$('#hallSelectPerson').val('0');
+		$('#hallSelectTime').val('0');
+		$('#hallSelectPrice').val('0');
+		$('#hallSelectEtc').val('0');
+	};
+});
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<!--페이지 -->
 	$(document).ready(function(){
 		$('#first').css("display","block");	
 	});
 	
 	$('#firstStep').click(function(){
-		$('.divbox').css("display","none");
-		$('#second').css("display","block");
+		if($('#companyName').val()==""||$('#sample4_detailAddress').val()==""||$('#fPhone').val()==""||$('#sPhone').val()==""||$('#tPhone').val()==""){
+			alert("모든정보를 입력해주십시오");
+		}else{
+			$('.divbox').css("display","none");
+			$('#second').css("display","block");
+		}
+	
 	});
 	
 	$('#secondStep').click(function(){
 		$('.divbox').css("display","none");
-		if($('#choice').val()==0){
+		if($('#choice').val()=="S"){
 			$('#seventh').css("display","block");
 		}
-		if($('#choice').val()==1){
+		if($('#choice').val()=="D"){
 			$('#third').css("display","block");
 		}
-		if($('#choice').val()==2){
+		if($('#choice').val()=="M"){
 			$('#fourth').css("display","block");
 		}
-		if($('#choice').val()==3){
+		if($('#choice').val()=="H"){
 			$('#hallOption').css("display","block");
 		}
 	});
@@ -405,8 +460,13 @@
 	});
 	
 	$('#studioStep').click(function(){
-		$('.divbox').css("display","none");
-		$('#studioOption').css("display","block");
+		
+		if($('#studioPrice').val()==""||$('#studioTime').val()==""||$("#studioCamera").val()==""){
+			alert("모든정보를 입력해주십시오");
+		}else{
+			$('.divbox').css("display","none");
+			$('#studioOption').css("display","block");
+		}
 	});
 	
 	$('.lastBtn').click(function(){
@@ -429,16 +489,16 @@
 	
 	$('#finalBackBtn').click(function(){
 		$('.divbox').css("display","none");
-		if($('#choice').val()==0){
+		if($('#choice').val()=="S"){
 			$('#studioOption').css("display","block");
 		}
-		if($('#choice').val()==1){
+		if($('#choice').val()=="D"){
 			$('#third').css("display","block");
 		}
-		if($('#choice').val()==2){
+		if($('#choice').val()=="M"){
 			$('#fourth').css("display","block");
 		}
-		if($('#choice').val()==3){
+		if($('#choice').val()=="H"){
 			$('#fiveth').css("display","block");
 		}
 	});
@@ -495,17 +555,16 @@
 	$('#studioOptionAdd').click(function(){
 		var addTable ="";			
 		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
-		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOption"></th>'
+		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOptionName"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
 		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
 	});
 	
-	
+
 	
 	<!--주소-->
-	
 	function sample4_execDaumPostcode() {
 	    new daum.Postcode({
 	        oncomplete: function(data) {

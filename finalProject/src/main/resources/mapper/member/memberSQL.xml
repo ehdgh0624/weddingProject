@@ -92,7 +92,7 @@
     <insert id="insertHall" parameterType="hall">
     insert into hall values(hall_seq.nextval,#{memberId},#{code},#{hallType},#{hallName},#{hallLoc},#{hallAddr},#{hallContent},#{hallImg},#{hallPath},#{hallPrice},#{hallMinPerson},#{hallMaxPerson}
     ,#{hallScope},#{hallFoodtype},#{hallFoodmenu},#{hallFoodprice},#{hallTel},#{hallTime},#{hallServiceFood},#{hallServiceAudio},#{hallServiceDrink}
-    ,#{hallServicePark},#{status},#{viewStatus},#{hallTag},#{hallLatitude},#{hallLongtitude})
+    ,#{hallServicePark},#{status},#{viewStatus},#{hallTag},#{hallLatitude},#{hallLongtitude},sysdate)
     </insert>
       <select id="selectOneMember" parameterType="member" resultType="member">
     	select 
@@ -275,7 +275,7 @@
     	from hall where member_id=#{memberId} and hall_name=#{hallName}
     </select>
     <insert id="insertHallOption" parameterType="hallSelect">
-     insert into hallSelect values(#{hallSelectRef},#{hallSelectType},#{hallSelectPrice},#{hallSelectEtc})
+     insert into hallSelect values(#{hallSelectNo},#{hallType},#{hallSelectPrice},#{hallSelectEtc})
     </insert>
     <select id="getCollectionlist" parameterType="member" resultType="scrapbook">
     	select

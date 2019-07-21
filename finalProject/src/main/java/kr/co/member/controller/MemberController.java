@@ -837,13 +837,13 @@ public class MemberController {
 			@RequestParam(value="hallSelectTime",required = true) List<String> hallSelectTime,
 			@RequestParam(value="hallSelectEtc",required = true) List<String> hallSelectEtc,
 			HttpServletRequest request,
-			@RequestParam MultipartFile fileNames
+			@RequestParam MultipartFile fileName
 			){
 		String phone=ci.getfPhone()+"/"+ci.getsPhone()+"/"+ci.gettPhone();
 		ci.setCompanyPhone(phone);
 		System.out.println("업체등록 로직 시작");
 		System.out.println("컨트롤러"+ci);
-		int code=ci.getCode();
+		String code=ci.getCode();
 		int seqNo=0;
 		Member vo =(Member)session.getAttribute("member");	
 		HallSelectList hsl=new HallSelectList();
@@ -853,17 +853,17 @@ public class MemberController {
 	
 		String savePath="";
 		
-		String originName=fileNames.getOriginalFilename();
+		String originName=fileName.getOriginalFilename();
 		String onlyFileName=originName.substring(0,originName.indexOf("."));
 		String extension= originName.substring(originName.indexOf("."));
 		
-		if(code==0) {
+		if(code.equals("S")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
-		}else if(code==1) {
+		}else if(code.equals("D")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
-		}else if(code==2) {
+		}else if(code.equals("M")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
-		}else if(code==3) {
+		}else if(code.equals("H")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
 		}
 		System.out.println(savePath);
@@ -871,9 +871,9 @@ public class MemberController {
 		String filePath = onlyFileName+"_"+"1"+extension;
 		String fullPath = savePath +"/"+filePath;
 		
-		if(!fileNames.isEmpty()) {
+		if(!fileName.isEmpty()) {
 			try {
-				byte[] bytes = fileNames.getBytes();
+				byte[] bytes = fileName.getBytes();
 				File f = new File(fullPath);
 				FileOutputStream fos = new FileOutputStream(f);
 				BufferedOutputStream bos = new BufferedOutputStream(fos);
@@ -903,7 +903,7 @@ public class MemberController {
 		
 		 ci.setCompanyAddr(fullAddr);
 		
-		if(code==0) {
+		if(code.equals("S")) {
 			result=memberService.insertStudio(ci, vo);
 			if(result>0) {
 				seqNo=memberService.getStudioNo(ci.getCompanyName(),vo.getMemberId());
@@ -915,17 +915,17 @@ public class MemberController {
 				ssl.setList(list);
 				result2=memberService.insertStudioOption(ssl);
 			}
-		}else if(code==1) {
+		}else if(code.equals("D")) {
 			result= memberService.insertDress(ci, vo);
-		}else if(code==2) {
+		}else if(code.equals("M")) {
 			result= memberService.insertMakeup(ci, vo);
-		}else if(code==3) {
+		}else if(code.equals("H")) {
 			
 			result=memberService.insertHall(ci, vo);
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
-					HallSelect  hs = new HallSelect(0,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
+					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
 		
 					list2.add(hs);
 				}
@@ -934,9 +934,9 @@ public class MemberController {
 			}
 		}	
 		
-		if(result>0 && code==0 && result2>0){
+		if(result>0 && code.equals("S") && result2>0){
 			return "redirect:/index.jsp";
-		}else if(result>0 && code==3 && result2>0) {
+		}else if(result>0 && code.equals("H") && result2>0) {
 			return "redirect:/index.jsp";
 		}else if(result>0){
 			return "redirect:/index.jsp";

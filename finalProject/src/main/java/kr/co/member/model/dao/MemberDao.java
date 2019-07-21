@@ -219,7 +219,9 @@ public class MemberDao {
 
 	public Makeup selectOneMakeupNumber(int no) {
 		// TODO Auto-generated method stub
-		return (Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
+		Makeup mu=(Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
+				System.out.println(mu);
+		return mu;
 	}
 
 	public Dress selectOneDressNumber(int no) {
