@@ -21,39 +21,49 @@
 	<div id="myPageContainer" class="clearfix area">
 		<table class="comm-tbl type2">
 		<colgroup>
-				<col width="10%">
-				<col width="10%">
+				<col width="7%">
 				<col width="15%">
 				<col width="15%">
-				<col width="30%">
-				<col width="10%">
-				<col width="10%">
+				<col width="15%">
+				<col width="/">
+				<col width="8%">
+				<col width="8%">
+				<col width="8%">
 			</colgroup>
 			<tr>
-				<th>업체 종류</th>
+				<th>업체<br>종류</th>
 				<th>업체 이름</th>
 				<th>신청자 아이디</th>
 				<th>업체 전화번호</th>
 				<th>업체 주소</th>
-				<th>신청허가</th>
+				<th>상세 보기</th>
+				<th>신청 허가</th>
 				<th>신청 거절</th>
 			</tr>
-			<c:forEach items="${ac.aList }" var="c" >
+			<c:if test="${not empty ac.aList }">
+				<c:forEach items="${ac.aList }" var="c" >
+					<tr>
+						<td class="code" title="${c.code }">
+							<c:if test="${c.code eq 'H'}" > 호텔</c:if>
+							<c:if test="${c.code eq 'S'}" > 스튜디오</c:if>
+							<c:if test="${c.code eq 'D'}" > 드레스</c:if>
+							<c:if test="${c.code eq 'M'}" > 메이크업</c:if>
+						</td>
+						<td>${c.name}</td>
+						<td>${c.id }</td>
+						<td>${c.tel}</td>
+						<td>${c.addr }</td>
+						<td><button class="companyDetail reject-btn" title="${c.comNo }">상세 보기</button></td>
+						<td style="text-align: center;"><button type="button" onclick="agree(${c.comNo},'${c.code }','${c.id } ')" class="agree-btn">신청 허가</button></td>
+						<td style="text-align: center;"><button type="button" onclick="reject(${c.comNo},'${c.code }','${c.id }')" class="reject-btn">신청 거절</button></td>
+					</tr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty ac.aList }">
 				<tr>
-					<td title="${c.code }">
-					<c:if test="${c.code eq 'H'}" > 호텔</c:if>
-					<c:if test="${c.code eq 'S'}" > 스튜디오</c:if>
-					<c:if test="${c.code eq 'D'}" > 드레스</c:if>
-					<c:if test="${c.code eq 'M'}" > 메이크업</c:if>
-					</td>
-					<td  class="companyDetail" title="${c.comNo }">${c.name}</td>
-					<td>${c.id }</td>
-					<td>${c.tel}</td>
-					<td>${c.addr }</td>
-					<td style="text-align: center;"><button type="button" onclick="agree(${c.comNo},'${c.code }','${c.id } ')" class="agree-btn">신청 허가</button></td>
-					<td style="text-align: center;"><button type="button" onclick="reject(${c.comNo},'${c.code }','${c.id }')" class="reject-btn">신청 거절</button></td>
+					<td colspan="8"><p class="none">업체 목록이 없습니다.</p></td>
 				</tr>
-			</c:forEach>
+			</c:if>
 		</table>
 		<div class="paging">${ac.pageNavi}</div>
 		  <!-- 검색박스 -->
@@ -85,7 +95,7 @@
 		});
 		$(".companyDetail").each(function(){
 			$(this).on("click",function(){
-			var code = $(this).prev().attr("title");
+			var code = $(this).parent().siblings(".code").attr("title");
 			var no = $(this).attr("title");
 				location.href='/companyDetailView.do?prdNo='+no+'&code=${s.code }'+code;
 			});
