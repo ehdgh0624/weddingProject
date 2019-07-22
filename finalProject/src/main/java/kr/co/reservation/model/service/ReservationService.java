@@ -23,4 +23,16 @@ public class ReservationService {
 		return reservationDao.updateOrderStatusCancel(reservationNo);
 	}
 	
+	public int option1Price(String code, int objectNo, String option) {
+		return reservationDao.option1Price(code, objectNo, option);
+	}
+	
+	public int option2Price(String code, int objectNo, String option) {
+		return reservationDao.option2Price(code, objectNo, option);
+	}
+	
+	public int option3Price(String code, int objectNo, String option) {
+		return reservationDao.option3Price(code, objectNo, option);
+	}
+
 }

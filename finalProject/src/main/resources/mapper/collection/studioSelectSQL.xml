@@ -25,6 +25,15 @@
 	<insert id="insertStudioOption" parameterType="studioSelect">
 		insert into studio_select 
 		values(seq_studio_select_no.nextval,#{studioNo},#{studioOption},#{studioOptionPrice},#{studioOptionType})
-		
 	</insert>
+	
+	<select id="option1Price" parameterType="map" resultType="_int">
+		select studio_option_price as studioOptionPrice from studio_select from studio_no=#{objectNo} and studio_option=#{option} and studio_option_type=0
+	</select>
+	<select id="option2Price" parameterType="map" resultType="_int">
+		select studio_option_price as studioOptionPrice from studio_select from studio_no=#{objectNo} and studio_option=#{option} and studio_option_type=1
+	</select>
+	<select id="option3Price" parameterType="map" resultType="_int">
+		select studio_option_price as studioOptionPrice from studio_select from studio_no=#{objectNo} and studio_option=#{option} and studio_option_type=2 
+	</select>
 </mapper>
