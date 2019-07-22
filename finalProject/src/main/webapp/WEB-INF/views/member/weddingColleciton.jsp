@@ -18,55 +18,65 @@
 
 	<div  class="clearfix myPageContainer">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-			<c:if test="${not empty sdmList.sList}">	
-				<c:forEach items="${sdmList.sList}" var="s" varStatus="i">
-					<div class="photolist">
-						<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}">
-							<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
-						</a>
-						<div class="photo-padding">
-							<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}" class="photolist-prdName">${s.studioName}</a>
-							<br>
-							<br>
-							<br>
-							<div>
-								${s.studioAddr}
-							</div>
+		<c:if test="${not empty sdmList.sList}">	
+			<c:forEach items="${sdmList.sList}" var="s" varStatus="i">
+				<div class="photolist">
+					<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}">
+						<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+					</a>
+					<div class="photo-padding">
+						<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}" class="photolist-prdName">${s.studioName}</a>
+						<br>
+						<br>
+						<br>
+						<div>
+							${s.studioAddr}
 						</div>
 					</div>
-					<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
-						<br>
-					</c:if>
-				</c:forEach>
-			</c:if>
+				</div>
+				<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
+					<br>
+				</c:if>
+			</c:forEach>
+		</c:if>
 	</div>
+	<c:if test="${empty sdmList.sList}">
+		<div class="common-tbl-box">
+			<p class="none">스크랩 내역이 없습니다.</p>
+		</div>
+	</c:if>
 	<hr>
 	<h1 class="main-comm-tit type2">드레스</h1>
 	
 	<div  class="clearfix myPageContainer">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-			<c:if test="${not empty sdmList.dList}">				<!-- 스튜디오 리스트가 있을 때 -->
-				<c:forEach items="${sdmList.dList}" var="d" varStatus="i">
-					<div class="photolist">
-						<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}">
-							<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
-						</a>
-						<div class="photo-padding">
-							<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}" class="photolist-prdName">${d.dressName}</a>
-							<br>
-							<br>
-							<br>
-							<div>
-								${d.dressAddr}
-							</div>
+		<c:if test="${not empty sdmList.dList}">				<!-- 스튜디오 리스트가 있을 때 -->
+			<c:forEach items="${sdmList.dList}" var="d" varStatus="i">
+				<div class="photolist">
+					<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}">
+						<img src="/resources/img/test_img.jpg"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+					</a>
+					<div class="photo-padding">
+						<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}" class="photolist-prdName">${d.dressName}</a>
+						<br>
+						<br>
+						<br>
+						<div>
+							${d.dressAddr}
 						</div>
 					</div>
-					<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
-						<br>
-					</c:if>
-				</c:forEach>
-			</c:if>
+				</div>
+				<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
+					<br>
+				</c:if>
+			</c:forEach>
+		</c:if>
 	</div>
+	<c:if test="${empty sdmList.dList}">
+		<div class="common-tbl-box">
+			<p class="none">스크랩 내역이 없습니다.</p>
+		</div>
+	</c:if>
 	<hr>
 	<h1 class="main-comm-tit type2">메이크업&헤어</h1>
 		<div class="clearfix myPageContainer">
@@ -93,6 +103,11 @@
 				</c:forEach>
 			</c:if>
 		</div>
+		<c:if test="${empty sdmList.mList}">
+			<div class="common-tbl-box">
+				<p class="none">스크랩 내역이 없습니다.</p>
+			</div>
+		</c:if>
 	</div>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
