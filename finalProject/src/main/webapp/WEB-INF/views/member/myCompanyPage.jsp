@@ -13,14 +13,23 @@
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="area">
+			<h2 class="comm-content-tit">나의 업체 관리</h2>
 			<div class="common-tbl-box">
-				<table class="comm-tbl">		
+				<table class="comm-tbl type2">		
 					<colgroup>
 						<col width="10%">
 						<col width="/%">
 						<col width="10%">
 						<col width="10%">
+						<col width="10%">
 					</colgroup>
+					<tr>
+						<th>업체 분류</th>
+						<th>업체 명</th>
+						<th>신청 상태</th>
+						<th>업체 노출</th>
+						<th>상세 보기</th>
+					</tr>
 					<c:if test="${not empty memberAll.studio}">	
 						<c:forEach items="${memberAll.studio }" var="s">
 							<c:if test="${s.status==1 }">
@@ -32,9 +41,9 @@
 							<c:if test="${s.status==0 }">
 								<tr onclick="wait()">
 							</c:if>	
-							<th>스튜디오</th>
-							<th><span>${s.studioName }</span></th>
-							<th>
+							<td>스튜디오</td>
+							<td><span>${s.studioName }</span></td>
+							<td>
 								<span>
 									<c:if test="${s.status==1 }">
 										허가완료
@@ -46,8 +55,8 @@
 										대기중
 									</c:if>					
 								</span>
-							</th>
-							<th>
+							</td>
+							<td>
 								<span>
 									<c:if test="${s.viewstatus==0 }">
 										<img width="24px" src="/resources/img/viewstatus_on.png">
@@ -56,16 +65,19 @@
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
 								</span>
-							</th>
+							</td>
+							<td>
+								<button class="agree-btn">상세 보기</button>
+							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
 					<c:if test="${not empty memberAll.dress}">		
 						<c:forEach items="${memberAll.dress }" var="d">
 						<tr onclick="location.href='/companyDetailView.do?prdNo=${d.dressNo }&code=${d.code }'">
-							<th>드레스</th>
-							<th><span>${d.dressName }</span></th>
-							<th>
+							<td>드레스</td>
+							<td><span>${d.dressName }</span></td>
+							<td>
 								<span>
 									<c:if test="${d.status==1 }">
 										허가완료
@@ -77,8 +89,8 @@
 										대기중
 									</c:if>					
 								</span>
-							</th>
-							<th>
+							</td>
+							<td>
 								<span>
 									<c:if test="${d.viewstatus==0 }">
 										<img width="24px" src="/resources/img/viewstatus_on.png">
@@ -87,16 +99,19 @@
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
 								</span>
-							</th>
+							</td>
+							<td>
+								<button class="agree-btn">상세 보기</button>
+							</td>
 						</tr>
 						</c:forEach>	
 					</c:if>
 					<c:if test="${not empty memberAll.makeup}">		
 						<c:forEach items="${memberAll.makeup }" var="m">
 						<tr onclick="location.href='/companyDetailView.do?prdNo=${m.makeupNo }&code=${m.code }'">
-							<th>메이크업</th>
-							<th><span>${m.makeupName }</span></th>
-							<th>
+							<td>메이크업</td>
+							<td><span>${m.makeupName }</span></td>
+							<td>
 								<span>
 									<c:if test="${m.status==1 }">
 										허가완료
@@ -108,8 +123,8 @@
 										대기중
 									</c:if>					
 								</span>
-							</th>
-							<th>
+							</td>
+							<td>
 								<span>
 									<c:if test="${m.viewstatus==0 }">
 										<img width="24px" src="/resources/img/viewstatus_on.png">
@@ -118,17 +133,20 @@
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
 								</span>
-							</th>
+							</td>
+							<td>
+								<button class="agree-btn">상세 보기</button>
+							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
 					<c:if test="${not empty memberAll.hall}">	
 					<c:forEach items="${memberAll.hall }" var="h">		
 						<tr onclick="location.href='/companyDetailView.do?prdNo=${h.hallNo }&code=${h.code }'">
-							<th>홀</th>
-							<th><span>${h.hallName }</span></th>
-							<th>
-							<span>
+							<td>웨딩홀</td>
+							<td><span>${h.hallName }</span></td>
+							<td>
+								<span>
 								<c:if test="${h.status==1 }">
 										허가완료
 									</c:if>		
@@ -139,8 +157,8 @@
 										대기중
 									</c:if>					
 								</span>
-							</th>
-							<th>
+							</td>
+							<td>
 								<span>
 									<c:if test="${h.viewStatus==0 }">
 										<img width="24px" src="/resources/img/viewstatus_on.png">
@@ -149,7 +167,10 @@
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
 								</span>
-							</th>
+							</td>
+							<td>
+								<button class="agree-btn">상세 보기</button>
+							</td>
 						</tr>
 					</c:forEach>
 					</c:if>

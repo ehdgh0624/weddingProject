@@ -39,12 +39,18 @@ public class ReservationController {
 			if(res != null) {
 				if(res.getOption1() != null) {
 					mav.addObject("option1Price", reservationService.option1Price(res.getCode(), res.getPrdNo(),res.getOption1()));
+				}else {
+					mav.addObject("option1Price", 0);
 				}
 				if(res.getOption2() != null) {
 					mav.addObject("option2Price", reservationService.option2Price(res.getCode(), res.getPrdNo(),res.getOption2()));					
+				}else {
+					mav.addObject("option2Price", 0);					
 				}
 				if(res.getOption3() != null) {
 					mav.addObject("option3Price", reservationService.option3Price(res.getCode(), res.getPrdNo(),res.getOption3()));					
+				}else {
+					mav.addObject("option3Price", 0);						
 				}
 				mav.addObject("reservation", res);
 				mav.setViewName("reservation/reservationView");				
@@ -53,6 +59,9 @@ public class ReservationController {
 				mav.setViewName("reservation/reservationViewFailed");
 			}
 		}else {
+			mav.addObject("option1Price", 0);
+			mav.addObject("option2Price", 0);
+			mav.addObject("option3Price", 0);
 			mav.addObject("cause", 1);
 			mav.setViewName("reservation/reservationViewFailed");
 		}
