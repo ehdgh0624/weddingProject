@@ -16,13 +16,15 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 
-		<div class="area">
+		<div class="area" style="min-height:644px;">
 			<form action="/companyEnroll.do" method="post" enctype="multipart/form-data" id="formTag">
 				<div class="comm-tbl-box" >
 				<div id="first" class="divbox" style="display: none;">
 					<!-- 기본정보 -->
 					<h1 class="main-comm-tit type2">파트너 기본정보 등록</h1>
-					내 회원정보가져오기 <input type="checkbox" id="getMemberInfo" value=" " name="getMemberInfo">
+					<div class="tbl-check-box clearfix">
+						<label for="getMemberInfo" class="fr"><input type="checkbox" id="getMemberInfo" value=" " name="getMemberInfo"> 내 회원정보가져오기 </label>
+					</div>
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -70,10 +72,13 @@
 							</th>
 						</tr>
 					</table>
-					<span id="firstStep">다음</span>
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="firstStep" class="btn-style3 small fr" style="margin:0;">다음</button>
+					</div>
 				</div>
 
 				<div id="seventh" class="divbox" style="display: none;">
+					<h1 class="main-comm-tit type2">스튜디오 등록</h1>
 					<!-- 스튜디오-->
 					<table class="comm-tbl">
 						<colgroup>
@@ -82,7 +87,7 @@
 						</colgroup>
 						<tr>
 							<th>스튜디오평균가격</th>
-							<th><input type="text" name="studioPrice" value="" id="studioPrice" class="num"></th>
+							<th><input type="text" name="studioPrice" value="" id="studioPrice" class="num middle"> 원</th>
 						</tr>
 						<tr>
 							<th>스튜디오평균시간</th>
@@ -93,12 +98,14 @@
 							<th><input type="text" name="studioCamera" value="" id="studioCamera"></th>
 						</tr>
 					</table>
-					<span id="studioBackStep" class="backBtn">이전</span>
-					<span id="studioStep" class="studioBtn">다음</span>
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="studioBackStep" class="backBtn btn-style3 small fl" style="margin:0;">이전</button>
+						<button type="button" id="studioStep" class="studioBtn btn-style3 small fr" style="margin:0;">다음</button>
+					</div>
 				</div>
 				<div id="second" class="divbox" style="display: none;">
 					<!-- 분류선택 -->
-					<h1>분류선택</h1>
+					<h1 class="main-comm-tit type2">분류선택</h1>
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -107,19 +114,21 @@
 						<tr>
 							<th>선택</th>
 							<th><select name="code" id="choice">
-									<option value="S">스튜디오</option>
+									<option value="H">웨딩홀</option>
 									<option value="D">드레스</option>
-									<option value="M">메이크업</option>
-									<option value="H">홀</option>
+									<option value="S">스튜디오</option>
+									<option value="M">메이크업&헤어</option>
 							</select></th>
 						</tr>
 					</table>
-					<span id="secondBack">이전</span>
-					<span id="secondStep">다음</span>
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="secondBack" class="btn-style3 small fl" style="margin:0;">이전</button>
+						<button type="button" id="secondStep" class="btn-style3 small fr" style="margin:0;">다음</button>
+					</div>
 				</div>
 				<div id="third" class="divbox" style="display: none;">
 					<!--드레스인경우  -->
-					<h1>드레스</h1>
+					<h1 class="main-comm-tit type2">드레스</h1>
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="18%">
@@ -127,40 +136,42 @@
 						</colgroup>
 						<tr>
 							<th>드레스피팅가격</th>
-							<th><input type="text" name="dressFittingPrice" value="" id="dressFittingPrice"></th>
+							<td><input type="text" name="dressFittingPrice" value="" id="dressFittingPrice"></td>
 						</tr>
 						<tr>
 							<th>드레스피팅시간</th>
-							<th><input type="text" name="dressFittingTime" value="" id="dressFittingTime"></th>
+							<td><input type="text" name="dressFittingTime" value="" id="dressFittingTime"></td>
 						</tr>
 						<tr>
 							<th>드레스대여가능갯수</th>
-							<th><input type="number" name="dressRentNum" value="" id="dressRentNum"></th>
+							<td><input type="text" name="dressRentNum" value="" id="dressRentNum" class="num middle"> 개</td>
 						</tr>
 						<tr>
 							<th>드레스렌트가격</th>
-							<th><input type="number" name="dressRentPrice" value="" id="dressRentPrice"></th>
+							<td><input type="text" name="dressRentPrice" value="" id="dressRentPrice" class="num middle"> 원</td>
 						</tr>
 						<tr>
 							<th>보석렌트가격</th>
-							<th><input type="number" name="jewelryPrice" value="" id="jewelryPrice"></th>
+							<td><input type="text" name="jewelryPrice" value="" id="jewelryPrice" class="num middle"> 원</td>
 						</tr>
 						<tr>
 							<th>체크옵션</th>
-							<th>가봉여부 <input type="checkbox" name="dressMending" value=" "><br>
-								주차여부 <input type="checkbox" name="dressParking" value=" ">
-							</th>
+							<td><label for="dressMending"><input type="checkbox" id="dressMending" name="dressMending" value=" "> 가봉여부 </label>
+								<label for="dressParking"><input type="checkbox" id="dressParking" name="dressParking" value=" "> 주차여부 </label>
+							</td>
 						</tr>
 						<tr>
 							<th>추가상세설명</th>
 							<th><input type="text" name="dressContent" value="" id="dressContent"></th>
 						</tr>
 					</table>
-					<span id="dressBackStep" class="backBtn">이전</span>
-					<span id="dressStep" class="lastBtn">다음</span>
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="dressBackStep" class="backBtn btn-style3 small fl" style="margin:0;">이전</button>
+						<button type="button" id="dressStep" class="lastBtn btn-style3 small fr" style="margin:0;">다음</button>
+					</div>
 				</div>
 				<div id="fourth"  class="divbox" style="display:none;"><!--메이크업  -->
-						<h1>메이크업</h1>
+						<h1 class="main-comm-tit type2">메이크업</h1>
 						<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
@@ -168,24 +179,26 @@
 							</colgroup>
 							<tr>
 								<th>메이크업기본가격</th>
-								<th><input type="number" name="makeupBasicPrice" value="" id="makeupBasicPrice"></th>
+								<td><input type="number" name="makeupBasicPrice" value="" id="makeupBasicPrice" class="num middle"> 원</td>
 							</tr>
 							<tr>
 								<th>혼주메이크업 가격</th>
-								<th><input type="number" name="makeupParentPrice" value="" id="makeupParentPrice"></th>
+								<td><input type="number" name="makeupParentPrice" value="" id="makeupParentPrice" class="num middle"> 원</td>
 							</tr>
 							<tr>
 								<th>하객메이크업 가격</th>
-								<th><input type="number" name="makeupVisitorPrice" value="" id="makeupVisitorPrice"></th>
+								<td><input type="number" name="makeupVisitorPrice" value="" id="makeupVisitorPrice" class="num middle"> 원</td>
 							</tr>
 						</table>
-						<span id="makeupBackStep" class="backBtn">이전</span>
-						<span id="makeupStep" class="lastBtn">다음</span>
+						<div class="common-tbl-btn-group clearfix">
+							<button type="button" id="makeupBackStep" class="backBtn btn-style3 small fl" style="margin:0;">이전</button>
+							<button type="button" id="makeupStep" class="lastBtn btn-style3 small fr" style="margin:0;">다음</button>
+						</div>
 					</div>
 
 					<div id="fiveth" class="divbox" style="display:none;"><!-- 홀 -->
 						<!-- 체크시 아래 음식관련 도출 -->
-						<h1>웨딩홀!</h1>
+						<h1 class="main-comm-tit type2">웨딩홀</h1>
 						<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
@@ -241,7 +254,6 @@
 									<th>웨딩홀음식가격</th>
 									<th><input type="number" name="hallFoodprice" value="" id="hallFoodprice"></th>
 								</tr>
-							<!--  -->
 								<tr>
 									<th>웨딩홀 주류제공</th>
 									<th><input type="checkbox" name="hallServiceDrink" value=" "></th>
@@ -255,22 +267,26 @@
 									<th><input type="checkbox" name="hallServiceParking" value=" "></th>
 								</tr>
 						</table>
-						<span id="hallBackStep" class="backBtn2">이전</span>					
-						<span id="hallStep" class="lastBtn">다음</span>
+						<div class="common-tbl-btn-group clearfix">
+							<button type="button" id="hallBackStep" class="backBtn2 btn-style3 small fl" style="margin:0;">이전</button>
+							<button type="button" id="hallStep" class="lastBtn btn-style3 small fr" style="margin:0;">다음</button>
+						</div>
 					</div>
 					<div id="sixth" class="divbox" style="display:none;"><!-- 최종등록-->
-							
-							<label for="imgInp">
-								<img id="img" name="img"  src="#" width="100px" height="100px">
-							</label>
-							<table class="comm-tbl">
+						
+						<table class="comm-tbl">
 							<colgroup>
 								<col width="18%">
 								<col width="/">
 							</colgroup>
 							<tr>
 								<th>대표사진등록</th>
-								<th><input type="file" name="fileName"  id="imgInp" value="" required="required"></th>
+								<th>
+									<label for="imgInp" style="display:inline-block; border:1px solid #eee;">
+										<img id="img" name="img"  src="/resources/img/noimg.jpg" width="100px" height="100px">
+									</label>
+									<input type="file" name="fileName"  id="imgInp" value="" required="required" class="middle">
+								</th>
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
@@ -284,13 +300,15 @@
 								<th>상세설명</th>
 								<th><input type="text" name="companyContent" value="" required="required"></th>
 							</tr>
-							</table>		
-							<span id="finalBackBtn" class="backBtn3">이전</span>
-							<button type="submit" id="finalSubmit">제출</button>
+						</table>		
+						<div class="common-tbl-btn-group clearfix">
+							<button type="button" id="finalBackBtn" class="backBtn3 btn-style3 small fl" style="margin:0;">이전</button>
+							<button type="submit" id="finalSubmit" class="lastBtn btn-style1 small fr" style="margin:0;">제출</button>
+						</div>
 					</div>		
 				</div>
 				<div id="studioOption" class="divbox" style="display:none;"><!--스튜디오 옵션  -->
-					<h1>스튜디오 옵션</h1>
+					<h1 class="main-comm-tit type2">스튜디오 옵션</h1>
 					<div id='studioOptionTableDiv'>
 						<table class="comm-tbl">
 							<colgroup>
@@ -299,31 +317,38 @@
 							</colgroup>
 							<tr>
 								<th>스튜디오 옵션명</th>
-								<th><input type="text" name="studioOption" value="" id="studioOptionName"></th>
+								<td><input type="text" name="studioOption" value="" id="studioOptionName"></td>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션가격</th>
-								<th><input type="text" name="studioOptionPrice" value="" id="studioOptionprice"></th>
+								<td><input type="text" name="studioOptionPrice" value="" id="studioOptionprice" class="num middle"> 원</td>
 							</tr>
 							<tr>
 								<th>스튜디오 옵션분류</th>
-								<th>
+								<td>
 									<select name="studioOptionType">
 										<option value="0">본식</option>
 										<option value="1">스튜디오</option>
 										<option value="2">영상</option>
 									</select>
 								
-								</th>
+								</td>
 							</tr>					
 						</table>
 					</div>
+					<!-- 
 						<span id="studioOptionAdd">옵션추가</span><br>
 						<span id="studioOptionBackStep" class="backBtn2">이전</span>
 						<span id="studioOption" class="lastBtn">다음</span>
+					 -->
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="studioOptionAdd" class="btn-style1 small">옵션추가</button>
+						<button type="button" id="studioOptionBackStep" class="backBtn2 btn-style3 small fl" style="margin:0;">이전</button>
+						<button type="button" id="studioOption" class="lastBtn btn-style3 small fr" style="margin:0;">제출</button>
+					</div>
 				</div>
 				<div id="hallOption" class="divbox" style="display:none;"><!-- 예식장옵션 -->
-					<h1>예식장등록</h1>
+					<h1 class="main-comm-tit type2">웨딩홀 등록</h1>
 					<div id="hallOptionTableDiv">
 						<table class="comm-tbl">
 							<colgroup>
@@ -331,30 +356,35 @@
 								<col width="/">
 							</colgroup>
 							<tr>
-								<th>예식장이름(홀이름)</th>
-								<th><input type="text" name="hallSelectName" value="" id="hallSelectName"></th>
+								<th>웨딩홀 이름(홀이름)</th>
+								<td><input type="text" name="hallSelectName" value="" id="hallSelectName"></td>
 							</tr>
 							<tr>
-								<th>예식장인원(최소)</th>
-								<th><input type="text" name="hallSelectPerson" value="" id="hallSelectPerson"></th>
+								<th>웨딩홀 인원(최소)</th>
+								<td><input type="text" name="hallSelectPerson" value="" id="hallSelectPerson" class="num middle"> 명 </td>
 							</tr>
 							<tr>
-								<th>예식장시간</th>
-								<th><input type="text" name="hallSelectTime" value="" id="hallSelectTime"></th>
+								<th>웨딩홀 시간</th>
+								<td><input type="text" name="hallSelectTime" value="" id="hallSelectTime" class="middle"> ex) 09시 ~ 18시</td>
 							</tr>
 							<tr>
-								<th>홀대여가격</th>
-								<th><input type="number" name="hallSelectPrice" value="" id="hallSelectPrice"></th>
+								<th>웨딩홀 대여가격</th>
+								<td><input type="text" name="hallSelectPrice" value="" id="hallSelectPrice" class="num middle"> 원</td>
 							</tr>
 							<tr>
-								<th>웨딩홀비고</th>
-								<th><input type="text" name="hallSelectEtc" value="" id="hallSelectEtc"></th>
+								<th>웨딩홀 비고</th>
+								<td><input type="text" name="hallSelectEtc" value="" id="hallSelectEtc"></td>
 							</tr>
 						</table>
 					</div>
-					<span id="hallOptionAdd">옵션추가</span><br>
+					<!-- <span id="hallOptionAdd">옵션추가</span><br>
 					<span id="hallOption]BackStep" class="backBtn">이전</span>
-					<span id="hallOption" class="hallOpt">다음</span>
+					<span id="hallOption" class="hallOpt">다음</span> -->
+					<div class="common-tbl-btn-group clearfix">
+						<button type="button" id="hallOption]BackStep" class="backBtn btn-style3 small fl" style="margin:0;">이전</button>
+						<button type="button" id="hallOption" class="hallOpt btn-style1 small fr" style="margin:0;">제출</button>
+						<button type="button" id="hallOptionAdd" class="btn-style2 small fr">옵션추가</button>
+					</div>
 				</div>			
 			</form>	
 			<input type="hidden" id="totalAddr" value="${sessionScope.member.addr }">
@@ -542,22 +572,23 @@ $('#finalSubmit').click(function(){
 <script><!--옵션추가 스크립트-->
 	$('#hallOptionAdd').click(function(){
 		var addTable ="";
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
+		addTable += '<br><table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
 		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
-		addTable += '<tr><th>예식장인원(최소)</th><th><input type="text" name="hallSelectPeople" value="0"></th></tr>';
-		addTable += '<tr><th>예식장시간</th><th><input type="text" name="hallSelectTime" value=" "></th></tr>';
-		addTable += '<tr><th>홀대여가격</th><th><input type="number" name="hallSelectPrice" value="0"></th></tr>';
-		addTable += '<tr><th>웨딩홀비고</th><th><input type="text" name="hallSelectEtc" value=" "></th></tr></table>';
+		addTable += '<tr><th>웨딩홀 인원(최소)</th><td><input type="text" name="hallSelectPeople" value="0" class="num middle"> 명</td></tr>';
+		addTable += '<tr><th>웨딩홀 시간</th><td><input type="text" name="hallSelectTime" value=" " class="middle"> ex) 09시 ~ 18시</td></tr>';
+		addTable += '<tr><th>웨딩홀 대여가격</th><td><input type="number" name="hallSelectPrice" value="0" class="num middle"> 원</td></tr>';
+		addTable += '<tr><th>웨딩홀비고</th><td><input type="text" name="hallSelectEtc" value=" "></td></tr></table>';
+		
 		
 		$('#hallOptionTableDiv').append(addTable);
 	});
 	
 	$('#studioOptionAdd').click(function(){
 		var addTable ="";			
-		addTable += '<table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
-		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><th><input type="text" name="studioOption" value=" " id="studioOptionName"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션가격</th><th><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice"></th>'
-		addTable +='</tr><tr><th>스튜디오 옵션분류</th><th><select name="studioOptionType"><option value="0">본식</option>'
+		addTable += '<br><table class="comm-tbl"><colgroup><col width="18%"><col width="/">'
+		addTable +='</colgroup><tr><th>스튜디오 옵션명</th><td><input type="text" name="studioOption" value=" " id="studioOptionName"></td>'
+		addTable +='</tr><tr><th>스튜디오 옵션가격</th><td><input type="text" name="studioOptionPrice" value="0" id="studioOptionprice" class="num middle"> 원</td>'
+		addTable +='</tr><tr><th>스튜디오 옵션분류</th><td><select name="studioOptionType"><option value="0">본식</option>'
 		addTable +='<option value="1">스튜디오</option><option value="2">영상</option></select></th></tr></table>'
 		$('#studioOptionTableDiv').append(addTable);
 	});

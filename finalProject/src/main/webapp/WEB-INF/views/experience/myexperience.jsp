@@ -1,71 +1,77 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-  <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/header.jsp"/>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%--  Top --%>
+<jsp:include page="/WEB-INF/common/top.jsp"/>
 
-<%--  Header --%>
-<jsp:include page="/WEB-INF/common/sub.jsp"/>
+<script>
+//콤마찍기
+function addComma(num) {
+  return num.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+}
+
+$(document).ready(function(){
+	$(".price").each(function(){
+		$(this).children("span").text(addComma($(this).children("span").html()));
+	});
+	
+	$(".myReserv-price").children("p").each(function(){
+		$(this).children("b").text(addComma($(this).children("b").html()));
+	})
+})
+</script>
 
 <%-- wrap --%>
-	<section id="wrap">
+<section id="adminWrap">
+	<div id="adminHeader">
+		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
+	</div>
+
+	<div id="myPageContainer" class="clearfix">
+		<!-- 여기에 내용 작서어어어어어엉!!! -->
+		<h2 class="comm-content-tit">내가 등록한 경험담</h2>
 		<div class="area">
-			<div>		
-					<c:forEach items="${ex}" var="e">
-				<div style="width:350px;height:350px;display:inline-block;margin:20px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
-						<div style="padding:5px; height: 70%;">
-						
-							<div>
-								<div>
-									<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
-									<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">																
-								</a>
-								</div>
-						
-								
-							</div>
-						</div>
-						<div style="padding:10px;">
-							<div>
-								<div  class="common-tbl-btn-group right" style="text-align: center; marmargin-bottom: 20px;padding-top:0;margin-top: 0px; ">
-									${e.experienceTitle}
-								<br>
-								<br>
-								
-								<br>
-									
-										<button class="btn-style1 small" onclick="exChg();">수정</button>
-										<button class="btn-style3 small" onclick="exDelete()">삭제</button>
-								
-								</div>
-														
-																	<%--  <a href="/exChg.do?experienceNo=${e.experienceNo}">수정</a>
-																	<a href="/exDelete.do?experienceNo=${e.experienceNo}">삭제</a>																			  --%>
-							</div>
-						</div>
-						<c:if test="i%3==0">				<!-- forEach가 3번 돌 때마다 개행 -->
-						<br>
-						</c:if>
-				</div>
-				<script>
-							function exChg() {
-								location.href="/exChg.do?experienceNo="+${e.experienceNo};
+			<div class="common-tbl-box">
+					<table class="comm-tbl type1">		
+						<colgroup>
+							<col width="10%">
+							<col width="12%">
+							<col width="/">
+							<col width="20%">
+							<col width="12%">
+							<col width="10%">
+						</colgroup>
+						<tr>
+							<th>글번호</th>
+							<th>작성자</th>
+							<th>제목</th>							
+							<th>작성일</th>
 							
-							}
-							function exDelete() {
-								location.href="exDelete.do?experienceNo="+${e.experienceNo};
+						</tr>
+				<c:forEach var="e" items="${ex2.exList}" varStatus="i" >	
+						<tr>
+						
+							<td>${e.experienceNo}</td>	<!-- 번호 -->
+							<td>${e.experienceWriter}</td> <!-- 작성자 -->
+							<td><a href="/experienceDetail.do?experienceNo=${e.experienceNo}">${e.experienceTitle}</td> <!-- 제목 -->
+							<td><fmt:formatDate value="${e.experienceDate}"/></td> <!-- 작성일 -->
 							
-							}
-				</script>
-					</c:forEach>
+							
+								
+						</tr>
+				</c:forEach>
+					</table>
+						<div class="paging">
+           					 ${ex2.pageNavi}
+       		 		 	</div>
 			
 			</div>
 		</div>
-	</section>
+	</div>
 	
-	
-	
-	
-<%--  footer --%>
-<jsp:include page="/WEB-INF/common/footer.jsp"/>
+	<%--  footer --%>
+	<jsp:include page="/WEB-INF/common/footer.jsp"/>
+</section>
+
+

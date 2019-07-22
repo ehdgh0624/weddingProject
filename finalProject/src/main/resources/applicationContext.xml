@@ -30,8 +30,14 @@
 	<!-- DB연결정보  -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/> <!-- Classforname 들어가는것과 똑같이 -->
-		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<!-- <property name="url" value="jdbc:oracle:thin:@49.164.127.217:32777:xe"/>
 		<property name="username" value="cuteMJ"/>
+		<property name="password" value="1234"/> -->
+		<!-- <property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+		<property name="username" value="cuteMJ"/>
+		<property name="password" value="1234"/> -->
+		<property name="url" value="jdbc:oracle:thin:@192.168.10.63:1521:xe"/>
+		<property name="username" value="finalPJL"/>
 		<property name="password" value="1234"/>
 	</bean>
 	<!-- Mybatis sql세션 연결 -->
