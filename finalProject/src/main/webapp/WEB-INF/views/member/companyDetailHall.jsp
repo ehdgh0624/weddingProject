@@ -18,7 +18,7 @@
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="common-tbl-box">
-			<form action="/studioUpdate.do" method="post">
+			<form action="/hallUpdate.do" method="post">
 			<c:if test="${sessionScope.member.memberCode != 2 }">
 				<h2 class="comm-content-tit">웨딩 홀 업체수정</h2>
 			</c:if>

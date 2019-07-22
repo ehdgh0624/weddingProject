@@ -24,7 +24,7 @@
 		</c:if>
 		<div class="area">
 			<div class="common-tbl-box">
-				<form action="/studioUpdate.do" method="post">
+				<form action="/dressUpdate.do" method="post">
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="20%">

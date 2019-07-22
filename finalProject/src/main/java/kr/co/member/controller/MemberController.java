@@ -79,6 +79,23 @@ public class MemberController {
 	@Qualifier(value="emailSender")
 	private EmailSender emailSender;
 	
+	@RequestMapping(value = "/studioUpdate.do")
+	public String studioUpdate(Studio s,HttpSession session) {
+		System.out.println("스튜디오 업데이트 호출");
+		String addr=s.getJibunAddr()+"/"+s.getExtraAddr()+"/"+
+		s.getDetailAddr()+"/"+s.getPostNum()+"/"+s.getRoadAddr();
+		
+		s.setStudioAddr(addr);
+		String tel = s.getStudioTelFi()+"/"+s.getStudioTelSe()+"/"+s.getStudioTelth();
+		s.setStudioTel(tel);
+		
+		System.out.println(s);
+		memberService.updateStudioInfo(s);
+		
+		
+		return "redirect:/myCompanyPage.do";
+	}
+	
 	
 	@RequestMapping(value = "/printId.do")
 	public String printId(@RequestParam String email) {
@@ -788,8 +805,6 @@ public class MemberController {
 		String code=request.getParameter("code");
 		
 		if(code.equals("S")) {
-		
-			
 			mav.addObject("studio", memberService.selectOneStudioNumber(no));
 			mav.addObject("studioSelectList0", memberService.selectListStudioOptionNumber(no, 0));
 			mav.addObject("studioSelectList1", memberService.selectListStudioOptionNumber(no, 1));
