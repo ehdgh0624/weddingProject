@@ -39,6 +39,18 @@
 		  centerMode: false,
 		  focusOnSelect: true
 		});
+		
+		/* *********************** 우측 퀵메뉴 ************************ */
+		$(window).scroll(function(){
+			var w_top = $(window).scrollTop();
+			var right_top = $(".collectionDetailBox").offset().top;
+
+			if (w_top > right_top) {
+				$(".collectionView-quickBar").addClass("fixed");
+			}else {
+				$(".collectionView-quickBar").removeClass("fixed");
+			}
+		});
 	});
 </script>
 
@@ -47,38 +59,36 @@
 <section id="wrap">
 	<div class="area">
 		<!-- 이 안에 컨텐츠 만들어주세요!!! 제발!!! -->
-		<div>
+		<div class="collectionViewBox">
 			<!-- 상품명 table -->
 			<table style="width: 100%;">
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
+						<button style="width: 60px; height: 60px; background:#faaca8 url(/resources/img/icon_prev_white.png) no-repeat center center; border-radius: 2px;" onclick="window.history.back();"></button>
 					</td>
 					<!-- 상품명 -->
 					<td>
-						<span style="font-size: 28px;">${goods.goodsName}</span>
-					<!-- 스크랩북 -->
-						<span style="float: right;">
-							<c:choose>
-								<c:when test="${not empty scrapbook}">
-									<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
-										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:when>
-								<c:otherwise>
-									<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
-										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:otherwise>
-							</c:choose>
-						</span>						
-					</td>
-				</tr>
-				<tr>
-					<!-- 별점 -->
-					<td>
-						<span style="vertical-align: middle;font-size: 18px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${goods.goodsScope}.png" style="height:18px;vertical-align: middle;">
+						<div class="clearfix">
+							<span class="fl" style="font-size: 28px;">${goods.goodsName}</span>
+							<!-- 스크랩북 -->
+							<span class="fr">
+								<c:choose>
+									<c:when test="${not empty scrapbook}">
+										<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
+											<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
+											<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+										</button>
+									</c:otherwise>
+								</c:choose>
+							</span>
+						</div>
+						<!-- 별점 -->
+						<p style="padding-top:10px;"><span style="vertical-align: middle;font-size: 16px;">평점&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><img src="/resources/img/scope-star/scope-star${goods.goodsScope}.png" style="height:18px;vertical-align: middle;"></p>				
 					</td>
 				</tr>
 			</table>
@@ -105,7 +115,7 @@
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>
 			<!-- 상세설명, 리뷰가 포함된 content 시작 -->
-			<div style="position: relative;">
+			<div class="collectionDetailBox" style="position: relative;">
 				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
 				<div style="width: 70%; display: inline-block;">
 					<h2>상세설명</h2>
@@ -167,7 +177,7 @@
 								<td>
 									<span id="goodsPrice">${goods.goodsPrice}</span>원
 									x
-									<input id="goodsAmount" type="number" value="1" min="1" style="width:50px;">장
+									<input id="goodsAmount" type="number" value="1" min="1" style="width:50px;" class="num">장
 								</td>
 							</tr>
 							<tr>
@@ -406,47 +416,52 @@
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함-->
 				<div style="width: 28%; height: 400px; float: right;">
-				<!-- 태그 -->
-					<div class="photolist" style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
-						<c:forEach items="${fn:split(goods.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
-							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-								<c:set var="keyword" value="${fn:split(item,'#')}" />
-								<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
-							</c:if>
-						</c:forEach>
+					<div class="collectionView-quickBar">
+						<!-- 태그 -->
+						<div class="quickBar-con">
+							<div class="quickBar-inner">
+								<c:forEach items="${fn:split(goods.goodsTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+									<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+										<c:set var="keyword" value="${fn:split(item,'#')}" />
+										<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
+									</c:if>
+								</c:forEach>
+							</div>
+						</div>
+						<div class="quickBar-con">
+							<div class="quickBar-inner2">
+								<div>
+									<!-- 스크랩북 -->
+									<div>
+										<c:choose>
+											<c:when test="${not empty scrapbook}">
+												<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
+													<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
+													<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+												</button>
+											</c:otherwise>
+										</c:choose>
+									</div>						
+									<!-- 스크랩북 끝 -->
+									<p style="padding-top:10px;">
+										<c:choose>
+											<c:when test="${empty scrapbookCount}">
+												<span id="scrapbookCount" style="color:orangered;">0</span>
+											</c:when>
+											<c:otherwise>							
+												<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
+											</c:otherwise>
+										</c:choose> 명이 스크랩했습니다.
+									</p>
+								</div>
+							</div>
+						</div>
 					</div>
-				<!-- 태그 끝 -->
-				<!-- 스크랩 -->
-					<div class="photolist" style="width:100%;height:140px;margin-top:10px;text-align: center;padding:20px;box-sizing: border-box;">
-					<!-- 스크랩북 -->
-						<div>
-							<c:choose>
-								<c:when test="${not empty scrapbook}">
-									<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
-										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:when>
-								<c:otherwise>
-									<button class="defaultStar" id="${goods.goodsNo}" name="${goods.code}">
-										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:otherwise>
-							</c:choose>
-						</div>						
-					<!-- 스크랩북 끝 -->
-					
-						<c:choose>
-							<c:when test="${empty scrapbookCount}">
-								<span id="scrapbookCount" style="color:orangered;">0</span>
-							</c:when>
-							<c:otherwise>							
-								<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
-							</c:otherwise>
-						</c:choose>
-						
-						명이 스크랩했습니다.
-					</div>
-				<!-- 스크랩 끝 -->
+					<!-- 태그 끝 -->
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함 끝-->
 			</div>
