@@ -44,35 +44,37 @@ public class ReviewController {
 			vo.setReviewWriter(m.getMemberName());
 			vo.setReviewContent(vo.getReviewContent().replace("<", "&lt;").replace(">", "&gt;").replace(" ", "&nbsp;")
 					.replace("\"", "&quot;").replace("\r\n", "<br>"));
-			List<MultipartFile> fileList = mtfRequest.getFiles("uploadFile");
-			if (!fileList.get(0).equals("")) {
-				String src = mtfRequest.getParameter("src");
-				String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/review/");
-				String fileName = "";
-				String filePath = "";
-				int index = 0;
-				for (MultipartFile mf : fileList) {
-					index++;
-					String originFileName = mf.getOriginalFilename(); // 원본 파일명
-					long fileSize = mf.getSize(); // 파일 사이즈
-					String fileSave = System.currentTimeMillis() + originFileName;
-					String safeFile = savePath + fileSave; // 파일 업로드 경로
-					fileName += originFileName;
-					filePath += fileSave; // 내려받을 파일 경로
-					if (index < fileList.size()) {
-						fileName += ",";
-						filePath += ",";
+			if(mtfRequest.equals("")) {				
+				List<MultipartFile> fileList = mtfRequest.getFiles("uploadFile");
+				if (!fileList.get(0).equals("")) {
+					String src = mtfRequest.getParameter("src");
+					String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/review/");
+					String fileName = "";
+					String filePath = "";
+					int index = 0;
+					for (MultipartFile mf : fileList) {
+						index++;
+						String originFileName = mf.getOriginalFilename(); // 원본 파일명
+						long fileSize = mf.getSize(); // 파일 사이즈
+						String fileSave = System.currentTimeMillis() + originFileName;
+						String safeFile = savePath + fileSave; // 파일 업로드 경로
+						fileName += originFileName;
+						filePath += fileSave; // 내려받을 파일 경로
+						if (index < fileList.size()) {
+							fileName += ",";
+							filePath += ",";
+						}
+						try {
+							mf.transferTo(new File(safeFile));
+						} catch (IllegalStateException e) {
+							e.printStackTrace();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
 					}
-					try {
-						mf.transferTo(new File(safeFile));
-					} catch (IllegalStateException e) {
-						e.printStackTrace();
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
+					vo.setReviewFilename(fileName);
+					vo.setReviewFilepath(filePath);
 				}
-				vo.setReviewFilename(fileName);
-				vo.setReviewFilepath(filePath);
 			}
 			ArrayList<Review> reviewList = reviewService.selectCountReview(vo.getCode(), vo.getReviewRef());
 			int reviewCount = 0;

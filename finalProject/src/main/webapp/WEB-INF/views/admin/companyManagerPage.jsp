@@ -97,7 +97,7 @@
 			$(this).on("click",function(){
 			var code = $(this).parent().siblings(".code").attr("title");
 			var no = $(this).attr("title");
-				location.href='/companyDetailView.do?prdNo='+no+'&code=${s.code }'+code;
+				location.href='/adminCompanyDetailView.do?prdNo='+no+'&code=${s.code }'+code;
 			});
 		});
 	</script>
