@@ -25,4 +25,20 @@
 		</choose>
 		where code=#{code} and studio_no=#{objectNo}
 	</update>
+	<update id="updateStudio" parameterType="studio">
+		update studio set 
+		studio_name =#{studioName},
+		studio_tel = #{studioTel},
+		studio_price =#{studioPrice},
+		studio_content=#{studioContent},
+		studio_camera=#{studioCamera},
+		studio_addr=#{studioAddr},
+		studio_time=#{studioTime},
+		viewstatus=#{viewstatus}
+		where studio_no =#{studioNo}
+	</update>
+	<select id="viewSelectOne2" parameterType="_int" resultType="studio">
+		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_tel as studioTel, studio_addr as studioAddr, studio_price as studioPrice, studio_content as studioContent, studio_time as studioTime, studio_camera as studioCamera, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where studio_no=#{studioNo} and status=1
+	</select>
+	
 </mapper>

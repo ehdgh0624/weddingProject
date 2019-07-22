@@ -290,7 +290,7 @@
 							</tr>
 							<tr>
 								<th>해쉬태그</th>
-								<th><input type="text" name="hashTag" value="" required="required"></th>
+								<th><input type="text" name="hashTag" value="" required="required" id="tag"></th>
 							</tr>
 							<colgroup>
 								<col width="18%">
@@ -692,7 +692,18 @@ $('#finalSubmit').click(function(){
     $("#imgInp").change(function() {
         readURL(this);
     });        
-                            
+           
+    $("#tag").focus(function() {
+		if ($("#tag").val() == "") {
+			$("#tag").val("#");
+		}
+
+	});
+	$("#tag").keyup(function(e) {
+		if (e.keyCode == '32') {
+			$("#tag").val($("#tag").val() + ",#");
+		}
+	});
   </script>
 
 

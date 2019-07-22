@@ -163,7 +163,7 @@
 											</c:choose>
 										</span>
 									</h5>
-									<p>${h.hallAddr }</p>
+									<p>${fn:replace(h.hallAddr,'/',' ')}</p>
 									<c:forEach items="${fn:split(h.hallTag,',')}" var="tag">
 										<span id="tag" class="tag">${tag }</span>
 									</c:forEach>
