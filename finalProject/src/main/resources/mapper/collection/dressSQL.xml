@@ -8,7 +8,7 @@
 		select dress_no as dressNo, member_id as memberId, code, dress_name as dressName, dress_loc as dressLoc, dress_addr as dressAddr, dress_scope as dressScope, dress_filename as dressFilename, dress_filepath as dressFilepath, dress_tag as dressTag from (select rownum as rnum, d.* from (select * from dress where status=1 and viewstatus=0 order by dress_no) d) where (rnum between #{start} and #{end}) order by rnum desc
 	</select>
 	<select id="viewSelectOne" parameterType="_int" resultType="dress">
-		select dress_no as dressNo, member_id as memberId, code, dress_name as dressName, dress_tel as dressTel, dress_addr as dressAddr, dress_fitting_price as dressFittingPrice, dress_rent_num as dressRentNum, dress_rent_price as dressRentPrice, jewelry_price as jewelryPrice, dress_content as dressContent, dress_fitting_time as dressFittingTime, dress_mending as dressMending, dress_parking as dressParking, dress_filename as dressFilename, dress_filepath as dressFilepath, dress_scope as dressScope, dress_tag as dressTag, dress_latitude as dressLatitude, dress_longitud as dressLongitud from dress where dress_no=#{dressNo} and status=0 and viewstatus=0
+		select dress_no as dressNo, member_id as memberId, code, dress_name as dressName, dress_tel as dressTel, dress_addr as dressAddr, dress_fitting_price as dressFittingPrice, dress_rent_num as dressRentNum, dress_rent_price as dressRentPrice, jewelry_price as jewelryPrice, dress_content as dressContent, dress_fitting_time as dressFittingTime, dress_mending as dressMending, dress_parking as dressParking, dress_filename as dressFilename, dress_filepath as dressFilepath, dress_scope as dressScope, dress_tag as dressTag, dress_latitude as dressLatitude, dress_longitud as dressLongitud from dress where dress_no=#{dressNo} and status=1 and viewstatus=0
 	</select>
 	<update id="updateScope" parameterType="map">
 		update dress set dress_scope=(#{reviewSum}+#{reviewScope})/(#{reviewCount}+1) where code=#{code} and dress_no=#{objectNo}
@@ -26,4 +26,13 @@
 		where code=#{code} and dress_no=#{objectNo}
 	</update>
 	
+	<select id="option1Price" parameterType="map" resultType="_int">
+		select dress_fitting_price as dressFittingPrice from dress where dress_no=#{objectNo}
+	</select>
+	<select id="option2Price" parameterType="map" resultType="_int">
+		select dress_rent_price as dressRentPrice from dress where dress_no=#{objectNo}
+	</select>
+	<select id="option3Price" parameterType="map" resultType="_int">
+		select jewelry_price as jewelryPrice from dress where dress_no=#{objectNo}
+	</select>
 </mapper>
