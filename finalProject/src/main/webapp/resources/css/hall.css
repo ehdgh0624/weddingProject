@@ -180,7 +180,7 @@ section.hall .card .text h5 > strong{float:left;}
 section.hall .card .text h5 span {
 	float: right;
 }
-section.hall .card .text p.addr-text {
+section.hall .card .text p.addr-txt {
   font-size: 14px; line-height: 24px; color:#888;
   max-width:100%; overflow:hidden; white-space:nowrap;
   text-overflow:ellipsis;
