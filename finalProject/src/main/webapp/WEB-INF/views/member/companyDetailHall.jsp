@@ -16,15 +16,17 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix">
+		<c:if test="${sessionScope.member.memberCode != 2 }">
+			<h2 class="comm-content-tit">웨딩홀 업체수정</h2>
+		</c:if>
+		<c:if test="${sessionScope.member.memberCode == 2 }">
+			<h2 class="comm-content-tit">업체 상세보기</h2>
+		</c:if>
+		<div class="area">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="common-tbl-box">
 			<form action="/studioUpdate.do" method="post">
-			<c:if test="${sessionScope.member.memberCode != 2 }">
-				<h2 class="comm-content-tit">웨딩 홀 업체수정</h2>
-			</c:if>
-			<c:if test="${sessionScope.member.memberCode == 2 }">
-				<h2 class="comm-content-tit">업체 상세보기</h2>
-			</c:if>
+			
 				<table class="comm-tbl">
 					<colgroup>
 						<col width="20%">
@@ -33,42 +35,42 @@
 
 					<tr>
 						<th>업체명</th>
-						<th><input type="text" name="hallName"
+						<td><input type="text" name="hallName"
 							value="${hall.hallName }"><input type="hidden"
-							value="${hall.hallNo }" id="no"></th>
+							value="${hall.hallNo }" id="no"></td>
 					</tr>
 
 					<tr>
 						<th>전화번호</th>
-						<th><input type="text" name="hallTelFi" id="first">-<input
-							type="text" name="hallTelSe" id="second">-<input
-							type="text" name="hallTelth" id="third"></th>
+						<td><input type="text" name="hallTelFi" id="first" class="small num"> - <input
+							type="text" name="hallTelSe" id="second" class="small num"> - <input
+							type="text" name="hallTelth" id="third" class="small num"></td>
 					</tr>
 					<tr>
-						<th>홀타입</th>
-						<th><input type="text" name="hallType"
-							value="${hall.hallType }"></th>
+						<th>웨딩홀 타입</th>
+						<td><input type="text" name="hallType"
+							value="${hall.hallType }"></td>
 					</tr>
 
 					<tr>
-						<th>홀금액</th>
-						<th><input type="number" name="hallPrice"
-							value="${hall.hallPrice }"></th>
+						<th>웨딩홀 금액</th>
+						<td><input type="text" name="hallPrice" class="middle num"
+							value="${hall.hallPrice }"> 원</td>
 					</tr>
 					<tr>
-						<th>홀인원</th>
-						<th><input type="number" name="hallMinPerson"
-							value="${hall.hallMinPerson }">~<input type="number"
-							name="hallMaxPerson" value="${hall.hallMaxPerson }"></th>
+						<th>웨딩홀 인원</th>
+						<td><input type="text" name="hallMinPerson" class="small num"
+							value="${hall.hallMinPerson }"> ~ <input type="text" class="small num"
+							name="hallMaxPerson" value="${hall.hallMaxPerson }"> 명</td>
 					</tr>
 					<tr>
 						<th>설명</th>
-						<th><input type="text" name="hallContent"
-							value="${hall.hallContent }"></th>
+						<td><input type="text" name="hallContent"
+							value="${hall.hallContent }"></td>
 					</tr>
 					<tr>
 						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode"
+						<td><input type="text" id="sample4_postcode" class="middle"
 							placeholder="우편번호" name="postNum" value="${post }">
 							<div class="common-tbl-btn-group join-btn-group">
 								<button type="button" onclick="sample4_execDaumPostcode()"
@@ -87,68 +89,69 @@
 
 					<tr>
 						<th>지번주소</th>
-						<th><input type="text" id="sample4_jibunAddress"
+						<td><input type="text" id="sample4_jibunAddress"
 							placeholder="지번주소" name="jibunAddr"> <input type="text"
-							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
+							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:4px"></td>
 					</tr>
 
 					<tr>
 						<th>상세주소</th>
-						<th><input type="text" id="sample4_detailAddress"
-							placeholder="상세주소" name="detailAddr"></th>
+						<td><input type="text" id="sample4_detailAddress"
+							placeholder="상세주소" name="detailAddr"></td>
 					</tr>
 
 					<tr>
-						<th>웨딩홀음식타입</th>
-						<th><input type="text" name="hallFoodtype"
-							value="${hall.hallFoodtype }"></th>
+						<th>웨딩홀 음식타입</th>
+						<td><input type="text" name="hallFoodtype"
+							value="${hall.hallFoodtype }"></td>
 					</tr>
 					<tr>
-						<th>웨딩홀음식메뉴</th>
-						<th><input type="text" name="hallFoodmenu"
-							value="${hall.hallFoodmenu }"></th>
+						<th>웨딩홀 음식메뉴</th>
+						<td><input type="text" name="hallFoodmenu"
+							value="${hall.hallFoodmenu }"></td>
 					</tr>
 					<tr>
-						<th>웨딩홀음식가격</th>
-						<th><input type="text" name="hallFoodprice"
-							value="${hall.hallFoodprice }"></th>
+						<th>웨딩홀 음식가격</th>
+						<td><input type="text" name="hallFoodprice" class="num middle"
+							value="${hall.hallFoodprice }"> 원</td>
 					</tr>
 					<tr>
-						<th>웨딩홀운영시간</th>
-						<th><input type="text" name="hallTime"
-							value="${hall.hallTime }"></th>
+						<th>웨딩홀 운영시간</th>
+						<td><input type="text" name="hallTime"
+							value="${hall.hallTime }"></td>
 					</tr>
 					<tr>
-						<th>웨딩홀음식제공</th>
-						<th><input type="text" name="hallServiceFood"
-							value="${hall.hallServiceFood }"></th>
+						<th>웨딩홀 음식제공</th>
+						<td><input type="text" name="hallServiceFood"
+							value="${hall.hallServiceFood }"></td>
 					</tr>
 					<tr>
-						<th>웨딩홀음향제공</th>
-						<th><input type="text" name="hallServiceAudio"
-							value="${hall.hallServiceAudio }"></th>
+						<th>웨딩홀 음향제공</th>
+						<td><input type="text" name="hallServiceAudio"
+							value="${hall.hallServiceAudio }"></td>
 					</tr>
 					<tr>
-						<th>웨딩홀주차제공</th>
-						<th><input type="text" name="hallServicePark"
-							value="${hall.hallServicePark }"></th>
+						<th>웨딩홀 주차제공</th>
+						<td><input type="text" name="hallServicePark"
+							value="${hall.hallServicePark }"></td>
 					</tr>
 					<tr>
 						<th>업체 상태설정</th>
-						<th><select name="viewstatus">
+						<td><select name="viewstatus">
 								<option value="3">비공개</option>
 								<option value="2">공개</option>
-						</select></th>
+						</select></td>
 					</tr>
 				</table>
-				<hr>
 				<c:if test="${sessionScope.member.memberCode != 2}">
-				<button type="submit" class="btn-style1" id="updateStudio">수정</button>
+					<div class="common-tbl-btn-group" style="margin-bottom:20px;">
+						<button type="submit" class="btn-style1 small" id="updateStudio">수정</button>
+					</div>
 				</c:if>
 			</form>
 		<c:if test="${sessionScope.member.memberCode != 2}">
 			<div>
-				<button>추가</button>
+				<!-- <button>추가</button> -->
 				<form action="/saveGallery.do" method="post"
 					enctype="multipart/form-data">
 					<table class="comm-tbl" id="gall">
@@ -164,29 +167,40 @@
 							<th>미리보기</th>
 							<th>삭제</th>
 						</tr>
-						<c:forEach items="${galleryList }" var="s" varStatus="i">
-							<tr>
-								<td>${i.count }</td>
-								<td><span>${s.filename }</span></td>
-								<td><img src="${s.filepath }"
-									style="width: 300px; height: 300px"></td>
-								<td><img src="/resources/hall/${s.filepath }"
-									style="width: 300px; height: 300px"></td>
-								<td><input type="hidden" value="${s.filepath }"
-									class="oldpath">
-								<button onclick='imgDelete(this)' type='button'
-										class='imgDelete'>삭제</button></td>
+						<c:if test="${not empty galleryList }">
+							<c:forEach items="${galleryList }" var="s" varStatus="i">
+								<tr>
+									<td>${i.count }</td>
+									<td><span>${s.filename }</span></td>
+									<td><img src="${s.filepath }"
+										style="width: 300px; height: 300px"></td>
+									<td><img src="/resources/hall/${s.filepath }"
+										style="width: 300px; height: 300px"></td>
+									<td><input type="hidden" value="${s.filepath }"
+										class="oldpath">
+									<button onclick='imgDelete(this)' type='button'
+											class='imgDelete'>삭제</button></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty galleryList }">
+							<tr class="list-none">
+								<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
 							</tr>
-						</c:forEach>
+						</c:if>
 					</table>
 					<input type="hidden" value="${hall.hallNo }" name="prdNo">
 					<input type="hidden" value="H" name="code">
-					<button type="submit" id="imgSub">저장</button>
+					<div class="common-tbl-btn-group right">
+						<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
+					</div>
 				</form>
 			</div>
-			
 			<br>
-			<br> <span id="addGallery">사진추가하기</span>
+			<br> 
+			<div class="common-tbl-btn-group left" style="padding-top:0;display:inline-block;position:relative;top:-61px;">
+				<button type="button" class="btn-style2 small" id="addGallery">사진추가하기</button>
+			</div>
 
 			<div id="studioOption" class="divbox">
 				<!--스튜디오 옵션  -->
@@ -223,6 +237,7 @@
 			</div>
 				</c:if>
 		</div>
+		</div>
 
 
 
@@ -231,11 +246,16 @@
 			$('#addGallery').click(function() {
 								count = count +1;
 								var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
-								addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
+								addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 								addTable += "<td><span class='imgDelete'>삭제</span></td>";
 								addTable += "<tr>";
 
-								$('#gall').append(addTable);
+								if($("#gall").has('.list-none')){
+									$('.list-none').remove();
+									$('#gall').append(addTable);
+								}else{
+									$('#gall').append(addTable);
+								}
 							});
 			function chk_file_type(obj) {
 				count = count - 1;
@@ -615,6 +635,17 @@
 			});
 			function chk(f) {
 				chk_file_type(f);
+				if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+					//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+					//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+					var reader = new FileReader();
+					reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+					reader.onload = function(e) { //다 읽어 왔으면 실행
+						$(f).parent().parent().next().children('.img-view').attr('src', e.target.result);
+					}
+				} else {
+					$(f).parent().parent().next().children('.img-view').attr('src', "");
+				}
 			}
 		</script>
 
