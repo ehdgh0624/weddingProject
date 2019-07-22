@@ -219,20 +219,20 @@ public class MemberDao {
 
 	public Makeup selectOneMakeupNumber(int no) {
 		// TODO Auto-generated method stub
-		Makeup mu=(Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
+		Makeup mu=(Makeup)sqlSession.selectOne("makeup.viewSelectOne2",no);
 				System.out.println(mu);
 		return mu;
 	}
 
 	public Dress selectOneDressNumber(int no) {
 		// TODO Auto-generated method stub
-		return (Dress)sqlSession.selectOne("dress.viewSelectOne",no);
+		return (Dress)sqlSession.selectOne("dress.viewSelectOne2",no);
 	}
 
 	public Studio selectoneStudioNumber(int no) {
 		// TODO Auto-generated method stub
 		System.out.println(no);
-		return (Studio)sqlSession.selectOne("studio.viewSelectOne",no);
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne2",no);
 	}
 
 	public List<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType) {
@@ -368,6 +368,11 @@ public class MemberDao {
 	public List<Member> getIdLIst(String email) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.getIdLIst",email);
+	}
+
+	public int updateStudioInfo(Studio s) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("studio.updateStudio",s);
 	}
 
 }

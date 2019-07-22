@@ -16,15 +16,16 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix">
+		<c:if test="${sessionScope.member.memberCode != 2 }">
+			<h2 class="comm-content-tit">스튜디오 업체수정</h2>
+		</c:if>
+		<c:if test="${sessionScope.member.memberCode == 2 }">
+			<h2 class="comm-content-tit">업체 상세보기</h2>
+		</c:if>
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
+		<div class="area">
 		<div class="common-tbl-box">
 			<form action="/studioUpdate.do" method="post">
-				<c:if test="${sessionScope.member.memberCode != 2 }">
-				<h2 class="comm-content-tit">스튜디오 업체수정</h2>
-			</c:if>
-			<c:if test="${sessionScope.member.memberCode == 2 }">
-				<h2 class="comm-content-tit">업체 상세보기</h2>
-			</c:if>
 				<table class="comm-tbl">
 					<colgroup>
 						<col width="20%">
@@ -35,20 +36,20 @@
 						<th>업체명</th>
 						<th><input type="text" name="studioName"
 							value="${studio.studioName }"><input type="hidden"
-							value="${studio.studioNo }" id="no"></th>
+							value="${studio.studioNo }" id="no" name="studioNo"></th>
 					</tr>
 
 					<tr>
 						<th>전화번호</th>
-						<th><input type="text" name="studioTelFi" id="first">-<input
-							type="text" name="studioTelSe" id="second">-<input
-							type="text" name="studioTelth" id="third"></th>
+						<th><input type="text" name="studioTelFi" id="first" class="num small"> - <input
+							type="text" name="studioTelSe" id="second" class="num small"> - <input
+							type="text" name="studioTelth" id="third" class="num small"></th>
 					</tr>
 
 					<tr>
-						<th>스튜디오금액</th>
-						<th><input type="number" name="studioPrice"
-							value="${studio.studioPrice }"></th>
+						<th>스튜디오 금액</th>
+						<th><input type="text" name="studioPrice" class="num middle"
+							value="${studio.studioPrice }"> 원</th>
 					</tr>
 
 					<tr>
@@ -58,7 +59,7 @@
 					</tr>
 					<tr>
 						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode"
+						<td><input type="text" id="sample4_postcode" class="middle"
 							placeholder="우편번호" name="postNum" value="${post }">
 							<div class="common-tbl-btn-group join-btn-group">
 								<button type="button" onclick="sample4_execDaumPostcode()"
@@ -79,7 +80,7 @@
 						<th>지번주소</th>
 						<th><input type="text" id="sample4_jibunAddress"
 							placeholder="지번주소" name="jibunAddr"> <input type="text"
-							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
+							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:4px;"></th>
 					</tr>
 
 					<tr>
@@ -101,19 +102,21 @@
 					<tr>
 						<th>업체 상태설정</th>
 						<th><select name="viewstatus">
-								<option value="3">비공개</option>
-								<option value="2">공개</option>
+								<option value="0">공개</option>
+								<option value="1">비공개</option>
 						</select></th>
 					</tr>
 				</table>
-				<hr>
+				
 				<c:if test="${sessionScope.member.memberCode != 2}">
-				<button type="submit" class="btn-style1" id="updateStudio">수정</button>
+					<div class="common-tbl-btn-group" style="margin-bottom:20px;">
+						<button type="submit" class="btn-style1 small" id="updateStudio">수정</button>
+					</div>
 				</c:if>
 			</form>
 		<c:if test="${sessionScope.member.memberCode != 2}">
 			<div>
-				<button>추가</button>
+				<!-- <button>추가</button> -->
 				<form action="/saveGallery.do" method="post"
 					enctype="multipart/form-data">
 					<table class="comm-tbl" id="gall">
@@ -129,31 +132,43 @@
 							<th>미리보기</th>
 							<th>삭제</th>
 						</tr>
-						<c:forEach items="${galleryList }" var="s" varStatus="i">
-							<tr>
-								<td>${i.count }</td>
-								<td><span>${s.filename }</span></td>
-								<td><img src="${s.filepath }"
-									style="width: 300px; height: 300px"></td>
-								<td><input type="hidden" value="${s.filepath }"
-									class="oldpath">
-								<button onclick='imgDelete(this)' type='button'
-										class='imgDelete'>삭제</button></td>
+						<c:if test="${not empty galleryList }">
+							<c:forEach items="${galleryList }" var="s" varStatus="i">
+								<tr>
+									<td>${i.count }</td>
+									<td><span>${s.filename }</span></td>
+									<td><img src="${s.filepath }"
+										style="width: 300px; height: 300px"></td>
+									<td><input type="hidden" value="${s.filepath }"
+										class="oldpath">
+									<button onclick='imgDelete(this)' type='button'
+											class='imgDelete'>삭제</button></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty galleryList }">
+							<tr class="list-none">
+								<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
 							</tr>
-						</c:forEach>
+						</c:if>
 					</table>
 					<input type="hidden" value="${studio.studioNo }" name="prdNo">
 					<input type="hidden" value="S" name="code">
-					<button type="submit" id="imgSub">저장</button>
+					<div class="common-tbl-btn-group right">
+						<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
+					</div>
 				</form>
 			</div>
 			<br>
-			<br> <span id="addGallery">사진추가하기</span>
+			<br> 
+			<div class="common-tbl-btn-group left" style="padding-top:0;display:inline-block;position:relative;top:-61px;">
+				<button type="button" class="btn-style2 small" id="addGallery">사진추가하기</button>
+			</div>
 
 
 			<div id="studioOption" class="divbox">
 				<!--스튜디오 옵션  -->
-				<h1>스튜디오 옵션</h1>
+				<h1 class="main-comm-tit type2">스튜디오 옵션</h1>
 				<div id='studioOptionTableDiv'>
 					<table class="comm-tbl" id="studioOptionTable0">
 						<colgroup>
@@ -171,11 +186,13 @@
 						</tr>
 						<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
 							<tr class="fsnap">
-								<td><input type="hidden" value="${ss0.studioSelectNo }">
-									<input type="text" value="${ss0.studioOption}"><span
-									class="deleteOption">삭제</span> <input type="text"
-									value="${ss0.studioOptionPrice}"><span
-									class="updateOption">수정</span></td>
+								<td>
+									<input type="hidden" value="${ss0.studioSelectNo }">
+									<input type="text" value="${ss0.studioOption}">
+									<span class="deleteOption">삭제</span> 
+									<input type="text" value="${ss0.studioOptionPrice}">
+									<span class="updateOption">수정</span>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -197,11 +214,13 @@
 						</tr>
 						<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
 							<tr class="ssnap">
-								<td><input type="hidden" value="${ss1.studioSelectNo }">
-									<input type="text" value="${ss1.studioOption}"><span
-									class="deleteOption">삭제</span> <input type="text"
-									value="${ss1.studioOptionPrice}"><span
-									class="updateOption">수정</span></td>
+								<td>
+									<input type="hidden" value="${ss1.studioSelectNo }">
+									<input type="text" value="${ss1.studioOption}">
+									<span class="deleteOption">삭제</span> 
+									<input type="text" value="${ss1.studioOptionPrice}">
+									<span class="updateOption">수정</span>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -223,11 +242,13 @@
 						</tr>
 						<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
 							<tr class="tsnap">
-								<td><input type="hidden" value="${ss2.studioSelectNo }">
-									<input type="text" value="${ss2.studioOption}"><span
-									class="deleteOption">삭제</span> <input type="text"
-									value="${ss2.studioOptionPrice}"><span
-									class="updateOption">수정</span></td>
+								<td>
+									<input type="hidden" value="${ss2.studioSelectNo }">
+									<input type="text" value="${ss2.studioOption}">
+									<span class="deleteOption">삭제</span> 
+									<input type="text" value="${ss2.studioOptionPrice}">
+									<span class="updateOption">수정</span>
+								</td>
 							</tr>
 						</c:forEach>
 					</table>
@@ -236,6 +257,7 @@
 		</c:if>
 			<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
 			<input type="hidden" id="phone" value="${studio.studioTel }">
+		</div>
 		</div>
 	</div>
 
@@ -252,7 +274,12 @@
 							addTable += "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
 							addTable += "<tr>";
 
-							$('#gall').append(addTable);
+							if($("#gall").has('.list-none')){
+								$('.list-none').remove();
+								$('#gall').append(addTable);
+							}else{
+								$('#gall').append(addTable);
+							}
 						});
 
 		function imgDelete(tt) {

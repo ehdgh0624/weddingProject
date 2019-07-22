@@ -6,6 +6,14 @@ public class Studio {
 	private String code;					//타입분류(S)
 	private String studioName;				//스튜디오 업체명
 	private String studioTel;				//스튜디오 연락처
+	private String studioTelFi;
+	private String studioTelSe;
+	private String studioTelth;
+	private String postNum;
+	private String roadAddr;
+	private String jibunAddr;
+	private String extraAddr;
+	private String detailAddr;
 	private String studioLoc;				//스튜디오 지역
 	private String studioAddr;				//스튜디오 상세주소
 	private int studioPrice;				//스튜디오 평균가
@@ -163,17 +171,68 @@ public class Studio {
 	public void setStudioLongitud(String studioLongitud) {
 		this.studioLongitud = studioLongitud;
 	}
-	
+	public String getStudioTelFi() {
+		return studioTelFi;
+	}
+	public void setStudioTelFi(String studioTelFi) {
+		this.studioTelFi = studioTelFi;
+	}
+	public String getStudioTelSe() {
+		return studioTelSe;
+	}
+	public void setStudioTelSe(String studioTelSe) {
+		this.studioTelSe = studioTelSe;
+	}
+	public String getStudioTelth() {
+		return studioTelth;
+	}
+	public void setStudioTelth(String studioTelth) {
+		this.studioTelth = studioTelth;
+	}
+	public String getPostNum() {
+		return postNum;
+	}
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
 	@Override
 	public String toString() {
 		return "Studio [studioNo=" + studioNo + ", memberId=" + memberId + ", code=" + code + ", studioName="
-				+ studioName + ", studioTel=" + studioTel + ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr
-				+ ", studioPrice=" + studioPrice + ", studioContent=" + studioContent + ", studioTime=" + studioTime
-				+ ", studioCamera=" + studioCamera + ", studioFilename=" + studioFilename + ", studioFilepath="
-				+ studioFilepath + ", status=" + status + ", viewstatus=" + viewstatus + ", studioScope=" + studioScope
-				+ ", studioTag=" + studioTag + ", studioLatitude=" + studioLatitude + ", studioLongitud="
-				+ studioLongitud + "]";
+				+ studioName + ", studioTel=" + studioTel + ", studioTelFi=" + studioTelFi + ", studioTelSe="
+				+ studioTelSe + ", studioTelth=" + studioTelth + ", postNum=" + postNum + ", roadAddr=" + roadAddr
+				+ ", jibunAddr=" + jibunAddr + ", extraAddr=" + extraAddr + ", detailAddr=" + detailAddr
+				+ ", studioLoc=" + studioLoc + ", studioAddr=" + studioAddr + ", studioPrice=" + studioPrice
+				+ ", studioContent=" + studioContent + ", studioTime=" + studioTime + ", studioCamera=" + studioCamera
+				+ ", studioFilename=" + studioFilename + ", studioFilepath=" + studioFilepath + ", status=" + status
+				+ ", viewstatus=" + viewstatus + ", studioScope=" + studioScope + ", studioTag=" + studioTag
+				+ ", studioLatitude=" + studioLatitude + ", studioLongitud=" + studioLongitud + "]";
 	}
+
+	
 	
 
 }

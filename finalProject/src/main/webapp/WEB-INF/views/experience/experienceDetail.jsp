@@ -26,7 +26,7 @@
 <section id="wrap">
 	<div class="area">
 	<c:if test="${ sessionScope.member.memberId== experience.e.experienceWriter}">
-		<div class="common-tbl-btn-group right">
+		<div class="common-tbl-btn-group right" style="margin-bottom: 10px;">
 			<button  class="btn-style1 small" onclick="updateEx('${experience.e.experienceNo}')">수정</button>
 			<button  class="btn-style3 small" onclick="deleteEx('${experience.e.experienceNo}')">삭제</button>
 		</div>	
