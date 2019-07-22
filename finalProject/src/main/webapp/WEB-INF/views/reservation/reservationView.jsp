@@ -40,7 +40,7 @@
 					</tr>
 					<tr>
 						<th>예약자 연락처</th>
-						<td>${reservation.memberPhone}</td>
+						<td>${fn:replace(reservation.memberPhone, '/', '-')}</td>
 					</tr>
 					<tr>
 						<th>예약자 이메일</th>
@@ -187,7 +187,7 @@
 										<td>옵션명 : ${reservation.option1}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option1Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option2}">
@@ -203,7 +203,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option2Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option3}">
@@ -212,7 +212,7 @@
 										<td>옵션명 : ${reservation.option3}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option3Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 							</c:if>
@@ -234,7 +234,7 @@
 										</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option1Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option2}">
@@ -243,7 +243,7 @@
 										<td>옵션명 : ${reservation.option2}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option2Price}"/></span> 원 * <span>${reservation.amount}</span></td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option3}">
@@ -252,7 +252,7 @@
 										<td>옵션명 : ${reservation.option3}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option3Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 							</c:if>
@@ -267,7 +267,7 @@
 										<td>옵션명 : ${reservation.option1}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option1Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option2}">
@@ -276,7 +276,7 @@
 										<td>옵션명 : ${reservation.option2}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option2Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 								<c:if test="${not empty reservation.option3}">
@@ -285,7 +285,7 @@
 										<td>옵션명 : ${reservation.option3}</td>
 									</tr>
 									<tr>
-										<td>가격 : </td>
+										<td>가격 : <span><fmt:formatNumber value="${option3Price}"/></span> 원</td>
 									</tr>
 								</c:if>
 							</c:if>
@@ -338,7 +338,7 @@
 				</c:if>
 			</div>
 			<div class="common-tbl-btn-group">
-				<button class="btn-style1" onclick="window.history.back();">목록으로</button>
+				<button class="btn-style1" onclick="location.href='/myReservList.do'">목록으로</button>
 			</div>
 		</div>
 	</div>
