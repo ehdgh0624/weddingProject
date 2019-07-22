@@ -18,6 +18,22 @@ select  experience_no as experienceNo,
 		experience_filepath as experienceFilePath 
 		from experience 
 </select>
+<select id="experienceAll2" parameterType="String" resultType="_int">
+
+select  experience_no as experienceNo,
+		experience_title as experienceTitle,
+		experience_writer as experienceWriter,
+		experience_content as experienceContent,
+		experience_date as experienceDate,
+		experience_studio as experienceStudio,
+		experience_dress as experienceDress,
+		experience_tag as experienceTag,
+		experience_makeup as experienceMakeup,
+		experience_hall as experienceHall,
+		experience_filename as experienceFileName,
+		experience_filepath as experienceFilePath 
+		from experience where experience_writer=#{experienceWriter}
+</select>
 
 <select id="experienceDetail" parameterType="experience" resultType="experience">
 select  experience_no as experienceNo,
@@ -68,7 +84,7 @@ select  experience_no as experienceNo,
 		from 
 		(select ROWNUM as rnum, m.* from 
 		(select * from  experience order by experience_no desc)
-		m) where rnum between #{start} and #{end}
+		m) where rnum between ${start} and ${end} and experience_writer = #{memberId}
 		
 </select>
 <insert id="experienceCommentInsert" parameterType="experienceComment">

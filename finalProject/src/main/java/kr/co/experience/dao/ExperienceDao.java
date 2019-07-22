@@ -113,5 +113,20 @@ public class ExperienceDao {
 		List list = sqlSession.selectList("reservation.selectSearch",memberId);
 		return (ArrayList<Reservation>)list ;
 	}
+	public int totalCountId(String memberId) {
+		
+		List list =null;
+		list = sqlSession.selectList("experience.experienceAll2",memberId);
+		int count = list.size();
+		return count;
+	}
+	public List<Experience> selectListId(int start, int end, String memberId) {
+		Map<String, String> map = new HashMap<String,String>();
+		map.put("start", String.valueOf(start));
+		map.put("end", String.valueOf(end));
+		map.put("memberId",memberId);
+		return sqlSession.selectList("experience.experienceselectList",map);
+	}
+	
 	
 }
