@@ -36,7 +36,7 @@ function exintsert() {
 						<div >
 							<div>
 							<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
-							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">
+							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:285px;">
 							
 							</a>
 							</div>
@@ -44,7 +44,10 @@ function exintsert() {
 					</div>
 					<div style="padding:20px;">
 						<div>
-							<div style="text-align:  center;">
+							<div style="text-align:  center; overflow: hidden;">
+							<br>
+							<br>
+							<br>
 							${e.experienceTitle}						
 							</div>
 						</div>
