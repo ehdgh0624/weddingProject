@@ -47,7 +47,7 @@
 		</div>
 		<div class="bottom-side-box">
 			<ul class="side-bar-list">
-				<c:if test="${sessionScope.member.memberId ne 'admin' }">
+				<c:if test="${sessionScope.member.memberCode != 2 }">
 					<li>
 						<p>기본</p>
 						<span><a href="/memberUpdate.do">계정관리</a></span>
@@ -85,7 +85,7 @@
 					</li> -->
 				</c:if>
 				<!-- 관리자 일떄 -->
-				<c:if test="${sessionScope.member.memberId eq 'admin' }">
+				<c:if test="${sessionScope.member.memberCode == 2 }">
 					<li>
 						<p>기본</p>
 						<span><a href="/adminPage.do">회원관리</a></span>
