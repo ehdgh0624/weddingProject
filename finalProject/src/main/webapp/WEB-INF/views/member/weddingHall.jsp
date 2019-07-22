@@ -13,8 +13,8 @@
 		<h1 class="logo"><a href="/"><img src="/resources/img/logo.png" style="max-width:50px"></a></h1>
 	</div>
 	
-	<div class="area">
-	<h1 class="main-comm-tit type2">웨딩홀</h1>
+	<div class="area"  style="min-height:644px;">
+		<h1 class="main-comm-tit type2">웨딩홀</h1>
 		<div class="clearfix myPageContainer">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 			<c:if test="${not empty hallList}">				<!-- 스튜디오 리스트가 있을 때 -->
@@ -39,6 +39,11 @@
 				</c:forEach>
 			</c:if>
 		</div>
+		<c:if test="${empty hallList}">
+			<div class="common-tbl-box">
+				<p class="none">스크랩 내역이 없습니다.</p>
+			</div>
+		</c:if>
 	</div>
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
