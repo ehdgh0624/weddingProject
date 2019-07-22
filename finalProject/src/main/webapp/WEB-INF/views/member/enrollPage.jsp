@@ -153,8 +153,9 @@ $("#email").click(function(){
 
 $('#dbidck').click(function(){
 	 var id = $("#idInput").val();
+	 var id_re = /^[a-zA-Z0-9]{4,12}$/;
 		console.log(id);
-		
+		if(id_re.test(id)==true){	
 		$.ajax({
 			url:"/checkId.do",
 			data:{id:id},
@@ -170,6 +171,7 @@ $('#dbidck').click(function(){
 					$("#idck").css("display","inline-block");
 					$("#idckmsg").css("display","none");
 					$("#idckmsg").html("");
+					
 				}
 			},
 			error : function(){
@@ -177,6 +179,14 @@ $('#dbidck').click(function(){
 			}
 			
 		});
+		};
+		if(id_re.test(id)==false){
+			alert("사용불가능");
+			$("#idck").css("display","inline-block");
+			$("#idckmsg").css("display","none");
+			$("#idckmsg").html("");
+		};
+		
 });
 
 
