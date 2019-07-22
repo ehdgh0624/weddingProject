@@ -35,7 +35,7 @@
 							<th>업체명</th>
 							<td><input type="text" name="makeupName"
 								value="${makeup.makeupName }"><input type="hidden"
-								value="${makeup.makeupNo }" id="no"></td>
+								value="${makeup.makeupNo }" id="no" name="makeupNo"></td>
 						</tr>
 	
 						<tr>
@@ -101,8 +101,8 @@
 						<tr>
 							<th>업체 상태설정</th>
 							<td><select name="viewstatus">
-									<option value="3">비공개</option>
-									<option value="2">공개</option>
+									<option value="0">공개</option>
+									<option value="1">비공개</option>		
 							</select></td>
 						</tr>
 					</table>

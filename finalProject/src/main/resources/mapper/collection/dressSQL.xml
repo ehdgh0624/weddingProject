@@ -38,4 +38,16 @@
 	<select id="viewSelectOne2" parameterType="_int" resultType="dress">
 		select dress_no as dressNo, member_id as memberId, code, dress_name as dressName, dress_tel as dressTel, dress_addr as dressAddr, dress_fitting_price as dressFittingPrice, dress_rent_num as dressRentNum, dress_rent_price as dressRentPrice, jewelry_price as jewelryPrice, dress_content as dressContent, dress_fitting_time as dressFittingTime, dress_mending as dressMending, dress_parking as dressParking, dress_filename as dressFilename, dress_filepath as dressFilepath, dress_scope as dressScope, dress_tag as dressTag, dress_latitude as dressLatitude, dress_longitud as dressLongitud from dress where dress_no=#{dressNo} and status=1
 	</select>
+	<update id="updateDress" parameterType="dress">
+		update dress set 
+		dress_name =#{dressName},
+		dress_tel = #{dressTel},
+		dress_fitting_price =#{dressFittingPrice},
+		dress_rent_price =#{dressRentPrice},
+		jewelry_price =#{jewelryPrice},
+		dress_content=#{dressContent},
+		viewstatus=#{viewstatus}
+		where dress_no =#{dressNo}
+	</update>
+	
 </mapper>
