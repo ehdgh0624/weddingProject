@@ -33,6 +33,6 @@
 		select makeup_parent_price as makeupParentPrice from makeup where makeup_no=#{objectNo}
 	</select>
 	<select id="option3Price" parameterType="map" resultType="_int">
-		select makeup_visitor_price as makeupVisitorPrice as makeupBasicPrice from makeup where makeup_no=#{objectNo}
+		select makeup_visitor_price as makeupVisitorPrice from makeup where makeup_no=#{objectNo}
 	</select>
 </mapper>
