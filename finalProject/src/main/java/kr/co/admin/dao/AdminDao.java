@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.ibatis.annotations.Param;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -15,6 +14,7 @@ import kr.co.admin.vo.CompanyVo;
 import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
 import kr.co.hall.vo.Hall;
@@ -281,6 +281,39 @@ public class AdminDao {
 		map.put("code", code);
 		List list = sqlSession.selectList("admin.goodsGallery",map);
 		return (ArrayList<Gallery>)list;
+	}
+
+	public Studio selectOneStudioNumber(int no) {
+		return (Studio)sqlSession.selectOne("admin.selectStudio",no);
+	}
+
+	public List<StudioSelect> selectListStudioOptionNumber(int no, int i) {
+		Map<String, Integer> map = new HashMap<String, Integer>();
+		map.put("studioNo", no);
+		map.put("studioOptionType", i);
+		return sqlSession.selectList("admin.selectListOption",map);
+	}
+
+	public List<Gallery> selectListGallery(int no, String code) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("galleryNo", no);
+		map.put("galleryCode", code);
+		return sqlSession.selectList("admin.selectListGallery",map);
+	}
+
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return (Dress)sqlSession.selectOne("admin.viewSelectOne",no);
+	}
+
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+		return (Makeup)sqlSession.selectOne("admin.makeupOne",no);
+	}
+
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("admin.hallOne",no);
 	}
 
 	

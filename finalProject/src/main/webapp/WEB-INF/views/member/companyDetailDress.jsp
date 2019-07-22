@@ -180,7 +180,7 @@
 							count = count + 1;
 							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";
 							addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
-							addTable += "<td><span class='imgDelete reject-btn'>삭제</span></td>";
+							addTable += "<td><button onclick='imgDelete(this)' type='button'class='imgDelete'>삭제</button></td>";
 							addTable += "<tr>";
 							if($("#gall").has('.list-none')){
 								$('.list-none').remove();

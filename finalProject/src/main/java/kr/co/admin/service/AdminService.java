@@ -12,8 +12,13 @@ import kr.co.admin.vo.AdminCompany;
 import kr.co.admin.vo.AdminGoods;
 import kr.co.admin.vo.AdminMember;
 import kr.co.admin.vo.AdminReservation;
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
+import kr.co.collection.model.vo.Studio;
+import kr.co.collection.model.vo.StudioSelect;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.goods.model.vo.Goods;
+import kr.co.hall.vo.Hall;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 
@@ -380,6 +385,28 @@ public class AdminService {
 	}
 	public ArrayList<Gallery> goodsGallery(int goodsNo, String code) {
 		return adminDao.goodsGallery(goodsNo,code);
+	}
+	public Studio selectOneStudioNumber(int no) {
+		return adminDao.selectOneStudioNumber(no);
+	}
+	public ArrayList<StudioSelect> selectListStudioOptionNumber(int no, int i) {
+		return (ArrayList<StudioSelect>)adminDao.selectListStudioOptionNumber(no,i);
+	}
+	public ArrayList<Gallery> selectListGalleryNumber(int no, String code) {
+		// TODO Auto-generated method stub
+		return (ArrayList<Gallery>)adminDao.selectListGallery(no, code);
+	}
+	public Dress selectOneDressNumber(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.selectOneDressNumber(no);
+	}
+	public Makeup selectOneMakeupNumber(int no) {
+		// TODO Auto-generated method stub
+	 return adminDao.selectOneMakeupNumber(no);
+	}
+	public Hall selectOneHallNumber(int no) {
+		// TODO Auto-generated method stub
+		return adminDao.selectOneHallNumber(no);
 	}
 
 }
