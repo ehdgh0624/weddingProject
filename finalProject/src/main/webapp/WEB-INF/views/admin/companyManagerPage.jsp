@@ -19,7 +19,7 @@
 		<button class="btn-samll" onclick="location.href='/companyManager.do?typeCode=4'">메이크업</button> 
 	</div>
 	<div id="myPageContainer" class="clearfix area">
-		<table class=comm-tbl>
+		<table class="comm-tbl type2">
 		<colgroup>
 				<col width="10%">
 				<col width="10%">
@@ -40,13 +40,13 @@
 			</tr>
 			<c:forEach items="${ac.aList }" var="c" >
 				<tr>
-					<td>
-					<c:if test="${c.code eq 'H'}"> 호텔</c:if>
-					<c:if test="${c.code eq 'S'}"> 스튜디오</c:if>
-					<c:if test="${c.code eq 'D'}"> 드레스</c:if>
-					<c:if test="${c.code eq 'M'}"> 메이크업</c:if>
+					<td title="${c.code }">
+					<c:if test="${c.code eq 'H'}" > 호텔</c:if>
+					<c:if test="${c.code eq 'S'}" > 스튜디오</c:if>
+					<c:if test="${c.code eq 'D'}" > 드레스</c:if>
+					<c:if test="${c.code eq 'M'}" > 메이크업</c:if>
 					</td>
-					<td>${c.name}</td>
+					<td  class="companyDetail" title="${c.comNo }">${c.name}</td>
 					<td>${c.id }</td>
 					<td>${c.tel}</td>
 					<td>${c.addr }</td>
@@ -82,6 +82,13 @@
 			}else if(type == 'memberId'){
 				$("option").eq(1).attr("selected","selected");
 			}
+		});
+		$(".companyDetail").each(function(){
+			$(this).on("click",function(){
+			var code = $(this).prev().attr("title");
+			var no = $(this).attr("title");
+				location.href='/companyDetailView.do?prdNo='+no+'&code=${s.code }'+code;
+			});
 		});
 	</script>
 	<%--  footer --%>

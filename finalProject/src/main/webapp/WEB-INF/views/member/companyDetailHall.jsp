@@ -19,7 +19,12 @@
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="common-tbl-box">
 			<form action="/studioUpdate.do" method="post">
-				<h2 class="comm-content-tit">스튜디오 업체수정</h2>
+			<c:if test="${sessionScope.member.memberCode != 2 }">
+				<h2 class="comm-content-tit">웨딩 홀 업체수정</h2>
+			</c:if>
+			<c:if test="${sessionScope.member.memberCode == 2 }">
+				<h2 class="comm-content-tit">업체 상세보기</h2>
+			</c:if>
 				<table class="comm-tbl">
 					<colgroup>
 						<col width="20%">
@@ -137,9 +142,11 @@
 					</tr>
 				</table>
 				<hr>
+				<c:if test="${sessionScope.member.memberCode != 2}">
 				<button type="submit" class="btn-style1" id="updateStudio">수정</button>
+				</c:if>
 			</form>
-
+		<c:if test="${sessionScope.member.memberCode != 2}">
 			<div>
 				<button>추가</button>
 				<form action="/saveGallery.do" method="post"
@@ -177,6 +184,7 @@
 					<button type="submit" id="imgSub">저장</button>
 				</form>
 			</div>
+			
 			<br>
 			<br> <span id="addGallery">사진추가하기</span>
 
@@ -213,6 +221,7 @@
 				<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
 				<input type="hidden" id="phone" value="${studio.studioTel }">
 			</div>
+				</c:if>
 		</div>
 
 
