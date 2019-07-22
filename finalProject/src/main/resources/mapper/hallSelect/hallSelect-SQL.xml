@@ -15,4 +15,20 @@
 			   HALL_SELECT_PRICE as hallSelectPrice,
 			   HALL_SELECT_ETC as hallSelectEtc from hall_select where hall_select_no=#{result}
 	</select>
+	<update id="updateOneHallOption" parameterType="map">
+		update hall_select set 
+		hall_etc=#{hallEtc},
+		hall_Type=#{hallType},
+		hall_select_price=#{hallSelectPrice}
+		where hall_select_no=#{hallSelectNo}
+	</update>
+	  <insert id="insertHallOption" parameterType="hallSelect">
+     insert into hall_Select values(
+     hall_select_seq.nextval,
+     #{hallType},
+     #{hallNo},
+     #{hallSelectPrice},
+     #{hallSelectEtc})
+    </insert>
+	
 </mapper>

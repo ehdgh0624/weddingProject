@@ -2,13 +2,19 @@
     pageEncoding="UTF-8"%>
    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html>
+<link rel="stylesheet" type="text/css" href="/resources/css/reset.css"> <!-- 태그 초기화 css(민주) -->
+<link rel="stylesheet" type="text/css" href="/resources/css/layout.css"> <!-- 레이아웃 css(민주) -->
+<link rel="stylesheet" type="text/css" href="/resources/css/content.css"> <!-- 컨텐츠 css(민주) -->
+<link rel="stylesheet" type="text/css" href="/resources/css/photo.css"> <!--게시판 사진  css --><html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<table>
+<br><br>
+<h1>아이디 찾기 결과</h1>
+<br><br>
+<table class="comm-tbl">
 	<colgroup>
 		<col width="10%">
 		<col width="20%">
@@ -17,7 +23,7 @@
 		<tr>
 			<th>No</th>
 			<th>Id</th>
-			<th>비고</th>
+			<th>가입일</th>
 		</tr>
 	<c:forEach items="${list }" var="list" varStatus="i">
 		<tr>

@@ -32,15 +32,13 @@
 				<td colspan="5" rowspan="50"><div class="boardContent" >${n.noticeContent }</div></td>
 			</tr>
 		</table>
+		<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
 			<c:if test="${sessionScope.member.memberCode == 2}">
-			<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
-			
-			<button class="btn-style1 small" onclick="update();">글수정</button>
-			<button class="btn-style1 small" onclick="noticeDelete();">삭제</button>
-			<button class="btn-style1 small" onclick="window.history.back()">목록으로</button>
-			</div>
+				<button class="btn-style1 small" onclick="update();">글수정</button>
+				<button class="btn-style1 small" onclick="noticeDelete();">삭제</button>
 			</c:if>
-		  
+			<button class="btn-style1 small" onclick="window.history.back()">목록으로</button>
+		</div>
 	</div>
 		
 </section>

@@ -79,6 +79,53 @@ public class MemberController {
 	@Qualifier(value="emailSender")
 	private EmailSender emailSender;
 	
+	@RequestMapping(value = "/studioUpdate.do")
+	public String studioUpdate(Studio s,HttpSession session) {
+		System.out.println("스튜디오 업데이트 호출");
+		String addr=s.getJibunAddr()+"/"+s.getExtraAddr()+"/"+
+		s.getDetailAddr()+"/"+s.getPostNum()+"/"+s.getRoadAddr();
+		s.setStudioAddr(addr);
+		String tel = s.getStudioTelFi()+"/"+s.getStudioTelSe()+"/"+s.getStudioTelth();
+		s.setStudioTel(tel);
+		System.out.println(s);
+		memberService.updateStudioInfo(s);
+		return "redirect:/myCompanyPage.do";
+	}
+	
+	@RequestMapping(value = "/dressUpdate.do")
+	public String dressUpdate(Dress d,HttpSession session) {
+		System.out.println("드레스 업데이트 호출");
+		String addr=d.getJibunAddr()+"/"+d.getExtraAddr()+"/"+
+		d.getDetailAddr()+"/"+d.getPostNum()+"/"+d.getRoadAddr();
+		
+		d.setDressAddr(addr);
+		String tel = d.getDressTelFi()+"/"+d.getDressTelSe()+"/"+d.getDressTelth();
+		d.setDressTel(tel);
+		
+		System.out.println(d);
+		memberService.updateDressInfo(d);
+		
+		
+		return "redirect:/myCompanyPage.do";
+	}
+	
+	@RequestMapping(value = "/makeupUpdate.do")
+	public String makeupUpdate(Makeup m,HttpSession session) {
+		System.out.println("드레스 업데이트 호출");
+		String addr=m.getJibunAddr()+"/"+m.getExtraAddr()+"/"+
+		m.getDetailAddr()+"/"+m.getPostNum()+"/"+m.getRoadAddr();
+		
+		m.setMakeupAddr(addr);
+		String tel = m.getMakeupTelFi()+"/"+m.getMakeupTelSe()+"/"+m.getMakeupTelth();
+		m.setMakeupTel(tel);
+		
+		System.out.println(m);
+		memberService.updateMakeupInfo(m);
+		
+		
+		return "redirect:/myCompanyPage.do";
+	}
+	
 	
 	@RequestMapping(value = "/printId.do")
 	public String printId(@RequestParam String email) {
@@ -738,6 +785,40 @@ public class MemberController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/updateOneHallOption.do")
+	@ResponseBody
+	public int updateOneHallOption(@RequestParam int hallNo,@RequestParam String hallType,@RequestParam String price,@RequestParam String etc) {
+		System.out.println("스튜디오옵션수정시작");
+		
+		
+		
+		int result=memberService.updateOneHallOption(hallNo,hallType,price,etc);
+		if(result>0) {
+			System.out.println("수정성공");
+		}
+		
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/hallOptionAdd.do")
+	public String hallOptionAdd(@RequestParam int hallSelectPrice,
+			@RequestParam String hallType,
+			@RequestParam int hallNo,
+			@RequestParam String hallSelectEtc) {
+		System.out.println("스튜디오옵션수정시작");
+		
+		HallSelect hsl = new HallSelect(0, hallType, hallNo, hallSelectPrice, hallSelectEtc);
+		
+		int result=memberService.hallOptionAdd(hsl);
+		
+		if(result>0) {
+			System.out.println("수정성공");
+		}
+		
+		return "redirect:/companyDetailView.do?prdNo="+hallNo+"&code=H";
+	}
+	
 
 
 	
@@ -788,8 +869,6 @@ public class MemberController {
 		String code=request.getParameter("code");
 		
 		if(code.equals("S")) {
-		
-			
 			mav.addObject("studio", memberService.selectOneStudioNumber(no));
 			mav.addObject("studioSelectList0", memberService.selectListStudioOptionNumber(no, 0));
 			mav.addObject("studioSelectList1", memberService.selectListStudioOptionNumber(no, 1));
@@ -815,6 +894,7 @@ public class MemberController {
 			
 			// 아직 홀 진행중	
 			mav.addObject("hall", memberService.selectOneHallNumber(no));
+			mav.addObject("hallSelectList",memberService.selectListHallOptionNumber(no));
 			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "H"));
 			mav.setViewName("member/companyDetailHall");
 			return mav;
@@ -926,6 +1006,7 @@ public class MemberController {
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
+					System.out.println("몇바퀴돌고있나요"+i);
 					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
 		
 					list2.add(hs);

@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
@@ -214,25 +215,25 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		
 		//홀은 현재 미구현
-		return sqlSession.selectOne("hall.viewSelectOne",no);
+		return sqlSession.selectOne("hall.viewSelectOne2",no);
 	}
 
 	public Makeup selectOneMakeupNumber(int no) {
 		// TODO Auto-generated method stub
-		Makeup mu=(Makeup)sqlSession.selectOne("makeup.viewSelectOne",no);
+		Makeup mu=(Makeup)sqlSession.selectOne("makeup.viewSelectOne2",no);
 				System.out.println(mu);
 		return mu;
 	}
 
 	public Dress selectOneDressNumber(int no) {
 		// TODO Auto-generated method stub
-		return (Dress)sqlSession.selectOne("dress.viewSelectOne",no);
+		return (Dress)sqlSession.selectOne("dress.viewSelectOne2",no);
 	}
 
 	public Studio selectoneStudioNumber(int no) {
 		// TODO Auto-generated method stub
 		System.out.println(no);
-		return (Studio)sqlSession.selectOne("studio.viewSelectOne",no);
+		return (Studio)sqlSession.selectOne("studio.viewSelectOne2",no);
 	}
 
 	public List<StudioSelect> selectListStudioOption(int studioNo, int studioOptionType) {
@@ -368,6 +369,42 @@ public class MemberDao {
 	public List<Member> getIdLIst(String email) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectList("member.getIdLIst",email);
+	}
+
+	public int updateStudioInfo(Studio s) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("studio.updateStudio",s);
+	}
+
+	public int updateDressInfo(Dress d) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("dress.updateDress",d);
+	}
+
+	public int updateMakeup(Makeup m) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("makeup.updateMakeup",m);
+	}
+
+	public int updateOneHallOption(int hallNo, String hallType, String price, String etc) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallSelectNo", hallNo);
+		map.put("hallType", hallType);
+		map.put("hallSelectPrice", price);
+		map.put("hallSelectEtc", etc);
+		
+		return sqlSession.update("hallSelect.updateOnehallOption");
+	}
+
+	public int HallOptionAdd(HallSelect hsl2) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("hallSelect.insertHallOption",hsl2);
+	}
+	
+	public List<StudioSelect> selectListHallOptionNumber(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("hallSelect.selectListHallSelect",no);
 	}
 
 }

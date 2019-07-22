@@ -16,27 +16,16 @@ function exintsert() {
 }
 </script>
 <section id="wrap">
-	<div class="area" >
-		<div style="text-align: right;  width: 1165px; ">
-		
-			<%-- <c:if test="${not empty list}">	 --%>
-				<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
-					<button class="btn-style1 small" onclick="exintsert();">글등록</button>
-				</div>
-			<%-- </c:if> --%>
-				
-			<br>
-			<br>
-		</div>	
-		<div>		
+	<div class="area" >	
+		<div class="clearfix">		
 		 	<c:forEach items="${expd.exList}" var="e" varStatus="i">
 		 	  
-				<div style="width:350px;height:350px;display:inline-block;margin:20px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
+				<div style="width:360px;height:360px;float:left;margin:20px;box-shadow: 5px 5px 5px 5px rgb(235,235,235);" class="photolist">
 					<div style="padding:5px; height: 70%;">
 						<div >
 							<div>
 							<a href="/experienceDetail.do?experienceNo=${e.experienceNo}">
-							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:60%;">
+							<img src = "/resources/upload/${e.experienceFilePath}" style="width:100%;height:285px;">
 							
 							</a>
 							</div>
@@ -44,7 +33,10 @@ function exintsert() {
 					</div>
 					<div style="padding:20px;">
 						<div>
-							<div style="text-align:  center;">
+							<div style="text-align:  center; overflow: hidden;">
+							<br>
+							<br>
+							<br>
 							${e.experienceTitle}						
 							</div>
 						</div>
@@ -55,10 +47,15 @@ function exintsert() {
 					<br>
 				</c:if>
 		 	</c:forEach>
-		 </div>
-		  <div class="paging">
-            ${expd.pageNavi}
-          </div>
+		</div>
+		<%-- <c:if test="${not empty list}">	 --%>
+			<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
+				<button class="btn-style1 small" onclick="exintsert();">글등록</button>
+			</div>
+		<%-- </c:if> --%>
+		<div class="paging">
+        	${expd.pageNavi}
+        </div>
           
 		  <div class="board-search-box">
              <form action="/exsearchExperience.do" method="get">

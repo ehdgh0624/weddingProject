@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="member">
 	<select id="getIdLIst" parameterType="string" resultType="member">
-		select member_id as memberId
+		select member_id as memberId ,enrolldate as enrollDate
 		from member where email=#{email}
 	</select>
 
@@ -275,7 +275,13 @@
     	from hall where member_id=#{memberId} and hall_name=#{hallName}
     </select>
     <insert id="insertHallOption" parameterType="hallSelect">
-     insert into hallSelect values(#{hallSelectNo},#{hallType},#{hallSelectPrice},#{hallSelectEtc})
+     insert into hall_Select values(
+     hall_select_seq.nextval,
+     #{hallType},
+     #{hallNo},
+     #{hallSelectPrice},
+     #{hallSelectEtc})
+     
     </insert>
     <select id="getCollectionlist" parameterType="member" resultType="scrapbook">
     	select

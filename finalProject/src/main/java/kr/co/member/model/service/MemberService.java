@@ -345,6 +345,42 @@ public class MemberService {
 		return memberDao.getIdLIst(email);
 	}
 
+	public int updateStudioInfo(Studio s) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.updateStudioInfo(s);
+	}
+
+	public int updateDressInfo(Dress d) {
+		// TODO Auto-generated method stub
+		return memberDao.updateDressInfo(d);
+	}
+
+	public int updateMakeupInfo(Makeup m) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.updateMakeup(m);
+		
+	}
+
+	public int updateOneHallOption(int hallNo, String hallType, String price, String etc) {
+		// TODO Auto-generated method stub
+		return memberDao.updateOneHallOption(hallNo,hallType,price,etc);
+	}
+
+	public int hallOptionAdd(HallSelect hsl2) {
+		// TODO Auto-generated method stub
+		
+				
+		
+		return memberDao.HallOptionAdd(hsl2);
+	}
+
+	public ArrayList<StudioSelect> selectListHallOptionNumber(int no) {
+		// TODO Auto-generated method stub
+		return (ArrayList<StudioSelect>) memberDao.selectListHallOptionNumber(no);
+	}
+
 
 
 }
