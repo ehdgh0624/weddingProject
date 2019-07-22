@@ -235,18 +235,15 @@
 	</div>
 </section>
 <script>
-<<<<<<< HEAD
+
 	$(document).ready(function(){
 	if(${param.msg != null}){
 	$("#tagSearch").html('태그 : #${param.msg}');//태그 클릭시 검색 조건 띄우기
 	};
 		
-;	})
-	$(".tag").click(function(){	//태그 클릭시 해당 태그 리스트 가져오기
-=======
-	$("#tagSearch").html('태그 : #${param.msg}');//태그 클릭시 검색 조건 띄우기
+	});
+	
 	$(".tag").click(function() { //태그 클릭시 해당 태그 리스트 가져오기
->>>>>>> master
 		var msgg = $(this).html();
 		var msg = msgg.substring(1);
 		location.href = "/hallPc.do?msg=" + msg;
