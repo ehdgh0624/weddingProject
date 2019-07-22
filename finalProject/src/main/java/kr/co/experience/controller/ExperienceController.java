@@ -63,7 +63,6 @@ public class ExperienceController {
 		
 		Member m  = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		String no ="비로그인";
 		if(m != null) {
 			ArrayList<Reservation> list = experienceService.selectSearch(m.getMemberId());
 			ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
