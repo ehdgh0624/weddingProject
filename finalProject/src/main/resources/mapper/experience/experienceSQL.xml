@@ -84,7 +84,7 @@ select  experience_no as experienceNo,
 		from 
 		(select ROWNUM as rnum, m.* from 
 		(select * from  experience order by experience_no desc)
-		m) where rnum between ${start} and ${end} and experience_writer = #{memberId}
+		m) where rnum between ${start} and ${end} 
 		
 </select>
 <insert id="experienceCommentInsert" parameterType="experienceComment">

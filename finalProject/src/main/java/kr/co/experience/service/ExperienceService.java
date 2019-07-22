@@ -66,6 +66,7 @@ public class ExperienceService {
 		int start = (reqPage-1)*numPerPage+1;   
 		int end = reqPage*numPerPage; 
 	
+		
 		ArrayList<Experience> list = (ArrayList<Experience>)experienceDao.selectList(start,end);				
 		String pageNavi ="";
 		int pageNaviSize = 5;    // <1 2 3 4 5 ?> 

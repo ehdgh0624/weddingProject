@@ -19,12 +19,12 @@ function exintsert() {
 	<div class="area" >
 		<div style="text-align: right;  width: 1165px; ">
 		
-			<c:if test="${not empty list}">	
+			<%-- <c:if test="${not empty list}">	 --%>
 				<div class="common-tbl-btn-group right" style="marmargin-bottom: 20px;padding-top:0;margin-top: 20px;">
 					<button class="btn-style1 small" onclick="exintsert();">글등록</button>
 				</div>
+			<%-- </c:if> --%>
 				
-			</c:if>
 			<br>
 			<br>
 		</div>	

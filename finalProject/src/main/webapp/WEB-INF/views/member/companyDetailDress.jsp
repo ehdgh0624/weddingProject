@@ -14,146 +14,147 @@
 				style="max-width: 50px"></a>
 		</h1>
 	</div>
-
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-		<div class="common-tbl-box">
-			<form action="/studioUpdate.do" method="post">
-			<c:if test="${sessionScope.member.memberCode != 2 }">
-				<h2 class="comm-content-tit">드레스 업체수정</h2>
-			</c:if>
-			<c:if test="${sessionScope.member.memberCode == 2 }">
-				<h2 class="comm-content-tit">업체 상세보기</h2>
-			</c:if>
-				<table class="comm-tbl">
-					<colgroup>
-						<col width="20%">
-						<col width="/">
-					</colgroup>
-					<tr>
-						<th>업체명</th>
-						<th><input type="text" name="dressName"
-							value="${dress.dressName }"><input type="hidden"
-							value="${dress.dressNo }" id="no"></th>
-					</tr>
-
-					<tr>
-						<th>전화번호</th>
-						<th><input type="text" name="dressTelFi" id="first">-<input
-							type="text" name="dressTelSe" id="second">-<input
-							type="text" name="dressTelth" id="third"></th>
-					</tr>
-
-					<tr>
-						<th>드레스피팅가격</th>
-						<th><input type="number" name="dressFittingPrice"
-							value="${dress.dressFittingPrice }"></th>
-					</tr>
-
-					<tr>
-						<th>드레스대여가능개수</th>
-						<th><input type="number" name="dressRentPrice"
-							value="${dress.dressRentPrice }"></th>
-					</tr>
-					<tr>
-						<th>드레스가봉</th>
-						<th><input type="text" name="dressMending"
-							value="${dress.dressMending }"></th>
-					</tr>
-					<tr>
-						<th>드레스대여가격</th>
-						<th><input type="number" name="jewelryPrice"
-							value="${dress.jewelryPrice }"></th>
-					</tr>
-					<tr>
-						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode"
-							placeholder="우편번호" name="postNum" value="${post }">
-							<div class="common-tbl-btn-group join-btn-group">
-								<button type="button" onclick="sample4_execDaumPostcode()"
-									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-							</div> <input type="hidden" name="studioLatitude" id="shopLatitude"
-							value="${dress.dressLatitude }"> <input type="hidden"
-							name="studioLongtitude" id="shopLongitude"
-							value="${maekup.dressLongitud }"></td>
-					</tr>
-					<tr>
-						<th>도로명주소</th>
-						<td><input type="text" id="sample4_roadAddress"
-							placeholder="도로명주소" name="roadAddr"> <span id="guide"
-							style="color: #999; display: none"></span></td>
-					</tr>
-
-					<tr>
-						<th>지번주소</th>
-						<th><input type="text" id="sample4_jibunAddress"
-							placeholder="지번주소" name="jibunAddr"> <input type="text"
-							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
-					</tr>
-					<tr>
-						<th>상세주소</th>
-						<th><input type="text" id="sample4_detailAddress"
-							placeholder="상세주소" name="detailAddr"></th>
-					</tr>
-					<tr>
-						<th>드레스컨테츠</th>
-						<th><input type="text" name="dressContent"
-							value="${dress.dressContent }"></th>
-					</tr>
-					<tr>
-						<th>업체 상태설정</th>
-						<th><select name="viewstatus">
-								<option value="3">비공개</option>
-								<option value="2">공개</option>
-						</select></th>
-					</tr>
-				</table>
-				<c:if test="${sessionScope.member.memberCode != 2}">
-				<button type="submit" class="btn-style1" id="updateDress">수정</button>
-				</c:if>
-			</form>
-
-		<c:if test="${sessionScope.member.memberCode != 2}">
-			<div>
-				<button>추가</button>
-				<form action="/saveGallery.do" method="post"
-					enctype="multipart/form-data">
-					<table class="comm-tbl" id="gall">
+		<c:if test="${sessionScope.member.memberCode != 2 }">
+			<h2 class="comm-content-tit">드레스 업체수정</h2>
+		</c:if>
+		<c:if test="${sessionScope.member.memberCode == 2 }">
+			<h2 class="comm-content-tit">업체 상세보기</h2>
+		</c:if>
+		<div class="area">
+			<div class="common-tbl-box">
+				<form action="/studioUpdate.do" method="post">
+					<table class="comm-tbl">
 						<colgroup>
 							<col width="20%">
 							<col width="/">
-							<col width="20%">
-							<col width="10%">
 						</colgroup>
 						<tr>
-							<th>No</th>
-							<th>파일이미지</th>
-							<th>미리보기</th>
-							<th>삭제</th>
+							<th>업체명</th>
+							<th><input type="text" name="dressName"
+								value="${dress.dressName }"><input type="hidden"
+								value="${dress.dressNo }" id="no"></th>
 						</tr>
-						<c:forEach items="${galleryList }" var="s" varStatus="i">
-							<tr>
-								<td>${i.count }</td>
-								<td><span>${s.filename }</span></td>
-								<td><img src="/resources/dress/${s.filepath }"
-									style="width: 300px; height: 300px"></td>
-								<td><input type="hidden" value="${s.filepath }"
-									class="oldpath">
-								<button onclick='imgDelete(this)' type='button'
-										class='imgDelete'>삭제</button></td>
-							</tr>
-						</c:forEach>
+	
+						<tr>
+							<th>전화번호</th>
+							<td><input type="text" name="dressTelFi" id="first" class="small num"> - <input
+								type="text" name="dressTelSe" id="second" class="small num"> - <input
+								type="text" name="dressTelth" id="third" class="small num"></td>
+						</tr>
+	
+						<tr>
+							<th>드레스피팅가격</th>
+							<td><input type="text" class="num middle" name="dressFittingPrice"
+								value="${dress.dressFittingPrice }"> 원</td>
+						</tr>
+	
+						<tr>
+							<th>드레스대여가능개수</th>
+							<td><input type="text" class="num middle" name="dressRentPrice"
+								value="${dress.dressRentPrice }"> 개</td>
+						</tr>
+						<tr>
+							<th>드레스가봉</th>
+							<td><input type="text" name="dressMending"
+								value="${dress.dressMending }"></td>
+						</tr>
+						<tr>
+							<th>드레스대여가격</th>
+							<td><input type="text" class="num middle" name="jewelryPrice"
+								value="${dress.jewelryPrice }"> 원</td>
+						</tr>
+						<tr>
+							<th>우편번호</th>
+							<td><input type="text" id="sample4_postcode" class="small"
+								placeholder="우편번호" name="postNum" value="${post }">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" onclick="sample4_execDaumPostcode()"
+										value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								</div> <input type="hidden" name="studioLatitude" id="shopLatitude"
+								value="${dress.dressLatitude }"> <input type="hidden"
+								name="studioLongtitude" id="shopLongitude"
+								value="${maekup.dressLongitud }"></td>
+						</tr>
+						<tr>
+							<th>도로명주소</th>
+							<td><input type="text" id="sample4_roadAddress"
+								placeholder="도로명주소" name="roadAddr"> <span id="guide"
+								style="color: #999; display: none"></span></td>
+						</tr>
+	
+						<tr>
+							<th>지번주소</th>
+							<td><input type="text" id="sample4_jibunAddress"
+								placeholder="지번주소" name="jibunAddr"> <input type="text"
+								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:4px;"></td>
+						</tr>
+						<tr>
+							<th>상세주소</th>
+							<td><input type="text" id="sample4_detailAddress"
+								placeholder="상세주소" name="detailAddr"></td>
+						</tr>
+						<tr>
+							<th>드레스 상세설명</th>
+							<td><input type="text" name="dressContent"
+								value="${dress.dressContent }"></td>
+						</tr>
+						<tr>
+							<th>업체 상태설정</th>
+							<td><select name="viewstatus">
+									<option value="3">비공개</option>
+									<option value="2">공개</option>
+							</select></td>
+						</tr>
 					</table>
-					<input type="hidden" value="${dress.dressNo }" name="prdNo">
-					<input type="hidden" value="D" name="code">
-					<button type="submit" id="imgSub">저장</button>
+					<c:if test="${sessionScope.member.memberCode != 2}">
+						<button type="submit" class="btn-style1" id="updateDress">수정</button>
+					</c:if>
 				</form>
+	
+				<c:if test="${sessionScope.member.memberCode != 2}">
+					<div>
+						<button>추가</button>
+						<form action="/saveGallery.do" method="post"
+							enctype="multipart/form-data">
+							<table class="comm-tbl" id="gall">
+								<colgroup>
+									<col width="20%">
+									<col width="/">
+									<col width="20%">
+									<col width="10%">
+								</colgroup>
+								<tr>
+									<th>No</th>
+									<th>파일이미지</th>
+									<th>미리보기</th>
+									<th>삭제</th>
+								</tr>
+								<c:forEach items="${galleryList }" var="s" varStatus="i">
+									<tr>
+										<td>${i.count }</td>
+										<td><span>${s.filename }</span></td>
+										<td><img src="/resources/dress/${s.filepath }"
+											style="width: 300px; height: 300px"></td>
+										<td><input type="hidden" value="${s.filepath }"
+											class="oldpath">
+										<button onclick='imgDelete(this)' type='button'
+												class='imgDelete'>삭제</button></td>
+									</tr>
+								</c:forEach>
+							</table>
+							<input type="hidden" value="${dress.dressNo }" name="prdNo">
+							<input type="hidden" value="D" name="code">
+							<button type="submit" id="imgSub">저장</button>
+						</form>
+					</div>
+					<br>
+					<br> <span id="addGallery">사진추가하기</span> <input type="hidden"
+						id="totalAddr" value="${dress.dressAddr }"> <input
+						type="hidden" id="phone" value="${dress.dressTel }">
+				</c:if>
 			</div>
-			<br>
-			<br> <span id="addGallery">사진추가하기</span> <input type="hidden"
-				id="totalAddr" value="${dress.dressAddr }"> <input
-				type="hidden" id="phone" value="${dress.dressTel }">
-		</c:if>
 		</div>
 	</div>
 
@@ -165,7 +166,7 @@
 							count = count + 1;
 							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";
 							addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
-							addTable += "<td><span class='imgDelete'>삭제</span></td>";
+							addTable += "<td><button onclick='imgDelete(this)' type='button'class='imgDelete'>삭제</button></td>";
 							addTable += "<tr>";
 
 							$('#gall').append(addTable);
