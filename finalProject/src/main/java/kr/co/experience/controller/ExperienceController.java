@@ -1,5 +1,6 @@
 package kr.co.experience.controller;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.coyote.http11.filters.BufferedInputFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -248,8 +250,8 @@ public class ExperienceController {
 			String file1 = root+"image2/"+ as;
 			String file2 = root+"image/"+ as;
 			try {
-				FileInputStream fis = new FileInputStream(file1);
-				FileOutputStream fos = new FileOutputStream(file2);
+				BufferedInputStream  fis = new BufferedInputStream(new FileInputStream(file1));
+				BufferedOutputStream fos = new BufferedOutputStream( new FileOutputStream(file2));
 				int tmp = 0;
 				while ((tmp = fis.read()) != -1) {
 					fos.write(tmp);
@@ -297,7 +299,7 @@ public class ExperienceController {
 		ex.setExperienceFileName(oiginNname);
 		int e = experienceService.insertexperience(ex);
 
-		return "redirect:/index.jsp";
+		return "redirect:/experienceAll.do";
 
 	}
 
@@ -333,8 +335,8 @@ public class ExperienceController {
 			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 			
 			// 파일 아웃 스트림
-			out = new FileOutputStream(new File(
-					root+"image2/ID"+ filename + date1 +"KDC"+ filelast));
+			out = new BufferedOutputStream(new FileOutputStream(new File(
+					root+"image2/ID"+ filename + date1 +"KDC"+ filelast)));
 			out.write(bytes);
 			
 			System.out.println(fileName);
@@ -521,8 +523,8 @@ public class ExperienceController {
 			String file2 = root+"image/"+ as ;			
 			System.out.println(file1+":::::file1");
 			try {
-				FileInputStream fis = new FileInputStream(file1);
-				FileOutputStream fos = new FileOutputStream(file2);
+				BufferedInputStream	 fis = new BufferedInputStream(new FileInputStream(file1));
+				BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(file2));
 				int tmp = 0;
 				while ((tmp = fis.read()) != -1) {
 					fos.write(tmp);
