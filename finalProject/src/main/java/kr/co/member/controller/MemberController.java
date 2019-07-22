@@ -201,6 +201,7 @@ public class MemberController {
 			) {
 		String code=request.getParameter("code");
 		String no= request.getParameter("prdNo");
+		System.out.println("옵션저장입니다 번호는:"+no);
 		String savePath="";
 		ArrayList<String> originNameList = new ArrayList<String>();
 		ArrayList<String> onlyFileNameList = new ArrayList<String>();

@@ -218,6 +218,8 @@ public class CollectionController {
 			}else {
 				mav.addObject("reviewOn", 0);
 			}
+		}else {			
+			mav.addObject("reviewOn", 0);
 		}
 		mav.setViewName("collection/collectionViewStudio");
 		return mav;
@@ -242,6 +244,8 @@ public class CollectionController {
 			}else {
 				mav.addObject("reviewOn", 0);
 			}
+		}else {
+			mav.addObject("reviewOn", 0);			
 		}
 		mav.setViewName("collection/collectionViewDress");
 		return mav;
@@ -266,6 +270,8 @@ public class CollectionController {
 			}else {
 				mav.addObject("reviewOn", 0);
 			}
+		}else {
+			mav.addObject("reviewOn", 0);			
 		}
 		mav.setViewName("collection/collectionViewMakeup");
 		return mav;		
@@ -290,6 +296,8 @@ public class CollectionController {
 			}else {
 				mav.addObject("reviewOn", 0);
 			}
+		}else {
+			mav.addObject("reviewOn", 0);			
 		}
 		if(goodsType.equals("B")) {
 			mav.setViewName("collection/collectionViewBouquet");

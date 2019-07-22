@@ -33,39 +33,40 @@ $(document).ready(function(){
 		<h2 class="comm-content-tit">내가 등록한 경험담</h2>
 		<div class="area">
 			<div class="common-tbl-box">
-					<table class="comm-tbl type1">		
-						<colgroup>
-							<col width="10%">
-							<col width="12%">
-							<col width="/">
-							<col width="20%">
-							<col width="12%">
-							<col width="10%">
-						</colgroup>
+				<table class="comm-tbl type1">		
+					<colgroup>
+						<col width="10%">
+						<col width="12%">
+						<col width="/">
+						<col width="20%">
+						<col width="12%">
+						<col width="10%">
+					</colgroup>
+					<tr>
+						<th>글번호</th>
+						<th>작성자</th>
+						<th>제목</th>							
+						<th>작성일</th>
+					</tr>
+					<c:if test="${not empty ex2.exList}">
+						<c:forEach var="e" items="${ex2.exList}" varStatus="i" >	
+							<tr>
+								<td>${e.experienceNo}</td>	<!-- 번호 -->
+								<td>${e.experienceWriter}</td> <!-- 작성자 -->
+								<td><a href="/experienceDetail.do?experienceNo=${e.experienceNo}">${e.experienceTitle}</td> <!-- 제목 -->
+								<td><fmt:formatDate value="${e.experienceDate}"/></td> <!-- 작성일 -->
+							</tr>
+						</c:forEach>
+					</c:if>
+					<c:if test="${empty ex2.exList}">
 						<tr>
-							<th>글번호</th>
-							<th>작성자</th>
-							<th>제목</th>							
-							<th>작성일</th>
-							
+							<td colspan="6"><p class="none">내가 등록한 경험담이 없습니다.</p></td>
 						</tr>
-				<c:forEach var="e" items="${ex2.exList}" varStatus="i" >	
-						<tr>
-						
-							<td>${e.experienceNo}</td>	<!-- 번호 -->
-							<td>${e.experienceWriter}</td> <!-- 작성자 -->
-							<td><a href="/experienceDetail.do?experienceNo=${e.experienceNo}">${e.experienceTitle}</td> <!-- 제목 -->
-							<td><fmt:formatDate value="${e.experienceDate}"/></td> <!-- 작성일 -->
-							
-							
-								
-						</tr>
-				</c:forEach>
-					</table>
-						<div class="paging">
-           					 ${ex2.pageNavi}
-       		 		 	</div>
-			
+					</c:if>
+				</table>
+				<div class="paging">
+         			${ex2.pageNavi}
+     		 	</div>
 			</div>
 		</div>
 	</div>
