@@ -233,9 +233,9 @@
 					</table>
 				</div>
 			</div>
+		</c:if>
 			<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
 			<input type="hidden" id="phone" value="${studio.studioTel }">
-		</c:if>
 		</div>
 	</div>
 
