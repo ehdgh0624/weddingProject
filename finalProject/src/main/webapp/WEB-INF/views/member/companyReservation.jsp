@@ -15,37 +15,43 @@
 	
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-		<div class="common-tbl-box">
-			<h2 class="comm-content-tit">예약자리스트</h2> 
-				<c:forEach var="entry" items="${resMap }">
-					<h1>업체종류 :${entry.key }<h1>		
-					<table class="comm-tbl">		
-						<colgroup>
-							<col width="20%">
-							<col width="20%">
-							<col width="20%">
-							<col width="20%">
-							<col width="/">
-						</colgroup>
-						<tr>
-							<th>예약번호</th>
-							<th>이름(아이디)</th>
-							<th>이메일</th>
-							<th>//////</th>
-							<th>결제수단</th>
-						</tr>
-						<c:forEach var="list" items="${entry.value }"> <!-- 키값꺼내오기 -->
-							<tr onclick="location.href='/reservationView.do?memberId=${list.memberId }&reservationNo=${list.reservationNo }'">
-								<td>${list.reservationNo }</td>
-								<td>${list.memberName }(${list.memberId })</td>
-								<td>${list.memberEmail }</td>
-								<td>${list.prdName }</td>
-								<td>${list.payMethod }</td>
+		<h2 class="comm-content-tit">예약자 리스트</h2>
+		<div class="area">
+			<div class="common-tbl-box">
+				<c:if test="${not empty resMap }">
+					<c:forEach var="entry" items="${resMap }">
+						<h1>업체종류 :${entry.key }<h1>		
+						<table class="comm-tbl">		
+							<colgroup>
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="20%">
+								<col width="/">
+							</colgroup>
+							<tr>
+								<th>예약번호</th>
+								<th>이름(아이디)</th>
+								<th>이메일</th>
+								<th>//////</th>
+								<th>결제수단</th>
 							</tr>
-						</c:forEach>
-					</table>		
-					<hr>			
-			</c:forEach>	
+							<c:forEach var="list" items="${entry.value }"> <!-- 키값꺼내오기 -->
+								<tr onclick="location.href='/reservationView.do?memberId=${list.memberId }&reservationNo=${list.reservationNo }'">
+									<td>${list.reservationNo }</td>
+									<td>${list.memberName }(${list.memberId })</td>
+									<td>${list.memberEmail }</td>
+									<td>${list.prdName }</td>
+									<td>${list.payMethod }</td>
+								</tr>
+							</c:forEach>
+						</table>					
+					</c:forEach>
+				</c:if>
+				<c:if test="${empty resMap }">
+					<p class="none">예약자가 존재하지 않습니다.</p>
+				</c:if>
+			</div>
 		</div>
 	</div>
 	<%--  footer --%>

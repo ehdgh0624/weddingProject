@@ -26,14 +26,16 @@
 				</table>
 				<div class="common-tbl-btn-group login-tbl-btn-group">
 					<button type="submit" class="btn-style1 login-btn" id="login">로그인</button>
-					<button type="button" class="btn-style3" onclick="location.href='/goAddTerms.do'">회원가입</button>
+					<button type="button" class="btn-style2" onclick="location.href='/goAddTerms.do'">회원가입</button>
 				</div>
 			</form>
-			<button type="button" class="btn-style3" id="oneTimeLogin">일회용 로그인</button>
-			<dvi style="float:right">
-				<button type="button" class="btn-style3" id="findId" onclick="location.href='/findId.do'">아이디찾기/</button>
-				<button type="button" class="btn-style3" id="findPw" onclick="location.href='/findPw.do'">비밀번호찾기</button>
-			</dvi>
+			<div class="common-tbl-btn-group clearfix" style="padding-top:15px;">
+				<button type="button" class="fl btn-style3 small" id="oneTimeLogin" style="margin:0;">일회용 로그인</button>
+				<div class="fr common-tbl-btn-group" style="padding-top:0;">
+					<button type="button" class="btn-style3 small" id="findId" onclick="location.href='/findId.do'">아이디찾기</button> / 
+					<button type="button" class="btn-style3 small" id="findPw" onclick="location.href='/findPw.do'">비밀번호찾기</button>
+				</div>
+			</div>
 		</div>
 		<div class="comm-login-box" id="otloginbox" style="display:none;"><!-- common-tbl-box -->
 			<form action="/oneTimelogin.do" form="post" class="clearfix">
@@ -48,10 +50,12 @@
 					</tr>
 				</table>
 				<div class="common-tbl-btn-group login-tbl-btn-group">
-					<button type="submit" class="btn-style1 login-btn" id="loginot">1회용로그인</button>
+					<button type="submit" class="btn-style1 login-btn" id="loginot" style="height:68px;">1회용로그인</button>
 				</div>
 			</form>
-			<button type="button" class="btn-style3" id="idpwchange">아이디 로그인</button>
+			<div class="common-tbl-btn-group clearfix" style="padding-top:10px;">
+				<button type="button" class="btn-style3 fl small" id="idpwchange" style="margin:0;">아이디 로그인</button>
+			</div>
 		</div>
 	</div>
 </section>
