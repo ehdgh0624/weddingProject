@@ -17,140 +17,155 @@
 
 	<div id="myPageContainer" class="clearfix">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
-		<div class="common-tbl-box">
-			<form action="/makeupUpdate.do" method="post">
-			<c:if test="${sessionScope.member.memberCode != 2 }">
-				<h2 class="comm-content-tit">메이크업 업체수정</h2>
-			</c:if>
-			<c:if test="${sessionScope.member.memberCode == 2 }">
-				<h2 class="comm-content-tit">업체 상세보기</h2>
-			</c:if>
-				<table class="comm-tbl">
-					<colgroup>
-						<col width="20%">
-						<col width="/">
-					</colgroup>
-					<tr>
-						<th>업체명</th>
-						<th><input type="text" name="makeupName"
-							value="${makeup.makeupName }"><input type="hidden"
-							value="${makeup.makeupNo }" id="no"></th>
-					</tr>
-
-					<tr>
-						<th>전화번호</th>
-						<th><input type="text" name="makeupTelFi" id="first">-<input
-							type="text" name="makeupTelSe" id="second">-<input
-							type="text" name="makeupTelth" id="third"></th>
-					</tr>
-
-					<tr>
-						<th>메이크업기본가격</th>
-						<th><input type="number" name="makeupBasicPrice"
-							value="${makeup.makeupBasicPrice }"></th>
-					</tr>
-
-					<tr>
-						<th>혼주메이크업가격</th>
-						<th><input type="number" name="makeupParentPrice"
-							value="${makeup.makeupParentPrice }"></th>
-					</tr>
-					<tr>
-						<th>하객메이크업가격</th>
-						<th><input type="number" name="makeupVisitorPrice"
-							value="${makeup.makeupVisitorPrice }"></th>
-					</tr>
-					<tr>
-						<th>우편번호</th>
-						<td><input type="text" id="sample4_postcode"
-							placeholder="우편번호" name="postNum" value="${post }">
-							<div class="common-tbl-btn-group join-btn-group">
-								<button type="button" onclick="sample4_execDaumPostcode()"
-									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
-							</div> <input type="hidden" name="makeupLatitude" id="shopLatitude"
-							value="${makeup.makeupLatitude }"> <input type="hidden"
-							name="makeupLongtitude" id="shopLongitude"
-							value="${maekup.makeupLongitud }"></td>
-					</tr>
-					<tr>
-						<th>도로명주소</th>
-						<td><input type="text" id="sample4_roadAddress"
-							placeholder="도로명주소" name="roadAddr"> <span id="guide"
-							style="color: #999; display: none"></span></td>
-					</tr>
-
-					<tr>
-						<th>지번주소</th>
-						<th><input type="text" id="sample4_jibunAddress"
-							placeholder="지번주소" name="jibunAddr"> <input type="text"
-							id="sample4_extraAddress" placeholder="참고항목" name="extraAddr"></th>
-					</tr>
-
-					<tr>
-						<th>상세주소</th>
-						<th><input type="text" id="sample4_detailAddress"
-							placeholder="상세주소" name="detailAddr"></th>
-					</tr>
-
-					<tr>
-						<th>메이크업컨테츠</th>
-						<th><input type="text" name="makeupContent"
-							value="${makeup.makeupContent }"></th>
-					</tr>
-					<tr>
-						<th>업체 상태설정</th>
-						<th><select name="viewstatus">
-								<option value="3">비공개</option>
-								<option value="2">공개</option>
-						</select></th>
-					</tr>
-				</table>
-				<hr>
-				<c:if test="${sessionScope.member.memberCode != 2}">
-				<button type="submit" class="btn-style1" id="updatemakeup">수정</button>
-				</c:if>
-			</form>
-<c:if test="${sessionScope.member.memberCode != 2}">
-			<div>
-				<button>추가</button>
-				<form action="/saveGallery.do" method="post"
-					enctype="multipart/form-data">
-					<table class="comm-tbl" id="gall">
+		<c:if test="${sessionScope.member.memberCode != 2 }">
+			<h2 class="comm-content-tit">메이크업 업체수정</h2>
+		</c:if>
+		<c:if test="${sessionScope.member.memberCode == 2 }">
+			<h2 class="comm-content-tit">업체 상세보기</h2>
+		</c:if>
+		<div class="area">
+			<div class="common-tbl-box">
+				<form action="/makeupUpdate.do" method="post">
+					<table class="comm-tbl">
 						<colgroup>
 							<col width="20%">
 							<col width="/">
-							<col width="20%">
-							<col width="10%">
 						</colgroup>
 						<tr>
-							<th>No</th>
-							<th>파일이미지</th>
-							<th>미리보기</th>
-							<th>삭제</th>
+							<th>업체명</th>
+							<td><input type="text" name="makeupName"
+								value="${makeup.makeupName }"><input type="hidden"
+								value="${makeup.makeupNo }" id="no"></td>
 						</tr>
-						<c:forEach items="${galleryList }" var="s" varStatus="i">
-							<tr>
-								<td>${i.count }</td>
-								<td><span>${s.filename }</span></td>
-								<td><img src="/resources/makeup/${s.filepath }"
-									style="width: 300px; height: 300px"></td>
-								<td><input type="hidden" value="${s.filepath }"
-									class="oldpath">
-								<button onclick='imgDelete(this)' type='button'
-										class='imgDelete'>삭제</button></td>
-							</tr>
-						</c:forEach>
+	
+						<tr>
+							<th>전화번호</th>
+							<td><input type="text" name="makeupTelFi" id="first" class="small num"> - <input
+								type="text" name="makeupTelSe" id="second" class="small num"> - <input
+								type="text" name="makeupTelth" id="third" class="small num"></td>
+						</tr>
+	
+						<tr>
+							<th>메이크업기본가격</th>
+							<td><input type="text" name="makeupBasicPrice" class="num middle"
+								value="${makeup.makeupBasicPrice }"> 원</td>
+						</tr>
+	
+						<tr>
+							<th>혼주메이크업가격</th>
+							<td><input type="text" name="makeupParentPrice" class="num middle"
+								value="${makeup.makeupParentPrice }"> 원</td>
+						</tr>
+						<tr>
+							<th>하객메이크업가격</th>
+							<td><input type="text" name="makeupVisitorPrice" class="num middle"
+								value="${makeup.makeupVisitorPrice }"> 원</td>
+						</tr>
+						<tr>
+							<th>우편번호</th>
+							<td><input type="text" id="sample4_postcode" class="small"
+								placeholder="우편번호" name="postNum" value="${post }">
+								<div class="common-tbl-btn-group join-btn-group">
+									<button type="button" onclick="sample4_execDaumPostcode()"
+										value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
+								</div> <input type="hidden" name="makeupLatitude" id="shopLatitude"
+								value="${makeup.makeupLatitude }"> <input type="hidden"
+								name="makeupLongtitude" id="shopLongitude"
+								value="${maekup.makeupLongitud }"></td>
+						</tr>
+						<tr>
+							<th>도로명주소</th>
+							<td><input type="text" id="sample4_roadAddress"
+								placeholder="도로명주소" name="roadAddr"> <span id="guide"
+								style="color: #999; display: none"></span></td>
+						</tr>
+	
+						<tr>
+							<th>지번주소</th>
+							<td><input type="text" id="sample4_jibunAddress"
+								placeholder="지번주소" name="jibunAddr"> <input type="text"
+								id="sample4_extraAddress" placeholder="참고항목" name="extraAddr" style="margin-top:4px;"></td>
+						</tr>
+	
+						<tr>
+							<th>상세주소</th>
+							<td><input type="text" id="sample4_detailAddress"
+								placeholder="상세주소" name="detailAddr"></td>
+						</tr>
+	
+						<tr>
+							<th>메이크업 상세설명</th>
+							<td><input type="text" name="makeupContent"
+								value="${makeup.makeupContent }"></td>
+						</tr>
+						<tr>
+							<th>업체 상태설정</th>
+							<td><select name="viewstatus">
+									<option value="3">비공개</option>
+									<option value="2">공개</option>
+							</select></td>
+						</tr>
 					</table>
-					<input type="hidden" value="${makeup.makeupNo }" name="prdNo">
-					<input type="hidden" value="M" name="code">
-					<button type="submit" id="imgSub">저장</button>
+					<c:if test="${sessionScope.member.memberCode != 2}">
+						<div class="common-tbl-btn-group" style="margin-bottom:20px;">
+							<button type="submit" class="btn-style1 small" id="updatemakeup">수정</button>
+						</div>
+					</c:if>
 				</form>
+				<c:if test="${sessionScope.member.memberCode != 2}">
+				<div>
+					<!-- <button>추가</button> -->
+					<form action="/saveGallery.do" method="post"
+						enctype="multipart/form-data">
+						<table class="comm-tbl" id="gall">
+							<colgroup>
+								<col width="20%">
+								<col width="/">
+								<col width="20%">
+								<col width="10%">
+							</colgroup>
+							<tr>
+								<th>No</th>
+								<th>파일이미지</th>
+								<th>미리보기</th>
+								<th>삭제</th>
+							</tr>
+							<c:if test="${not empty galleryList }">
+								<c:forEach items="${galleryList }" var="s" varStatus="i">
+									<tr>
+										<td>${i.count }</td>
+										<td><span>${s.filename }</span></td>
+										<td><img src="/resources/makeup/${s.filepath }"
+											style="width: 300px; height: 300px"></td>
+										<td><input type="hidden" value="${s.filepath }"
+											class="oldpath">
+										<button onclick='imgDelete(this)' type='button'
+												class='imgDelete'>삭제</button></td>
+									</tr>
+								</c:forEach>
+							</c:if>
+							<c:if test="${empty galleryList }">
+								<tr class="list-none">
+									<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
+								</tr>
+							</c:if>
+						</table>
+						<input type="hidden" value="${makeup.makeupNo }" name="prdNo">
+						<input type="hidden" value="M" name="code">
+						<div class="common-tbl-btn-group right">
+							<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
+						</div>
+					</form>
+				</div>
+				<br>
+					<br> 
+				<div class="common-tbl-btn-group left" style="padding-top:0;display:inline-block;position:relative;top:-61px;">
+					<button type="button" class="btn-style2 small" id="addGallery">사진추가하기</button> <input type="hidden"
+					id="totalAddr" value="${makeup.makeupAddr }"> <input
+					type="hidden" id="phone" value="${makeup.makeupTel }">
+				</div>
+				</c:if>
 			</div>
-			<br>
-			<br> <span id="addGallery">사진추가하기</span> <input type="hidden"
-				id="totalAddr" value="${makeup.makeupAddr }"> <input
-				type="hidden" id="phone" value="${makeup.makeupTel }">
-			</c:if>
 		</div>
 	</div>
 
@@ -167,7 +182,12 @@
 							addTable += "<td><span class='imgDelete'>삭제</span></td>";
 							addTable += "<tr>";
 
-							$('#gall').append(addTable);
+							if($("#gall").has('.list-none')){
+								$('.list-none').remove();
+								$('#gall').append(addTable);
+							}else{
+								$('#gall').append(addTable);
+							}
 						});
 
 		function imgDelete(tt) {
