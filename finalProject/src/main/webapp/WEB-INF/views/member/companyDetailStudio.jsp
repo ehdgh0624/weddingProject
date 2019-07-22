@@ -36,7 +36,7 @@
 						<th>업체명</th>
 						<th><input type="text" name="studioName"
 							value="${studio.studioName }"><input type="hidden"
-							value="${studio.studioNo }" id="no"></th>
+							value="${studio.studioNo }" id="no" name="studioNo"></th>
 					</tr>
 
 					<tr>
@@ -102,8 +102,8 @@
 					<tr>
 						<th>업체 상태설정</th>
 						<th><select name="viewstatus">
-								<option value="3">비공개</option>
-								<option value="2">공개</option>
+								<option value="0">공개</option>
+								<option value="1">비공개</option>
 						</select></th>
 					</tr>
 				</table>
@@ -254,9 +254,9 @@
 					</table>
 				</div>
 			</div>
+		</c:if>
 			<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
 			<input type="hidden" id="phone" value="${studio.studioTel }">
-		</c:if>
 		</div>
 		</div>
 	</div>

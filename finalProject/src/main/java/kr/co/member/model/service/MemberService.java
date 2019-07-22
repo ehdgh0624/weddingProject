@@ -345,6 +345,24 @@ public class MemberService {
 		return memberDao.getIdLIst(email);
 	}
 
+	public int updateStudioInfo(Studio s) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.updateStudioInfo(s);
+	}
+
+	public int updateDressInfo(Dress d) {
+		// TODO Auto-generated method stub
+		return memberDao.updateDressInfo(d);
+	}
+
+	public int updateMakeupInfo(Makeup m) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.updateMakeup(m);
+		
+	}
+
 
 
 }

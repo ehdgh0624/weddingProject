@@ -5,6 +5,15 @@ public class Makeup {
 	private String memberId;				//메이크업 업체아이디
 	private String code;					//타입분휴(M)
 	private String makeupName;				//메이크업 업체명
+	private String makeupTelFi;
+	private String makeupTelSe;
+	private String makeupTelth;
+	private String postNum;
+	private String roadAddr;
+	private String jibunAddr;
+	private String extraAddr;
+	private String detailAddr;
+	
 	private String makeupTel;				//메이크업 연락
 	private String makeupLoc;				//메이크업 지역
 	private String makeupAddr;				//메이크업 상세주소
@@ -173,4 +182,54 @@ public class Makeup {
 				+ ", viewstatus=" + viewstatus + ", makeupScope=" + makeupScope + ", makeupTag=" + makeupTag
 				+ ", makeupLatitude=" + makeupLatitude + ", makeupLongitud=" + makeupLongitud + "]";
 	}
+	public String getMakeupTelFi() {
+		return makeupTelFi;
+	}
+	public void setMakeupTelFi(String makeupTelFi) {
+		this.makeupTelFi = makeupTelFi;
+	}
+	public String getMakeupTelSe() {
+		return makeupTelSe;
+	}
+	public void setMakeupTelSe(String makeupTelSe) {
+		this.makeupTelSe = makeupTelSe;
+	}
+	public String getMakeupTelth() {
+		return makeupTelth;
+	}
+	public void setMakeupTelth(String makeupTelth) {
+		this.makeupTelth = makeupTelth;
+	}
+	public String getPostNum() {
+		return postNum;
+	}
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	
+	
 }

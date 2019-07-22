@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
        <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp"/>
 
@@ -51,8 +51,8 @@
 						</td>
 						<td>${c.name}</td>
 						<td>${c.id }</td>
-						<td>${c.tel}</td>
-						<td>${c.addr }</td>
+						<td>${fn:replace(c.tel, '/', '-')}</td>
+						<td>${fn:replace(c.addr, '/', ' ')}</td>
 						<td><button class="companyDetail reject-btn" title="${c.comNo }">상세 보기</button></td>
 						<td style="text-align: center;"><button type="button" onclick="agree(${c.comNo},'${c.code }','${c.id } ')" class="agree-btn">신청 허가</button></td>
 						<td style="text-align: center;"><button type="button" onclick="reject(${c.comNo},'${c.code }','${c.id }')" class="reject-btn">신청 거절</button></td>

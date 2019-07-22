@@ -32,15 +32,8 @@
 					</tr>
 					<c:if test="${not empty memberAll.studio}">	
 						<c:forEach items="${memberAll.studio }" var="s">
-							<c:if test="${s.status==1 }">
-								<tr onclick="location.href='/companyDetailView.do?prdNo=${s.studioNo }&code=${s.code }'">
-							</c:if>	
-							<c:if test="${s.status==2 }">
-								<tr onclick="cancel()">
-							</c:if>	
-							<c:if test="${s.status==0 }">
-								<tr onclick="wait()">
-							</c:if>	
+							
+						<tr>
 							<td>스튜디오</td>
 							<td><span>${s.studioName }</span></td>
 							<td>
@@ -66,15 +59,23 @@
 									</c:if>	
 								</span>
 							</td>
-							<td>
-								<button class="agree-btn">상세 보기</button>
+								<td>
+								<c:if test="${s.status==1 }">
+									<button class="agree-btn" type="button" onclick="location.href='/companyDetailView.do?prdNo=${s.studioNo }&code=${s.code }'">상세 보기</button>
+								</c:if>	
+									<c:if test="${s.status==2 }">
+									<button onclick="cancel()">허가취소</button>
+								</c:if>	
+								<c:if test="${s.status==0 }">
+									<button onclick="wait()">대기중</button>
+								</c:if>	
 							</td>
 						</tr>
 						</c:forEach>
 					</c:if>
 					<c:if test="${not empty memberAll.dress}">		
 						<c:forEach items="${memberAll.dress }" var="d">
-						<tr onclick="location.href='/companyDetailView.do?prdNo=${d.dressNo }&code=${d.code }'">
+						<tr>
 							<td>드레스</td>
 							<td><span>${d.dressName }</span></td>
 							<td>
@@ -101,7 +102,15 @@
 								</span>
 							</td>
 							<td>
-								<button class="agree-btn">상세 보기</button>
+								<c:if test="${d.status==1 }">
+									<button class="agree-btn" type="button" onclick="location.href='/companyDetailView.do?prdNo=${d.dressNo }&code=${d.code }'">상세 보기</button>
+								</c:if>	
+									<c:if test="${d.status==2 }">
+									<button onclick="cancel()">허가취소</button>
+								</c:if>	
+								<c:if test="${d.status==0 }">
+									<button onclick="wait()">대기중</button>
+								</c:if>	
 							</td>
 						</tr>
 						</c:forEach>	
@@ -135,7 +144,15 @@
 								</span>
 							</td>
 							<td>
-								<button class="agree-btn">상세 보기</button>
+								<c:if test="${m.status==1 }">
+									<button class="agree-btn" type="button" onclick="location.href='/companyDetailView.do?prdNo=${m.makeupNo }&code=${m.code }'">상세 보기</button>
+								</c:if>	
+									<c:if test="${m.status==2 }">
+									<button onclick="cancel()">허가취소</button>
+								</c:if>	
+								<c:if test="${m.status==0 }">
+									<button onclick="wait()">대기중</button>
+								</c:if>	
 							</td>
 						</tr>
 						</c:forEach>
@@ -169,7 +186,15 @@
 								</span>
 							</td>
 							<td>
-								<button class="agree-btn">상세 보기</button>
+								<c:if test="${h.status==1 }">
+									<button class="agree-btn" type="button" onclick="location.href='/companyDetailView.do?prdNo=${h.hallNo }&code=${s.code }'">상세 보기</button>
+								</c:if>	
+									<c:if test="${h.status==2 }">
+									<button onclick="cancel()">허가취소</button>
+								</c:if>	
+								<c:if test="${h.status==0 }">
+									<button onclick="wait()">대기중</button>
+								</c:if>	
 							</td>
 						</tr>
 					</c:forEach>
