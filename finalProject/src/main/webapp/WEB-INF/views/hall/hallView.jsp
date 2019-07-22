@@ -693,9 +693,11 @@
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
-		var select = $(this);
+		var select = $('.defaultStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/hscrapOn.do",
 			type : "get",
@@ -706,9 +708,15 @@
 					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
 					select.addClass('scrapStar');
 					select.removeClass('defaultStar');
+					if(scrapbookCount == 0){
+						scrapbook.text(1);						
+					}else{
+						scrapbook.text(scrapbookCount + 1);						
+					}
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -717,9 +725,11 @@
 		});
 	});
 	$(document).on("click",".scrapStar",function(){
-		var select = $(this);
+		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/hscrapOff.do",
 			type : "get",
@@ -730,9 +740,17 @@
 					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
 					select.removeClass('scrapStar');
 					select.addClass('defaultStar');
+					if(scrapbookCount == 1){
+						scrapbook.text(0);						
+					}else if(scrapbookCount == 0){
+						scrapbook.text(0);						
+					}else{
+						scrapbook.text(scrapbookCount - 1);
+					}
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -741,6 +759,60 @@
 		});
 	});
 	/* 스크랩북 on/off 끝 */	
+	
+	//네이버 지도 API
+	window.onload = function(){
+	//	var map = new naver.maps.Map('map');		//시청 기준 map
+		var map = new naver.maps.Map('map',{		//위도,경도 기준 map
+			center : new naver.maps.LatLng(${hall.hallLatitude},${hall.hallLongtitude}),
+			zoom:10,
+			zoomControl : true,						//zoom 콘트롤러
+			zoomControlOptions : {					//zoom 콘트롤러 설정
+				position : naver.maps.Position.TOP_RIGHT,		//위치:상단 오른쪽
+				style : naver.maps.ZoomControlStyle.SMALL		//사이즈:최소
+			}
+		});
+		var marker = new naver.maps.Marker({		//조건에 맞는 위치를 지도에 찍어주는 핀(마커)
+			position : new naver.maps.LatLng(${hall.hallLatitude},${hall.hallLongtitude}),
+			map : map
+		});
+		naver.maps.Event.addListener(map, 'click', function(e){
+			if(infoWindow.getMap()){
+				infoWindow.close();
+			}
+			//위도 경도는 바로 구할 수 있음
+			//geocode 서브모듈을 이용한 위경도 -> 주소변환
+			//geocede : 주소 -> 위경도 / reverseGeocode : 위경도 -> 주소
+			naver.maps.Service.reverseGeocode({
+				location : new naver.maps.LatLng(e.coord.lat(),e.coord.lng()),		//위도,경도를 클릭한 곳으로 바꿔줌(마커 위치)
+				},function(status,response){
+					if(status !== naver.maps.Service.Status.OK){					//위도,경도를 못 얻어온 경우
+						return alert("못찾음");
+					}
+					var result = response.result,
+					items = result.items;
+					address = items[0].address;
+			});
+		});
+		var contentString = [						//마커 클릭 시 출력할 주소 배열
+	        '   <h3 style="display:inline-block;padding:10px;">${hall.hallName}</h3>',
+	        '       <img src="/img/header_logo.png" width="100" height="100" alt="KS" style="float:right;" class="thumb" />',
+	        '   	<p style="font-size:13px;padding:10px;">${hall.hallAddr}<br />',
+	        '       TEL : ${hall.hallTel}<br />',
+	        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',
+	        '   </p>',
+	        '</div>'
+		].join('');									//배열 값을 String으로 합침
+		var infoWindow = new naver.maps.InfoWindow();		//마커 클릭 시 띄우는 창
+		naver.maps.Event.addListener(marker,'click',function(){
+			if(infoWindow.getMap()){				//infoWindow가 열려있는지 판단
+				infoWindow.close();					//열려있을 때 닫음
+			}else{
+				infoWindow.setContent(contentString);		//정보창에 글시 세팅
+				infoWindow.open(map,marker);
+			}
+		});
+	};
 	
 
 </script>
