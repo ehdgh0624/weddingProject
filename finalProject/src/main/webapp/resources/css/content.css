@@ -42,6 +42,7 @@
 .comm-tbl .comment{padding-top:5px; font-size:12px; color:#888;}
 .comm-tbl .none{padding:40px 0; font-size:16px; text-align:center;}
 .common-tbl-box .none{font-size:20px; font-weight:500; text-align:center; padding:80px 0;}
+.common-tbl-box .none.small{font-size:16px; padding:40px 0;}
 .comm-tbl.type2{width:100%; max-width:none;}
 .comm-tbl.type2 th, .comm-tbl.type2 td{padding:10px;}
 .comm-tbl.type2 tr:first-child td{border-top:1px solid #ddd;}
@@ -57,6 +58,7 @@
 
 /* 공통 :: Table :: 버튼 */
 .common-tbl-btn-group{padding-top:30px; text-align:center;}
+.common-tbl-btn-group.left{text-align:left;}
 .common-tbl-btn-group.right{text-align:right;}
 .common-tbl-btn-group.join-btn-group{display:inline-block; text-align:right; padding-top:0; width:auto; max-width:20%; vertical-align:middle;}
 .common-tbl-btn-group > button{width:130px; height:50px; border-radius:5px; font-size:17px; color:#fff; margin:0 10px;}
