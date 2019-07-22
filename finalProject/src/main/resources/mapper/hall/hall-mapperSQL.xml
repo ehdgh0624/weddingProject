@@ -30,7 +30,7 @@
 			   viewstatus as viewStatus,
 			   hall_tag as hallTag,
 			   hall_latitude as hallLatitude,
-			   hall_longitude as hallLongitude,
+			   hall_longitude as hallLongtitude,
 			   hall_date as hallDate
 			   from (select rownum as rnum, d.* from (select * from hall where status=1 and viewstatus=0 order by hall_no) d) where (rnum between #{start} and #{end}) order by rnum desc
 	</select>
@@ -90,7 +90,7 @@
 			   viewstatus as viewStatus,
 			   hall_tag as hallTag,
 			   hall_latitude as hallLatitude,
-			   hall_longitude as hallLongitude,
+			   hall_longitude as hallLongtitude,
 			   hall_date as hallDate 
 			   from (select rownum as rnum, d.* from (select * from hall 
 			   <trim prefix="where" prefixOverrides="AND | OR">
@@ -147,7 +147,7 @@
 	viewstatus as viewStatus,
 	hall_tag as hallTag,
 	hall_latitude as hallLatitude,
-	hall_longitude as hallLongitude,
+	hall_longitude as hallLongtitude,
 	hall_date as hallDate
 	from hall where hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
 	</select>
@@ -179,7 +179,7 @@
 	viewstatus as viewStatus,
 	hall_tag as hallTag,
 	hall_latitude as hallLatitude,
-	hall_longitude as hallLongitude,
+	hall_longitude as hallLongtitude,
 	hall_date as hallDate
 	from hall where hall_no=#{hallNo}
 	</select>
@@ -211,7 +211,7 @@
 	viewstatus as viewStatus,
 	hall_tag as hallTag,
 	hall_latitude as hallLatitude,
-	hall_longitude as hallLongitude,
+	hall_longitude as hallLongtitude,
 	hall_date as hallDate
 	from hall where hall_no=#{hallNo} and status=1
 	</select>
