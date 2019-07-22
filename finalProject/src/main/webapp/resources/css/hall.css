@@ -180,9 +180,14 @@ section.hall .card .text h5 > strong{float:left;}
 section.hall .card .text h5 span {
 	float: right;
 }
-section.hall .card .text p {
+section.hall .card .text p.addr-text {
   font-size: 14px; line-height: 24px; color:#888;
+  max-width:100%; overflow:hidden; white-space:nowrap;
+  text-overflow:ellipsis;
 }
+
+section.hall .card .text p.tag-txt{min-height:24px;}
+
 section.hall .card .bottom{
 	padding:10px;
 }

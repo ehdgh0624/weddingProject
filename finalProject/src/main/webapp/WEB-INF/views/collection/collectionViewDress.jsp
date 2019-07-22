@@ -32,7 +32,7 @@
 		  focusOnSelect: true
 		});
 		
-		/* *********************** 메인 & 서브 - 좌측 & 우측 퀵메뉴 ************************ */
+		/* *********************** 우측 퀵메뉴 ************************ */
 		$(window).scroll(function(){
 			var w_top = $(window).scrollTop();
 			var right_top = $(".collectionDetailBox").offset().top;
