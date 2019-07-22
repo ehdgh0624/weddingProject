@@ -240,7 +240,7 @@
 								<button class="tsnapRow" id="selectList2">옵션전체삭제</button>
 							</th>
 							<td id="thirdTd">
-								<c:forEach items="${studioSelectList2}" var="ss0" varStatus="i">
+								<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
 									<div class="tsnap">
 									<input type="hidden" value="${ss2.studioSelectNo }">
 									<input type="text" value="${ss2.studioOption}">
