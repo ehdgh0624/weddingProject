@@ -248,7 +248,7 @@
 						function() {
 							count = count + 1;
 							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
-							addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
+							addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 							addTable += "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
 							addTable += "<tr>";
 
@@ -596,6 +596,17 @@
 		});
 		function chk(f) {
 			chk_file_type(f);
+			if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+				//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+				//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+				var reader = new FileReader();
+				reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+				reader.onload = function(e) { //다 읽어 왔으면 실행
+					$(f).parent().parent().next().children('.img-view').attr('src', e.target.result);
+				}
+			} else {
+				$(f).parent().parent().next().children('.img-view').attr('src', "");
+			}
 		}
 	</script>
 
