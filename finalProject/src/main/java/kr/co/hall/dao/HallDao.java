@@ -148,5 +148,11 @@ public class HallDao {
 		List<Reservation> list = sqlSession.selectList("reservation.selectOneReservation",map);
 		return (ArrayList<Reservation>) list;
 	}
+	public int selectScrapCount(int objectNo, String code) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		return sqlSession.selectOne("scrapbook.selectScrapCount",map);
+	}
 	
 }

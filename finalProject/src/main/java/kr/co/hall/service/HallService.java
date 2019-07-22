@@ -194,4 +194,9 @@ public class HallService {
 		return res;
 	}
 
+
+	public int selectScrapCount(int objectNo, String code) {
+		return hallDao.selectScrapCount(objectNo,code);
+	}
+
 }
