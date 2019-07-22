@@ -156,8 +156,8 @@
 						</tr>
 						<tr>
 							<th>체크옵션</th>
-							<td><label for="dressMending"><input type="checkbox" id="dressMending" name="dressMending" value=" "> 가봉여부 </label>
-								<label for="dressParking"><input type="checkbox" id="dressParking" name="dressParking" value=" "> 주차여부 </label>
+							<td><label for="dressMending"><input type="text" id="dressMending" name="dressMending" value=" "> 가봉여부 </label>
+								<label for="dressParking"><input type="text" id="dressParking" name="dressParking" value=" "> 주차여부 </label>
 							</td>
 						</tr>
 						<tr>
@@ -231,7 +231,7 @@
 							</tr>
 							<tr>
 								<th>웨딩홀 식사제공</th>
-								<th><input type="checkbox" name="hallServiceFood" value=" "></th>
+								<th><input type="text" name="hallServiceFood" value=" "></th>
 							</tr>
 							<!-- 상단체크시 노출부분 -->
 								<tr>
@@ -256,15 +256,15 @@
 								</tr>
 								<tr>
 									<th>웨딩홀 주류제공</th>
-									<th><input type="checkbox" name="hallServiceDrink" value=" "></th>
+									<th><input type="text" name="hallServiceDrink" value=" "></th>
 								</tr>
 								<tr>
 									<th>웨딩홀 음향제공</th>
-									<th><input type="checkbox" name="hallServiceAudio" value=" "></th>
+									<th><input type="text" name="hallServiceAudio" value=" "></th>
 								</tr>						
 								<tr>
 									<th>웨딩홀 주차제공</th>
-									<th><input type="checkbox" name="hallServiceParking" value=" "></th>
+									<th><input type="text" name="hallServiceParking" value=" "></th>
 								</tr>
 						</table>
 						<div class="common-tbl-btn-group clearfix">

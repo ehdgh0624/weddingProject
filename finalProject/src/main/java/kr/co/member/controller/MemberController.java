@@ -92,6 +92,19 @@ public class MemberController {
 		return "redirect:/myCompanyPage.do";
 	}
 	
+	@RequestMapping(value = "/hallUpdate.do")
+	public String hallUpdate(Hall h,HttpSession session) {
+		System.out.println("스튜디오 업데이트 호출");
+		String addr=h.getJibunAddr()+"/"+h.getExtraAddr()+"/"+
+		h.getDetailAddr()+"/"+h.getPostNum()+"/"+h.getRoadAddr();
+		h.setHallAddr(addr);
+		String tel = h.getHallTelFi()+"/"+h.getHallTelSe()+"/"+h.getHallTelth();
+		h.setHallTel(tel);
+		System.out.println("홀출력좀해보자"+h);
+		memberService.updateHallInfo(h);
+		return "redirect:/myCompanyPage.do";
+	}
+	
 	@RequestMapping(value = "/dressUpdate.do")
 	public String dressUpdate(Dress d,HttpSession session) {
 		System.out.println("드레스 업데이트 호출");

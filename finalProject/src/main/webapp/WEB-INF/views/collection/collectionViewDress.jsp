@@ -270,11 +270,11 @@
 								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>	
 								</div>
-								<div style="width:90%;display: inline-block;">
+								<div class="printReviewGroup" style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
 									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
-										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a class="updateReview" style="cursor: pointer;">수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
 									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
@@ -296,8 +296,24 @@
 										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
 										<br>
 									</c:if>
-									<span style="font-weight: bolder;">[이용후기]</span>
-									<span>${r.reviewContent}</span>
+									<span class="reviewTitle" style="font-weight: bolder;">[이용후기]</span>
+									<span>
+										<img id="reviewScopeStar" src="/resources/img/scope-star/scope-star10.png" usemap="#imgmap20197162448" style="vertical-align: middle;height:30px;">
+										<map id="imgmap20197162448" name="imgmap20197162448">
+											<area shape="rect" coords="161,1,176,42" id="scope-star10" onmouseover="reviewScopeStar(10);" />
+											<area shape="rect" coords="145,1,160,42" id="scope-star9" onmouseover="reviewScopeStar(9);" />
+											<area shape="rect" coords="125,1,140,42" id="scope-star8" onmouseover="reviewScopeStar(8);" />
+											<area shape="rect" coords="109,1,124,42" id="scope-star7" onmouseover="reviewScopeStar(7);" />
+											<area shape="rect" coords="89,1,104,42" id="scope-star6" onmouseover="reviewScopeStar(6);" />
+											<area shape="rect" coords="73,1,88,42" id="scope-star5" onmouseover="reviewScopeStar(5);" />
+											<area shape="rect" coords="53,1,68,42" id="scope-star4" onmouseover="reviewScopeStar(4);" />
+											<area shape="rect" coords="37,1,52,42" id="scope-star3" onmouseover="reviewScopeStar(3);" />
+											<area shape="rect" coords="17,1,32,42" id="scope-star2" onmouseover="reviewScopeStar(2);" />
+											<area shape="rect" coords="1,1,16,42" id="scope-star1" onmouseover="reviewScopeStar(1);" />
+										</map>
+										<span style="vertical-align: middle;font-size:16px;"><span id="starScore">5</span>점</span>
+									</span>
+									<span class="printReviewContent">${r.reviewContent}</span>
 								</div>
 								<br>
 								<hr style="width:100%;">
@@ -454,7 +470,21 @@
 	</div>
 </section>
 <script>
-	/* 리뷰 삭제 */
+	/* 리뷰 수정 */
+	$(document).on("click",".updateReview",function(){
+		if($(this).parents('.printReviewGroup').find('.printReviewContent').val() == ''){
+			$(this).parents('.printReviewGroup').find('.printReviewContent').contents().unwrap().wrap('<textarea class="printReviewContent" style="width:100%;height:150px;"></textarea>');
+			$(this).parents('.printReviewGroup').find('.reviewTitle').after('<a class="updateSubmit" style="float:right;cursor:pointer;" onclick="updateSubmit(this);">수정완료</a>');
+		}
+	});
+	function updateSubmit(updateSubmitBtn){
+		$.ajax({
+			
+		});
+	}
+	/* 리뷰 수정 끝 */
+	
+	/* 리뷰 삭제*/
 	$(document).on("click",".deleteReview",function(){
 		var selectParents = $(this).parents('.reviewGroup');
 		var objectNo = ${dress.dressNo};
@@ -634,7 +664,7 @@
 			alert("대여할 수 있는 최대 수량 : "+dressRentMax+"벌");
 			$('#option2Amount').val(dressRentMax);
 		}
-		if($('#option2Amount').val() == '' || $('#option2Amount').val() == 0){
+		if($('#option2Amount').val() == '' || $('#option2Amount').val() <= 0){
 			$('#option2Amount').val('1');
 		}
 		var allPrice = 0;

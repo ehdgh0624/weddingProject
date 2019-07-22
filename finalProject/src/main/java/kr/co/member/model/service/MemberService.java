@@ -381,6 +381,13 @@ public class MemberService {
 		return (ArrayList<StudioSelect>) memberDao.selectListHallOptionNumber(no);
 	}
 
+	public int updateHallInfo(Hall h) {
+		// TODO Auto-generated method stub
+		
+		return memberDao.updateHallInfo(h);
+		
+	}
+
 
 
 }

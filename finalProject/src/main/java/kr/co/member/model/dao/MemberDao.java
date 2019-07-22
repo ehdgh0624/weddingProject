@@ -407,4 +407,9 @@ public class MemberDao {
 		return sqlSession.selectList("hallSelect.selectListHallSelect",no);
 	}
 
+	public int updateHallInfo(Hall h) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("hall.updateHallInfo",h);
+	}
+
 }

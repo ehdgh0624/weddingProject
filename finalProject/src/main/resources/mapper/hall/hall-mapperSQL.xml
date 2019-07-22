@@ -227,4 +227,23 @@
 		</choose>
 		where code=#{code} and hall_no=#{objectNo}
 	</update>
+	
+	
+	<update id="updateHallInfo" parameterType="hall">
+		update hall set 
+		hall_name =#{hallName},
+		hall_type = #{hallType},
+		hall_price =#{hallPrice},
+		hall_Min_person=#{hallMinPerson},
+		hall_Max_person=#{hallMaxPerson},
+		hall_content=#{hallContent},
+		hall_Foodtype=#{hallFoodtype},
+		hall_Foodmenu=#{hallFoodmenu},
+		hall_Foodprice=#{hallFoodprice},
+		hall_time=#{hallTime},
+		hall_Service_Food=#{hallServiceFood},
+		hall_Service_Parking=#{hallServicePark},
+		viewStatus=#{viewStatus}
+		where hall_no =#{hallNo}
+	</update>
 </mapper>
