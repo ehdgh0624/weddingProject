@@ -6,7 +6,25 @@
 	</select>
 	
 	<insert id="insertReview" parameterType="review">
-		insert into review values(seq_review_no.nextval,#{code},#{reviewRef},#{memberId},#{reviewWriter},#{reviewContent},sysdate,#{reviewScope},#{reviewFilename},#{reviewFilepath})
+		insert into review values(seq_review_no.nextval,#{code},#{reviewRef},#{memberId},#{reviewWriter},#{reviewContent},sysdate,#{reviewScope},
+		<choose>
+			<when test="reviewFilename != null">
+				#{reviewFilename}			
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		,
+		<choose>
+			<when test="reviewFilepath != null">
+				#{reviewFilepath}
+			</when>
+			<otherwise>
+				null
+			</otherwise>
+		</choose>
+		)
 	</insert>
 	
 	<select id="selectCountReview" parameterType="map" resultType="review">
