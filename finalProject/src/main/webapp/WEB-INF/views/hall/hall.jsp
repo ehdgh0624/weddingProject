@@ -193,17 +193,20 @@
 											</span>
 										</h5>
 										<!-- 반복문 break -->
-										<c:forEach items="${fn:split(h.hallAddr,' ')}" var="item" varStatus="j">
+										<p class="addr-txt">
+											<c:forEach items="${fn:split(h.hallAddr,' ')}" var="item" varStatus="j">
 												<c:if test="${j.count <= 2}">
 													<span>${item}</span>
 												</c:if>
-										</c:forEach>
-										<br>
-										<c:forEach items="${fn:split(h.hallTag,',')}" var="tag" varStatus="j">
-										<c:if test="${j.count <= 5 }">
-											<span id="tag" class="tag">${tag }</span>
-										</c:if>
-										</c:forEach>
+											</c:forEach>
+										</p>
+										<p class="tag-txt">
+											<c:forEach items="${fn:split(h.hallTag,',')}" var="tag" varStatus="j">
+												<c:if test="${j.count <= 5 }">
+													<span id="tag" class="tag">${tag }</span>
+												</c:if>
+											</c:forEach>
+										</p>
 									</div>
 									<div class="bottom">
 										<p>

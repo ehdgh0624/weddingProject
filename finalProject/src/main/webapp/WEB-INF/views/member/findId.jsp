@@ -22,11 +22,13 @@
 				<div class="common-tbl-btn-group login-tbl-btn-group">
 					<button type="button" class="btn-style1 login-btn" id="findId" >아이디찾기</button>
 				</div>
-			<button type="button" class="btn-style3" id="oneTimeLogin">일회용 로그인</button>
-			<dvi style="float:right">
-				<button type="button" class="btn-style3" id="findPw" onclick="location.href='/findPw.do'">비밀번호찾기/</button>
-				<button type="button" class="btn-style3" id="findPw" onclick="location.href='/loginPage.do'">로그인페이지</button>
-			</dvi>
+			<div class="common-tbl-btn-group clearfix" style="padding-top:15px;">
+				<button type="button" class="fl btn-style3 small" id="oneTimeLogin" style="margin:0;">일회용 로그인</button>
+				<div class="fr common-tbl-btn-group" style="padding-top:0;">
+					<button type="button" class="btn-style3 small" id="findPw" onclick="location.href='/findPw.do'">비밀번호찾기</button> / 
+					<button type="button" class="btn-style3 small" id="findPw" onclick="location.href='/loginPage.do'">로그인페이지</button>
+				</div>
+			</div>
 		</div>
 	</div>	
 </section>
