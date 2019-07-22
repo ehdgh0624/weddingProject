@@ -20,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.admin.service.AdminService;
 import kr.co.admin.vo.AdminCompany;
@@ -639,6 +640,51 @@ public class AdminController {
 				System.out.println("로그인후 사용가능");
 				return "redirect:/";
 			}	
+	}
+	@RequestMapping(value = "/adminCompanyDetailView.do")
+	public ModelAndView adminCompanyDetailView(Model model,HttpServletRequest request) {
+		System.out.println("업체상세페이지");
+		ModelAndView mav = new ModelAndView();
+		int no=Integer.parseInt(request.getParameter("prdNo"));
+		String code=request.getParameter("code");
+		HttpSession session = request.getSession(false);
+		Member m = null;
+		if(session != null && (Member)session.getAttribute("member") != null) {
+			m =(Member)session.getAttribute("member"); 
+		}
+		if(code.equals("S")) {
+		
+			
+			mav.addObject("studio", adminService.selectOneStudioNumber(no));
+			mav.addObject("studioSelectList0", adminService.selectListStudioOptionNumber(no, 0));
+			mav.addObject("studioSelectList1", adminService.selectListStudioOptionNumber(no, 1));
+			mav.addObject("studioSelectList2", adminService.selectListStudioOptionNumber(no, 2));
+			mav.addObject("galleryList", adminService.selectListGalleryNumber(no, "S"));
+			
+			mav.setViewName("member/companyDetailStudio");
+			return mav;
+			
+		}else if(code.equals("D")) {
+		
+			mav.addObject("dress", adminService.selectOneDressNumber(no));
+			mav.addObject("galleryList", adminService.selectListGalleryNumber(no, "D"));
+			mav.setViewName("member/companyDetailDress");
+			return mav;
+		}else if(code.equals("M")){
+	
+			mav.addObject("makeup", adminService.selectOneMakeupNumber(no));
+			mav.addObject("galleryList", adminService.selectListGalleryNumber(no, "M"));
+			mav.setViewName("member/companyDetailMakeup");
+			return mav;
+		}else if(code.equals("H")){
+			
+			// 아직 홀 진행중	
+			mav.addObject("hall", adminService.selectOneHallNumber(no));
+			mav.addObject("galleryList", adminService.selectListGalleryNumber(no, "H"));
+			mav.setViewName("member/companyDetailHall");
+			return mav;
+		}	
+		return mav;	
 	}
 
 }

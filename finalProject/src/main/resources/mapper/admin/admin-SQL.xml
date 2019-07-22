@@ -441,5 +441,61 @@
 	<select id="goodsGallery" parameterType="map" resultType="gallery">
 		select filename as filename, filepath as filepath from gallery where gallery_no=#{goodsNo} and gallery_code=#{code}
 	</select>
+	
+	<select id="selectStudio" parameterType="_int" resultType="studio">
+		select studio_no as studioNo, member_id as memberId, code, studio_name as studioName, studio_tel as studioTel, studio_addr as studioAddr, studio_price as studioPrice, studio_content as studioContent, studio_time as studioTime, studio_camera as studioCamera, studio_scope as studioScope, studio_filename as studioFilename, studio_filepath as studioFilepath, studio_tag as studioTag, studio_latitude as studioLatitude, studio_longitud as studioLongitud from studio where studio_no=#{studioNo}
+	</select>
+	
+	<select id="selectListOption" parameterType="map" resultType="studioSelect">
+	select 
+		studio_no as studioSelectNo,
+		studio_option as studioOption, 
+		studio_option_price as 
+		studioOptionPrice, 
+		studio_option_type as 
+		studioOptionType from studio_select where studio_no=#{studioNo} and studio_option_type=#{studioOptionType}
+	</select>
+	<select id="selectListGallery" parameterType="map" resultType="gallery">
+		select filename, filepath from gallery where gallery_no=#{galleryNo} and gallery_code=#{galleryCode}
+	</select>
+	<select id="viewSelectOne" parameterType="_int" resultType="dress">
+		select dress_no as dressNo, member_id as memberId, code, dress_name as dressName, dress_tel as dressTel, dress_addr as dressAddr, dress_fitting_price as dressFittingPrice, dress_rent_num as dressRentNum, dress_rent_price as dressRentPrice, jewelry_price as jewelryPrice, dress_content as dressContent, dress_fitting_time as dressFittingTime, dress_mending as dressMending, dress_parking as dressParking, dress_filename as dressFilename, dress_filepath as dressFilepath, dress_scope as dressScope, dress_tag as dressTag, dress_latitude as dressLatitude, dress_longitud as dressLongitud from dress where dress_no=#{dressNo}
+	</select>
+	<select id="makeupOne" parameterType="_int" resultType="makeup">
+		select makeup_no as makeupNo, member_id as memberId, code, makeup_name as makeupName, makeup_tel as makeupTel, makeup_addr as makeupAddr, makeup_basic_price as makeupBasicPrice, makeup_parent_price as makeupParentPrice, makeup_visitor_price as makeupVisitorPrice, makeup_content as makeupContent, makeup_filename as makeupFilename, makeup_filepath as makeupFilepath, makeup_scope as makeupScope, makeup_tag as makeupTag, makeup_latitude as makeupLatitude, makeup_longitud as makeupLongitud from makeup where makeup_no=#{makeupNo}
+	</select>
+	<select id="hallOne" parameterType="_int" resultType="hall">
+	select hall_no as hallNo,
+	member_id as memberId,
+	code as code,
+	hall_type as hallType,
+	hall_name as hallName,
+	hall_loc as hallLoc,
+	hall_addr as hallAddr,
+	hall_content as hallContent,
+	hall_img as hallImg,
+	hall_path as hallPath,
+	hall_price as hallPrice,
+	hall_min_person as hallMinPerson,
+	hall_max_person as hallMaxPerson,
+	hall_scope as hallScope,
+	hall_foodtype as hallFoodtype,
+	hall_foodMenu as hallFoodmenu,
+	hall_foodprice as hallFoodprice,
+	hall_tel as hallTel,
+	HALL_TIME as hallTime,
+    HALL_SERVICE_FOOD as hallServiceFood,
+    HALL_SEVICE_AUDIO as hallServiceAudio,
+    HALL_SERVICE_DRINK as hallServiceDrink,
+    HALL_SERVICE_PARKING as hallServicePark,
+	status as status,
+	viewstatus as viewStatus,
+	hall_tag as hallTag,
+	hall_latitude as hallLatitude,
+	hall_longitude as hallLongitude,
+	hall_date as hallDate
+	from hall where hall_no=#{hallNo}
+	</select>
+	
 </mapper>
 

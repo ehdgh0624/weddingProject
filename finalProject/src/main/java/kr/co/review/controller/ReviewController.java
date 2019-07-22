@@ -32,6 +32,7 @@ public class ReviewController {
 	@RequestMapping("/fileUpload.do")
 	public ModelAndView fileUpload(HttpSession session, HttpServletRequest request, HttpServletResponse response,
 			MultipartHttpServletRequest mtfRequest, Review vo) {
+		System.out.println(mtfRequest);
 		String goodsType = vo.getCode();
 		if (goodsType.equals("B") || goodsType.equals("I")) {
 			vo.setCode("G");
@@ -44,8 +45,9 @@ public class ReviewController {
 			vo.setReviewWriter(m.getMemberName());
 			vo.setReviewContent(vo.getReviewContent().replace("<", "&lt;").replace(">", "&gt;").replace(" ", "&nbsp;")
 					.replace("\"", "&quot;").replace("\r\n", "<br>"));
-			List<MultipartFile> fileList = mtfRequest.getFiles("uploadFile");
-			if (!fileList.get(0).equals("")) {
+				List<MultipartFile> fileList = mtfRequest.getFiles("uploadFile");
+				System.out.println("컨트롤러 file : "+fileList.get(0).getOriginalFilename());
+			if (!fileList.get(0).getOriginalFilename().equals("") || !fileList.get(0).getOriginalFilename().isEmpty()) {
 				String src = mtfRequest.getParameter("src");
 				String savePath = request.getSession().getServletContext().getRealPath("/resources/upload/review/");
 				String fileName = "";
