@@ -109,16 +109,18 @@
 						</tr>
 					</table>
 					<c:if test="${sessionScope.member.memberCode != 2}">
-						<button type="submit" class="btn-style1" id="updateDress">수정</button>
+						<div class="common-tbl-btn-group" style="margin-bottom:20px;">
+							<button type="submit" class="btn-style1 small" id="updateDress">수정</button>
+						</div>
 					</c:if>
 				</form>
 	
 				<c:if test="${sessionScope.member.memberCode != 2}">
 					<div>
-						<button>추가</button>
+						<!-- <button>추가</button> -->
 						<form action="/saveGallery.do" method="post"
 							enctype="multipart/form-data">
-							<table class="comm-tbl" id="gall">
+							<table class="comm-tbl type2" id="gall">
 								<colgroup>
 									<col width="20%">
 									<col width="/">
@@ -131,28 +133,40 @@
 									<th>미리보기</th>
 									<th>삭제</th>
 								</tr>
-								<c:forEach items="${galleryList }" var="s" varStatus="i">
-									<tr>
-										<td>${i.count }</td>
-										<td><span>${s.filename }</span></td>
-										<td><img src="/resources/dress/${s.filepath }"
-											style="width: 300px; height: 300px"></td>
-										<td><input type="hidden" value="${s.filepath }"
-											class="oldpath">
-										<button onclick='imgDelete(this)' type='button'
-												class='imgDelete'>삭제</button></td>
+								<c:if test="${not empty galleryList }">
+									<c:forEach items="${galleryList }" var="s" varStatus="i">
+										<tr>
+											<td>${i.count }</td>
+											<td><span>${s.filename }</span></td>
+											<td><img src="/resources/dress/${s.filepath }"
+												style="width: 300px; height: 300px"></td>
+											<td><input type="hidden" value="${s.filepath }"
+												class="oldpath">
+											<button onclick='imgDelete(this)' type='button'
+													class='imgDelete'>삭제</button></td>
+										</tr>
+									</c:forEach>
+								</c:if>
+								<c:if test="${empty galleryList }">
+									<tr class="list-none">
+										<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
 									</tr>
-								</c:forEach>
+								</c:if>
 							</table>
 							<input type="hidden" value="${dress.dressNo }" name="prdNo">
 							<input type="hidden" value="D" name="code">
-							<button type="submit" id="imgSub">저장</button>
+							<div class="common-tbl-btn-group right">
+								<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
+							</div>
 						</form>
 					</div>
 					<br>
-					<br> <span id="addGallery">사진추가하기</span> <input type="hidden"
-						id="totalAddr" value="${dress.dressAddr }"> <input
-						type="hidden" id="phone" value="${dress.dressTel }">
+					<br> 
+					<div class="common-tbl-btn-group left" style="padding-top:0;display:inline-block;position:relative;top:-61px;">
+						<button type="button" class="btn-style2 small" id="addGallery">사진추가하기</button> 
+						<input type="hidden" id="totalAddr" value="${dress.dressAddr }"> 
+						<input type="hidden" id="phone" value="${dress.dressTel }">
+					</div>
 				</c:if>
 			</div>
 		</div>
@@ -166,10 +180,14 @@
 							count = count + 1;
 							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";
 							addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
-							addTable += "<td><span class='imgDelete'>삭제</span></td>";
+							addTable += "<td><span class='imgDelete reject-btn'>삭제</span></td>";
 							addTable += "<tr>";
-
-							$('#gall').append(addTable);
+							if($("#gall").has('.list-none')){
+								$('.list-none').remove();
+								$('#gall').append(addTable);
+							}else{
+								$('#gall').append(addTable);
+							}
 						});
 
 		function chk_file_type(obj) {
@@ -339,6 +357,9 @@
 				e.preventDefault();
 			}
 		});
+		function chk(f) {
+			chk_file_type(f);
+		}
 	</script>
 
 	<%--  footer --%>
