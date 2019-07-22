@@ -211,7 +211,7 @@
 										</c:if>
 										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">${hall.hallFoodprice }</span>원</span>
 										<br>
-										<span style="float: right;">식권 수량 : <input type="number" min="${hall.hallMinPerson }" max="${hall.hallMaxPerson }" value="0" id="option2Amount" onchange="checkAmount();"></span>
+										<span style="float: right;">식권 수량 : <input type="number" value="0" id="option2Amount" onchange="checkAmount();"></span>
 									</td>
 								</tr>
 								<tr>
@@ -373,7 +373,7 @@
 						<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 								<c:set var="keyword" value="${fn:split(item,'#')}" />
-								<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
+								<a href="/hallPc.do?keyword=${keyword[0]}">${item}</a>
 							</c:if>
 						</c:forEach>
 					</div>
@@ -575,7 +575,7 @@
 	function reservation(){
 		if($('#hallTime').val() == ''){
 			alert("예식 시간을 선택해주세요.");
-		}else if($("#hallOption option:selected").val() == 'default'){
+		}else if($("#hallOption option:selected").val() == null){
 			alert("기본옵션을 선택해주세요.");
 		}else if($("#hallPerson").val() == ''){
 			alert("하객수를 입력해주세요.")
