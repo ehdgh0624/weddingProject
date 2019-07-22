@@ -22,8 +22,16 @@
 						<col width="10%">
 					</colgroup>
 					<c:if test="${not empty memberAll.studio}">	
-						<c:forEach items="${memberAll.studio }" var="s">		
-						<tr onclick="location.href='/companyDetailView.do?prdNo=${s.studioNo }&code=${s.code }'">
+						<c:forEach items="${memberAll.studio }" var="s">
+							<c:if test="${s.status==1 }">
+								<tr onclick="location.href='/companyDetailView.do?prdNo=${s.studioNo }&code=${s.code }'">
+							</c:if>	
+							<c:if test="${s.status==2 }">
+								<tr onclick="cancel()">
+							</c:if>	
+							<c:if test="${s.status==0 }">
+								<tr onclick="wait()">
+							</c:if>	
 							<th>스튜디오</th>
 							<th><span>${s.studioName }</span></th>
 							<th>
@@ -134,10 +142,10 @@
 							</th>
 							<th>
 								<span>
-									<c:if test="${h.viewstatus==0 }">
+									<c:if test="${h.viewStatus==0 }">
 										<img width="24px" src="/resources/img/viewstatus_on.png">
 									</c:if>		
-									<c:if test="${h.viewstatus==1 }">
+									<c:if test="${h.viewStatus==1 }">
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
 								</span>
@@ -166,4 +174,15 @@
 	<%--  footer --%>
 	<jsp:include page="/WEB-INF/common/footer.jsp"/>
 </section>
+
+<script>
+
+function wait(){
+	alert("대기중입니다");
+}
+function cancel(){
+	alert("허가거절되었습니다 관리자에게 문의주십시오 000-000-0000")
+}
+
+</script>
 
