@@ -28,14 +28,16 @@
 					<button type="submit" class="btn-style1 login-btn" id="login">메일보내기</button>
 				</div>
 			</form>
-			<button type="button" class="btn-style3" id="oneTimeLogin">일회용 로그인</button>
-			<dvi style="float:right">
-				<button type="button" class="btn-style3" id="findPw" onclick="location.href='/findId.do'">아이디찾기/</button>
-				<button type="button" class="btn-style3" id="findId" onclick="location.href='/loginPage.do'">로그인페이지</button>
-			</dvi>
-		</div>
+			<div class="common-tbl-btn-group clearfix" style="padding-top:15px;">
+				<button type="button" class="fl btn-style3 small" id="oneTimeLogin" style="margin:0;">일회용 로그인</button>
+				<div class="fr common-tbl-btn-group" style="padding-top:0;">
+					<button type="button" class="btn-style3 small" id="findId" onclick="location.href='/findId.do'">아이디찾기</button> / 
+					<button type="button" class="btn-style3 small" id="findPw" onclick="location.href='/loginPage.do'">로그인페이지</button>
+				</div>
+			</div>
 	</div>
 </section>
+<!-- 				<button type="button" class="btn-style3" id="findId" onclick="location.href='/loginPage.do'">로그인페이지</button> -->
 <script>
 	$("#findId").click(function(){
 		
