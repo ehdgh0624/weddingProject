@@ -66,7 +66,6 @@ public class ExperienceController {
 		String no ="비로그인";
 		if(m != null) {
 			ArrayList<Reservation> list = experienceService.selectSearch(m.getMemberId());
-			
 			ExperienePageDate expd = experienceService.edList(reqPage); // 받은 1을 이제 서비스로 보낸다
 			mav.addObject("expd", expd);
 			mav.addObject("list",list);
@@ -186,8 +185,24 @@ public class ExperienceController {
 	}
 
 	@RequestMapping(value = "/experienceWriting.do")
-	public String experienceWriting() {
-		return "experience/experienceWriting";
+	public String experienceWriting(HttpServletRequest request , Model model) {
+		HttpSession session = request.getSession(false);
+		if(session != null && (Member)session.getAttribute("member") != null) {
+			Member m  = (Member)session.getAttribute("member");
+			ArrayList<Reservation> list = experienceService.selectSearch(m.getMemberId());
+			for(int i=0 ; i<list.size();i++) {
+				if(list.get(i).getMemberId().equals(m.getMemberId())) {
+					return "experience/experienceWriting";
+				}
+			}
+			model.addAttribute("msg", "예약완료 후 사용가능합니다.");
+			model.addAttribute("log", "" );
+			return "common/msg";
+		}else {
+			model.addAttribute("msg", "로그인후 사용가능합니다.");
+			model.addAttribute("log", "" );
+			return "common/msg";
+		}
 	}
 
 	@RequestMapping(value = "/uploadTest.do")
@@ -400,16 +415,26 @@ public class ExperienceController {
 	}
 
 	@RequestMapping(value = "/myexperience.do")
-	public ModelAndView myexperience(HttpSession session) {
+	public ModelAndView myexperience(HttpSession session,HttpServletRequest request) {
 		Member m = (Member) session.getAttribute("member");
+		
 		String memberId = null;
 		if (m != null) {
 			memberId = m.getMemberId();
 		}
+		
+		int reqPage;
+		try {
+			reqPage = Integer.parseInt(request.getParameter("reqPage"));
+		} catch (NumberFormatException e) {
+			reqPage = 1;
+		}
+		
 		ArrayList<Experience> ex = experienceService.selectId(memberId);
-
+		ExperienePageDate ex2 = experienceService.myexview(memberId,reqPage);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("ex", ex);
+		mav.addObject("ex2", ex2);
 		mav.setViewName("experience/myexperience");
 		return mav;
 
@@ -422,7 +447,7 @@ public class ExperienceController {
 
 		int result = experienceService.exDelete(experienceNo);
 
-		return "redirect:/myexperience.do";
+		return "redirect:/experienceAllList.do?reqPage=1";
 
 	}
 
@@ -677,7 +702,7 @@ public class ExperienceController {
 		ex.setExperienceFileName(oiginNname);
 		int e = experienceService.upDateexperience(ex);
 
-		return "redirect:/myexperience.do";
+		return "redirect:/experienceDetail.do?experienceNo="+experienceNo;
 
 	}
 

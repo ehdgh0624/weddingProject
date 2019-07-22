@@ -3,7 +3,7 @@
     <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c"%> 
 <%--  Header --%>
 <jsp:include page="/WEB-INF/common/header.jsp"/>
-<div><img src = "/resources/upload/${experience.e.experienceFilePath}" style="width:100%;height:600px;"></div>
+
 
 <%--  Header --%>
 <%-- <jsp:include page="/WEB-INF/common/sub.jsp"/> --%>
@@ -25,18 +25,41 @@
 
 <section id="wrap">
 	<div class="area">
+	<c:if test="${ sessionScope.member.memberId== experience.e.experienceWriter}">
+		<div class="common-tbl-btn-group right">
+			<button  class="btn-style1 small" onclick="updateEx('${experience.e.experienceNo}')">수정</button>
+			<button  class="btn-style3 small" onclick="deleteEx('${experience.e.experienceNo}')">삭제</button>
+		</div>	
+	</c:if>
+	<div><img src = "/resources/upload/${experience.e.experienceFilePath}" style="width:100%;height:600px;"></div>
 			<table class="comm-tbl" style="margin-bottom:30px;">
+				<colgroup>
+					<col width="20%">
+					<col width="/">
+				</colgroup>
 				<tr>
-					<th colspan="2"  style="text-align:center; ">
-						<span>
-							${experience.e.experienceTitle }
-						</span>
+					<th style="text-align:center; ">
+						글제목
 					</th>
+					<td>
+						${experience.e.experienceTitle }
+					</td>
 				</tr>
 				<tr>
-					<th colspan="2" style="text-align:center; ">
-						${ experience.e.experienceContent}				
-					</th>		
+					<th  style="text-align:center; ">
+						작성자
+					</th>
+					<td>
+						${experience.e.experienceWriter }
+					</td>		
+				</tr>
+				<tr>
+					<th  style="text-align:center; ">
+						내용
+					</th>
+					<td>
+						${experience.e.experienceContent }
+					</td>
 				</tr>		    
 		    </table>
 			<table class="comm-tbl">
@@ -178,6 +201,21 @@
 
 
 <script type="text/javascript">
+	
+	
+	function deleteEx(experienceNo) {
+		
+		location.href="/exDelete.do?experienceNo="+experienceNo;
+		
+	}
+	
+	function updateEx(experienceNo) {
+		
+		location.href="/exChg.do?experienceNo="+experienceNo;
+		
+	}
+	
+	
 	
 	$(".abs").each(function(){
 		$(this).click(function(e){
