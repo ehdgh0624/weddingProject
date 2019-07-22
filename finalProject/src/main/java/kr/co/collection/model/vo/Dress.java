@@ -7,6 +7,14 @@ public class Dress {
 	private String code;					//타입분류(D)
 	private String dressName;				//드레스 업체명
 	private String dressTel;				//드레스 연락처
+	private String dressTelFi;
+	private String dressTelSe;
+	private String dressTelth;
+	private String postNum;
+	private String roadAddr;
+	private String jibunAddr;
+	private String extraAddr;
+	private String detailAddr;
 	private String dressLoc;				//드레스 지역
 	private String dressAddr;				//드레스 상세주소
 	private int dressFittingPrice;			//드레스 피팅가격
@@ -210,4 +218,55 @@ public class Dress {
 	public void setDressLongitud(String dressLongitud) {
 		this.dressLongitud = dressLongitud;
 	}
+
+	public String getDressTelFi() {
+		return dressTelFi;
+	}
+	public void setDressTelFi(String dressTelFi) {
+		this.dressTelFi = dressTelFi;
+	}
+	public String getDressTelSe() {
+		return dressTelSe;
+	}
+	public void setDressTelSe(String dressTelSe) {
+		this.dressTelSe = dressTelSe;
+	}
+	public String getDressTelth() {
+		return dressTelth;
+	}
+	public void setDressTelth(String dressTelth) {
+		this.dressTelth = dressTelth;
+	}
+	public String getPostNum() {
+		return postNum;
+	}
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
+	}
+	
+	
 }

@@ -38,4 +38,16 @@
 	<select id="viewSelectOne2" parameterType="_int" resultType="makeup">
 		select makeup_no as makeupNo, member_id as memberId, code, makeup_name as makeupName, makeup_tel as makeupTel, makeup_addr as makeupAddr, makeup_basic_price as makeupBasicPrice, makeup_parent_price as makeupParentPrice, makeup_visitor_price as makeupVisitorPrice, makeup_content as makeupContent, makeup_filename as makeupFilename, makeup_filepath as makeupFilepath, makeup_scope as makeupScope, makeup_tag as makeupTag, makeup_latitude as makeupLatitude, makeup_longitud as makeupLongitud from makeup where makeup_no=#{makeupNo} and status=1
 	</select>
+	<update id="updateMakeup" parameterType="makeup">
+		update makeup set 
+		makeup_name =#{makeupName},
+		makeup_tel = #{makeupTel},
+		makeup_basic_price =#{makeupBasicPrice},
+		makeup_parent_price =#{makeupParentPrice},
+		makeup_visitor_price=#{makeupVisitorPrice},
+		makeup_content=#{makeupContent},
+		viewstatus=#{viewstatus}
+		where makeup_no =#{makeupNo}
+	</update>
+	
 </mapper>

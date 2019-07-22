@@ -375,4 +375,14 @@ public class MemberDao {
 		return sqlSession.update("studio.updateStudio",s);
 	}
 
+	public int updateDressInfo(Dress d) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("dress.updateDress",d);
+	}
+
+	public int updateMakeup(Makeup m) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("makeup.updateMakeup",m);
+	}
+
 }

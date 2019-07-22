@@ -34,7 +34,7 @@
 							<th>업체명</th>
 							<th><input type="text" name="dressName"
 								value="${dress.dressName }"><input type="hidden"
-								value="${dress.dressNo }" id="no"></th>
+								value="${dress.dressNo }" id="no" name="dressNo"></th>
 						</tr>
 	
 						<tr>
@@ -103,8 +103,8 @@
 						<tr>
 							<th>업체 상태설정</th>
 							<td><select name="viewstatus">
-									<option value="3">비공개</option>
-									<option value="2">공개</option>
+									<option value="0">공개</option>
+									<option value="1">비공개</option>
 							</select></td>
 						</tr>
 					</table>

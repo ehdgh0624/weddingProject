@@ -210,14 +210,14 @@ background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%
 
 /* ****************** 형준 :: 갤러리 ********************** */
 .view-gallery-slide{}
-.view-big-gallery-list{background:#eee; padding:10px;}
+.view-big-gallery-list{background:#f8f8f8; padding:10px;}
 .view-big-gallery-list li img{max-width:100%; margin:0 auto;}
 .view-big-gallery-list .slick-prev, .view-big-gallery-list .slick-next{position:absolute; top:50%; margin-top:-25px; width:50px; height:50px; background:rgba(255,255,255,0.7); border-radius:40px;}
 .view-big-gallery-list .slick-prev{left:30px;}
 .view-big-gallery-list .slick-next{right:30px;}
 .view-small-gallery-list li{position:relative;}
 .view-small-gallery-list li img{max-width:96%; margin:0 auto; border:2px solid transparent;}
-.view-small-gallery-list li.slick-current img{border:2px solid #888;}
+.view-small-gallery-list li.slick-current img{border:2px solid #faaca8;}
 
 /* *********************동호 : 버튼*********************** */
 .btn-wrap .btn-samll{width: 80px;height: 40px; border-radius:5px; font-size:17px; color:#fff; margin:0 2px; background-color:rgba(240,165,210,0.9); }
@@ -233,3 +233,12 @@ background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%
 .myReserv-price{padding-top:10px;}
 .myReserv-price > p{font-size:16px; line-height:22px; color:#2b2b2b;}
 .myReserv-price > p b{font-size:19px;}
+
+/* ********************* 컬렉션 :: View *********************** */
+.collectionViewBox{padding:30px 0;}
+.collectionView-quickBar{position:absolute; top:0; left:50%; max-width:330px; width:330px; margin-left:270px;}
+.collectionView-quickBar.fixed{top:10px; position:fixed;}
+.quickBar-con{background:#fff; padding:20px; text-align:center; box-shadow:5px 5px 5px 5px rgb(235,235,235); margin-bottom:30px;}
+.quickBar-inner{display:table; width:100%; height:200px;}
+.quickBar-inner2{display:table; width:100%; height:100px;}
+.quickBar-inner > div, .quickBar-inner2 > div{display:table-cell; width:100%; vertical-align:middle;}
