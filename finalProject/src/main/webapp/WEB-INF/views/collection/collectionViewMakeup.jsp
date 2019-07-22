@@ -199,7 +199,7 @@
 					<c:if test="${not empty reviewList}">
 						<c:forEach items="${reviewList}" var="r">
 							<div class="reviewGroup" id="${r.reviewNo}">
-								<div style="width:10%;float: left;">
+								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
 								</div>
 								<div style="width:90%;display: inline-block;">
@@ -232,7 +232,7 @@
 									<span>${r.reviewContent}</span>
 								</div>
 								<br>
-								<hr>
+								<hr style="width:100%;">
 							</div>
 						</c:forEach>
 					</c:if>
@@ -623,7 +623,7 @@
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
 		var scrapbook = $('#scrapbookCount');
-		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
+		var scrapbookCount = parseInt($('#scrapbookCount').text());		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOn.do",
 			type : "get",
@@ -654,7 +654,7 @@
 		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
-		var scrapbook = $('#scrapbookCount');
+		var scrapbook = parseInt($('#scrapbookCount'));
 		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/scrapOff.do",
