@@ -144,7 +144,7 @@
 					</table>
 					<input type="hidden" value="${studio.studioNo }" name="prdNo">
 					<input type="hidden" value="S" name="code">
-					<button type="submit" id="">저장</button>
+					<button type="submit" id="imgSub">저장</button>
 				</form>
 			</div>
 			<br>
