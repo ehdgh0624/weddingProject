@@ -275,7 +275,13 @@
     	from hall where member_id=#{memberId} and hall_name=#{hallName}
     </select>
     <insert id="insertHallOption" parameterType="hallSelect">
-     insert into hallSelect values(#{hallSelectNo},#{hallType},#{hallSelectPrice},#{hallSelectEtc})
+     insert into hall_Select values(
+     hall_select_seq.nextval,
+     #{hallType},
+     #{hallNo},
+     #{hallSelectPrice},
+     #{hallSelectEtc})
+     
     </insert>
     <select id="getCollectionlist" parameterType="member" resultType="scrapbook">
     	select
