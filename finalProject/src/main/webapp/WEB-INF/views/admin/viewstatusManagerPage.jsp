@@ -44,28 +44,34 @@
 				<th>업체 전화번호</th>
 				<th>업체 주소</th>
 				<th>공개/비공개 신청</th>
-
 			</tr>
-			<c:forEach items="${ac.aList }" var="c">
+			<c:if test="${not empty ac.aList }">
+				<c:forEach items="${ac.aList }" var="c">
+					<tr>
+						<td><c:if test="${c.code eq 'H'}"> 호텔</c:if> <c:if
+								test="${c.code eq 'S'}"> 스튜디오</c:if> <c:if
+								test="${c.code eq 'D'}"> 드레스</c:if> <c:if test="${c.code eq 'M'}"> 메이크업</c:if>
+						</td>
+						<td>${c.name}</td>
+						<td>${c.id }</td>
+						<td>${c.tel}</td>
+						<td>${c.addr }</td>
+						<c:if test="${c.viewstatus == 2 }">
+							<td style="text-align: center;"><button type="button"
+									onclick="view(${c.comNo},'${c.code }')" class="agree-btn">공개설정</button></td>
+						</c:if>
+						<c:if test="${c.viewstatus == 3}">
+							<td style="text-align: center;"><button type="button"
+									onclick="unview(${c.comNo},'${c.code }')" class="reject-btn">비공개설정</button></td>
+						</c:if>
+					</tr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${empty ac.aList }">
 				<tr>
-					<td><c:if test="${c.code eq 'H'}"> 호텔</c:if> <c:if
-							test="${c.code eq 'S'}"> 스튜디오</c:if> <c:if
-							test="${c.code eq 'D'}"> 드레스</c:if> <c:if test="${c.code eq 'M'}"> 메이크업</c:if>
-					</td>
-					<td>${c.name}</td>
-					<td>${c.id }</td>
-					<td>${c.tel}</td>
-					<td>${c.addr }</td>
-					<c:if test="${c.viewstatus == 2 }">
-						<td style="text-align: center;"><button type="button"
-								onclick="view(${c.comNo},'${c.code }')" class="agree-btn">공개설정</button></td>
-					</c:if>
-					<c:if test="${c.viewstatus == 3}">
-						<td style="text-align: center;"><button type="button"
-								onclick="unview(${c.comNo},'${c.code }')" class="reject-btn">비공개설정</button></td>
-					</c:if>
+					<td colspan="6"><p class="none">업체 목록이 없습니다.</p></td>
 				</tr>
-			</c:forEach>
+			</c:if>
 		</table>
 		<div class="paging">${ac.pageNavi}</div>
 		<!-- 검색박스 -->
