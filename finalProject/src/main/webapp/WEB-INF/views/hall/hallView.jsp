@@ -31,7 +31,7 @@
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상호명 -->
 					<td><span style="font-size: 28px;">${hall.hallName}</span></td>
