@@ -183,18 +183,18 @@
 								<button class="tsnapRow" id="addList0">추가</button>
 								<button class="tsnapRow" id="selectList0">옵션전체삭제</button>
 							</th>
+							<td id="firstTd">
+								<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
+									<div class="fsnap">
+										<input type="hidden" value="${ss0.studioSelectNo }">
+										<input type="text" value="${ss0.studioOption}">
+										<span class="deleteOption">삭제</span> 
+										<input type="text" value="${ss0.studioOptionPrice}">
+										<span class="updateOption">수정</span>
+									</div><hr>
+								</c:forEach>
+							</td>
 						</tr>
-						<c:forEach items="${studioSelectList0}" var="ss0" varStatus="i">
-							<tr class="fsnap">
-								<td>
-									<input type="hidden" value="${ss0.studioSelectNo }">
-									<input type="text" value="${ss0.studioOption}">
-									<span class="deleteOption">삭제</span> 
-									<input type="text" value="${ss0.studioOptionPrice}">
-									<span class="updateOption">수정</span>
-								</td>
-							</tr>
-						</c:forEach>
 					</table>
 
 					<table class="comm-tbl" id="studioOptionTable1">
@@ -211,18 +211,19 @@
 								<button class="tsnapRow" id="addList1">추가</button>
 								<button class="tsnapRow" id="selectList1">옵션전체삭제</button>
 							</th>
-						</tr>
-						<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
-							<tr class="ssnap">
-								<td>
+							<td  id="secondTd">
+								<c:forEach items="${studioSelectList1}" var="ss1" varStatus="i">
+								<div class="ssnap">
 									<input type="hidden" value="${ss1.studioSelectNo }">
 									<input type="text" value="${ss1.studioOption}">
 									<span class="deleteOption">삭제</span> 
 									<input type="text" value="${ss1.studioOptionPrice}">
 									<span class="updateOption">수정</span>
-								</td>
-							</tr>
-						</c:forEach>
+									<hr>
+								</div>
+								</c:forEach>
+							</td>			
+						</tr>
 					</table>
 
 					<table class="comm-tbl" id="studioOptionTable2">
@@ -233,24 +234,23 @@
 						<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
 							<c:set var="countS" value="${i.count }" />
 						</c:forEach>
-
 						<tr>
 							<th rowspan="${countS+1}" class="ssnapRow" id="rowThT">영상스냅
 								<button class="tsnapRow" id="addList2">추가</button>
 								<button class="tsnapRow" id="selectList2">옵션전체삭제</button>
 							</th>
-						</tr>
-						<c:forEach items="${studioSelectList2}" var="ss2" varStatus="i">
-							<tr class="tsnap">
-								<td>
+							<td id="thirdTd">
+								<c:forEach items="${studioSelectList2}" var="ss0" varStatus="i">
+									<div class="tsnap">
 									<input type="hidden" value="${ss2.studioSelectNo }">
 									<input type="text" value="${ss2.studioOption}">
 									<span class="deleteOption">삭제</span> 
 									<input type="text" value="${ss2.studioOptionPrice}">
 									<span class="updateOption">수정</span>
-								</td>
-							</tr>
-						</c:forEach>
+									</div><hr>
+								</c:forEach>
+							</td>
+						</tr>
 					</table>
 				</div>
 			</div>
@@ -273,6 +273,7 @@
 							addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 							addTable += "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
 							addTable += "<tr>";
+							
 
 							if($("#gall").has('.list-none')){
 								$('.list-none').remove();
@@ -392,36 +393,31 @@
 
 							var addTable = "";
 							//var studioNo=${studio.studioNo};
-							addTable += "<tr class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+							addTable += "<div class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 							addTable += "<input type='text' name='studioOptionPrice'>";
 							addTable += "<input type='hidden'  name='studioOptionType' value='0'>";
-							addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-							addTable += "</form></td></tr>";
+							addTable += "<input type='hidden' name='studioNo' value='"+${studio.studioNo}+"'>";
+							addTable += "</form></td></div><hr>";
 
-							var number = $('#rowThF').attr('rowspan');
-
-							$('#rowThF').attr('rowspan', number + 1);
-
-							$('#studioOptionTable0').append(addTable);
+					
+							$('#firstTd').append(addTable);
 
 						});
+		
 		$('#addList1')
 				.click(
 						function() {
 
 							var addTable = "";
 							//var studioNo=${studio.studioNo};
-							addTable += "<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+							addTable += "<div class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 							addTable += "<input type='text' name='studioOptionPrice'>";
 							addTable += "<input type='hidden'  name='studioOptionType' value='1'>";
-							addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-							addTable += "</form></td></tr>";
-
-							var number = $('#rowThF').attr('rowspan');
-
-							$('#rowThS').attr('rowspan', number + 1);
-
-							$('#studioOptionTable1').append(addTable);
+							addTable += "<input type='hidden' name='studioNo' value='"+${studio.studioNo}+"'>";
+							addTable += "</form></td></div><hr>";
+					
+					
+							$('#secondTd').append(addTable);
 
 						});
 		$('#addList2')
@@ -430,17 +426,13 @@
 
 							var addTable = "";
 							//var studioNo=${studio.studioNo};
-							addTable += "<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
+							addTable += "<div class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
 							addTable += "<input type='text' name='studioOptionPrice'>";
 							addTable += "<input type='hidden'  name='studioOptionType' value='2'>";
-							addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-							addTable += "</form></td></tr>";
+							addTable += "<input type='hidden' name='studioNo' value='"+${studio.studioNo}+"'>";
+							addTable += "</form></td></div><hr>";
 
-							var number = $('#rowThF').attr('rowspan');
-
-							$('#rowThT').attr('rowspan', number + 1);
-
-							$('#studioOptionTable2').append(addTable);
+							$('#thirdTd').append(addTable);
 
 						});
 

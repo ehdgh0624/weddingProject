@@ -214,7 +214,7 @@ public class MemberDao {
 		// TODO Auto-generated method stub
 		
 		//홀은 현재 미구현
-		return sqlSession.selectOne("hall.viewSelectOne",no);
+		return sqlSession.selectOne("hall.viewSelectOne2",no);
 	}
 
 	public Makeup selectOneMakeupNumber(int no) {
