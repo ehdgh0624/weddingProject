@@ -38,7 +38,7 @@
 .comm-tbl textarea{resize: none;}
 .comm-tbl input[type='text'].small, .comm-tbl input[type='password'].small, .comm-tbl input[type='file'].small, .comm-tbl input[type='number'].small{width:25%;}
 .comm-tbl input[type='text'].short, .comm-tbl input[type='password'].short, .comm-tbl input[type='file'].short, .comm-tbl input[type='number'].short{width:30%;}
-.comm-tbl input[type='text'].middle, .comm-tbl input[type='password'].middle, .comm-tbl select.middle, .comm-tbl input[type='number'].middle{width:40%;}
+.comm-tbl input[type='text'].middle, .comm-tbl input[type='password'].middle, .comm-tbl input[type='file'].middle, .comm-tbl select.middle, .comm-tbl input[type='number'].middle{width:40%;}
 .comm-tbl .comment{padding-top:5px; font-size:12px; color:#888;}
 .comm-tbl .none{padding:40px 0; font-size:16px; text-align:center;}
 .common-tbl-box .none{font-size:20px; font-weight:500; text-align:center; padding:80px 0;}
@@ -71,6 +71,10 @@ background-image: linear-gradient(-20deg, #ddd6f3 0%, #faaca8 100%, #faaca8 100%
 .common-tbl-btn-group > button.btn-style4{background-color:#333;}
 .common-tbl-btn-group > button.big{width:300px;}
 .common-tbl-btn-group > button.small{width:100px; height:35px; font-size:15px;}
+
+
+.tbl-check-box{margin-bottom:10px; font-size:14px;}
+.tbl-check-box input[type="checkbox"]{width:12px;}
 
 /* 로그인 */
 .login-tbl{float:left; width:75%;}
