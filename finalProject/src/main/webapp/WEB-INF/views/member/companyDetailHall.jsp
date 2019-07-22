@@ -25,7 +25,7 @@
 		<div class="area">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="common-tbl-box">
-			<form action="/studioUpdate.do" method="post">
+			<form action="/hallUpdate.do" method="post">
 			
 				<table class="comm-tbl">
 					<colgroup>
@@ -37,7 +37,7 @@
 						<th>업체명</th>
 						<td><input type="text" name="hallName"
 							value="${hall.hallName }"><input type="hidden"
-							value="${hall.hallNo }" id="no"></td>
+							value="${hall.hallNo }" id="no" name="hallNo"></td>
 					</tr>
 
 					<tr>
@@ -76,9 +76,9 @@
 								<button type="button" onclick="sample4_execDaumPostcode()"
 									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div> <input type="hidden" name="studioLatitude" id="shopLatitude"
-							value="${Studio.studioLatitude }"> <input type="hidden"
+							value="${hall.hallLatitude }"> <input type="hidden"
 							name="studioLongtitude" id="shopLongitude"
-							value="${Studio.studioLongitud }"></td>
+							value="${hall.hallLongtitude }"></td>
 					</tr>
 					<tr>
 						<th>도로명주소</th>
@@ -237,7 +237,7 @@
 					
 				</div>
 				<input type="text" id="totalAddr" value="${hall.hallAddr }">
-				<input type="hidden" id="phone" value="${hall.hallTel }">
+				<input type="hidden" id="phone" value="${hall.hallTel }" name="hallTel">
 			</div>
 				</c:if>
 		</div>
