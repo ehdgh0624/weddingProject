@@ -154,7 +154,7 @@
 				<!-- <button>추가</button> -->
 				<form action="/saveGallery.do" method="post"
 					enctype="multipart/form-data">
-					<table class="comm-tbl" id="gall">
+					<table class="comm-tbl type2" id="gall">
 						<colgroup>
 							<col width="20%">
 							<col width="/">
@@ -170,7 +170,7 @@
 						<c:if test="${not empty galleryList }">
 							<c:forEach items="${galleryList }" var="s" varStatus="i">
 								<tr>
-									<td>${i.count }</td>
+									<td class="re">${i.count }</td>
 									<td><span>${s.filename }</span></td>
 									<td><img src="${s.filepath }"
 										style="width: 300px; height: 300px"></td>
@@ -246,10 +246,15 @@
 
 
 		<script>
-			var count = 0;
+		var count;
+		if($(".type2").children('tbody').children().children().is(".re")){
+			 count = parseInt($(".re").last().html());
+		}else{
+			count = 0;
+		}
 			$('#addGallery').click(function() {
 								count = count +1;
-								var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
+								var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
 								addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 								addTable += "<td><span class='imgDelete'>삭제</span></td>";
 								addTable += "<tr>";
