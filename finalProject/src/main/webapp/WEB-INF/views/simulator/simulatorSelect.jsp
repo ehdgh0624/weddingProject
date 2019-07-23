@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%--  Header --%>
 <jsp:include page="/WEB-INF/common/header.jsp"/>
 <%--  Sub --%>
@@ -320,7 +321,7 @@ function hall_more(start){
 				h = data[i];
 				for(var j=0;j<h.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url("+h[j].hallPath+") no-repeat center center; background-size:cover;' value="+h[j].hallPath+">"+h[j].hallPath+"</span></div>";
+					html += "<span style='background:#f5f5f5 url(/resources/hall/"+h[j].hallPath+") no-repeat center center; background-size:cover;' value="+h[j].hallPath+">"+h[j].hallPath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+h[j].hallNo+">"+h[j].hallNo+"</em><em class='simulator-select-list-code' value="+h[j].code+">"+h[j].code+"</em><em class='simulator-select-list-tel' value="+h[j].hallTel+">"+h[j].hallTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+h[j].hallName+">"+h[j].hallName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
@@ -374,7 +375,7 @@ function dress_more(start){
 				d = data[i]; //dress 객체
 				for(var j=0;j<d.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url("+d[j].dressFilepath+") no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+">"+d[j].dressFilepath+"</span></div>";
+					html += "<span style='background:#f5f5f5 url(/resources/dress/"+d[j].dressFilepath+") no-repeat center center; background-size:cover;' value="+d[j].dressFilepath+">"+d[j].dressFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+d[j].dressNo+">"+d[j].dressNo+"</em><em class='simulator-select-list-code' value="+d[j].code+">"+d[j].code+"</em><em class='simulator-select-list-tel' value="+d[j].dressTel+">"+d[j].dressTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+d[j].dressName+">"+d[j].dressName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+d[j].dressAddr+">"+d[j].dressAddr+"</p>";
@@ -429,7 +430,7 @@ function makeup_more(start){
 				make = data[i]; //makeup 객체
 				for(var j=0;j<make.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span style='background:#f5f5f5 url("+make[j].makeupFilepath+") no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+">"+make[j].makeupFilepath+"</span></div>";
+					html += "<span style='background:#f5f5f5 url(/resources/makeup/"+make[j].makeupFilepath+") no-repeat center center; background-size:cover;' value="+make[j].makeupFilepath+">"+make[j].makeupFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+make[j].makeupNo+">"+make[j].makeupNo+"</em><em class='simulator-select-list-code' value="+make[j].code+">"+make[j].code+"</em><em class='simulator-select-list-tel' value="+make[j].makeupTel+">"+make[j].makeupTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+make[j].makeupName+">"+make[j].makeupName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+make[j].makeupAddr+">"+make[j].makeupAddr+"</p>";
@@ -482,7 +483,7 @@ function studio_more(start){
 				st = data[i]; //makeup 객체
 				for(var j=0;j<st.length;j++){
 					html += "<li class='simulator-select-list-con'><div class='simulator-select-list'><div class='simulator-select-img-thum'>";
-					html += "<span value="+st[j].studioFilepath+" style='background:#f5f5f5 url("+st[j].studioFilepath+") no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
+					html += "<span value="+st[j].studioFilepath+" style='background:#f5f5f5 url(/resources/studio/"+st[j].studioFilepath+") no-repeat center center; background-size:cover;'>"+st[j].studioFilepath+"</span></div>";
 					html += "<em class='simulator-select-list-no' value="+st[j].studioNo+">"+st[j].studioNo+"</em><em class='simulator-select-list-code' value="+st[j].code+">"+st[j].code+"</em><em class='simulator-select-list-tel' value="+st[j].studioTel+">"+st[j].studioTel+"</em>";
 					html += "<h3 class='simulator-select-list-tit' value="+st[j].studioName+">"+st[j].studioName+"</h3>";
 					html += "<p class='simulator-select-list-addr' value="+st[j].studioAddr+">"+st[j].studioAddr+"</p>";
