@@ -75,7 +75,7 @@ public class NoticeService {
 	}
 	@Transactional
 	public NoticePageData noticeSearch(int reqPage, String type, String keyword) {
-		int numPerPage = 100;
+		int numPerPage = 5;
 		int totalCount = noticeDao.noticeSearch(type,keyword); 
 		int totalpge = 0;	
 		if(totalCount%numPerPage==0){ 
@@ -98,20 +98,20 @@ public class NoticeService {
 		 */
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo !=1) {											
-			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
+			pageNavi += "<a class='btn' href='/noticeSearch.do?reqPage="+(pageNo-1)+"&keyword="+keyword+"'>이전</a>";
 		}		
 		int i = 1; 
 		while( !(i++>pageNaviSize || pageNo>totalpge)) {  
 			if(reqPage == pageNo) { 
 				 pageNavi += "<span class='selectPage'>"+pageNo+"</span>";
 			}else {
-				pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+pageNo+"'>"+pageNo+"</a>";			 
+				pageNavi += "<a class='btn' href='/noticeSearch.do?reqPage="+pageNo+"&keyword="+keyword+"'>"+pageNo+"</a>";			 
 			}
 		
 			pageNo++;
 		}
 		if(pageNo <= totalpge) {
-			pageNavi +="<a class='btn' href='/experienceAll.do?reqPage="+(pageNo)+"'>다음</a>";
+			pageNavi +="<a class='btn' href='/noticeSearch.do?reqPage="+(pageNo)+"&keyword="+keyword+"'>다음</a>";
 		}
 		NoticePageData npd = new NoticePageData(list,pageNavi);
 		

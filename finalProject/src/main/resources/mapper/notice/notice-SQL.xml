@@ -58,7 +58,7 @@
    	
    	<select id="selectSearchList" parameterType="map" resultType="notice">
    		
-   		select
+   		select rnum as rnum,
 	  		 notice_No as noticeNo,
 	  		 notice_title as noticeTitle,
 	  		 notice_content as noticeContent,
