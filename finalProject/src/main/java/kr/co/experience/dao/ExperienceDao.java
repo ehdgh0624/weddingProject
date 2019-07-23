@@ -125,7 +125,7 @@ public class ExperienceDao {
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
 		map.put("memberId",memberId);
-		return sqlSession.selectList("experience.experienceselectList",map);
+		return sqlSession.selectList("experience.experienceselectList2",map);
 	}
 	
 	
