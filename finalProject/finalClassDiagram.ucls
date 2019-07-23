@@ -1,0 +1,1282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class-diagram version="1.2.3" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
+  <class id="1" language="java" name="kr.co.member.controller.EmailSender" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/controller/EmailSender.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="119" width="232" x="760" y="-797"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="2" language="java" name="kr.co.review.model.vo.Review" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/review/model/vo/Review.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="94" width="185" x="337" y="-1327"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="3" language="java" name="kr.co.simulator.controller.SimulatorController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/controller/SimulatorController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="222" x="768" y="-1330"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="4" language="java" name="kr.co.simulator.model.vo.SimulatorList" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/model/vo/SimulatorList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="226" x="767" y="-1010"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="5" language="java" name="kr.co.admin.vo.CompanyVo" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/vo/CompanyVo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="91" width="211" x="1803" y="-1233"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="6" language="java" name="kr.co.collection.model.vo.Studio" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/Studio.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="97" width="240" x="1794" y="-639"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="7" language="java" name="kr.co.experience.vo.ExperienceCommentData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/vo/ExperienceCommentData.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="103" width="234" x="1005" y="-1330"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="8" language="java" name="kr.co.collection.model.vo.Dress" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/Dress.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="272" x="2118" y="-398"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="9" language="java" name="kr.co.gallery.model.vo.Gallery" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/gallery/model/vo/Gallery.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="92" width="186" x="338" y="-1220"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="10" language="java" name="kr.co.goods.model.dao.GoodsDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/goods/model/dao/GoodsDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="247" x="1534" y="-1126"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="11" language="java" name="kr.co.simulator.model.vo.SimulatorSelect" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/model/vo/SimulatorSelect.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="97" width="233" x="762" y="-911"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="12" language="java" name="kr.co.admin.controller.AdminController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/controller/AdminController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="253" x="1007" y="-866"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="13" language="java" name="kr.co.notice.vo.Notice" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/notice/vo/Notice.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="207" x="2026" y="-746"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="14" language="java" name="kr.co.scrapbook.model.vo.Scrapbook" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/scrapbook/model/vo/Scrapbook.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="219" x="1432" y="-353"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="15" language="java" name="kr.co.experience.vo.ExperienePageDate" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/vo/ExperienePageDate.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="262" x="1252" y="-1220"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="16" language="java" name="kr.co.goods.model.vo.Goods" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/goods/model/vo/Goods.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="112" x="1185" y="-374"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="17" language="java" name="kr.co.notice.service.NoticeService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/notice/service/NoticeService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="79" width="193" x="2227" y="-1231"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="18" language="java" name="kr.co.android.model.vo.ReservationList" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/android/model/vo/ReservationList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="201" x="1011" y="-752"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="19" language="java" name="kr.co.member.model.vo.MemberAll" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/MemberAll.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="249" x="1784" y="-339"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="20" language="java" name="kr.co.admin.vo.AdminCompany" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/vo/AdminCompany.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="201" x="1803" y="-1326"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="21" language="java" name="kr.co.simulator.model.vo.Simulator" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/model/vo/Simulator.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="185" x="338" y="-1120"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="22" language="java" name="kr.co.hall.vo.HallSelect" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/vo/HallSelect.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="217" x="2445" y="-938"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="23" language="java" name="kr.co.reservation.model.vo.Reservation" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/reservation/model/vo/Reservation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="219" x="1013" y="-635"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="24" language="java" name="kr.co.experience.service.ExperienceService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/service/ExperienceService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="97" width="195" x="333" y="-633"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="25" language="java" name="kr.co.qna.vo.QnA" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/qna/vo/QnA.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="217" x="2449" y="-766"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="26" language="java" name="kr.co.simulator.model.dao.SimulatorDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/model/dao/SimulatorDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="229" x="766" y="-1124"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="27" language="java" name="kr.co.collection.model.vo.AllPageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/AllPageData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="218" x="1421" y="-463"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="28" language="java" name="kr.co.review.model.dao.ReviewDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/review/model/dao/ReviewDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="243" x="1273" y="-888"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="29" language="java" name="kr.co.member.model.service.MemberService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/service/MemberService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="121" width="210" x="533" y="-717"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="30" language="java" name="kr.co.review.model.service.ReviewService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/review/model/service/ReviewService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="103" width="247" x="1265" y="-1007"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="31" language="java" name="kr.co.test.commnon.TaskScheduledTest" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/test/commnon/TaskScheduledTest.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="190" x="336" y="-1019"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="32" language="java" name="kr.co.member.model.vo.Member" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/Member.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="79" width="207" x="1804" y="-1130"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="33" language="java" name="kr.co.admin.dao.AdminDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/dao/AdminDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="121" width="252" x="1003" y="-1110"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="34" language="java" name="kr.co.collection.model.dao.CollectionDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/dao/CollectionDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="101" width="254" x="1527" y="-806"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="35" language="java" name="kr.co.collection.model.vo.StudioSelectList" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/StudioSelectList.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="191" x="2023" y="-1326"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="36" language="java" name="kr.co.admin.vo.AdminMember" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/vo/AdminMember.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="207" x="1805" y="-1042"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="37" language="java" name="kr.co.android.model.service.AndroidService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/android/model/service/AndroidService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="219" x="2659" y="-1218"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="38" language="java" name="kr.co.collection.model.vo.StudioPageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/StudioPageData.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="276" x="2138" y="-641"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="39" language="java" name="kr.co.notice.dao.NoticeDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/notice/dao/NoticeDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="197" x="2225" y="-1136"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="40" language="java" name="kr.co.admin.vo.AdminGoods" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/vo/AdminGoods.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="110" x="1187" y="-247"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="41" language="java" name="kr.co.experience.vo.Experience" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/vo/Experience.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="258" x="1258" y="-1335"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="42" language="java" name="kr.co.goods.controller.GoodsController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/goods/controller/GoodsController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="87" width="236" x="1536" y="-1330"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="43" language="java" name="kr.co.review.controller.ReviewController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/review/controller/ReviewController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="95" width="250" x="1262" y="-1108"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="44" language="java" name="kr.co.common.method.Location" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/common/method/Location.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="85" width="191" x="335" y="-936"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="45" language="java" name="kr.co.hall.vo.Hall" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/vo/Hall.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="209" x="1443" y="-104"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="46" language="java" name="kr.co.collection.model.vo.SearchPageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/SearchPageData.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="117" width="197" x="1782" y="-195"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="47" language="java" name="kr.co.hall.vo.HallPage" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/vo/HallPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="209" x="1439" y="-221"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="48" language="java" name="kr.co.reservation.model.vo.ReservationComparator" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/reservation/model/vo/ReservationComparator.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="99" width="193" x="331" y="-847"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="49" language="java" name="kr.co.collection.model.vo.MakeupPageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/MakeupPageData.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="77" width="200" x="1185" y="-469"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="50" language="java" name="kr.co.member.controller.MemberController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/controller/MemberController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="105" width="207" x="531" y="-832"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="51" language="java" name="kr.co.simulator.model.service.SimulatorService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/simulator/model/service/SimulatorService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="101" width="225" x="766" y="-1229"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="52" language="java" name="kr.co.member.model.vo.CompanyInfo" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/CompanyInfo.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="96" width="200" x="538" y="-1328"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="53" language="java" name="kr.co.collection.controller.CollectionController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/controller/CollectionController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="101" width="249" x="1527" y="-1036"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="54" language="java" name="kr.co.goods.model.service.GoodsService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/goods/model/service/GoodsService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="97" width="239" x="1534" y="-1233"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="55" language="java" name="kr.co.notice.vo.NoticePageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/notice/vo/NoticePageData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="79" width="204" x="2024" y="-835"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="56" language="java" name="kr.co.android.controller.AndroidController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/android/controller/AndroidController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="212" x="2660" y="-1320"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="57" language="java" name="kr.co.reservation.model.service.ReservationService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/reservation/model/service/ReservationService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="213" x="2436" y="-1225"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="58" language="java" name="kr.co.member.model.vo.MailVO" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/MailVO.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="200" x="539" y="-1219"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="59" language="java" name="kr.co.member.model.vo.SDMList" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/SDMList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="180" x="2107" y="-495"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="60" language="java" name="kr.co.qna.dao.QnADao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/qna/dao/QnADao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="193" x="2239" y="-815"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="61" language="java" name="kr.co.admin.service.AdminService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/service/AdminService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="249" x="1005" y="-979"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="62" language="java" name="kr.co.experience.dao.ExperienceDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/dao/ExperienceDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="196" x="335" y="-528"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="63" language="java" name="kr.co.android.model.dao.AndroidDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/android/model/dao/AndroidDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="103" width="220" x="2659" y="-1125"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="64" language="java" name="kr.co.email.service.EmailService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/email/service/EmailService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="206" x="535" y="-1122"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="65" language="java" name="kr.co.collection.model.service.CollectionService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/service/CollectionService.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="105" width="248" x="1527" y="-925"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="66" language="java" name="kr.co.hall.controller.HallController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/controller/HallController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="191" x="2025" y="-1124"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="67" language="java" name="kr.co.member.model.vo.MemberEnroll" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/vo/MemberEnroll.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="93" width="208" x="536" y="-1031"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="68" language="java" name="kr.co.qna.vo.QnADataPage" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/qna/vo/QnADataPage.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="81" width="218" x="2444" y="-853"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="69" language="java" name="kr.co.reservation.model.dao.ReservationDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/reservation/model/dao/ReservationDao.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="83" width="213" x="2438" y="-1122"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="70" language="java" name="kr.co.member.model.dao.MemberDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/member/model/dao/MemberDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="117" width="214" x="533" y="-588"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="71" language="java" name="kr.co.email.controller.EmailController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/email/controller/EmailController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="235" x="762" y="-654"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="72" language="java" name="kr.co.notice.controller.NoticeController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/notice/controller/NoticeController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="87" width="194" x="2225" y="-1324"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="73" language="java" name="kr.co.experience.vo.ExperienceComment" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/vo/ExperienceComment.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="233" x="1001" y="-1215"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="74" language="java" name="kr.co.qna.service.QnAService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/qna/service/QnAService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="89" width="199" x="2233" y="-916"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="75" language="java" name="kr.co.experience.controller.ExperienceController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/experience/controller/ExperienceController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="81" width="186" x="337" y="-736"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="76" language="java" name="kr.co.admin.vo.AdminReservation" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/admin/vo/AdminReservation.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="214" x="1228" y="-750"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="77" language="java" name="kr.co.collection.model.vo.DressPageData" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/DressPageData.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="267" x="2137" y="-255"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="78" language="java" name="kr.co.collection.model.vo.Makeup" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/Makeup.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="95" width="237" x="1406" y="-645"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="79" language="java" name="kr.co.hall.dao.HallDao" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/dao/HallDao.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="101" width="201" x="2025" y="-946"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="80" language="java" name="kr.co.hall.service.HallService" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/service/HallService.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="194" x="2024" y="-1035"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="81" language="java" name="kr.co.collection.model.vo.Collection" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/Collection.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="198" x="2016" y="-151"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="82" language="java" name="kr.co.collection.model.vo.StudioSelect" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/collection/model/vo/StudioSelect.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="97" width="193" x="2021" y="-1231"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="83" language="java" name="kr.co.hall.vo.HallSelectList" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/hall/vo/HallSelectList.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="83" width="218" x="2439" y="-1028"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="84" language="java" name="kr.co.marryme.HomeController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/marryme/HomeController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="79" width="206" x="536" y="-928"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="85" language="java" name="kr.co.qna.controller.QnAController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/qna/controller/QnAController.java" binary="false" corner="BOTTOM_RIGHT">    
+    <position height="99" width="200" x="2225" y="-1028"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <class id="86" language="java" name="kr.co.reservation.controller.ReservationController" project="finalProject" 
+    file="/finalProject/src/main/java/kr/co/reservation/controller/ReservationController.java" binary="false" 
+    corner="BOTTOM_RIGHT">    
+    <position height="85" width="211" x="2434" y="-1322"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="87">    
+    <end type="SOURCE" refId="20" navigable="false">      
+      <attribute id="88" name="aList"/>      
+      <multiplicity id="89" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="90">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="91" name="cList"/>      
+      <multiplicity id="92" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="81" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="93">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="94" name="scrapList"/>      
+      <multiplicity id="95" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="96">    
+    <end type="SOURCE" refId="38" navigable="false">      
+      <attribute id="97" name="sList"/>      
+      <multiplicity id="98" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="99">    
+    <end type="SOURCE" refId="46" navigable="false">      
+      <attribute id="100" name="scrapList"/>      
+      <multiplicity id="101" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="102">    
+    <end type="SOURCE" refId="29" navigable="false">      
+      <attribute id="103" name="memberDao"/>      
+      <multiplicity id="104" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="70" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="105">    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="106" name="noticeDao"/>      
+      <multiplicity id="107" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="39" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="108">    
+    <end type="SOURCE" refId="54" navigable="false">      
+      <attribute id="109" name="goodsDao"/>      
+      <multiplicity id="110" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="10" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="111">    
+    <end type="SOURCE" refId="24" navigable="false">      
+      <attribute id="112" name="experienceDao"/>      
+      <multiplicity id="113" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="62" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="114">    
+    <end type="SOURCE" refId="51" navigable="false">      
+      <attribute id="115" name="simulatorDao"/>      
+      <multiplicity id="116" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="26" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="117">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="118" name="e"/>      
+      <multiplicity id="119" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="120">    
+    <end type="SOURCE" refId="57" navigable="false">      
+      <attribute id="121" name="reservationDao"/>      
+      <multiplicity id="122" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="69" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="123">    
+    <end type="SOURCE" refId="86" navigable="false">      
+      <attribute id="124" name="reservationService"/>      
+      <multiplicity id="125" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="57" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="126">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="127" name="scrapList"/>      
+      <multiplicity id="128" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="14" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="129">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="130" name="simulatorService"/>      
+      <multiplicity id="131" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="51" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="132">    
+    <end type="SOURCE" refId="40" navigable="false">      
+      <attribute id="133" name="list"/>      
+      <multiplicity id="134" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="135">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="136" name="dList"/>      
+      <multiplicity id="137" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="138">    
+    <end type="SOURCE" refId="76" navigable="false">      
+      <attribute id="139" name="list"/>      
+      <multiplicity id="140" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="141">    
+    <end type="SOURCE" refId="18" navigable="false">      
+      <attribute id="142" name="list"/>      
+      <multiplicity id="143" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="23" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="144">    
+    <end type="SOURCE" refId="56" navigable="false">      
+      <attribute id="145" name="androidService"/>      
+      <multiplicity id="146" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="37" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="147">    
+    <end type="SOURCE" refId="75" navigable="false">      
+      <attribute id="148" name="experienceService"/>      
+      <multiplicity id="149" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="24" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="150">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="151" name="sList"/>      
+      <multiplicity id="152" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="153">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="154" name="emailSender"/>      
+      <multiplicity id="155" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="156">    
+    <end type="SOURCE" refId="42" navigable="false">      
+      <attribute id="157" name="goodsService"/>      
+      <multiplicity id="158" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="54" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="159">    
+    <end type="SOURCE" refId="77" navigable="false">      
+      <attribute id="160" name="dList"/>      
+      <multiplicity id="161" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="162">    
+    <end type="SOURCE" refId="61" navigable="false">      
+      <attribute id="163" name="adminDao"/>      
+      <multiplicity id="164" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="33" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="165">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="166" name="list"/>      
+      <multiplicity id="167" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="73" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="168">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="169" name="hall"/>      
+      <multiplicity id="170" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="171">    
+    <end type="SOURCE" refId="83" navigable="false">      
+      <attribute id="172" name="list"/>      
+      <multiplicity id="173" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="22" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="174">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="175" name="gList"/>      
+      <multiplicity id="176" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="16" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="177">    
+    <end type="SOURCE" refId="59" navigable="false">      
+      <attribute id="178" name="mList"/>      
+      <multiplicity id="179" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="180">    
+    <end type="SOURCE" refId="43" navigable="false">      
+      <attribute id="181" name="reviewService"/>      
+      <multiplicity id="182" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="30" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="183">    
+    <end type="SOURCE" refId="53" navigable="false">      
+      <attribute id="184" name="collectionService"/>      
+      <multiplicity id="185" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="65" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="186">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="187" name="dress"/>      
+      <multiplicity id="188" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="189">    
+    <end type="SOURCE" refId="55" navigable="false">      
+      <attribute id="190" name="list"/>      
+      <multiplicity id="191" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="13" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="192">    
+    <end type="SOURCE" refId="35" navigable="false">      
+      <attribute id="193" name="list"/>      
+      <multiplicity id="194" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="82" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="195">    
+    <end type="SOURCE" refId="65" navigable="false">      
+      <attribute id="196" name="collectionDao"/>      
+      <multiplicity id="197" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="34" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="198">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="199" name="dList"/>      
+      <multiplicity id="200" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="201">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="202" name="sList"/>      
+      <multiplicity id="203" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="204">    
+    <end type="SOURCE" refId="80" navigable="false">      
+      <attribute id="205" name="hallDao"/>      
+      <multiplicity id="206" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="79" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="207">    
+    <end type="SOURCE" refId="50" navigable="false">      
+      <attribute id="208" name="memberService"/>      
+      <multiplicity id="209" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="210">    
+    <end type="SOURCE" refId="74" navigable="false">      
+      <attribute id="211" name="qnaDao"/>      
+      <multiplicity id="212" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="60" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="213">    
+    <end type="SOURCE" refId="37" navigable="false">      
+      <attribute id="214" name="androidDao"/>      
+      <multiplicity id="215" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="63" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="216">    
+    <end type="SOURCE" refId="68" navigable="false">      
+      <attribute id="217" name="list"/>      
+      <multiplicity id="218" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="25" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="219">    
+    <end type="SOURCE" refId="49" navigable="false">      
+      <attribute id="220" name="mList"/>      
+      <multiplicity id="221" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="222">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="223" name="studio"/>      
+      <multiplicity id="224" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="225">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="226" name="emailSender"/>      
+      <multiplicity id="227" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="228">    
+    <end type="SOURCE" refId="47" navigable="false">      
+      <attribute id="229" name="hList"/>      
+      <multiplicity id="230" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="45" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="231">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="232" name="adminService"/>      
+      <multiplicity id="233" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="61" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="234">    
+    <end type="SOURCE" refId="85" navigable="false">      
+      <attribute id="235" name="qnaService"/>      
+      <multiplicity id="236" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="74" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="237">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="238" name="list"/>      
+      <multiplicity id="239" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="11" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="240">    
+    <end type="SOURCE" refId="71" navigable="false">      
+      <attribute id="241" name="memberService"/>      
+      <multiplicity id="242" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="29" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="243">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="244" name="exList"/>      
+      <multiplicity id="245" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="41" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="246">    
+    <end type="SOURCE" refId="30" navigable="false">      
+      <attribute id="247" name="reviewDao"/>      
+      <multiplicity id="248" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="28" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="249">    
+    <end type="SOURCE" refId="36" navigable="false">      
+      <attribute id="250" name="list"/>      
+      <multiplicity id="251" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="32" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="252">    
+    <end type="SOURCE" refId="19" navigable="false">      
+      <attribute id="253" name="makeup"/>      
+      <multiplicity id="254" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="255">    
+    <end type="SOURCE" refId="27" navigable="false">      
+      <attribute id="256" name="mList"/>      
+      <multiplicity id="257" minimum="0" maximum="2147483647"/>    
+    </end>    
+    <end type="TARGET" refId="78" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="258">    
+    <end type="SOURCE" refId="72" navigable="false">      
+      <attribute id="259" name="noticeService">        
+        <position height="18" width="76" x="2309" y="-1086"/>      
+      </attribute>      
+      <multiplicity id="260" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="261">    
+    <end type="SOURCE" refId="66" navigable="false">      
+      <attribute id="262" name="hallService"/>      
+      <multiplicity id="263" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="80" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    sort-features="false" accessors="true" visibility="true">    
+    <attributes public="true" package="true" protected="true" private="true" static="true"/>    
+    <operations public="true" package="true" protected="true" private="true" static="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

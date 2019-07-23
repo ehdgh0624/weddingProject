@@ -15,7 +15,7 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix area">
-		<h1>상품수정</h1>
+		<h1>상품수정 </h1>
 		<br>
 		<form action="/goodsUpdate.do" method="post"
 			enctype="multipart/form-data">
@@ -94,43 +94,52 @@
 		</form>
 	</div>
 	<div class="area">
-		<form action="/saveGallery.do" method="post"
-			enctype="multipart/form-data">
-			<table class="comm-tbl" id="gall">
-				<colgroup>
-					<col width="20%">
-					<col width="/">
-					<col width="20%">
-					<col width="10%">
-				</colgroup>
-				<tr>
-					<th>No</th>
-					<th>파일이미지</th>
-					<th>미리보기</th>
-					<th>삭제</th>
-				</tr>
-				<c:forEach items="${gallery }" var="ga" varStatus="i">
-					<tr>
-						<td>${i.count }</td>
-						<td><span>${ga.filename }</span></td>
-						<td><img src="/resources/goods/${ga.filepath }"
-							style="width: 300px; height: 300px"></td>
-						<td><input type="hidden" value="${ga.filepath }"
-							class="oldpath">
-						<button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>
-					</tr>
-				</c:forEach>
-			</table>
-			<input type="hidden" value="${g.goodsNo }" name="prdNo">
-			<c:if test="${g.goodsType == 'B' }">
-				<input type="hidden" value="B" name="code">
-			</c:if>
-			<c:if test="${g.goodsType == 'I' }">
-				<input type="hidden" value="I" name="code">
-			</c:if>
-			<button type="submit" id="imgSub">저장</button>
-		</form>
-		<span id="addGallery">사진추가하기</span>
+		<!-- <button>추가</button> -->
+				<form action="/saveGallery.do" method="post"
+					enctype="multipart/form-data">
+					<table class="comm-tbl type2" id="gall">
+						<colgroup>
+							<col width="20%">
+							<col width="/">
+							<col width="20%">
+							<col width="10%">
+						</colgroup>
+						<tr>
+							<th>No</th>
+							<th>파일이미지</th>
+							<th>미리보기</th>
+							<th>삭제</th>
+						</tr>
+						<c:if test="${not empty gallery }">
+							<c:forEach items="${gallery }" var="s" varStatus="i">
+								<tr >
+									<td class="re">${i.count }</td>
+									<td><span>${s.filename }</span></td>
+									<td><img src="/resources/goods/${s.filepath }"
+										style="width: 300px; height: 300px"></td>
+									<td><input type="hidden" value="${s.filepath }"
+										class="oldpath">
+									<button onclick='imgDelete(this)' type='button'
+											class='imgDelete'>삭제</button></td>
+								</tr>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty gallery }">
+							<tr class="list-none">
+								<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
+							</tr>
+						</c:if>
+					</table>
+					<input type="hidden" value="${g.goodsNo }" name="prdNo">
+						<input type="hidden" value="G" name="code">
+					<div class="common-tbl-btn-group right">
+						<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
+					</div>
+				</form>
+				<br><br>
+		<div class="common-tbl-btn-group left" style="padding-top:0;display:inline-block;position:relative;top:-61px;">
+				<button type="button" class="btn-style2 small" id="addGallery">사진추가하기</button>
+			</div>
 	</div>
 	<br>
 	<br>
@@ -139,8 +148,16 @@
 	<jsp:include page="/WEB-INF/common/footer.jsp" />
 </section>
 <script>
-	var count = 0;
+	var count;
+	if($(".type2").children('tbody').children().children().is(".re")){
+		 count = parseInt($(".re").last().html());
+	}else{
+		count = 0;
+	}
+	
+	
 	function loadImg(f) {
+		chk_file_type(f);
 		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
 			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
 			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
@@ -151,6 +168,20 @@
 			}
 		} else {
 			$("#img-view").attr('src', '');
+		}
+	}
+	function chk(f) {
+		chk_file_type(f);
+		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+			var reader = new FileReader();
+			reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+			reader.onload = function(e) { //다 읽어 왔으면 실행
+				$(f).parent().parent().next().children('.img-view').attr('src', e.target.result);
+			}
+		} else {
+			$(f).parent().parent().next().children('.img-view').attr('src', "");
 		}
 	}
 
@@ -166,18 +197,28 @@
 		}
 	});
 	$('#addGallery')
-			.click(
-					function() {
-						count = count + 1;
-						var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' class='filename' name='filename' onchange='chk(this)' id='multi'></label></td>";
-						addTable += "<td><img src='' style='width:300px; heigth:300px'></td>";
-						addTable += "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
-						addTable += "<tr>";
+	.click(
+			function() {
+				count = count + 1;
+				var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
+				addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
+				addTable += "<td><button onclick='imgDelete(this)' type='button' class='imgDelete'>삭제</button></td>";
+				addTable += "<tr>";
+				
 
-						$('#gall').append(addTable);
-					});
+				if($("#gall").has('.list-none')){
+					$('.list-none').remove();
+					$('#gall').append(addTable);
+				}else{
+					$('#gall').append(addTable);
+				}
+			});
 	function imgDelete(tt) {
-		count = count - 1;
+		if(count<=0){
+			count = 0;
+		}else{
+			count = count - 1;
+		}
 		var filepath = $(tt).prev().val();
 		var code = "${g.goodsType}";
 		console.log(filepath);
@@ -222,9 +263,7 @@
 			return true;
 		}
 	}
-	function chk(f) {
-		chk_file_type(f);
-	}
+	
 	$("#sub").click(function(e) {
 		if ($("#gType").val() == "") {
 			alert("타입을 선택해주세요");
