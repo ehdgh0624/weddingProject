@@ -78,19 +78,15 @@ public class ExperienceService {
 		
 		/*int pageNo = (reqPage-1)+1*+1; 위에가 1 6 11 이여서 사이즈 5를 뺴고  1 ,2 , 3, 4, 5 나오게 하였따 */		
 		/*int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;*/
-		int pageNo = 0;
-		
-		if(reqPage <3) {
-			pageNo = 1;
-		}else if ( reqPage+2  > totalpge      ) {
-			pageNo = totalpge - pageNaviSize+1;						
-		}
-		else {
-			pageNo = reqPage-2;
-			
-		}
-		
-		
+		/*
+		 * int pageNo = 0;
+		 * 
+		 * if(reqPage <3) { pageNo = 1; }else if ( reqPage+2 > totalpge ) { pageNo =
+		 * totalpge - pageNaviSize+1; } else { pageNo = reqPage-2;
+		 * 
+		 * }
+		 */
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		System.out.println(pageNo);
 		
 		if(pageNo !=1) {											
@@ -174,18 +170,15 @@ public class ExperienceService {
 		
 		/*int pageNo = (reqPage-1)+1*+1; 위에가 1 6 11 이여서 사이즈 5를 뺴고  1 ,2 , 3, 4, 5 나오게 하였따 */		
 		/*int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;*/
-		int pageNo = 0;
-		
-		if(reqPage <3) {
-			pageNo = 1;
-		}else if ( reqPage+2  > totalpge      ) {
-			pageNo = totalpge - pageNaviSize+1;						
-		}
-		else {
-			pageNo = reqPage-2;
-			
-		}
-		
+		/*
+		 * int pageNo = 0;
+		 * 
+		 * if(reqPage <3) { pageNo = 1; }else if ( reqPage+2 > totalpge ) { pageNo =
+		 * totalpge - pageNaviSize+1; } else { pageNo = reqPage-2;
+		 * 
+		 * }
+		 */
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		
 		System.out.println(pageNo);
 		
@@ -285,18 +278,14 @@ public class ExperienceService {
 		
 		/*int pageNo = (reqPage-1)+1*+1; 위에가 1 6 11 이여서 사이즈 5를 뺴고  1 ,2 , 3, 4, 5 나오게 하였따 */		
 		/*int pageNo =((reqPage-1)/pageNaviSize)*pageNaviSize+1;*/
-		int pageNo = 0;
-		
-		if(reqPage <3) {
-			pageNo = 1;
-		}else if ( reqPage+2  > totalpge      ) {
-			pageNo = totalpge - pageNaviSize+1;						
-		}
-		else {
-			pageNo = reqPage-2;
-			
-		}
-		
+		/* int pageNo = 0; */
+		/*
+		 * if(reqPage <3) { pageNo = 1; }else if ( reqPage+2 > totalpge ) { pageNo =
+		 * totalpge - pageNaviSize+1; } else { pageNo = reqPage-2;
+		 * 
+		 * }
+		 */
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		
 		System.out.println(pageNo);
 		

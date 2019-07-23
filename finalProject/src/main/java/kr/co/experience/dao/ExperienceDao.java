@@ -55,7 +55,7 @@ public class ExperienceDao {
 	}
 	public ArrayList<ExperienceComment> selectCommentList(int experienceNo) {
 			
-		System.out.println("댓글 dao 들어온다"+experienceNo);
+		
 		List list  = sqlSession.selectList("experience.selectCommentList",experienceNo);
 		
 		return (ArrayList<ExperienceComment>)list;
@@ -125,7 +125,7 @@ public class ExperienceDao {
 		map.put("start", String.valueOf(start));
 		map.put("end", String.valueOf(end));
 		map.put("memberId",memberId);
-		return sqlSession.selectList("experience.experienceselectList",map);
+		return sqlSession.selectList("experience.experienceselectList2",map);
 	}
 	
 	

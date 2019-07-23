@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%--  Top --%>
 <jsp:include page="/WEB-INF/common/top.jsp" />
 
@@ -45,7 +46,7 @@
 					<td>${m.memberName }</td>
 					<td>${m.phone }</td>
 					<td>${m.birthDay }</td>
-					<td>${m.addr }</td>
+					<td>${fn:replace(m.addr,'/',' ') }</td>
 					<td>${m.enrollDate }</td>
 					<td>
 					<c:if test="${m.memberCode != 2 }">
