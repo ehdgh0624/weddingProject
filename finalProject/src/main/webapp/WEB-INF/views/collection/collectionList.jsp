@@ -82,7 +82,7 @@
 				<c:forEach items="${pd.sList}" var="s" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}">
-							<img src="${s.studioFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/studio/${s.studioFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${s.code}&objectNo=${s.studioNo}" class="photolist-prdName">${s.studioName}</a>
@@ -161,7 +161,7 @@
 				<c:forEach items="${pd.dList}" var="d" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}">
-							<img src="${d.dressFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/studio/${d.dressFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${d.code}&objectNo=${d.dressNo}" class="photolist-prdName">${d.dressName}</a>
@@ -240,7 +240,7 @@
 				<c:forEach items="${pd.mList}" var="m" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}">
-							<img src="${m.makeupFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/studio/${m.makeupFilepath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${m.code}&objectNo=${m.makeupNo}" class="photolist-prdName">${m.makeupName}</a>
