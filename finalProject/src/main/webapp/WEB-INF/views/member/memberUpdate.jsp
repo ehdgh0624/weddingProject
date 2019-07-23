@@ -161,6 +161,10 @@ $('#savePw').click(function(){
 
 });
 
+$("#changePw").click(function(){
+	$("#pwInput").attr("readonly",false);
+	$("#changePw").css("display","none");
+	$("#pwck").css("display","block");
 
 $("#pwInput").keyup(function(){
 	var pw=$("#pwInput").val();
@@ -185,7 +189,7 @@ $("#pwInput").keyup(function(){
 		$("#savePw").css("display","none");
 	}
 });
-
+});
 $("#emailChange").click(function(){
 	
 	$("#emailChange").css("display","none");
@@ -195,11 +199,7 @@ $("#emailChange").click(function(){
 	
 });
 
-$("#changePw").click(function(){
-	$("#pwInput").attr("readonly",false);
-	$("#changePw").css("display","none");
-	$("#pwck").css("display","block");
-});
+
 
 $("#savePw").click(function(){
 	
