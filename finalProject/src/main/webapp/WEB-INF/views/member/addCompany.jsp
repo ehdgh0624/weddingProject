@@ -248,7 +248,7 @@
 								</tr>
 								<tr>
 									<th>웨딩홀 기본가격</th>
-									<th><input type="number" name="hallPrice" value=""></th>
+									<th><input type="number" name="hallPrice" value="" id="hallPrice"></th>
 								</tr>
 								<tr>
 									<th>웨딩홀 음식메뉴</th>
@@ -426,6 +426,7 @@ $('#finalSubmit').click(function(){
 		$('#hallMaxPerson').val('0');
 		$("#hallFoodmenu").val('0');
 		$("#hallFoodprice").val('0');
+		$("#hallPrice").val('0');
 	};
 	if($('#studioOptionName').val('')==""||$('#studioOptionprice').val()==""){
 		$('#studioOptionprice').val('0');

@@ -67,13 +67,13 @@
 			<!-- 큰 이미지 영역 -->
 			<ul class="view-big-gallery-list slider-for">
                 <c:forEach items="${galleryList }" var="g">
-                    <li><img src="/resources/goods/${g.filepath }"></li>
+                    <li><img src="/resources/hall/${g.filepath }"></li>
                 </c:forEach>
 			</ul>
 			<!-- 작은 이미지 영역 -->
 			<ul class="view-small-gallery-list slider-nav">
 				<c:forEach items="${galleryList }" var="g">
-                    <li><img src="/resources/goods/${g.filepath }"></li>
+                    <li><img src="/resources/hall/${g.filepath }"></li>
                 </c:forEach>
 			</ul>
 		</div>
@@ -298,7 +298,7 @@
 					<!-- 리뷰 입력 -->
 					<form id="fileUploadForm" action="/fileUpload.do" method="post" enctype="multipart/form-data">
 						<div style="visibility: hidden;position: absolute;top:0;">
-							<input type="text" id="code" name="code" value="D" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="code" name="code" value="H" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewRef" name="reviewRef" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewScope" name="reviewScope" style="cursor: inherit;width:10px;" readonly>
 						</div>
@@ -457,6 +457,7 @@
 							slidesToShow : 4,
 							slidesToScroll : 1,
 							asNavFor : '.slider-for',
+							arrows : false,
 							dots : false,
 							centerMode : false,
 							focusOnSelect : true
