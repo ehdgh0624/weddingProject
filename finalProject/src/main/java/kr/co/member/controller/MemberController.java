@@ -527,8 +527,9 @@ public class MemberController {
 			model.addAttribute("loc", "loginPage.do");
 			view = "common/msg";
 			System.out.println("로그인실패");
+			return view;
 		}
-		return view;
+		
 	}
 	
 	
