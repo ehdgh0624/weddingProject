@@ -19,7 +19,7 @@ public class NoticeService {
 
 	public NoticePageData noticeAll(int reqPage) {
 		int totalCount = noticeDao.totalCount();
-		int pageNum = 10;
+		int pageNum = 5;
 		int totalPage = (totalCount%pageNum == 0)?(totalCount/pageNum):(totalCount/pageNum)+1;
 		int start = (reqPage*pageNum-pageNum)+1;
 		int end = reqPage*pageNum;
