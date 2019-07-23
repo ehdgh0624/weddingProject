@@ -19,6 +19,7 @@ import kr.co.collection.model.vo.Dress;
 import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.SearchPageData;
 import kr.co.collection.model.vo.Studio;
+import kr.co.goods.model.vo.Goods;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
@@ -306,7 +307,8 @@ public class CollectionController {
 	public ModelAndView collectionViewGoods(HttpSession session, @RequestParam String goodsType, @RequestParam int goodsNo) {
 		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("goods", collectionService.selectOneGoods(goodsNo));
+		Goods g = collectionService.selectOneGoods(goodsNo);
+		mav.addObject("goods", g);
 		mav.addObject("galleryList", collectionService.selectListGallery(goodsNo, "G"));
 		mav.addObject("reviewList", collectionService.selectListReview(goodsNo, "G"));
 		if(m != null) {
