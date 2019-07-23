@@ -14,6 +14,7 @@ import kr.co.collection.model.vo.StudioSelect;
 import kr.co.collection.model.vo.StudioSelectList;
 import kr.co.gallery.model.vo.Gallery;
 import kr.co.hall.vo.Hall;
+import kr.co.hall.vo.HallSelect;
 import kr.co.hall.vo.HallSelectList;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
@@ -383,6 +384,32 @@ public class MemberDao {
 	public int updateMakeup(Makeup m) {
 		// TODO Auto-generated method stub
 		return sqlSession.update("makeup.updateMakeup",m);
+	}
+
+	public int updateOneHallOption(int hallNo, String hallType, String price, String etc) {
+		// TODO Auto-generated method stub
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("hallSelectNo", hallNo);
+		map.put("hallType", hallType);
+		map.put("hallSelectPrice", price);
+		map.put("hallSelectEtc", etc);
+		
+		return sqlSession.update("hallSelect.updateOnehallOption");
+	}
+
+	public int HallOptionAdd(HallSelect hsl2) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("hallSelect.insertHallOption",hsl2);
+	}
+	
+	public List<StudioSelect> selectListHallOptionNumber(int no) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList("hallSelect.selectListHallSelect",no);
+	}
+
+	public int updateHallInfo(Hall h) {
+		// TODO Auto-generated method stub
+		return sqlSession.update("hall.updateHallInfo",h);
 	}
 
 }

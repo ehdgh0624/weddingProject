@@ -156,8 +156,8 @@
 						</tr>
 						<tr>
 							<th>체크옵션</th>
-							<td><label for="dressMending"><input type="checkbox" id="dressMending" name="dressMending" value=" "> 가봉여부 </label>
-								<label for="dressParking"><input type="checkbox" id="dressParking" name="dressParking" value=" "> 주차여부 </label>
+							<td><label for="dressMending"><input type="text" id="dressMending" name="dressMending" value=" "> 가봉여부 </label>
+								<label for="dressParking"><input type="text" id="dressParking" name="dressParking" value=" "> 주차여부 </label>
 							</td>
 						</tr>
 						<tr>
@@ -216,22 +216,22 @@
 								<th>웨딩홀 타입</th>
 								<th>
 									<select name="hallType">
-										<option value="0">갤러리</option>
-										<option value="1">골프장</option>
-										<option value="2">공공장소</option>
-										<option value="3">레스토랑</option>
-										<option value="4">문화공간</option>
-										<option value="5">선박</option>
-										<option value="6">스튜디오</option>
-										<option value="7">웨딩홀</option>
-										<option value="8">펜션</option>
-										<option value="9">하우스웨딩홀</option>			
+										<option value="갤러리">갤러리</option>
+										<option value="골프장">골프장</option>
+										<option value="공공장소">공공장소</option>
+										<option value="레스토랑">레스토랑</option>
+										<option value="문화공간">문화공간</option>
+										<option value="선박">선박</option>
+										<option value="스튜디오">스튜디오</option>
+										<option value="웨딩홀">웨딩홀</option>
+										<option value="펜션">펜션</option>
+										<option value="하우스웨딩홀">하우스웨딩홀</option>			
 									</select>
 								</th>
 							</tr>
 							<tr>
 								<th>웨딩홀 식사제공</th>
-								<th><input type="checkbox" name="hallServiceFood" value=" "></th>
+								<th><input type="text" name="hallServiceFood" value=" "></th>
 							</tr>
 							<!-- 상단체크시 노출부분 -->
 								<tr>
@@ -256,15 +256,15 @@
 								</tr>
 								<tr>
 									<th>웨딩홀 주류제공</th>
-									<th><input type="checkbox" name="hallServiceDrink" value=" "></th>
+									<th><input type="text" name="hallServiceDrink" value=" "></th>
 								</tr>
 								<tr>
 									<th>웨딩홀 음향제공</th>
-									<th><input type="checkbox" name="hallServiceAudio" value=" "></th>
+									<th><input type="text" name="hallServiceAudio" value=" "></th>
 								</tr>						
 								<tr>
 									<th>웨딩홀 주차제공</th>
-									<th><input type="checkbox" name="hallServiceParking" value=" "></th>
+									<th><input type="text" name="hallServiceParking" value=" "></th>
 								</tr>
 						</table>
 						<div class="common-tbl-btn-group clearfix">
@@ -438,17 +438,8 @@ $('#finalSubmit').click(function(){
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-<!--페이지 -->
+
+
 	$(document).ready(function(){
 		$('#first').css("display","block");	
 	});
@@ -574,11 +565,10 @@ $('#finalSubmit').click(function(){
 		var addTable ="";
 		addTable += '<br><table class="comm-tbl"><colgroup><col width="18%"><col width="/"></colgroup><tr><th>예식장이름(홀이름)</th>';
 		addTable += '<th><input type="text" name="hallSelectName" value=" "></th></tr>';
-		addTable += '<tr><th>웨딩홀 인원(최소)</th><td><input type="text" name="hallSelectPeople" value="0" class="num middle"> 명</td></tr>';
+		addTable += '<tr><th>웨딩홀 인원(최소)</th><td><input type="text" name="hallSelectPerson" value="0" class="num middle"> 명</td></tr>';
 		addTable += '<tr><th>웨딩홀 시간</th><td><input type="text" name="hallSelectTime" value=" " class="middle"> ex) 09시 ~ 18시</td></tr>';
 		addTable += '<tr><th>웨딩홀 대여가격</th><td><input type="number" name="hallSelectPrice" value="0" class="num middle"> 원</td></tr>';
 		addTable += '<tr><th>웨딩홀비고</th><td><input type="text" name="hallSelectEtc" value=" "></td></tr></table>';
-		
 		
 		$('#hallOptionTableDiv').append(addTable);
 	});

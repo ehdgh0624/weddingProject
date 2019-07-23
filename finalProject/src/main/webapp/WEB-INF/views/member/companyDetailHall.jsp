@@ -25,7 +25,7 @@
 		<div class="area">
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="common-tbl-box">
-			<form action="/studioUpdate.do" method="post">
+			<form action="/hallUpdate.do" method="post">
 			
 				<table class="comm-tbl">
 					<colgroup>
@@ -37,7 +37,7 @@
 						<th>업체명</th>
 						<td><input type="text" name="hallName"
 							value="${hall.hallName }"><input type="hidden"
-							value="${hall.hallNo }" id="no"></td>
+							value="${hall.hallNo }" id="no" name="hallNo"></td>
 					</tr>
 
 					<tr>
@@ -76,9 +76,9 @@
 								<button type="button" onclick="sample4_execDaumPostcode()"
 									value="우편번호 찾기" class="btn-style2 small">우편번호 찾기</button>
 							</div> <input type="hidden" name="studioLatitude" id="shopLatitude"
-							value="${Studio.studioLatitude }"> <input type="hidden"
+							value="${hall.hallLatitude }"> <input type="hidden"
 							name="studioLongtitude" id="shopLongitude"
-							value="${Studio.studioLongitud }"></td>
+							value="${hall.hallLongtitude }"></td>
 					</tr>
 					<tr>
 						<th>도로명주소</th>
@@ -206,7 +206,7 @@
 				<!--스튜디오 옵션  -->
 				<h1>스튜디오 옵션</h1>
 				<div id='studioOptionTableDiv'>
-					<table class="comm-tbl" id="studioOptionTable0">
+					<table class="comm-tbl" id="hallOptionTable0">
 						<colgroup>
 							<col width="15%">
 							<col width="/">
@@ -219,21 +219,25 @@
 								<button class="tsnapRow" id="addList0">추가</button>
 								<button class="tsnapRow" id="selectList0">옵션전체삭제</button>
 							</th>
-						</tr>
-						<c:forEach items="${hallSelectList}" var="hsl" varStatus="i">
-							<tr class="fsnap">
-								<td><input type="hidden" value="${hsl.hallSelectNo }">
+							<td id="optionAdd">
+								<c:forEach items="${hallSelectList}" var="hsl" varStatus="i">
+									<div>
+									<input type="hidden" value="${hsl.hallSelectNo }">
 									<input type="text" value="${hsl.hallType}"><span
 									class="deleteOption">삭제</span> <input type="text"
 									value="${hsl.hallSelectPrice}"><span
 									class="updateOption">수정</span> <input type="text"
-									value="${hsl.hallSelectEtc}"></td>
+									value="${hsl.hallSelectEtc}">
+									</div><hr>
+									</c:forEach>
+								</td>
 							</tr>
-						</c:forEach>
 					</table>
+			
+					
 				</div>
-				<input type="hidden" id="totalAddr" value="${studio.studioAddr }">
-				<input type="hidden" id="phone" value="${studio.studioTel }">
+				<input type="text" id="totalAddr" value="${hall.hallAddr }">
+				<input type="hidden" id="phone" value="${hall.hallTel }" name="hallTel">
 			</div>
 				</c:if>
 		</div>
@@ -325,18 +329,19 @@
 			<!--옵션수정-->
 			$('.updateOption').click(
 					function() {
-						var optionNo = $(this).prev().prev().prev().prev(
-								'input').val();
-						var option = $(this).prev().prev().prev('input').val();
+						var hallNo = $(this).prev().prev().prev().prev('input').val();
+						var hallType = $(this).prev().prev().prev('input').val();
 						var price = $(this).prev('input').val();
+						var etc =$(this).next('input').val();
 
 						$.ajax({
 							url : "/updateOneHallOption.do",
 
 							data : {
-								option : option,
+								hallNo : hallNo,
+								hallType : hallType,
 								price : price,
-								optionNo : optionNo
+								etc:etc
 							},
 
 							type : "get",
@@ -387,71 +392,16 @@
 							function() {
 
 								var addTable = "";
-								var studioNo = $
-								{
-									studio.studioNo
-								}
-								;
-								addTable += "<tr class='fsnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
-								addTable += "<input type='text' name='studioOptionPrice'>";
-								addTable += "<input type='hidden'  name='studioOptionType' value='0'>";
-								addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-								addTable += "</form></td></tr>";
-
-								var number = $('#rowThF').attr('rowspan');
-
-								$('#rowThF').attr('rowspan', number + 1);
-
-								$('#studioOptionTable0').append(addTable);
+								addTable += "<div class='fsnap'><td><form action='/hallOptionAdd.do' method='post'> <input type='text' placeholder='홀이름/인원/시간' name='hallType'><button type='submit'>추가</button> ";
+								addTable += "<input type='text' name='hallSelectPrice' placeholder='금액'>";
+								addTable += "<input type='text'  name='hallSelectEtc' placeholder='비고'>";
+								addTable += "<input type='hidden' name='hallNo' value='"+${hall.hallNo}+"'>";
+								addTable += "</form></td></div</hr>";
+					
+								$('#optionAdd').append(addTable);
 
 							});
-			$('#addList1')
-					.click(
-							function() {
-
-								var addTable = "";
-								var studioNo = $
-								{
-									studio.studioNo
-								}
-								;
-								addTable += "<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
-								addTable += "<input type='text' name='studioOptionPrice'>";
-								addTable += "<input type='hidden'  name='studioOptionType' value='1'>";
-								addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-								addTable += "</form></td></tr>";
-
-								var number = $('#rowThF').attr('rowspan');
-
-								$('#rowThS').attr('rowspan', number + 1);
-
-								$('#studioOptionTable1').append(addTable);
-
-							});
-			$('#addList2')
-					.click(
-							function() {
-
-								var addTable = "";
-								var studioNo = $
-								{
-									studio.studioNo
-								}
-								;
-								addTable += "<tr class='ssnap'><td><form action='/studioOptionAdd.do' method='post'> <input type='text' value='' name='studioOption'><button type='submit'>추가</button> ";
-								addTable += "<input type='text' name='studioOptionPrice'>";
-								addTable += "<input type='hidden'  name='studioOptionType' value='2'>";
-								addTable += "<input type='hidden' name='studioNo' value='"+studioNo+"'>";
-								addTable += "</form></td></tr>";
-
-								var number = $('#rowThF').attr('rowspan');
-
-								$('#rowThT').attr('rowspan', number + 1);
-
-								$('#studioOptionTable2').append(addTable);
-
-							});
-
+		
 			<!--전체삭제-->
 			$('#selectList0').click(function() {
 				var type = 0;
@@ -475,59 +425,6 @@
 				})
 			});
 
-			$('#selectList1').click(function() {
-				var type = 1;
-				var no = $('#no').val();
-				$.ajax({
-					url : "/deleteStudioOption.do",
-					data : {
-						type : type,
-						no : no
-					},
-					type : "get",
-					success : function(data) {
-
-						if (data > 0) {
-							alert("전체삭제성공");
-							console.log("삭제성공");
-							$('.ssnap').remove();
-
-						} else {
-							console.log("삭제실패")
-
-						}
-					},
-					error : function() {
-						console.log("ajax실패")
-
-					}
-
-				})
-
-			});
-			$('#selectList2').click(function() {
-				var type = 2;
-				var no = $('#no').val();
-				$.ajax({
-					url : "/deleteStudioOption.do",
-					data : {
-						type : type,
-						no : no
-					},
-					dataType : 'text',
-					type : "get",
-					success : function(data) {
-						alert("전체삭제성공");
-						console.log("삭제성공")
-						$('.tsnap').remove();
-					},
-					error : function() {
-						console.log("ajax실패")
-					}
-
-				})
-
-			});
 		</script>
 		<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 		<script>

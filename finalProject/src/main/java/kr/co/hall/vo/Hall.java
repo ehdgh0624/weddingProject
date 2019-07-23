@@ -32,6 +32,14 @@ public class Hall {
 	private String hallLatitude;// 웨딩홀 위도
 	private String hallLongtitude;// 웨딩홀 경도
 	private Date hallDate;
+	private String hallTelFi;
+	private String hallTelSe;
+	private String hallTelth;
+	private String postNum;
+	private String roadAddr;
+	private String jibunAddr;
+	private String extraAddr;
+	private String detailAddr;
 
 	public Hall() {
 		super();
@@ -306,6 +314,82 @@ public class Hall {
 
 	public void setHallDate(Date hallDate) {
 		this.hallDate = hallDate;
+	}
+
+
+	
+	public int getHallScope() {
+		return hallScope;
+	}
+
+	public void setHallScope(int hallScope) {
+		this.hallScope = hallScope;
+	}
+
+
+
+	public String getHallTelFi() {
+		return hallTelFi;
+	}
+
+	public void setHallTelFi(String hallTelFi) {
+		this.hallTelFi = hallTelFi;
+	}
+
+	public String getHallTelSe() {
+		return hallTelSe;
+	}
+
+	public void setHallTelSe(String hallTelSe) {
+		this.hallTelSe = hallTelSe;
+	}
+
+	public String getHallTelth() {
+		return hallTelth;
+	}
+
+	public void setHallTelth(String hallTelth) {
+		this.hallTelth = hallTelth;
+	}
+
+	public String getPostNum() {
+		return postNum;
+	}
+
+	public void setPostNum(String postNum) {
+		this.postNum = postNum;
+	}
+
+	public String getRoadAddr() {
+		return roadAddr;
+	}
+
+	public void setRoadAddr(String roadAddr) {
+		this.roadAddr = roadAddr;
+	}
+
+	public String getJibunAddr() {
+		return jibunAddr;
+	}
+
+	public void setJibunAddr(String jibunAddr) {
+		this.jibunAddr = jibunAddr;
+	}
+
+	public String getExtraAddr() {
+		return extraAddr;
+	}
+
+	public void setExtraAddr(String extraAddr) {
+		this.extraAddr = extraAddr;
+	}
+
+	public String getDetailAddr() {
+		return detailAddr;
+	}
+
+	public void setDetailAddr(String detailAddr) {
+		this.detailAddr = detailAddr;
 	}
 
 	@Override
