@@ -64,17 +64,15 @@
 			<div class="view-gallery-slide">
 			<!-- 큰 이미지 영역 -->
 			<ul class="view-big-gallery-list slider-for">
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
+                <c:forEach items="${galleryList }" var="g">
+                    <li><img src="/resources/goods/${g.filepath }"></li>
+                </c:forEach>
 			</ul>
 			<!-- 작은 이미지 영역 -->
 			<ul class="view-small-gallery-list slider-nav">
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
-				<li><img src="/resources/img/test_img2.jpg"></li>
+				<c:forEach items="${galleryList }" var="g">
+                    <li><img src="/resources/goods/${g.filepath }"></li>
+                </c:forEach>
 			</ul>
 		</div>
 			<!-- 사진 carousel 끝 -->
@@ -228,7 +226,7 @@
 
 					<br> <br> <br>
 					<!-- 리뷰 출력 -->
-					<h2>후기 및 Q&A</h2>
+					<h2>후기 및 Q&A ${hall.memberId }</h2>
 					<hr>
 					<div style="text-align: center;">
 						<span style="color:orange;font-size: 80px;vertical-align: middle;margin-right:30px;">${hall.scope/2}</span>
@@ -678,6 +676,7 @@
 		var code = "H";		//고유코드
 		var prdNo = ${hall.hallNo};		//고유번호
 		var prdId = '${hall.memberId}';
+// 		var prdId = 'test1';
 		var prdName = '${hall.hallName}';//아이디 이름
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/'); // 예약 날짜
 		var weddingTime = $('#hallTime').val();	//예약 시간
