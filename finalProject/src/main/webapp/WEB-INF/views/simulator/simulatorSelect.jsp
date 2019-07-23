@@ -326,7 +326,7 @@ function hall_more(start){
 					html += "<p class='simulator-select-list-addr' value="+h[j].hallAddr+">"+h[j].hallAddr+"</p>";
 					html += "<p class='simulator-select-list-price' value="+h[j].hallPrice+">평균 <b>"+h[j].hallPrice+"</b><em>"+h[j].hallPrice+"</em> 원</p>";
 					html += "<p class='simulator-select-list-tag' value="+h[j].hallTag+">"+h[j].hallTag+"</p></div>";
-					html += "<div class='simulator-select-btn-group'><a href='' class='btn-1'>상세 보기</a><button class='btn-2 hall-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
+					html += "<div class='simulator-select-btn-group'><a href='/hallView.do?hallNo="+h[j].hallNo+"' class='btn-1'>상세 보기</a><button class='btn-2 hall-select' onclick='cart_click(this)'>맘에 들어!</button></div>";
 					console.log(h.length);
 				}
 			}

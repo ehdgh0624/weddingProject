@@ -101,16 +101,16 @@
 				<!-- 큰 이미지 영역 -->
 				<ul class="view-big-gallery-list slider-for">
 					<li><img src="/resources/goods/${goods.goodsFilePath }"></li>
-				<c:forEach items="${galleryList }" var="g">
-					<li><img src="/resources/goods/${g.filepath }"></li>
-				</c:forEach>
+					<c:forEach items="${galleryList }" var="g">
+						<li><img src="/resources/goods/${g.filepath }"></li>
+					</c:forEach>
 				</ul>
 				<!-- 작은 이미지 영역 -->
 				<ul class="view-small-gallery-list slider-nav">
 					<li><img src="/resources/goods/${goods.goodsFilePath }"></li>
-				<c:forEach items="${galleryList }" var="g">
-					<li><img src="/resources/goods/${g.filepath }"></li>
-				</c:forEach>
+					<c:forEach items="${galleryList }" var="g">
+						<li><img src="/resources/goods/${g.filepath }"></li>
+					</c:forEach>
 				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
@@ -691,8 +691,8 @@
 		if($('#memberPhoneSelect').prop("checked") == true){			
 			var memberPhone = '${sessionScope.member.phone}';				//세션으로부터 회원 연락처를 받아 변수에 저장
 			$('#receivePhone1').val(memberPhone.substring(0,3));			//연락처 input에 회원 연락처 앞번호가 세팅됨
-			$('#receivePhone2').val(memberPhone.substring(3,7));			//연락처 input에 회원 연락처 가운데 번호가 세팅됨
-			$('#receivePhone3').val(memberPhone.substring(7,11));			//연락처 input에 회원 연락처 마지막 번호가 세팅됨
+			$('#receivePhone2').val(memberPhone.substring(4,8));			//연락처 input에 회원 연락처 가운데 번호가 세팅됨
+			$('#receivePhone3').val(memberPhone.substring(9,13));			//연락처 input에 회원 연락처 마지막 번호가 세팅됨
 			$('#receivePhone1').prop('readonly',true);						//수령인 input 수정 불가 설정
 			$('#receivePhone2').prop('readonly',true);						//수령인 input 수정 불가 설정
 			$('#receivePhone3').prop('readonly',true);						//수령인 input 수정 불가 설정
@@ -784,8 +784,8 @@
 						$('#receiveName').prop('readonly',true);						//수령인 input 수정 불가 설정
 						var memberPhone = '${sessionScope.member.phone}';				//세션으로부터 회원 연락처를 받아 변수에 저장
 						$('#receivePhone1').val(memberPhone.substring(0,3));			//연락처 input에 회원 연락처 앞번호가 세팅됨
-						$('#receivePhone2').val(memberPhone.substring(3,7));			//연락처 input에 회원 연락처 가운데 번호가 세팅됨
-						$('#receivePhone3').val(memberPhone.substring(7,11));			//연락처 input에 회원 연락처 마지막 번호가 세팅됨
+						$('#receivePhone2').val(memberPhone.substring(4,8));			//연락처 input에 회원 연락처 가운데 번호가 세팅됨
+						$('#receivePhone3').val(memberPhone.substring(9,13));			//연락처 input에 회원 연락처 마지막 번호가 세팅됨
 						$('#receivePhone1').prop('readonly',true);						//수령인 input 수정 불가 설정
 						$('#receivePhone2').prop('readonly',true);						//수령인 input 수정 불가 설정
 						$('#receivePhone3').prop('readonly',true);						//수령인 input 수정 불가 설정

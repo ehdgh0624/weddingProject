@@ -62,8 +62,8 @@ public class HallDao {
 		map.put("msg", msg);
 		return sqlSession.selectList("hall.hallPc",map);
 	}
-	public int totalCountPc() {
-		int count = sqlSession.selectOne("hall.countPc");
+	public int totalCountPc(String msg) {
+		int count = sqlSession.selectOne("hall.countPc",msg);
 		return count;
 	}
 	public Hall selectOneHall(int hallNo) {
@@ -147,6 +147,12 @@ public class HallDao {
 		map.put("code", code);
 		List<Reservation> list = sqlSession.selectList("reservation.selectOneReservation",map);
 		return (ArrayList<Reservation>) list;
+	}
+	public int selectScrapCount(int objectNo, String code) {
+		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("objectNo", objectNo);
+		map.put("code", code);
+		return sqlSession.selectOne("scrapbook.selectScrapCount",map);
 	}
 	
 }

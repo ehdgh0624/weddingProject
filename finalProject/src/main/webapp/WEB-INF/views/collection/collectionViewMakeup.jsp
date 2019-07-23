@@ -92,18 +92,32 @@
 			<div class="view-gallery-slide">
 				<!-- 큰 이미지 영역 -->
 				<ul class="view-big-gallery-list slider-for">
+					<li><img src="/resources/makeup/${makeup.makeupFilepath }"></li>
+					<c:forEach items="${galleryList }" var="g">
+						<li><img src="/resources/makeup/${g.filepath }"></li>
+					</c:forEach>
+				</ul>
+				<!-- 작은 이미지 영역 -->
+				<ul class="view-small-gallery-list slider-nav">
+					<li><img src="/resources/makeup/${makeup.makeupFilepath }"></li>
+					<c:forEach items="${galleryList }" var="g">
+						<li><img src="/resources/makeup/${g.filepath }"></li>
+					</c:forEach>
+				</ul>
+<!-- 				큰 이미지 영역
+				<ul class="view-big-gallery-list slider-for">
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
 				</ul>
-				<!-- 작은 이미지 영역 -->
+				작은 이미지 영역
 				<ul class="view-small-gallery-list slider-nav">
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
 					<li><img src="/resources/img/test_img2.jpg"></li>
-				</ul>
+				</ul> -->
 			</div>
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>

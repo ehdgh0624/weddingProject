@@ -37,8 +37,7 @@
   	select count(*) from qna
   </select>
   <select id="qnaAllList" parameterType="map" resultType="qna">
-  	select 
-  		rnum as rnum,
+  	select rnum as rnum,
   		qna_no as qnaNo,
   		qna_title as qnaTitle,
   		qna_Content as qnaContent,
@@ -49,8 +48,7 @@
   		qna_category as qnaCategory,
   		qna_answer as qnaAnswer,
   		qna_Answer_Date as qnaAnswerDate,
-  		qna_Status as qnaStatus
-  		from (select rownum as rnum ,q.* from (select * from qna order by qna_No )q) where rnum between #{start} and #{end} order by rnum desc
+  		qna_status as qnaStatus from (select rownum as rn ,a.* from (select rownum as rnum ,q.* from (select * from qna order by qna_No )q order by rnum desc)a ) where rn between #{start} and #{end}
   
   </select>
   <select id="selectOneQna" parameterType="_int" resultType="qna">
