@@ -426,7 +426,7 @@ $('#finalSubmit').click(function(){
 		$('#hallMaxPerson').val('0');
 		$("#hallFoodmenu").val('0');
 		$("#hallFoodprice").val('0');
-		$("#hallprice").val('0');
+		$("#hallPrice").val('0');
 	};
 	if($('#studioOptionName').val('')==""||$('#studioOptionprice').val()==""){
 		$('#studioOptionprice').val('0');
