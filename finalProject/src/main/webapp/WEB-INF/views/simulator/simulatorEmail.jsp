@@ -55,10 +55,10 @@ $(document).ready(function(){//
 								<dt>
 									<div class="simulator-info-img">
 								<c:choose>
-									<c:when test="${slist.code eq 'H' }"><span style="background:#f5f5f5 url(/resources/hall/${slist.prdFilepath }) no-repeat center center; background-size:cover;"></span></c:when>
-									<c:when test="${slist.code eq 'D' }"><span style="background:#f5f5f5 url(/resources/dress/${slist.prdFilepath }) no-repeat center center; background-size:cover;"></span></c:when>
-									<c:when test="${slist.code eq 'M' }"><span style="background:#f5f5f5 url(/resources/makeup/${slist.prdFilepath }) no-repeat center center; background-size:cover;"></span></c:when>
-									<c:when test="${slist.code eq 'S' }"><span style="background:#f5f5f5 url(/resources/studio/${slist.prdFilepath }) no-repeat center center; background-size:cover;"></span></c:when>
+									<c:when test="${slist.code eq 'H' }"><span style="background:#f5f5f5 url('/resources/hall/${slist.prdFilepath }') no-repeat center center; background-size:cover;"></span></c:when>
+									<c:when test="${slist.code eq 'D' }"><span style="background:#f5f5f5 url('/resources/dress/${slist.prdFilepath }') no-repeat center center; background-size:cover;"></span></c:when>
+									<c:when test="${slist.code eq 'M' }"><span style="background:#f5f5f5 url('/resources/makeup/${slist.prdFilepath }') no-repeat center center; background-size:cover;"></span></c:when>
+									<c:when test="${slist.code eq 'S' }"><span style="background:#f5f5f5 url('/resources/studio/${slist.prdFilepath }') no-repeat center center; background-size:cover;"></span></c:when>
 								</c:choose>
 									</div>
 								</dt>

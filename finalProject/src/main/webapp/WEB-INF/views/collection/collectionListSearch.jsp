@@ -109,7 +109,12 @@
 									<a href="/collectionView.do?code=${c.code}&objectNo=${c.objectNo}">
 								</c:otherwise>
 							</c:choose>			
-								<img src="${c.filePath}"class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+								<c:choose>
+									<c:when test="${slist.code eq 'H' }"><img src="/resources/hall/${c.filePath}"class="thumbnail-size"></c:when>
+									<c:when test="${slist.code eq 'D' }"><img src="/resources/dress/${c.filePath}"class="thumbnail-size"></c:when>
+									<c:when test="${slist.code eq 'M' }"><img src="/resources/makeup/${c.filePath}"class="thumbnail-size"></c:when>
+									<c:when test="${slist.code eq 'S' }"><img src="/resources/studio/${c.filePath}"class="thumbnail-size"></c:when>
+								</c:choose>
 							</a>
 							<div class="photo-padding">
 								<c:choose>
