@@ -247,6 +247,10 @@
 									</th>
 								</tr>
 								<tr>
+									<th>웨딩홀 기본가격</th>
+									<th><input type="number" name="hallPrice" value=""></th>
+								</tr>
+								<tr>
 									<th>웨딩홀 음식메뉴</th>
 									<th><input type="text" name="hallFoodmenu" value="" id="hallFoodmenu"></th>
 								</tr>
