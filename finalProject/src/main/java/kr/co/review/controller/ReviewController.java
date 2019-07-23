@@ -134,4 +134,22 @@ public class ReviewController {
 		int scopeResult = reviewService.deleteScope(code, objectNo, reviewScope, reviewCount, reviewSum);			
 		return scopeResult;
 	}
+	
+	@ResponseBody
+	@RequestMapping("/deleteInsertReview.do")
+	public int updateReview(HttpSession session, @RequestParam int reviewNo, @RequestParam int objectNo, @RequestParam String code, @RequestParam int reviewScope, @RequestParam int newReviewScope, @RequestParam String reviewContent) {
+		ArrayList<Review> reviewList = reviewService.selectCountReview(code, objectNo);
+		int reviewCount = 0;
+		int reviewSum = 0;
+		if (!reviewList.isEmpty()) {
+			reviewCount = reviewList.size();
+			for (Review i : reviewList) {
+				reviewSum += i.getReviewScope();
+			}
+		}
+		int result = reviewService.updateReview(reviewNo, reviewContent.replace("<", "&lt;").replace(">", "&gt;").replace(" ", "&nbsp;")
+				.replace("\"", "&quot;").replace("\r\n", "<br>").replace("\n", "<br>"),newReviewScope);
+		int scopeResult = reviewService.deleteInsertScope(code, objectNo, reviewScope, reviewCount, reviewSum, newReviewScope);
+		return scopeResult;
+	}
 }
