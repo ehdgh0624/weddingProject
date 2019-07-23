@@ -389,7 +389,7 @@
 						<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 								<c:set var="msg" value="${fn:split(item,'#')}" />
-								<a href="/hallPc.do?keyword=${msg[0]}">${item}</a>
+								<a href="/hallPc.do?msg=${msg[0]}">${item}</a>
 							</c:if>
 						</c:forEach>
 					</div>
