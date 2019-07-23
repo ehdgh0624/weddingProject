@@ -154,7 +154,7 @@
 				<!-- <button>추가</button> -->
 				<form action="/saveGallery.do" method="post"
 					enctype="multipart/form-data">
-					<table class="comm-tbl" id="gall">
+					<table class="comm-tbl type2" id="gall">
 						<colgroup>
 							<col width="20%">
 							<col width="/">
@@ -249,7 +249,7 @@
 			var count = 0;
 			$('#addGallery').click(function() {
 								count = count +1;
-								var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
+								var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
 								addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 								addTable += "<td><span class='imgDelete'>삭제</span></td>";
 								addTable += "<tr>";

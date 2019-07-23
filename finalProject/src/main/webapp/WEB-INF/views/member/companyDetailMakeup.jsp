@@ -117,7 +117,7 @@
 					<!-- <button>추가</button> -->
 					<form action="/saveGallery.do" method="post"
 						enctype="multipart/form-data">
-						<table class="comm-tbl" id="gall">
+						<table class="comm-tbl type2" id="gall">
 							<colgroup>
 								<col width="20%">
 								<col width="/">
@@ -177,7 +177,7 @@
 				.click(
 						function() {
 							count = count + 1;
-							var addTable = "<tr class='imgtr'><td></td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
+							var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
 							addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
 							addTable += "<td><span class='imgDelete'>삭제</span></td>";
 							addTable += "<tr>";
@@ -350,6 +350,23 @@
 				}
 			} else {
 				$(f).parent().parent().next().children('.img-view').attr('src', "");
+			}
+		}
+		
+		function chk_file_type(obj) {
+			var file_kind = obj.value.lastIndexOf('.');
+			var file_name = obj.value.substring(file_kind + 1, obj.length);
+			var file_type = file_name.toLowerCase();
+
+			var check = new Array();
+			check = [ 'jpg', 'gif', 'png', 'jpeg', 'bmp', 'jfif' ];
+
+			if (check.indexOf(file_type) == -1) {
+				alert("등록 할 수 없는 파일명 입니다.");
+				$(obj).val("");
+				return false;
+			} else {
+				return true;
 			}
 		}
 	</script>
