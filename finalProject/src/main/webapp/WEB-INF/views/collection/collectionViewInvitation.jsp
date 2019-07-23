@@ -296,11 +296,11 @@
 								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>
 								</div>
-								<div style="width:90%;display: inline-block;">
+								<div class="printReviewGroup" style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
 									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
-										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="goodsScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a class="updateReview" style="cursor: pointer;">수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="goodsScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
 									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
@@ -484,6 +484,56 @@
 	</div>
 </section>
 <script>
+
+	/* 리뷰 수정 */
+	$(document).on("click",".updateReview",function(){
+		if($(this).parents('.printReviewGroup').find('.printReviewContent').val() == ''){
+			$('.printReviewGroup').find('textarea').contents().unwrap();
+			$('.printReviewGroup').find('.updateScope').hide();
+			$('.printReviewGroup').find('.updateScope').css('display','none');
+			$('.updateSubmit').remove();
+			
+			$(this).parents('.printReviewGroup').find('.printReviewContent').wrap('<textarea class="printReviewContentArea" style="width:100%;height:150px;">'+$(this).parents('.printReviewGroup').find('.printReviewContent').html().replace(/<br>/gi, "\n")+'</textarea>');
+			$(this).parents('.printReviewGroup').find('.updateScope').show();
+			$(this).parents('.printReviewGroup').find('.updateScope').css('display','inline-block');
+			$(this).parents('.printReviewGroup').find('.updateScope').after('<a class="updateSubmit" style="float:right;cursor:pointer;">수정완료</a>');
+		}
+	});
+	$(document).on("click",".updateSubmit",function(){
+		var selectParents = $(this).parents('.reviewGroup');
+		var reviewNo = parseInt(selectParents.attr('id'));
+		var objectNo = ${goods.goodsNo};
+		var code = "G";
+		var reviewScope = parseInt($(this).siblings(".reviewUpdateGroup").find('.goodsScopeSpan').text());
+		var newReviewScope = $(this).siblings('.updateScope').find('.updateStarScore').text() * 2;
+		var reviewContent = $(this).siblings('.printReviewContentArea').val();
+		if(reviewContent == ""){
+			alert("리뷰를 입력해주세요.");
+		}else{
+			$.ajax({
+				url : "/deleteInsertReview.do",
+				type : "post",
+				data : {reviewNo:reviewNo, objectNo:objectNo, code:code, reviewScope:reviewScope, newReviewScope:newReviewScope,reviewContent:reviewContent},
+				success : function(data){
+					if(data > 0){
+						alert("후기를 수정했습니다.");
+						location.reload();
+					}else{
+						alert("후기를 수정할 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				},
+				error : function(){
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});					
+		}
+	});
+	/* 리뷰 수정 끝 */
+
+
+
+
+
 	/* 리뷰 삭제 */
 	$(document).on("click",".deleteReview",function(){
 		var selectParents = $(this).parents('.reviewGroup');
@@ -582,6 +632,15 @@
 	}
 	/* 총평 별점 위에 마우스 over 시 별점 바뀜 */
 
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+	function updateReviewScopeStar(scopeStar){
+		$('.updateReviewScopeStar').prop("src","/resources/img/scope-star/scope-star"+scopeStar+".png");
+		$('.updateStarScore').text(scopeStar/2);
+	}
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+
+	
+	
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
 		var reviewOn = ${reviewOn};
@@ -809,7 +868,6 @@
 		if($('#option3 option:selected').val() != 'default'){
 			allPrice += parseInt($('#option3 option:selected').val());
 		}
-		console.log($('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("(")));
 		$('#allPrice').text(allPrice);
 	});
 	/* 옵션 select 박스 change 시 가격 변경 끝 */	

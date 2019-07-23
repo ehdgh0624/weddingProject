@@ -19,6 +19,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 
 import kr.co.android.model.service.AndroidService;
@@ -41,7 +42,7 @@ public class AndroidController {
 	
 	@RequestMapping(value = "/oneTimeLogin.do")
 	@ResponseBody
-	public Map<String, Object> oneTimeLogin(HttpServletRequest request) {
+	public String oneTimeLogin(HttpServletRequest request) {
 		String memberId=request.getParameter("id");
 		String memberPw= request.getParameter("pw");
 		
@@ -74,7 +75,7 @@ public class AndroidController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("number",number);
-		return map;
+		return number;
 	}
 	
 	@RequestMapping(value = "/android2.do")
@@ -85,7 +86,7 @@ public class AndroidController {
 		
 		Member m =androidService.login(memberId,memberPw);
 		
-		
+	
 		Map<String, Object> result = new HashMap<String, Object>();
 		if(m==null) {
 			result.put("memberName","로그인실패");
@@ -99,9 +100,11 @@ public class AndroidController {
 			result.put("birthDay", m.getBirthDay());
 			result.put("email", m.getEmail());
 			result.put("addr", m.getAddr());
-			result.put("marrySchedule", m.getMarrySchedule().toString());
-			result.put("expectVisitor", m.getExpectVisitor());
-			result.put("budget", m.getBudget());
+			if(m.getMarrySchedule()!=null) {
+				result.put("marrySchedule", m.getMarrySchedule().toString());
+				result.put("expectVisitor", m.getExpectVisitor());
+				result.put("budget", m.getBudget());
+			}
 			result.put("memberCode", m.getMemberCode());
 		}
 		
@@ -112,32 +115,27 @@ public class AndroidController {
 		return result;
 	}
 	
-	@RequestMapping(value = "/androidGetReservation.do")
+	@RequestMapping(value = "/androidGetReservation.do", produces="text/plain;charset=utf-8")
 	@ResponseBody
-	public Map<String, Object> androidGetReserVation(HttpServletRequest request) {
+	public String androidGetReserVation(HttpServletRequest request) {
 		String memberId=request.getParameter("id");
-		
 		System.out.println("접근중:"+memberId);
 		ArrayList<Reservation> List = (ArrayList<Reservation>)androidService.getReservation(memberId);
-		
-		
-		
-		Map<String, Object> result = new HashMap<String, Object>();
 
+		Map<String, Object> result = new HashMap<String, Object>();
 		ReservationList rlist = new ReservationList();
-		
 		rlist.setList(List);
-		
 		
 		Gson gson = new Gson();
 		String msg = gson.toJson(rlist);
+		
 		result.put("result", msg);
-		System.out.println(result);
+		System.out.println(msg);
 		
 		
 		
 		
-		return result;
+		return msg;
 	}
 	
 	
