@@ -76,7 +76,7 @@
 								<c:choose>
 									<c:when test="${not empty scrapbook}">
 										<button class="scrapStar" id="${goods.goodsNo}" name="${goods.code}">
-											<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+											<img src="/resources/img/${goods.goodsFilePath }" style="width: 30px; height: 30px;">
 										</button>
 									</c:when>
 									<c:otherwise>
@@ -99,17 +99,15 @@
 			<div class="view-gallery-slide">
 				<!-- 큰 이미지 영역 -->
 				<ul class="view-big-gallery-list slider-for">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
+				<c:forEach items="${galleryList }" var="g">
+					<li><img src="/resources/goods/${g.filepath }"></li>
+				</c:forEach>
 				</ul>
 				<!-- 작은 이미지 영역 -->
 				<ul class="view-small-gallery-list slider-nav">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
+				<c:forEach items="${galleryList }" var="g">
+					<li><img src="/resources/goods/${g.filepath }"></li>
+				</c:forEach>
 				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
