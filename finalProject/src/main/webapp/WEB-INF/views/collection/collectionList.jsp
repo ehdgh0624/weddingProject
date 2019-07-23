@@ -319,7 +319,7 @@
 				<c:forEach items="${pd.gList}" var="g" varStatus="i">
 					<div class="photolist">
 						<a href="/collectionView.do?code=${g.goodsType}&objectNo=${g.goodsNo}">
-							<img src="${g.goodsFilePath}" class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
+							<img src="/resources/goods/${g.goodsFilePath}" class="thumbnail-size">		<!-- 이미지 경로에서 불러올 예정 -->
 						</a>
 						<div class="photo-padding">
 							<a href="/collectionView.do?code=${g.goodsType}&objectNo=${g.goodsNo}" class="photolist-prdName">${g.goodsName}</a>
@@ -332,14 +332,14 @@
 												<c:choose>
 													<c:when test="${g.goodsNo == scrap.prdNo}">		<!-- 현재페이지에 불러온 업체번호와 스크랩한 업체번호가 동일할 시 -->
 														<button class="scrapStar" id="${g.goodsNo}" name="${g.code}">
-															<img src="/resources/img/star_b2.png" class="photolist-scrapStar-size">			<!-- 노란 별 이미지를 띄우고 -->
+															<img src="/resources/goods/${g.goodsFilePath }" class="photolist-scrapStar-size">			<!-- 노란 별 이미지를 띄우고 -->
 														</button>
 														<c:set var="doneLoop" value="true"/> 										<!-- 루프를 중단함 -->
 													</c:when>
 													<c:otherwise>										<!-- 현재 페이지에 불러온 업체번호와 스크랩한 업체번호가 일치하지 않을 시 -->
 														<c:if test="${j.last}">							<!-- 마지막 루프까지 일치하는 번호가 없으면 -->
 															<button class="defaultStar" id="${g.goodsNo}" name="${g.code}">
-																<img src="/resources/img/star_b1.png" class="photolist-scrapStar-size">		<!-- 빈 별 이미지를 띄움 -->
+																<img src="/resources/goods/${g.goodsFilePath }" class="photolist-scrapStar-size">		<!-- 빈 별 이미지를 띄움 -->
 															</button>
 														</c:if>
 													</c:otherwise>

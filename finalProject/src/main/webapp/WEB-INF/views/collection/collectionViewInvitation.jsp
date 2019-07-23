@@ -35,6 +35,7 @@
 		  slidesToShow: 4,
 		  slidesToScroll: 1,
 		  asNavFor: '.slider-for',
+		  arrows: false,
 		  dots: false,
 		  centerMode: false,
 		  focusOnSelect: true
@@ -99,12 +100,14 @@
 			<div class="view-gallery-slide">
 				<!-- 큰 이미지 영역 -->
 				<ul class="view-big-gallery-list slider-for">
+					<li><img src="/resources/goods/${goods.goodsFilePath }"></li>
 				<c:forEach items="${galleryList }" var="g">
 					<li><img src="/resources/goods/${g.filepath }"></li>
 				</c:forEach>
 				</ul>
 				<!-- 작은 이미지 영역 -->
 				<ul class="view-small-gallery-list slider-nav">
+					<li><img src="/resources/goods/${goods.goodsFilePath }"></li>
 				<c:forEach items="${galleryList }" var="g">
 					<li><img src="/resources/goods/${g.filepath }"></li>
 				</c:forEach>
