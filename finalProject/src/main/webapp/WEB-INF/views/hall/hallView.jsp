@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%--  Header --%>
 <jsp:include page="/WEB-INF/common/header.jsp" />
+<%--  Header --%>
+<jsp:include page="/WEB-INF/common/sub.jsp" />
 
 <link href="dist/css/datepicker.min.css" rel="stylesheet"
 	type="text/css">

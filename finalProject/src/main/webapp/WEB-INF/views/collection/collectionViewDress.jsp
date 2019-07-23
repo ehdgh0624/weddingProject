@@ -92,17 +92,37 @@
 			<div class="view-gallery-slide">
 				<!-- 큰 이미지 영역 -->
 				<ul class="view-big-gallery-list slider-for">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
+					<c:choose>
+						<c:when test="${not empty dress.dressFilepath}">
+							<li><img src="/resources/dress/${dress.dressFilepath }"></li>
+							<c:forEach items="${galleryList }" var="g">
+								<li><img src="/resources/dress/${g.filepath }"></li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 				<!-- 작은 이미지 영역 -->
 				<ul class="view-small-gallery-list slider-nav">
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
-					<li><img src="/resources/img/test_img2.jpg"></li>
+					<c:choose>
+						<c:when test="${not empty dress.dressFilepath}">
+							<li><img src="/resources/dress/${dress.dressFilepath }"></li>
+							<c:forEach items="${galleryList }" var="g">
+								<li><img src="/resources/dress/${g.filepath }"></li>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+							<li><img src="/resources/img/noimg.jpg"></li>
+						</c:otherwise>
+					</c:choose>
 				</ul>
 			</div>
 			<!-- 사진 carousel 끝 -->
