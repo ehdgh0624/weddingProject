@@ -111,10 +111,19 @@ public class SimulatorController {
 	@ResponseBody
 	@RequestMapping(value = "/hallMore.do", produces="text/html;charset=utf-8")
 	public String hallMore(HttpServletResponse response, @RequestParam String start, @RequestParam String weddingLoc, @RequestParam String weddingDate, @RequestParam String weddingPerson) {
+		String [] arr;
+		String addr1 = "";
+		String addr2 = "";
 		int Start = Integer.parseInt(start);
+		
 		Simulator simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 		ArrayList<Hall> hList = simulatorService.hSearchList(simulator, Start);
-		
+		for(int i =0;i<hList.size();i++) {
+			arr = hList.get(i).getHallAddr().split(" ");
+			addr1 = arr[0];
+			addr2 = arr[1];
+			hList.get(i).setHallAddr(addr1+" "+addr2);
+		}
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject obj = new JSONObject();
 		obj.put("hList", hList);
@@ -129,7 +138,15 @@ public class SimulatorController {
 		int Start = Integer.parseInt(start);
 		Simulator simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 		ArrayList<Dress> dList = simulatorService.dSearchList(simulator, Start);
-		
+		String [] arr;
+		String addr1 = "";
+		String addr2 = "";
+		for(int i =0;i<dList.size();i++) {
+			arr = dList.get(i).getDressAddr().split(" ");
+			addr1 = arr[0];
+			addr2 = arr[1];
+			dList.get(i).setDressAddr(addr1+" "+addr2);
+		}
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject obj = new JSONObject();
 		obj.put("dList", dList);
@@ -144,6 +161,15 @@ public class SimulatorController {
 		int Start = Integer.parseInt(start);
 		Simulator simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 		ArrayList<Makeup> mList = simulatorService.mSearchList(simulator, Start);
+		String [] arr;
+		String addr1 = "";
+		String addr2 = "";
+		for(int i =0;i<mList.size();i++) {
+			arr = mList.get(i).getMakeupAddr().split(" ");
+			addr1 = arr[0];
+			addr2 = arr[1];
+			mList.get(i).setMakeupAddr(addr1+" "+addr2);
+		}
 		
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject obj = new JSONObject();
@@ -159,7 +185,15 @@ public class SimulatorController {
 		int Start = Integer.parseInt(start);
 		Simulator simulator = new Simulator(0,null,weddingDate,weddingLoc,Integer.parseInt(weddingPerson),0,null);
 		ArrayList<Studio> stList = simulatorService.stSearchList(simulator, Start);
-		
+		String [] arr;
+		String addr1 = "";
+		String addr2 = "";
+		for(int i =0;i<stList.size();i++) {
+			arr = stList.get(i).getStudioAddr().split(" ");
+			addr1 = arr[0];
+			addr2 = arr[1];
+			stList.get(i).setStudioAddr(addr1+" "+addr2);
+		}
 		response.setContentType("application/json; charset=utf-8");
 		JSONObject obj = new JSONObject();
 		obj.put("stList", stList);

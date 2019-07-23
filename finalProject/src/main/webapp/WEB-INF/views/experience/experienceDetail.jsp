@@ -63,7 +63,7 @@
 			<div class="common-tbl-btn-group clearfix" style="margin-bottom:20px;">
 				<button class="fr btn-style3 small" onclick="deleteEx('${experience.e.experienceNo}')">삭제</button>
 				<button class="fr btn-style2 small" onclick="updateEx('${experience.e.experienceNo}')">수정</button>
-				<button class="fr btn-style1 small" onclick="/experienceAllList.do?reqPage=1">목록으로</button>
+				<button class="fr btn-style1 small" onclick="home()">목록으로</button>
 			</div>
 		</c:if>
 		<h2 class="main-comm-tit type2">댓글</h2>
@@ -200,7 +200,10 @@
 
 <script type="text/javascript">
 	
-	
+	function home() {
+		location.href="/experienceAllList.do?reqPage=1";
+		
+	}
 	function deleteEx(experienceNo) {
 		
 		location.href="/exDelete.do?experienceNo="+experienceNo;
