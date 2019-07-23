@@ -136,7 +136,7 @@
 								<c:if test="${not empty galleryList }">
 									<c:forEach items="${galleryList }" var="s" varStatus="i">
 										<tr>
-											<td>${i.count }</td>
+											<td class="re">${i.count }</td>
 											<td><span>${s.filename }</span></td>
 											<td><img src="/resources/dress/${s.filepath }"
 												style="width: 300px; height: 300px"></td>
@@ -175,7 +175,12 @@
 
 
 	<script>
-		var count = 0;
+	var count;
+	if($(".type2").children('tbody').children().children().is(".re")){
+		 count = parseInt($(".re").last().html());
+	}else{
+		count = 0;
+	}
 		$('#addGallery').click(function() {
 							count = count + 1;
 							var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' class='filename' onchange='chk(this)' name='filename'></label></td>";

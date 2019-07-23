@@ -535,9 +535,8 @@ public class AdminController {
 	public String goodsUpdatePage(HttpServletRequest request, Model model) {
 		HttpSession session = request.getSession(false);
 		int goodsNo = Integer.parseInt(request.getParameter("goodsNo"));
-		String code = request.getParameter("code");
+		String code = "G";
 		System.out.println(goodsNo +"con");
-		System.out.println(code +"con");
 		if (session != null && (Member) session.getAttribute("member") != null) {
 			Member m = (Member) session.getAttribute("member");
 			if (m.getMemberCode().equals("2")) {

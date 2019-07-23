@@ -15,7 +15,7 @@
 	</div>
 
 	<div id="myPageContainer" class="clearfix area">
-		<h1>상품수정</h1>
+		<h1>상품수정 </h1>
 		<br>
 		<form action="/goodsUpdate.do" method="post"
 			enctype="multipart/form-data">
@@ -110,12 +110,12 @@
 							<th>미리보기</th>
 							<th>삭제</th>
 						</tr>
-						<c:if test="${not empty galleryList }">
-							<c:forEach items="${galleryList }" var="s" varStatus="i">
-								<tr>
-									<td>${i.count }</td>
+						<c:if test="${not empty gallery }">
+							<c:forEach items="${gallery }" var="s" varStatus="i">
+								<tr >
+									<td class="re">${i.count }</td>
 									<td><span>${s.filename }</span></td>
-									<td><img src="${s.filepath }"
+									<td><img src="/resources/goods/${s.filepath }"
 										style="width: 300px; height: 300px"></td>
 									<td><input type="hidden" value="${s.filepath }"
 										class="oldpath">
@@ -124,14 +124,14 @@
 								</tr>
 							</c:forEach>
 						</c:if>
-						<c:if test="${empty galleryList }">
+						<c:if test="${empty gallery }">
 							<tr class="list-none">
 								<td colspan="4"><p class="none small">사진 내역이 없습니다.</p></td>
 							</tr>
 						</c:if>
 					</table>
-					<input type="hidden" value="${studio.studioNo }" name="prdNo">
-					<input type="hidden" value="S" name="code">
+					<input type="hidden" value="${g.goodsNo }" name="prdNo">
+						<input type="hidden" value="G" name="code">
 					<div class="common-tbl-btn-group right">
 						<button type="submit" class="btn-style1 small" id="imgSub">저장</button>
 					</div>
@@ -148,7 +148,14 @@
 	<jsp:include page="/WEB-INF/common/footer.jsp" />
 </section>
 <script>
-	var count = 0;
+	var count;
+	if($(".type2").children('tbody').children().children().is(".re")){
+		 count = parseInt($(".re").last().html());
+	}else{
+		count = 0;
+	}
+	
+	
 	function loadImg(f) {
 		chk_file_type(f);
 		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
@@ -207,7 +214,11 @@
 				}
 			});
 	function imgDelete(tt) {
-		count = count - 1;
+		if(count<=0){
+			count = 0;
+		}else{
+			count = count - 1;
+		}
 		var filepath = $(tt).prev().val();
 		var code = "${g.goodsType}";
 		console.log(filepath);

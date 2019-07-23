@@ -287,9 +287,7 @@ public class MemberController {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
 		}else if(code.equals("H")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
-		}else if(code.equals("B")) {
-			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
-		}else if(code.equals("I")) {
+		}else if(code.equals("G")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		}
 		
@@ -328,8 +326,8 @@ public class MemberController {
 			gList.add(g);
 		}
 		int result=memberService.addGall(gList);
-		if(code.equals("B") || code.equals("I")) {
-			return "/admin/goodsCarePage";
+		if(code.equals("G")) {
+			return "redirect:/goodsCare.do";
 		}else {
 			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
 		}
