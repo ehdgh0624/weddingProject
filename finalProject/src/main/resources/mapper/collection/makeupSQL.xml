@@ -11,7 +11,7 @@
 		select makeup_no as makeupNo, member_id as memberId, code, makeup_name as makeupName, makeup_tel as makeupTel, makeup_addr as makeupAddr, makeup_basic_price as makeupBasicPrice, makeup_parent_price as makeupParentPrice, makeup_visitor_price as makeupVisitorPrice, makeup_content as makeupContent, makeup_filename as makeupFilename, makeup_filepath as makeupFilepath, makeup_scope as makeupScope, makeup_tag as makeupTag, makeup_latitude as makeupLatitude, makeup_longitud as makeupLongitud from makeup where makeup_no=#{makeupNo} and status=1 and viewstatus=0
 	</select>
 	<update id="updateScope" parameterType="map">
-		update makeup set makeup_scope=(#{reviewSum}+#{reviewScope})/(#{reviewCount}+1) where code=#{code} and makeup_no=#{objectNo}
+		update makeup set makeup_scope=#{cal} where code=#{code} and makeup_no=#{objectNo}
 	</update>
 	<update id="deleteScope" parameterType="map">
 		update makeup set makeup_scope=
@@ -49,5 +49,19 @@
 		viewstatus=#{viewstatus}
 		where makeup_no =#{makeupNo}
 	</update>
+	
+	<update id="deleteInsertScope" parameterType="map">
+		update makeup set makeup_scope=
+		<choose>
+			<when test="cal == 0">
+				null
+			</when>
+			<otherwise>
+				#{cal}
+			</otherwise>
+		</choose>
+		where code=#{code} and makeup_no=#{objectNo}
+	</update>
+	
 	
 </mapper>

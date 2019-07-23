@@ -38,5 +38,15 @@ public class ReviewService {
 	public int deleteScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum) {
 		return reviewDao.deleteScope(code, objectNo, reviewScope, reviewCount, reviewSum);
 	}
+	
+	@Transactional
+	public int updateReview(int reviewNo, String reviewContent, int newReviewScope) {
+		return reviewDao.updateReview(reviewNo, reviewContent, newReviewScope);
+	}
+	
+	@Transactional
+	public int deleteInsertScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum, int newReviewScope) {
+		return reviewDao.deleteInsertScope(code, objectNo, reviewScope, reviewCount, reviewSum, newReviewScope);
+	}
 
 }

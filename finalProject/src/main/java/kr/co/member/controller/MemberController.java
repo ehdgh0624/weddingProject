@@ -92,6 +92,19 @@ public class MemberController {
 		return "redirect:/myCompanyPage.do";
 	}
 	
+	@RequestMapping(value = "/hallUpdate.do")
+	public String hallUpdate(Hall h,HttpSession session) {
+		System.out.println("스튜디오 업데이트 호출");
+		String addr=h.getJibunAddr()+"/"+h.getExtraAddr()+"/"+
+		h.getDetailAddr()+"/"+h.getPostNum()+"/"+h.getRoadAddr();
+		h.setHallAddr(addr);
+		String tel = h.getHallTelFi()+"/"+h.getHallTelSe()+"/"+h.getHallTelth();
+		h.setHallTel(tel);
+		System.out.println("홀출력좀해보자"+h);
+		memberService.updateHallInfo(h);
+		return "redirect:/myCompanyPage.do";
+	}
+	
 	@RequestMapping(value = "/dressUpdate.do")
 	public String dressUpdate(Dress d,HttpSession session) {
 		System.out.println("드레스 업데이트 호출");
@@ -274,9 +287,7 @@ public class MemberController {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");
 		}else if(code.equals("H")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
-		}else if(code.equals("B")) {
-			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
-		}else if(code.equals("I")) {
+		}else if(code.equals("G")) {
 			savePath = request.getSession().getServletContext().getRealPath("/resources/goods");
 		}
 		
@@ -315,8 +326,8 @@ public class MemberController {
 			gList.add(g);
 		}
 		int result=memberService.addGall(gList);
-		if(code.equals("B") || code.equals("I")) {
-			return "/admin/goodsCarePage";
+		if(code.equals("G")) {
+			return "redirect:/goodsCare.do";
 		}else {
 			return "redirect:/companyDetailView.do?prdNo="+no+"&code="+code;
 		}
@@ -493,29 +504,34 @@ public class MemberController {
 			
 		
 		String id="";
-		System.out.println(id);
+		
 		
 		String memberId = memberService.getMemberId(number);
+		System.out.println(id);
+		if(memberId==null) {
+			memberId="noId";
+		}
 		
-		Member member = memberService.selectOneMemberEasy(memberId);
-		HttpSession session = request.getSession(); 		
-		String view = "";
-		
-		
-		if(member!=null) {
-			memberService.deleteEasyNumber(memberId);
+		if(!memberId.equals("noId")) {
+			Member member = memberService.selectOneMemberEasy(memberId);
+			HttpSession session = request.getSession(); 		
+			String view = "";
+			
+				memberService.deleteEasyNumber(memberId);
 			
 			session.setAttribute("member", member);
 			System.out.println(member);
 			System.out.println("로그인성공");
 			return "redirect:/";
+		
 		}else {
-			model.addAttribute("msg", "아이디 , 패스워드를 확인해 주세요");
+			String view="";
+			model.addAttribute("msg", "패스워드를 확인해 주세요");
 			model.addAttribute("loc", "loginPage.do");
 			view = "common/msg";
 			System.out.println("로그인실패");
+			return view;
 		}
-		return view;
 	}
 	
 	
@@ -785,6 +801,40 @@ public class MemberController {
 		return result;
 	}
 	
+	@RequestMapping(value = "/updateOneHallOption.do")
+	@ResponseBody
+	public int updateOneHallOption(@RequestParam int hallNo,@RequestParam String hallType,@RequestParam String price,@RequestParam String etc) {
+		System.out.println("스튜디오옵션수정시작");
+		
+		
+		
+		int result=memberService.updateOneHallOption(hallNo,hallType,price,etc);
+		if(result>0) {
+			System.out.println("수정성공");
+		}
+		
+		return result;
+	}
+	
+	
+	@RequestMapping(value = "/hallOptionAdd.do")
+	public String hallOptionAdd(@RequestParam int hallSelectPrice,
+			@RequestParam String hallType,
+			@RequestParam int hallNo,
+			@RequestParam String hallSelectEtc) {
+		System.out.println("스튜디오옵션수정시작");
+		
+		HallSelect hsl = new HallSelect(0, hallType, hallNo, hallSelectPrice, hallSelectEtc);
+		
+		int result=memberService.hallOptionAdd(hsl);
+		
+		if(result>0) {
+			System.out.println("수정성공");
+		}
+		
+		return "redirect:/companyDetailView.do?prdNo="+hallNo+"&code=H";
+	}
+	
 
 
 	
@@ -860,6 +910,7 @@ public class MemberController {
 			
 			// 아직 홀 진행중	
 			mav.addObject("hall", memberService.selectOneHallNumber(no));
+			mav.addObject("hallSelectList",memberService.selectListHallOptionNumber(no));
 			mav.addObject("galleryList", memberService.selectListGalleryNumber(no, "H"));
 			mav.setViewName("member/companyDetailHall");
 			return mav;
@@ -971,6 +1022,7 @@ public class MemberController {
 			if(result>0) {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
+					System.out.println("몇바퀴돌고있나요"+i);
 					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
 		
 					list2.add(hs);

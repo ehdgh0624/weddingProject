@@ -21,59 +21,58 @@
     text-align: center;
 }
 .common-tbl-btn-group > button{margin:0 3px;}
+.experience-img-box{position:relative; width:100%; padding-top:30%; margin-bottom:20px;}
+.experience-img-inner{position:absolute; top:0; left:0; bottom:0; right:0;}
 </style>
 
 <section id="wrap">
+	<div class="experience-img-box">
+		<div class="experience-img-inner" style="background:url(resources/upload/${experience.e.experienceFilePath}) no-repeat center center; background-size:cover;">
+			<!-- <img src = "/resources/upload/${experience.e.experienceFilePath}" style="width:100%;height:600px;"> -->
+		</div>
+	</div>
 	<div class="area">
-	<c:if test="${ sessionScope.member.memberId== experience.e.experienceWriter}">
-		<div class="common-tbl-btn-group right" style="margin-bottom: 10px;">
-			<button  class="btn-style1 small" onclick="updateEx('${experience.e.experienceNo}')">수정</button>
-			<button  class="btn-style3 small" onclick="deleteEx('${experience.e.experienceNo}')">삭제</button>
-		</div>	
-	</c:if>
-	<div><img src = "/resources/upload/${experience.e.experienceFilePath}" style="width:100%;height:600px;"></div>
-			<table class="comm-tbl" style="margin-bottom:30px;">
-				<colgroup>
-					<col width="8%">
-					<col width="/">
-					<col>
-					<col width="10%">
-				</colgroup>
-				<tr>
-					<th style="text-align:center; ">
-						글제목
-					</th>
-					<td>
-						${experience.e.experienceTitle }
-					</td>
-				</tr>
-				<tr>
-					<th  style="text-align:center; ">
-						작성자
-					</th>
-					<td>
-						${experience.e.experienceWriter }
-					</td>		
-				</tr>
-				<tr>
-					<th  style="text-align:center; width: 10px; ">
-					</th>
-					<td>
-						${experience.e.experienceContent }
-					</td>
-				</tr>		    
-		    </table>
-			<table class="comm-tbl">
+		<table class="comm-tbl" style="margin-bottom:30px;">
+			<colgroup>
+				<col width="20%">
+				<col width="/">
+			</colgroup>
+			<tr>
+				<th style="text-align:center; ">
+					글제목
+				</th>
+				<td>
+					${experience.e.experienceTitle }
+				</td>
+			</tr>
+			<tr>
+				<th  style="text-align:center; ">
+					작성자
+				</th>
+				<td>
+					${experience.e.experienceWriter }
+				</td>		
+			</tr>
+			<tr>
+				<td colspan="2">
+					${experience.e.experienceContent }
+				</td>
+			</tr>		    
+	    </table>
+	    <c:if test="${ sessionScope.member.memberId== experience.e.experienceWriter}">
+			<div class="common-tbl-btn-group clearfix" style="margin-bottom:20px;">
+				<button class="fr btn-style3 small" onclick="deleteEx('${experience.e.experienceNo}')">삭제</button>
+				<button class="fr btn-style2 small" onclick="updateEx('${experience.e.experienceNo}')">수정</button>
+				<button class="fr btn-style1 small" onclick="/experienceAllList.do?reqPage=1">목록으로</button>
+			</div>
+		</c:if>
+		<h2 class="main-comm-tit type2">댓글</h2>
+		<table class="comm-tbl">
 				<colgroup>
 					<col width="10%">
 					<col width="70%">
 					<col width="/">
-				</colgroup>
-				<tr>
-					<th style="font-size: 20px;padding: 30px;" colspan="3">
-						댓글창
-					</th>
-				</tr>	
+				</colgroup>	
 				<tr>
 	   				<th style="text-align: center;">
 	   					작성자
@@ -85,7 +84,7 @@
 	   					작성일
 	   				</th>
 	   			</tr>
-	   		<c:forEach items="${experience.list}" var="e">
+	   			<c:forEach items="${experience.list}" var="e">
 	   			<tr>
 		   			<c:if test="${e.experienceCommentLevel == 1}">				  
 						<td>
@@ -139,7 +138,7 @@
 							</td>
 						</tr>																												
 			   		</c:if>			   		
-				  </tr> <!-- ddddddddddddddddddddddd -->
+				 	</tr> <!-- ddddddddddddddddddddddd -->
 					<c:forEach items="${experience.list}" var="k">
 				   		<c:if test="${k.experienceCommentLevel == 2 && k.experienceCommentRef == e.experienceCommentNo}">		
 							<tr> 
@@ -177,24 +176,22 @@
 					</c:if>	   			 
 				</c:forEach>	<!--  레벨222222222222 -->				  
 		   	</c:forEach>		   						   														
-		<c:if test="${  not empty sessionScope.member.memberId}">
-			<tr>
-				<td colspan="4">
-					<form action="/experienceCommentInsert.do" method="post">
-						<input type="hidden" name="experienceCommentWriter" value="${sessionScope.member.memberId }"> 
-						<input type="hidden" name="experienceCommentRef" value="${experience.e.experienceNo}"> 
-						<input type="hidden" name="experienceCommentLevel" value="1"> 
- 						<input type="hidden" name="experienceCommentCommentRef" value="0"> 				
-						<div class="common-tbl-btn-group right" style="padding-top:0;text-align: left;">
-							<input type="text"  rows="1" class="form-control" name="experienceCommentContent" style="width: 88%"></textarea>
-							<button  id="sub" type="submit" class="btn-style1 small">댓글등록하기</button>
-							
-							
-						</div>																					
-					</form>
-				</td>	
-			</tr>			
-		</c:if>
+			<c:if test="${  not empty sessionScope.member.memberId}">
+				<tr>
+					<td colspan="4">
+						<form action="/experienceCommentInsert.do" method="post">
+							<input type="hidden" name="experienceCommentWriter" value="${sessionScope.member.memberId }"> 
+							<input type="hidden" name="experienceCommentRef" value="${experience.e.experienceNo}"> 
+							<input type="hidden" name="experienceCommentLevel" value="1"> 
+	 						<input type="hidden" name="experienceCommentCommentRef" value="0"> 				
+							<div class="common-tbl-btn-group right" style="padding-top:0;text-align: left;">
+								<input type="text"  rows="1" class="form-control" name="experienceCommentContent" style="width: 88%"></textarea>
+								<button  id="sub" type="submit" class="btn-style1 small">댓글등록하기</button>
+							</div>																					
+						</form>
+					</td>	
+				</tr>			
+			</c:if>
 		</table>
 	</div>
 </section>

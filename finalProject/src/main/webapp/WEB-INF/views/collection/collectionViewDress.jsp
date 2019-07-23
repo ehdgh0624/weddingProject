@@ -270,11 +270,11 @@
 								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
 									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>	
 								</div>
-								<div style="width:90%;display: inline-block;">
+								<div class="printReviewGroup" style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
 									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
-										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a class="updateReview" style="cursor: pointer;">수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
 									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
@@ -296,8 +296,26 @@
 										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
 										<br>
 									</c:if>
-									<span style="font-weight: bolder;">[이용후기]</span>
-									<span>${r.reviewContent}</span>
+									<span class="reviewTitle" style="font-weight: bolder;">[이용후기]</span>
+									<!-- 수정할 별점 위치 -->
+									<div class="updateScope" style="display: none;">
+										<img class="updateReviewScopeStar" src="/resources/img/scope-star/scope-star10.png" usemap="#imgmap2019716244823" style="vertical-align: middle;height:20px;">
+										<map id="imgmap2019716244823" name="imgmap2019716244823">
+											<area shape="rect" coords="107,1,116,42" class="updateScope-star10" onmouseover="updateReviewScopeStar(10);" />
+											<area shape="rect" coords="97,1,106,42" class="updateScope-star9" onmouseover="updateReviewScopeStar(9);" />
+											<area shape="rect" coords="83,1,92,42" class="updateScope-star8" onmouseover="updateReviewScopeStar(8);" />
+											<area shape="rect" coords="73,1,82,42" class="updateScope-star7" onmouseover="updateReviewScopeStar(7);" />
+											<area shape="rect" coords="59,1,68,42" class="updateScope-star6" onmouseover="updateReviewScopeStar(6);" />
+											<area shape="rect" coords="49,1,58,42" class="updateScope-star5" onmouseover="updateReviewScopeStar(5);" />
+											<area shape="rect" coords="35,1,44,42" class="updateScope-star4" onmouseover="updateReviewScopeStar(4);" />
+											<area shape="rect" coords="25,1,34,42" class="updateScope-star3" onmouseover="updateReviewScopeStar(3);" />
+											<area shape="rect" coords="11,1,20,42" class="updateScope-star2" onmouseover="updateReviewScopeStar(2);" />
+											<area shape="rect" coords="1,1,10,42" class="updateScope-star1" onmouseover="updateReviewScopeStar(1);" />
+										</map>
+										<span style="vertical-align: middle;font-size:16px;"><span class="updateStarScore">5</span>점</span>
+									</div>
+									<!-- 수정할 별점 위치 끝 -->
+									<span class="printReviewContent">${r.reviewContent}</span>
 								</div>
 								<br>
 								<hr style="width:100%;">
@@ -454,7 +472,52 @@
 	</div>
 </section>
 <script>
-	/* 리뷰 삭제 */
+	/* 리뷰 수정 */
+	$(document).on("click",".updateReview",function(){
+		if($(this).parents('.printReviewGroup').find('.updateScope').css('display') == 'none'){
+			$('.printReviewGroup').find('textarea').contents().unwrap();
+			$('.printReviewGroup').find('.updateScope').hide();
+			$('.printReviewGroup').find('.updateScope').css('display','none');
+			$('.updateSubmit').remove();
+			
+			$(this).parents('.printReviewGroup').find('.printReviewContent').wrap('<textarea class="printReviewContentArea" style="width:100%;height:150px;">'+$(this).parents('.printReviewGroup').find('.printReviewContent').html().replace(/<br>/gi, "\n")+'</textarea>');
+			$(this).parents('.printReviewGroup').find('.updateScope').show();
+			$(this).parents('.printReviewGroup').find('.updateScope').css('display','inline-block');
+			$(this).parents('.printReviewGroup').find('.updateScope').after('<a class="updateSubmit" style="float:right;cursor:pointer;">수정완료</a>');
+		}
+	});
+	$(document).on("click",".updateSubmit",function(){
+		var selectParents = $(this).parents('.reviewGroup');
+		var reviewNo = parseInt(selectParents.attr('id'));
+		var objectNo = ${dress.dressNo};
+		var code = "D";
+		var reviewScope = parseInt($(this).siblings(".reviewUpdateGroup").find('.dressScopeSpan').text());
+		var newReviewScope = $(this).siblings('.updateScope').find('.updateStarScore').text() * 2;
+		var reviewContent = $(this).siblings('.printReviewContentArea').val();
+		if(reviewContent == ""){
+			alert("리뷰를 입력해주세요.");
+		}else{
+			$.ajax({
+				url : "/deleteInsertReview.do",
+				type : "post",
+				data : {reviewNo:reviewNo, objectNo:objectNo, code:code, reviewScope:reviewScope, newReviewScope:newReviewScope,reviewContent:reviewContent},
+				success : function(data){
+					if(data > 0){
+						alert("후기를 수정했습니다.");
+						location.reload();
+					}else{
+						alert("후기를 수정할 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				},
+				error : function(){
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});					
+		}
+	});
+	/* 리뷰 수정 끝 */
+	
+	/* 리뷰 삭제*/
 	$(document).on("click",".deleteReview",function(){
 		var selectParents = $(this).parents('.reviewGroup');
 		var objectNo = ${dress.dressNo};
@@ -553,6 +616,14 @@
 	}
 	/* 총평 별점 위에 마우스 over 시 별점 바뀜 */
 
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+	function updateReviewScopeStar(scopeStar){
+		$('.updateReviewScopeStar').prop("src","/resources/img/scope-star/scope-star"+scopeStar+".png");
+		$('.updateStarScore').text(scopeStar/2);
+	}
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+
+	
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
 		var reviewOn = ${reviewOn};
@@ -634,7 +705,7 @@
 			alert("대여할 수 있는 최대 수량 : "+dressRentMax+"벌");
 			$('#option2Amount').val(dressRentMax);
 		}
-		if($('#option2Amount').val() == '' || $('#option2Amount').val() == 0){
+		if($('#option2Amount').val() == '' || $('#option2Amount').val() <= 0){
 			$('#option2Amount').val('1');
 		}
 		var allPrice = 0;

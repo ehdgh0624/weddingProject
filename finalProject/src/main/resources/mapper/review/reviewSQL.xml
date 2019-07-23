@@ -38,4 +38,8 @@
 	<select id="selectReviewCount" parameterType="map" resultType="_int">
 		select count(*) cnt from review where code=#{code} and review_ref=#{objectNo} and member_id=#{memberId}
 	</select>
+	
+	<update id="updateReview" parameterType="map">
+		update review set review_content=#{reviewContent}, review_scope=#{newReviewScope} where review_no=#{reviewNo}
+	</update>
 </mapper>
