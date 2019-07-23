@@ -136,10 +136,10 @@
 							value="${hall.hallServicePark }"></td>
 					</tr>
 					<tr>
-						<th>업체 상태설정</th>
-						<td><select name="viewstatus">
-								<option value="3">비공개</option>
-								<option value="2">공개</option>
+						<th>업체 상태 설정 신청</th>
+						<td><select name="viewStatus">
+								<option value="2">공개신청</option>
+								<option value="3">비공개신청</option>
 						</select></td>
 					</tr>
 				</table>
