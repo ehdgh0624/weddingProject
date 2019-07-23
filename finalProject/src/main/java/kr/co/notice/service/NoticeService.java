@@ -88,17 +88,15 @@ public class NoticeService {
 		ArrayList<Notice> list = (ArrayList<Notice>)noticeDao.selectSearchList(start,end,type,keyword);
 		String pageNavi ="";
 		int pageNaviSize = 5;
-		int pageNo = 0;
-		
-		if(reqPage <3) {
-			pageNo = 1;
-		}else if ( reqPage+2  > totalpge      ) {
-			pageNo = totalpge - pageNaviSize+1;						
-		}
-		else {
-			pageNo = reqPage-2;
-			
-		}
+		/*
+		 * int pageNo = 0;
+		 * 
+		 * if(reqPage <3) { pageNo = 1; }else if ( reqPage+2 > totalpge ) { pageNo =
+		 * totalpge - pageNaviSize+1; } else { pageNo = reqPage-2;
+		 * 
+		 * }
+		 */
+		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		if(pageNo !=1) {											
 			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
 		}		

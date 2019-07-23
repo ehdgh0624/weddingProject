@@ -55,7 +55,7 @@ public class ExperienceDao {
 	}
 	public ArrayList<ExperienceComment> selectCommentList(int experienceNo) {
 			
-		System.out.println("댓글 dao 들어온다"+experienceNo);
+		
 		List list  = sqlSession.selectList("experience.selectCommentList",experienceNo);
 		
 		return (ArrayList<ExperienceComment>)list;

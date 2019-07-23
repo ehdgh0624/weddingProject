@@ -34,8 +34,10 @@
 	<div><img src = "/resources/upload/${experience.e.experienceFilePath}" style="width:100%;height:600px;"></div>
 			<table class="comm-tbl" style="margin-bottom:30px;">
 				<colgroup>
-					<col width="20%">
+					<col width="8%">
 					<col width="/">
+					<col>
+					<col width="10%">
 				</colgroup>
 				<tr>
 					<th style="text-align:center; ">
@@ -54,8 +56,7 @@
 					</td>		
 				</tr>
 				<tr>
-					<th  style="text-align:center; ">
-						내용
+					<th  style="text-align:center; width: 10px; ">
 					</th>
 					<td>
 						${experience.e.experienceContent }
