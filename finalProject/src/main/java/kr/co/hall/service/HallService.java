@@ -105,7 +105,7 @@ public class HallService {
 		//페이지 당 게시물 수
 		int numPerPage = 9;
 		//현재 등록되어있는 총 게시물 수
-		int totalCount = hallDao.totalCountPc();
+		int totalCount = hallDao.totalCountPc(msg);
 		//페이지 수
 		int totalPage = (totalCount%numPerPage == 0)?(totalCount/numPerPage):(totalCount/numPerPage)+1;
 		//게시물 번호 범위
@@ -192,6 +192,11 @@ public class HallService {
 			res = list.get(list.size()-1);
 		}
 		return res;
+	}
+
+
+	public int selectScrapCount(int objectNo, String code) {
+		return hallDao.selectScrapCount(objectNo,code);
 	}
 
 }

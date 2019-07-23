@@ -31,7 +31,7 @@
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;">이전</button>
+						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
 					</td>
 					<!-- 상호명 -->
 					<td><span style="font-size: 28px;">${hall.hallName}</span></td>
@@ -211,7 +211,7 @@
 										</c:if>
 										<span style="float: right;">식권 가격 (인당) : <span id="option2Price">${hall.hallFoodprice }</span>원</span>
 										<br>
-										<span style="float: right;">식권 수량 : <input type="number" min="${hall.hallMinPerson }" max="${hall.hallMaxPerson }" value="0" id="option2Amount" onchange="checkAmount();"></span>
+										<span style="float: right;">식권 수량 : <input type="number" value="0" id="option2Amount" onchange="checkAmount();"></span>
 									</td>
 								</tr>
 								<tr>
@@ -238,14 +238,14 @@
 					<c:if test="${not empty reviewList}">
 						<c:forEach items="${reviewList}" var="r">
 							<div class="reviewGroup" id="${r.reviewNo}">
-								<div style="width:10%;float: left;">
-									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
+								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
+									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>	
 								</div>
-								<div style="width:90%;display: inline-block;">
+								<div class="printReviewGroup" style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
-									<c:if test="${sessionScope.member.memberName eq r.reviewWriter}">
-										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a class="updateReview" style="cursor: pointer;">수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
 									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
@@ -265,13 +265,31 @@
 											</c:forEach>
 										</div>
 										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
-										<br>									
+										<br>
 									</c:if>
-									<span style="font-weight: bolder;">[이용후기]</span>
-									<span>${r.reviewContent}</span>
+									<span class="reviewTitle" style="font-weight: bolder;">[이용후기]</span>
+									<!-- 수정할 별점 위치 -->
+									<div class="updateScope" style="display: none;">
+										<img class="updateReviewScopeStar" src="/resources/img/scope-star/scope-star10.png" usemap="#imgmap2019716244823" style="vertical-align: middle;height:20px;">
+										<map id="imgmap2019716244823" name="imgmap2019716244823">
+											<area shape="rect" coords="107,1,116,42" class="updateScope-star10" onmouseover="updateReviewScopeStar(10);" />
+											<area shape="rect" coords="97,1,106,42" class="updateScope-star9" onmouseover="updateReviewScopeStar(9);" />
+											<area shape="rect" coords="83,1,92,42" class="updateScope-star8" onmouseover="updateReviewScopeStar(8);" />
+											<area shape="rect" coords="73,1,82,42" class="updateScope-star7" onmouseover="updateReviewScopeStar(7);" />
+											<area shape="rect" coords="59,1,68,42" class="updateScope-star6" onmouseover="updateReviewScopeStar(6);" />
+											<area shape="rect" coords="49,1,58,42" class="updateScope-star5" onmouseover="updateReviewScopeStar(5);" />
+											<area shape="rect" coords="35,1,44,42" class="updateScope-star4" onmouseover="updateReviewScopeStar(4);" />
+											<area shape="rect" coords="25,1,34,42" class="updateScope-star3" onmouseover="updateReviewScopeStar(3);" />
+											<area shape="rect" coords="11,1,20,42" class="updateScope-star2" onmouseover="updateReviewScopeStar(2);" />
+											<area shape="rect" coords="1,1,10,42" class="updateScope-star1" onmouseover="updateReviewScopeStar(1);" />
+										</map>
+										<span style="vertical-align: middle;font-size:16px;"><span class="updateStarScore">5</span>점</span>
+									</div>
+									<!-- 수정할 별점 위치 끝 -->
+									<span class="printReviewContent">${r.reviewContent}</span>
 								</div>
 								<br>
-								<hr>
+								<hr style="width:100%;">
 							</div>
 						</c:forEach>
 					</c:if>
@@ -280,7 +298,7 @@
 					<!-- 리뷰 입력 -->
 					<form id="fileUploadForm" action="/fileUpload.do" method="post" enctype="multipart/form-data">
 						<div style="visibility: hidden;position: absolute;top:0;">
-							<input type="text" id="code" name="code" value="H" style="cursor: inherit;width:10px;" readonly>
+							<input type="text" id="code" name="code" value="D" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewRef" name="reviewRef" style="cursor: inherit;width:10px;" readonly>
 							<input type="text" id="reviewScope" name="reviewScope" style="cursor: inherit;width:10px;" readonly>
 						</div>
@@ -367,8 +385,49 @@
 					<!-- 상세설명, 리뷰, 지도 끝 -->
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
-				<div style="position: static; background-color: pink; width: 28%; height: 500px; float: right;"></div>
-				<!-- static 끝 -->
+				<div style="width: 28%; height: 400px; float: right;">
+				<!-- 태그 -->
+					<div class="photolist" style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
+						<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+								<c:set var="msg" value="${fn:split(item,'#')}" />
+								<a href="/hallPc.do?msg=${msg[0]}">${item}</a>
+							</c:if>
+						</c:forEach>
+					</div>
+				<!-- 태그 끝 -->
+				<!-- 스크랩 -->
+					<div class="photolist" style="width:100%;height:140px;margin-top:10px;text-align: center;padding:20px;box-sizing: border-box;">
+					<!-- 스크랩북 -->
+						<div>
+							<c:choose>
+								<c:when test="${not empty scrapbook}">
+									<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
+										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:when>
+								<c:otherwise>
+									<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
+										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+									</button>
+								</c:otherwise>
+							</c:choose>
+						</div>						
+					<!-- 스크랩북 끝 -->
+					
+						<c:choose>
+							<c:when test="${empty scrapbookCount}">
+								<span id="scrapbookCount" style="color:orangered;">0</span>
+							</c:when>
+							<c:otherwise>							
+								<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
+							</c:otherwise>
+						</c:choose>
+						
+						명이 스크랩했습니다.
+					</div>
+				<!-- 스크랩 끝 -->
+				</div>
 				</div>
 			</div>
 		</section>
@@ -403,6 +462,52 @@
 							focusOnSelect : true
 						});
 					});
+	
+	/* 리뷰 수정 */
+	$(document).on("click",".updateReview",function(){
+		if($(this).parents('.printReviewGroup').find('.updateScope').css('display') == 'none'){
+			$('.printReviewGroup').find('textarea').contents().unwrap();
+			$('.printReviewGroup').find('.updateScope').hide();
+			$('.printReviewGroup').find('.updateScope').css('display','none');
+			$('.updateSubmit').remove();
+			
+			$(this).parents('.printReviewGroup').find('.printReviewContent').wrap('<textarea class="printReviewContentArea" style="width:100%;height:150px;">'+$(this).parents('.printReviewGroup').find('.printReviewContent').html().replace(/<br>/gi, "\n")+'</textarea>');
+			$(this).parents('.printReviewGroup').find('.updateScope').show();
+			$(this).parents('.printReviewGroup').find('.updateScope').css('display','inline-block');
+			$(this).parents('.printReviewGroup').find('.updateScope').after('<a class="updateSubmit" style="float:right;cursor:pointer;">수정완료</a>');
+		}
+	});
+	$(document).on("click",".updateSubmit",function(){
+		var selectParents = $(this).parents('.reviewGroup');
+		var reviewNo = parseInt(selectParents.attr('id'));
+		var objectNo = ${hall.hallNo};
+		var code = "H";
+		var reviewScope = parseInt($(this).siblings(".reviewUpdateGroup").find('.dressScopeSpan').text());
+		var newReviewScope = $(this).siblings('.updateScope').find('.updateStarScore').text() * 2;
+		var reviewContent = $(this).siblings('.printReviewContentArea').val();
+		if(reviewContent == ""){
+			alert("리뷰를 입력해주세요.");
+		}else{
+			$.ajax({
+				url : "/deleteInsertReview.do",
+				type : "post",
+				data : {reviewNo:reviewNo, objectNo:objectNo, code:code, reviewScope:reviewScope, newReviewScope:newReviewScope,reviewContent:reviewContent},
+				success : function(data){
+					if(data > 0){
+						alert("후기를 수정했습니다.");
+						location.reload();
+					}else{
+						alert("후기를 수정할 수 없습니다. 잠시 후 다시 시도해주세요.");
+					}
+				},
+				error : function(){
+					alert("잠시 후 다시 시도해주세요.");
+				}
+			});					
+		}
+	});
+	/* 리뷰 수정 끝 */
+	
 	
 	/* 리뷰 삭제 */
 	$(document).on("click",".deleteReview",function(){
@@ -501,6 +606,14 @@
 	}
 	/* 총평 별점 위에 마우스 over 시 별점 바뀜 */
 
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+	function updateReviewScopeStar(scopeStar){
+		$('.updateReviewScopeStar').prop("src","/resources/img/scope-star/scope-star"+scopeStar+".png");
+		$('.updateStarScore').text(scopeStar/2);
+	}
+	/* 수정 별점 위에 마우스 over 시 별점 바뀜 */
+	
+	
 	/* 리뷰쓰기 버튼 클릭 시 리뷰 input창 열리거나 submit */
 	function reviewShow(){
 		if(${sessionScope.member != null}){
@@ -534,7 +647,7 @@
 	function reservation(){
 		if($('#hallTime').val() == ''){
 			alert("예식 시간을 선택해주세요.");
-		}else if($("#hallOption option:selected").val() == 'default'){
+		}else if($("#hallOption option:selected").val() == null){
 			alert("기본옵션을 선택해주세요.");
 		}else if($("#hallPerson").val() == ''){
 			alert("하객수를 입력해주세요.")
@@ -564,8 +677,7 @@
 	function submitReservation(){
 		var code = "H";		//고유코드
 		var prdNo = ${hall.hallNo};		//고유번호
-/* 		var prdId = '${hall.memberId}';	//아이디 */
-		var prdId = 'test1';
+		var prdId = '${hall.memberId}';
 		var prdName = '${hall.hallName}';//아이디 이름
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/'); // 예약 날짜
 		var weddingTime = $('#hallTime').val();	//예약 시간
@@ -652,9 +764,11 @@
 	
 	/* 스크랩북 on/off */
 	$(document).on("click",".defaultStar",function(){
-		var select = $(this);
+		var select = $('.defaultStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/hscrapOn.do",
 			type : "get",
@@ -665,9 +779,15 @@
 					select.append('<img src="/resources/img/star_b2.png" style="width:30px;height:30px;">');
 					select.addClass('scrapStar');
 					select.removeClass('defaultStar');
+					if(scrapbookCount == 0){
+						scrapbook.text(1);						
+					}else{
+						scrapbook.text(scrapbookCount + 1);						
+					}
 					alert("스크랩북에 추가되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -676,9 +796,11 @@
 		});
 	});
 	$(document).on("click",".scrapStar",function(){
-		var select = $(this);
+		var select = $('.scrapStar');
 		var objectNo = select.attr('id');		/* 업체 또는 상품 번호 */
 		var code = select.attr('name');			/* 업체 또는 상품 타입분류 */
+		var scrapbook = $('#scrapbookCount');
+		var scrapbookCount = $('#scrapbookCount').text();		/* 스크랩한 인원 수 */
 		$.ajax({
 			url : "/hscrapOff.do",
 			type : "get",
@@ -689,9 +811,17 @@
 					select.append('<img src="/resources/img/star_b1.png" style="width:30px;height:30px;">');
 					select.removeClass('scrapStar');
 					select.addClass('defaultStar');
+					if(scrapbookCount == 1){
+						scrapbook.text(0);						
+					}else if(scrapbookCount == 0){
+						scrapbook.text(0);						
+					}else{
+						scrapbook.text(scrapbookCount - 1);
+					}
 					alert("스크랩북에서 삭제되었습니다.");
 				}else{
 					alert("로그인 후 실행해주세요.");					
+					location.href="/loginPage.do";
 				}
 			},
 			error : function(){
@@ -700,6 +830,60 @@
 		});
 	});
 	/* 스크랩북 on/off 끝 */	
+	
+	//네이버 지도 API
+	window.onload = function(){
+	//	var map = new naver.maps.Map('map');		//시청 기준 map
+		var map = new naver.maps.Map('map',{		//위도,경도 기준 map
+			center : new naver.maps.LatLng(${hall.hallLatitude},${hall.hallLongtitude}),
+			zoom:10,
+			zoomControl : true,						//zoom 콘트롤러
+			zoomControlOptions : {					//zoom 콘트롤러 설정
+				position : naver.maps.Position.TOP_RIGHT,		//위치:상단 오른쪽
+				style : naver.maps.ZoomControlStyle.SMALL		//사이즈:최소
+			}
+		});
+		var marker = new naver.maps.Marker({		//조건에 맞는 위치를 지도에 찍어주는 핀(마커)
+			position : new naver.maps.LatLng(${hall.hallLatitude},${hall.hallLongtitude}),
+			map : map
+		});
+		naver.maps.Event.addListener(map, 'click', function(e){
+			if(infoWindow.getMap()){
+				infoWindow.close();
+			}
+			//위도 경도는 바로 구할 수 있음
+			//geocode 서브모듈을 이용한 위경도 -> 주소변환
+			//geocede : 주소 -> 위경도 / reverseGeocode : 위경도 -> 주소
+			naver.maps.Service.reverseGeocode({
+				location : new naver.maps.LatLng(e.coord.lat(),e.coord.lng()),		//위도,경도를 클릭한 곳으로 바꿔줌(마커 위치)
+				},function(status,response){
+					if(status !== naver.maps.Service.Status.OK){					//위도,경도를 못 얻어온 경우
+						return alert("못찾음");
+					}
+					var result = response.result,
+					items = result.items;
+					address = items[0].address;
+			});
+		});
+		var contentString = [						//마커 클릭 시 출력할 주소 배열
+	        '   <h3 style="display:inline-block;padding:10px;">${hall.hallName}</h3>',
+	        '       <img src="/img/header_logo.png" width="100" height="100" alt="KS" style="float:right;" class="thumb" />',
+	        '   	<p style="font-size:13px;padding:10px;">${hall.hallAddr}<br />',
+	        '       TEL : ${hall.hallTel}<br />',
+	        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',
+	        '   </p>',
+	        '</div>'
+		].join('');									//배열 값을 String으로 합침
+		var infoWindow = new naver.maps.InfoWindow();		//마커 클릭 시 띄우는 창
+		naver.maps.Event.addListener(marker,'click',function(){
+			if(infoWindow.getMap()){				//infoWindow가 열려있는지 판단
+				infoWindow.close();					//열려있을 때 닫음
+			}else{
+				infoWindow.setContent(contentString);		//정보창에 글시 세팅
+				infoWindow.open(map,marker);
+			}
+		});
+	};
 	
 
 </script>

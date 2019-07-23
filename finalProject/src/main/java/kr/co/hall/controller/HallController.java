@@ -101,6 +101,8 @@ public class HallController {
 		mav.addObject("reviewList", hallService.selectListReview(hallNo, "H"));
 		mav.addObject("hallSelect",hallService.selectListHall(hallNo));
 		if(m != null) {
+			int scrapCount = hallService.selectScrapCount(hallNo, "H");
+			mav.addObject("scrapbookCount", scrapCount);
 			Scrapbook scrap = hallService.selectOneScrapbook(m.getMemberId(),hallNo, "H");
 			mav.addObject("scrapbook",scrap);
 			Reservation res = hallService.selectOneReservation(m.getMemberId(),hallNo,"H");
