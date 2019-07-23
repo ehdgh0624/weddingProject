@@ -504,30 +504,34 @@ public class MemberController {
 			
 		
 		String id="";
-		System.out.println(id);
+		
 		
 		String memberId = memberService.getMemberId(number);
+		System.out.println(id);
+		if(memberId==null) {
+			memberId="noId";
+		}
 		
-		Member member = memberService.selectOneMemberEasy(memberId);
-		HttpSession session = request.getSession(); 		
-		String view = "";
-		
-		
-		if(member!=null) {
-			memberService.deleteEasyNumber(memberId);
+		if(!memberId.equals("noId")) {
+			Member member = memberService.selectOneMemberEasy(memberId);
+			HttpSession session = request.getSession(); 		
+			String view = "";
+			
+				memberService.deleteEasyNumber(memberId);
 			
 			session.setAttribute("member", member);
 			System.out.println(member);
 			System.out.println("로그인성공");
 			return "redirect:/";
+		
 		}else {
-			model.addAttribute("msg", "아이디 , 패스워드를 확인해 주세요");
+			String view="";
+			model.addAttribute("msg", "패스워드를 확인해 주세요");
 			model.addAttribute("loc", "loginPage.do");
 			view = "common/msg";
 			System.out.println("로그인실패");
 			return view;
 		}
-		
 	}
 	
 	
