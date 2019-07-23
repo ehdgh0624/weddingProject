@@ -141,6 +141,7 @@ public class AdminController {
 				System.out.println("파일업로드성공");
 				g.setGoodsFileName(originName);
 				g.setGoodsFilePath(filepath);
+				g.setGoodsContent(g.getGoodsContent().replace("\r\n", "<br>"));
 				result = adminService.addGoods(g);
 				if (result > 0) {
 					bos.write(bytes);
@@ -536,11 +537,11 @@ public class AdminController {
 		HttpSession session = request.getSession(false);
 		int goodsNo = Integer.parseInt(request.getParameter("goodsNo"));
 		String code = "G";
-		System.out.println(goodsNo +"con");
 		if (session != null && (Member) session.getAttribute("member") != null) {
 			Member m = (Member) session.getAttribute("member");
 			if (m.getMemberCode().equals("2")) {
 				Goods g = adminService.goodsUpdatePage(goodsNo);
+				g.setGoodsContent(g.getGoodsContent().replace("<br>", "\r\n"));
 				ArrayList<Gallery> ga = adminService.goodsGallery(goodsNo,code);
 				model.addAttribute("g", g);
 				model.addAttribute("gallery", ga);
