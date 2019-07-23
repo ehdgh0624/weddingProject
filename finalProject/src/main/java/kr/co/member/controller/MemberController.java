@@ -1023,7 +1023,7 @@ public class MemberController {
 				seqNo=memberService.getHallNo(ci.getCompanyName(),vo.getMemberId());
 				for(int i=0; i<hallSelectPrice.size(); i++) {
 					System.out.println("몇바퀴돌고있나요"+i);
-					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime,seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
+					HallSelect  hs = new HallSelect(seqNo,hallSelectName.get(i)+"/"+hallSelectPeople.get(i)+"/"+hallSelectTime.get(i),seqNo,hallSelectPrice.get(i),hallSelectEtc.get(i));
 		
 					list2.add(hs);
 				}
