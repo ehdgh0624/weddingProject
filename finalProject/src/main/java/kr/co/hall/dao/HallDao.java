@@ -62,8 +62,8 @@ public class HallDao {
 		map.put("msg", msg);
 		return sqlSession.selectList("hall.hallPc",map);
 	}
-	public int totalCountPc() {
-		int count = sqlSession.selectOne("hall.countPc");
+	public int totalCountPc(String msg) {
+		int count = sqlSession.selectOne("hall.countPc",msg);
 		return count;
 	}
 	public Hall selectOneHall(int hallNo) {

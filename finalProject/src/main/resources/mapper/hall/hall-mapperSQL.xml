@@ -112,41 +112,48 @@
 			   where (rnum between #{start} and #{end})
 	</select>
 	
-	<select id="countPc"  resultType="_int">
+	<select id="countPc"  parameterType="string" resultType="_int">
 	select count(*) from hall where hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
 	</select>
 	
 	<select id="hallPc" parameterType="map" resultType="hall">
 	select hall_no as hallNo,
-	member_id as memberId,
-	code as code,
-	hall_type as hallType,
-	hall_name as hallName,
-	hall_loc as hallLoc,
-	hall_addr as hallAddr,
-	hall_content as hallContent,
-	hall_img as hallImg,
-	hall_path as hallPath,
-	hall_price as hallPrice,
-	hall_min_person as hallMinPerson,
-	hall_max_person as hallMaxPerson,
-	hall_scope as hallScope,
-	hall_foodtype as hallFoodetype,
-	hall_foodMenu as hallFoodmenu,
-	hall_foodprice as hallFoodprice,
-	hall_tel as hallTel,
-	HALL_TIME as hallTime,
-    HALL_SERVICE_FOOD as hallServiceFood,
-    HALL_SEVICE_AUDIO as hallServiceAudio,
-    HALL_SERVICE_DRINK as hallServiceDrink,
-    HALL_SERVICE_PARKING as hallServicePark,
-	status as status,
-	viewstatus as viewStatus,
-	hall_tag as hallTag,
-	hall_latitude as hallLatitude,
-	hall_longitude as hallLongtitude,
-	hall_date as hallDate
-	from hall where hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
+			   member_id as memberId,
+			   code as code,
+			   hall_type as hallType,
+			   hall_name as hallName,
+			   hall_loc as hallLoc,
+			   hall_addr as hallAddr,
+			   hall_content as hallContent,
+			   hall_img as hallImg,
+			   hall_path as hallPath,
+			   hall_price as hallPrice,
+			   hall_min_person as hallMinPerson,
+			   hall_max_person as hallMaxPerson,
+			   hall_scope as hallScope,
+			   hall_foodtype as hallFoodetype,
+			   hall_foodMenu as hallFoodmenu,
+			   hall_foodprice as hallFoodprice,
+			   hall_tel as hallTel,
+			   HALL_TIME as hallTime,
+		       HALL_SERVICE_FOOD as hallServiceFood,
+		       HALL_SEVICE_AUDIO as hallServiceAudio,
+		       HALL_SERVICE_DRINK as hallServiceDrink,
+		       HALL_SERVICE_PARKING as hallServicePark,
+			   status as status,
+			   viewstatus as viewStatus,
+			   hall_tag as hallTag,
+			   hall_latitude as hallLatitude,
+			   hall_longitude as hallLongtitude,
+			   hall_date as hallDate 
+			   from (select rownum as rnum, d.* from (select * from hall 
+			   <trim prefix="where" prefixOverrides="AND | OR">
+			   		<if test='msg != ""'>
+			   			AND hall_tag like '%'||#{msg, jdbcType=VARCHAR}||'%'
+			   		</if>
+		 </trim>
+				  ) d where status=1 and viewstatus=0  order by hall_no)  		   		
+			   where (rnum between #{start} and #{end})
 	</select>
 	<select id="viewSelectOne" parameterType="_int" resultType="hall">
 	select hall_no as hallNo,

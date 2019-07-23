@@ -422,6 +422,7 @@
 										<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
 											<c:set var="keyword" value="${fn:split(item,'#')}" />
 											<a href="/collectionListTagSearch.do?keyword=${keyword[0]}">${item}</a>
+											${keyword[0] }
 										</c:if>
 									</c:forEach>
 								</div>

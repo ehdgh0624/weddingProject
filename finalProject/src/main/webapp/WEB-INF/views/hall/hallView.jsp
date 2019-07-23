@@ -238,14 +238,14 @@
 					<c:if test="${not empty reviewList}">
 						<c:forEach items="${reviewList}" var="r">
 							<div class="reviewGroup" id="${r.reviewNo}">
-								<div style="width:10%;float: left;">
-									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>																
+								<div style="width:10%;float: left; margin-top:30px; margin-bottom:30px;">
+									<div style="width:80px;height:80px;border-radius: 80px;background-color: orange;display: inline-block;"></div>	
 								</div>
-								<div style="width:90%;display: inline-block;">
+								<div class="printReviewGroup" style="width:90%;display: inline-block;">
 									<span style="font-size: 16px;font-weight: bolder;">${r.reviewWriter}</span>
 									<span>[작성일 : ${r.reviewDate}]</span>
-									<c:if test="${sessionScope.member.memberName eq r.reviewWriter}">
-										<span style="margin-left:10px;" class="reviewUpdateGroup"><a>수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
+									<c:if test="${sessionScope.member.memberName == r.reviewWriter}">
+										<span style="margin-left:10px;" class="reviewUpdateGroup"><a class="updateReview" style="cursor: pointer;">수정</a> | <a class="deleteReview" style="cursor: pointer;">삭제</a><span class="dressScopeSpan" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewScope}</span></span>
 									</c:if>
 									<span style="float: right;">
 										<span style="font-size: 15px;vertical-align: middle;">평점 | </span><img src="/resources/img/scope-star/scope-star${r.reviewScope}.png" style="height:15px;vertical-align: middle;">
@@ -265,13 +265,29 @@
 											</c:forEach>
 										</div>
 										<div class="reviewFilepathAll" style="cursor: inherit;width:10px;visibility: hidden;">${r.reviewFilepath}</div>
-										<br>									
+										<br>
 									</c:if>
-									<span style="font-weight: bolder;">[이용후기]</span>
-									<span>${r.reviewContent}</span>
+									<span class="reviewTitle" style="font-weight: bolder;">[이용후기]</span>
+									<span>
+										<img id="reviewScopeStar" src="/resources/img/scope-star/scope-star10.png" usemap="#imgmap20197162448" style="vertical-align: middle;height:30px;">
+										<map id="imgmap20197162448" name="imgmap20197162448">
+											<area shape="rect" coords="161,1,176,42" id="scope-star10" onmouseover="reviewScopeStar(10);" />
+											<area shape="rect" coords="145,1,160,42" id="scope-star9" onmouseover="reviewScopeStar(9);" />
+											<area shape="rect" coords="125,1,140,42" id="scope-star8" onmouseover="reviewScopeStar(8);" />
+											<area shape="rect" coords="109,1,124,42" id="scope-star7" onmouseover="reviewScopeStar(7);" />
+											<area shape="rect" coords="89,1,104,42" id="scope-star6" onmouseover="reviewScopeStar(6);" />
+											<area shape="rect" coords="73,1,88,42" id="scope-star5" onmouseover="reviewScopeStar(5);" />
+											<area shape="rect" coords="53,1,68,42" id="scope-star4" onmouseover="reviewScopeStar(4);" />
+											<area shape="rect" coords="37,1,52,42" id="scope-star3" onmouseover="reviewScopeStar(3);" />
+											<area shape="rect" coords="17,1,32,42" id="scope-star2" onmouseover="reviewScopeStar(2);" />
+											<area shape="rect" coords="1,1,16,42" id="scope-star1" onmouseover="reviewScopeStar(1);" />
+										</map>
+										<span style="vertical-align: middle;font-size:16px;"><span id="starScore">5</span>점</span>
+									</span>
+									<span class="printReviewContent">${r.reviewContent}</span>
 								</div>
 								<br>
-								<hr>
+								<hr style="width:100%;">
 							</div>
 						</c:forEach>
 					</c:if>
@@ -372,8 +388,8 @@
 					<div class="photolist" style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
 						<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
 							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-								<c:set var="keyword" value="${fn:split(item,'#')}" />
-								<a href="/hallPc.do?keyword=${keyword[0]}">${item}</a>
+								<c:set var="msg" value="${fn:split(item,'#')}" />
+								<a href="/hallPc.do?keyword=${msg[0]}">${item}</a>
 							</c:if>
 						</c:forEach>
 					</div>
@@ -444,6 +460,20 @@
 							focusOnSelect : true
 						});
 					});
+	
+	/* 리뷰 수정 */
+	$(document).on("click",".updateReview",function(){
+		if($(this).parents('.printReviewGroup').find('.printReviewContent').val() == ''){
+			$(this).parents('.printReviewGroup').find('.printReviewContent').contents().unwrap().wrap('<textarea class="printReviewContent" style="width:100%;height:150px;"></textarea>');
+			$(this).parents('.printReviewGroup').find('.reviewTitle').after('<a class="updateSubmit" style="float:right;cursor:pointer;" onclick="updateSubmit(this);">수정완료</a>');
+		}
+	});
+	function updateSubmit(updateSubmitBtn){
+		$.ajax({
+			
+		});
+	}
+	/* 리뷰 수정 끝 */
 	
 	/* 리뷰 삭제 */
 	$(document).on("click",".deleteReview",function(){
@@ -605,8 +635,7 @@
 	function submitReservation(){
 		var code = "H";		//고유코드
 		var prdNo = ${hall.hallNo};		//고유번호
-/* 		var prdId = '${hall.memberId}';	//아이디 */
-		var prdId = 'test1';
+		var prdId = '${hall.memberId}';
 		var prdName = '${hall.hallName}';//아이디 이름
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/'); // 예약 날짜
 		var weddingTime = $('#hallTime').val();	//예약 시간
