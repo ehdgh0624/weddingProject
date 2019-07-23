@@ -34,6 +34,7 @@
 		  slidesToShow: 4,
 		  slidesToScroll: 1,
 		  asNavFor: '.slider-for',
+		  arrows: false,
 		  dots: false,
 		  centerMode: false,
 		  focusOnSelect: true
