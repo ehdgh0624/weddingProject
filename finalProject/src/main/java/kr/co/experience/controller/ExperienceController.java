@@ -91,7 +91,7 @@ public class ExperienceController {
 			reqPage = 1;
 		}
 
-		System.out.println("reqPage서치서치" + reqPage);
+		
 		ExperienePageDate expd = experienceService.exsearchExperience(reqPage, type, keyword);
 		ModelAndView mav = new ModelAndView();
 		mav.addObject("expd", expd);
@@ -210,7 +210,7 @@ public class ExperienceController {
 	public String uploadTest(HttpServletRequest request, @RequestParam MultipartFile experiencefile, String editor,Model model) {
 			String experienceTitle = request.getParameter("experienceTitle");	
 			String experiencefileCh = experiencefile.getOriginalFilename();
-			System.out.println(experiencefileCh+"::::::::::::experiencefileexperiencefileexperiencefile");
+	
 		
 			experienceTitle = experienceTitle.replace("<", "");
 			if( experiencefileCh == null || experiencefileCh.length() ==0 &&  experienceTitle == null || experienceTitle.length() == 0 && editor ==null || editor.length()==0) {
@@ -244,7 +244,7 @@ public class ExperienceController {
 		while (matcher2.find()) {	// 파인드 찾는다 							
 			String as = matcher2.group();
 			as = as.substring(0,as.length()-1);	
-			System.out.println(as);
+		
 			 String root = request.getSession().getServletContext().getRealPath("/resources/editor/");
 			// 파일 복사 코드
 			String file1 = root+"image2/"+ as;
@@ -339,8 +339,7 @@ public class ExperienceController {
 					root+"image2/ID"+ filename + date1 +"KDC"+ filelast)));
 			out.write(bytes);
 			
-			System.out.println(fileName);
-
+		
 			// ck 에디터 이미지 업로드시 발생하는 코드
 			String callback = request.getParameter("CKEditorFuncNum");
 			printWriter = response.getWriter();
@@ -403,15 +402,14 @@ public class ExperienceController {
 
 	@RequestMapping(value = "CommentDelete.do")
 	public String CommentDelete(HttpServletRequest request) {
-		System.out.println("삭제버튼 누름");
+	
 		
 		int experienceCommentNo = Integer.parseInt(request.getParameter("experienceCommentNo"));
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
-		System.out.println(experienceCommentNo+"댓글 고유 번호 ");
+		
 		int reuslt = experienceService.CommentDelete(experienceCommentNo);
 
-		System.out.println(experienceCommentNo);
-		System.out.println(experienceNo);
+
 		return "redirect:/experienceDetail.do?experienceNo=" + experienceNo;
 	}
 
@@ -501,8 +499,6 @@ public class ExperienceController {
 		
 		
 		
-		System.out.println("수정하기 버튼 눌름");
-		System.out.println(experiencefile);
 		int experienceNo = Integer.parseInt(request.getParameter("experienceNo"));
 		String experienceWriter = request.getParameter("experienceWriter");
 			
@@ -517,11 +513,11 @@ public class ExperienceController {
 			
 			String as = matcher5.group();
 			as = as.substring(0,as.length()-1);			
-			System.out.println(as +"::::as임");						
+					
 			// 파일 복사 코드
 			String file1 = root+"image2/"+ as ;
 			String file2 = root+"image/"+ as ;			
-			System.out.println(file1+":::::file1");
+			
 			try {
 				BufferedInputStream	 fis = new BufferedInputStream(new FileInputStream(file1));
 				BufferedOutputStream fos = new BufferedOutputStream(new FileOutputStream(file2));
@@ -575,7 +571,7 @@ public class ExperienceController {
 		
 		if (!experiencefile.isEmpty()) {
 			try {
-				System.out.println("파일업로드 탄다"); 
+			
 				byte[] bytes = experiencefile.getBytes();
 				File f = new File(fullPath);
 				FileOutputStream fos = new FileOutputStream(f);
@@ -583,12 +579,12 @@ public class ExperienceController {
 				bos.write(bytes);
 				bos.close();
 				String experienceFilePath = request.getParameter("experienceFilePath");
-				System.out.println(experienceFilePath+"::::experienceFilePath");
+			
 				File fe = new File(savePath+"/"+ experienceFilePath);
 				if (fe.exists()) { // 파일존재여부확인
 					if (fe.isFile()) {
 						fe.delete();
-						System.out.println("삭제성공");
+					
 					}
 				}
 				
@@ -606,7 +602,7 @@ public class ExperienceController {
 			
 		
 		Experience eFind = experienceService.eFind(experienceNo);
-		System.out.println(eFind.getExperienceContent()); // 원래있던데이터
+	
 		String str = eFind.getExperienceContent();
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<String> list2 = new ArrayList<String>();				
@@ -622,37 +618,34 @@ public class ExperienceController {
 		 */	
 		
 		String edit = editor;
-		System.out.println(str+"::str");
-		System.out.println(edit+"++edit");
+		
 		
 		
 		if(str.contains("KDC") && !edit.contains("KDC") ) {//수정전 이미지는 있고 수정하고 난뒤 이미지가 다 없을때. == image 에있는거 다삭제
-			System.out.println("수정전 이미지는 있고 수정하고 난뒤 이미지가 다 없을때");
+		
 			Pattern pattern = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것. (시작^ * 0개이상 IDID				*pg 끝나는애.
 			Matcher matcher = pattern.matcher(str);	// 원래있던 데이터	
 			while (matcher.find()) {	// 파인드 찾는다 							
 				String as = matcher.group();
 				as = as.substring(0,as.length()-1);
 				list.add(as);
-				System.out.println(as+ "list1임");
+				
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
 						root+"image/"+ list.get(i));  // 파일 선언으로 내가 가져온 list(i) 값을 경로를 잡아준다
 				listDetele.delete();
-				System.out.println("삭제성공");
+			
 			}	
 			
 		}else if(!str.contains("KDC") && edit.contains("KDC") ) {//수정전 이미지가 없고 수정한뒤 이미지가 추가되었을때. == imge만 추가다.
-			System.out.println("수정전 이미지가 없고 수정한뒤 이미지가 추가되었을때");
-			System.out.println("아무것도안한다  삭제할것없다");
+
 			
 		}else if(!str.contains("KDC") && !edit.contains("KDC") ) {// 둘다 이미지가 없을때
-			System.out.println("둘다 이미지가 없을때");
-			System.out.println("아무것도안한다");
+		
 			
 		}else {
-			System.out.println("else 문으로 들어왓다");
+		
 			Pattern pattern = Pattern.compile("^*ID[\"']?([^>\"']+)[\"']?[^>]^*\""); //Pattern 정규표현식 쓰겟다고 하는것.		
 			Matcher matcher = pattern.matcher(str);	// 원래있던 데이터	
 			
@@ -663,13 +656,13 @@ public class ExperienceController {
 				String as = matcher.group();
 				as = as.substring(0,as.length()-1);
 				list.add(as);
-				System.out.println(as+ "list1임");
+				
 				}	
 			while (matcher2.find()) {	// 파인드 찾는다 							
 				String asd = matcher2.group();
 				asd = asd.substring(0,asd.length()-1);
 				list2.add(asd);
-				System.out.println(asd+"list1임");
+				
 				}
 			for (int i = 0; i < list.size(); i++) { // 반복문으로 list 사이즈 만큼 반복한다.
 				File listDetele = new File(
@@ -677,7 +670,7 @@ public class ExperienceController {
 				boolean result = true; // 참 거짓으로 구분짓는다
 				for (int j = 0; j < list2.size(); j++) {     // 반복문으로 list2 사이즈만큼 반복한다.
 					if (list.get(i).equals(list2.get(j))) {  // if 문 list(i) 가 list2(i) 값는것이 있는지 반복해서 확인한다.
-						System.out.println("같으면 삭제안해야지"); 
+					 
 						result = false; // 같은게있다면 거짓으로 바꾸고 브레이크
 						break;
 					}
@@ -687,7 +680,7 @@ public class ExperienceController {
 					if (listDetele.exists()) { // 파일존재여부확인
 						if (listDetele.isFile()) {
 							listDetele.delete();
-							System.out.println("삭제성공");
+							
 						}
 					} 
 				}

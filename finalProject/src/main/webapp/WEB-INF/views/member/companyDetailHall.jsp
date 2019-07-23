@@ -172,8 +172,6 @@
 								<tr>
 									<td class="re">${i.count }</td>
 									<td><span>${s.filename }</span></td>
-									<td><img src="${s.filepath }"
-										style="width: 300px; height: 300px"></td>
 									<td><img src="/resources/hall/${s.filepath }"
 										style="width: 300px; height: 300px"></td>
 									<td><input type="hidden" value="${s.filepath }"
@@ -256,7 +254,7 @@
 								count = count +1;
 								var addTable = "<tr class='imgtr'><td>"+count+"</td><td><label for='filename'><input type='file' onchange='chk(this)' class='filename' name='filename'></label></td>";
 								addTable += "<td><img src='' style='width:300px; heigth:300px' class='img-view'></td>";
-								addTable += "<td><span class='imgDelete'>삭제</span></td>";
+								addTable += "<td><button onclick='imgDelete(this)' type='button'class='imgDelete'>삭제</button></td>";
 								addTable += "<tr>";
 
 								if($("#gall").has('.list-none')){
@@ -267,7 +265,6 @@
 								}
 							});
 			function chk_file_type(obj) {
-				count = count - 1;
 				var file_kind = obj.value.lastIndexOf('.');
 				var file_name = obj.value.substring(file_kind + 1, obj.length);
 				var file_type = file_name.toLowerCase();
@@ -285,6 +282,7 @@
 			}
 
 			function imgDelete(tt) {
+				count = count -1;
 				var filepath = $(tt).prev().val();
 				var code = "H";
 				console.log(filepath);

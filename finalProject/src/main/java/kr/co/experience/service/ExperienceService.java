@@ -87,7 +87,6 @@ public class ExperienceService {
 		 * }
 		 */
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
-		System.out.println(pageNo);
 		
 		if(pageNo !=1) {											
 			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
@@ -105,10 +104,7 @@ public class ExperienceService {
 		if(pageNo <= totalpge) {
 			pageNavi +="<a class='btn' href='/experienceAll.do?reqPage="+(pageNo)+"'>다음</a>";
 		}
-		System.out.println(totalCount+"totalCount");
-		System.out.println(numPerPage+"numPerPage");
-		System.out.println(totalpge+"totalpge");
-		System.out.println(pageNavi+"pageNavipageNavi");
+		
 		ExperienePageDate ExList = new ExperienePageDate(list,pageNavi);
 		return ExList;
 		
@@ -180,7 +176,7 @@ public class ExperienceService {
 		 */
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		
-		System.out.println(pageNo);
+	
 		
 		if(pageNo !=1) {											
 			pageNavi += "<a class='btn' href='/experienceAll.do?reqPage="+(pageNo-1)+"'>이전</a>";
@@ -198,10 +194,7 @@ public class ExperienceService {
 		if(pageNo <= totalpge) {
 			pageNavi +="<a class='btn' href='/experienceAll.do?reqPage="+(pageNo)+"'>다음</a>";
 		}
-		System.out.println(totalCount+"totalCount");
-		System.out.println(numPerPage+"numPerPage");
-		System.out.println(totalpge+"totalpge");
-		System.out.println(pageNavi+"pageNavipageNavi");
+		
 		ExperienePageDate ExList = new ExperienePageDate(list,pageNavi);
 		return ExList;
 		
@@ -287,7 +280,6 @@ public class ExperienceService {
 		 */
 		int pageNo = ((reqPage - 1) / pageNaviSize) * pageNaviSize + 1;
 		
-		System.out.println(pageNo);
 		
 		if(pageNo !=1) {											
 			pageNavi += "<a class='btn' href='/myexperience.do?reqPage="+(pageNo-1)+"'>이전</a>";
@@ -305,10 +297,8 @@ public class ExperienceService {
 		if(pageNo <= totalpge) {
 			pageNavi +="<a class='btn' href='/myexperience.do?reqPage="+(pageNo)+"'>다음</a>";
 		}
-		System.out.println(totalCount+"totalCount");
-		System.out.println(numPerPage+"numPerPage");
-		System.out.println(totalpge+"totalpge");
-		System.out.println(pageNavi+"pageNavipageNavi");
+		
+		
 		ExperienePageDate ExList = new ExperienePageDate(list,pageNavi);
 		return ExList;
 		
