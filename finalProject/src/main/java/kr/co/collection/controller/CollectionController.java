@@ -15,7 +15,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kr.co.collection.model.service.CollectionService;
 import kr.co.collection.model.vo.AllPageData;
+import kr.co.collection.model.vo.Dress;
+import kr.co.collection.model.vo.Makeup;
 import kr.co.collection.model.vo.SearchPageData;
+import kr.co.collection.model.vo.Studio;
 import kr.co.member.model.vo.Member;
 import kr.co.reservation.model.vo.Reservation;
 import kr.co.scrapbook.model.vo.Scrapbook;
@@ -200,7 +203,14 @@ public class CollectionController {
 	public ModelAndView collectionViewStudio(HttpSession session, @RequestParam int studioNo) {
 		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("studio", collectionService.selectOneStudio(studioNo));
+		Studio studio = collectionService.selectOneStudio(studioNo);
+		String []addr = studio.getStudioAddr().split("/");
+		try {
+			studio.setStudioAddr(addr[4]+" "+addr[2]);
+		}catch(Exception e) {
+			studio.setStudioAddr(studio.getStudioAddr());
+		}
+		mav.addObject("studio", studio);
 		mav.addObject("studioSelectList0", collectionService.selectListStudioOption(studioNo, 0));
 		mav.addObject("studioSelectList1", collectionService.selectListStudioOption(studioNo, 1));
 		mav.addObject("studioSelectList2", collectionService.selectListStudioOption(studioNo, 2));
@@ -229,7 +239,14 @@ public class CollectionController {
 	public ModelAndView collectionViewDress(HttpSession session, @RequestParam int dressNo) {
 		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("dress", collectionService.selectOneDress(dressNo));
+		Dress dress = collectionService.selectOneDress(dressNo);
+		String []addr = dress.getDressAddr().split("/");
+		try {
+			dress.setDressAddr(addr[4]+" "+addr[2]);
+		}catch(Exception e) {
+			dress.setDressAddr(dress.getDressAddr());
+		}
+		mav.addObject("dress", dress);
 		mav.addObject("galleryList", collectionService.selectListGallery(dressNo, "D"));
 		mav.addObject("reviewList", collectionService.selectListReview(dressNo, "D"));
 		if(m != null) {
@@ -255,6 +272,14 @@ public class CollectionController {
 	public ModelAndView collectionViewMakeup(HttpSession session, @RequestParam int makeupNo) {
 		Member m = (Member)session.getAttribute("member");
 		ModelAndView mav = new ModelAndView();
+		Makeup makeup = collectionService.selectOneMakeup(makeupNo);
+		String []addr = makeup.getMakeupAddr().split("/");
+		try {
+			makeup.setMakeupAddr(addr[4]+" "+addr[2]);			
+		}catch(Exception e) {
+			makeup.setMakeupAddr(makeup.getMakeupAddr());
+		}
+		mav.addObject("makeup", makeup);
 		mav.addObject("makeup", collectionService.selectOneMakeup(makeupNo));
 		mav.addObject("galleryList", collectionService.selectListGallery(makeupNo, "M"));
 		mav.addObject("reviewList", collectionService.selectListReview(makeupNo, "M"));

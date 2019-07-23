@@ -81,6 +81,7 @@
 						</div>		
 						<!-- 상세주소 -->			
 						<p style="padding-top:10px;"><a style="font-size:15px;" href="#map">${dress.dressAddr}</a></p>
+						<!-- 상세주소 끝 -->
 					</td>
 				</tr>
 			</table>
