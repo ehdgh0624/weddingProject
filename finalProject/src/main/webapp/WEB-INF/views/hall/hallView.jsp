@@ -23,40 +23,56 @@
 <script type="text/javascript"
 	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
 
+<script>
+$(document).ready(function(){
+	/* *********************** 우측 퀵메뉴 ************************ */
+	$(window).scroll(function(){
+		var w_top = $(window).scrollTop();
+		var right_top = $(".collectionDetailBox").offset().top;
+	
+		if (w_top > right_top) {
+			$(".collectionView-quickBar").addClass("fixed");
+		}else {
+			$(".collectionView-quickBar").removeClass("fixed");
+		}
+	});
+});
+</script>
+
 <%-- wrap --%>
 <section id="wrap">
 	<div class="">
 		<section class="hallView area">
-			<div>
+			<div class="collectionViewBox">
 			<!-- 상호명 table -->
 			<table style="width: 100%;">
 				<tr>
 					<!-- 이전페이지 -->
 					<td rowspan="2" style="width: 80px; height: 80px;">
-						<button style="width: 60px; height: 60px; background-color: lightgray; border-radius: 2px;" onclick="window.history.back();">이전</button>
+						<button style="width: 60px; height: 60px; background:#faaca8 url(/resources/img/icon_prev_white.png) no-repeat center center; border-radius: 2px;" onclick="window.history.back();"></button>
 					</td>
 					<!-- 상호명 -->
-					<td><span style="font-size: 28px;">${hall.hallName}</span></td>
-					<!-- 스크랩북 -->
-					<td style="float: right;">
-						<c:choose>
-							<c:when test="${not empty scrapbook}">
-								<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
-									<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:when>
-							<c:otherwise>
-								<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
-									<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-								</button>
-							</c:otherwise>
-						</c:choose>
-					</td>
-				</tr>
-				<tr>
-					<!-- 상세주소 -->
 					<td>
-						<a style="font-size: 15px;" href="#map">${hall.hallAddr}</a>
+						<div class="clearfix">
+							<span class="fl" style="font-size:28px;font-weight:500;">${hall.hallName}</span>
+							<!-- 스크랩북 -->
+							<span class="fr">
+								<c:choose>
+									<c:when test="${not empty scrapbook}">
+										<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
+											<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+										</button>
+									</c:when>
+									<c:otherwise>
+										<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
+											<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+										</button>
+									</c:otherwise>
+								</c:choose>
+							</span>
+						</div>
+						<!-- 상세주소 -->			
+						<p style="padding-top:10px;"><a style="font-size: 15px;" href="#map">${hall.hallAddr}</a></p>
 					</td>
 				</tr>
 			</table>
@@ -80,7 +96,7 @@
 			<!-- 사진 carousel 끝 -->
 			<br> <br> <br>
 			<!-- 상세설명, 리뷰, 지도가 포함된 content 시작 -->
-			<div style="position: relative;">
+			<div class="collectionDetailBox" style="position: relative;">
 				<!-- 왼쪽 상세설명, 리뷰, 지도 -->
 				<div style="width: 70%; display: inline-block;">
 					<h2>상세설명</h2>
@@ -386,48 +402,56 @@
 				</div>
 				<!-- 오른쪽 실제사례, 인터뷰, 스크랩북, 전화번호 등이 포함된  position: static;-->
 				<div style="width: 28%; height: 400px; float: right;">
-				<!-- 태그 -->
-					<div class="photolist" style="width:100%;height:250px;padding:20px;box-sizing: border-box;">
-						<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
-							<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
-								<c:set var="msg" value="${fn:split(item,'#')}" />
-								<a href="/hallPc.do?msg=${msg[0]}">${item}</a>
-							</c:if>
-						</c:forEach>
+					<div class="collectionView-quickBar">
+						<!-- 태그 -->
+						<div class="quickBar-con">
+							<div class="quickBar-inner">
+								<div>						
+									<c:forEach items="${fn:split(hall.hallTag,',')}" var="item" varStatus="j">		<!-- 저장된 태크를 꺼내와 콤마(,) 기준으로 자르고, 해당 길이만큼 반복문을 돌림 -->
+										<c:if test="${not doneLoop}">												<!-- 반복문 break가 없을 시 태그 안의 구문 실행 -->
+											<c:set var="msg" value="${fn:split(item,'#')}" />
+											<a href="/hallPc.do?msg=${msg[0]}">${item}</a>
+										</c:if>
+									</c:forEach>
+								</div>
+							</div>
+						</div>
+						<!-- 태그 끝 -->
+						<!-- 스크랩 -->
+						<div class="quickBar-con">
+							<div class="quickBar-inner2">
+								<div>
+									<!-- 스크랩북 -->
+									<div>
+										<c:choose>
+											<c:when test="${not empty scrapbook}">
+												<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
+													<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
+												</button>
+											</c:when>
+											<c:otherwise>
+												<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
+													<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
+												</button>
+											</c:otherwise>
+										</c:choose>
+									</div>						
+									<!-- 스크랩북 끝 -->
+									<p style="padding-top:10px;">
+										<c:choose>
+											<c:when test="${empty scrapbookCount}">
+												<span id="scrapbookCount" style="color:orangered;">0</span>
+											</c:when>
+											<c:otherwise>							
+												<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
+											</c:otherwise>
+										</c:choose>명이 스크랩했습니다.
+									</p>
+								</div>
+							</div>
+						</div>
+						<!-- 스크랩 끝 -->
 					</div>
-				<!-- 태그 끝 -->
-				<!-- 스크랩 -->
-					<div class="photolist" style="width:100%;height:140px;margin-top:10px;text-align: center;padding:20px;box-sizing: border-box;">
-					<!-- 스크랩북 -->
-						<div>
-							<c:choose>
-								<c:when test="${not empty scrapbook}">
-									<button class="scrapStar" id="${hall.hallNo}" name="${hall.code}">
-										<img src="/resources/img/star_b2.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:when>
-								<c:otherwise>
-									<button class="defaultStar" id="${hall.hallNo}" name="${hall.code}">
-										<img src="/resources/img/star_b1.png" style="width: 30px; height: 30px;">
-									</button>
-								</c:otherwise>
-							</c:choose>
-						</div>						
-					<!-- 스크랩북 끝 -->
-					
-						<c:choose>
-							<c:when test="${empty scrapbookCount}">
-								<span id="scrapbookCount" style="color:orangered;">0</span>
-							</c:when>
-							<c:otherwise>							
-								<span id="scrapbookCount" style="color:orangered;">${scrapbookCount}</span>
-							</c:otherwise>
-						</c:choose>
-						
-						명이 스크랩했습니다.
-					</div>
-				<!-- 스크랩 끝 -->
-				</div>
 				</div>
 			</div>
 		</section>
