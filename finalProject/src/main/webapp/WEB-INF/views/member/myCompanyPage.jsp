@@ -57,6 +57,12 @@
 									<c:if test="${s.viewstatus==1 }">
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
+									<c:if test="${s.viewstatus==2 }">
+										공개 신청중
+									</c:if>	
+									<c:if test="${s.viewstatus==3 }">
+										비공개 신청중
+									</c:if>	
 								</span>
 							</td>
 								<td>
@@ -98,6 +104,12 @@
 									</c:if>		
 									<c:if test="${d.viewstatus==1 }">
 										<img width="24px" src="/resources/img/viewstatus_off.png">
+									</c:if>	
+									<c:if test="${d.viewstatus==2 }">
+										공개 신청중
+									</c:if>	
+									<c:if test="${d.viewstatus==3 }">
+										비공개 신청중
 									</c:if>	
 								</span>
 							</td>
@@ -141,6 +153,12 @@
 									<c:if test="${m.viewstatus==1 }">
 										<img width="24px" src="/resources/img/viewstatus_off.png">
 									</c:if>	
+									<c:if test="${m.viewstatus==2 }">
+										공개 신청중
+									</c:if>	
+									<c:if test="${m.viewstatus==3 }">
+										비공개 신청중
+									</c:if>	
 								</span>
 							</td>
 							<td>
@@ -182,6 +200,12 @@
 									</c:if>		
 									<c:if test="${h.viewStatus==1 }">
 										<img width="24px" src="/resources/img/viewstatus_off.png">
+									</c:if>	
+									<c:if test="${h.viewStatus==2 }">
+										공개 신청중
+									</c:if>	
+									<c:if test="${h.viewStatus==3 }">
+										비공개 신청중
 									</c:if>	
 								</span>
 							</td>

@@ -101,10 +101,10 @@
 								value="${dress.dressContent }"></td>
 						</tr>
 						<tr>
-							<th>업체 상태설정</th>
+							<th>업체 상태설정신정</th>
 							<td><select name="viewstatus">
-									<option value="0">공개</option>
-									<option value="1">비공개</option>
+									<option value="2">공개 신청</option>
+									<option value="3">비공개 신청</option>
 							</select></td>
 						</tr>
 					</table>
