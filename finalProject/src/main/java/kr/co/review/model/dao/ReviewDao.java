@@ -29,12 +29,16 @@ public class ReviewDao {
 	}
 	
 	public int updateScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum) {
+		int cal = 0;
+		if(reviewCount < 1) {
+			cal = reviewScope;			
+		}else {
+			cal = (reviewSum + reviewScope) / (reviewCount+1);
+		}
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("code", code);
 		map.put("objectNo", objectNo);
-		map.put("reviewScope", reviewScope);
-		map.put("reviewCount", reviewCount);
-		map.put("reviewSum", reviewSum);
+		map.put("cal", cal);
 		if(code.equals("S")) {
 			return sqlSession.update("studio.updateScope",map);
 		}else if(code.equals("D")) {
@@ -73,6 +77,40 @@ public class ReviewDao {
 			return sqlSession.update("goods.deleteScope",map);			
 		}else if(code.equals("H")){
 			return sqlSession.update("hall.deleteScope",map);
+		}else {
+			return 0;
+		}		
+	}
+	
+	public int updateReview(int reviewNo, String reviewContent, int newReviewScope) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("reviewNo", reviewNo);
+		map.put("reviewContent", reviewContent);
+		map.put("newReviewScope", newReviewScope);
+		return sqlSession.update("review.updateReview",map);
+	}
+	
+	public int deleteInsertScope(String code, int objectNo, int reviewScope, int reviewCount, int reviewSum, int newReviewScope) {
+		int cal = 0;
+		if(reviewCount == 1) {
+			cal = newReviewScope;
+		}else {
+			cal = ((reviewSum-reviewScope)+newReviewScope) / (reviewCount);			
+		}
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("code", code);
+		map.put("objectNo", objectNo);
+		map.put("cal", cal);
+		if(code.equals("S")) {
+			return sqlSession.update("studio.deleteInsertScope",map);
+		}else if(code.equals("D")) {
+			return sqlSession.update("dress.deleteInsertScope",map);						
+		}else if(code.equals("M")) {
+			return sqlSession.update("makeup.deleteInsertScope",map);						
+		}else if(code.equals("G")) {
+			return sqlSession.update("goods.deleteInsertScope",map);			
+		}else if(code.equals("H")){
+			return sqlSession.update("hall.deleteInsertScope",map);
 		}else {
 			return 0;
 		}		
