@@ -136,7 +136,7 @@
 									<div class="thumbnail">
 										<a href="/hallView.do?hallNo=${h.hallNo}" class="centered">
 											<span
-											style="background: url('https://i.pinimg.com/originals/d9/82/f4/d982f4ec7d06f6910539472634e1f9b1.png') no-repeat center center; background-size: cover;"></span>
+											style="background: url('/resources/hall/${h.hallPath}') no-repeat center center; background-size: cover;"></span>
 										</a>
 									</div>
 									<div class="text">
