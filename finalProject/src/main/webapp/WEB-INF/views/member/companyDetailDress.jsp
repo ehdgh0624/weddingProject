@@ -24,7 +24,8 @@
 		</c:if>
 		<div class="area">
 			<div class="common-tbl-box">
-				<form action="/dressUpdate.do" method="post">
+				<form action="/dressUpdate.do" method="post"
+				enctype="multipart/form-data">
 					<table class="comm-tbl">
 						<colgroup>
 							<col width="20%">
@@ -107,6 +108,20 @@
 									<option value="3">비공개 신청</option>
 							</select></td>
 						</tr>
+						<tr>
+						<th>대표사진</th>
+						<td><input type="file" name="img" onchange="loadImg(this)"
+						class="short" id="file" style="display: none;"> <input
+						type="hidden" name="dressNo" class="short" value="${dress.dressNo}">
+						<input type="hidden" name="oldFilename" class="short"
+						value="${dress.dressFilename }"> <input type="hidden"
+						name="oldFilepath" class="short" value="${dress.dressFilepath }">
+						<div id="img-viewer" style="width: 80%;">
+							<label for="file"><img id="img-view"
+								style="max-width: 100%;"
+								src="/resources/dress/${dress.dressFilepath }"></label>
+						</div></td>
+						</tr>
 					</table>
 					<c:if test="${sessionScope.member.memberCode != 2}">
 						<div class="common-tbl-btn-group" style="margin-bottom:20px;">
@@ -175,6 +190,21 @@
 
 
 	<script>
+	function loadImg(f) {
+		chk_file_type(f);
+		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+			var reader = new FileReader();
+			reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+			reader.onload = function(e) { //다 읽어 왔으면 실행
+				$("#img-view").attr('src', e.target.result);
+			}
+		} else {
+			$("#img-view").attr('src', '');
+		}
+	}
+	
 	var count;
 	if($(".type2").children('tbody').children().children().is(".re")){
 		 count = parseInt($(".re").last().html());
@@ -329,7 +359,7 @@
 			anchorSkew : true
 		});
 
-		$('#updateStudio').click(function() {
+		$('#updateDress').click(function() {
 			var roadAddr = $('#sample4_roadAddress').val();
 			console.log(roadAddr);
 			naver.maps.Service.geocode({

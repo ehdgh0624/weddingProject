@@ -250,7 +250,10 @@
 		hall_time=#{hallTime},
 		hall_Service_Food=#{hallServiceFood},
 		hall_Service_Parking=#{hallServicePark},
-		viewStatus=#{viewStatus}
+		viewStatus=#{viewStatus},
+		hall_img=#{hallImg},
+		hall_path=#{hallPath},
+		hall_addr=#{hallAddr}
 		where hall_no =#{hallNo}
 	</update>
 	
