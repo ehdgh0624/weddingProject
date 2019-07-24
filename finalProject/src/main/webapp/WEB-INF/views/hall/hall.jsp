@@ -27,22 +27,22 @@
 							<span>'타입 : ${param.hallType }'</span>
 						</c:if>
 						<c:if test="${not empty param.menuType }">
-							<c:if test="${param.menuType == 0 }">
+							<c:if test="${param.menuType == 5 }">
 								<span>'메뉴 : 전체'</span>
 							</c:if>
-							<c:if test="${param.menuType == 1 }">
+							<c:if test="${param.menuType == 0 }">
 								<span>'메뉴 : 한식'</span>
 							</c:if>
-							<c:if test="${param.menuType == 2 }">
+							<c:if test="${param.menuType == 1 }">
 								<span>'메뉴 : 일식'</span>
 							</c:if>
-							<c:if test="${param.menuType == 3 }">
+							<c:if test="${param.menuType == 2 }">
 								<span>'메뉴 : 중식'</span>
 							</c:if>
-							<c:if test="${param.menuType == 4 }">
+							<c:if test="${param.menuType == 3 }">
 								<span>'메뉴 : 양식'</span>
 							</c:if>
-							<c:if test="${param.menuType == 5 }">
+							<c:if test="${param.menuType == 4 }">
 								<span>'메뉴 : 뷔페'</span>
 							</c:if>
 						</c:if>
@@ -101,12 +101,12 @@
 							<option value="호텔">호텔</option>
 						</select> <select class="menu" name="menuType">
 							<!-- 식사 메뉴 -->
-							<option value="0">메뉴 선택</option>
-							<option value="1">한식</option>
-							<option value="2">일식</option>
-							<option value="3">중식</option>
-							<option value="4">양식</option>
-							<option value="5">뷔페</option>
+							<option value="5">메뉴 선택</option>
+							<option value="0">한식</option>
+							<option value="1">일식</option>
+							<option value="2">중식</option>
+							<option value="3">양식</option>
+							<option value="4">뷔페</option>
 						</select>
 						<div class="hallPerson">
 							<input type="text" id="hallPerson" class="num" name="hallPerson"

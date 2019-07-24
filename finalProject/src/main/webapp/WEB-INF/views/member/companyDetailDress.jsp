@@ -53,8 +53,8 @@
 	
 						<tr>
 							<th>드레스대여가능개수</th>
-							<td><input type="text" class="num middle" name="dressRentPrice"
-								value="${dress.dressRentPrice }"> 개</td>
+							<td><input type="text" class="num middle" name="dressRentNum"
+								value="${dress.dressRentNum }"> 개</td>
 						</tr>
 						<tr>
 							<th>드레스가봉</th>
@@ -63,8 +63,8 @@
 						</tr>
 						<tr>
 							<th>드레스대여가격</th>
-							<td><input type="text" class="num middle" name="jewelryPrice"
-								value="${dress.jewelryPrice }"> 원</td>
+							<td><input type="text" class="num middle" name="dressRentPrice"
+								value="${dress.dressRentPrice }"> 원</td>
 						</tr>
 						<tr>
 							<th>우편번호</th>
