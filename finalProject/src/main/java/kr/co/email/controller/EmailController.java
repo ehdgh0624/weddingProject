@@ -54,7 +54,7 @@ class EmailController {
 		"<tbody><tr><td align='center' valign='top' bgcolor='#f5f5f5' style='background-color:#f5f5f5;border-collapse:collapse'>"+
 		"<table border='0' width='600' cellpadding='0' cellspacing='0' style='width:600px;max-width:600px;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0'>"+
 		"<tbody><tr><td style='border-collapse: collapse;display:block;margin-top:50px;width:20%'>"+
-		"<a href='http://localhost/'><img src='http://localhost/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
+		"<a href='http://192.168.10.63/'><img src='http://192.168.10.63/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
 		"<tr><td style='padding:35px 30px 24px;background-color:#fff;border-collapse:collapse'>"+ 
 		"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;color:#444'>이메일 인증 코드</div>"+ 
 		"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:left;color:#000;margin-top:12px;font-weight:bold;letter-spacing:1px;'><strong>"+ 
@@ -102,7 +102,7 @@ class EmailController {
 		"<tbody><tr><td align='center' valign='top' bgcolor='#f5f5f5' style='background-color:#f5f5f5;border-collapse:collapse'>"+
 		"<table border='0' width='600' cellpadding='0' cellspacing='0' style='width:600px;max-width:600px;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0'>"+
 		"<tbody><tr><td style='border-collapse: collapse;display:block;margin-top:50px;width:20%'>"+
-		"<a href='http://localhost/'><img src='http://localhost/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
+		"<a href='http://192.168.10.63/'><img src='http://192.168.10.63/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
 		"<tr><td style='padding:35px 30px 24px;background-color:#fff;border-collapse:collapse'>"+ 
 		"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:18px;font-weight:bold;color:#444'>아래의 버튼을 눌러 견적상세페이지로 가보세요</div>"+ 
 		"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:13px;line-height:20px;text-align:left;color:#818181;margin-top:12px;'>"+ 
@@ -111,7 +111,7 @@ class EmailController {
 		"<tr><td style='padding:0 30px 35px;background-color:#fff;border-collapse:collapse'><div style='font-family:dotum, NanumGothic, Helvetica, Arial,  sans-serif; font-size: 13px; line-height: 20px; text-align: left; color:#808080;  margin:0px 0 10px'>"+ 
 		"견적일시: "+finishDate+"<br>견적금액: "+formatter.format(Integer.parseInt(price))+"원<br></div>"+
 		"<div style='margin:0px 0 0px; text-align:center;'>" + 
-		"<a href='http://localhost/simulatorEmailCheck.do?no="+Integer.parseInt(num)+"' style='background-color:#faaca8;border: none;color:white;padding: 8px 30px;text-align: center;text-decoration: none;font-size: 14px;display: inline-block;' target='_blank'>견적 상세보기</a>" + 
+		"<a href='http://192.168.10.63/simulatorEmailCheck.do?no="+Integer.parseInt(num)+"' style='background-color:#faaca8;border: none;color:white;padding: 8px 30px;text-align: center;text-decoration: none;font-size: 14px;display: inline-block;' target='_blank'>견적 상세보기</a>" + 
 		"</div></td></tr>"+
 		"<tr><td style='font-family: Helvetica, Arial, sans-serif;font-size: 12px;line-height: 18px;color: #aaa;border-collapse: collapse; padding: 15px 0 50px'>"+ 
 		"© 2019 결혼해JUO<br>대한민국 결혼문화를 바꾸는 기업, <strong>결혼해JUO</strong><br></td></tr></tbody></table>" +
@@ -149,7 +149,7 @@ class EmailController {
 	     			"<tbody><tr><td align='center' valign='top' bgcolor='#f5f5f5' style='background-color:#f5f5f5;border-collapse:collapse'>"+
 	     			"<table border='0' width='600' cellpadding='0' cellspacing='0' style='width:600px;max-width:600px;border-spacing:0;mso-table-lspace:0;mso-table-rspace:0'>"+
 	     			"<tbody><tr><td style='border-collapse: collapse;display:block;margin-top:50px;width:20%'>"+
-	     			"<a href='http://localhost/'><img src='http://localhost/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
+	     			"<a href='http://192.168.10.63/'><img src='http://192.168.10.63/resources/img/logo.png' border='0' style='width:80px;padding-bottom:18px;'></a></td></tr>"+
 	     			"<tr><td style='padding:35px 30px 24px;background-color:#fff;border-collapse:collapse'>"+ 
 	     			"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:13px;font-weight:bold;color:#444'>이메일 인증 코드</div>"+ 
 	     			"<div style='font-family:dotum, NanumGothic, Helvetica, Arial, sans-serif;font-size:20px;line-height:24px;text-align:left;color:#000;margin-top:12px;font-weight:bold;letter-spacing:1px;'><strong>"+ 
