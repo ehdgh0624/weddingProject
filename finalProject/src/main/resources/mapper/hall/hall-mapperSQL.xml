@@ -252,7 +252,8 @@
 		hall_Service_Parking=#{hallServicePark},
 		viewStatus=#{viewStatus},
 		hall_img=#{hallImg},
-		hall_path=#{hallPath}
+		hall_path=#{hallPath},
+		hall_addr=#{hallAddr}
 		where hall_no =#{hallNo}
 	</update>
 	
