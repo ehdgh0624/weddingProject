@@ -271,7 +271,7 @@ public class MemberController {
 		m.setMakeupAddr(addr);
 		String tel = m.getMakeupTelFi()+"/"+m.getMakeupTelSe()+"/"+m.getMakeupTelth();
 		m.setMakeupTel(tel);
-		String savePath = request.getSession().getServletContext().getRealPath("/resources/dress");	
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/makeup");	
 		if (!img.isEmpty()) {
 			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
 			Date time = new Date();
