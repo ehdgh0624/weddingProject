@@ -723,15 +723,32 @@
 		var weddingDate = $('#weddingDate').val().replace(/-/gi,'/');
 		var weddingTime = $('#weddingTime option:selected').val();
 		var totalPrice = $('#allPrice').text();
-		var option1 = $('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("("));
-		var option2 = $('#option2 option:selected').text().substring(0,$('#option2 option:selected').text().indexOf("("));
+		var option1 = null;	
+		var option2 = null;
+		if(option1 != null || option1 != ''){
+			option1 = $('#option1 option:selected').text().substring(0,$('#option1 option:selected').text().indexOf("("));			
+		}
+		if(option2 != null || option2 != ''){
+			option2 = $('#option2 option:selected').text().substring(0,$('#option2 option:selected').text().indexOf("("));
+		}
 		var option2Date = null;
 		var option2Time = null;
 		if($('#option2Time option:selected').val() != 'default'){
-			option2Date = $('#option2Date').val();
+			option2Date = $('#option2Date option:selected').text();
 			option2Time = $('#option2Time option:selected').text();			
 		}
 		var option3 = $('#option3 option:selected').text().substring(0,$('#option3 option:selected').text().indexOf("("));
+		console.log(code);
+		console.log(prdNo);
+		console.log(prdId);
+		console.log(prdName);
+		console.log(weddingDate);
+		console.log(weddingTime);
+		console.log(totalPrice);
+		console.log(option1);
+		console.log(option2);
+		console.log(option2Date);
+		console.log(option2Time);
 		$.ajax({
 			url : "/reservationStudio.do",
 			data : {code:code,prdNo:prdNo,prdId:prdId,prdName:prdName,weddingDate:weddingDate,weddingTime:weddingTime,totalPrice:totalPrice,option1:option1,option2:option2,option2Date:option2Date,option2Time:option2Time,option3:option3},
