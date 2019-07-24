@@ -46,7 +46,10 @@
 		makeup_parent_price =#{makeupParentPrice},
 		makeup_visitor_price=#{makeupVisitorPrice},
 		makeup_content=#{makeupContent},
-		viewstatus=#{viewstatus}
+		viewstatus=#{viewstatus},
+		makeup_addr=#{makeupAddr},
+		makeup_filepath=#{makeupFilepath},
+		makeup_filename=#{makeupFilename}
 		where makeup_no =#{makeupNo}
 	</update>
 	

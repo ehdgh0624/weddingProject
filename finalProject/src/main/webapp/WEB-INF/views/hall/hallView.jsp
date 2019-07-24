@@ -21,8 +21,7 @@
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.css">
 	<%-- 네이버 지도 API --%>
 <script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=cd02i4r7os&submodules=geocoder"></script>
-
+	src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=53cf14lzrh&submodules=geocoder"></script>
 <script>
 $(document).ready(function(){
 	/* *********************** 우측 퀵메뉴 ************************ */
@@ -893,7 +892,6 @@ $(document).ready(function(){
 		});
 		var contentString = [						//마커 클릭 시 출력할 주소 배열
 	        '   <h3 style="display:inline-block;padding:10px;">${hall.hallName}</h3>',
-	        '       <img src="/img/header_logo.png" width="100" height="100" alt="KS" style="float:right;" class="thumb" />',
 	        '   	<p style="font-size:13px;padding:10px;">${hall.hallAddr}<br />',
 	        '       TEL : ${hall.hallTel}<br />',
 	        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',

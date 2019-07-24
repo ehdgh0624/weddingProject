@@ -34,7 +34,9 @@
 		studio_camera=#{studioCamera},
 		studio_addr=#{studioAddr},
 		studio_time=#{studioTime},
-		viewstatus=#{viewstatus}
+		viewstatus=#{viewstatus},
+		studio_filepath=#{studioFilepath},
+		studio_filename=#{studioFilename}
 		where studio_no =#{studioNo}
 	</update>
 	<select id="viewSelectOne2" parameterType="_int" resultType="studio">
