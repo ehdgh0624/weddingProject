@@ -47,7 +47,7 @@
 		jewelry_price =#{jewelryPrice},
 		dress_content=#{dressContent},
 		viewstatus=#{viewstatus},
-		dress_addr=#{dressAddr}
+		dress_addr=#{dressAddr},
 		dress_filename=#{dressFilename},
 		dress_filepath=#{dressFilepath}
 
