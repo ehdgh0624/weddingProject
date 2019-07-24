@@ -48,6 +48,9 @@
 		dress_content=#{dressContent},
 		viewstatus=#{viewstatus},
 		dress_addr=#{dressAddr}
+		dress_filename=#{dressFilename},
+		dress_filepath=#{dressFilepath}
+
 		where dress_no =#{dressNo}
 	</update>
 	

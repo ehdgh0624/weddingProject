@@ -25,7 +25,8 @@
 		<!-- 여기에 내용 작서어어어어어엉!!! -->
 		<div class="area">
 		<div class="common-tbl-box">
-			<form action="/studioUpdate.do" method="post">
+			<form action="/studioUpdate.do" method="post"
+				enctype="multipart/form-data">
 				<table class="comm-tbl">
 					<colgroup>
 						<col width="20%">
@@ -105,6 +106,20 @@
 								<option value="2">공개 신청</option>
 								<option value="3">비공개 신청</option>
 						</select></th>
+					</tr>
+					<tr>
+					<th>대표사진</th>
+					<td><input type="file" name="img" onchange="loadImg(this)"
+						class="short" id="file" style="display: none;"> <input
+						type="hidden" name="studioNo" class="short" value="${studio.studioNo}">
+						<input type="hidden" name="oldFilename" class="short"
+						value="${studio.studioFilename }"> <input type="hidden"
+						name="oldFilepath" class="short" value="${studio.studioFilepath }">
+						<div id="img-viewer" style="width: 80%;">
+							<label for="file"><img id="img-view"
+								style="max-width: 100%;"
+								src="/resources/studio/${studio.studioFilepath }"></label>
+						</div></td>
 					</tr>
 				</table>
 				
@@ -264,6 +279,21 @@
 
 
 	<script type="text/javascript">
+	function loadImg(f) {
+		chk_file_type(f);
+		if (f.files.length != 0 && f.files[0] != 0 && chk_file_type(f)) {
+			//배열형태로 가지고 옴 //파일이 업로드 되면 이라는 조건 배열길이가 0이 아니거나 0번에 크기가 0이아니면
+			//JS의 FileReader객체 -> 객체 내부의 result 속성에 파일 컨텐츠가 있음
+			var reader = new FileReader();
+			reader.readAsDataURL(f.files[0]); //선택한 파일 경로를 읽어옴
+			reader.onload = function(e) { //다 읽어 왔으면 실행
+				$("#img-view").attr('src', e.target.result);
+			}
+		} else {
+			$("#img-view").attr('src', '');
+		}
+	}
+	
 	var count;
 	if($(".type2").children('tbody').children().children().is(".re")){
 		 count = parseInt($(".re").last().html());

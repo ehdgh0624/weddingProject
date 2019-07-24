@@ -48,6 +48,8 @@
 		makeup_content=#{makeupContent},
 		viewstatus=#{viewstatus},
 		makeup_addr=#{makeupAddr}
+		makeup_filepath=#{dressFilepath},
+		makeup_filename=#{dressFilename}
 		where makeup_no =#{makeupNo}
 	</update>
 	
