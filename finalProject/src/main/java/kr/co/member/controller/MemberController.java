@@ -80,8 +80,55 @@ public class MemberController {
 	private EmailSender emailSender;
 	
 	@RequestMapping(value = "/studioUpdate.do")
-	public String studioUpdate(Studio s,HttpSession session) {
+	public String studioUpdate(Studio s,HttpSession session,@RequestParam MultipartFile img,String oldFilename,String oldFilepath,HttpServletRequest request) {
+		
 		System.out.println("스튜디오 업데이트 호출");
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/studio");
+		
+		
+		if (!img.isEmpty()) {
+			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date time = new Date();
+			String time1 = fomat.format(time);
+			System.out.println("savePath con: " + savePath);
+			String oiginNname = img.getOriginalFilename();
+			String onlyFilename = "";
+			String extension = "";
+			String filePath = "";
+			// 파일명 확장자 나누기
+			 // 새로 변경하였을때
+				onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
+				extension = oiginNname.substring(oiginNname.indexOf("."));
+				filePath = onlyFilename + "_" + time1 + extension;
+			
+			String fullPath = savePath + "/" + filePath;
+
+			try {
+				System.out.println("파일업로드 탄다");
+				byte[] bytes = img.getBytes();
+				File f = new File(fullPath);
+				FileOutputStream fos = new FileOutputStream(f);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				bos.write(bytes);
+				bos.close();
+				File fe = new File(savePath + "/" + oldFilepath);
+				if (fe.exists()) { // 파일존재여부확인
+					if (fe.isFile()) {
+						fe.delete();
+						System.out.println("삭제성공");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			s.setStudioFilename(oiginNname);
+			s.setStudioFilepath(filePath);
+		} else {
+			s.setStudioFilename(oldFilename);
+			s.setStudioFilepath(oldFilepath);
+		}
+		
+		
 		String addr=s.getJibunAddr()+"/"+s.getExtraAddr()+"/"+
 		s.getDetailAddr()+"/"+s.getPostNum()+"/"+s.getRoadAddr();
 		s.setStudioAddr(addr);
@@ -93,8 +140,54 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/hallUpdate.do")
-	public String hallUpdate(Hall h,HttpSession session) {
-		System.out.println("스튜디오 업데이트 호출");
+	public String hallUpdate(Hall h,HttpSession session, @RequestParam MultipartFile img,String oldFilename,String oldFilepath,HttpServletRequest request) {
+
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/hall");
+		
+		
+		if (!img.isEmpty()) {
+			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date time = new Date();
+			String time1 = fomat.format(time);
+			System.out.println("savePath con: " + savePath);
+			String oiginNname = img.getOriginalFilename();
+			String onlyFilename = "";
+			String extension = "";
+			String filePath = "";
+			// 파일명 확장자 나누기
+			 // 새로 변경하였을때
+				onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
+				extension = oiginNname.substring(oiginNname.indexOf("."));
+				filePath = onlyFilename + "_" + time1 + extension;
+			
+			String fullPath = savePath + "/" + filePath;
+
+			try {
+				System.out.println("파일업로드 탄다");
+				byte[] bytes = img.getBytes();
+				File f = new File(fullPath);
+				FileOutputStream fos = new FileOutputStream(f);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				bos.write(bytes);
+				bos.close();
+				File fe = new File(savePath + "/" + oldFilepath);
+				if (fe.exists()) { // 파일존재여부확인
+					if (fe.isFile()) {
+						fe.delete();
+						System.out.println("삭제성공");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			h.setHallImg(oiginNname);
+			h.setHallPath(filePath);
+		} else {
+			h.setHallImg(oldFilename);
+			h.setHallPath(oldFilepath);
+		}
+		
+		
 		String addr=h.getJibunAddr()+"/"+h.getExtraAddr()+"/"+
 		h.getDetailAddr()+"/"+h.getPostNum()+"/"+h.getRoadAddr();
 		h.setHallAddr(addr);
@@ -106,10 +199,58 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/dressUpdate.do")
-	public String dressUpdate(Dress d,HttpSession session) {
+	public String dressUpdate(Dress d,HttpSession session,@RequestParam MultipartFile img,String oldFilename,String oldFilepath,HttpServletRequest request) {
 		System.out.println("드레스 업데이트 호출");
 		String addr=d.getJibunAddr()+"/"+d.getExtraAddr()+"/"+
 		d.getDetailAddr()+"/"+d.getPostNum()+"/"+d.getRoadAddr();
+		
+
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/dress");
+		
+		
+		if (!img.isEmpty()) {
+			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date time = new Date();
+			String time1 = fomat.format(time);
+			System.out.println("savePath con: " + savePath);
+			String oiginNname = img.getOriginalFilename();
+			String onlyFilename = "";
+			String extension = "";
+			String filePath = "";
+			// 파일명 확장자 나누기
+			 // 새로 변경하였을때
+				onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
+				extension = oiginNname.substring(oiginNname.indexOf("."));
+				filePath = onlyFilename + "_" + time1 + extension;
+			
+			String fullPath = savePath + "/" + filePath;
+
+			try {
+				System.out.println("파일업로드 탄다");
+				byte[] bytes = img.getBytes();
+				File f = new File(fullPath);
+				FileOutputStream fos = new FileOutputStream(f);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				bos.write(bytes);
+				bos.close();
+				File fe = new File(savePath + "/" + oldFilepath);
+				if (fe.exists()) { // 파일존재여부확인
+					if (fe.isFile()) {
+						fe.delete();
+						System.out.println("삭제성공");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			d.setDressFilename(oiginNname);
+			d.setDressFilepath(filePath);
+		} else {
+			d.setDressFilename(oldFilename);
+			d.setDressFilepath(oldFilepath);
+		}
+		
+		
 		
 		d.setDressAddr(addr);
 		String tel = d.getDressTelFi()+"/"+d.getDressTelSe()+"/"+d.getDressTelth();
@@ -123,14 +264,54 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/makeupUpdate.do")
-	public String makeupUpdate(Makeup m,HttpSession session) {
+	public String makeupUpdate(Makeup m,HttpSession session,@RequestParam MultipartFile img,String oldFilename,String oldFilepath,HttpServletRequest request) {
 		System.out.println("드레스 업데이트 호출");
 		String addr=m.getJibunAddr()+"/"+m.getExtraAddr()+"/"+
 		m.getDetailAddr()+"/"+m.getPostNum()+"/"+m.getRoadAddr();
-		
 		m.setMakeupAddr(addr);
 		String tel = m.getMakeupTelFi()+"/"+m.getMakeupTelSe()+"/"+m.getMakeupTelth();
 		m.setMakeupTel(tel);
+		String savePath = request.getSession().getServletContext().getRealPath("/resources/dress");	
+		if (!img.isEmpty()) {
+			SimpleDateFormat fomat = new SimpleDateFormat("yyyyMMddHHmmss");
+			Date time = new Date();
+			String time1 = fomat.format(time);
+			System.out.println("savePath con: " + savePath);
+			String oiginNname = img.getOriginalFilename();
+			String onlyFilename = "";
+			String extension = "";
+			String filePath = "";
+			// 파일명 확장자 나누기
+			 // 새로 변경하였을때
+				onlyFilename = oiginNname.substring(0, oiginNname.indexOf("."));
+				extension = oiginNname.substring(oiginNname.indexOf("."));
+				filePath = onlyFilename + "_" + time1 + extension;
+			String fullPath = savePath + "/" + filePath;
+			try {
+				System.out.println("파일업로드 탄다");
+				byte[] bytes = img.getBytes();
+				File f = new File(fullPath);
+				FileOutputStream fos = new FileOutputStream(f);
+				BufferedOutputStream bos = new BufferedOutputStream(fos);
+				bos.write(bytes);
+				bos.close();
+				File fe = new File(savePath + "/" + oldFilepath);
+				if (fe.exists()) { // 파일존재여부확인
+					if (fe.isFile()) {
+						fe.delete();
+						System.out.println("삭제성공");
+					}
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			m.setMakeupFilename(oiginNname);
+			m.setMakeupFilepath(filePath);
+		} else {
+			m.setMakeupFilename(oldFilename);
+			m.setMakeupFilepath(oldFilepath);
+		}
+		
 		
 		System.out.println(m);
 		memberService.updateMakeupInfo(m);
