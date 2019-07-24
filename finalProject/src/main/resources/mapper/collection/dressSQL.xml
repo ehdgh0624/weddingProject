@@ -46,7 +46,8 @@
 		dress_rent_price =#{dressRentPrice},
 		jewelry_price =#{jewelryPrice},
 		dress_content=#{dressContent},
-		viewstatus=#{viewstatus}
+		viewstatus=#{viewstatus},
+		dress_addr=#{dressAddr}
 		where dress_no =#{dressNo}
 	</update>
 	
