@@ -42,12 +42,13 @@
 		update dress set 
 		dress_name =#{dressName},
 		dress_tel = #{dressTel},
+		dress_rent_num = ${dressRentNum},
 		dress_fitting_price =#{dressFittingPrice},
 		dress_rent_price =#{dressRentPrice},
 		jewelry_price =#{jewelryPrice},
 		dress_content=#{dressContent},
 		viewstatus=#{viewstatus},
-		dress_addr=#{dressAddr}
+		dress_addr=#{dressAddr},
 		dress_filename=#{dressFilename},
 		dress_filepath=#{dressFilepath}
 
