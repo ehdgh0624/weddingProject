@@ -50,7 +50,7 @@
 			   		<if test="person > 0 ">
 			   			AND (hall_min_person <![CDATA[<=]]>  #{person, jdbcType=VARCHAR}) AND (#{person, jdbcType=VARCHAR} <![CDATA[<=]]> hall_max_person)
 			   		</if>
-			   		<if test="hallFoodtype > 0">
+			   		<if test="hallFoodtype != 5">
 			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
 			   		</if>
 			   		<if test="hallName != '' ">
@@ -101,7 +101,7 @@
 			   		<if test="person > 0 ">
 			   			AND (hall_min_person <![CDATA[<=]]>  #{person, jdbcType=VARCHAR}) AND (#{person, jdbcType=VARCHAR} <![CDATA[<=]]> hall_max_person)
 			   		</if>
-			   		<if test="hallFoodtype > 0">
+			   		<if test="hallFoodtype != 5">
 			   			AND hall_Foodtype = #{hallFoodtype, jdbcType=VARCHAR}
 			   		</if>
 			   		<if test='hallName != ""'>

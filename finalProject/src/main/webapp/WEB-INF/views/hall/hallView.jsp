@@ -205,22 +205,22 @@ $(document).ready(function(){
 									<th>식사</th>
 									<td colspan="2">
 										<c:if test="${not empty hall.hallFoodtype }">
-											<c:if test="${hall.hallFoodtype == 0 }">
+											<c:if test="${hall.hallFoodtype == 5 }">
 												메뉴 : x
 											</c:if>
-											<c:if test="${hall.hallFoodtype == 1 }">
+											<c:if test="${hall.hallFoodtype == 0 }">
 												메뉴 : 한식
 											</c:if>
-											<c:if test="${hall.hallFoodtype == 2 }">
+											<c:if test="${hall.hallFoodtype == 1 }">
 												메뉴 : 일식
 											</c:if>
-											<c:if test="${hall.hallFoodtype == 3 }">
+											<c:if test="${hall.hallFoodtype == 2 }">
 												메뉴 : 중식
 											</c:if>
-											<c:if test="${hall.hallFoodtype == 4 }">
+											<c:if test="${hall.hallFoodtype == 3 }">
 												메뉴 : 양식
 											</c:if>
-											<c:if test="${hall.hallFoodtype == 5 }">
+											<c:if test="${hall.hallFoodtype == 4 }">
 												메뉴 : 뷔페
 											</c:if>
 										</c:if>
