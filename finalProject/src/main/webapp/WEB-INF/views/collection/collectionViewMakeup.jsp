@@ -833,7 +833,6 @@
 		});
 		var contentString = [						//마커 클릭 시 출력할 주소 배열
 	        '   <h3 style="display:inline-block;padding:10px;">${makeup.makeupName}</h3>',
-	        '       <img src="/img/header_logo.png" width="100" height="100" alt="KS" style="float:right;" class="thumb" />',
 	        '   	<p style="font-size:13px;padding:10px;">${makeup.makeupAddr}<br />',
 	        '       TEL : ${makeup.makeupTel}<br />',
 	        '       <a href="http://www.kssports.go.kr" target="_blank" style="text-decoration:none;">http://www.kssports.go.kr/</a>',
