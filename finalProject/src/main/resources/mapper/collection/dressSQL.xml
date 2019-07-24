@@ -42,6 +42,7 @@
 		update dress set 
 		dress_name =#{dressName},
 		dress_tel = #{dressTel},
+		dress_rent_num = ${dressRentNum},
 		dress_fitting_price =#{dressFittingPrice},
 		dress_rent_price =#{dressRentPrice},
 		jewelry_price =#{jewelryPrice},
